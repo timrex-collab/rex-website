@@ -1,0 +1,81 @@
+Erstelle ein vollständiges Website-Projekt für das Dachdeckerunternehmen „Rex Bedachungs GmbH“. 
+Wähle den technologischen Stack selbstständig (einfach, wartungsarm, schnell). 
+Bevorzuge statische Auslieferung (ohne Server, bedeutet: keine laufenden Updates) und minimale Abhängigkeiten. 
+Wenn ein Build nötig ist, richte ihn so ein, dass das Ergebnis als statische Dateien (HTML/CSS/JS) deploybar ist.
+
+=== Branding & Inhalte (fiktiv) ===
+Firmenname: Rex Bedachungs GmbH
+Adresse: Paulinenstr. 22, 44799 Bochum
+Telefon: 0234-583100
+E-Mail: info@rex-bedachung.de
+Öffnungszeiten: Mo–Fr 7–17 Uhr
+Claim: „Ihr Dach in Meisterhand.“
+Region: Ruhrgebiet / Bochum + 30 km
+Farben (Vorschlag): Dunkelgrau #2F2F2F, Dachziegel-Rot #B22222, Weiß #FFFFFF
+Schrift: System-Sans-Serif
+Logo: Platzhalter (einfaches „Rex“/„R“)
+
+=== Seitenstruktur ===
+- Startseite: Hero mit starkem Bild (Platzhalter), Claim, Kurztext (40–60 Wörter), Haupt-CTAs: „Anrufen“, „Angebot anfragen“.
+- Leistungen (Übersicht) + Unterseiten (je 100–150 Wörter, realistisch formuliert):
+  1) Steildach
+  2) Flachdach
+  3) Bauklempnerei
+  4) Dachfenster
+  5) Dachwartung
+  Jede Unterseite mit passendem Platzhalterbild, Stichpunkten (Vorteile), CTA-Box.
+- Referenzen: Grid mit 6 Projekten (Platzhalterbilder, kurzer Beschreibungstext, Eckdaten).
+- Über uns: Geschichte als Meisterbetrieb, Team-Foto (Platzhalter), Werte/Qualität.
+- Karriere: 2 Beispielstellen (Dachdecker (m/w/d), Azubi (m/w/d)), kurzer Bewerbungs-CTA.
+- Kontakt: Kontaktdaten, Öffnungszeiten, Karte als Bild-Platzhalter, WhatsApp-Hinweis (ohne Funktion), Kontaktformular.
+- Impressum & Datenschutz: Dummy-Texte mit klaren Überschriften (später austauschbar).
+- 404-Seite mit Link zur Startseite.
+
+=== Funktionale Anforderungen ===
+- Responsives Layout (mobil zuerst).
+- Navigation mit Untermenü „Leistungen“; Sticky Header mobil/desktop.
+- Kontaktformular (Name, E-Mail, Telefon, Nachricht) → vorerst Dummy-Submit (POST auf Platzhalter-Endpoint oder „mailto:“ Fallback). 
+  Anti-Spam: Honeypot-Feld (unsichtbar).
+- Click-to-Call (tel:) und klickbare E-Mail (mailto:).
+- Bildquellen: Platzhalter über https://picsum.photos oder https://placehold.co; semantische Alt-Texte (kurz).
+- Performance: wenig JavaScript; Bilder mit Breitenangaben/_lazy loading_ (spätes Laden).
+- Barrierefreiheit: sinnvolle Überschriftenhierarchie (h1–h3), aria-Labels für Navigation/Buttons, ausreichende Kontraste.
+
+=== SEO & Rechtliches ===
+- Pro Seite Meta-Title (≈60 Zeichen) & Description (≈160 Zeichen).
+- Open-Graph-Tags (Titel, Beschreibung, Bild).
+- robots.txt & sitemap.xml generieren.
+- Schema.org „LocalBusiness“ (Dachdecker) auf der Startseite mit Kern-Daten (Name, Adresse, Telefon, Öffnungszeiten).
+- DSGVO-schlank: keine Cookies/Tracker. Falls Analytics-Hook, dann auskommentiert mit Hinweis (später Plausible möglich).
+
+=== Technik & Projektstruktur ===
+- Replit soll den Stack selbst wählen. Ergebnis muss lokal mit einem Standardbefehl startbar sein:
+  - Scripts in package.json (falls relevant): 
+    - "dev": Entwicklungsserver starten
+    - "build": Produktionsbuild erzeugen
+    - "preview" oder "serve": Build lokal ausliefern
+- Klare Ordner: 
+  - /public (statische Assets: favicon, robots.txt, sitemap, images)
+  - /src (Seiten/Komponenten)
+- Favicon mit „R“ (Platzhalter).
+- README.md in Deutsch mit:
+  1) kurzer Erklärung (einfach)
+  2) Befehlen („so startest du“, „so baust du“)
+  3) „So änderst du Texte/Bilder“ (sehr simpel, mit Beispielen)
+  4) „Deployment-Hinweis“ (statischer Upload zu Cloudflare Pages/Netlify möglich).
+
+=== Inhalte (Beispiele, bitte generieren) ===
+- Texte in natürlichem Deutsch, zielgruppengerecht (Handwerk, Hausbesitzer, Gewerbe).
+- Vorteile in Stichpunkten (z. B. „Schnelle Hilfe bei Sturmschäden“, „Meisterbetrieb seit 20+ Jahren“ – fiktiv).
+- Referenzkarten mit kurzen Beschreibungen (Ort, Leistung, Material – fiktiv).
+- Karriere-Teaser mit 4–6 Benefits (Arbeitskleidung, Weiterbildung, fairer Lohn – fiktiv).
+
+=== Qualitätskriterien (Akzeptanz) ===
+- Projekt lässt sich in Replit sofort starten (Vorschau sichtbar).
+- Alle verlinkten Seiten vorhanden, keine toten Links.
+- Lighthouse-Baseline gut (mobil): Performance/Best Practices/SEO jeweils ≥90 (bei Platzhalterbildern realistisch).
+- Saubere, gut kommentierte README.md; klar ersichtlich, wie Inhalte ersetzt werden.
+- Keine externen Tracker/Cookies aktiv.
+
+PROJEKTNAME: rex-bedachung
+Gib nach Abschluss eine kurze Checkliste im Terminal aus („So geht’s live: 1) build 2) Ordner /dist deployen…“).
