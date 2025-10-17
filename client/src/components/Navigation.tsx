@@ -111,7 +111,8 @@ export default function Navigation() {
           <button
             className="lg:hidden p-2"
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            aria-label="Menu öffnen"
+            aria-label={mobileMenuOpen ? "Menu schließen" : "Menu öffnen"}
+            aria-expanded={mobileMenuOpen}
             data-testid="button-mobile-menu"
           >
             {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
