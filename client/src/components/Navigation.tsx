@@ -33,7 +33,7 @@ export default function Navigation() {
             <img 
               src="/attached_assets/rex_logo.jpg" 
               alt="REX Bedachungs GmbH Logo" 
-              className="h-12 w-auto object-contain"
+              className="h-12 w-auto object-contain logo-themed"
             />
             <div className="hidden sm:block">
               <div className="font-bold text-lg text-foreground">Rex Bedachung</div>
