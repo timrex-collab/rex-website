@@ -32,7 +32,7 @@ export default function Hero({
       <div className="relative h-full max-w-7xl mx-auto px-4 md:px-6 lg:px-8 flex items-center">
         <div className="max-w-3xl text-white">
           <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight mb-4" data-testid="text-hero-title">
-            {title}
+            Ihr Partner rund um's Dach
           </h1>
           <p className="text-xl md:text-2xl font-semibold mb-4 text-white/90" data-testid="text-hero-subtitle">
             {subtitle}
