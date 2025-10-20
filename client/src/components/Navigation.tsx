@@ -30,12 +30,6 @@ export default function Navigation() {
       <div className="max-w-7xl mx-auto px-4 md:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
           <Link href="/" className="flex items-center space-x-3" data-testid="link-home">
-            <img 
-              src="/attached_assets/Logo_Rex2013.jpg" 
-              alt="REX Bedachungs GmbH Logo" 
-              className="h-12 w-auto object-contain"
-              style={{ filter: 'hue-rotate(200deg) saturate(1.2) brightness(0.95)' }}
-            />
             <div className="hidden sm:block">
               <div className="font-bold text-lg text-foreground">Rex Bedachung</div>
             </div>
