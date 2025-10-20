@@ -33,7 +33,8 @@ export default function Navigation() {
             <img 
               src="/attached_assets/rex_logo.jpg" 
               alt="REX Bedachungs GmbH Logo" 
-              className="h-12 w-auto object-contain logo-themed"
+              className="h-12 w-auto object-contain"
+              style={{ filter: 'hue-rotate(200deg) saturate(1.2) brightness(0.95)' }}
             />
             <div className="hidden sm:block">
               <div className="font-bold text-lg text-foreground">Rex Bedachung</div>
