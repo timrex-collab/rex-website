@@ -38,7 +38,6 @@ export default function Navigation() {
             />
             <div className="hidden sm:block">
               <div className="font-bold text-lg text-foreground">Rex Bedachung</div>
-              <div className="text-xs text-muted-foreground">Ihr Dach in Meisterhand</div>
             </div>
           </Link>
 
