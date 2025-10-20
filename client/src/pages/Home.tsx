@@ -4,7 +4,7 @@ import ServiceCard from "@/components/ServiceCard";
 import { Button } from "@/components/ui/button";
 import { Link } from "wouter";
 import { Phone, Shield, Award, Clock } from "lucide-react";
-import heroImage from "@assets/Datei 20.10.25, 19 56 47.jpeg";
+import heroImage from "@assets/Hintergrund Unternehmen.jpg";
 import steildachImage from "@assets/hintergrund.jpg";
 import flachdachImage from "@assets/generated_images/Flat_roof_installation_f99a2939.png";
 import bauklempnereiImage from "@assets/kamin_1.jpg";
