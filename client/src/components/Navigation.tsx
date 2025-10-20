@@ -20,6 +20,7 @@ export default function Navigation() {
     { name: "Startseite", path: "/" },
     { name: "Leistungen", path: "/leistungen", hasDropdown: true },
     { name: "Referenzen", path: "/referenzen" },
+    { name: "FAQ", path: "/faq" },
     { name: "Über uns", path: "/ueber-uns" },
     { name: "Karriere", path: "/karriere" },
     { name: "Kontakt", path: "/kontakt" },

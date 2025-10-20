@@ -18,6 +18,7 @@ import Careers from "@/pages/Careers";
 import Contact from "@/pages/Contact";
 import Impressum from "@/pages/Impressum";
 import Datenschutz from "@/pages/Datenschutz";
+import FAQ from "@/pages/FAQ";
 import NotFound from "@/pages/not-found";
 
 function Router() {
@@ -31,6 +32,7 @@ function Router() {
       <Route path="/leistungen/dachfenster" component={Dachfenster} />
       <Route path="/leistungen/dachwartung" component={Dachwartung} />
       <Route path="/referenzen" component={References} />
+      <Route path="/faq" component={FAQ} />
       <Route path="/ueber-uns" component={About} />
       <Route path="/karriere" component={Careers} />
       <Route path="/kontakt" component={Contact} />
