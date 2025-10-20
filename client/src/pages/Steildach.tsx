@@ -1,5 +1,5 @@
 import ServiceDetail from "./ServiceDetail";
-import steildachImage from "@assets/generated_images/Pitched_roof_tiles_detail_fc192a30.png";
+import steildachImage from "@assets/hintergrund.jpg";
 
 export default function Steildach() {
   return (
