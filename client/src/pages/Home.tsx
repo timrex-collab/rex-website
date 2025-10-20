@@ -4,7 +4,7 @@ import ServiceCard from "@/components/ServiceCard";
 import { Button } from "@/components/ui/button";
 import { Link } from "wouter";
 import { Phone, Shield, Award, Clock } from "lucide-react";
-import heroImage from "@assets/generated_images/Modern_roofing_hero_image_4713fc6f.png";
+import heroImage from "@assets/targeted_element_1760948524510.png";
 import steildachImage from "@assets/generated_images/Pitched_roof_tiles_detail_fc192a30.png";
 import flachdachImage from "@assets/generated_images/Flat_roof_installation_f99a2939.png";
 import bauklempnereiImage from "@assets/generated_images/Metal_roofing_craftsmanship_aa78a2e6.png";
