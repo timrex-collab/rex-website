@@ -8,9 +8,11 @@ export default function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 md:gap-12">
           <div>
             <div className="flex items-center space-x-2 mb-4">
-              <div className="w-10 h-10 bg-primary rounded-md flex items-center justify-center">
-                <span className="text-2xl font-bold text-primary-foreground">R</span>
-              </div>
+              <img 
+                src="/attached_assets/Hintergrund Unternehmen_1760948208032.JPG" 
+                alt="REX Bedachungs GmbH Logo" 
+                className="h-10 w-auto object-contain"
+              />
               <div>
                 <div className="font-bold text-lg">Rex Bedachung</div>
               </div>
