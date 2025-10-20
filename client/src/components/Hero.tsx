@@ -68,14 +68,6 @@ export default function Hero({
               </Button>
             </div>
           )}
-          
-          {showCTAs && (
-            <div className="flex items-center gap-4 text-sm text-white/70">
-              <span>Meisterbetrieb</span>
-              <span>•</span>
-              <span>Ruhrgebiet</span>
-            </div>
-          )}
         </div>
       </div>
     </div>
