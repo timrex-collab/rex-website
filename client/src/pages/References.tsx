@@ -1,7 +1,7 @@
 import { Helmet } from "react-helmet";
 import Hero from "@/components/Hero";
 import ReferenceCard from "@/components/ReferenceCard";
-import heroImage from "@assets/generated_images/Modern_roofing_hero_image_4713fc6f.png";
+import heroImage from "@assets/tondach_hero.png";
 import ref1Image from "@assets/hintergrund.jpg";
 import ref2Image from "@assets/generated_images/Flat_roof_installation_f99a2939.png";
 import ref3Image from "@assets/generated_images/Metal_roofing_craftsmanship_aa78a2e6.png";

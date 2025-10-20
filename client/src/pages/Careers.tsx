@@ -4,7 +4,7 @@ import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Link } from "wouter";
 import { Shirt, GraduationCap, Euro, TrendingUp, Users, Heart } from "lucide-react";
-import heroImage from "@assets/generated_images/Modern_roofing_hero_image_4713fc6f.png";
+import heroImage from "@assets/tondach_hero.png";
 
 export default function Careers() {
   const benefits = [

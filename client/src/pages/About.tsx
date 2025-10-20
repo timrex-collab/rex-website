@@ -2,7 +2,7 @@ import { Helmet } from "react-helmet";
 import Hero from "@/components/Hero";
 import { Card } from "@/components/ui/card";
 import { Shield, Users, Award, ThumbsUp } from "lucide-react";
-import heroImage from "@assets/generated_images/Modern_roofing_hero_image_4713fc6f.png";
+import heroImage from "@assets/tondach_hero.png";
 import teamImage from "@assets/generated_images/Roofing_team_photo_7a3b3637.png";
 
 export default function About() {
