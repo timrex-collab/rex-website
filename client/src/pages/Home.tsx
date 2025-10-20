@@ -7,7 +7,7 @@ import { Phone, Shield, Award, Clock } from "lucide-react";
 import heroImage from "@assets/generated_images/Modern_roofing_hero_image_4713fc6f.png";
 import steildachImage from "@assets/generated_images/Pitched_roof_tiles_detail_fc192a30.png";
 import flachdachImage from "@assets/generated_images/Flat_roof_installation_f99a2939.png";
-import bauklempnereiImage from "@assets/generated_images/Metal_roofing_craftsmanship_aa78a2e6.png";
+import bauklempnereiImage from "@assets/kamin_1.jpg";
 
 export default function Home() {
   const services = [
@@ -96,7 +96,7 @@ export default function Home() {
       </script>
 
       <Hero
-        title="Ihr Dach in Meisterhand"
+        title="Ihr Partner rund um's Dach"
         subtitle="Rex Bedachungs GmbH"
         description="Professionelle Dachdeckerarbeiten im Ruhrgebiet. Vom Steildach bis zur Bauklempnerei – wir sind Ihr zuverlässiger Partner für alle Arbeiten rund ums Dach."
         imageUrl={heroImage}

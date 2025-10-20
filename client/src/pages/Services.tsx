@@ -4,7 +4,7 @@ import ServiceCard from "@/components/ServiceCard";
 import heroImage from "@assets/generated_images/Modern_roofing_hero_image_4713fc6f.png";
 import steildachImage from "@assets/generated_images/Pitched_roof_tiles_detail_fc192a30.png";
 import flachdachImage from "@assets/generated_images/Flat_roof_installation_f99a2939.png";
-import bauklempnereiImage from "@assets/generated_images/Metal_roofing_craftsmanship_aa78a2e6.png";
+import bauklempnereiImage from "@assets/kamin_1.jpg";
 import dachfensterImage from "@assets/generated_images/Roof_windows_installation_be212f7f.png";
 import dachwartungImage from "@assets/generated_images/Roof_maintenance_professionals_86485d78.png";
 

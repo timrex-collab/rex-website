@@ -27,13 +27,6 @@ export default function ContactForm() {
     
     await new Promise(resolve => setTimeout(resolve, 1000));
     
-    console.log("Form submitted:", {
-      name: formData.name,
-      email: formData.email,
-      phone: formData.phone,
-      message: formData.message,
-    });
-
     toast({
       title: "Nachricht gesendet",
       description: "Vielen Dank für Ihre Anfrage. Wir melden uns zeitnah bei Ihnen.",

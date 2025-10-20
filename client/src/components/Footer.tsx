@@ -9,7 +9,7 @@ export default function Footer() {
           <div>
             <div className="flex items-center space-x-2 mb-4">
               <img 
-                src="/attached_assets/Hintergrund Unternehmen_1760948208032.JPG" 
+                src="/attached_assets/rex_logo.jpg" 
                 alt="REX Bedachungs GmbH Logo" 
                 className="h-10 w-auto object-contain"
               />

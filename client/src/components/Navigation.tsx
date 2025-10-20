@@ -31,7 +31,7 @@ export default function Navigation() {
         <div className="flex items-center justify-between h-16">
           <Link href="/" className="flex items-center space-x-3" data-testid="link-home">
             <img 
-              src="/attached_assets/Hintergrund Unternehmen_1760948208032.JPG" 
+              src="/attached_assets/rex_logo.jpg" 
               alt="REX Bedachungs GmbH Logo" 
               className="h-12 w-auto object-contain"
             />
