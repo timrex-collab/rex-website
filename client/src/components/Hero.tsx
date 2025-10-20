@@ -29,12 +29,12 @@ export default function Hero({
       />
       <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/40 to-black/60" />
       
-      <div className="relative h-full max-w-7xl mx-auto px-4 md:px-6 lg:px-8 flex items-start pt-20 md:pt-24 lg:pt-32">
+      <div className="relative h-full max-w-7xl mx-auto px-4 md:px-6 lg:px-8 flex items-start pt-8 md:pt-10 lg:pt-12">
         <div className="max-w-3xl text-white">
           <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight mb-4 whitespace-nowrap" data-testid="text-hero-title">
             Ihr Partner rund um's Dach
           </h1>
-          <p className="text-xl md:text-2xl font-semibold mb-4 text-white/90" data-testid="text-hero-subtitle">
+          <p className="text-2xl md:text-3xl lg:text-4xl font-semibold mb-4 text-white/95" data-testid="text-hero-subtitle">
             {subtitle}
           </p>
           {description && (
