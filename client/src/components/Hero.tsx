@@ -38,8 +38,8 @@ export default function Hero({
             {subtitle}
           </p>
           {description && (
-            <p className="text-lg md:text-xl leading-relaxed mb-10 text-white/80 max-w-2xl" data-testid="text-hero-description">
-              {description}
+            <p className="md:text-xl text-white/80 max-w-2xl text-[22px] text-left mt-[25px] mb-[25px]" data-testid="text-hero-description">
+              Professionelle Dachdeckerarbeiten in Bochum und Umgebung. Steildach, Flachdach, Reparatur, Sanierung, Dachfenster und mehr.    Wir sind Ihr zuverlässiger Partner für alle Arbeiten rund um's Dach.
             </p>
           )}
           
