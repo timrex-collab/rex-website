@@ -98,7 +98,7 @@ export default function Home() {
       <Hero
         title="Ihr Partner rund um's Dach"
         subtitle="Rex Bedachungs GmbH"
-        description="Professionelle Dachdeckerarbeiten im Ruhrgebiet. Vom Steildach bis zur Bauklempnerei – wir sind Ihr zuverlässiger Partner für alle Arbeiten rund ums Dach."
+        description="Professionelle Dachdeckerarbeiten in Bochum und Umgebung. Steildach, Flachdach, Reparatur, Sanierung, Dachfenster und Bauklempnerei - Wir sind Ihr zuverlässiger Partner für alle Arbeiten rund um's Dach."
         imageUrl={heroImage}
         imageAlt="Modernes Dach mit roten Ziegeln in Bochum"
         showCTAs={true}
