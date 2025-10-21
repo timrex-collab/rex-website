@@ -1,5 +1,5 @@
 import { Link, useLocation } from "wouter";
-import { useState } from "react";
+import { useState, useRef } from "react";
 import { Menu, X, Phone, ChevronDown } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
@@ -7,6 +7,7 @@ export default function Navigation() {
   const [location] = useLocation();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [servicesOpen, setServicesOpen] = useState(false);
+  const closeTimeoutRef = useRef<number | null>(null);
 
   const services = [
     { name: "Steildach", path: "/leistungen/steildach" },
@@ -43,8 +44,18 @@ export default function Navigation() {
                 {item.hasDropdown ? (
                   <div
                     className="relative"
-                    onMouseEnter={() => setServicesOpen(true)}
-                    onMouseLeave={() => setServicesOpen(false)}
+                    onMouseEnter={() => {
+                      if (closeTimeoutRef.current) {
+                        clearTimeout(closeTimeoutRef.current);
+                        closeTimeoutRef.current = null;
+                      }
+                      setServicesOpen(true);
+                    }}
+                    onMouseLeave={() => {
+                      closeTimeoutRef.current = window.setTimeout(() => {
+                        setServicesOpen(false);
+                      }, 150);
+                    }}
                   >
                     <button
                       className={`px-4 py-2 rounded-md text-sm font-medium transition-colors flex items-center gap-1 ${
@@ -58,7 +69,7 @@ export default function Navigation() {
                       <ChevronDown className="w-4 h-4" />
                     </button>
                     {servicesOpen && (
-                      <div className="absolute top-full left-0 mt-1 w-48 bg-card border border-card-border rounded-md shadow-lg py-2">
+                      <div className="absolute top-full left-0 mt-0 w-48 bg-card border border-card-border rounded-md shadow-lg py-2">
                         {services.map((service) => (
                           <Link
                             key={service.path}
