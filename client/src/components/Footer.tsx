@@ -107,8 +107,16 @@ export default function Footer() {
         </div>
 
         <div className="border-t border-border mt-12 pt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-muted-foreground">
-          <div>
-            © {new Date().getFullYear()} Rex Bedachungs GmbH. Alle Rechte vorbehalten.
+          <div className="flex flex-col md:flex-row items-center gap-4">
+            <img 
+              src="/attached_assets/generated_images/Logo.png" 
+              alt="REX Bedachungs GmbH Logo" 
+              className="h-12 w-auto object-contain"
+              data-testid="img-footer-logo"
+            />
+            <div>
+              © {new Date().getFullYear()} Rex Bedachungs GmbH. Alle Rechte vorbehalten.
+            </div>
           </div>
           <div className="flex gap-6">
             <Link href="/impressum" className="hover:text-primary transition-colors" data-testid="link-footer-impressum">
