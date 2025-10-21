@@ -46,9 +46,6 @@ export default function Contact() {
                     >
                       0234-583126
                     </a>
-                    <p className="text-sm text-muted-foreground mt-1">
-                      Für dringende Fälle und Notdienst
-                    </p>
                   </div>
                 </div>
 
