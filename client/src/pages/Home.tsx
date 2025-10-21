@@ -59,7 +59,7 @@ export default function Home() {
       benefits: [
         "Alle gängigen Fabrikate",
         "Fachgerechter Einbau",
-        "Inklusive Dämmung",
+        "Rollläden und Verdunkelung",
       ],
     },
     {
