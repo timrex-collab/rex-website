@@ -151,7 +151,7 @@ export default function Home() {
                 <Shield className="w-8 h-8 text-primary" />
               </div>
               <h3 className="font-semibold text-lg mb-2">Meisterbetrieb</h3>
-              <p className="text-sm text-muted-foreground">Qualität durch Ausbildung und Erfahrung</p>
+              <p className="text-sm text-muted-foreground">Qualität und Service</p>
             </div>
             <div className="text-center">
               <div className="w-16 h-16 mx-auto mb-4 bg-primary/10 rounded-full flex items-center justify-center">
