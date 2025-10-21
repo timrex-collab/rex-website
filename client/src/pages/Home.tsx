@@ -8,6 +8,8 @@ import heroImage from "@assets/Datei 20.10.25, 19 56 47.jpeg";
 import steildachImage from "@assets/hintergrund.jpg";
 import flachdachImage from "@assets/generated_images/Flat_roof_installation_f99a2939.png";
 import bauklempnereiImage from "@assets/kamin_1.jpg";
+import dachfensterImage from "@assets/generated_images/Roof_windows_installation_be212f7f.png";
+import dachwartungImage from "@assets/generated_images/Roof_maintenance_professionals_86485d78.png";
 
 export default function Home() {
   const services = [
@@ -45,6 +47,30 @@ export default function Home() {
         "Präzise Maßanfertigung",
         "Langlebige Materialien",
         "Fachgerechte Montage",
+      ],
+    },
+    {
+      title: "Dachfenster",
+      description: "Professioneller Einbau von Dachfenstern für mehr Licht und Wohnkomfort im Dachgeschoss.",
+      imageUrl: dachfensterImage,
+      imageAlt: "Moderne Dachfenster-Installation",
+      href: "/leistungen/dachfenster",
+      benefits: [
+        "Alle gängigen Fabrikate",
+        "Fachgerechter Einbau",
+        "Inklusive Dämmung",
+      ],
+    },
+    {
+      title: "Dachwartung",
+      description: "Regelmäßige Inspektion und Wartung zur Werterhaltung und Vermeidung kostspieliger Schäden.",
+      imageUrl: dachwartungImage,
+      imageAlt: "Professionelle Dachwartung und Inspektion",
+      href: "/leistungen/dachwartung",
+      benefits: [
+        "Umfassende Inspektion",
+        "Schadensprävention",
+        "Langfristiger Schutz",
       ],
     },
   ];
