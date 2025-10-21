@@ -57,7 +57,7 @@ export default function Home() {
       imageAlt: "Moderne Dachfenster-Installation",
       href: "/leistungen/dachfenster",
       benefits: [
-        "Alle gängigen Fabrikate",
+        "VELUX Spezialist",
         "Fachgerechter Einbau",
         "Rollläden und Verdunkelung",
       ],
