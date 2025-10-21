@@ -10,7 +10,7 @@ export default function Contact() {
     <>
       <Helmet>
         <title>Kontakt - Rex Bedachungs GmbH | Dachdecker Bochum</title>
-        <meta name="description" content="Kontaktieren Sie Rex Bedachungs GmbH. Telefon: 0234-583126, E-Mail: info@rex-bedachung.de. Wir beraten Sie gerne." />
+        <meta name="description" content="Kontaktieren Sie Rex Bedachungs GmbH. Telefon: 0234-583100, E-Mail: info@rex-bedachung.de. Wir beraten Sie gerne." />
         <meta property="og:title" content="Kontakt - Rex Bedachungs GmbH" />
         <meta property="og:description" content="Nehmen Sie Kontakt mit uns auf. Wir beraten Sie gerne zu Ihrem Dachprojekt." />
       </Helmet>
@@ -40,11 +40,11 @@ export default function Contact() {
                   <div>
                     <h3 className="font-semibold mb-1">Telefon</h3>
                     <a 
-                      href="tel:0234583126" 
+                      href="tel:0234583100" 
                       className="text-lg text-primary hover:underline"
                       data-testid="link-contact-phone"
                     >
-                      0234-583126
+                      0234-583100
                     </a>
                   </div>
                 </div>
