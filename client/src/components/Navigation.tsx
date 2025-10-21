@@ -2,6 +2,7 @@ import { Link, useLocation } from "wouter";
 import { useState, useRef } from "react";
 import { Menu, X, Phone, ChevronDown } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import logoPath from "@assets/generated_images/Logo.png";
 
 export default function Navigation() {
   const [location] = useLocation();
@@ -33,6 +34,12 @@ export default function Navigation() {
       <div className="max-w-7xl mx-auto px-4 md:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
           <Link href="/" className="flex items-center space-x-3" data-testid="link-home">
+            <img 
+              src={logoPath} 
+              alt="REX Bedachungs GmbH Logo" 
+              className="h-8 w-auto object-contain"
+              data-testid="img-header-logo"
+            />
             <div className="hidden sm:block">
               <div className="font-bold text-lg text-foreground">Rex Bedachung</div>
             </div>
