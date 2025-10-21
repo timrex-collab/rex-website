@@ -47,6 +47,11 @@ export default function Footer() {
                 </Link>
               </li>
               <li>
+                <Link href="/leistungen/reparaturen" className="text-muted-foreground hover:text-primary transition-colors" data-testid="link-footer-reparaturen">
+                  Reparaturen
+                </Link>
+              </li>
+              <li>
                 <Link href="/leistungen/dachwartung" className="text-muted-foreground hover:text-primary transition-colors" data-testid="link-footer-dachwartung">
                   Dachwartung
                 </Link>
