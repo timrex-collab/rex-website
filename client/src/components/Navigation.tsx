@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/button";
 import logoPath from "@assets/generated_images/Logo.png";
 
 export default function Navigation() {
-  const [location] = useLocation();
+  const [location, setLocation] = useLocation();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [servicesOpen, setServicesOpen] = useState(false);
   const closeTimeoutRef = useRef<number | null>(null);
@@ -119,8 +119,13 @@ export default function Navigation() {
                 <span>0234-583100</span>
               </a>
             </Button>
-            <Button asChild variant="default" size="sm" data-testid="button-quote-desktop">
-              <Link href="/kontakt">Angebot anfragen</Link>
+            <Button 
+              variant="default" 
+              size="sm" 
+              onClick={() => setLocation("/kontakt")}
+              data-testid="button-quote-desktop"
+            >
+              Angebot anfragen
             </Button>
           </div>
 
@@ -196,14 +201,15 @@ export default function Navigation() {
                 </a>
               </Button>
               <Button
-                asChild
                 variant="default"
                 className="w-full"
+                onClick={() => {
+                  setMobileMenuOpen(false);
+                  setLocation("/kontakt");
+                }}
                 data-testid="button-quote-mobile"
               >
-                <Link href="/kontakt" onClick={() => setMobileMenuOpen(false)}>
-                  Angebot anfragen
-                </Link>
+                Angebot anfragen
               </Button>
             </div>
           </div>
