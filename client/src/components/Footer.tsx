@@ -9,10 +9,9 @@ export default function Footer() {
           <div>
             <div className="flex items-center space-x-2 mb-4">
               <img 
-                src="/attached_assets/rex_logo.jpg" 
+                src="/attached_assets/generated_images/Logo.png" 
                 alt="REX Bedachungs GmbH Logo" 
                 className="h-10 w-auto object-contain"
-                style={{ filter: 'hue-rotate(200deg) saturate(1.2) brightness(0.95)' }}
               />
               <div>
                 <div className="font-bold text-lg">Rex Bedachung</div>
