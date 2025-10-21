@@ -67,7 +67,7 @@ export default function Services() {
       href: "/leistungen/reparaturen",
       benefits: [
         "Schnelle Schadensanalyse",
-        "Unkomplizierte Hilfe im Schadensfall",
+        "Unkomplizierte Hilfe",
         "Versicherungsabwicklung",
       ],
     },

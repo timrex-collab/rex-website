@@ -70,7 +70,7 @@ export default function Home() {
       href: "/leistungen/reparaturen",
       benefits: [
         "Schnelle Schadensanalyse",
-        "Unkomplizierte Hilfe im Schadensfall",
+        "Unkomplizierte Hilfe",
         "Versicherungsabwicklung",
       ],
     },
