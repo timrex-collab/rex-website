@@ -16,3 +16,14 @@ export const insertUserSchema = createInsertSchema(users).pick({
 
 export type InsertUser = z.infer<typeof insertUserSchema>;
 export type User = typeof users.$inferSelect;
+
+// Contact form schema
+export const contactFormSchema = z.object({
+  name: z.string().min(1, "Name ist erforderlich"),
+  email: z.string().email("Ungültige E-Mail-Adresse"),
+  phone: z.string().optional(),
+  message: z.string().min(10, "Nachricht muss mindestens 10 Zeichen lang sein"),
+  honeypot: z.string().optional(),
+});
+
+export type ContactFormData = z.infer<typeof contactFormSchema>;
