@@ -49,8 +49,8 @@ Preferred communication style: Simple, everyday language.
 **Minimal Express Server:**
 - Development: Vite dev server with HMR (Hot Module Replacement)
 - Production: Express serves pre-built static files from `dist/public/`
-- Server code in `server/` directory is minimal - primarily for routing setup
-- Contact form currently uses client-side dummy submit (can be enhanced later)
+- Server code in `server/` directory handles API routes and static serving
+- Contact form sends real emails with image attachments via Resend API
 
 **Session & Storage:**
 - In-memory storage implementation (`MemStorage` class) for user data
@@ -59,7 +59,9 @@ Preferred communication style: Simple, everyday language.
 
 **API Structure:**
 - Routes prefixed with `/api` (defined in `server/routes.ts`)
-- Currently minimal - no active API endpoints beyond form handling
+- `/api/contact` - POST endpoint for contact form submissions with image uploads
+- Uses Multer for multipart/form-data file handling (up to 5 images, 5MB each)
+- Resend API integration for transactional email sending
 - Storage interface ready for CRUD operations when needed
 
 ### Data Storage Solutions
@@ -126,14 +128,17 @@ Preferred communication style: Simple, everyday language.
 
 ### Third-Party Services
 
-**Placeholder Services (Development):**
-- Image placeholders: Using local generated images in `attached_assets/`
-- Map: Static image placeholder (can be replaced with Google Maps embed)
-- Contact form: Client-side dummy submission (ready for backend integration)
+**Active Services:**
+- **Resend API**: Transactional email service for contact form submissions
+  - API key stored in `RESEND_API_KEY` environment variable
+  - Development mode: Sends to verified email (tim.rex@gmx.de)
+  - Production: Requires domain verification to send to info@rex-bedachung.de
+  - Free tier: 100 emails/day, 3,000 emails/month
+- Image storage: Using local generated images in `attached_assets/`
+- Google Maps: Embedded iframe for location display
 
-**Potential Integrations (Commented/Future):**
+**Potential Integrations (Future):**
 - Analytics: Code prepared for Plausible Analytics (GDPR-friendly, currently commented out)
-- Email: Contact form can be connected to email service or API endpoint
 - WhatsApp: Click-to-chat mentioned in contact section (URL-based, no API)
 
 ### NPM Packages
@@ -154,12 +159,18 @@ Preferred communication style: Simple, everyday language.
 - `react-hook-form`: Form state management
 - `zod`: Schema validation
 - `@hookform/resolvers`: RHF + Zod integration
+- `zod-validation-error`: User-friendly Zod error messages
 
 **Data & State:**
 - `@tanstack/react-query`: Server state management
 - `drizzle-orm`: SQL ORM
 - `@neondatabase/serverless`: PostgreSQL adapter
 - `drizzle-zod`: Zod schema generation from Drizzle
+
+**File Upload & Email:**
+- `multer`: Multipart/form-data file upload handling
+- `@types/multer`: TypeScript definitions for Multer
+- `resend`: Email sending service (transactional emails)
 
 **Development Tools:**
 - `typescript`: Type safety
