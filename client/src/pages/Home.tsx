@@ -211,7 +211,7 @@ export default function Home() {
           </h2>
           <p className="text-lg md:text-xl mb-8 text-primary-foreground/90">
             Kontaktieren Sie uns für ein unverbindliches Angebot. Wir beraten Sie gerne 
-            persönlich vor Ort im Ruhrgebiet.
+            persönlich vor Ort .
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Button
