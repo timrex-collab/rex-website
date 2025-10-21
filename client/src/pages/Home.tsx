@@ -10,7 +10,7 @@ import flachdachImage from "@assets/generated_images/Flat_roof_installation_f99a
 import bauklempnereiImage from "@assets/kamin_1.jpg";
 import dachfensterImage from "@assets/generated_images/Roof_windows_installation_be212f7f.png";
 import reparaturenImage from "@assets/stock_images/professional_roofer__9ee8341f.jpg";
-import dachwartungImage from "@assets/generated_images/Roof_maintenance_professionals_86485d78.png";
+import dachwartungImage from "@assets/Dachdecker bei der Inspektion der Naht_1761081506440.png";
 
 export default function Home() {
   const services = [

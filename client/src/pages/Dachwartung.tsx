@@ -1,5 +1,5 @@
 import ServiceDetail from "./ServiceDetail";
-import dachwartungImage from "@assets/generated_images/Roof_maintenance_professionals_86485d78.png";
+import dachwartungImage from "@assets/Dachdecker bei der Inspektion der Naht_1761081506440.png";
 
 export default function Dachwartung() {
   return (
