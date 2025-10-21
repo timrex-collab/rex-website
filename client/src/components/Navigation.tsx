@@ -13,6 +13,7 @@ export default function Navigation() {
     { name: "Flachdach", path: "/leistungen/flachdach" },
     { name: "Bauklempnerei", path: "/leistungen/bauklempnerei" },
     { name: "Dachfenster", path: "/leistungen/dachfenster" },
+    { name: "Reparaturen", path: "/leistungen/reparaturen" },
     { name: "Dachwartung", path: "/leistungen/dachwartung" },
   ];
 
