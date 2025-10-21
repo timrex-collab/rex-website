@@ -3,7 +3,7 @@ import Hero from "@/components/Hero";
 import { Card } from "@/components/ui/card";
 import { Shield, Users, Award, ThumbsUp } from "lucide-react";
 import heroImage from "@assets/tondach_hero.png";
-import teamImage from "@assets/generated_images/Roofing_team_photo_7a3b3637.png";
+import teamImage from "@assets/Hintergrund Unternehmen.jpg";
 
 export default function About() {
   const values = [
