@@ -172,7 +172,7 @@ export default function Home() {
                 <Phone className="w-8 h-8 text-primary" />
               </div>
               <h3 className="font-semibold text-lg mb-2">Persönlich</h3>
-              <p className="text-sm text-muted-foreground">Beratung vor Ort im Ruhrgebiet</p>
+              <p className="text-sm text-muted-foreground">Beratung vor Ort </p>
             </div>
           </div>
         </div>
