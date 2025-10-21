@@ -19,7 +19,7 @@ export default function Footer() {
               </div>
             </div>
             <p className="text-sm text-muted-foreground leading-relaxed">
-              Ihr zuverlässiger Meisterbetrieb für alle Dacharbeiten im Ruhrgebiet.
+              Ihr zuverlässiger Meisterbetrieb für alle Dacharbeiten in Bochum und Umgebung
             </p>
           </div>
 
