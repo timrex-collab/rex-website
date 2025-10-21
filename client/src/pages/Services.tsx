@@ -6,6 +6,7 @@ import steildachImage from "@assets/hintergrund.jpg";
 import flachdachImage from "@assets/generated_images/Flat_roof_installation_f99a2939.png";
 import bauklempnereiImage from "@assets/kamin_1.jpg";
 import dachfensterImage from "@assets/generated_images/Roof_windows_installation_be212f7f.png";
+import reparaturenImage from "@assets/stock_images/professional_roofer__9ee8341f.jpg";
 import dachwartungImage from "@assets/generated_images/Roof_maintenance_professionals_86485d78.png";
 
 export default function Services() {
@@ -56,6 +57,18 @@ export default function Services() {
         "Markenqualität",
         "Fachgerechter Einbau",
         "Energieeffizient",
+      ],
+    },
+    {
+      title: "Reparaturen",
+      description: "Schnelle und zuverlässige Reparatur von Dachschäden, Sturmschäden und undichten Stellen mit fachgerechter Ausführung.",
+      imageUrl: reparaturenImage,
+      imageAlt: "Professionelle Dachreparatur",
+      href: "/leistungen/reparaturen",
+      benefits: [
+        "Schnelle Schadensanalyse",
+        "Notdienst verfügbar",
+        "Versicherungsabwicklung",
       ],
     },
     {

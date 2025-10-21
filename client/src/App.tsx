@@ -11,6 +11,7 @@ import Steildach from "@/pages/Steildach";
 import Flachdach from "@/pages/Flachdach";
 import Bauklempnerei from "@/pages/Bauklempnerei";
 import Dachfenster from "@/pages/Dachfenster";
+import Reparaturen from "@/pages/Reparaturen";
 import Dachwartung from "@/pages/Dachwartung";
 import References from "@/pages/References";
 import About from "@/pages/About";
@@ -30,6 +31,7 @@ function Router() {
       <Route path="/leistungen/flachdach" component={Flachdach} />
       <Route path="/leistungen/bauklempnerei" component={Bauklempnerei} />
       <Route path="/leistungen/dachfenster" component={Dachfenster} />
+      <Route path="/leistungen/reparaturen" component={Reparaturen} />
       <Route path="/leistungen/dachwartung" component={Dachwartung} />
       <Route path="/referenzen" component={References} />
       <Route path="/faq" component={FAQ} />
