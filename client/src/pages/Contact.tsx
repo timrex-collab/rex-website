@@ -96,7 +96,7 @@ export default function Contact() {
                   </div>
                   <div>
                     <h3 className="font-semibold mb-1">WhatsApp</h3>
-                    <p className="text-lg">0234-583100</p>
+                    <p className="text-lg">0234-583126</p>
                     <p className="text-sm text-muted-foreground mt-1">
                       Schreiben Sie uns auch gerne per WhatsApp oder per Sprachnachricht
                     </p>
