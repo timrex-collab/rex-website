@@ -1,5 +1,5 @@
 import ServiceDetail from "./ServiceDetail";
-import dachfensterImage from "@assets/generated_images/Roof_windows_installation_be212f7f.png";
+import dachfensterImage from "@assets/Velux2.jpg";
 
 export default function Dachfenster() {
   return (
