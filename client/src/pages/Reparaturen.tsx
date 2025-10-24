@@ -13,7 +13,7 @@ export default function Reparaturen() {
         "Schnelle Schadensanalyse",
         "Hilfe bei Sturmschäden",
         "Abwicklung mit Versicherungen",
-        "Notdienst bei akuten Schäden",
+        "Kurzfristiger Einsatz – wenn's dringend wird",
         "Dauerhafte und sichere Lösungen",
       ]}
       process={[
