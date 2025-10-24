@@ -56,7 +56,7 @@ export default function About() {
               </h2>
               <div className="space-y-4 text-lg text-muted-foreground leading-relaxed">
                 <p>
-                  Seit der Gründung vor über 20 Jahren hat sich Rex Bedachungs GmbH als 
+                  Seit der Gründung vor über 40 Jahren hat sich Rex Bedachungs GmbH als 
                   zuverlässiger Partner für professionelle Dacharbeiten im Ruhrgebiet etabliert. 
                   Was als kleiner Handwerksbetrieb begann, ist heute ein modernes Unternehmen 
                   mit erfahrenen Fachkräften und modernster Ausstattung.
