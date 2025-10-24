@@ -12,7 +12,7 @@ export default function Dachfenster() {
       benefits={[
         "Markenqualität von führenden Herstellern",
         "Große Auswahl an Größen und Ausführungen",
-        "Optimale Wärmedämmung",
+        "Sonnen- und Hitzeschutz",
         "Fachgerechter Einbau mit Garantie",
         "Auch Austausch alter Fenster möglich",
       ]}
