@@ -12,7 +12,7 @@ export default function Flachdach() {
       benefits={[
         "Moderne Abdichtungssysteme (Bitumen, Kunststoff, EPDM)",
         "Energieeffiziente Dämmung",
-        "Gründach und Dachbegrünung möglich",
+        "Gründach und Dachbegrünung",
         "Dachterrassen und Balkone",
         "Wartungsverträge für langfristige Sicherheit",
       ]}
