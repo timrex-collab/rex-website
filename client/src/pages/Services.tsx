@@ -3,7 +3,7 @@ import Hero from "@/components/Hero";
 import ServiceCard from "@/components/ServiceCard";
 import heroImage from "@assets/tondach_hero.png";
 import steildachImage from "@assets/hintergrund.jpg";
-import flachdachImage from "@assets/generated_images/Flat_roof_installation_f99a2939.png";
+import flachdachImage from "@assets/Flachdach1.jpeg";
 import bauklempnereiImage from "@assets/kamin_1.jpg";
 import dachfensterImage from "@assets/Velux2.jpg";
 import reparaturenImage from "@assets/stock_images/professional_roofer__9ee8341f.jpg";

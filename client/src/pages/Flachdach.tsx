@@ -1,5 +1,5 @@
 import ServiceDetail from "./ServiceDetail";
-import flachdachImage from "@assets/generated_images/Flat_roof_installation_f99a2939.png";
+import flachdachImage from "@assets/Flachdach1.jpeg";
 
 export default function Flachdach() {
   return (
