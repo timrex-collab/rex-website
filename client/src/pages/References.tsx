@@ -3,7 +3,7 @@ import Hero from "@/components/Hero";
 import ReferenceCard from "@/components/ReferenceCard";
 import heroImage from "@assets/tondach_hero.png";
 import ref1Image from "@assets/hintergrund.jpg";
-import ref2Image from "@assets/generated_images/Flat_roof_installation_f99a2939.png";
+import ref2Image from "@assets/Flachdach1.jpeg";
 import ref3Image from "@assets/generated_images/Metal_roofing_craftsmanship_aa78a2e6.png";
 import ref4Image from "@assets/generated_images/Roof_windows_installation_be212f7f.png";
 

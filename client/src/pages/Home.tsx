@@ -6,7 +6,7 @@ import { Link } from "wouter";
 import { Phone, Shield, Award, Clock } from "lucide-react";
 import heroImage from "@assets/Datei 20.10.25, 19 56 47.jpeg";
 import steildachImage from "@assets/hintergrund.jpg";
-import flachdachImage from "@assets/generated_images/Flat_roof_installation_f99a2939.png";
+import flachdachImage from "@assets/Flachdach1.jpeg";
 import bauklempnereiImage from "@assets/kamin_1.jpg";
 import dachfensterImage from "@assets/Velux2.jpg";
 import reparaturenImage from "@assets/stock_images/professional_roofer__9ee8341f.jpg";
