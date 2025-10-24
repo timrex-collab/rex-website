@@ -11,7 +11,7 @@ export default function Reparaturen() {
       imageAlt="Professionelle Dachreparatur durch Fachmann"
       benefits={[
         "Schnelle Schadensanalyse",
-        "Fachgerechte Ausführung aller Arbeiten",
+        "Hilfe bei Sturmschäden",
         "Abwicklung mit Versicherungen",
         "Notdienst bei akuten Schäden",
         "Dauerhafte und sichere Lösungen",
