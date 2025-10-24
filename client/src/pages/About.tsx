@@ -61,12 +61,6 @@ export default function About() {
                   Was als kleiner Handwerksbetrieb begann, ist heute ein modernes Unternehmen 
                   mit erfahrenen Fachkräften und modernster Ausstattung.
                 </p>
-                <p>
-                  Vom Einfamilienhaus bis zur Gewerbeimmobilie, von der Neueindeckung bis zur 
-                  Sanierung: Wir realisieren Ihre Wünsche fachgerecht, termingerecht und zu 
-                  fairen Preisen. Dabei steht für uns die Zufriedenheit unserer Kunden immer 
-                  an erster Stelle.
-                </p>
               </div>
             </div>
             <div>
