@@ -6,7 +6,7 @@ export default function Dachfenster() {
     <ServiceDetail
       title="Dachfenster"
       subtitle="Mehr Licht unterm Dach"
-      description="Dachfenster schaffen Tageslicht und Wohnkomfort in Dachgeschossen. Wir als Fachbetrieb der führende Hersteller, beraten Sie kompetent bei der Auswahl des passenden Fensters. Ob Schwingfenster, Klapp-Schwingfenster oder Ausstiegsfenster – wir sorgen für fachgerechten Einbau mit Sonnenschutz, Rollläden und optimaler Wärmedämmung."
+      description="Dachfenster schaffen Tageslicht und Wohnkomfort in Dachgeschossen. Wir beraten Sie kompetent bei der Auswahl des passenden Fensters. Ob Schwingfenster, Klapp-Schwingfenster oder Ausstiegsfenster – wir sorgen für fachgerechten Einbau mit Sonnenschutz, Rollläden und optimaler Wärmedämmung."
       imageUrl={dachfensterImage}
       imageAlt="Moderne Dachfenster-Installation"
       benefits={[
