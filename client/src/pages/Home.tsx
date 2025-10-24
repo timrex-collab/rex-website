@@ -157,7 +157,7 @@ export default function Home() {
               <div className="w-16 h-16 mx-auto mb-4 bg-primary/10 rounded-full flex items-center justify-center">
                 <Award className="w-8 h-8 text-primary" />
               </div>
-              <h3 className="font-semibold text-lg mb-2">30 Jahre</h3>
+              <h3 className="font-semibold text-lg mb-2">40 Jahre</h3>
               <p className="text-sm text-muted-foreground">Erfahrung im Dachhandwerk</p>
             </div>
             <div className="text-center">
