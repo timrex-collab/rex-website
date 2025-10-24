@@ -15,7 +15,7 @@ export default function About() {
     {
       icon: Users,
       title: "Erfahrung",
-      description: "Über 20 Jahre Expertise im Dachdeckerhandwerk sprechen für sich.",
+      description: "Über 40 Jahre Erfahrung im Dachdeckerhandwerk sprechen für sich.",
     },
     {
       icon: Award,
