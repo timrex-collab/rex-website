@@ -107,7 +107,7 @@ export default function Contact() {
               <Card className="p-6">
                 <div className="relative w-full" style={{ paddingBottom: '66.67%' }}>
                   <iframe
-                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2483.1234567890123!2d7.2147!3d51.4818!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47b8e38f7c8b8b8b%3A0x1234567890abcdef!2sPaulinenstr.%2022%2C%2044799%20Bochum!5e0!3m2!1sde!2sde!4v1234567890123!5m2!1sde!2sde"
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2483.8971234567!2d7.2420155!3d51.4623595!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47b8e00fdd91a96d%3A0xb0e424e0f275f1b6!2sRex%20Bedachungs%20GmbH!5e0!3m2!1sde!2sde!4v1234567890123!5m2!1sde!2sde"
                     className="absolute top-0 left-0 w-full h-full rounded-md"
                     style={{ border: 0 }}
                     allowFullScreen
