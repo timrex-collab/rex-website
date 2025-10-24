@@ -91,7 +91,7 @@ export default function ServiceDetail({
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Button asChild variant="default" size="lg" data-testid="button-service-quote">
-                <Link href="/kontakt">Angebot anfragen</Link>
+                <Link href="/kontakt">Reparatur anfragen</Link>
               </Button>
               <Button asChild variant="outline" size="lg" data-testid="button-service-call">
                 <a href="tel:0234583100" className="flex items-center gap-2">
