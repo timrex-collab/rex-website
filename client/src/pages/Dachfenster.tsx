@@ -20,7 +20,7 @@ export default function Dachfenster() {
         "Beratung zur passenden Fenstergröße",
         "Auswahl des geeigneten Fenstertyps",
         "Termingerechte Lieferung",
-        "Fachgerechter Einbau mit Dämmung",
+        "Fachgerechter Einbau",
         "Einweisung in die Bedienung",
       ]}
       metaDescription="Fachgerechter Einbau von Dachfenstern für mehr Licht und Wohnkomfort. Markenqualität vom Meisterbetrieb in Bochum."
