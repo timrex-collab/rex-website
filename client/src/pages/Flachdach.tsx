@@ -11,7 +11,7 @@ export default function Flachdach() {
       imageAlt="Moderne Flachdach-Abdichtung"
       benefits={[
         "Moderne Abdichtungssysteme (Bitumen, Kunststoff, EPDM)",
-        "Energieeffiziente Dämmung nach EnEV",
+        "Energieeffiziente Dämmung",
         "Gründach und Dachbegrünung möglich",
         "Begehbare Dachterrassen",
         "Wartungsverträge für langfristige Sicherheit",
