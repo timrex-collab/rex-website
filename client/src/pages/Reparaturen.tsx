@@ -17,7 +17,7 @@ export default function Reparaturen() {
         "Dauerhafte und sichere Lösungen",
       ]}
       process={[
-        "Kostenlose Schadensbesichtigung vor Ort",
+        "Schadensbesichtigung vor Ort",
         "Detaillierte Analyse der Schadensursache",
         "Transparentes Angebot mit Kostenaufstellung",
         "Termingerechte Durchführung der Reparatur",
