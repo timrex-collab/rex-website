@@ -19,7 +19,7 @@ export default function Flachdach() {
       process={[
         "Bestandsaufnahme und Zustandsanalyse",
         "Beratung zu Abdichtungssystemen",
-        "Fachgerechte Ausführung der Abdichtung",
+        "Fachgerechte Ausführung und Abdichtung",
         "Qualitätskontrolle und Dichtheitsprüfung",
         "Optional: Wartungsvertrag abschließen",
       ]}
