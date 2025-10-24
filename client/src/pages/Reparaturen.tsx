@@ -10,7 +10,7 @@ export default function Reparaturen() {
       imageUrl={reparaturenImage}
       imageAlt="Professionelle Dachreparatur durch Fachmann"
       benefits={[
-        "Schnelle Schadensanalyse durch Experten",
+        "Schnelle Schadensanalyse",
         "Fachgerechte Ausführung aller Arbeiten",
         "Abwicklung mit Versicherungen",
         "Notdienst bei akuten Schäden",
