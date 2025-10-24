@@ -24,6 +24,7 @@ export default function Reparaturen() {
         "Abschlussprüfung und Dokumentation",
       ]}
       metaDescription="Professionelle Dachreparaturen bei Sturmschäden und undichten Stellen. Schnelle Hilfe vom Meisterbetrieb in Bochum."
+      ctaButtonText="Reparatur anfragen"
     />
   );
 }
