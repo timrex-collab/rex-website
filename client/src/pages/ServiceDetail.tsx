@@ -14,6 +14,7 @@ interface ServiceDetailProps {
   benefits: string[];
   process: string[];
   metaDescription: string;
+  ctaButtonText?: string;
 }
 
 export default function ServiceDetail({
@@ -25,6 +26,7 @@ export default function ServiceDetail({
   benefits,
   process,
   metaDescription,
+  ctaButtonText = "Angebot anfragen",
 }: ServiceDetailProps) {
   return (
     <>
@@ -90,7 +92,7 @@ export default function ServiceDetail({
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Button asChild variant="default" size="lg" data-testid="button-service-quote">
-                <Link href="/kontakt">Reparatur anfragen</Link>
+                <Link href="/kontakt">{ctaButtonText}</Link>
               </Button>
               <Button asChild variant="outline" size="lg" data-testid="button-service-call">
                 <a href="tel:0234583100" className="flex items-center gap-2">
