@@ -54,22 +54,32 @@ export default function About() {
               <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-6">
                 Meisterbetrieb aus Leidenschaft
               </h2>
-              <div className="space-y-4 text-lg text-muted-foreground leading-relaxed">
-                <p>
-                  Seit über 40 Jahren steht unser Dachdeckermeisterbetrieb aus Bochum für Zuverlässigkeit und nachhaltige Qualität. Wir sind ein gut etabliertes Dachdeckerunternehmen mit einem starken Fundament aus Erfahrung, Fachwissen und Leidenschaft für das Dachdeckerhandwerk.
-                </p>
-                <p>
-                  Unser Erfolg basiert auf langjährigen Mitarbeitern, die ihr Handwerk von Grund auf gelernt haben – viele von ihnen sind bereits seit Jahrzehnten Teil unseres Teams. Diese eingespielte Mannschaft arbeitet Hand in Hand, kennt sich blind und sorgt dafür, dass jedes Projekt reibungslos, effizient und auf höchstem Qualitätsniveau umgesetzt wird.
-                </p>
-                <p>
-                  Wir sind überzeugt: Qualität entsteht durch Erfahrung.
-                </p>
-                <p>
-                  Ob Neubau, Sanierung oder Reparatur: Bei uns steht der Kunde im Mittelpunkt. Mit Verlässlichkeit, Transparenz und Beständigkeit begleiten wir unsere Auftraggeber von der ersten Beratung bis zur finalen Abnahme – und oft darüber hinaus.
-                </p>
-                <p>
-                  Wir sind Ihr Dachdeckerteam aus Bochum, das seit über vier Jahrzehnten nicht nur Dächer baut, sondern Vertrauen.
-                </p>
+              <div className="space-y-8 text-lg text-muted-foreground leading-relaxed">
+                <div className="space-y-4">
+                  <p>
+                    Seit über 40 Jahren steht unser Dachdeckermeisterbetrieb aus Bochum für Zuverlässigkeit und nachhaltige Qualität.
+                    Wir sind ein gut etabliertes Dachdeckerunternehmen mit einem starken Fundament aus Erfahrung, Fachwissen und Leidenschaft für das Dachdeckerhandwerk.
+                  </p>
+                  <p>
+                    Unser Erfolg basiert auf langjährigen Mitarbeitern, die ihr Handwerk von Grund auf gelernt haben – viele von ihnen sind bereits seit Jahrzehnten Teil unseres Teams. Diese eingespielte Mannschaft arbeitet Hand in Hand, kennt sich blind und sorgt dafür, dass jedes Projekt reibungslos, effizient und auf höchstem Qualitätsniveau umgesetzt wird.
+                  </p>
+                </div>
+
+                <div className="border-l-4 border-primary pl-6 py-2">
+                  <p className="text-xl font-semibold text-foreground">
+                    Wir sind überzeugt: Qualität entsteht durch Erfahrung.
+                  </p>
+                </div>
+
+                <div className="space-y-4">
+                  <p>
+                    Ob Neubau, Sanierung oder Reparatur: Bei uns steht der Kunde im Mittelpunkt.
+                    Mit Verlässlichkeit, Transparenz und Beständigkeit begleiten wir unsere Auftraggeber von der ersten Beratung bis zur finalen Abnahme – und oft darüber hinaus.
+                  </p>
+                  <p>
+                    Wir sind Ihr Dachdeckerteam aus Bochum, das seit über vier Jahrzehnten nicht nur Dächer baut, sondern Vertrauen.
+                  </p>
+                </div>
               </div>
             </div>
             <div>
