@@ -62,12 +62,6 @@ export default function About() {
                   mit erfahrenen Fachkräften und modernster Ausstattung.
                 </p>
                 <p>
-                  Als Meisterbetrieb legen wir größten Wert auf handwerkliche Qualität und 
-                  kontinuierliche Weiterbildung. Unsere Dachdecker und Klempner beherrschen 
-                  sowohl traditionelle Techniken als auch moderne Verfahren – für optimale 
-                  Ergebnisse bei jedem Projekt.
-                </p>
-                <p>
                   Vom Einfamilienhaus bis zur Gewerbeimmobilie, von der Neueindeckung bis zur 
                   Sanierung: Wir realisieren Ihre Wünsche fachgerecht, termingerecht und zu 
                   fairen Preisen. Dabei steht für uns die Zufriedenheit unserer Kunden immer 
