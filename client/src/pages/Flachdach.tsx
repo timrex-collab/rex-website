@@ -13,7 +13,7 @@ export default function Flachdach() {
         "Moderne Abdichtungssysteme (Bitumen, Kunststoff, EPDM)",
         "Energieeffiziente Dämmung",
         "Gründach und Dachbegrünung möglich",
-        "Begehbare Dachterrassen",
+        "Dachterrassen und Balkone",
         "Wartungsverträge für langfristige Sicherheit",
       ]}
       process={[
