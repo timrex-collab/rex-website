@@ -9,7 +9,7 @@ import steildachImage from "@assets/hintergrund.jpg";
 import flachdachImage from "@assets/Flachdach1.jpeg";
 import bauklempnereiImage from "@assets/kamin_1.jpg";
 import dachfensterImage from "@assets/Velux2.jpg";
-import reparaturenImage from "@assets/stock_images/professional_roofer__9ee8341f.jpg";
+import reparaturenImage from "@assets/Reparatur1.png";
 import dachwartungImage from "@assets/Dachdecker bei der Inspektion der Naht_1761081506440.png";
 
 export default function Home() {

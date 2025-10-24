@@ -1,5 +1,5 @@
 import ServiceDetail from "./ServiceDetail";
-import reparaturenImage from "@assets/stock_images/professional_roofer__9ee8341f.jpg";
+import reparaturenImage from "@assets/Reparatur1.png";
 
 export default function Reparaturen() {
   return (
