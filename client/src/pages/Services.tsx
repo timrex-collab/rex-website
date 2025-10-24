@@ -37,7 +37,7 @@ export default function Services() {
     },
     {
       title: "Bauklempnerei",
-      description: "Maßgefertigte Blecharbeiten für Dachrinnen, Verwahrungen, Kehlen und Fassadenverkleidungen aus Zink, Kupfer oder Edelstahl.",
+      description: "Maßgefertigte Blecharbeiten, Dachrinnen, Regenfallrohre und Wandbekleidungen",
       imageUrl: bauklempnereiImage,
       imageAlt: "Professionelle Metallarbeiten am Dach",
       href: "/leistungen/bauklempnerei",

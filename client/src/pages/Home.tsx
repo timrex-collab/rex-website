@@ -40,7 +40,7 @@ export default function Home() {
     },
     {
       title: "Bauklempnerei",
-      description: "Maßgefertigte Blecharbeiten für Dachrinnen, Verwahrungen und Fassadenverkleidungen.",
+      description: "Maßgefertigte Blecharbeiten, Dachrinnen, Regenfallrohre und Wandbekleidungen",
       imageUrl: bauklempnereiImage,
       imageAlt: "Professionelle Metallarbeiten am Dach",
       href: "/leistungen/bauklempnerei",
