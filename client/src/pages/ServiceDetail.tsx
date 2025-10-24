@@ -86,7 +86,7 @@ export default function ServiceDetail({
               Interesse an {title}?
             </h2>
             <p className="text-lg text-muted-foreground mb-8 max-w-2xl mx-auto">
-              Lassen Sie sich von unseren Experten beraten. Wir erstellen Ihnen gerne 
+              Lassen Sie sich von uns beraten. Wir erstellen Ihnen gerne 
               ein unverbindliches Angebot für Ihr Projekt.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
