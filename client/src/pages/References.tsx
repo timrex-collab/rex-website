@@ -44,13 +44,13 @@ export default function References() {
       imageAlt: "Gründach mit Photovoltaik",
     },
     {
-      title: "Denkmalgeschütztes Haus Hattingen",
+      title: "Velux-Fenster Sanierung Bochum",
       location: "Hattingen",
       service: "Steildach",
       year: "2023",
       description: "Sanierung eines denkmalgeschützten Schieferdachs unter Beachtung aller Auflagen. Traditionelle Handwerkskunst mit modernen Dämmmethoden.",
       imageUrl: velux1,
-      imageAlt: "Denkmalgeschütztes Haus mit saniertem Schieferdach",
+      imageAlt: "Velux-Fenster Sanierung Bochum",
     },
     {
       title: "Wohnhaus Bochum-Querenburg",
