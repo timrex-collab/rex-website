@@ -22,7 +22,7 @@ export default function References() {
       title: "Neubaugebiet Hattingen",
       location: "Hattingen",
       service: "Steildach",
-      year: "2024",
+      year: "2021",
       description: "Steil- und Zeltdächer mit Tondachziegeln und hochwertigen Zinkblechen.",
       imageUrl: ref2Image,
       imageAlt: "Mehrfamilienhaus mit saniertem Flachdach",
