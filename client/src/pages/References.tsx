@@ -12,6 +12,7 @@ import tondach4 from "@assets/Tondach4.jpg";
 import tondach6 from "@assets/Tondach6.jpg";
 import tondach7 from "@assets/Tondach7.jpg";
 import entwaesserung1 from "@assets/Entwaesserung1.jpg";
+import velux1 from "@assets/Velux1_1761088286795.png";
 
 export default function References() {
   const references = [
@@ -48,7 +49,7 @@ export default function References() {
       service: "Steildach",
       year: "2023",
       description: "Sanierung eines denkmalgeschützten Schieferdachs unter Beachtung aller Auflagen. Traditionelle Handwerkskunst mit modernen Dämmmethoden.",
-      imageUrl: heroImage,
+      imageUrl: velux1,
       imageAlt: "Denkmalgeschütztes Haus mit saniertem Schieferdach",
     },
     {
