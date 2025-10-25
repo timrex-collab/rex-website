@@ -21,7 +21,7 @@ export default function References() {
     {
       title: "Neubaugebiet Hattingen",
       location: "Hattingen",
-      service: "Flachdach",
+      service: "Steildach",
       year: "2024",
       description: "Gründach mit extensiver Dachbegrünung. Aufbau einer neuen Wärmedämmung für bessere Energieeffizienz.",
       imageUrl: ref2Image,
