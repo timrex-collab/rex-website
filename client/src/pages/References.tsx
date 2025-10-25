@@ -20,7 +20,7 @@ export default function References() {
     },
     {
       title: "Mehrfamilienhaus Dortmund",
-      location: "Dortmund",
+      location: "Hattingen",
       service: "Flachdach",
       year: "2024",
       description: "Sanierung der Flachdach-Abdichtung mit modernem Kunststoffsystem. Aufbau einer neuen Wärmedämmung für bessere Energieeffizienz.",
