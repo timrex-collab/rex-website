@@ -44,7 +44,7 @@ export default function References() {
       imageAlt: "Gründach mit Photovoltaik",
     },
     {
-      title: "Velux-Fenster Sanierung Bochum",
+      title: "Velux Dachfenster Sanierung Bochum",
       location: "Bochum",
       service: "Dachfenster",
       year: "2025",
