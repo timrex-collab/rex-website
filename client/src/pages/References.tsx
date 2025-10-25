@@ -3,6 +3,7 @@ import Hero from "@/components/Hero";
 import ReferenceCard from "@/components/ReferenceCard";
 import heroImage from "@assets/tondach_hero.png";
 import ref1Image from "@assets/Gründach1.jpg";
+import gruendach2 from "@assets/Gründach2.jpg";
 import gruendach3 from "@assets/Gruendach3.jpg";
 import ref2Image from "@assets/Flachdach1.jpeg";
 import ref3Image from "@assets/generated_images/Metal_roofing_craftsmanship_aa78a2e6.png";
@@ -38,7 +39,7 @@ export default function References() {
       service: "Bauklempnerei",
       year: "2023",
       description: "Komplette Erneuerung der Dachentwässerung mit maßgefertigten Zink-Dachrinnen und Fallrohren. Inklusive Fassadenverkleidung.",
-      imageUrl: ref3Image,
+      imageUrl: gruendach2,
       imageAlt: "Gewerbeimmobilie mit neuer Dachentwässerung",
     },
     {
