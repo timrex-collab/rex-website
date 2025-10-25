@@ -14,7 +14,7 @@ export default function References() {
       location: "Bochum",
       service: "Steildach",
       year: "2024",
-      description: "Komplette Neueindeckung mit hochwertigen Tonziegeln. Inklusive neuer Dachdämmung nach EnEV und Einbau von drei Dachfenstern.",
+      description: "Gründach mit extensiver Dachbegrünung. Inkl. neuer Flachachdämmung mit Gefälle.",
       imageUrl: ref1Image,
       imageAlt: "Einfamilienhaus mit neuem Steildach in Bochum-Stiepel",
     },
