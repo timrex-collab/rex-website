@@ -34,13 +34,13 @@ export default function References() {
       imageAlt: "Neubaugebiet mit Steildächern und Tondachziegeln",
     },
     {
-      title: "Gewerbeimmobilie Essen",
+      title: "Gründach mit Photovoltaik",
       location: "Essen",
       service: "Bauklempnerei",
       year: "2023",
       description: "Komplette Erneuerung der Dachentwässerung mit maßgefertigten Zink-Dachrinnen und Fallrohren. Inklusive Fassadenverkleidung.",
       imageUrl: gruendach2,
-      imageAlt: "Gewerbeimmobilie mit neuer Dachentwässerung",
+      imageAlt: "Gründach mit Photovoltaik",
     },
     {
       title: "Denkmalgeschütztes Haus Hattingen",
