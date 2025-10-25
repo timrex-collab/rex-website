@@ -46,7 +46,7 @@ export default function References() {
     {
       title: "Velux-Fenster Sanierung Bochum",
       location: "Bochum",
-      service: "Steildach",
+      service: "Dachfenster",
       year: "2023",
       description: "Sanierung eines denkmalgeschützten Schieferdachs unter Beachtung aller Auflagen. Traditionelle Handwerkskunst mit modernen Dämmmethoden.",
       imageUrl: velux1,
