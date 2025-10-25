@@ -37,7 +37,7 @@ export default function References() {
       title: "Gründach mit Photovoltaik",
       location: "Essen",
       service: "Bauklempnerei",
-      year: "2023",
+      year: "2020",
       description: "Komplette Erneuerung der Dachentwässerung mit maßgefertigten Zink-Dachrinnen und Fallrohren. Inklusive Fassadenverkleidung.",
       imageUrl: gruendach2,
       imageAlt: "Gründach mit Photovoltaik",
