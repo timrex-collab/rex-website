@@ -23,7 +23,7 @@ export default function References() {
       location: "Hattingen",
       service: "Steildach",
       year: "2024",
-      description: "Gründach mit extensiver Dachbegrünung. Aufbau einer neuen Wärmedämmung für bessere Energieeffizienz.",
+      description: "Steil- und Zeltdächer mit Tondachziegeln und hochwertigen Zinkblechen.",
       imageUrl: ref2Image,
       imageAlt: "Mehrfamilienhaus mit saniertem Flachdach",
     },
