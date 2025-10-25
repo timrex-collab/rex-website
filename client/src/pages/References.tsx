@@ -9,6 +9,7 @@ import ref4Image from "@assets/generated_images/Roof_windows_installation_be212f
 import tondach4 from "@assets/Tondach4.jpg";
 import tondach6 from "@assets/Tondach6.jpg";
 import tondach7 from "@assets/Tondach7.jpg";
+import entwaesserung1 from "@assets/Entwaesserung1.jpg";
 
 export default function References() {
   const references = [
@@ -27,7 +28,7 @@ export default function References() {
       service: "Steildach",
       year: "2022",
       description: "Steil- und Zeltdächer mit Tondachziegeln und hochwertigen Zinkblechen.",
-      imageUrls: [tondach4, tondach6, tondach7],
+      imageUrls: [tondach4, tondach6, tondach7, entwaesserung1],
       imageAlt: "Neubaugebiet mit Steildächern und Tondachziegeln",
     },
     {
