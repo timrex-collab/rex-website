@@ -3,6 +3,7 @@ import Hero from "@/components/Hero";
 import ReferenceCard from "@/components/ReferenceCard";
 import heroImage from "@assets/tondach_hero.png";
 import ref1Image from "@assets/Gründach1.jpg";
+import gruendach3 from "@assets/Gruendach3.jpg";
 import ref2Image from "@assets/Flachdach1.jpeg";
 import ref3Image from "@assets/generated_images/Metal_roofing_craftsmanship_aa78a2e6.png";
 import ref4Image from "@assets/generated_images/Roof_windows_installation_be212f7f.png";
@@ -19,8 +20,8 @@ export default function References() {
       service: "Gründach",
       year: "2021",
       description: "Gründach mit extensiver Dachbegrünung. Aufbau einer neuen Wärmedämmung für bessere Energieeffizienz.",
-      imageUrl: ref1Image,
-      imageAlt: "Einfamilienhaus mit neuem Steildach in Bochum-Stiepel",
+      imageUrls: [ref1Image, gruendach3],
+      imageAlt: "Einfamilienhaus mit Gründach in Bochum-Weitmar",
     },
     {
       title: "Neubaugebiet Hattingen",
