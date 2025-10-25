@@ -48,9 +48,9 @@ export default function References() {
       location: "Bochum",
       service: "Dachfenster",
       year: "2025",
-      description: "Sanierung eines denkmalgeschützten Schieferdachs unter Beachtung aller Auflagen. Traditionelle Handwerkskunst mit modernen Dämmmethoden.",
+      description: "Lichtlösung Raum.  Mehr Raumgewinn und Kopffreiheit durch Kombi-Aufkeilrahmen. Mit Solar-Rollläden für Hitzeschutz und Verdunkelung.",
       imageUrl: velux1,
-      imageAlt: "Velux-Fenster Sanierung Bochum",
+      imageAlt: "Velux Dachfenster Sanierung Bochum",
     },
     {
       title: "Wohnhaus Bochum-Querenburg",
