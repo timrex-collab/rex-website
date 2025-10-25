@@ -14,7 +14,7 @@ export default function References() {
       location: "Bochum",
       service: "Gründach",
       year: "2021",
-      description: "Gründach mit extensiver Dachbegrünung. Inkl. neuer Flachachdämmung mit Gefälle.",
+      description: "Gründach mit extensiver Dachbegrünung. Aufbau einer neuen Wärmedämmung für bessere Energieeffizienz.",
       imageUrl: ref1Image,
       imageAlt: "Einfamilienhaus mit neuem Steildach in Bochum-Stiepel",
     },
