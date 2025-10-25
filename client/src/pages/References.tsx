@@ -6,6 +6,9 @@ import ref1Image from "@assets/Gründach1.jpg";
 import ref2Image from "@assets/Flachdach1.jpeg";
 import ref3Image from "@assets/generated_images/Metal_roofing_craftsmanship_aa78a2e6.png";
 import ref4Image from "@assets/generated_images/Roof_windows_installation_be212f7f.png";
+import tondach4 from "@assets/Tondach4.JPG";
+import tondach6 from "@assets/Tondach6.JPG";
+import tondach7 from "@assets/Tondach7.JPG";
 
 export default function References() {
   const references = [
@@ -24,8 +27,8 @@ export default function References() {
       service: "Steildach",
       year: "2022",
       description: "Steil- und Zeltdächer mit Tondachziegeln und hochwertigen Zinkblechen.",
-      imageUrl: ref2Image,
-      imageAlt: "Mehrfamilienhaus mit saniertem Flachdach",
+      imageUrls: [tondach4, tondach6, tondach7],
+      imageAlt: "Neubaugebiet mit Steildächern und Tondachziegeln",
     },
     {
       title: "Gewerbeimmobilie Essen",
