@@ -12,7 +12,7 @@ export default function References() {
     {
       title: "Einfamilienhaus Bochum Weitmar",
       location: "Bochum",
-      service: "Steildach",
+      service: "Gründach",
       year: "2021",
       description: "Gründach mit extensiver Dachbegrünung. Inkl. neuer Flachachdämmung mit Gefälle.",
       imageUrl: ref1Image,
