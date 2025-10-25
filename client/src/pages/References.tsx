@@ -38,7 +38,7 @@ export default function References() {
       location: "Bochum",
       service: "Bauklempnerei",
       year: "2020",
-      description: "Komplette Erneuerung der Dachentwässerung mit maßgefertigten Zink-Dachrinnen und Fallrohren. Inklusive Fassadenverkleidung.",
+      description: "Gründach mit extensiver Dachbegrünung und Photovoltaikmodulen.",
       imageUrl: gruendach2,
       imageAlt: "Gründach mit Photovoltaik",
     },
