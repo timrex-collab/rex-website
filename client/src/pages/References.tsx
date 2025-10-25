@@ -19,7 +19,7 @@ export default function References() {
       imageAlt: "Einfamilienhaus mit neuem Steildach in Bochum-Stiepel",
     },
     {
-      title: "Mehrfamilienhaus Dortmund",
+      title: "Neubaugebiet Hattingen",
       location: "Hattingen",
       service: "Flachdach",
       year: "2024",
