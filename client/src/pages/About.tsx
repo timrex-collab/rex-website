@@ -40,7 +40,7 @@ export default function About() {
 
       <Hero
         title="Über uns"
-        subtitle="Tradition trifft Innovation"
+        subtitle="Qualität entsteht durch Erfahrung."
         description="Seit über 20 Jahren steht Rex Bedachungs GmbH für Qualität und Zuverlässigkeit im Dachdeckerhandwerk."
         imageUrl={heroImage}
         imageAlt="Rex Bedachungs GmbH Team"
