@@ -10,7 +10,7 @@ import ref4Image from "@assets/generated_images/Roof_windows_installation_be212f
 export default function References() {
   const references = [
     {
-      title: "Einfamilienhaus Bochum-Stiepel",
+      title: "Einfamilienhaus Bochum Weitmar",
       location: "Bochum",
       service: "Steildach",
       year: "2024",
