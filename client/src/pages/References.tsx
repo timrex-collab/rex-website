@@ -35,7 +35,7 @@ export default function References() {
     },
     {
       title: "Gründach mit Photovoltaik",
-      location: "Essen",
+      location: "Bochum",
       service: "Bauklempnerei",
       year: "2020",
       description: "Komplette Erneuerung der Dachentwässerung mit maßgefertigten Zink-Dachrinnen und Fallrohren. Inklusive Fassadenverkleidung.",
