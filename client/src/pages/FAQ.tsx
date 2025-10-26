@@ -23,7 +23,7 @@ export default function FAQ() {
         },
         {
           question: "Bleibt der angebotene Preis verbindlich, oder kommen im Nachhinein Mehrkosten?",
-          answer: "Unsere Angebote sind sorgfältig kalkuliert und verbindlich. Das heißt, wir halten uns an den angebotenen Festpreis. Sollten während der Arbeiten dennoch unvorhergesehene Umstände auftreten, sprechen wir Sie umgehend transparent darauf an und legen gemeinsam fest, wie wir weiter vorgehen. Überraschende Nachträge werden Sie bei uns nicht erleben."
+          answer: "Unsere Angebote sind sorgfältig kalkuliert. Sollten während der Arbeiten dennoch unvorhergesehene Umstände auftreten, sprechen wir Sie umgehend transparent darauf an und legen gemeinsam fest, wie wir weiter vorgehen. Überraschende Nachträge werden Sie bei uns nicht erleben."
         },
         {
           question: "Wovon hängen die Kosten für ein Dachprojekt ab?",
