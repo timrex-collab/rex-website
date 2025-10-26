@@ -102,7 +102,7 @@ export default function FAQ() {
         },
         {
           question: "Übernehmen Sie auch sehr kleine Reparaturen (z.B. einzelne Dachziegel austauschen)?",
-          answer: "Ja – selbstverständlich führen wir auch Kleinstreparaturen zuverlässig für Sie aus. Egal ob ein einzelner Ziegel locker oder zerbrochen ist, ein kurzer Abschnitt der Dachrinne leckt oder eine kleine Stelle neu abgedichtet werden muss: Solche Arbeiten erledigen wir prompt und sorgfältig. Auch wenn es 'nur' eine Kleinigkeit ist, lohnt sich die Reparatur, um größeren Folgeschäden vorzubeugen. Kein Auftrag ist für uns zu klein – Ihr Dach soll rundum intakt sein."
+          answer: "Ja – selbstverständlich führen wir auch Kleinstreparaturen zuverlässig für Sie aus. Egal ob ein einzelner Ziegel locker oder zerbrochen ist, ein kurzer Abschnitt der Dachrinne leckt oder eine kleine Stelle neu abgedichtet werden muss: Solche Arbeiten erledigen wir prompt und sorgfältig. Auch wenn es 'nur' eine Kleinigkeit ist, lohnt sich die Reparatur, um größeren Folgeschäden vorzubeugen."
         }
       ]
     },
