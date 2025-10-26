@@ -13,7 +13,7 @@ export default function Bauklempnerei() {
         "Maßgefertigte Bauteile aus eigener Werkstatt",
         "Hochwertige Materialien (Zink, Kupfer, Aluminium)",
         "Dachrinnen, Fallrohre, Dachränder",
-        "Fassadenverkleidungen und Attiken",
+        "Wandbekleidungen und Attiken",
         "Fachgerechte Montage und Abdichtung",
       ]}
       process={[
