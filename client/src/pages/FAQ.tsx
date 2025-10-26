@@ -98,7 +98,7 @@ export default function FAQ() {
         },
         {
           question: "Was soll ich tun, wenn mein Dach undicht ist oder einen Schaden hat?",
-          answer: "Bewahren Sie Ruhe, aber handeln Sie zeitnah. Decken Sie die undichte Stelle, falls gefahrlos möglich, provisorisch mit einer Plane ab, um weiteren Wassereintritt zu verhindern. Kontaktieren Sie uns anschließend umgehend – wir kümmern uns so schnell wie möglich um die Reparatur. Bitte haben Sie Verständnis, dass wir keinen 24h-Notdienst anbieten; wir tun jedoch unser Bestes, um dringende Lecks so zeitnah wie möglich während unserer Arbeitszeit zu beheben. Falls die Witterung es erfordert, können Sie im Notfall auch die Feuerwehr zur Ersthilfe (Abplanen des Dachs) hinzuziehen, bis wir eingreifen."
+          answer: "Bewahren Sie Ruhe, aber handeln Sie zeitnah. Kontaktieren Sie uns anschließend umgehend – wir kümmern uns so schnell wie möglich um die Reparatur. Bitte haben Sie Verständnis, dass wir keinen 24h-Notdienst anbieten; wir tun jedoch unser Bestes, um dringende Lecks so zeitnah wie möglich während unserer Arbeitszeit zu beheben."
         },
         {
           question: "Übernehmen Sie auch sehr kleine Reparaturen (z.B. einzelne Dachziegel austauschen)?",
