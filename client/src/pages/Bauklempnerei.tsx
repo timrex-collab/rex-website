@@ -12,7 +12,7 @@ export default function Bauklempnerei() {
       benefits={[
         "Maßgefertigte Bauteile aus eigener Werkstatt",
         "Hochwertige Materialien (Zink, Kupfer, Aluminium)",
-        "Dachrinnen, Fallrohre, Verwahrungen",
+        "Dachrinnen, Fallrohre, Dachränder",
         "Fassadenverkleidungen und Attiken",
         "Fachgerechte Montage und Abdichtung",
       ]}
