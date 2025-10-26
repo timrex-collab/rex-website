@@ -164,10 +164,6 @@ export default function FAQ() {
           answer: "Unter Spenglerarbeiten (auch Bauklempnerei genannt) versteht man alle Metallarbeiten am Dach. Dazu gehören insbesondere die Dachentwässerung – also Dachrinnen und Fallrohre montieren – sowie das Anbringen von Blechverkleidungen und Anschlüssen. Beispielsweise fertigen wir Blecheinfassungen an Schornsteinen, Abdichtungen an Wandanschlüssen, Verblechungen an Dachkanten (Attika) und Gauben sowie ganze Metalldächer (z.B. in Stehfalz-Technik). Kurz gesagt: Alle Arbeiten mit Zink, Kupfer, Aluminium & Co am Dach und an der Fassade (Verkleidungen, Abdeckungen, Rinnen) fallen in diesen Bereich."
         },
         {
-          question: "Welche Vorteile hat eine Dachdeckung aus Metall (Blechdach)?",
-          answer: "Metalldächer bieten einige spezielle Vorteile. Sie sind sehr langlebig (Lebensdauern von 50 Jahren und mehr sind keine Seltenheit) und dabei vergleichsweise leicht, was gerade bei größeren Spannweiten die Dachkonstruktion entlastet. Außerdem sind Metalleindeckungen sturm- und hagelresistent – ein fachgerecht montiertes Blechdach hält extreme Wetterereignisse oft besser aus als ein Ziegeldach. Ein weiterer Pluspunkt ist die Nachhaltigkeit: Metalle wie Zink oder Aluminium lassen sich nahezu 100 % recyceln und sind somit umweltfreundlich. Und nicht zuletzt ist der Wartungsaufwand gering, da Metall nicht porös ist und Moosbewuchs kaum ansetzt."
-        },
-        {
           question: "Eignet sich eine Metallbedachung auch für ältere Dächer?",
           answer: "Ja, auf jeden Fall. Gerade bei älteren Gebäuden kann ein leichteres Metalldach sogar von Vorteil sein. Oft haben ältere Dächer einen größeren Sparrenabstand oder die Statik ist für schwere Ziegel nicht optimal – hier empfiehlt sich eine leichte Bedachung aus Metall. Zum Beispiel wiegt eine Aluminium- oder Zinkeindeckung deutlich weniger als klassische Tonziegel, entlastet also den Dachstuhl. Wir prüfen natürlich immer vorab die Konstruktion, aber in vielen Fällen ist es kein Problem, nachträglich auf Blech umzurüsten. Im Gegenteil: Es bietet eine moderne, langlebige Lösung für alte Dächer."
         },
