@@ -37,11 +37,6 @@ export default function Hero({
           <p className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-semibold mb-4 sm:mb-5 md:mb-6 lg:mb-8 text-white/95 leading-snug" data-testid="text-hero-subtitle">
             {subtitle}
           </p>
-          {description && (
-            <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-white/90 max-w-3xl mb-6 sm:mb-7 md:mb-8 lg:mb-10 leading-relaxed" data-testid="text-hero-description">
-              Professionelle Dachdeckerarbeiten in Bochum und Umgebung. Steildach, Flachdach, Reparatur, Sanierung, Dachfenster und mehr. Wir sind Ihr zuverlässiger Partner für alle Arbeiten rund um's Dach.
-            </p>
-          )}
           
           {showCTAs && (
             <div className="flex flex-col sm:flex-row gap-3 sm:gap-4">
