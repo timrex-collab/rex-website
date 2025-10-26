@@ -11,7 +11,7 @@ export default function Bauklempnerei() {
       imageAlt="Hochwertige Klempnerarbeiten in Zink"
       benefits={[
         "Maßgefertigte Bauteile aus eigener Werkstatt",
-        "Hochwertige Materialien (Zink, Kupfer, Edelstahl)",
+        "Hochwertige Materialien (Zink, Kupfer, Aluminium)",
         "Dachrinnen, Fallrohre, Verwahrungen",
         "Fassadenverkleidungen und Attiken",
         "Fachgerechte Montage und Abdichtung",
