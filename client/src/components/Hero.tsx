@@ -32,14 +32,14 @@ export default function Hero({
       <div className="relative h-full max-w-7xl mx-auto px-4 sm:px-6 md:px-8 lg:px-10 flex items-center sm:items-start sm:pt-12 md:pt-16 lg:pt-20">
         <div className="max-w-4xl text-white w-full">
           <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight mb-4 sm:mb-5 md:mb-6 lg:mb-8 leading-tight" data-testid="text-hero-title">
-            Ihr Partner rund um's Dach
+            {title}
           </h1>
           <p className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-semibold mb-4 sm:mb-5 md:mb-6 lg:mb-8 text-white/95 leading-snug" data-testid="text-hero-subtitle">
             {subtitle}
           </p>
           {description && (
             <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-white/90 max-w-3xl mb-6 sm:mb-7 md:mb-8 lg:mb-10 leading-relaxed" data-testid="text-hero-description">
-              Professionelle Dachdeckerarbeiten in Bochum und Umgebung. Steildach, Flachdach, Reparatur, Sanierung, Dachfenster und mehr. Wir sind Ihr zuverlässiger Partner für alle Arbeiten rund um's Dach.
+              {description}
             </p>
           )}
           
