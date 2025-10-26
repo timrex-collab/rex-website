@@ -6,7 +6,7 @@ export default function Bauklempnerei() {
     <ServiceDetail
       title="Bauklempnerei"
       subtitle="Präzise Metallarbeiten"
-      description="Hochwertige Blecharbeiten sind entscheidend für die Langlebigkeit und Optik Ihres Daches. Unsere Klempner fertigen alle Bauteile maßgenau in unserer Werkstatt: Dachrinnen, Fallrohre, Verwahrungen, Kehlen und Fassadenverkleidungen. Wir arbeiten mit langlebigen Materialien wie Titanzink, Kupfer oder Edelstahl und garantieren fachgerechte Montage."
+      description="Hochwertige Blecharbeiten sind entscheidend für die Langlebigkeit und Optik Ihres Daches. Unsere Klempner fertigen alle Bauteile maßgenau in unserer Werkstatt: Dachrinnen, Fallrohre, Dachränder, Kehlen und Fassadenbekleidungen. Wir arbeiten mit langlebigen Materialien wie Titanzink, Kupfer oder Aluminium und garantieren fachgerechte Montage."
       imageUrl={bauklempnereiImage}
       imageAlt="Hochwertige Klempnerarbeiten in Zink"
       benefits={[
