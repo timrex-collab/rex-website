@@ -19,7 +19,7 @@ export default function FAQ() {
         },
         {
           question: "Wie läuft die Angebotserstellung ab?",
-          answer: "Zunächst vereinbaren wir einen Besichtigungstermin vor Ort, um Ihr Dach und Ihr Vorhaben genau kennenzulernen. Nach dieser kostenlosen Begutachtung planen wir die erforderlichen Arbeiten und erstellen eine detaillierte Kalkulation. In der Regel erhalten Sie innerhalb weniger Tage – oft schon 1–2 Tage nach dem Termin – Ihr schriftliches Angebot, in dem alle Leistungen und Kosten klar aufgeführt sind."
+          answer: "Zunächst vereinbaren wir einen Besichtigungstermin vor Ort, um Ihr Dach und Ihr Vorhaben genau kennenzulernen. Nach dieser Begutachtung planen wir die erforderlichen Arbeiten und erstellen eine detaillierte Kalkulation. In der Regel erhalten Sie innerhalb weniger Tage ihr schriftliches Angebot, in dem alle Leistungen und Kosten klar aufgeführt sind."
         },
         {
           question: "Bleibt der angebotene Preis verbindlich, oder kommen im Nachhinein Mehrkosten?",
