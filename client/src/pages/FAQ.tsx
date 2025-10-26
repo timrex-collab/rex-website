@@ -53,10 +53,6 @@ export default function FAQ() {
         {
           question: "Welche Materialien verwenden Sie für Steildächer?",
           answer: "Wir verwenden ausschließlich hochwertige Materialien für Ihr Steildach. Klassischerweise kommen Tonziegel oder Betondachsteine zum Einsatz, aber auch Schiefer oder Metallbedachungen sind möglich – je nach Wunsch und Anforderungen. Für Anschlüsse und Sonderbereiche nutzen wir langlebige Metalle wie Zink, Aluminium oder Kupfer. Welches Material für Ihr Dach am besten geeignet ist, besprechen wir natürlich ausführlich mit Ihnen, damit Optik, Haltbarkeit und Preis-Leistung stimmen."
-        },
-        {
-          question: "Welche Vorteile bietet ein Metalldach?",
-          answer: "Metalldächer zeichnen sich durch eine Reihe von Vorteilen aus. Sie sind sehr langlebig und dabei vergleichsweise leicht, was die Dachkonstruktion entlastet. Außerdem sind Blechdächer extrem sturm- und hagelsicher und die verwendeten Metalle (z.B. Zink, Aluminium) lassen sich nahezu 100 % recyceln, was sie umweltfreundlich macht. Nicht zuletzt verleiht ein Metalldach dem Gebäude eine moderne Optik. Wir empfehlen Metallbedachungen häufig auch bei geringer Dachneigung oder wenn eine besonders robuste, wartungsarme Dacheindeckung gewünscht ist."
         }
       ]
     },
