@@ -1,5 +1,5 @@
 import ServiceDetail from "./ServiceDetail";
-import bauklempnereiImage from "@assets/generated_images/Metal_roofing_craftsmanship_aa78a2e6.png";
+import bauklempnereiImage from "@assets/S7300254.jpg";
 
 export default function Bauklempnerei() {
   return (
