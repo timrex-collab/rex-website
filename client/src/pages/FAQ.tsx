@@ -31,7 +31,7 @@ export default function FAQ() {
         },
         {
           question: "Gibt es Fördermöglichkeiten oder Zuschüsse für Dachsanierungen?",
-          answer: "Ja, insbesondere bei energetischen Dachsanierungen bestehen attraktive Förderprogramme. Über die Bundesförderung für effiziente Gebäude (BEG) können z.B. Zuschüsse von bis zu 20 % der Sanierungskosten beantragt werden – etwa wenn im Zuge der Dachsanierung die Wärmedämmung verbessert wird. Diese Förderung umfasst nicht nur die Dämmung selbst, sondern auch notwendige Maßnahmen wie die Erneuerung der Dacheindeckung. Gerne informieren wir Sie über aktuelle Fördermittel und unterstützen Sie bei Bedarf auch bei der Antragstellung."
+          answer: "Ja, eine Dachsanierung wird über die Bundesförderung für effiziente Gebäude (BEG) gefördert. Das Bundesamt für Wirtschaft und Ausfuhrkontrolle (BAFA) bietet Zuschüsse für Einzelmaßnahmen (BEG EM).Für die Dämmung der Dachflächen beträgt der Basiszuschuss 15 % der förderfähigen Kosten von maximal 30.000 €. Wird die Maßnahme im Rahmen eines individuellen Sanierungsfahrplans (iSFP) umgesetzt, erhöht sich der Zuschuss auf 20 % und die förderfähigen Kosten verdoppeln sich auf 60.000 € pro Wohneinheit. Dies entspricht einer maximalen Förderung von 12.000 € pro Wohneinheit.Alternativ kann eine Sanierung auf Effizienzhaus-Niveau (BEG WG) über die KfW mit zinsvergünstigten Krediten und Tilgungszuschüssen gefördert werden. Dabei müssen stets die technischen Mindestanforderungen, wie ein bestimmter U-Wert (z. B. 0,14 für das Dach), eingehalten werden, um förderfähig zu sein. Wichtig ist, dass der Antrag vor Beginn der Maßnahme gestellt werden muss."
         }
       ]
     },
