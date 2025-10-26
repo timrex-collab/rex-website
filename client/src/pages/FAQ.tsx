@@ -15,7 +15,7 @@ export default function FAQ() {
       questions: [
         {
           question: "Sind Kostenvoranschläge und Angebote bei Ihnen kostenlos und unverbindlich?",
-          answer: "Ja – die Erstellung eines Angebots ist für Sie kostenlos und erfolgt unverbindlich. Unser Vor-Ort-Termin zur Besichtigung ist ebenfalls im Preis inbegriffen. Nach einer ausführlichen Begutachtung erhalten Sie von uns ein transparent kalkuliertes Angebot – selbstverständlich ohne versteckte Kosten oder Verpflichtungen."
+          answer: "Ja – in der Regel ist die Erstellung eines Angebots ist für Sie kostenlos und erfolgt unverbindlich.\nNach einer ausführlichen Begutachtung erhalten Sie von uns ein transparent kalkuliertes Angebot.\n\nBei ausführlichen Berechnungen und Kalkulationsverfahren behalten wir uns vor, eine Pauschale ( richtet sich nach Projektgröße ) zu berechnen, die nach Auftragserteilung verrechnet werden kann."
         },
         {
           question: "Wie läuft die Angebotserstellung ab?",
