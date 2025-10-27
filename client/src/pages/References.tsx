@@ -8,6 +8,8 @@ import gruendach3 from "@assets/Gruendach3.jpg";
 import ref2Image from "@assets/generated_images/Flat_roof_installation_f99a2939.png";
 import ref3Image from "@assets/generated_images/Metal_roofing_craftsmanship_aa78a2e6.png";
 import ref4Image from "@assets/generated_images/Roof_windows_installation_be212f7f.png";
+import tondach1 from "@assets/Tondach1.png";
+import tondach2 from "@assets/Tondach2.png";
 import tondach4 from "@assets/Tondach4.jpg";
 import tondach6 from "@assets/Tondach6.jpg";
 import tondach7 from "@assets/Tondach7.jpg";
