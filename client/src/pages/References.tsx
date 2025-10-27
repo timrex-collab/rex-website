@@ -60,7 +60,7 @@ export default function References() {
       service: "Dachfenster",
       year: "2024",
       description: "Dachgeschoss-Ausbau mit Einbau von fünf großen Dachfenstern für optimale Belichtung. Perfekte Integration ins bestehende Dach.",
-      imageUrl: ref4Image,
+      imageUrls: [tondach1, tondach2],
       imageAlt: "Wohnhaus mit neuen Dachfenstern",
     },
     {
