@@ -58,7 +58,7 @@ export default function References() {
       title: "Wohnhaus Bochum-Stiepel",
       location: "Bochum",
       service: "Steildach",
-      year: "2024",
+      year: "2021",
       description: "Komplettsanierung mit Erstellung von zwei großen Dachgauben",
       imageUrls: [tondach2, tondach1],
       imageAlt: "Wohnhaus mit neuen Dachfenstern",
