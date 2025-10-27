@@ -59,7 +59,7 @@ export default function References() {
       location: "Bochum",
       service: "Dachfenster",
       year: "2024",
-      description: "Dachgeschoss-Ausbau mit Einbau von fünf großen Dachfenstern für optimale Belichtung. Perfekte Integration ins bestehende Dach.",
+      description: "Komplettsanierung mit Erstellung von zwei großen Dachgauben",
       imageUrls: [tondach2, tondach1],
       imageAlt: "Wohnhaus mit neuen Dachfenstern",
     },
