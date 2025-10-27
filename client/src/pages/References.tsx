@@ -55,7 +55,7 @@ export default function References() {
       imageAlt: "Velux Dachfenster Sanierung Bochum",
     },
     {
-      title: "Wohnhaus Bochum-Querenburg",
+      title: "Wohnhaus Bochum-Stiepel",
       location: "Bochum",
       service: "Dachfenster",
       year: "2024",
