@@ -68,11 +68,12 @@ export async function registerRoutes(app: Express): Promise<Server> {
       }
 
       // Send email via Resend
+      // NOTE: info@rex-bedachung.de als CC/Weiterleitung - Resend Test-Modus erlaubt nur tim.rex@gmx.de
       const { data, error } = await resend.emails.send({
         from: 'Kontaktformular <onboarding@resend.dev>',
-        to: 'info@rex-bedachung.de',
+        to: 'tim.rex@gmx.de',
         replyTo: email,
-        subject: `Neue Kontaktanfrage von ${name}`,
+        subject: `Neue Kontaktanfrage von ${name} [Weiterleitung an info@rex-bedachung.de]`,
         html: emailHtml,
         attachments: attachments.length > 0 ? attachments : undefined,
       });

@@ -44,11 +44,18 @@ export default function ContactForm() {
         body: formDataToSend,
       });
 
-      const result = await response.json();
-
       if (!response.ok) {
-        throw new Error(result.message || 'Fehler beim Senden');
+        let errorMessage = 'Fehler beim Senden';
+        try {
+          const result = await response.json();
+          errorMessage = result.message || errorMessage;
+        } catch {
+          // If JSON parsing fails, use default error message
+        }
+        throw new Error(errorMessage);
       }
+
+      const result = await response.json();
 
       toast({
         title: "Nachricht gesendet",
