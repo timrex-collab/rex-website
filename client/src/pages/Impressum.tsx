@@ -38,8 +38,8 @@ export default function Impressum() {
               <h2 className="text-2xl font-semibold mb-4">Registereintrag</h2>
               <p>
                 Eintragung im Handelsregister<br />
-                Registergericht: [Gericht einfügen]<br />
-                Registernummer: [Nummer einfügen]
+                Registergericht: Amtsgericht Bochum<br />
+                Registernummer: HRB 2478
               </p>
             </section>
 
@@ -47,7 +47,7 @@ export default function Impressum() {
               <h2 className="text-2xl font-semibold mb-4">Umsatzsteuer-ID</h2>
               <p>
                 Umsatzsteuer-Identifikationsnummer gemäß § 27 a Umsatzsteuergesetz:<br />
-                [USt-IdNr. einfügen]
+                DE124085752
               </p>
             </section>
 
