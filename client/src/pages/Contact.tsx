@@ -1,11 +1,15 @@
 import { Helmet } from "react-helmet";
+import { useState } from "react";
 import Hero from "@/components/Hero";
 import ContactForm from "@/components/ContactForm";
 import { Card } from "@/components/ui/card";
-import { Phone, Mail, MapPin, Clock, MessageCircle } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { Phone, Mail, MapPin, Clock, MessageCircle, ExternalLink } from "lucide-react";
 import heroImage from "@assets/tondach_hero.png";
 
 export default function Contact() {
+  const [mapLoaded, setMapLoaded] = useState(false);
+
   return (
     <>
       <Helmet>
@@ -106,16 +110,46 @@ export default function Contact() {
 
               <Card className="p-6">
                 <div className="relative w-full" style={{ paddingBottom: '66.67%' }}>
-                  <iframe
-                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2483.8971234567!2d7.2420155!3d51.4623595!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47b8e00fdd91a96d%3A0xb0e424e0f275f1b6!2sRex%20Bedachungs%20GmbH!5e0!3m2!1sde!2sde!4v1234567890123!5m2!1sde!2sde"
-                    className="absolute top-0 left-0 w-full h-full rounded-md"
-                    style={{ border: 0 }}
-                    allowFullScreen
-                    loading="lazy"
-                    referrerPolicy="no-referrer-when-downgrade"
-                    title="Standort Rex Bedachungs GmbH - Paulinenstr. 22, 44799 Bochum"
-                    data-testid="map-location"
-                  />
+                  {!mapLoaded ? (
+                    <div className="absolute top-0 left-0 w-full h-full flex flex-col items-center justify-center bg-muted rounded-md">
+                      <MapPin className="w-16 h-16 text-muted-foreground mb-4" />
+                      <h3 className="text-xl font-semibold mb-2 text-center px-4">
+                        Standortkarte anzeigen
+                      </h3>
+                      <p className="text-sm text-muted-foreground mb-4 text-center max-w-md px-4">
+                        Durch das Laden der Karte werden Daten an Google übertragen. 
+                        Details finden Sie in unserer Datenschutzerklärung.
+                      </p>
+                      <Button
+                        onClick={() => setMapLoaded(true)}
+                        variant="default"
+                        size="lg"
+                        data-testid="button-load-map"
+                      >
+                        Karte laden
+                      </Button>
+                      <a
+                        href="https://www.google.com/maps/place/Rex+Bedachungs+GmbH/@51.4623595,7.2420155,17z"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="mt-4 text-sm text-primary hover:underline inline-flex items-center gap-1"
+                        data-testid="link-google-maps"
+                      >
+                        In Google Maps öffnen <ExternalLink className="w-3 h-3" />
+                      </a>
+                    </div>
+                  ) : (
+                    <iframe
+                      src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2483.8971234567!2d7.2420155!3d51.4623595!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47b8e00fdd91a96d%3A0xb0e424e0f275f1b6!2sRex%20Bedachungs%20GmbH!5e0!3m2!1sde!2sde!4v1234567890123!5m2!1sde!2sde"
+                      className="absolute top-0 left-0 w-full h-full rounded-md"
+                      style={{ border: 0 }}
+                      allowFullScreen
+                      loading="lazy"
+                      referrerPolicy="no-referrer-when-downgrade"
+                      title="Standort Rex Bedachungs GmbH - Paulinenstr. 22, 44799 Bochum"
+                      data-testid="map-location"
+                    />
+                  )}
                 </div>
               </Card>
             </div>
