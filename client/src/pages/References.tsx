@@ -63,15 +63,6 @@ export default function References() {
       imageUrls: [tondach2, tondach1],
       imageAlt: "Wohnhaus mit neuen Dachfenstern",
     },
-    {
-      title: "Lagerhalle Witten",
-      location: "Witten",
-      service: "Flachdach",
-      year: "2023",
-      description: "Neuabdichtung einer 800m² großen Flachdachfläche mit Bitumenbahnen. Inklusive Gründach-Aufbau für besseres Mikroklima.",
-      imageUrl: ref2Image,
-      imageAlt: "Lagerhalle mit neuem Flachdach und Gründach",
-    },
   ];
 
   return (
