@@ -2,9 +2,9 @@ import type { Express, Request } from "express";
 import { createServer, type Server } from "http";
 import { storage } from "./storage";
 import multer from "multer";
-import { Resend } from "resend";
 import { contactFormSchema } from "@shared/schema";
 import { fromZodError } from "zod-validation-error";
+import { getUncachableResendClient } from "./resend-client";
 
 const upload = multer({
   storage: multer.memoryStorage(),
@@ -23,8 +23,6 @@ const upload = multer({
 });
 
 export async function registerRoutes(app: Express): Promise<Server> {
-  const resend = new Resend(process.env.RESEND_API_KEY);
-
   app.post("/api/contact", upload.array('images', 5), async (req, res) => {
     try {
       // Validate form data
@@ -67,13 +65,14 @@ export async function registerRoutes(app: Express): Promise<Server> {
         emailHtml += `<p><strong>Anhänge:</strong> ${attachments.length} Bild(er)</p>`;
       }
 
-      // Send email via Resend
-      // NOTE: info@rex-bedachung.de als CC/Weiterleitung - Resend Test-Modus erlaubt nur tim.rex@gmx.de
+      // Send email via Resend using secure connection
+      const { client: resend, fromEmail } = await getUncachableResendClient();
+      
       const { data, error } = await resend.emails.send({
-        from: 'Kontaktformular <onboarding@resend.dev>',
-        to: 'tim.rex@gmx.de',
+        from: fromEmail || 'Kontaktformular <onboarding@resend.dev>',
+        to: 'info@rex-bedachung.de',
         replyTo: email,
-        subject: `Neue Kontaktanfrage von ${name} [Weiterleitung an info@rex-bedachung.de]`,
+        subject: `Neue Kontaktanfrage von ${name}`,
         html: emailHtml,
         attachments: attachments.length > 0 ? attachments : undefined,
       });
