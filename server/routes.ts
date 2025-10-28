@@ -68,11 +68,9 @@ export async function registerRoutes(app: Express): Promise<Server> {
       }
 
       // Send email via Resend
-      // NOTE: In testing mode, Resend can only send to the verified email address
-      // In production, change this back to 'info@rex-bedachung.de'
       const { data, error } = await resend.emails.send({
         from: 'Kontaktformular <onboarding@resend.dev>',
-        to: process.env.NODE_ENV === 'development' ? 'tim.rex@gmx.de' : 'info@rex-bedachung.de',
+        to: 'info@rex-bedachung.de',
         replyTo: email,
         subject: `Neue Kontaktanfrage von ${name}`,
         html: emailHtml,
