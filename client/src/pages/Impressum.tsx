@@ -7,7 +7,6 @@ export default function Impressum() {
         <title>Impressum - Rex Bedachungs GmbH</title>
         <meta name="robots" content="noindex, follow" />
       </Helmet>
-
       <div className="py-16 md:py-20 lg:py-24 bg-background">
         <div className="max-w-4xl mx-auto px-4 md:px-6 lg:px-8">
           <h1 className="text-4xl md:text-5xl font-bold mb-12">Impressum</h1>
@@ -24,7 +23,7 @@ export default function Impressum() {
 
             <section>
               <h2 className="text-2xl font-semibold mb-4">Vertreten durch</h2>
-              <p>Geschäftsführer: [Name einfügen]</p>
+              <p>Geschäftsführer: Peter Rex, Tim Rex</p>
             </section>
 
             <section>
