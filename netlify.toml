@@ -1,0 +1,5 @@
+[[redirects]]
+  from   = "https://www.rex-bedachung.de/*"
+  to     = "https://firma.rex-bedachung.de/:splat"
+  status = 301
+  force  = true
