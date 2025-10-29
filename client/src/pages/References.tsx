@@ -20,13 +20,13 @@ import tondach3 from "@assets/Tondach 3.jpeg";
 export default function References() {
   const references = [
     {
-      title: "Einfamilienhaus Bochum Weitmar",
+      title: "Velux Dachfenster Sanierung Bochum",
       location: "Bochum",
-      service: "Gründach",
-      year: "2021",
-      description: "Gründach mit extensiver Dachbegrünung. Aufbau einer neuen Wärmedämmung für bessere Energieeffizienz.",
-      imageUrls: [ref1Image, gruendach3],
-      imageAlt: "Einfamilienhaus mit Gründach in Bochum-Weitmar",
+      service: "Dachfenster",
+      year: "2025",
+      description: "Lichtlösung Raum.  Mehr Raumgewinn und Kopffreiheit durch Kombi-Aufkeilrahmen. Mit Solar-Rollläden für Hitzeschutz und Verdunkelung.",
+      imageUrl: velux1,
+      imageAlt: "Velux Dachfenster Sanierung Bochum",
     },
     {
       title: "Neubaugebiet Hattingen",
@@ -38,6 +38,15 @@ export default function References() {
       imageAlt: "Neubaugebiet mit Steildächern und Tondachziegeln",
     },
     {
+      title: "Einfamilienhaus Bochum Weitmar",
+      location: "Bochum",
+      service: "Gründach",
+      year: "2021",
+      description: "Gründach mit extensiver Dachbegrünung. Aufbau einer neuen Wärmedämmung für bessere Energieeffizienz.",
+      imageUrls: [ref1Image, gruendach3],
+      imageAlt: "Einfamilienhaus mit Gründach in Bochum-Weitmar",
+    },
+    {
       title: "Gründach mit Photovoltaik",
       location: "Bochum",
       service: "Bauklempnerei",
@@ -45,15 +54,6 @@ export default function References() {
       description: "Gründach mit extensiver Dachbegrünung und Photovoltaikmodulen.",
       imageUrl: gruendach2,
       imageAlt: "Gründach mit Photovoltaik",
-    },
-    {
-      title: "Velux Dachfenster Sanierung Bochum",
-      location: "Bochum",
-      service: "Dachfenster",
-      year: "2025",
-      description: "Lichtlösung Raum.  Mehr Raumgewinn und Kopffreiheit durch Kombi-Aufkeilrahmen. Mit Solar-Rollläden für Hitzeschutz und Verdunkelung.",
-      imageUrl: velux1,
-      imageAlt: "Velux Dachfenster Sanierung Bochum",
     },
     {
       title: "Wohnhaus Bochum-Stiepel",
