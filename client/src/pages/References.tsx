@@ -15,6 +15,7 @@ import tondach6 from "@assets/Tondach6.jpg";
 import tondach7 from "@assets/Tondach7.jpg";
 import entwaesserung1 from "@assets/Entwaesserung1.jpg";
 import velux1 from "@assets/Velux1_1761088286795.png";
+import tondach3 from "@assets/Tondach 3.jpeg";
 
 export default function References() {
   const references = [
@@ -62,6 +63,15 @@ export default function References() {
       description: "Komplettsanierung mit Erstellung von zwei großen Dachgauben",
       imageUrls: [tondach2, tondach1],
       imageAlt: "Wohnhaus mit neuen Dachfenstern",
+    },
+    {
+      title: "Einfamilienhaus Bochum Querenburg",
+      location: "Bochum",
+      service: "Steildach",
+      year: "2019",
+      description: "Steildach mit hochwertigen Tondachziegeln. Professionelle Ausführung für langlebigen Wetterschutz.",
+      imageUrl: tondach3,
+      imageAlt: "Einfamilienhaus mit Steildach in Bochum-Querenburg",
     },
   ];
 
