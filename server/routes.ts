@@ -68,9 +68,12 @@ export async function registerRoutes(app: Express): Promise<Server> {
       // Send email via Resend using secure connection
       const { client: resend, fromEmail } = await getUncachableResendClient();
       
-      // Send to kontakt@rex-bedachung.de
-      // In development, verify this email is added to your Resend account
-      const recipientEmail = 'kontakt@rex-bedachung.de';
+      // Email recipient based on environment
+      // Development: Resend test mode only allows verified email (tim.rex@gmx.de)
+      // Production: Send to kontakt@rex-bedachung.de (requires domain verification)
+      const recipientEmail = process.env.NODE_ENV === 'development'
+        ? 'tim.rex@gmx.de'
+        : 'kontakt@rex-bedachung.de';
 
       const { data, error } = await resend.emails.send({
         from: fromEmail || 'Kontaktformular <onboarding@resend.dev>',
