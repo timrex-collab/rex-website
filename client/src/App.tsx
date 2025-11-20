@@ -18,6 +18,7 @@ import References from "@/pages/References";
 import About from "@/pages/About";
 import Careers from "@/pages/Careers";
 import Contact from "@/pages/Contact";
+import Danke from "@/pages/Danke";
 import Impressum from "@/pages/Impressum";
 import Datenschutz from "@/pages/Datenschutz";
 import FAQ from "@/pages/FAQ";
@@ -39,6 +40,7 @@ function Router() {
       <Route path="/ueber-uns" component={About} />
       <Route path="/karriere" component={Careers} />
       <Route path="/kontakt" component={Contact} />
+      <Route path="/danke" component={Danke} />
       <Route path="/impressum" component={Impressum} />
       <Route path="/datenschutz" component={Datenschutz} />
       <Route component={NotFound} />
