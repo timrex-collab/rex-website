@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="de">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5" />
+    <meta name="description" content="Vielen Dank für Ihre Nachricht - Rex Bedachungs GmbH" />
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90' fill='%23B22222'>R</text></svg>" />
+    <title>Vielen Dank - Rex Bedachungs GmbH</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 20px;
+      }
+
+      .container {
+        max-width: 600px;
+        background: white;
+        border-radius: 16px;
+        padding: 48px 32px;
+        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+        text-align: center;
+      }
+
+      .checkmark {
+        width: 80px;
+        height: 80px;
+        border-radius: 50%;
+        background: #4ade80;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0 auto 24px;
+        animation: scaleIn 0.5s ease-out;
+      }
+
+      .checkmark svg {
+        width: 48px;
+        height: 48px;
+        stroke: white;
+        stroke-width: 3;
+        fill: none;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+        animation: drawCheck 0.5s ease-out 0.2s forwards;
+        stroke-dasharray: 50;
+        stroke-dashoffset: 50;
+      }
+
+      h1 {
+        font-size: 32px;
+        color: #1f2937;
+        margin-bottom: 16px;
+        font-weight: 700;
+      }
+
+      p {
+        font-size: 18px;
+        color: #6b7280;
+        line-height: 1.6;
+        margin-bottom: 32px;
+      }
+
+      .button {
+        display: inline-block;
+        background: #B22222;
+        color: white;
+        text-decoration: none;
+        padding: 14px 32px;
+        border-radius: 8px;
+        font-weight: 600;
+        font-size: 16px;
+        transition: all 0.3s ease;
+      }
+
+      .button:hover {
+        background: #8B1A1A;
+        transform: translateY(-2px);
+        box-shadow: 0 8px 16px rgba(178, 34, 34, 0.3);
+      }
+
+      @keyframes scaleIn {
+        from {
+          transform: scale(0);
+        }
+        to {
+          transform: scale(1);
+        }
+      }
+
+      @keyframes drawCheck {
+        to {
+          stroke-dashoffset: 0;
+        }
+      }
+
+      @media (max-width: 640px) {
+        .container {
+          padding: 32px 24px;
+        }
+
+        h1 {
+          font-size: 24px;
+        }
+
+        p {
+          font-size: 16px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="checkmark">
+        <svg viewBox="0 0 24 24">
+          <polyline points="20 6 9 17 4 12"></polyline>
+        </svg>
+      </div>
+
+      <h1>Vielen Dank!</h1>
+
+      <p>
+        Ihre Nachricht wurde erfolgreich gesendet.<br />
+        Wir werden uns schnellstmöglich bei Ihnen melden.
+      </p>
+
+      <a href="/" class="button">Zurück zur Startseite</a>
+    </div>
+  </body>
+</html>
