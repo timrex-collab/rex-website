@@ -29,6 +29,7 @@ export default function ContactForm() {
     
     try {
       const formDataToSend = new FormData();
+      formDataToSend.append('form-name', 'contact');
       formDataToSend.append('name', formData.name);
       formDataToSend.append('email', formData.email);
       formDataToSend.append('phone', formData.phone);
@@ -39,23 +40,14 @@ export default function ContactForm() {
         formDataToSend.append('images', file);
       });
 
-      const response = await fetch('/api/contact', {
+      const response = await fetch('/', {
         method: 'POST',
         body: formDataToSend,
       });
 
       if (!response.ok) {
-        let errorMessage = 'Fehler beim Senden';
-        try {
-          const result = await response.json();
-          errorMessage = result.message || errorMessage;
-        } catch {
-          // If JSON parsing fails, use default error message
-        }
-        throw new Error(errorMessage);
+        throw new Error('Fehler beim Senden');
       }
-
-      const result = await response.json();
 
       toast({
         title: "Nachricht gesendet",
@@ -133,19 +125,36 @@ export default function ContactForm() {
   };
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-6" data-testid="form-contact">
-      <div className="absolute -left-[9999px]" aria-hidden="true">
-        <Label htmlFor="honeypot">Bitte nicht ausfüllen</Label>
-        <Input
-          type="text"
-          id="honeypot"
-          name="honeypot"
-          value={formData.honeypot}
-          onChange={handleChange}
-          tabIndex={-1}
-          autoComplete="off"
-        />
-      </div>
+    <>
+      {/* Hidden form for Netlify to detect at build time */}
+      <form name="contact" data-netlify="true" netlify-honeypot="honeypot" hidden>
+        <input type="text" name="name" />
+        <input type="email" name="email" />
+        <input type="tel" name="phone" />
+        <textarea name="message"></textarea>
+        <input type="file" name="images" multiple />
+        <input type="text" name="honeypot" />
+      </form>
+
+      {/* Actual form used by React */}
+      <form 
+        onSubmit={handleSubmit} 
+        name="contact"
+        className="space-y-6" 
+        data-testid="form-contact"
+      >
+        <div className="absolute -left-[9999px]" aria-hidden="true">
+          <Label htmlFor="honeypot">Bitte nicht ausfüllen</Label>
+          <Input
+            type="text"
+            id="honeypot"
+            name="honeypot"
+            value={formData.honeypot}
+            onChange={handleChange}
+            tabIndex={-1}
+            autoComplete="off"
+          />
+        </div>
 
       <div>
         <Label htmlFor="name">Name *</Label>
@@ -274,5 +283,6 @@ export default function ContactForm() {
         {isSubmitting ? "Wird gesendet..." : "Nachricht senden"}
       </Button>
     </form>
+    </>
   );
 }
