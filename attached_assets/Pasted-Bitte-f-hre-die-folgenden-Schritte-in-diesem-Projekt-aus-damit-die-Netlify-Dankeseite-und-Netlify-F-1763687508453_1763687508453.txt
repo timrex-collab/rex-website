@@ -1,0 +1,113 @@
+Bitte führe die folgenden Schritte in diesem Projekt aus, damit die Netlify-Dankeseite und Netlify Forms sauber funktionieren.
+
+Zielbild:
+
+Die Datei danke.html wird im finalen Build unter /danke.html ausgeliefert.
+
+Das Kontaktformular wird von Netlify Forms zuverlässig erkannt und nach dem Absenden auf /danke.html weitergeleitet.
+
+1. Vite-/Build-Setup prüfen
+
+Prüfe in der vite.config (oder vite.ts), ob ein root gesetzt ist.
+
+Wenn root: "client" o.ä. gesetzt ist, dann ist der public-Ordner client/public maßgeblich.
+
+Wenn kein root gesetzt ist, ist der public-Ordner im Projekt-Root maßgeblich.
+
+2. danke.html richtig platzieren
+
+Sorge dafür, dass sich danke.html im richtigen Public-Ordner für das Vite-Projekt befindet:
+
+Wenn root: "client" → Datei muss in client/public/danke.html liegen.
+
+Wenn kein root gesetzt ist → Datei muss in public/danke.html im Projekt-Root liegen.
+
+Danach einen Build laufen lassen (npm run build oder das im Projekt konfigurierte Build-Script) und verifiziere, dass im Output-Ordner dist eine Datei danke.html liegt.
+
+Wenn dist/danke.html nicht existiert, passe die Struktur so lange an, bis die Datei sicher im Build landet.
+
+3. Netlify-Form-Integration absichern (SPA + Vite)
+
+In der zentralen HTML-Datei, die von Vite als Einstieg dient (typischerweise client/index.html oder index.html im Projekt-Root), füge ein verstecktes Referenzformular für Netlify Forms ein, direkt im <body>:
+
+<form
+  name="kontakt"
+  method="POST"
+  data-netlify="true"
+  netlify-honeypot="bot-field"
+  hidden
+>
+  <input type="hidden" name="form-name" value="kontakt" />
+  <input type="text" name="name" />
+  <input type="email" name="email" />
+  <input type="tel" name="telefon" />
+  <textarea name="nachricht"></textarea>
+</form>
+
+
+Wichtig: Dieses versteckte Formular dient nur dazu, dass Netlify beim Build das Formular kontakt erkennt.
+
+4. Sichtbares Kontaktformular anpassen
+
+In der React/Vite-Komponente, in der das sichtbare Kontaktformular gerendert wird (z.B. in client/src/components/ContactForm.tsx oder einer vergleichbaren Datei), stelle sicher, dass das Formular folgendermaßen konfiguriert ist:
+
+<form
+  name="kontakt"
+  method="POST"
+  data-netlify="true"
+  netlify-honeypot="bot-field"
+  action="/danke.html"
+>
+  <input type="hidden" name="form-name" value="kontakt" />
+
+  {/* Name */}
+  <input type="text" name="name" required />
+
+  {/* E-Mail */}
+  <input type="email" name="email" required />
+
+  {/* Telefon (optional) */}
+  <input type="tel" name="telefon" />
+
+  {/* Nachricht */}
+  <textarea name="nachricht" required />
+
+  <button type="submit">Nachricht senden</button>
+</form>
+
+
+Wichtige Constraints:
+
+name="kontakt" und form-name="kontakt" müssen exakt gleich sein.
+
+Die Feldnamen name, email, telefon, nachricht müssen mit dem versteckten Formular übereinstimmen.
+
+Es darf kein eigener onSubmit-Handler oder fetch-Call den Submit abfangen – das Handling soll komplett Netlify Forms überlassen bleiben. Falls es noch solchen Code gibt, bitte entfernen.
+
+5. Technische Verifikation (lokal im Projekt)
+
+Noch einmal npm run build ausführen.
+
+Prüfen, dass im Ordner dist mindestens folgende Dateien existieren:
+
+dist/index.html
+
+dist/danke.html
+
+Sicherstellen, dass keine Konsolenfehler im Build auftreten.
+
+6. WICHTIG:
+
+Bitte kein automatisches Push nach GitHub machen.
+
+Abschluss-Update für mich als Nutzer:
+
+Welche Dateien wurden geändert?
+
+Wo liegt danke.html jetzt genau?
+
+Welche Datei enthält das versteckte Netlify-Formular?
+
+Welche Datei enthält das sichtbare Kontaktformular?
+
+Danach stoppen, damit ich mir die Änderungen anschauen und selbst pushen kann.
