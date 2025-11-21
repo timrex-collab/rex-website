@@ -11,5 +11,14 @@
   <body>
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
+    
+    <!-- Verstecktes Formular für Netlify Forms Pre-Rendering -->
+    <form name="kontakt" netlify netlify-honeypot="bot-field" hidden>
+      <input type="text" name="name" />
+      <input type="email" name="email" />
+      <input type="tel" name="telefon" />
+      <textarea name="nachricht"></textarea>
+      <input type="text" name="bot-field" />
+    </form>
   </body>
 </html>
