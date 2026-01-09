@@ -15,6 +15,10 @@ interface ServiceDetailProps {
   process: string[];
   metaDescription: string;
   ctaButtonText?: string;
+  promotionLink?: {
+    text: string;
+    href: string;
+  };
 }
 
 export default function ServiceDetail({
@@ -27,6 +31,7 @@ export default function ServiceDetail({
   process,
   metaDescription,
   ctaButtonText = "Angebot anfragen",
+  promotionLink,
 }: ServiceDetailProps) {
   return (
     <>
@@ -51,6 +56,15 @@ export default function ServiceDetail({
             <p className="text-lg md:text-xl text-muted-foreground leading-relaxed">
               {description}
             </p>
+            {promotionLink && (
+              <div className="mt-6">
+                <Button asChild variant="outline" size="lg" data-testid="button-promotion-link">
+                  <a href={promotionLink.href} target="_blank" rel="noopener noreferrer">
+                    {promotionLink.text}
+                  </a>
+                </Button>
+              </div>
+            )}
           </div>
 
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-12 mb-16">

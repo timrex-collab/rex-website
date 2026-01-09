@@ -24,6 +24,10 @@ export default function Dachfenster() {
         "Einweisung in die Bedienung",
       ]}
       metaDescription="Fachgerechter Einbau von Dachfenstern für mehr Licht und Wohnkomfort. Markenqualität vom Meisterbetrieb in Bochum."
+      promotionLink={{
+        text: "Infos zu Förderung von Dachfenstern",
+        href: "https://rex-bedachungen-f-rder-assistent-44496979676.us-west1.run.app/"
+      }}
     />
   );
 }
