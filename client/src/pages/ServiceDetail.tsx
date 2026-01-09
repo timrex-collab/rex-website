@@ -57,8 +57,8 @@ export default function ServiceDetail({
               {description}
             </p>
             {promotionLink && (
-              <div className="mt-6">
-                <Button asChild variant="outline" size="lg" data-testid="button-promotion-link">
+              <div className="mt-6 flex justify-center">
+                <Button asChild variant="default" size="lg" data-testid="button-promotion-link">
                   <a href={promotionLink.href} target="_blank" rel="noopener noreferrer">
                     {promotionLink.text}
                   </a>
