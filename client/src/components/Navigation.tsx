@@ -183,6 +183,17 @@ export default function Navigation() {
                       </div>
                     )}
                   </div>
+                ) : item.external ? (
+                  <a
+                    href={item.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    onClick={() => setMobileMenuOpen(false)}
+                    className="block px-3 py-2 rounded-md text-sm font-medium text-card-foreground hover:bg-accent"
+                    data-testid={`link-mobile-${item.name.toLowerCase().replace(/\s+/g, "-")}`}
+                  >
+                    {item.name}
+                  </a>
                 ) : (
                   <Link
                     href={item.path}
