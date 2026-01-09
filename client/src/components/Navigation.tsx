@@ -26,6 +26,7 @@ export default function Navigation() {
     { name: "FAQ", path: "/faq" },
     { name: "Über uns", path: "/ueber-uns" },
     { name: "Karriere", path: "/karriere" },
+    { name: "Solarpflicht", path: "/solarpflicht", external: true, href: "https://solarpfilcht-2026--timrex2.replit.app/" },
     { name: "Kontakt", path: "/kontakt" },
   ];
 
@@ -90,6 +91,16 @@ export default function Navigation() {
                       </div>
                     )}
                   </div>
+                ) : item.external ? (
+                  <a
+                    href={item.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="px-4 py-2 rounded-md text-sm font-medium transition-colors text-foreground hover:text-primary"
+                    data-testid={`link-${item.name.toLowerCase().replace(/\s+/g, "-")}`}
+                  >
+                    {item.name}
+                  </a>
                 ) : (
                   <Link
                     href={item.path}
