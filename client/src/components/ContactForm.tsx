@@ -67,6 +67,18 @@ export default function ContactForm() {
         ></textarea>
       </div>
 
+      <div className="flex justify-center">
+        <a
+          href="https://rex-bedachungen-f-rder-assistent-44496979676.us-west1.run.app/"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="inline-block px-6 py-3 bg-accent text-accent-foreground rounded-md font-medium text-sm hover:bg-accent/80 transition-colors focus:outline-none focus:ring-2 focus:ring-accent focus:ring-offset-2"
+          data-testid="link-foerderung-dachfenster"
+        >
+          Infos zur Förderung von Dachfenstern
+        </a>
+      </div>
+
       <div>
         <button 
           type="submit"
