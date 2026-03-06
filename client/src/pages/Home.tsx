@@ -137,7 +137,7 @@ export default function Home() {
       <Hero
         title="Ihr Partner rund um's Dach"
         subtitle="Rex Bedachungs GmbH"
-        description="Professionelle Dachdeckerarbeiten in Bochum und Umgebung. Steildach, Flachdach, Reparatur, Sanierung, Dachfenster und Bauklempnerei - Wir sind Ihr zuverlässiger Partner für alle Arbeiten rund um's Dach."
+        description="Ihr Partner für handwerkliche Präzision im Ruhrgebiet. Wir realisieren Ihre energetische Dachsanierung nach GEG und maximieren Ihre Ersparnis durch staatliche Förderungen von BAFA und KfW. Von der fachgerechten Flachdachabdichtung bis zum zertifizierten VELUX-Fenstereinbau – wir bringen Meisterqualität auf Ihr Dach, die schützt, überzeugt und sich durch attraktive Zuschüsse bezahlt macht. Steildach, Flachdach, Reparatur, Sanierung, Dachfenster und Bauklempnerei - Wir sind Ihr zuverlässiger Partner für alle Arbeiten rund um's Dach."
         imageUrl={heroImage}
         imageAlt="Modernes Dach mit roten Ziegeln in Bochum"
         showCTAs={true}
