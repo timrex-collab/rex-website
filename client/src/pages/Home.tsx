@@ -91,13 +91,84 @@ export default function Home() {
   return (
     <>
       <Helmet>
-        <title>Rex Bedachungs GmbH - Ihr Dach in Meisterhand | Dachdecker Bochum</title>
-        <meta name="description" content="Rex Bedachungs GmbH - Professionelle Dachdeckerarbeiten im Ruhrgebiet. Meisterbetrieb mit über 20 Jahren Erfahrung für Steildach, Flachdach, Bauklempnerei und mehr." />
-        <meta property="og:title" content="Rex Bedachungs GmbH - Ihr Dach in Meisterhand" />
-        <meta property="og:description" content="Professionelle Dachdeckerarbeiten im Ruhrgebiet. Meisterbetrieb mit über 20 Jahren Erfahrung." />
-        <meta property="og:type" content="website" />
-        <meta property="og:image" content={heroImage} />
-      </Helmet>
+  <title>Rex Bedachungs GmbH - Ihr Dach in Meisterhand | Dachdecker Bochum</title>
+  <meta name="description" content="Rex Bedachungs GmbH – Meisterbetrieb für Steildach, Flachdach, Bauklempnerei und Dachfenster in Bochum & Ruhrgebiet. 40 Jahre Erfahrung. Jetzt Angebot anfragen!" />
+  <meta property="og:title" content="Rex Bedachungs GmbH - Ihr Dach in Meisterhand" />
+  <meta property="og:description" content="Professionelle Dachdeckerarbeiten im Ruhrgebiet. Meisterbetrieb mit 40 Jahren Erfahrung." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://www.rex-bedachung.de/" />
+  <meta property="og:image" content={heroImage} />
+  <script type="application/ld+json">
+    {JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "RoofingContractor",
+      "name": "Rex Bedachungs GmbH",
+      "url": "https://www.rex-bedachung.de",
+      "logo": "https://www.rex-bedachung.de/logo.png",
+      "image": "https://www.rex-bedachung.de/og-image.jpg",
+      "description": "Rex Bedachungs GmbH ist ein Dachdecker-Meisterbetrieb in Bochum mit über 40 Jahren Erfahrung. Wir bieten Steildach, Flachdach, Bauklempnerei, Dachfenster, Reparaturen und Dachwartung im gesamten Ruhrgebiet.",
+      "foundingYear": "1984",
+      "telephone": "+49-234-583100",
+      "faxNumber": "+49-234-583137",
+      "email": "info@rex-bedachung.de",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "Paulinenstraße 22",
+        "addressLocality": "Bochum",
+        "postalCode": "44799",
+        "addressRegion": "Nordrhein-Westfalen",
+        "addressCountry": "DE"
+      },
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": "51.4818",
+        "longitude": "7.2162"
+      },
+      "areaServed": [
+        { "@type": "City", "name": "Bochum" },
+        { "@type": "City", "name": "Dortmund" },
+        { "@type": "City", "name": "Essen" },
+        { "@type": "City", "name": "Herne" },
+        { "@type": "City", "name": "Witten" },
+        { "@type": "City", "name": "Gelsenkirchen" },
+        { "@type": "City", "name": "Recklinghausen" }
+      ],
+      "openingHoursSpecification": [
+        {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+          "opens": "07:00",
+          "closes": "17:00"
+        }
+      ],
+      "priceRange": "€€",
+      "currenciesAccepted": "EUR",
+      "paymentAccepted": "Rechnung, Überweisung",
+      "hasOfferCatalog": {
+        "@type": "OfferCatalog",
+        "name": "Dachdeckerleistungen",
+        "itemListElement": [
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Steildach", "url": "https://www.rex-bedachung.de/leistungen/steildach" }},
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Flachdach", "url": "https://www.rex-bedachung.de/leistungen/flachdach" }},
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Bauklempnerei", "url": "https://www.rex-bedachung.de/leistungen/bauklempnerei" }},
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Dachfenster", "url": "https://www.rex-bedachung.de/leistungen/dachfenster" }},
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Reparaturen", "url": "https://www.rex-bedachung.de/leistungen/reparaturen" }},
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Dachwartung", "url": "https://www.rex-bedachung.de/leistungen/dachwartung" }}
+        ]
+      },
+      "sameAs": [
+        "https://www.google.com/maps?cid=rex-bedachung-bochum",
+        "https://www.gelbeseiten.de/rex-bedachung"
+      ],
+      "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": "4.4",
+        "reviewCount": "12",
+        "bestRating": "5"
+      }
+    })}
+  </script>
+</Helmet>
 
       <script type="application/ld+json">
         {JSON.stringify({
