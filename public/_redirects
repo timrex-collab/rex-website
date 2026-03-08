@@ -1,2 +1,23 @@
+# firma. → www. (bestehend)
 https://firma.rex-bedachung.de/* https://www.rex-bedachung.de/:splat 301!
+
+# Alte URLs → Neue Leistungsseiten (301 permanent)
+/dachfenster        /leistungen/dachfenster     301
+/dachfenster/       /leistungen/dachfenster     301
+/bauklempnerei      /leistungen/bauklempnerei   301
+/bauklempnerei/     /leistungen/bauklempnerei   301
+/flachdach          /leistungen/flachdach       301
+/flachdach/         /leistungen/flachdach       301
+/reparaturen        /leistungen/reparaturen     301
+/reparaturen/       /leistungen/reparaturen     301
+/waermedaemmung     /leistungen/dachwartung     301
+/waermedaemmung/    /leistungen/dachwartung     301
+/velux-fenster      /leistungen/dachfenster     301
+/velux-fenster/     /leistungen/dachfenster     301
+/fassaden           /leistungen/bauklempnerei   301
+/fassaden/          /leistungen/bauklempnerei   301
+/betondachsteine    /leistungen/steildach       301
+/betondachsteine/   /leistungen/steildach       301
+
+# SPA Fallback (muss immer zuletzt stehen!)
 /*    /index.html   200
