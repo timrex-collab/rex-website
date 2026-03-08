@@ -1,0 +1,248 @@
+import React, { useState, useEffect } from 'react';
+import { Search, Book, ShieldCheck, HardHat, ThermometerSun, Droplets, Wind, Waves, Home, Zap } from 'lucide-react';
+
+const terms = [
+  {
+    term: "Asbestsanierung (TRGS 519)",
+    definition: "Der fachgerechte Rückbau und die Entsorgung von asbesthaltigen Dach- und Fassadenprodukten (z. B. Eternit). Wir arbeiten streng nach den Technischen Regeln für Gefahrstoffe (TRGS 519), um maximale Sicherheit für Bewohner und Umwelt zu gewährleisten.",
+    category: "Sicherheit",
+    url: "https://www.rex-bedachung.de/lexikon#asbest"
+  },
+  {
+    term: "Attika",
+    definition: "Die Aufmauerung am Rand eines Flachdachs. Eine fachgerechte Attika-Abdeckung aus Zink oder Aluminium schützt die Fassade vor Feuchtigkeit und sorgt für einen sauberen optischen Abschluss.",
+    category: "Flachdach",
+    url: "https://www.rex-bedachung.de/lexikon#attika"
+  },
+  {
+    term: "Aufsparrendämmung",
+    definition: "Die effizienteste Methode der Wärmedämmung nach GEG. Die Dämmschicht wird lückenlos oberhalb der Sparren verlegt. Wichtig: Aufgrund des Zusatzgewichts und der veränderten Aufbauhöhe ist hierbei immer eine Prüfung der Statik und der Anschlusshöhen erforderlich.",
+    category: "Energetik",
+    url: "https://www.rex-bedachung.de/lexikon#aufsparrendaemmung"
+  },
+  {
+    term: "Bauklempnerei",
+    definition: "Die handwerkliche Bearbeitung von Feinblechen (Zink, Kupfer, Aluminium). Dazu gehören Dachrinnen, Fallrohre, Kamineinfassungen und Stehfalzdächer. Präzise Metallanschlüsse sind das Herzstück eines dauerhaft regendichten Daches.",
+    category: "Metallbau",
+    url: "https://www.rex-bedachung.de/lexikon#bauklempnerei"
+  },
+  {
+    term: "Betondachsteine vs. Tondachziegel",
+    definition: "Tondachziegel sind ein Naturprodukt aus gebranntem Ton, während Betondachsteine aus Zement und Sand bestehen. Beide bieten hervorragenden Schutz, unterscheiden sich aber in Ästhetik, Gewicht und Langlebigkeit.",
+    category: "Steildach",
+    url: "https://www.rex-bedachung.de/lexikon#dachziegel"
+  },
+  {
+    term: "Bitumenschweißbahn",
+    definition: "Der bewährte Standard der Flachdachabdichtung. In mehreren Lagen verschweißt, bildet Bitumen eine robuste, wasserdichte Schicht. Wir verwenden ausschließlich hochfertige, polymerverstärkte Bahnen nach DIN-Norm.",
+    category: "Flachdach",
+    url: "https://www.rex-bedachung.de/lexikon#bitumen"
+  },
+  {
+    term: "Dachentwässerung vs. Notentwässerung",
+    definition: "Die reguläre Dachentwässerung leitet Regenwasser in die Kanalisation. Die Notentwässerung ist ein zweites, völlig unabhängiges System (Speier oder Rohrsystem), das bei extremem Starkregen das Wasser direkt ins Freie ableitet, um eine statische Überlastung und den Einsturz des Daches zu verhindern.",
+    category: "Entwässerung",
+    url: "https://www.rex-bedachung.de/lexikon#notentwaesserung"
+  },
+  {
+    term: "Dampfbremse vs. Dampfsperre",
+    definition: "Funktionale Schichten zur Regulierung der Feuchtigkeit in der Dachkonstruktion. Eine Dampfbremse lässt kontrolliert Feuchtigkeit diffundieren, während eine Dampfsperre den Durchgang von Wasserdampf fast vollständig stoppt. Die korrekte Wahl ist entscheidend zur Vermeidung von Schimmelbildung.",
+    category: "Bauphysik",
+    url: "https://www.rex-bedachung.de/lexikon#dampfbremse"
+  },
+  {
+    term: "EPDM-Dichtungsbahn",
+    definition: "Ein synthetischer Kautschuk für Flachdächer. EPDM ist extrem elastisch (bis 400%), UV-beständig und hat eine Lebenserwartung von über 50 Jahren. Oft wird es in großen Planen verlegt, was das Risiko von Nahtundichtigkeiten minimiert.",
+    category: "Flachdach",
+    url: "https://www.rex-bedachung.de/lexikon#epdm"
+  },
+  {
+    term: "First",
+    definition: "Die oberste, waagerechte Schnittlinie von zwei Dachflächen. Eine fachgerechte Firstausbildung (trocken verlegt mit Firstrollen) garantiert die notwendige Hinterlüftung der Dachkonstruktion und schützt vor Flugschnee.",
+    category: "Steildach",
+    url: "https://www.rex-bedachung.de/lexikon#first"
+  },
+  {
+    term: "Flüssigkunststoff-Abdichtung",
+    definition: "Eine flüssig aufzubringende Harz-Beschichtung für nahtlose, gummielastische Oberflächen. Ideal für extrem komplizierte Details wie Balkonanschlüsse, Lichtkuppeln oder Durchdringungen, wo Bahnenware an ihre Grenzen stößt.",
+    category: "Abdichtung",
+    url: "https://www.rex-bedachung.de/lexikon#fluessigkunststoff"
+  },
+  {
+    term: "Gebäudeenergiegesetz (GEG)",
+    definition: "Das GEG schreibt verbindliche energetische Mindeststandards vor. Es regelt, wie stark ein Dach gedämmt werden muss, wenn mehr als 10% der Fläche saniert werden. Wir beraten Sie zu den gesetzlichen Pflichten und Fördermöglichkeiten.",
+    category: "Energetik",
+    url: "https://www.rex-bedachung.de/lexikon#geg"
+  },
+  {
+    term: "Gründach (Dachbegrünung)",
+    definition: "Eine ökologische Schicht aus Pflanzen auf dem Flachdach. Es dient als Hitzeschutz, hält Regenwasser zurück und schützt die Abdichtung. Achtung: Ein Gründach erfordert aufgrund der hohen Eigenlast der wassergesättigten Erde zwingend einen statischen Nachweis.",
+    category: "Ökologie",
+    url: "https://www.rex-bedachung.de/lexikon#gruendach"
+  },
+  {
+    term: "Kaltdach vs. Warmdach",
+    definition: "Zwei unterschiedliche Konstruktionsprinzipien. Das Kaltdach ist belüftet (Luftschicht zwischen Dämmung und Deckung), das Warmdach ist unbelüftet (Dämmung direkt unter der Abdichtung). Jedes System hat spezifische Anforderungen an die Dampfbremse.",
+    category: "Bauphysik",
+    url: "https://www.rex-bedachung.de/lexikon#warmdach"
+  },
+  {
+    term: "Kamineinfassung",
+    definition: "Der Übergang zwischen Dachfläche und Schornstein. Diese muss handwerklich präzise aus Metall (Zink/Kupfer) gefertigt werden. Fehler in diesem Bereich führen fast unweigerlich zu Feuchtigkeitsschäden im Gebälk.",
+    category: "Metallbau",
+    url: "https://www.rex-bedachung.de/lexikon#kamineinfassung"
+  },
+  {
+    term: "Lichtkuppel / Flachdachfenster",
+    definition: "Elemente zur Belichtung und Belüftung von flach geneigten Dächern. Moderne Lichtkuppeln bieten heute hervorragende Dämmwerte und können auch als RWA-Anlagen (Rauch- und Wärmeabzug) dienen.",
+    category: "Flachdach",
+    url: "https://www.rex-bedachung.de/lexikon#lichtkuppel"
+  },
+  {
+    term: "Ortgang",
+    definition: "Der seitliche Abschluss des Daches am Giebel. Er verbindet die Traufe mit dem First und schützt die Dachkonstruktion vor seitlichem Regen und Windlasten.",
+    category: "Steildach",
+    url: "https://www.rex-bedachung.de/lexikon#ortgang"
+  },
+  {
+    term: "PVC-Dichtungsbahn",
+    definition: "Eine einlagige Abdichtung aus Polyvinylchlorid. PVC-Bahnen sind leicht, wirtschaftlich und werden per Heißluft nahtlos verschweißt. Ideal für mechanisch befestigte Systeme auf großen Industrie-Flachdächern.",
+    category: "Flachdach",
+    url: "https://www.rex-bedachung.de/lexikon#pvc"
+  },
+  {
+    term: "Traufe",
+    definition: "Die untere Tropfkante des Daches, an der das Regenwasser in die Dachrinne geleitet wird. Ein sauberer Traufabschluss mit Traufblech verhindert Feuchtigkeitsschäden an der Holzkonstruktion.",
+    category: "Steildach",
+    url: "https://www.rex-bedachung.de/lexikon#traufe"
+  },
+  {
+    term: "Wartungsvertrag",
+    definition: "Eine regelmäßige Überprüfung des Daches (meist jährlich). Wartung ist essenziell für den Erhalt des Versicherungsschutzes bei Sturmschäden und verhindert teure Folgeschäden durch rechtzeitige Reparatur kleiner Mängel.",
+    category: "Service",
+    url: "https://www.rex-bedachung.de/lexikon#wartung"
+  },
+  {
+    term: "Windsogsicherung",
+    definition: "Maßnahmen zur Sicherung der Dachdeckung gegen Abheben durch Windkräfte. Hierbei kommen spezielle Sturmklammern (Haken) zum Einsatz, deren Anzahl und Position nach den ZVDH-Fachregeln und den lokalen Windzonen berechnet werden müssen.",
+    category: "Sicherheit",
+    url: "https://www.rex-bedachung.de/lexikon#windsog"
+  },
+  {
+    term: "ZVDH-Fachregeln",
+    definition: "Das Regelwerk des Zentralverbands des Deutschen Dachdeckerhandwerks. Die Einhaltung dieser Regeln garantiert höchste Ausführungsqualität und ist die Basis für jeden rechtssicheren Gewährleistungsanspruch.",
+    category: "Sicherheit",
+    url: "https://www.rex-bedachung.de/lexikon#zvdh"
+  }
+];
+
+export default function App() {
+  const [searchTerm, setSearchTerm] = useState("");
+
+  // Schema.org Injection
+  useEffect(() => {
+    const schema = {
+      "@context": "https://schema.org",
+      "@type": "DefinedTermSet",
+      "name": "Dachdecker Fachlexikon - Rex Bedachungs GmbH",
+      "description": "Umfangreiches Glossar für Dachdecker-Fachbegriffe vom Meisterbetrieb aus Bochum. Erklärt Bauphysik, Materialien und Regelwerke.",
+      "hasDefinedTerm": terms.map(item => ({
+        "@type": "DefinedTerm",
+        "name": item.term,
+        "description": item.definition,
+        "url": item.url
+      }))
+    };
+
+    const script = document.createElement('script');
+    script.type = 'application/ld+json';
+    script.innerHTML = JSON.stringify(schema);
+    document.head.appendChild(script);
+
+    return () => {
+      document.head.removeChild(script);
+    };
+  }, []);
+
+  const filteredTerms = terms
+    .sort((a, b) => a.term.localeCompare(b.term))
+    .filter(item => 
+      item.term.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      item.definition.toLowerCase().includes(searchTerm.toLowerCase())
+    );
+
+  return (
+    <div className="min-h-screen bg-slate-50 py-12 px-4 sm:px-6 lg:px-8 font-sans text-left">
+      <div className="max-w-4xl mx-auto">
+        <header className="text-center mb-12">
+          <div className="flex justify-center mb-4">
+            <Book className="h-12 w-12 text-blue-700" />
+          </div>
+          <h1 className="text-4xl font-bold text-slate-900 mb-4">
+            Dach-Lexikon: Fachwissen vom Meisterbetrieb
+          </h1>
+          <p className="text-lg text-slate-600">
+            Ihr Experten-Ratgeber der Rex Bedachungs GmbH für Bochum und das Ruhrgebiet.
+          </p>
+        </header>
+
+        <div className="relative mb-12">
+          <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+            <Search className="h-5 w-5 text-slate-400" />
+          </div>
+          <input
+            type="text"
+            className="block w-full pl-10 pr-3 py-4 border border-slate-200 rounded-2xl leading-5 bg-white placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 shadow-sm transition duration-150 ease-in-out text-lg"
+            placeholder="Nach Begriffen suchen (z.B. Windsog, GEG, Statik, EPDM)..."
+            value={searchTerm}
+            onChange={(e) => setSearchTerm(e.target.value)}
+          />
+        </div>
+
+        <div className="grid gap-6">
+          {filteredTerms.length > 0 ? (
+            filteredTerms.map((item, index) => (
+              <div 
+                key={index} 
+                id={item.url.split('#')[1]}
+                className="bg-white rounded-2xl p-6 shadow-sm border border-slate-100 hover:shadow-md transition-shadow duration-200"
+              >
+                <div className="flex items-start justify-between">
+                  <div className="flex-1">
+                    <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-blue-100 text-blue-800 mb-2">
+                      {item.category}
+                    </span>
+                    <h3 className="text-xl font-bold text-slate-900 mb-2">
+                      {item.term}
+                    </h3>
+                    <p className="text-slate-600 leading-relaxed">
+                      {item.definition}
+                    </p>
+                  </div>
+                </div>
+              </div>
+            ))
+          ) : (
+            <div className="text-center py-12 text-slate-500">
+              Keine Begriffe zu "{searchTerm}" gefunden. Kontaktieren Sie uns für eine Fachberatung vor Ort!
+            </div>
+          )}
+        </div>
+
+        <footer className="mt-16 p-8 bg-blue-50 rounded-3xl border border-blue-100">
+          <div className="flex items-start space-x-4">
+            <ShieldCheck className="h-6 w-6 text-blue-700 mt-1 flex-shrink-0" />
+            <div>
+              <h4 className="text-lg font-bold text-blue-900 mb-2">Meister-Hinweis zu Sicherheit & Haftung</h4>
+              <p className="text-blue-800 text-sm leading-relaxed">
+                Dieses Lexikon dient der Information. Bauvorhaben am Dach sind hochkomplex. Bei Eingriffen in die <strong>Statik</strong> (z.B. Gründach, Aufsparrendämmung), 
+                der Berechnung der <strong>Windsogsicherung</strong> oder <strong>energetischen GEG-Nachweisen</strong> 
+                ist zwingend eine individuelle Fachberatung sowie ggf. die Hinzuziehung eines Statikers oder Energieberaters erforderlich.
+              </p>
+            </div>
+          </div>
+        </footer>
+      </div>
+    </div>
+  );
+}
