@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { Helmet } from "react-helmet";
 import Hero from "@/components/Hero";
 import ServiceCard from "@/components/ServiceCard";
@@ -13,6 +14,34 @@ import reparaturenImage from "@assets/Reparatur1.png";
 import dachwartungImage from "@assets/Dachdecker bei der Inspektion der Naht_1761081506440.png";
 
 export default function Home() {
+  useEffect(() => {
+    (window as any).loadProSeal = function () {
+      (window as any).provenExpert.proSeal({
+        widgetId: "0294238a-1e71-4d0d-a711-160b1a355db3",
+        language: "de-DE",
+        usePageLanguage: false,
+        bannerColor: "#097E92",
+        textColor: "#FFFFFF",
+        showBackPage: true,
+        showReviews: true,
+        hideDate: true,
+        hideName: false,
+        googleStars: true,
+        displayReviewerLastName: false,
+        embeddedSelector: "#proSealWidget",
+      });
+    };
+
+    const script = document.createElement("script");
+    script.src = "https://s.provenexpert.net/seals/proseal-v2.js";
+    script.onload = (window as any).loadProSeal;
+    document.head.appendChild(script);
+
+    return () => {
+      document.head.removeChild(script);
+    };
+  }, []);
+
   const services = [
     {
       title: "Steildach",
@@ -236,6 +265,22 @@ export default function Home() {
               <Link href="/leistungen">Alle Leistungen ansehen</Link>
             </Button>
           </div>
+        </div>
+      </section>
+
+      <section className="py-12 md:py-16">
+        <div className="max-w-4xl mx-auto px-4 md:px-6 lg:px-8 flex justify-center">
+          <noscript>
+            <a
+              href="https://www.provenexpert.com/rex-bedachung/?utm_source=seals&utm_campaign=embedded-proseal&utm_medium=profile&utm_content=0294238a-1e71-4d0d-a711-160b1a355db3"
+              target="_blank"
+              rel="noopener noreferrer"
+              title="Customer reviews &amp; experiences for Rex Bedachung"
+            >
+              More info
+            </a>
+          </noscript>
+          <div id="proSealWidget"></div>
         </div>
       </section>
 
