@@ -2,8 +2,96 @@
   command = "npm run build"
   publish = "dist/public"
 
+# firma. → www.
 [[redirects]]
-  from   = "https://firma.rex-bedachung.de/*"
-  to     = "https://www.rex-bedachung.de/:splat"
+  from = "https://firma.rex-bedachung.de/*"
+  to = "https://www.rex-bedachung.de/:splat"
   status = 301
-  force  = true
+  force = true
+
+# Alte URLs → Neue Leistungsseiten
+[[redirects]]
+  from = "/dachfenster"
+  to = "/leistungen/dachfenster"
+  status = 301
+
+[[redirects]]
+  from = "/dachfenster/"
+  to = "/leistungen/dachfenster"
+  status = 301
+
+[[redirects]]
+  from = "/bauklempnerei"
+  to = "/leistungen/bauklempnerei"
+  status = 301
+
+[[redirects]]
+  from = "/bauklempnerei/"
+  to = "/leistungen/bauklempnerei"
+  status = 301
+
+[[redirects]]
+  from = "/flachdach"
+  to = "/leistungen/flachdach"
+  status = 301
+
+[[redirects]]
+  from = "/flachdach/"
+  to = "/leistungen/flachdach"
+  status = 301
+
+[[redirects]]
+  from = "/reparaturen"
+  to = "/leistungen/reparaturen"
+  status = 301
+
+[[redirects]]
+  from = "/reparaturen/"
+  to = "/leistungen/reparaturen"
+  status = 301
+
+[[redirects]]
+  from = "/waermedaemmung"
+  to = "/leistungen/dachwartung"
+  status = 301
+
+[[redirects]]
+  from = "/waermedaemmung/"
+  to = "/leistungen/dachwartung"
+  status = 301
+
+[[redirects]]
+  from = "/velux-fenster"
+  to = "/leistungen/dachfenster"
+  status = 301
+
+[[redirects]]
+  from = "/velux-fenster/"
+  to = "/leistungen/dachfenster"
+  status = 301
+
+[[redirects]]
+  from = "/fassaden"
+  to = "/leistungen/bauklempnerei"
+  status = 301
+
+[[redirects]]
+  from = "/fassaden/"
+  to = "/leistungen/bauklempnerei"
+  status = 301
+
+[[redirects]]
+  from = "/betondachsteine"
+  to = "/leistungen/steildach"
+  status = 301
+
+[[redirects]]
+  from = "/betondachsteine/"
+  to = "/leistungen/steildach"
+  status = 301
+
+# SPA Fallback
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
