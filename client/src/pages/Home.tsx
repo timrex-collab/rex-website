@@ -169,42 +169,6 @@ export default function Home() {
     })}
   </script>
 </Helmet>
-
-      <script type="application/ld+json">
-        {JSON.stringify({
-          "@context": "https://schema.org",
-          "@type": "LocalBusiness",
-          "name": "Rex Bedachungs GmbH",
-          "image": heroImage,
-          "description": "Professionelle Dachdeckerarbeiten im Ruhrgebiet",
-          "address": {
-            "@type": "PostalAddress",
-            "streetAddress": "Paulinenstr. 22",
-            "addressLocality": "Bochum",
-            "postalCode": "44799",
-            "addressCountry": "DE"
-          },
-          "telephone": "+49234583100",
-          "email": "info@rex-bedachung.de",
-          "openingHoursSpecification": {
-            "@type": "OpeningHoursSpecification",
-            "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
-            "opens": "07:00",
-            "closes": "17:00"
-          },
-          "priceRange": "€€",
-          "areaServed": {
-            "@type": "GeoCircle",
-            "geoMidpoint": {
-              "@type": "GeoCoordinates",
-              "latitude": "51.4818",
-              "longitude": "7.2162"
-            },
-            "geoRadius": "30000"
-          }
-        })}
-      </script>
-
       <Hero
         title="Ihr Partner rund um's Dach"
         subtitle="Rex Bedachungs GmbH"
