@@ -6,7 +6,7 @@ export default function Footer() {
   return (
     <footer className="bg-card border-t border-card-border">
       <div className="max-w-7xl mx-auto px-4 md:px-6 lg:px-8 py-12 md:py-16">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 md:gap-12">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8 md:gap-12">
           <div>
             <div className="flex items-center space-x-2 mb-4">
               <div>
@@ -75,6 +75,22 @@ export default function Footer() {
               <li>
                 <Link href="/kontakt" className="text-muted-foreground hover:text-primary transition-colors" data-testid="link-footer-contact">
                   Kontakt
+                </Link>
+              </li>
+            </ul>
+          </div>
+
+          <div>
+            <h3 className="font-semibold mb-4">Wissen &amp; Ratgeber</h3>
+            <ul className="space-y-2 text-sm">
+              <li>
+                <Link href="/lexikon" className="text-muted-foreground hover:text-primary transition-colors" data-testid="link-footer-lexikon">
+                  Dach-Lexikon
+                </Link>
+              </li>
+              <li>
+                <Link href="/faq" className="text-muted-foreground hover:text-primary transition-colors" data-testid="link-footer-faq">
+                  Häufige Fragen (FAQ)
                 </Link>
               </li>
             </ul>
