@@ -1,3 +1,4 @@
+import { lazy, Suspense } from "react";
 import { Switch, Route } from "wouter";
 import { queryClient } from "./lib/queryClient";
 import { QueryClientProvider } from "@tanstack/react-query";
@@ -7,25 +8,26 @@ import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import ScrollToTop from "@/components/ScrollToTop";
 import Home from "@/pages/Home";
-import Services from "@/pages/Services";
-import Steildach from "@/pages/Steildach";
-import Flachdach from "@/pages/Flachdach";
-import Bauklempnerei from "@/pages/Bauklempnerei";
-import Dachfenster from "@/pages/Dachfenster";
-import Reparaturen from "@/pages/Reparaturen";
-import Dachwartung from "@/pages/Dachwartung";
-import References from "@/pages/References";
-import About from "@/pages/About";
-import Careers from "@/pages/Careers";
-import Contact from "@/pages/Contact";
-import Danke from "@/pages/Danke";
-import Impressum from "@/pages/Impressum";
-import Datenschutz from "@/pages/Datenschutz";
-import FAQ from "@/pages/FAQ";
-import DachLexikon from "@/pages/DachLexikon";
-import NotFound from "@/pages/not-found";
-import Foerderung from "@/pages/Foerderung";
-import Solarpflicht from "@/pages/Solarpflicht";
+
+const Services     = lazy(() => import("@/pages/Services"));
+const Steildach    = lazy(() => import("@/pages/Steildach"));
+const Flachdach    = lazy(() => import("@/pages/Flachdach"));
+const Bauklempnerei = lazy(() => import("@/pages/Bauklempnerei"));
+const Dachfenster  = lazy(() => import("@/pages/Dachfenster"));
+const Reparaturen  = lazy(() => import("@/pages/Reparaturen"));
+const Dachwartung  = lazy(() => import("@/pages/Dachwartung"));
+const References   = lazy(() => import("@/pages/References"));
+const About        = lazy(() => import("@/pages/About"));
+const Careers      = lazy(() => import("@/pages/Careers"));
+const Contact      = lazy(() => import("@/pages/Contact"));
+const Danke        = lazy(() => import("@/pages/Danke"));
+const Impressum    = lazy(() => import("@/pages/Impressum"));
+const Datenschutz  = lazy(() => import("@/pages/Datenschutz"));
+const FAQ          = lazy(() => import("@/pages/FAQ"));
+const DachLexikon  = lazy(() => import("@/pages/DachLexikon"));
+const NotFound     = lazy(() => import("@/pages/not-found"));
+const Foerderung   = lazy(() => import("@/pages/Foerderung"));
+const Solarpflicht = lazy(() => import("@/pages/Solarpflicht"));
 
 function Router() {
   return (
@@ -62,7 +64,9 @@ function App() {
         <div className="flex flex-col min-h-screen">
           <Navigation />
           <main className="flex-1">
-            <Router />
+            <Suspense fallback={<div className="flex-1" />}>
+              <Router />
+            </Suspense>
           </main>
           <Footer />
         </div>
