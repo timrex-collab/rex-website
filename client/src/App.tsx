@@ -28,6 +28,7 @@ const DachLexikon  = lazy(() => import("@/pages/DachLexikon"));
 const NotFound     = lazy(() => import("@/pages/not-found"));
 const Foerderung   = lazy(() => import("@/pages/Foerderung"));
 const Solarpflicht = lazy(() => import("@/pages/Solarpflicht"));
+const DachfensterBochum = lazy(() => import("@/pages/DachfensterBochum"));
 
 function Router() {
   return (
@@ -51,6 +52,7 @@ function Router() {
       <Route path="/danke" component={Danke} />
       <Route path="/impressum" component={Impressum} />
       <Route path="/datenschutz" component={Datenschutz} />
+      <Route path="/dachfenster-bochum" component={DachfensterBochum} />
       <Route component={NotFound} />
     </Switch>
   );

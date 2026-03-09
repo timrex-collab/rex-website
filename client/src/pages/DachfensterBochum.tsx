@@ -1,0 +1,343 @@
+import { useState } from "react";
+import { Helmet } from "react-helmet";
+import { useLocation } from "wouter";
+import {
+  CheckCircle,
+  ChevronDown,
+  ChevronUp,
+  Phone,
+  Award,
+  Wrench,
+  RefreshCw,
+  AlertTriangle,
+} from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+
+const heroImage = "/images/velux-dachfenster-einbau-bochum-fachbetrieb.webp";
+const galleryImages = [
+  { src: "/images/velux-dachfenster-einbau-bochum-typ1.webp", alt: "VELUX Dachfenster Typ 1 – Einbau Bochum" },
+  { src: "/images/velux-dachfenster-bochum-typ2.webp", alt: "VELUX Dachfenster Typ 2 – Bochum" },
+  { src: "/images/velux-dachfenster-einbau-bochum-fachbetrieb.webp", alt: "Dachfenster Einbau Bochum – Rex Bedachungs GmbH Fachbetrieb" },
+];
+
+const services = [
+  {
+    icon: <Award className="w-8 h-8 text-primary" />,
+    title: "Dachfenster Neueinbau Bochum",
+    text: "Wir bauen VELUX und Roto Dachfenster fachgerecht in Ihr bestehendes Dach ein – inklusive Eindeckrahmen, Abdichtung und sauberer Innenverkleidung.",
+    testId: "card-neueinbau",
+  },
+  {
+    icon: <RefreshCw className="w-8 h-8 text-primary" />,
+    title: "Altes Dachfenster austauschen",
+    text: "Undicht, beschlagen oder veraltet? Wir tauschen Ihr altes Dachfenster schnell und sauber aus – oft ohne große Dacharbeiten und mit bis zu 20% Energieeinsparung.",
+    testId: "card-austausch",
+  },
+  {
+    icon: <Wrench className="w-8 h-8 text-primary" />,
+    title: "Dachfenster Reparatur – auch als Notdienst",
+    text: "Klemmt, tropft oder schließt nicht mehr richtig? Wir reparieren alle gängigen Dachfenster-Modelle – bei Notfällen auch kurzfristig.",
+    testId: "card-reparatur",
+  },
+];
+
+const reasons = [
+  "VELUX-zertifizierter Fachbetrieb",
+  "20+ Jahre Erfahrung im Ruhrgebiet",
+  "Schnelle Reaktionszeit – auch Notdienst",
+  "Kostenlose Beratung & Förderantrag",
+];
+
+const faqItems = [
+  {
+    question: "Was kostet ein Dachfenster Einbau in Bochum?",
+    answer:
+      "Die Kosten variieren je nach Modell und Aufwand. Ein einfacher Austausch beginnt ab ca. 600–800 €, ein Neueinbau je nach Dachkonstruktion ab ca. 1.200 €. Kontaktieren Sie uns für ein kostenloses Angebot.",
+  },
+  {
+    question: "Wie lange dauert der Einbau eines Dachfensters?",
+    answer:
+      "Ein Austausch ist in der Regel an einem halben Tag erledigt. Ein Neueinbau dauert je nach Dachkonstruktion 1–2 Tage.",
+  },
+  {
+    question: "Kann ich Förderung für neue Dachfenster bekommen?",
+    answer:
+      "Ja! Beim Austausch gegen energieeffiziente Modelle können Sie über BAFA oder KfW bis zu 15% der Kosten fördern lassen. Wir beraten Sie kostenlos dazu.",
+  },
+  {
+    question: "Welche Dachfenster-Marken verbauen Sie?",
+    answer:
+      "Wir sind zertifizierter VELUX-Partner und verbauen zusätzlich Roto Dachfenster in allen Ausführungen.",
+  },
+];
+
+const schemaJson = JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "Service",
+  "name": "Dachfenster Einbau Bochum",
+  "provider": {
+    "@type": "LocalBusiness",
+    "name": "Rex Bedachungs GmbH",
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Bochum",
+    },
+  },
+  "areaServed": "Bochum, Ruhrgebiet",
+  "description": "VELUX und Roto Dachfenster – Neueinbau, Austausch und Reparatur",
+  "offers": {
+    "@type": "Offer",
+    "availability": "https://schema.org/InStock",
+  },
+});
+
+export default function DachfensterBochum() {
+  const [, setLocation] = useLocation();
+  const [openFaq, setOpenFaq] = useState<number | null>(null);
+
+  return (
+    <>
+      <Helmet>
+        <title>Dachfenster Bochum – VELUX &amp; Roto Einbau | Rex Bedachungs GmbH</title>
+        <meta
+          name="description"
+          content="Dachfenster Bochum ✓ VELUX-zertifiziert ✓ Neueinbau & Austausch ✓ Notdienst ✓ BAFA/KfW-Förderung – Rex Bedachungs GmbH, Ihr Fachbetrieb im Ruhrgebiet."
+        />
+        <meta property="og:title" content="Dachfenster Bochum – VELUX & Roto Einbau | Rex Bedachungs GmbH" />
+        <meta
+          property="og:description"
+          content="VELUX-zertifizierter Fachbetrieb für Dachfenster in Bochum. Neueinbau, Austausch & Reparatur – mit Förderberatung."
+        />
+        <link rel="canonical" href="https://www.rex-bedachung.de/dachfenster-bochum" />
+        <script type="application/ld+json">{schemaJson}</script>
+      </Helmet>
+
+      {/* ── Hero ── */}
+      <section
+        className="relative text-white py-24 px-4 overflow-hidden"
+        data-testid="section-hero"
+      >
+        <div
+          className="absolute inset-0 bg-cover bg-center"
+          style={{ backgroundImage: `url('${heroImage}')` }}
+          aria-hidden="true"
+        />
+        <div className="absolute inset-0 bg-gradient-to-r from-black/75 via-black/55 to-black/30" aria-hidden="true" />
+        <div className="relative z-10 max-w-7xl mx-auto">
+          <h1 className="text-3xl md:text-5xl font-extrabold leading-tight mb-4 max-w-3xl" data-testid="heading-hero">
+            Dachfenster Bochum – VELUX &amp; Roto vom zertifizierten Fachbetrieb
+          </h1>
+          <p className="text-lg md:text-xl text-slate-200 mb-8 max-w-xl" data-testid="text-hero-subtitle">
+            Neueinbau, Austausch und Reparatur – schnell, sauber, mit Förderung
+          </p>
+          <div className="flex flex-wrap gap-3 mb-8">
+            <Button
+              size="lg"
+              onClick={() => setLocation("/kontakt")}
+              data-testid="button-hero-angebot"
+            >
+              Jetzt Angebot anfragen
+            </Button>
+            <Button
+              asChild
+              size="lg"
+              variant="outline"
+              className="bg-white/10 border-white/40 text-white"
+              data-testid="button-hero-anrufen"
+            >
+              <a href="tel:0234583100" className="flex items-center gap-2">
+                <Phone className="w-4 h-4" />
+                Jetzt anrufen
+              </a>
+            </Button>
+          </div>
+          <p className="text-sm text-slate-300 font-medium" data-testid="text-trust-badge">
+            VELUX-zertifiziert &bull; 20+ Jahre Erfahrung &bull; Ruhrgebiet
+          </p>
+        </div>
+      </section>
+
+      {/* ── Leistungs-Sektion ── */}
+      <section className="py-16 px-4 bg-background" data-testid="section-leistungen">
+        <div className="max-w-7xl mx-auto">
+          <h2 className="text-2xl md:text-3xl font-bold text-center mb-10 text-foreground" data-testid="heading-leistungen">
+            Unsere Dachfenster-Leistungen in Bochum
+          </h2>
+          <div className="grid md:grid-cols-3 gap-6">
+            {services.map((s) => (
+              <Card key={s.testId} data-testid={s.testId}>
+                <CardHeader className="flex flex-row items-start gap-4 flex-wrap pb-2">
+                  <div className="shrink-0 mt-1">{s.icon}</div>
+                  <CardTitle className="text-lg leading-snug">{s.title}</CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <p className="text-muted-foreground text-sm leading-relaxed">{s.text}</p>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ── Marken-Sektion ── */}
+      <section className="py-16 px-4 bg-muted/40" data-testid="section-marken">
+        <div className="max-w-4xl mx-auto text-center">
+          <h2 className="text-2xl md:text-3xl font-bold mb-6 text-foreground" data-testid="heading-marken">
+            Ihr VELUX &amp; Roto Fachbetrieb in Bochum
+          </h2>
+          <p className="text-muted-foreground leading-relaxed text-base md:text-lg" data-testid="text-marken">
+            Als zertifizierter VELUX-Partner verfügen wir über umfassendes Fachwissen und direkten Zugang zu
+            Originalteilen und Zubehör. Natürlich verbauen wir auch Roto Dachfenster in allen gängigen Ausführungen –
+            vom einfachen Klappfenster bis zum elektrischen Dachflächenfenster mit Fernbedienung.
+          </p>
+        </div>
+      </section>
+
+      {/* ── Förderungs-Sektion ── */}
+      <section className="py-16 px-4 bg-background" data-testid="section-foerderung">
+        <div className="max-w-7xl mx-auto">
+          <div
+            className="rounded-md p-8 md:p-12 text-center"
+            style={{ background: "linear-gradient(135deg, #0f172a 0%, #1e3a8a 100%)" }}
+            data-testid="box-foerderung"
+          >
+            <AlertTriangle className="w-10 h-10 text-yellow-400 mx-auto mb-4" aria-hidden="true" />
+            <h2 className="text-2xl md:text-3xl font-bold text-white mb-4" data-testid="heading-foerderung">
+              Bis zu 15% Förderung durch BAFA &amp; KfW
+            </h2>
+            <p className="text-slate-300 leading-relaxed mb-8 max-w-2xl mx-auto" data-testid="text-foerderung">
+              Der Austausch alter Dachfenster gegen moderne, energieeffiziente Modelle wird staatlich gefördert. Über
+              BAFA oder KfW können Sie bis zu 15% der Kosten zurückbekommen. Wir beraten Sie kostenlos zu allen
+              Fördermöglichkeiten und übernehmen auf Wunsch die komplette Antragstellung.
+            </p>
+            <Button
+              size="lg"
+              className="bg-yellow-400 text-slate-900 border-yellow-400"
+              onClick={() => setLocation("/kontakt")}
+              data-testid="button-foerderung-anfragen"
+            >
+              Jetzt Förderung anfragen
+            </Button>
+          </div>
+        </div>
+      </section>
+
+      {/* ── Warum Rex ── */}
+      <section className="py-16 px-4 bg-muted/40" data-testid="section-warum-rex">
+        <div className="max-w-4xl mx-auto">
+          <h2 className="text-2xl md:text-3xl font-bold text-center mb-10 text-foreground" data-testid="heading-warum-rex">
+            Warum Rex Bedachungs GmbH?
+          </h2>
+          <div className="grid sm:grid-cols-2 gap-4">
+            {reasons.map((reason, i) => (
+              <div
+                key={i}
+                className="flex items-start gap-3"
+                data-testid={`item-reason-${i}`}
+              >
+                <CheckCircle className="w-5 h-5 text-primary shrink-0 mt-0.5" aria-hidden="true" />
+                <span className="text-foreground font-medium">{reason}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ── Bild-Galerie ── */}
+      <section className="py-16 px-4 bg-background" data-testid="section-galerie">
+        <div className="max-w-7xl mx-auto">
+          <h2 className="text-2xl md:text-3xl font-bold text-center mb-10 text-foreground" data-testid="heading-galerie">
+            Einblicke in unsere Arbeit
+          </h2>
+          <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-4">
+            {galleryImages.map((img, i) => (
+              <div
+                key={i}
+                className="overflow-hidden rounded-md aspect-video bg-muted"
+                data-testid={`img-galerie-${i}`}
+              >
+                <img
+                  src={img.src}
+                  alt={img.alt}
+                  className="w-full h-full object-cover"
+                  loading="lazy"
+                />
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ── FAQ ── */}
+      <section className="py-16 px-4 bg-muted/40" data-testid="section-faq">
+        <div className="max-w-3xl mx-auto">
+          <h2 className="text-2xl md:text-3xl font-bold text-center mb-10 text-foreground" data-testid="heading-faq">
+            Häufige Fragen zu Dachfenstern in Bochum
+          </h2>
+          <div className="space-y-3">
+            {faqItems.map((item, i) => (
+              <div key={i} className="border border-border rounded-md bg-card" data-testid={`faq-item-${i}`}>
+                <button
+                  className="w-full flex items-center justify-between px-5 py-4 text-left font-semibold text-card-foreground gap-4"
+                  onClick={() => setOpenFaq(openFaq === i ? null : i)}
+                  aria-expanded={openFaq === i}
+                  data-testid={`button-faq-${i}`}
+                >
+                  <span>{item.question}</span>
+                  {openFaq === i ? (
+                    <ChevronUp className="w-5 h-5 shrink-0 text-muted-foreground" aria-hidden="true" />
+                  ) : (
+                    <ChevronDown className="w-5 h-5 shrink-0 text-muted-foreground" aria-hidden="true" />
+                  )}
+                </button>
+                <div
+                  className={`overflow-hidden transition-all duration-200 ${openFaq === i ? "max-h-96" : "max-h-0"}`}
+                >
+                  <p
+                    className="px-5 pb-4 text-muted-foreground leading-relaxed text-sm"
+                    data-testid={`text-faq-answer-${i}`}
+                  >
+                    {item.answer}
+                  </p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ── Abschluss-CTA ── */}
+      <section className="py-16 px-4 bg-background" data-testid="section-cta">
+        <div className="max-w-3xl mx-auto text-center">
+          <h2 className="text-2xl md:text-3xl font-bold mb-4 text-foreground" data-testid="heading-cta">
+            Dachfenster in Bochum – Jetzt kostenlos beraten lassen
+          </h2>
+          <p className="text-muted-foreground mb-8 text-base" data-testid="text-cta">
+            Rufen Sie uns an oder schreiben Sie uns – wir melden uns innerhalb von 24 Stunden.
+          </p>
+          <div className="flex flex-wrap justify-center gap-3">
+            <Button
+              size="lg"
+              onClick={() => setLocation("/kontakt")}
+              data-testid="button-cta-angebot"
+            >
+              Angebot anfragen
+            </Button>
+            <Button
+              asChild
+              size="lg"
+              variant="outline"
+              data-testid="button-cta-anrufen"
+            >
+              <a href="tel:0234583100" className="flex items-center gap-2">
+                <Phone className="w-4 h-4" />
+                Anrufen
+              </a>
+            </Button>
+          </div>
+        </div>
+      </section>
+    </>
+  );
+}
