@@ -27,6 +27,8 @@ export default function ServiceCard({
           src={imageUrl}
           alt={imageAlt}
           className="w-full h-full object-cover"
+          width="800"
+          height="450"
           loading="lazy"
         />
       </div>

@@ -87,6 +87,9 @@ export default function About() {
                 src={teamImage}
                 alt="Rex Bedachungs GmbH Bochum – Ihr Dachdecker im Ruhrgebiet"
                 className="rounded-md shadow-lg w-full"
+                width="1600"
+                height="1067"
+                style={{ width: "100%", height: "auto" }}
                 loading="lazy"
               />
             </div>

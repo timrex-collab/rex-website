@@ -129,6 +129,8 @@ export default function Footer() {
               src={logoPath} 
               alt="REX Bedachungs GmbH Logo" 
               className="h-12 w-auto object-contain"
+              width="1344"
+              height="768"
               data-testid="img-footer-logo"
             />
             <div>

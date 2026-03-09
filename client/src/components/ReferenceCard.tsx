@@ -72,6 +72,8 @@ export default function ReferenceCard({
                     src={img}
                     alt={`${imageAlt} - Bild ${index + 1}`}
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                    width="800"
+                    height="600"
                     loading="lazy"
                   />
                 </div>
@@ -115,6 +117,8 @@ export default function ReferenceCard({
             src={images[0]}
             alt={imageAlt}
             className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+            width="800"
+            height="600"
             loading="lazy"
           />
         )}

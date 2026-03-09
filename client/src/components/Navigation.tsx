@@ -40,6 +40,8 @@ export default function Navigation() {
               src={logoPath} 
               alt="REX Bedachungs GmbH Logo" 
               className="h-8 w-auto object-contain"
+              width="1344"
+              height="768"
               data-testid="img-header-logo"
             />
             <div className="hidden sm:block">
