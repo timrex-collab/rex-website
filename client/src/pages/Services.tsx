@@ -7,7 +7,7 @@ const heroImage = "/images/tondach-hero-dachdeckung-bochum.webp";
 const steildachImage = "/images/dach-hintergrund-rex-bedachung.webp";
 const flachdachImage = "/images/flachdach-sanierung-bochum-rex-bedachung.webp";
 const bauklempnereiImage = "/images/kamin-sanierung-bochum-dachdecker.webp";
-const dachfensterImage = "/images/velux-dachfenster-bochum-typ2.webp";
+const dachfensterImage = "/images/velux-dachfenster-einbau-bochum-fachbetrieb.webp";
 const reparaturenImage = "/images/dachreparatur-bochum-rex-bedachung.webp";
 
 export default function Services() {
