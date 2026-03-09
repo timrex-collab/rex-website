@@ -25,6 +25,7 @@ import FAQ from "@/pages/FAQ";
 import DachLexikon from "@/pages/DachLexikon";
 import NotFound from "@/pages/not-found";
 import Foerderung from "@/pages/Foerderung";
+import Solarpflicht from "@/pages/Solarpflicht";
 
 function Router() {
   return (
@@ -39,6 +40,7 @@ function Router() {
       <Route path="/leistungen/dachwartung" component={Dachwartung} />
       <Route path="/referenzen" component={References} />
       <Route path="/foerderung" component={Foerderung} />
+      <Route path="/solarpflicht" component={Solarpflicht} />
       <Route path="/faq" component={FAQ} />
       <Route path="/lexikon" component={DachLexikon} />
       <Route path="/ueber-uns" component={About} />
