@@ -9,6 +9,7 @@ interface HeroProps {
   imageUrl: string;
   imageAlt: string;
   showCTAs?: boolean;
+  loading?: "eager" | "lazy";
 }
 
 export default function Hero({
@@ -18,6 +19,7 @@ export default function Hero({
   imageUrl,
   imageAlt,
   showCTAs = true,
+  loading = "eager",
 }: HeroProps) {
   return (
     <div className="relative h-[80vh] min-h-[500px] max-h-[900px] w-full overflow-hidden">
@@ -27,9 +29,9 @@ export default function Hero({
         className="absolute inset-0 w-full h-full object-cover"
         width="1920"
         height="1080"
-        loading="eager"
+        loading={loading}
         // @ts-ignore – fetchpriority is a valid HTML attribute, React support added in 18.3
-        fetchpriority="high"
+        fetchpriority={loading === "eager" ? "high" : "auto"}
       />
       <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/40 to-black/60" />
       

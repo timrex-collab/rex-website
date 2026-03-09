@@ -48,6 +48,7 @@ export default function ServiceDetail({
         imageUrl={imageUrl}
         imageAlt={imageAlt}
         showCTAs={false}
+        loading="lazy"
       />
 
       <section className="py-16 md:py-20 lg:py-24 bg-background">
