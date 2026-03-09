@@ -28,6 +28,8 @@ export default function Hero({
         width="1920"
         height="1080"
         loading="eager"
+        // @ts-ignore – fetchpriority is a valid HTML attribute, React support added in 18.3
+        fetchpriority="high"
       />
       <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/40 to-black/60" />
       

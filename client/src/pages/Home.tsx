@@ -5,8 +5,9 @@ import ServiceCard from "@/components/ServiceCard";
 import { Button } from "@/components/ui/button";
 import { Link } from "wouter";
 import { Phone, Shield, Award, Clock } from "lucide-react";
-import heroImage from "@assets/Datei 20.10.25, 19 56 47.jpeg";
 import dachwartungImage from "@assets/Dachdecker bei der Inspektion der Naht_1761081506440.png";
+
+const heroImage = "/images/dachdecker-bochum-steildach-hero.webp";
 
 const steildachImage = "/images/dach-hintergrund-rex-bedachung.webp";
 const flachdachImage = "/images/flachdach-sanierung-bochum-rex-bedachung.webp";
@@ -204,7 +205,7 @@ export default function Home() {
         subtitle="Rex Bedachungs GmbH"
         description="Ihr Partner für handwerkliche Präzision im Ruhrgebiet. Wir realisieren Ihre energetische Dachsanierung nach GEG und maximieren Ihre Ersparnis durch staatliche Förderungen von BAFA und KfW. Von der fachgerechten Flachdachabdichtung bis zum zertifizierten VELUX-Fenstereinbau – wir bringen Meisterqualität auf Ihr Dach, die schützt, überzeugt und sich durch attraktive Zuschüsse bezahlt macht. Steildach, Flachdach, Reparatur, Sanierung, Dachfenster und Bauklempnerei - Wir sind Ihr zuverlässiger Partner für alle Arbeiten rund um's Dach."
         imageUrl={heroImage}
-        imageAlt="Modernes Dach mit roten Ziegeln in Bochum"
+        imageAlt="Dachdecker Bochum – Rex Bedachungs GmbH Steildach"
         showCTAs={true}
       />
 
