@@ -201,7 +201,7 @@ export default function DachfensterBochum() {
             style={{ background: "linear-gradient(135deg, #0f172a 0%, #1e3a8a 100%)" }}
             data-testid="box-foerderung"
           >
-            <AlertTriangle className="w-10 h-10 text-yellow-400 mx-auto mb-4" aria-hidden="true" />
+            <AlertTriangle className="w-10 h-10 text-blue-300 mx-auto mb-4" aria-hidden="true" />
             <h2 className="text-2xl md:text-3xl font-bold text-white mb-4" data-testid="heading-foerderung">
               Bis zu 15% Förderung durch BAFA &amp; KfW
             </h2>
@@ -212,7 +212,7 @@ export default function DachfensterBochum() {
             </p>
             <Button
               size="lg"
-              className="bg-yellow-400 text-slate-900 border-yellow-400"
+              className="bg-blue-400 text-white border-blue-400"
               onClick={() => setLocation("/kontakt")}
               data-testid="button-foerderung-anfragen"
             >
