@@ -24,6 +24,7 @@ import Datenschutz from "@/pages/Datenschutz";
 import FAQ from "@/pages/FAQ";
 import DachLexikon from "@/pages/DachLexikon";
 import NotFound from "@/pages/not-found";
+import Foerderung from "@/pages/Foerderung";
 
 function Router() {
   return (
@@ -37,6 +38,7 @@ function Router() {
       <Route path="/leistungen/reparaturen" component={Reparaturen} />
       <Route path="/leistungen/dachwartung" component={Dachwartung} />
       <Route path="/referenzen" component={References} />
+      <Route path="/foerderung" component={Foerderung} />
       <Route path="/faq" component={FAQ} />
       <Route path="/lexikon" component={DachLexikon} />
       <Route path="/ueber-uns" component={About} />
