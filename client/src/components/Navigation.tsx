@@ -14,7 +14,7 @@ export default function Navigation() {
     { name: "Steildach", path: "/leistungen/steildach" },
     { name: "Flachdach", path: "/leistungen/flachdach" },
     { name: "Bauklempnerei", path: "/leistungen/bauklempnerei" },
-    { name: "Dachfenster", path: "/leistungen/dachfenster" },
+    { name: "Dachfenster", path: "/dachfenster-bochum" },
     { name: "Reparaturen", path: "/leistungen/reparaturen" },
     { name: "Dachwartung", path: "/leistungen/dachwartung" },
   ];

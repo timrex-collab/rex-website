@@ -13,7 +13,6 @@ const Services     = lazy(() => import("@/pages/Services"));
 const Steildach    = lazy(() => import("@/pages/Steildach"));
 const Flachdach    = lazy(() => import("@/pages/Flachdach"));
 const Bauklempnerei = lazy(() => import("@/pages/Bauklempnerei"));
-const Dachfenster  = lazy(() => import("@/pages/Dachfenster"));
 const Reparaturen  = lazy(() => import("@/pages/Reparaturen"));
 const Dachwartung  = lazy(() => import("@/pages/Dachwartung"));
 const References   = lazy(() => import("@/pages/References"));
@@ -38,7 +37,6 @@ function Router() {
       <Route path="/leistungen/steildach" component={Steildach} />
       <Route path="/leistungen/flachdach" component={Flachdach} />
       <Route path="/leistungen/bauklempnerei" component={Bauklempnerei} />
-      <Route path="/leistungen/dachfenster" component={Dachfenster} />
       <Route path="/leistungen/reparaturen" component={Reparaturen} />
       <Route path="/leistungen/dachwartung" component={Dachwartung} />
       <Route path="/referenzen" component={References} />

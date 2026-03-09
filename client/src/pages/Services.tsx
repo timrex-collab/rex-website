@@ -53,7 +53,7 @@ export default function Services() {
       description: "Einbau und Austausch von Dachfenstern und Dachflächenfenstern für mehr Licht und Wohnkomfort unter dem Dach.",
       imageUrl: dachfensterImage,
       imageAlt: "VELUX Dachfenster Bochum – Rex Bedachungs GmbH",
-      href: "/leistungen/dachfenster",
+      href: "/dachfenster-bochum",
       benefits: [
         "Markenqualität",
         "Fachgerechter Einbau",
