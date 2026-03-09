@@ -19,35 +19,35 @@ export default function Footer() {
           </div>
 
           <div>
-            <h3 className="font-semibold mb-4">Leistungen</h3>
-            <ul className="space-y-2 text-sm">
+            <h3 className="font-semibold mb-2">Leistungen</h3>
+            <ul className="text-sm">
               <li>
-                <Link href="/leistungen/steildach" className="text-muted-foreground hover:text-primary transition-colors" data-testid="link-footer-steildach">
+                <Link href="/leistungen/steildach" className="flex items-center min-h-[44px] text-muted-foreground hover:text-primary transition-colors" data-testid="link-footer-steildach">
                   Steildach
                 </Link>
               </li>
               <li>
-                <Link href="/leistungen/flachdach" className="text-muted-foreground hover:text-primary transition-colors" data-testid="link-footer-flachdach">
+                <Link href="/leistungen/flachdach" className="flex items-center min-h-[44px] text-muted-foreground hover:text-primary transition-colors" data-testid="link-footer-flachdach">
                   Flachdach
                 </Link>
               </li>
               <li>
-                <Link href="/leistungen/bauklempnerei" className="text-muted-foreground hover:text-primary transition-colors" data-testid="link-footer-bauklempnerei">
+                <Link href="/leistungen/bauklempnerei" className="flex items-center min-h-[44px] text-muted-foreground hover:text-primary transition-colors" data-testid="link-footer-bauklempnerei">
                   Bauklempnerei
                 </Link>
               </li>
               <li>
-                <Link href="/leistungen/dachfenster" className="text-muted-foreground hover:text-primary transition-colors" data-testid="link-footer-dachfenster">
+                <Link href="/leistungen/dachfenster" className="flex items-center min-h-[44px] text-muted-foreground hover:text-primary transition-colors" data-testid="link-footer-dachfenster">
                   Dachfenster
                 </Link>
               </li>
               <li>
-                <Link href="/leistungen/reparaturen" className="text-muted-foreground hover:text-primary transition-colors" data-testid="link-footer-reparaturen">
+                <Link href="/leistungen/reparaturen" className="flex items-center min-h-[44px] text-muted-foreground hover:text-primary transition-colors" data-testid="link-footer-reparaturen">
                   Reparaturen
                 </Link>
               </li>
               <li>
-                <Link href="/leistungen/dachwartung" className="text-muted-foreground hover:text-primary transition-colors" data-testid="link-footer-dachwartung">
+                <Link href="/leistungen/dachwartung" className="flex items-center min-h-[44px] text-muted-foreground hover:text-primary transition-colors" data-testid="link-footer-dachwartung">
                   Dachwartung
                 </Link>
               </li>
@@ -55,25 +55,25 @@ export default function Footer() {
           </div>
 
           <div>
-            <h3 className="font-semibold mb-4">Unternehmen</h3>
-            <ul className="space-y-2 text-sm">
+            <h3 className="font-semibold mb-2">Unternehmen</h3>
+            <ul className="text-sm">
               <li>
-                <Link href="/ueber-uns" className="text-muted-foreground hover:text-primary transition-colors" data-testid="link-footer-about">
+                <Link href="/ueber-uns" className="flex items-center min-h-[44px] text-muted-foreground hover:text-primary transition-colors" data-testid="link-footer-about">
                   Über uns
                 </Link>
               </li>
               <li>
-                <Link href="/referenzen" className="text-muted-foreground hover:text-primary transition-colors" data-testid="link-footer-references">
+                <Link href="/referenzen" className="flex items-center min-h-[44px] text-muted-foreground hover:text-primary transition-colors" data-testid="link-footer-references">
                   Referenzen
                 </Link>
               </li>
               <li>
-                <Link href="/karriere" className="text-muted-foreground hover:text-primary transition-colors" data-testid="link-footer-careers">
+                <Link href="/karriere" className="flex items-center min-h-[44px] text-muted-foreground hover:text-primary transition-colors" data-testid="link-footer-careers">
                   Karriere
                 </Link>
               </li>
               <li>
-                <Link href="/kontakt" className="text-muted-foreground hover:text-primary transition-colors" data-testid="link-footer-contact">
+                <Link href="/kontakt" className="flex items-center min-h-[44px] text-muted-foreground hover:text-primary transition-colors" data-testid="link-footer-contact">
                   Kontakt
                 </Link>
               </li>
@@ -81,15 +81,15 @@ export default function Footer() {
           </div>
 
           <div>
-            <h3 className="font-semibold mb-4">Wissen &amp; Ratgeber</h3>
-            <ul className="space-y-2 text-sm">
+            <h3 className="font-semibold mb-2">Wissen &amp; Ratgeber</h3>
+            <ul className="text-sm">
               <li>
-                <Link href="/lexikon" className="text-muted-foreground hover:text-primary transition-colors" data-testid="link-footer-lexikon">
+                <Link href="/lexikon" className="flex items-center min-h-[44px] text-muted-foreground hover:text-primary transition-colors" data-testid="link-footer-lexikon">
                   Dach-Lexikon
                 </Link>
               </li>
               <li>
-                <Link href="/faq" className="text-muted-foreground hover:text-primary transition-colors" data-testid="link-footer-faq">
+                <Link href="/faq" className="flex items-center min-h-[44px] text-muted-foreground hover:text-primary transition-colors" data-testid="link-footer-faq">
                   Häufige Fragen (FAQ)
                 </Link>
               </li>
@@ -97,25 +97,25 @@ export default function Footer() {
           </div>
 
           <div>
-            <h3 className="font-semibold mb-4">Kontakt</h3>
-            <div className="space-y-3 text-sm">
-              <div className="flex items-start gap-2">
-                <Phone className="w-4 h-4 mt-0.5 text-primary" />
+            <h3 className="font-semibold mb-2">Kontakt</h3>
+            <div className="space-y-1 text-sm">
+              <div className="flex items-center gap-2 min-h-[44px]">
+                <Phone className="w-4 h-4 shrink-0 text-primary" />
                 <a href="tel:0234583100" className="text-muted-foreground hover:text-primary transition-colors" data-testid="link-footer-phone">
                   0234-583100
                 </a>
               </div>
-              <div className="flex items-start gap-2">
-                <Mail className="w-4 h-4 mt-0.5 text-primary" />
+              <div className="flex items-center gap-2 min-h-[44px]">
+                <Mail className="w-4 h-4 shrink-0 text-primary" />
                 <a href="mailto:info@rex-bedachung.de" className="text-muted-foreground hover:text-primary transition-colors" data-testid="link-footer-email">
                   info@rex-bedachung.de
                 </a>
               </div>
-              <div className="flex items-start gap-2">
-                <Clock className="w-4 h-4 mt-0.5 text-primary" />
+              <div className="flex items-center gap-2 min-h-[44px]">
+                <Clock className="w-4 h-4 shrink-0 text-primary" />
                 <span className="text-muted-foreground">Mo–Fr 7–17 Uhr</span>
               </div>
-              <div className="text-muted-foreground mt-4">
+              <div className="text-muted-foreground pt-2">
                 Paulinenstr. 22<br />
                 44799 Bochum
               </div>
@@ -138,10 +138,10 @@ export default function Footer() {
             </div>
           </div>
           <div className="flex gap-6">
-            <Link href="/impressum" className="hover:text-primary transition-colors" data-testid="link-footer-impressum">
+            <Link href="/impressum" className="flex items-center min-h-[44px] hover:text-primary transition-colors" data-testid="link-footer-impressum">
               Impressum
             </Link>
-            <Link href="/datenschutz" className="hover:text-primary transition-colors" data-testid="link-footer-privacy">
+            <Link href="/datenschutz" className="flex items-center min-h-[44px] hover:text-primary transition-colors" data-testid="link-footer-privacy">
               Datenschutz
             </Link>
           </div>

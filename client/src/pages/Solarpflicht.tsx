@@ -185,7 +185,7 @@ export default function Solarpflicht() {
         <div className="bg-blue-50 border-l-4 border-blue-600 p-6 rounded-r-md shadow-lg flex items-start gap-4">
           <AlertTriangle className="w-10 h-10 text-blue-600 flex-shrink-0" />
           <div>
-            <h3 className="text-xl font-bold text-blue-900 mb-1">Betrifft Sie bei der nächsten vollständigen Dachsanierung!</h3>
+            <h2 className="text-xl font-bold text-blue-900 mb-1">Betrifft Sie bei der nächsten vollständigen Dachsanierung!</h2>
             <p className="text-blue-800">Ab dem <strong>1. Januar 2026</strong> muss bei jeder vollständigen Dacherneuerung gleichzeitig eine PV-Anlage installiert werden.
               Einfache Reparaturen und der Austausch einzelner Ziegel sind <strong>nicht</strong> betroffen. Stichtag ist der <strong>Beginn der Baumaßnahme</strong>.</p>
           </div>

@@ -215,28 +215,28 @@ export default function Home() {
               <div className="w-16 h-16 mx-auto mb-4 bg-primary/10 rounded-full flex items-center justify-center">
                 <Shield className="w-8 h-8 text-primary" />
               </div>
-              <h3 className="font-semibold text-lg mb-2">Meisterbetrieb</h3>
+              <h2 className="font-semibold text-lg mb-2">Meisterbetrieb</h2>
               <p className="text-sm text-muted-foreground">Mitglied der Dachdecker-Innung</p>
             </div>
             <div className="text-center">
               <div className="w-16 h-16 mx-auto mb-4 bg-primary/10 rounded-full flex items-center justify-center">
                 <Award className="w-8 h-8 text-primary" />
               </div>
-              <h3 className="font-semibold text-lg mb-2">40 Jahre</h3>
+              <h2 className="font-semibold text-lg mb-2">40 Jahre</h2>
               <p className="text-sm text-muted-foreground">Erfahrung im Dachhandwerk</p>
             </div>
             <div className="text-center">
               <div className="w-16 h-16 mx-auto mb-4 bg-primary/10 rounded-full flex items-center justify-center">
                 <Clock className="w-8 h-8 text-primary" />
               </div>
-              <h3 className="font-semibold text-lg mb-2">Schnelle Hilfe</h3>
+              <h2 className="font-semibold text-lg mb-2">Schnelle Hilfe</h2>
               <p className="text-sm text-muted-foreground">Bei Reparaturen und Sturmschäden</p>
             </div>
             <div className="text-center">
               <div className="w-16 h-16 mx-auto mb-4 bg-primary/10 rounded-full flex items-center justify-center">
                 <Phone className="w-8 h-8 text-primary" />
               </div>
-              <h3 className="font-semibold text-lg mb-2">Persönlich</h3>
+              <h2 className="font-semibold text-lg mb-2">Persönlich</h2>
               <p className="text-sm text-muted-foreground">Beratung vor Ort </p>
             </div>
           </div>

@@ -257,9 +257,9 @@ export default function DachLexikon() {
                   <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-primary/10 text-primary mb-3">
                     {item.category}
                   </span>
-                  <h3 className="text-lg font-bold text-foreground mb-2">
+                  <h2 className="text-lg font-bold text-foreground mb-2">
                     {item.term}
-                  </h3>
+                  </h2>
                   <p className="text-muted-foreground leading-relaxed text-sm">
                     {item.definition}
                   </p>
@@ -276,9 +276,9 @@ export default function DachLexikon() {
             <div className="flex items-start gap-4">
               <ShieldCheck className="h-6 w-6 text-primary mt-0.5 flex-shrink-0" />
               <div>
-                <h4 className="text-base font-bold text-foreground mb-2">
+                <h3 className="text-base font-bold text-foreground mb-2">
                   Meister-Hinweis zu Sicherheit &amp; Haftung
-                </h4>
+                </h3>
                 <p className="text-muted-foreground text-sm leading-relaxed">
                   Dieses Lexikon dient der Information. Bauvorhaben am Dach sind hochkomplex. Bei Eingriffen in die{" "}
                   <strong className="text-foreground">Statik</strong> (z.B. Gründach, Aufsparrendämmung), der Berechnung der{" "}
@@ -291,9 +291,9 @@ export default function DachLexikon() {
           </div>
 
           <div className="mt-8 p-8 bg-card border border-border rounded-md text-center">
-            <h3 className="text-xl md:text-2xl font-bold mb-4">
+            <h2 className="text-xl md:text-2xl font-bold mb-4">
               Noch Fragen?
-            </h3>
+            </h2>
             <p className="text-muted-foreground mb-6 max-w-2xl mx-auto">
               Wir beraten Sie persönlich zu allen Fachthemen rund ums Dach und erstellen Ihnen ein individuelles Angebot.
             </p>

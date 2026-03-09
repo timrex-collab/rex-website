@@ -35,7 +35,7 @@ export default function Navigation() {
     <nav className="sticky top-0 z-50 bg-background/90 backdrop-blur-md border-b border-border">
       <div className="max-w-7xl mx-auto px-4 md:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
-          <Link href="/" className="flex items-center space-x-3" data-testid="link-home">
+          <Link href="/" aria-label="Rex Bedachungs GmbH – Zur Startseite" className="flex items-center space-x-3" data-testid="link-home">
             <img 
               src={logoPath} 
               alt="REX Bedachungs GmbH Logo" 
@@ -135,7 +135,7 @@ export default function Navigation() {
           </div>
 
           <button
-            className="lg:hidden p-2"
+            className="lg:hidden p-2 min-h-[44px] min-w-[44px] flex items-center justify-center"
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
             aria-label={mobileMenuOpen ? "Menu schließen" : "Menu öffnen"}
             aria-expanded={mobileMenuOpen}
@@ -148,27 +148,27 @@ export default function Navigation() {
 
       {mobileMenuOpen && (
         <div className="lg:hidden bg-card border-t border-card-border">
-          <div className="px-4 py-4 space-y-3">
+          <div className="px-4 py-4 space-y-1">
             {mainNav.map((item) => (
               <div key={item.path}>
                 {item.hasDropdown ? (
                   <div>
                     <button
                       onClick={() => setServicesOpen(!servicesOpen)}
-                      className="w-full text-left px-3 py-2 rounded-md text-sm font-medium text-card-foreground flex items-center justify-between"
+                      className="w-full text-left px-3 min-h-[44px] rounded-md text-sm font-medium text-card-foreground flex items-center justify-between"
                       data-testid="button-services-mobile"
                     >
                       {item.name}
                       <ChevronDown className={`w-4 h-4 transition-transform ${servicesOpen ? "rotate-180" : ""}`} />
                     </button>
                     {servicesOpen && (
-                      <div className="ml-4 mt-2 space-y-2">
+                      <div className="ml-4 mt-1 space-y-1">
                         {services.map((service) => (
                           <Link
                             key={service.path}
                             href={service.path}
                             onClick={() => setMobileMenuOpen(false)}
-                            className="block px-3 py-2 rounded-md text-sm text-muted-foreground hover:text-foreground hover:bg-accent"
+                            className="flex items-center px-3 min-h-[44px] rounded-md text-sm text-muted-foreground hover:text-foreground hover:bg-accent"
                             data-testid={`link-mobile-${service.name.toLowerCase()}`}
                           >
                             {service.name}
@@ -182,7 +182,7 @@ export default function Navigation() {
                   <Link
                     href={item.path}
                     onClick={() => setMobileMenuOpen(false)}
-                    className={`block px-3 py-2 rounded-md text-sm font-medium ${
+                    className={`flex items-center px-3 min-h-[44px] rounded-md text-sm font-medium ${
                       location === item.path
                         ? "text-primary bg-accent"
                         : "text-card-foreground hover:bg-accent"
