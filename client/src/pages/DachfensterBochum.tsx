@@ -16,7 +16,6 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 
 const heroImage = "/images/velux-dachfenster-einbau-bochum-fachbetrieb.webp";
 const galleryImages = [
-  { src: "/images/velux-dachfenster-einbau-bochum-typ1.webp", alt: "VELUX Dachfenster Typ 1 – Einbau Bochum" },
   { src: "/images/velux-dachfenster-bochum-typ2.webp", alt: "VELUX Dachfenster Typ 2 – Bochum" },
   { src: "/images/velux-dachfenster-einbau-bochum-fachbetrieb.webp", alt: "Dachfenster Einbau Bochum – Rex Bedachungs GmbH Fachbetrieb" },
 ];
@@ -250,7 +249,7 @@ export default function DachfensterBochum() {
           <h2 className="text-2xl md:text-3xl font-bold text-center mb-10 text-foreground" data-testid="heading-galerie">
             Einblicke in unsere Arbeit
           </h2>
-          <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-4">
+          <div className="grid grid-cols-2 gap-4">
             {galleryImages.map((img, i) => (
               <div
                 key={i}
