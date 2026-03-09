@@ -1,6 +1,6 @@
 import { Link } from "wouter";
 import { Phone, Mail, Clock } from "lucide-react";
-import logoPath from "@assets/generated_images/Logo.png";
+const logoPath = "/images/logo-rex-bedachungs-gmbh-bochum-2025.webp";
 
 export default function Footer() {
   return (
@@ -127,10 +127,10 @@ export default function Footer() {
           <div className="flex flex-col md:flex-row items-center gap-4">
             <img 
               src={logoPath} 
-              alt="REX Bedachungs GmbH Logo" 
+              alt="Logo Rex Bedachungs GmbH Bochum"
               className="h-12 w-auto object-contain"
-              width="1344"
-              height="768"
+              width="200"
+              height="114"
               data-testid="img-footer-logo"
             />
             <div>

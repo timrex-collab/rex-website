@@ -2,7 +2,7 @@ import { Link, useLocation } from "wouter";
 import { useState, useRef } from "react";
 import { Menu, X, Phone, ChevronDown } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import logoPath from "@assets/generated_images/Logo.png";
+const logoPath = "/images/logo-rex-bedachungs-gmbh-bochum-2025.webp";
 
 export default function Navigation() {
   const [location, setLocation] = useLocation();
@@ -38,10 +38,10 @@ export default function Navigation() {
           <Link href="/" aria-label="Rex Bedachungs GmbH – Zur Startseite" className="flex items-center space-x-3" data-testid="link-home">
             <img 
               src={logoPath} 
-              alt="REX Bedachungs GmbH Logo" 
-              className="h-8 w-auto object-contain"
-              width="1344"
-              height="768"
+              alt="Logo Rex Bedachungs GmbH Bochum"
+              className="h-12 w-auto object-contain"
+              width="200"
+              height="114"
               data-testid="img-header-logo"
             />
             <div className="hidden sm:block">
