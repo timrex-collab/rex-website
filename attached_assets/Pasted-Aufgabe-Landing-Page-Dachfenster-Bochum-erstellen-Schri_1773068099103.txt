@@ -1,0 +1,112 @@
+Aufgabe: Landing Page "Dachfenster Bochum" erstellen
+Schritt 1 – Erstelle eine neue Datei client/src/pages/Dachfenster.tsx
+Schritt 2 – Füge die Route in der App-Konfiguration hinzu:
+/dachfenster-bochum → Dachfenster.tsx
+Schritt 3 – Baue die Seite mit folgenden Sektionen. Das Design soll identisch zum Rest der Website sein (gleiche Farben, Schriften, Buttons, Komponenten):
+Hero-Sektion:
+Bild: /images/velux-dachfenster-einbau-bochum-fachbetrieb.webp
+H1: "Dachfenster Bochum – VELUX & Roto vom zertifizierten Fachbetrieb"
+Unterzeile: "Neueinbau, Austausch und Reparatur – schnell, sauber, mit Förderung"
+Button 1: "Jetzt Angebot anfragen" → Kontaktformular
+Button 2: "Jetzt anrufen"
+Vertrauenszeichen: "VELUX-zertifiziert • 20+ Jahre Erfahrung • Ruhrgebiet"
+Leistungs-Sektion (3 Karten):
+Karte 1 – Neueinbau
+Titel: "Dachfenster Neueinbau Bochum"
+Text: "Wir bauen VELUX und Roto Dachfenster fachgerecht in Ihr 
+bestehendes Dach ein – inklusive Eindeckrahmen, Abdichtung und 
+sauberer Innenverkleidung."
+
+Karte 2 – Austausch & Renovierung
+Titel: "Altes Dachfenster austauschen"
+Text: "Undicht, beschlagen oder veraltet? Wir tauschen Ihr altes 
+Dachfenster schnell und sauber aus – oft ohne große Dacharbeiten 
+und mit bis zu 20% Energieeinsparung."
+
+Karte 3 – Reparatur & Notdienst
+Titel: "Dachfenster Reparatur – auch als Notdienst"
+Text: "Klemmt, tropft oder schließt nicht mehr richtig? 
+Wir reparieren alle gängigen Dachfenster-Modelle – 
+bei Notfällen auch kurzfristig."
+Marken-Sektion:
+H2: "Ihr VELUX & Roto Fachbetrieb in Bochum"
+Text: "Als zertifizierter VELUX-Partner verfügen wir über umfassendes 
+Fachwissen und direkten Zugang zu Originalteilen und Zubehör. 
+Natürlich verbauen wir auch Roto Dachfenster in allen gängigen 
+Ausführungen – vom einfachen Klappfenster bis zum elektrischen 
+Dachflächenfenster mit Fernbedienung."
+Förderungs-Sektion (farbige Highlight-Box):
+H2: "Bis zu 15% Förderung durch BAFA & KfW"
+Text: "Der Austausch alter Dachfenster gegen moderne, 
+energieeffiziente Modelle wird staatlich gefördert. 
+Über BAFA oder KfW können Sie bis zu 15% der Kosten 
+zurückbekommen. Wir beraten Sie kostenlos zu allen 
+Fördermöglichkeiten und übernehmen auf Wunsch die 
+komplette Antragstellung."
+Button: "Jetzt Förderung anfragen"
+Warum Rex-Sektion (4 Punkte):
+✓ VELUX-zertifizierter Fachbetrieb
+✓ 20+ Jahre Erfahrung im Ruhrgebiet
+✓ Schnelle Reaktionszeit – auch Notdienst
+✓ Kostenlose Beratung & Förderantrag
+Bild-Galerie (3 Bilder):
+/images/velux-dachfenster-einbau-bochum-typ1.webp
+/images/velux-dachfenster-bochum-typ2.webp
+/images/velux-dachfenster-einbau-bochum-fachbetrieb.webp
+FAQ-Sektion:
+F: "Was kostet ein Dachfenster Einbau in Bochum?"
+A: "Die Kosten variieren je nach Modell und Aufwand. Ein einfacher 
+Austausch beginnt ab ca. 600–800 €, ein Neueinbau je nach 
+Dachkonstruktion ab ca. 1.200 €. Kontaktieren Sie uns für ein 
+kostenloses Angebot."
+
+F: "Wie lange dauert der Einbau eines Dachfensters?"
+A: "Ein Austausch ist in der Regel an einem halben Tag erledigt. 
+Ein Neueinbau dauert je nach Dachkonstruktion 1–2 Tage."
+
+F: "Kann ich Förderung für neue Dachfenster bekommen?"
+A: "Ja! Beim Austausch gegen energieeffiziente Modelle können 
+Sie über BAFA oder KfW bis zu 15% der Kosten fördern lassen. 
+Wir beraten Sie kostenlos dazu."
+
+F: "Welche Dachfenster-Marken verbauen Sie?"
+A: "Wir sind zertifizierter VELUX-Partner und verbauen 
+zusätzlich Roto Dachfenster in allen Ausführungen."
+Abschluss-CTA-Sektion:
+H2: "Dachfenster in Bochum – Jetzt kostenlos beraten lassen"
+Text: "Rufen Sie uns an oder schreiben Sie uns – 
+wir melden uns innerhalb von 24 Stunden."
+Button 1 (primär): "Angebot anfragen"
+Button 2 (sekundär): "Anrufen"
+Schritt 4 – SEO Meta-Tags einfügen:
+html<title>Dachfenster Bochum – VELUX & Roto Einbau | Rex Bedachungs GmbH</title>
+<meta name="description" content="Dachfenster Bochum ✓ VELUX-zertifiziert 
+✓ Neueinbau & Austausch ✓ Notdienst ✓ BAFA/KfW-Förderung – 
+Rex Bedachungs GmbH, Ihr Fachbetrieb im Ruhrgebiet.">
+<link rel="canonical" href="https://www.rex-bedachung.de/dachfenster-bochum">
+```
+
+**Schritt 5** – Menüpunkt hinzufügen:
+```
+"Dachfenster" → /dachfenster-bochum
+Schritt 6 – Strukturierte Daten (Schema.org) einfügen:
+json{
+  "@context": "https://schema.org",
+  "@type": "Service",
+  "name": "Dachfenster Einbau Bochum",
+  "provider": {
+    "@type": "LocalBusiness",
+    "name": "Rex Bedachungs GmbH",
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Bochum"
+    }
+  },
+  "areaServed": "Bochum, Ruhrgebiet",
+  "description": "VELUX und Roto Dachfenster – Neueinbau, Austausch und Reparatur",
+  "offers": {
+    "@type": "Offer",
+    "availability": "https://schema.org/InStock"
+  }
+}
+Schritt 7 – Zeige alle erstellten und geänderten Dateien mit Zeilennummern.
