@@ -41,7 +41,7 @@ const timeline = [
 const requirements = [
   { type: "Neubau (alle)", rule: "30% der gesamten Bruttodachfläche", note: "Gesamte Dachfläche inkl. Überstände – nicht nur geeignete Fläche.", color: "bg-blue-50 border-blue-200" },
   { type: "EFH / ZFH (Sanierung)", rule: "3 kWp  oder  30% Nettofläche", note: "Ein- und Zweifamilienhäuser. Die kWp-Pauschalregel ist meist einfacher.", color: "bg-green-50 border-green-200" },
-  { type: "MFH 3–5 WE (Sanierung)", rule: "4 kWp  oder  30% Nettofläche", note: "Mehrfamilienhaus mit 3 bis 5 Wohneinheiten.", color: "bg-orange-50 border-orange-200" },
+  { type: "MFH 3–5 WE (Sanierung)", rule: "4 kWp  oder  30% Nettofläche", note: "Mehrfamilienhaus mit 3 bis 5 Wohneinheiten.", color: "bg-purple-50 border-purple-200" },
   { type: "MFH 6–10 WE (Sanierung)", rule: "8 kWp  oder  30% Nettofläche", note: "Mehrfamilienhaus mit 6 bis 10 Wohneinheiten.", color: "bg-red-50 border-red-200" },
 ];
 
@@ -61,7 +61,7 @@ const exceptions = [
 ];
 
 const alternatives = [
-  { icon: <Sun className="w-8 h-8 text-orange-500" />, title: "Solarthermie-Anlage", desc: "Eine Solarthermieanlage zur Wärmegewinnung wird als vollwertige Alternative anerkannt, sofern das wirtschaftliche Flächenpotenzial ausgeschöpft wird." },
+  { icon: <Sun className="w-8 h-8 text-blue-600" />, title: "Solarthermie-Anlage", desc: "Eine Solarthermieanlage zur Wärmegewinnung wird als vollwertige Alternative anerkannt, sofern das wirtschaftliche Flächenpotenzial ausgeschöpft wird." },
   { icon: <FileCheck className="w-8 h-8 text-blue-600" />, title: "Gemietete PV-Anlage", desc: "Wer nicht kaufen möchte, kann eine gemietete Solaranlage (Leasing / Contracting) nutzen – das erfüllt die Pflicht ebenfalls vollständig." },
   { icon: <Zap className="w-8 h-8 text-purple-600" />, title: "Fassadenmontage", desc: "Module können auch an der Gebäudefassade anstatt auf dem Dach montiert werden, sofern die Mindestfläche bzw. -leistung erreicht wird." },
 ];
@@ -156,15 +156,15 @@ export default function Solarpflicht() {
       <header className="relative text-white py-20 px-4 overflow-hidden"
         style={{ background: "linear-gradient(135deg, #0f172a 0%, #1c1917 60%, #1a2744 100%)" }}>
         <div className="absolute inset-0 opacity-15"
-          style={{ backgroundImage: "radial-gradient(circle at 15% 50%, #f97316 0%, transparent 45%), radial-gradient(circle at 85% 20%, #eab308 0%, transparent 40%)" }} />
+          style={{ backgroundImage: "radial-gradient(circle at 15% 50%, #1e40af 0%, transparent 45%), radial-gradient(circle at 85% 20%, #3b82f6 0%, transparent 40%)" }} />
         <div className="max-w-5xl mx-auto text-center relative z-10">
-          <div className="inline-flex items-center gap-2 bg-orange-500/20 border border-orange-400/30 rounded-full px-4 py-1 mb-6">
-            <Sun className="w-4 h-4 text-orange-300" />
-            <span className="text-sm font-medium text-orange-100 uppercase tracking-wider">§ 42a BauO NRW – In Kraft seit 01.01.2026</span>
+          <div className="inline-flex items-center gap-2 bg-blue-500/20 border border-blue-400/30 rounded-full px-4 py-1 mb-6">
+            <Sun className="w-4 h-4 text-blue-300" />
+            <span className="text-sm font-medium text-blue-100 uppercase tracking-wider">§ 42a BauO NRW – In Kraft seit 01.01.2026</span>
           </div>
           <h1 className="text-4xl md:text-6xl font-extrabold mb-6 leading-tight">
             Solarpflicht NRW 2026:<br />
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-orange-300 to-yellow-300">
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-300 to-cyan-300">
               Was Eigentümer jetzt wissen müssen
             </span>
           </h1>
@@ -182,11 +182,11 @@ export default function Solarpflicht() {
 
       {/* ── Warn-Box ── */}
       <div className="max-w-5xl mx-auto px-4 -mt-8 relative z-20 mb-16">
-        <div className="bg-orange-50 border-l-4 border-orange-500 p-6 rounded-r-md shadow-lg flex items-start gap-4">
-          <AlertTriangle className="w-10 h-10 text-orange-500 flex-shrink-0" />
+        <div className="bg-blue-50 border-l-4 border-blue-600 p-6 rounded-r-md shadow-lg flex items-start gap-4">
+          <AlertTriangle className="w-10 h-10 text-blue-600 flex-shrink-0" />
           <div>
-            <h3 className="text-xl font-bold text-orange-900 mb-1">Betrifft Sie bei der nächsten vollständigen Dachsanierung!</h3>
-            <p className="text-orange-800">Ab dem <strong>1. Januar 2026</strong> muss bei jeder vollständigen Dacherneuerung gleichzeitig eine PV-Anlage installiert werden.
+            <h3 className="text-xl font-bold text-blue-900 mb-1">Betrifft Sie bei der nächsten vollständigen Dachsanierung!</h3>
+            <p className="text-blue-800">Ab dem <strong>1. Januar 2026</strong> muss bei jeder vollständigen Dacherneuerung gleichzeitig eine PV-Anlage installiert werden.
               Einfache Reparaturen und der Austausch einzelner Ziegel sind <strong>nicht</strong> betroffen. Stichtag ist der <strong>Beginn der Baumaßnahme</strong>.</p>
           </div>
         </div>
@@ -198,7 +198,7 @@ export default function Solarpflicht() {
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-6">
             {kpis.map((kpi, idx) => (
               <div key={idx} className="bg-card rounded-md border border-border p-6 hover:shadow-md transition text-center">
-                <div className="text-orange-500 flex justify-center mb-4">{kpi.icon}</div>
+                <div className="text-blue-600 flex justify-center mb-4">{kpi.icon}</div>
                 <div className="text-xs font-bold text-muted-foreground uppercase tracking-widest mb-2">{kpi.title}</div>
                 <div className="text-3xl font-black mb-2">{kpi.val}</div>
                 <p className="text-xs text-muted-foreground leading-relaxed">{kpi.detail}</p>
@@ -234,15 +234,15 @@ export default function Solarpflicht() {
           </div>
           <div className="space-y-4">
             {timeline.map((item, idx) => (
-              <div key={idx} className={`flex gap-6 p-6 rounded-md border ${item.highlight ? "bg-orange-50 border-orange-300 shadow-md" : "bg-card border-border"}`}>
-                <div className={`flex-shrink-0 w-10 h-10 rounded-full flex items-center justify-center font-bold text-sm text-white ${item.highlight ? "bg-orange-500" : "bg-blue-700"}`}>
+              <div key={idx} className={`flex gap-6 p-6 rounded-md border ${item.highlight ? "bg-blue-50 border-blue-300 shadow-md" : "bg-card border-border"}`}>
+                <div className={`flex-shrink-0 w-10 h-10 rounded-full flex items-center justify-center font-bold text-sm text-white ${item.highlight ? "bg-blue-600" : "bg-blue-700"}`}>
                   {idx + 1}
                 </div>
                 <div className="flex-1">
-                  <div className={`text-sm font-bold uppercase tracking-widest mb-1 ${item.highlight ? "text-orange-600" : "text-muted-foreground"}`}>{item.date}</div>
-                  <h3 className={`font-bold text-lg mb-1 ${item.highlight ? "text-orange-900" : ""}`}>{item.title}</h3>
+                  <div className={`text-sm font-bold uppercase tracking-widest mb-1 ${item.highlight ? "text-blue-700" : "text-muted-foreground"}`}>{item.date}</div>
+                  <h3 className={`font-bold text-lg mb-1 ${item.highlight ? "text-blue-900" : ""}`}>{item.title}</h3>
                   <p className="text-sm text-muted-foreground leading-relaxed">{item.desc}</p>
-                  {item.highlight && <span className="mt-2 inline-flex items-center gap-1 bg-orange-500 text-white text-xs font-bold px-3 py-1 rounded-full"><Sun className="w-3 h-3" /> Jetzt aktuell</span>}
+                  {item.highlight && <span className="mt-2 inline-flex items-center gap-1 bg-blue-600 text-white text-xs font-bold px-3 py-1 rounded-full"><Sun className="w-3 h-3" /> Jetzt aktuell</span>}
                 </div>
               </div>
             ))}
@@ -310,11 +310,11 @@ export default function Solarpflicht() {
                   <div className="bg-blue-700 text-white p-3 rounded-md font-bold text-xs text-center w-36">30% Bruttofläche</div>
                 </div>
                 <div className="flex flex-col items-center gap-3">
-                  <span className="text-sm font-bold text-orange-600">Dachsanierung</span>
+                  <span className="text-sm font-bold text-blue-700">Dachsanierung</span>
                   <div className="text-muted-foreground">↓</div>
                   <div className="bg-card border border-border text-xs text-center p-3 rounded-md w-36 shadow-sm">Start ab 01.01.2026<br />(Dachhaut vollständig)</div>
                   <div className="text-muted-foreground">↓</div>
-                  <div className="bg-orange-500 text-white p-3 rounded-md font-bold text-xs text-center w-36">30% Netto ODER kWp-Regel</div>
+                  <div className="bg-blue-600 text-white p-3 rounded-md font-bold text-xs text-center w-36">30% Netto ODER kWp-Regel</div>
                 </div>
               </div>
             </div>
@@ -334,7 +334,7 @@ export default function Solarpflicht() {
             <div className="bg-card rounded-md shadow-lg border border-border p-8">
               <div className="flex justify-between items-center mb-6">
                 <span className="font-bold text-lg">Ihr Vorhaben</span>
-                <span className="bg-orange-100 text-orange-700 px-3 py-1 rounded-full text-sm font-bold">Schritt 1 von 2</span>
+                <span className="bg-blue-100 text-blue-700 px-3 py-1 rounded-full text-sm font-bold">Schritt 1 von 2</span>
               </div>
               <div className="space-y-5">
                 <div>
@@ -342,7 +342,7 @@ export default function Solarpflicht() {
                   <select
                     value={vorhaben}
                     onChange={(e) => setVorhaben(e.target.value as ProjectType)}
-                    className="w-full border border-border rounded-md p-3 bg-background focus:outline-none focus:ring-2 focus:ring-orange-400"
+                    className="w-full border border-border rounded-md p-3 bg-background focus:outline-none focus:ring-2 focus:ring-blue-500"
                   >
                     <option value="">Bitte wählen...</option>
                     {(["Neubau Wohngebäude", "Neubau Nichtwohngebäude", "Dachsanierung (Bestand)", "Kommunales Gebäude (Sanierung)", "Parkplatz / Stellplätze"] as ProjectType[]).map(p => (
@@ -356,7 +356,7 @@ export default function Solarpflicht() {
                     type="date"
                     value={date}
                     onChange={(e) => setDate(e.target.value)}
-                    className="w-full border border-border rounded-md p-3 bg-background focus:outline-none focus:ring-2 focus:ring-orange-400"
+                    className="w-full border border-border rounded-md p-3 bg-background focus:outline-none focus:ring-2 focus:ring-blue-500"
                   />
                 </div>
                 <div>
@@ -366,13 +366,13 @@ export default function Solarpflicht() {
                     placeholder="z. B. 120"
                     value={size}
                     onChange={(e) => setSize(e.target.value)}
-                    className="w-full border border-border rounded-md p-3 bg-background focus:outline-none focus:ring-2 focus:ring-orange-400"
+                    className="w-full border border-border rounded-md p-3 bg-background focus:outline-none focus:ring-2 focus:ring-blue-500"
                   />
                 </div>
                 <button
                   disabled={!vorhaben || !date}
                   onClick={() => setCheckStep(2)}
-                  className="w-full bg-orange-500 text-white py-4 rounded-md font-bold text-lg hover:bg-orange-600 transition disabled:opacity-40 disabled:cursor-not-allowed flex items-center justify-center gap-2"
+                  className="w-full bg-blue-600 text-white py-4 rounded-md font-bold text-lg hover:bg-blue-700 transition disabled:opacity-40 disabled:cursor-not-allowed flex items-center justify-center gap-2"
                 >
                   Ergebnis anzeigen <ArrowRight className="w-5 h-5" />
                 </button>
@@ -414,9 +414,9 @@ export default function Solarpflicht() {
                     <div className="relative w-24 h-24 flex-shrink-0">
                       <svg className="w-full h-full -rotate-90" viewBox="0 0 36 36">
                         <path d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" fill="none" stroke="#e5e7eb" strokeWidth="3" />
-                        <path d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" fill="none" stroke="#f97316" strokeWidth="3" strokeDasharray="30, 100" />
+                        <path d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" fill="none" stroke="#2563eb" strokeWidth="3" strokeDasharray="30, 100" />
                       </svg>
-                      <div className="absolute inset-0 flex items-center justify-center font-black text-orange-600">30%</div>
+                      <div className="absolute inset-0 flex items-center justify-center font-black text-blue-700">30%</div>
                     </div>
                     <p className="text-sm text-muted-foreground">
                       Mindestens <strong>30% der Dachfläche</strong> (Brutto bei Neubau, Netto bei Sanierung) müssen mit PV-Modulen belegt werden – alternativ gilt die kWp-Pauschalregel für Bestandsgebäude.
@@ -429,13 +429,13 @@ export default function Solarpflicht() {
               {/* Nächste Schritte */}
               <div className="bg-card rounded-md border border-border p-6 shadow-sm">
                 <h3 className="font-bold text-lg mb-4 flex items-center gap-2">
-                  <ClipboardList className="w-5 h-5 text-orange-500" /> Ihre nächsten Schritte
+                  <ClipboardList className="w-5 h-5 text-blue-600" /> Ihre nächsten Schritte
                 </h3>
                 <div className="space-y-3">
                   {result.todos.map((todo, i) => (
                     <div key={i} className="flex gap-3 p-4 rounded-md bg-muted border border-border">
-                      <div className="w-6 h-6 rounded-full border-2 border-orange-400 flex items-center justify-center flex-shrink-0">
-                        <span className="text-xs font-bold text-orange-500">{i + 1}</span>
+                      <div className="w-6 h-6 rounded-full border-2 border-blue-500 flex items-center justify-center flex-shrink-0">
+                        <span className="text-xs font-bold text-blue-600">{i + 1}</span>
                       </div>
                       <span className="text-sm font-medium">{todo}</span>
                     </div>
@@ -446,11 +446,11 @@ export default function Solarpflicht() {
               <div className="flex flex-col sm:flex-row gap-4">
                 <button
                   onClick={() => { setCheckStep(1); setVorhaben(""); setDate(""); setSize(""); }}
-                  className="flex-1 border-2 border-orange-400 text-orange-600 font-bold py-4 rounded-md hover:bg-orange-50 transition"
+                  className="flex-1 border-2 border-blue-500 text-blue-600 font-bold py-4 rounded-md hover:bg-blue-50 transition"
                 >
                   Check wiederholen
                 </button>
-                <a href="/kontakt" className="flex-1 bg-orange-500 text-white text-center font-bold py-4 rounded-md hover:bg-orange-600 shadow-lg transition flex items-center justify-center gap-2">
+                <a href="/kontakt" className="flex-1 bg-blue-600 text-white text-center font-bold py-4 rounded-md hover:bg-blue-700 shadow-lg transition flex items-center justify-center gap-2">
                   <Phone className="w-4 h-4" /> Beratung anfragen
                 </a>
               </div>
@@ -532,14 +532,14 @@ export default function Solarpflicht() {
         <div className="max-w-5xl mx-auto px-4 md:px-6 lg:px-8">
           <div className="grid md:grid-cols-2 gap-8">
             <div className="bg-slate-900 text-white rounded-md p-8">
-              <div className="bg-orange-500 w-12 h-12 rounded-md flex items-center justify-center mb-6">
+              <div className="bg-blue-600 w-12 h-12 rounded-md flex items-center justify-center mb-6">
                 <Hammer className="w-6 h-6" />
               </div>
-              <h3 className="text-2xl font-bold mb-4 text-orange-100">Pflichten für Dachdecker & Fachbetriebe</h3>
+              <h3 className="text-2xl font-bold mb-4 text-blue-100">Pflichten für Dachdecker & Fachbetriebe</h3>
               <div className="space-y-4">
                 {rooferDuties.map((duty, idx) => (
                   <div key={idx} className="flex gap-3 bg-white/5 p-4 rounded-md border border-white/10">
-                    <div className="flex-shrink-0 mt-0.5 text-orange-400">{duty.icon}</div>
+                    <div className="flex-shrink-0 mt-0.5 text-blue-400">{duty.icon}</div>
                     <div>
                       <div className="font-bold text-sm mb-1">{duty.title}</div>
                       <p className="text-slate-400 text-xs leading-relaxed">{duty.text}</p>
@@ -548,23 +548,23 @@ export default function Solarpflicht() {
                 ))}
               </div>
             </div>
-            <div className="bg-orange-50 border border-orange-100 rounded-md p-8">
-              <h3 className="text-2xl font-bold mb-4 text-orange-900">Förderung nicht vergessen!</h3>
-              <p className="text-orange-800/80 mb-6 leading-relaxed">
+            <div className="bg-blue-50 border border-blue-100 rounded-md p-8">
+              <h3 className="text-2xl font-bold mb-4 text-blue-900">Förderung nicht vergessen!</h3>
+              <p className="text-blue-800/80 mb-6 leading-relaxed">
                 Die Solarpflicht und staatliche Förderungen schließen sich nicht aus – im Gegenteil. Wer sowieso saniert,
                 kann zusätzlich <strong>15–20% BAFA-Förderung</strong> beantragen, KfW-Kredite nutzen und den Steuerbonus
                 nach § 35c EStG in Anspruch nehmen.
               </p>
-              <div className="bg-white p-4 rounded-md border border-orange-200 mb-6">
-                <div className="font-bold text-orange-900 flex items-center gap-2 mb-2">
-                  <Lightbulb className="w-5 h-5 text-yellow-500" /> Dachdecker-Tipp
+              <div className="bg-white p-4 rounded-md border border-blue-200 mb-6">
+                <div className="font-bold text-blue-900 flex items-center gap-2 mb-2">
+                  <Lightbulb className="w-5 h-5 text-blue-500" /> Dachdecker-Tipp
                 </div>
-                <p className="text-sm text-orange-800 italic">
+                <p className="text-sm text-blue-800 italic">
                   „Kombinieren Sie die Dachsanierung, die PV-Pflicht und die Förderanträge – so holen Sie das Maximum für Ihren Kunden heraus."
                 </p>
               </div>
               <a href="/foerderung"
-                className="inline-flex items-center gap-2 bg-orange-600 text-white px-6 py-3 rounded-md font-bold hover:bg-orange-700 transition">
+                className="inline-flex items-center gap-2 bg-blue-600 text-white px-6 py-3 rounded-md font-bold hover:bg-blue-700 transition">
                 Zur Förderungsseite <ArrowRight className="w-4 h-4" />
               </a>
             </div>
@@ -599,15 +599,15 @@ export default function Solarpflicht() {
 
       {/* ── CTA ── */}
       <section className="mx-4 mb-16 rounded-[2rem] p-12 text-center text-white shadow-2xl"
-        style={{ background: "linear-gradient(135deg, #92400e, #1c1917)" }}>
-        <Sun className="w-16 h-16 text-yellow-300 mx-auto mb-6 opacity-80" />
+        style={{ background: "linear-gradient(135deg, #0f172a, #1e3a8a)" }}>
+        <Sun className="w-16 h-16 text-blue-300 mx-auto mb-6 opacity-80" />
         <h2 className="text-3xl md:text-5xl font-black mb-6">Dachsanierung geplant?</h2>
-        <p className="text-orange-100 text-lg mb-10 max-w-xl mx-auto">
+        <p className="text-blue-100 text-lg mb-10 max-w-xl mx-auto">
           Wir beraten Sie kostenlos, ob und wie die Solarpflicht für Ihr Gebäude gilt – und koordinieren die gesamte Dachsanierung fachgerecht nach GEG und ZVDH.
         </p>
         <div className="flex flex-col sm:flex-row justify-center gap-4">
           <a href="/kontakt"
-            className="bg-white text-slate-900 px-8 py-4 rounded-full font-bold text-lg hover:bg-orange-50 transition shadow-lg flex items-center justify-center gap-2">
+            className="bg-white text-slate-900 px-8 py-4 rounded-full font-bold text-lg hover:bg-blue-50 transition shadow-lg flex items-center justify-center gap-2">
             Kostenlose Beratung anfragen <ArrowRight className="w-5 h-5" />
           </a>
           <a href="tel:0234583100"
@@ -615,7 +615,7 @@ export default function Solarpflicht() {
             <Phone className="w-5 h-5" /> 0234 583100
           </a>
         </div>
-        <p className="mt-8 text-xs text-orange-300 opacity-70">Meisterbetrieb Rex Bedachungs GmbH · Paulinenstraße 22, 44799 Bochum</p>
+        <p className="mt-8 text-xs text-blue-300 opacity-70">Meisterbetrieb Rex Bedachungs GmbH · Paulinenstraße 22, 44799 Bochum</p>
       </section>
 
       {/* ── Disclaimer ── */}
