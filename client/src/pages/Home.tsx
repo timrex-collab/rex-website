@@ -94,10 +94,10 @@ export default function Home() {
     },
     {
       title: "Dachfenster",
-      description: "Professioneller Einbau von Dachfenstern für mehr Licht und Wohnkomfort im Dachgeschoss.",
+      description: "Als zertifizierter VELUX- und Roto-Partner übernehmen wir Neueinbau, Austausch und Reparatur von Dachfenstern – schnell, sauber und auf Wunsch mit BAFA/KfW-Förderung.",
       imageUrl: dachfensterImage,
       imageAlt: "VELUX Dachfenster Bochum – Rex Bedachungs GmbH",
-      href: "/leistungen/dachfenster",
+      href: "/dachfenster-bochum",
       benefits: [
         "VELUX Spezialist",
         "Fachgerechter Einbau",
