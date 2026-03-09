@@ -93,7 +93,7 @@ export default function Home() {
       ],
     },
     {
-      title: "Dachfenster",
+      title: "Dachfenster – VELUX & Roto Fachbetrieb",
       description: "Als zertifizierter VELUX- und Roto-Partner übernehmen wir Neueinbau, Austausch und Reparatur von Dachfenstern – schnell, sauber und auf Wunsch mit BAFA/KfW-Förderung.",
       imageUrl: dachfensterImage,
       imageAlt: "VELUX Dachfenster Bochum – Rex Bedachungs GmbH",
@@ -103,6 +103,7 @@ export default function Home() {
         "Fachgerechter Einbau",
         "Rollläden und Verdunkelung",
       ],
+      ctaLabel: "Mehr zu Dachfenstern",
     },
     {
       title: "Reparaturen",

@@ -10,6 +10,7 @@ interface ServiceCardProps {
   imageAlt: string;
   href: string;
   benefits: string[];
+  ctaLabel?: string;
 }
 
 export default function ServiceCard({
@@ -19,6 +20,7 @@ export default function ServiceCard({
   imageAlt,
   href,
   benefits,
+  ctaLabel = "Mehr erfahren",
 }: ServiceCardProps) {
   return (
     <Card className="overflow-hidden hover:-translate-y-1 transition-all duration-200" data-testid={`card-service-${title.toLowerCase()}`}>
@@ -49,7 +51,7 @@ export default function ServiceCard({
         </ul>
         <Button asChild variant="outline" className="w-full" data-testid="button-service-more">
           <Link href={href} className="flex items-center justify-center gap-2">
-            Mehr erfahren
+            {ctaLabel}
             <ArrowRight className="w-4 h-4" />
           </Link>
         </Button>
