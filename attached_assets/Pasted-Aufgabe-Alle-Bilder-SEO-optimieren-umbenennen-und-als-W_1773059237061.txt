@@ -1,0 +1,51 @@
+Aufgabe: Alle Bilder SEO-optimieren, umbenennen und als WebP speichern
+Schritt 1 – Erstelle client/public/images/ falls nicht vorhanden.
+Schritt 2 – Konvertiere und benenne alle Bilder aus attached_assets/ um. Nutze folgendes Mapping:
+Flachdach.jpeg                    → flachdach-sanierung-bochum-rex-bedachung.webp
+Gruendach3.jpg                    → gruendach-bochum-dachbegruenung-experten.webp
+Gründach1.jpg                     → gruendach-intensive-begruenung-bochum.webp
+Gründach2.jpg                     → gruendach-extensive-begruenung-bochum.webp
+Hintergrund Unternehmen.jpg       → rex-bedachung-unternehmen-bochum.webp
+hintergrund.jpg                   → dach-hintergrund-rex-bedachung.webp
+kamin_1.jpg                       → kamin-sanierung-bochum-dachdecker.webp
+Logo_Rex2013.jpg                  → logo-rex-bedachungs-gmbh-bochum-alt.webp
+01_Logo2025.jpg                   → logo-rex-bedachungs-gmbh-bochum-2025.webp
+Reparatur1.png                    → dachreparatur-bochum-rex-bedachung.webp
+S7300254.jpg                      → flachdach-metallverkleidung-bochum-rex-bedachung.webp
+Tondach 3.jpeg                    → tondach-ziegel-bochum-steildach-3.webp
+tondach_hero.png                  → tondach-hero-dachdeckung-bochum.webp
+Tondach1.png                      → tondach-dachziegel-bochum-typ1.webp
+Tondach2.png                      → tondach-dachziegel-bochum-typ2.webp
+Tondach4.jpg                      → tondach-dachziegel-bochum-typ4.webp
+Tondach6.jpg                      → tondach-dachziegel-bochum-typ6.webp
+Tondach7.jpg                      → tondach-dachziegel-bochum-typ7.webp
+Velux1_1761088286795.png          → velux-dachfenster-einbau-bochum-typ1.webp
+Velux2.jpg                        → velux-dachfenster-bochum-typ2.webp
+
+ÜBERSPRINGEN (nicht konvertieren, nicht verwenden):
+grafik_1761670213745.png          → korrupte Datei, löschen
+targeted_element_1760948229898.png → UI-Screenshot, löschen
+Qualität: 82, Format: WebP
+Schritt 3 – Ersetze alle alten Bildpfade in client/src/ durch die neuen /images/NEUER-NAME.webp Pfade. Suche nach:
+
+Firebase Storage URLs (firebasestorage.googleapis.com)
+Pfaden auf attached_assets/
+Pfaden auf @assets/
+
+Schritt 4 – Aktualisiere alle alt-Attribute der <img> Tags mit SEO-optimierten Beschreibungen:
+alt="Flachdach Sanierung Bochum – Rex Bedachungs GmbH Fachbetrieb"
+alt="Gründach Bochum – Dachbegrünung vom Experten Rex Bedachung"
+alt="Gründach intensive Begrünung Bochum – Rex Bedachungs GmbH"
+alt="Gründach extensive Begrünung Bochum – Rex Bedachungs GmbH"
+alt="Rex Bedachungs GmbH Bochum – Ihr Dachdecker im Ruhrgebiet"
+alt="Kamin Sanierung Bochum – Dachdecker Rex Bedachung"
+alt="Logo Rex Bedachungs GmbH Bochum"
+alt="Dachreparatur Bochum – schnell und zuverlässig, Rex Bedachung"
+alt="Flachdach Metallverkleidung Bochum – Rex Bedachungs GmbH"
+alt="Tondach Dachziegel Bochum – Steildach Qualität Rex Bedachung"
+alt="Tondach Hero – professionelle Dachdeckung Bochum"
+alt="VELUX Dachfenster Einbau Bochum – zertifizierter Fachbetrieb Rex"
+alt="VELUX Dachfenster Bochum – Rex Bedachungs GmbH"
+Schritt 5 – Füge in index.html im <head> einen Preload für das Hero-Bild ein:
+html<link rel="preload" as="image" href="/images/tondach-hero-dachdeckung-bochum.webp" type="image/webp">
+Schritt 6 – Zeige eine Liste aller geänderten Dateien mit alten und neuen Dateinamen sowie Größeneinsparungen in KB.
