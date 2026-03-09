@@ -1,0 +1,184 @@
+Aufgabe: Landing Page "Flachdach Bochum" erstellen – Best-of aus alter Seite und neuen Inhalten
+Wichtig: Design exakt identisch zur Dachfenster-Landing Page – gleiche Farben, gleiche Schriftfarben, gleiche Buttons, gleiche Icons, gleiche Abstände.
+Schritt 1 – Erstelle client/src/pages/Flachdach.tsx und füge die Route hinzu:
+/flachdach-bochum → Flachdach.tsx
+Schritt 2 – Baue die Seite mit folgenden Sektionen:
+Hero-Sektion:
+Bild: /images/flachdach-sanierung-bochum-rex-bedachung.webp
+H1: "Flachdach Bochum – Abdichtung, Sanierung & Neueindeckung vom Fachbetrieb"
+Unterzeile: "Ob Bitumen, EPDM oder Flüssigkunststoff – 
+wir finden die optimale Lösung für Ihr Gebäude"
+Button 1: "Jetzt Angebot anfragen" → Kontaktformular
+Button 2: "Jetzt anrufen"
+Vertrauenszeichen: "20+ Jahre Erfahrung • Kostenloses Aufmaß • Ruhrgebiet"
+Einleitungs-Sektion:
+Text (aus bestehender Seite übernommen und erweitert):
+"Flachdächer erfordern besondere Expertise in der Abdichtung. 
+Mit modernen Materialien und bewährten Verfahren sorgen wir 
+für eine zuverlässige, langlebige Dachabdichtung. Ob Bitumen, 
+Kunststoff oder EPDM – wir beraten Sie kompetent und finden 
+die optimale Lösung für Ihr Gebäude. Auf Wunsch realisieren 
+wir auch Gründächer oder begehbare Dachterrassen – 
+inklusive BAFA/KfW-Förderung."
+Leistungs-Sektion (5 Karten):
+Karte 1 – Neueindeckung
+Titel: "Flachdach Neueindeckung Bochum"
+Text: "Ob Neubau oder kompletter Neuaufbau – wir decken Ihr 
+Flachdach fachgerecht ein und wählen gemeinsam das passende 
+Abdichtungssystem für Ihr Gebäude und Budget."
+
+Karte 2 – Sanierung & Abdichtung
+Titel: "Flachdach Sanierung & Abdichtung"
+Text: "Undichtes Flachdach? Wir analysieren den Schaden, 
+sanieren fachgerecht und sorgen für eine langlebige 
+Abdichtung – egal ob kleiner Riss oder Komplettsanierung."
+
+Karte 3 – Dämmung
+Titel: "Energieeffiziente Flachdach Dämmung"
+Text: "Eine professionelle Flachdachdämmung senkt Ihre 
+Heizkosten spürbar und wird staatlich gefördert. 
+Wir beraten Sie zu allen Möglichkeiten und übernehmen 
+die komplette Umsetzung."
+
+Karte 4 – Gründach & Dachterrassen
+Titel: "Gründach & Dachterrassen Bochum"
+Text: "Verwandeln Sie Ihr Flachdach in eine grüne Oase 
+oder begehbare Terrasse – inklusive Wurzelschutzfolie, 
+Drainageschicht und fachgerechter Abdichtung."
+
+Karte 5 – Wartung & Inspektion
+Titel: "Wartungsverträge für langfristige Sicherheit"
+Text: "Regelmäßige Kontrolle verhindert teure Schäden. 
+Wir prüfen Abdichtung, Entwässerung und Dämmung – 
+und beheben kleine Mängel direkt vor Ort."
+Vorteile & Vorgehen-Sektion (2 Spalten – aus bestehender Seite übernommen):
+Linke Spalte – "Ihre Vorteile":
+✓ Moderne Abdichtungssysteme (Bitumen, Kunststoff, EPDM)
+✓ Energieeffiziente Dämmung
+✓ Gründach und Dachbegrünung
+✓ Dachterrassen und Balkone
+✓ Wartungsverträge für langfristige Sicherheit
+✓ Kostenloses Aufmaß vor Ort
+
+Rechte Spalte – "Unser Vorgehen":
+1. Bestandsaufnahme und Zustandsanalyse
+2. Beratung zu Abdichtungssystemen
+3. Fachgerechte Ausführung und Abdichtung
+4. Qualitätskontrolle und Dichtheitsprüfung
+5. Optional: Wartungsvertrag abschließen
+Abdichtungssysteme-Sektion (4 Karten mit Icons):
+H2: "Alle Abdichtungssysteme aus einer Hand"
+Text: "Wir arbeiten mit allen gängigen Systemen und empfehlen 
+Ihnen die optimale Lösung für Ihr Gebäude und Budget."
+
+System 1 – Bitumenbahn
+Text: "Bewährtes Abdichtungssystem – langlebig, 
+wirtschaftlich und ideal für Flachdächer aller Größen."
+
+System 2 – EPDM-Folie
+Text: "Hochelastische Gummidachbahn – besonders 
+langlebig und ideal für anspruchsvolle Geometrien."
+
+System 3 – Flüssigkunststoff
+Text: "Nahtlose Abdichtung für komplexe Dachformen, 
+Balkone und Terrassen – sofort belastbar."
+
+System 4 – Kunststoff/PVC
+Text: "Leicht, langlebig und recyclebar – 
+ideal für große Flächen und Industriebauten."
+Förderungs-Sektion (farbige Highlight-Box – identisch zur Dachfenster-Seite):
+H2: "Bis zu 20% Förderung durch BAFA & KfW"
+Text: "Flachdachsanierungen mit verbesserter Dämmung 
+werden vom Staat großzügig gefördert. Wir beraten 
+Sie kostenlos zu allen Fördermöglichkeiten und 
+übernehmen auf Wunsch die komplette Antragstellung."
+Button: "Jetzt Förderung anfragen"
+Warum Rex-Sektion (4 Punkte – identisch zur Dachfenster-Seite):
+✓ Alle Abdichtungssysteme aus einer Hand
+✓ Kostenloses Aufmaß vor Ort in Bochum
+✓ 20+ Jahre Erfahrung im Ruhrgebiet
+✓ Kostenlose Beratung & Förderantrag
+Bild-Galerie (3 Bilder):
+/images/flachdach-sanierung-bochum-rex-bedachung.webp
+/images/flachdach-metallverkleidung-bochum-rex-bedachung.webp
+/images/gruendach-bochum-dachbegruenung-experten.webp
+FAQ-Sektion:
+F: "Was kostet eine Flachdachsanierung in Bochum?"
+A: "Die Kosten hängen von Fläche, Zustand und gewähltem 
+Abdichtungssystem ab. Orientierung: Abdichtung ab ca. 
+40–80 €/m², Komplettsanierung mit Dämmung ab ca. 
+80–150 €/m². Wir erstellen Ihnen kostenlos ein 
+genaues Aufmaß und transparentes Angebot."
+
+F: "Wie lange hält eine Flachdachabdichtung?"
+A: "Je nach System halten moderne Abdichtungen 
+20–30 Jahre. Mit regelmäßiger Wartung deutlich länger."
+
+F: "Welche Abdichtungssysteme verwenden Sie?"
+A: "Wir arbeiten mit allen gängigen Systemen: 
+Bitumenbahn, EPDM-Folie, Flüssigkunststoff und 
+Kunststoffdachbahnen (PVC/TPO). Wir empfehlen 
+das optimale System für Ihr Gebäude."
+
+F: "Kann ich mein Flachdach fördern lassen?"
+A: "Ja! Bei Sanierungen mit verbesserter Dämmung 
+können Sie über BAFA oder KfW bis zu 20% der 
+Kosten zurückbekommen. Wir übernehmen auf Wunsch 
+die komplette Antragstellung."
+
+F: "Kann man ein Flachdach begrünen oder als Terrasse nutzen?"
+A: "Ja! Wir realisieren sowohl extensive als auch 
+intensive Begrünung sowie begehbare Dachterrassen – 
+inklusive Wurzelschutz, Drainage und fachgerechter 
+Abdichtung."
+Abschluss-CTA-Sektion:
+H2: "Interesse an Flachdach? Jetzt kostenlos Aufmaß vereinbaren!"
+Text: "Rufen Sie uns an oder schreiben Sie uns – 
+wir kommen zu Ihnen, messen kostenlos auf 
+und erstellen ein transparentes Angebot."
+Button 1 (primär): "Kostenloses Aufmaß anfragen"
+Button 2 (sekundär): "Anrufen"
+Schritt 3 – SEO Meta-Tags:
+html<title>Flachdach Bochum – Sanierung, Abdichtung & Neueindeckung | Rex Bedachungs GmbH</title>
+<meta name="description" content="Flachdach Bochum ✓ Alle Abdichtungssysteme 
+✓ Sanierung & Neueindeckung ✓ Kostenloses Aufmaß ✓ BAFA/KfW-Förderung – 
+Rex Bedachungs GmbH, Ihr Fachbetrieb im Ruhrgebiet.">
+<link rel="canonical" href="https://www.rex-bedachung.de/flachdach-bochum">
+```
+
+**Schritt 4** – Dropdown-Menü unter "Leistungen" ergänzen:
+```
+Leistungen ▾
+    ├── Dachfenster → /dachfenster-bochum
+    └── Flachdach   → /flachdach-bochum
+```
+
+**Schritt 5** – Flachdach-Abschnitt auf der Homepage zu Teaser kürzen:
+```
+Text (max. 2-3 Sätze):
+"Mit modernen Abdichtungssystemen wie Bitumen, EPDM oder 
+Flüssigkunststoff sorgen wir für ein langlebiges, 
+dichtes Flachdach – kostenlos aufgemessen und 
+auf Wunsch mit BAFA/KfW-Förderung."
+Button: "Mehr zu Flachdach →" → /flachdach-bochum
+Schritt 6 – Strukturierte Daten (Schema.org):
+json{
+  "@context": "https://schema.org",
+  "@type": "Service",
+  "name": "Flachdach Sanierung Bochum",
+  "provider": {
+    "@type": "LocalBusiness",
+    "name": "Rex Bedachungs GmbH",
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Bochum"
+    }
+  },
+  "areaServed": "Bochum, Ruhrgebiet",
+  "description": "Flachdach Neueindeckung, Sanierung, Abdichtung, Dämmung und Begrünung – alle Systeme",
+  "offers": {
+    "@type": "Offer",
+    "availability": "https://schema.org/InStock"
+  }
+}
+Schritt 7 – Zeige alle erstellten und geänderten Dateien mit Zeilennummern.
