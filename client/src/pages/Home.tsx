@@ -5,9 +5,9 @@ import ServiceCard from "@/components/ServiceCard";
 import { Button } from "@/components/ui/button";
 import { Link } from "wouter";
 import { Phone, Shield, Award, Clock } from "lucide-react";
-import dachwartungImage from "@assets/Dachdecker bei der Inspektion der Naht_1761081506440.png";
 
 const heroImage = "/images/dachdecker-bochum-steildach-hero.webp";
+const dachwartungImage = "/images/dachdecker-inspektion-dachwartung-bochum.webp";
 
 const steildachImage = "/images/dach-hintergrund-rex-bedachung.webp";
 const flachdachImage = "/images/flachdach-sanierung-bochum-rex-bedachung.webp";
