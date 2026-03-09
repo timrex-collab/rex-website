@@ -2,9 +2,39 @@ import { Link } from "wouter";
 import { Phone, Mail, Clock } from "lucide-react";
 const logoPath = "/images/logo-rex-bedachungs-gmbh-bochum-2025.webp";
 
+const localBusinessSchema = {
+  "@context": "https://schema.org",
+  "@type": "LocalBusiness",
+  "name": "Rex Bedachungs GmbH",
+  "url": "https://www.rex-bedachung.de",
+  "telephone": "+49-234-583100",
+  "email": "info@rex-bedachung.de",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "Paulinenstraße 22",
+    "postalCode": "44799",
+    "addressLocality": "Bochum",
+    "addressRegion": "Nordrhein-Westfalen",
+    "addressCountry": "DE"
+  },
+  "openingHoursSpecification": [
+    {
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+      "opens": "07:00",
+      "closes": "17:00"
+    }
+  ],
+  "openingHours": "Mo-Fr 07:00-17:00"
+};
+
 export default function Footer() {
   return (
     <footer className="bg-card border-t border-card-border">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(localBusinessSchema) }}
+      />
       <div className="max-w-7xl mx-auto px-4 md:px-6 lg:px-8 py-12 md:py-16">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8 md:gap-12">
           <div>
