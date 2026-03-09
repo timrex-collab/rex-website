@@ -1,5 +1,5 @@
 import ServiceDetail from "./ServiceDetail";
-import bauklempnereiImage from "@assets/S7300254.jpg";
+const bauklempnereiImage = "/images/flachdach-metallverkleidung-bochum-rex-bedachung.webp";
 
 export default function Bauklempnerei() {
   return (
@@ -8,7 +8,7 @@ export default function Bauklempnerei() {
       subtitle="Präzise Metallarbeiten"
       description="Hochwertige Blecharbeiten sind entscheidend für die Langlebigkeit und Optik Ihres Daches. Unsere Klempner fertigen alle Bauteile maßgenau in unserer Werkstatt: Dachrinnen, Fallrohre, Dachränder, Kehlen und Fassadenbekleidungen. Wir arbeiten mit langlebigen Materialien wie Titanzink, Kupfer oder Aluminium und garantieren fachgerechte Montage."
       imageUrl={bauklempnereiImage}
-      imageAlt="Hochwertige Klempnerarbeiten in Zink"
+      imageAlt="Flachdach Metallverkleidung Bochum – Rex Bedachungs GmbH"
       benefits={[
         "Maßgefertigte Bauteile aus eigener Werkstatt",
         "Hochwertige Materialien (Zink, Kupfer, Aluminium)",

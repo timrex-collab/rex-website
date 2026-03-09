@@ -1,5 +1,5 @@
 import ServiceDetail from "./ServiceDetail";
-import flachdachImage from "@assets/Flachdach1.jpeg";
+const flachdachImage = "/images/flachdach-sanierung-bochum-rex-bedachung.webp";
 
 export default function Flachdach() {
   return (
@@ -8,7 +8,7 @@ export default function Flachdach() {
       subtitle="Moderne Abdichtungssysteme"
       description="Flachdächer erfordern besondere Expertise in der Abdichtung. Mit modernen Materialien und bewährten Verfahren sorgen wir für eine zuverlässige, langlebige Dachabdichtung. Ob Bitumen, Kunststoff oder EPDM – wir beraten Sie kompetent und finden die optimale Lösung für Ihr Gebäude. Auf Wunsch realisieren wir auch Gründächer oder begehbare Dachterrassen."
       imageUrl={flachdachImage}
-      imageAlt="Moderne Flachdach-Abdichtung"
+      imageAlt="Flachdach Sanierung Bochum – Rex Bedachungs GmbH Fachbetrieb"
       benefits={[
         "Moderne Abdichtungssysteme (Bitumen, Kunststoff, EPDM)",
         "Energieeffiziente Dämmung",

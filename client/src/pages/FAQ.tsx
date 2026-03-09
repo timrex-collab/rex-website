@@ -6,7 +6,7 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
-import heroImage from "@assets/tondach_hero.png";
+const heroImage = "/images/tondach-hero-dachdeckung-bochum.webp";
 
 export default function FAQ() {
   const faqCategories = [
@@ -465,7 +465,7 @@ export default function FAQ() {
         subtitle="Antworten auf Ihre Fragen"
         description="Finden Sie schnell Antworten auf die wichtigsten Fragen rund um Dacharbeiten, Kosten, Wartung und unsere Leistungen."
         imageUrl={heroImage}
-        imageAlt="FAQ Rex Bedachungs GmbH"
+        imageAlt="Tondach Hero – professionelle Dachdeckung Bochum"
         showCTAs={false}
       />
 

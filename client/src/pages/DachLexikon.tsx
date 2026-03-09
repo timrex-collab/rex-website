@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { Helmet } from "react-helmet";
 import { Search, Book, ShieldCheck } from "lucide-react";
 import Hero from "@/components/Hero";
-import heroImage from "@assets/tondach_hero.png";
+const heroImage = "/images/tondach-hero-dachdeckung-bochum.webp";
 
 const terms = [
   {
@@ -217,7 +217,7 @@ export default function DachLexikon() {
         subtitle="Fachwissen vom Meisterbetrieb"
         description="Ihr Experten-Ratgeber der Rex Bedachungs GmbH für Bochum und das Ruhrgebiet."
         imageUrl={heroImage}
-        imageAlt="Dach Lexikon Rex Bedachungs GmbH"
+        imageAlt="Tondach Hero – professionelle Dachdeckung Bochum"
         showCTAs={false}
       />
 

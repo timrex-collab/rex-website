@@ -1,5 +1,5 @@
 import ServiceDetail from "./ServiceDetail";
-import reparaturenImage from "@assets/Reparatur1.png";
+const reparaturenImage = "/images/dachreparatur-bochum-rex-bedachung.webp";
 
 export default function Reparaturen() {
   return (
@@ -8,7 +8,7 @@ export default function Reparaturen() {
       subtitle="Schnelle Hilfe bei Dachschäden"
       description="Ob Sturmschäden, undichte Stellen oder verschlissene Dachziegel – wir reparieren Ihr Dach schnell und zuverlässig. Als erfahrener Meisterbetrieb erkennen wir Schadensursachen präzise und beheben sie fachgerecht. Kleine Reparaturen führen wir oft direkt vor Ort durch. Bei größeren Schäden beraten wir Sie kompetent über die beste Lösung – von der punktuellen Reparatur bis zur Teilsanierung."
       imageUrl={reparaturenImage}
-      imageAlt="Professionelle Dachreparatur durch Fachmann"
+      imageAlt="Dachreparatur Bochum – schnell und zuverlässig, Rex Bedachung"
       benefits={[
         "Schnelle Schadensanalyse",
         "Hilfe bei Sturmschäden",

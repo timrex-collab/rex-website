@@ -1,5 +1,5 @@
 import ServiceDetail from "./ServiceDetail";
-import dachfensterImage from "@assets/Velux2.jpg";
+const dachfensterImage = "/images/velux-dachfenster-bochum-typ2.webp";
 
 export default function Dachfenster() {
   return (
@@ -8,7 +8,7 @@ export default function Dachfenster() {
       subtitle="Mehr Licht unterm Dach"
       description="Dachfenster schaffen Tageslicht und Wohnkomfort in Dachgeschossen. Wir beraten Sie kompetent bei der Auswahl des passenden Fensters. Ob Schwingfenster, Klapp-Schwingfenster oder Ausstiegsfenster – wir sorgen für fachgerechten Einbau mit Sonnenschutz, Rollläden und optimaler Wärmedämmung."
       imageUrl={dachfensterImage}
-      imageAlt="Moderne Dachfenster-Installation"
+      imageAlt="VELUX Dachfenster Bochum – Rex Bedachungs GmbH"
       benefits={[
         "Markenqualität von führenden Herstellern",
         "Große Auswahl an Größen und Ausführungen",

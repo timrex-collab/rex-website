@@ -5,7 +5,7 @@ import ContactForm from "@/components/ContactForm";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Phone, Mail, MapPin, Clock, MessageCircle, ExternalLink } from "lucide-react";
-import heroImage from "@assets/tondach_hero.png";
+const heroImage = "/images/tondach-hero-dachdeckung-bochum.webp";
 
 export default function Contact() {
   const [mapLoaded, setMapLoaded] = useState(false);
@@ -24,7 +24,7 @@ export default function Contact() {
         subtitle="Wir sind für Sie da"
         description="Haben Sie Fragen oder benötigen ein Angebot? Kontaktieren Sie uns – wir beraten Sie gerne persönlich."
         imageUrl={heroImage}
-        imageAlt="Kontakt Rex Bedachungs GmbH"
+        imageAlt="Tondach Hero – professionelle Dachdeckung Bochum"
         showCTAs={false}
       />
 

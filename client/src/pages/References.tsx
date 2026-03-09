@@ -1,21 +1,22 @@
 import { Helmet } from "react-helmet";
 import Hero from "@/components/Hero";
 import ReferenceCard from "@/components/ReferenceCard";
-import heroImage from "@assets/tondach_hero.png";
-import ref1Image from "@assets/Gründach1.jpg";
-import gruendach2 from "@assets/Gründach2.jpg";
-import gruendach3 from "@assets/Gruendach3.jpg";
 import ref2Image from "@assets/generated_images/Flat_roof_installation_f99a2939.png";
 import ref3Image from "@assets/generated_images/Metal_roofing_craftsmanship_aa78a2e6.png";
 import ref4Image from "@assets/generated_images/Roof_windows_installation_be212f7f.png";
-import tondach1 from "@assets/Tondach1.png";
-import tondach2 from "@assets/Tondach2.png";
-import tondach4 from "@assets/Tondach4.jpg";
-import tondach6 from "@assets/Tondach6.jpg";
-import tondach7 from "@assets/Tondach7.jpg";
 import entwaesserung1 from "@assets/Entwaesserung1.jpg";
-import velux1 from "@assets/Velux1_1761088286795.png";
-import tondach3 from "@assets/Tondach 3.jpeg";
+
+const heroImage = "/images/tondach-hero-dachdeckung-bochum.webp";
+const ref1Image = "/images/gruendach-intensive-begruenung-bochum.webp";
+const gruendach2 = "/images/gruendach-extensive-begruenung-bochum.webp";
+const gruendach3 = "/images/gruendach-bochum-dachbegruenung-experten.webp";
+const tondach1 = "/images/tondach-dachziegel-bochum-typ1.webp";
+const tondach2 = "/images/tondach-dachziegel-bochum-typ2.webp";
+const tondach3 = "/images/tondach-ziegel-bochum-steildach-3.webp";
+const tondach4 = "/images/tondach-dachziegel-bochum-typ4.webp";
+const tondach6 = "/images/tondach-dachziegel-bochum-typ6.webp";
+const tondach7 = "/images/tondach-dachziegel-bochum-typ7.webp";
+const velux1 = "/images/velux-dachfenster-einbau-bochum-typ1.webp";
 
 export default function References() {
   const references = [
@@ -26,7 +27,7 @@ export default function References() {
       year: "2025",
       description: "Lichtlösung Raum.  Mehr Raumgewinn und Kopffreiheit durch Kombi-Aufkeilrahmen. Mit Solar-Rollläden für Hitzeschutz und Verdunkelung.",
       imageUrl: velux1,
-      imageAlt: "Velux Dachfenster Sanierung Bochum",
+      imageAlt: "VELUX Dachfenster Einbau Bochum – zertifizierter Fachbetrieb Rex",
     },
     {
       title: "Neubaugebiet Hattingen",
@@ -44,7 +45,7 @@ export default function References() {
       year: "2021",
       description: "Gründach mit extensiver Dachbegrünung. Aufbau einer neuen Wärmedämmung für bessere Energieeffizienz.",
       imageUrls: [ref1Image, gruendach3],
-      imageAlt: "Einfamilienhaus mit Gründach in Bochum-Weitmar",
+      imageAlt: "Gründach intensive Begrünung Bochum – Rex Bedachungs GmbH",
     },
     {
       title: "Gründach mit Photovoltaik",
@@ -53,7 +54,7 @@ export default function References() {
       year: "2020",
       description: "Gründach mit extensiver Dachbegrünung und Photovoltaikmodulen.",
       imageUrl: gruendach2,
-      imageAlt: "Gründach mit Photovoltaik",
+      imageAlt: "Gründach extensive Begrünung Bochum – Rex Bedachungs GmbH",
     },
     {
       title: "Wohnhaus Bochum-Stiepel",
@@ -62,7 +63,7 @@ export default function References() {
       year: "2020",
       description: "Komplettsanierung mit Erstellung von zwei großen Dachgauben",
       imageUrls: [tondach2, tondach1],
-      imageAlt: "Wohnhaus mit neuen Dachfenstern",
+      imageAlt: "Tondach Dachziegel Bochum – Steildach Qualität Rex Bedachung",
     },
     {
       title: "Einfamilienhaus Bochum Querenburg",
@@ -71,7 +72,7 @@ export default function References() {
       year: "2019",
       description: "Steildach mit hochwertigen Tondachziegeln. Professionelle Ausführung für langlebigen Wetterschutz.",
       imageUrl: tondach3,
-      imageAlt: "Einfamilienhaus mit Steildach in Bochum-Querenburg",
+      imageAlt: "Tondach Dachziegel Bochum – Steildach Qualität Rex Bedachung",
     },
   ];
 

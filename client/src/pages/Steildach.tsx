@@ -1,5 +1,5 @@
 import ServiceDetail from "./ServiceDetail";
-import steildachImage from "@assets/hintergrund.jpg";
+const steildachImage = "/images/dach-hintergrund-rex-bedachung.webp";
 
 export default function Steildach() {
   return (

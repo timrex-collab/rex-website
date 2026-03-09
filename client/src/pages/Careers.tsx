@@ -4,7 +4,7 @@ import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Link } from "wouter";
 import { Shirt, GraduationCap, Euro, TrendingUp, Users, Heart } from "lucide-react";
-import heroImage from "@assets/tondach_hero.png";
+const heroImage = "/images/tondach-hero-dachdeckung-bochum.webp";
 
 export default function Careers() {
   const benefits = [
@@ -79,7 +79,7 @@ export default function Careers() {
         subtitle="Werde Teil unseres Teams"
         description="Wir suchen engagierte Fachkräfte und motivierte Auszubildende, die gemeinsam mit uns wachsen wollen."
         imageUrl={heroImage}
-        imageAlt="Karriere bei Rex Bedachungs GmbH"
+        imageAlt="Tondach Hero – professionelle Dachdeckung Bochum"
         showCTAs={false}
       />
 

@@ -6,12 +6,13 @@ import { Button } from "@/components/ui/button";
 import { Link } from "wouter";
 import { Phone, Shield, Award, Clock } from "lucide-react";
 import heroImage from "@assets/Datei 20.10.25, 19 56 47.jpeg";
-import steildachImage from "@assets/hintergrund.jpg";
-import flachdachImage from "@assets/Flachdach1.jpeg";
-import bauklempnereiImage from "@assets/kamin_1.jpg";
-import dachfensterImage from "@assets/Velux2.jpg";
-import reparaturenImage from "@assets/Reparatur1.png";
 import dachwartungImage from "@assets/Dachdecker bei der Inspektion der Naht_1761081506440.png";
+
+const steildachImage = "/images/dach-hintergrund-rex-bedachung.webp";
+const flachdachImage = "/images/flachdach-sanierung-bochum-rex-bedachung.webp";
+const bauklempnereiImage = "/images/kamin-sanierung-bochum-dachdecker.webp";
+const dachfensterImage = "/images/velux-dachfenster-bochum-typ2.webp";
+const reparaturenImage = "/images/dachreparatur-bochum-rex-bedachung.webp";
 
 export default function Home() {
   useEffect(() => {
@@ -59,7 +60,7 @@ export default function Home() {
       title: "Flachdach",
       description: "Professionelle Abdichtung und Sanierung von Flachdächern für Wohn- und Gewerbeimmobilien.",
       imageUrl: flachdachImage,
-      imageAlt: "Moderne Flachdach-Installation",
+      imageAlt: "Flachdach Sanierung Bochum – Rex Bedachungs GmbH Fachbetrieb",
       href: "/leistungen/flachdach",
       benefits: [
         "Moderne Abdichtungssysteme",
@@ -71,7 +72,7 @@ export default function Home() {
       title: "Bauklempnerei",
       description: "Maßgefertigte Blecharbeiten, Dachrinnen, Regenfallrohre und Wandbekleidungen",
       imageUrl: bauklempnereiImage,
-      imageAlt: "Professionelle Metallarbeiten am Dach",
+      imageAlt: "Kamin Sanierung Bochum – Dachdecker Rex Bedachung",
       href: "/leistungen/bauklempnerei",
       benefits: [
         "Präzise Maßanfertigung",
@@ -83,7 +84,7 @@ export default function Home() {
       title: "Dachfenster",
       description: "Professioneller Einbau von Dachfenstern für mehr Licht und Wohnkomfort im Dachgeschoss.",
       imageUrl: dachfensterImage,
-      imageAlt: "Moderne Dachfenster-Installation",
+      imageAlt: "VELUX Dachfenster Bochum – Rex Bedachungs GmbH",
       href: "/leistungen/dachfenster",
       benefits: [
         "VELUX Spezialist",
@@ -95,7 +96,7 @@ export default function Home() {
       title: "Reparaturen",
       description: "Schnelle und zuverlässige Reparatur von Dachschäden, Sturmschäden und undichten Stellen.",
       imageUrl: reparaturenImage,
-      imageAlt: "Professionelle Dachreparatur",
+      imageAlt: "Dachreparatur Bochum – schnell und zuverlässig, Rex Bedachung",
       href: "/leistungen/reparaturen",
       benefits: [
         "Schnelle Schadensanalyse",
