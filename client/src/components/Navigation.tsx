@@ -27,6 +27,7 @@ export default function Navigation() {
     { name: "Über uns", path: "/ueber-uns" },
     { name: "Karriere", path: "/karriere" },
     { name: "Solarpflicht", path: "/solarpflicht", external: true, href: "https://solarpfilcht-2026--timrex2.replit.app/" },
+    { name: "Förderung", path: "/foerderung" },
     { name: "Kontakt", path: "/kontakt" },
   ];
 
