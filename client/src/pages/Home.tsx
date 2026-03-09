@@ -34,13 +34,24 @@ export default function Home() {
       });
     };
 
-    const script = document.createElement("script");
-    script.src = "https://s.provenexpert.net/seals/proseal-v2.js";
-    script.onload = (window as any).loadProSeal;
-    document.head.appendChild(script);
+    const element = document.getElementById("proSealWidget");
+    if (!element) return;
+
+    const observer = new IntersectionObserver((entries) => {
+      if (entries[0].isIntersecting) {
+        const script = document.createElement("script");
+        script.src = "https://s.provenexpert.net/seals/proseal-v2.js";
+        script.async = true;
+        script.onload = (window as any).loadProSeal;
+        document.body.appendChild(script);
+        observer.disconnect();
+      }
+    });
+
+    observer.observe(element);
 
     return () => {
-      document.head.removeChild(script);
+      observer.disconnect();
     };
   }, []);
 
