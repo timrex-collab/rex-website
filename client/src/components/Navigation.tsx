@@ -22,7 +22,6 @@ export default function Navigation() {
   const mainNav = [
     { name: "Startseite", path: "/" },
     { name: "Leistungen", path: "/leistungen", hasDropdown: true },
-    { name: "Dachfenster", path: "/dachfenster-bochum" },
     { name: "Referenzen", path: "/referenzen" },
     { name: "FAQ", path: "/faq" },
     { name: "Über uns", path: "/ueber-uns" },
