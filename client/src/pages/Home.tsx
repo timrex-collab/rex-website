@@ -70,10 +70,10 @@ export default function Home() {
     },
     {
       title: "Flachdach",
-      description: "Professionelle Abdichtung und Sanierung von Flachdächern für Wohn- und Gewerbeimmobilien.",
+      description: "Mit modernen Abdichtungssystemen wie Bitumen, EPDM oder Flüssigkunststoff sorgen wir für ein langlebiges, dichtes Flachdach – kostenlos aufgemessen und auf Wunsch mit BAFA/KfW-Förderung.",
       imageUrl: flachdachImage,
       imageAlt: "Flachdach Sanierung Bochum – Rex Bedachungs GmbH Fachbetrieb",
-      href: "/leistungen/flachdach",
+      href: "/flachdach-bochum",
       benefits: [
         "Moderne Abdichtungssysteme",
         "Energieeffiziente Lösungen",

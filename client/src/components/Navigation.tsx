@@ -12,7 +12,7 @@ export default function Navigation() {
 
   const services = [
     { name: "Steildach", path: "/leistungen/steildach" },
-    { name: "Flachdach", path: "/leistungen/flachdach" },
+    { name: "Flachdach", path: "/flachdach-bochum" },
     { name: "Bauklempnerei", path: "/leistungen/bauklempnerei" },
     { name: "Dachfenster", path: "/dachfenster-bochum" },
     { name: "Reparaturen", path: "/leistungen/reparaturen" },
