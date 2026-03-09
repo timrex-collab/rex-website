@@ -9,7 +9,67 @@
     <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90' fill='%23B22222'>R</text></svg>" />
     <title>Rex Bedachungs GmbH - Ihr Dach in Meisterhand</title>
     <link rel="preload" as="image" href="/images/dachdecker-bochum-steildach-hero.webp" type="image/webp" fetchpriority="high">
-    
+
+    <style>
+      /* Critical CSS – above-the-fold: prevents layout shift before main bundle loads */
+
+      *, *::before, *::after { box-sizing: border-box; }
+
+      :root {
+        --background: 0 0% 98%;
+        --foreground: 0 0% 15%;
+        --border: 0 0% 88%;
+        --card: 0 0% 100%;
+        --primary: 228.08deg 68.22% 41.96%;
+        --muted-foreground: 0 0% 40%;
+        --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+        --radius: .5rem;
+      }
+
+      .dark {
+        --background: 25 3% 12%;
+        --foreground: 0 0% 98%;
+        --border: 0 0% 25%;
+        --card: 0 0% 18%;
+        --primary: 0 68% 42%;
+        --muted-foreground: 0 0% 70%;
+      }
+
+      html { -webkit-text-size-adjust: 100%; }
+
+      body {
+        margin: 0;
+        font-family: var(--font-sans);
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+        background-color: hsl(var(--background));
+        color: hsl(var(--foreground));
+      }
+
+      #root { min-height: 100vh; }
+
+      /* Navigation – sticky header */
+      nav[class*="sticky"] {
+        position: sticky;
+        top: 0;
+        z-index: 50;
+        background-color: hsl(var(--background) / 0.9);
+        border-bottom: 1px solid hsl(var(--border));
+        height: 4rem;
+      }
+
+      /* Hero – above-the-fold image container */
+      .hero-container {
+        position: relative;
+        height: 80vh;
+        min-height: 500px;
+        max-height: 900px;
+        width: 100%;
+        overflow: hidden;
+        background-color: hsl(var(--background));
+      }
+    </style>
+
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
