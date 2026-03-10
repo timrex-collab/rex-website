@@ -107,15 +107,16 @@ export default function Home() {
     },
     {
       title: "Reparaturen",
-      description: "Schnelle und zuverlässige Reparatur von Dachschäden, Sturmschäden und undichten Stellen.",
+      description: "Sturmschaden, undichte Stellen oder defekte Ziegel? Wir reparieren alle Dachschäden kurzfristig und dauerhaft – inklusive Versicherungsabwicklung und transparenter Kostenaufstellung.",
       imageUrl: reparaturenImage,
       imageAlt: "Dachreparatur Bochum – schnell und zuverlässig, Rex Bedachung",
-      href: "/leistungen/reparaturen",
+      href: "/dachreparatur-bochum",
       benefits: [
         "Schnelle Schadensanalyse",
         "Unkomplizierte Hilfe",
         "Versicherungsabwicklung",
       ],
+      ctaLabel: "Mehr zu Reparaturen",
     },
     {
       title: "Dachwartung",

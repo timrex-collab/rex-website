@@ -15,7 +15,7 @@ export default function Navigation() {
     { name: "Flachdach", path: "/flachdach-bochum" },
     { name: "Bauklempnerei", path: "/leistungen/bauklempnerei" },
     { name: "Dachfenster", path: "/dachfenster-bochum" },
-    { name: "Reparaturen", path: "/leistungen/reparaturen" },
+    { name: "Reparatur", path: "/dachreparatur-bochum" },
     { name: "Dachwartung", path: "/leistungen/dachwartung" },
   ];
 
