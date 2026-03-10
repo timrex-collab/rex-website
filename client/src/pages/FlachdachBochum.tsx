@@ -16,8 +16,11 @@ import {
   Box,
   FlaskConical,
   Sheet,
+  ShieldCheck,
+  MapPin,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { Badge } from "@/components/ui/badge";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 
 const heroImage = "/images/flachdach-sanierung-bochum-rex-bedachung.webp";
@@ -34,30 +37,35 @@ const services = [
     title: "Flachdach Neueindeckung Bochum",
     text: "Ob Neubau oder kompletter Neuaufbau – wir decken Ihr Flachdach fachgerecht ein und wählen gemeinsam das passende Abdichtungssystem für Ihr Gebäude und Budget.",
     testId: "card-neueindeckung",
+    highlight: false,
   },
   {
     icon: <Wrench className="w-8 h-8 text-primary" />,
     title: "Flachdach Sanierung & Abdichtung",
     text: "Undichtes Flachdach? Wir analysieren den Schaden, sanieren fachgerecht und sorgen für eine langlebige Abdichtung – egal ob kleiner Riss oder Komplettsanierung.",
     testId: "card-sanierung",
+    highlight: false,
   },
   {
     icon: <Thermometer className="w-8 h-8 text-primary" />,
     title: "Energieeffiziente Flachdach Dämmung",
     text: "Eine professionelle Flachdachdämmung senkt Ihre Heizkosten spürbar und wird staatlich gefördert. Wir beraten Sie zu allen Möglichkeiten und übernehmen die komplette Umsetzung.",
     testId: "card-daemmung",
+    highlight: false,
   },
   {
     icon: <Leaf className="w-8 h-8 text-primary" />,
-    title: "Gründach & Dachterrassen Bochum",
-    text: "Verwandeln Sie Ihr Flachdach in eine grüne Oase oder begehbare Terrasse – inklusive Wurzelschutzfolie, Drainageschicht und fachgerechter Abdichtung.",
+    title: "Gründach & Dachbegrünung Bochum",
+    text: "Verwandeln Sie Ihr Flachdach in ein Gründach – extensiv (pflegeleicht, Sedum & Moos) oder intensiv (Dachgarten, begehbar). Inklusive Wurzelschutzfolie, Drainageschicht und fachgerechter Abdichtung. Gründächer verbessern die Dämmung, verlängern die Dachabdichtung und werden mit KfW gefördert.",
     testId: "card-gruendach",
+    highlight: true,
   },
   {
     icon: <ClipboardCheck className="w-8 h-8 text-primary" />,
     title: "Wartungsverträge für langfristige Sicherheit",
     text: "Regelmäßige Kontrolle verhindert teure Schäden. Wir prüfen Abdichtung, Entwässerung und Dämmung – und beheben kleine Mängel direkt vor Ort.",
     testId: "card-wartung",
+    highlight: false,
   },
 ];
 
@@ -68,6 +76,8 @@ const vorteile = [
   "Dachterrassen und Balkone",
   "Wartungsverträge für langfristige Sicherheit",
   "Kostenloses Aufmaß vor Ort",
+  "Gründach extensiv & intensiv – Bochum & Ruhrgebiet",
+  "Dachbegrünung nach FLL-Richtlinien",
 ];
 
 const vorgehen = [
@@ -138,6 +148,16 @@ const faqItems = [
     answer:
       "Ja! Wir realisieren sowohl extensive als auch intensive Begrünung sowie begehbare Dachterrassen – inklusive Wurzelschutz, Drainage und fachgerechter Abdichtung.",
   },
+  {
+    question: "Was kostet ein Gründach in Bochum?",
+    answer:
+      "Ein extensives Gründach kostet in der Regel 50–100 €/m², ein intensives Gründach 100–200 €/m² – jeweils inklusive Abdichtung, Wurzelschutz und Substrat. Wir erstellen Ihnen kostenlos ein Aufmaß und Angebot.",
+  },
+  {
+    question: "Wird ein Gründach in Bochum gefördert?",
+    answer:
+      "Ja! Gründächer werden über KfW-Programme sowie teilweise durch städtische Förderprogramme der Stadt Bochum unterstützt. Zusätzlich senkt ein Gründach langfristig die Niederschlagswassergebühren. Wir beraten Sie kostenlos zu allen Fördermöglichkeiten.",
+  },
 ];
 
 const schemaJson = JSON.stringify({
@@ -158,6 +178,20 @@ const schemaJson = JSON.stringify({
     "@type": "Offer",
     "availability": "https://schema.org/InStock",
   },
+  "hasOfferCatalog": {
+    "@type": "OfferCatalog",
+    "name": "Flachdach & Gründach Leistungen",
+    "itemListElement": [
+      {
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "Service",
+          "name": "Gründach & Dachbegrünung Bochum – extensiv und intensiv",
+          "description": "Fachgerechte Dachbegrünung in Bochum – extensiv und intensiv, inklusive Wurzelschutz, Drainage und KfW-Förderberatung",
+        },
+      },
+    ],
+  },
 });
 
 export default function FlachdachBochum() {
@@ -167,15 +201,15 @@ export default function FlachdachBochum() {
   return (
     <>
       <Helmet>
-        <title>Flachdach Bochum – Sanierung, Abdichtung &amp; Neueindeckung | Rex Bedachungs GmbH</title>
+        <title>Flachdach &amp; Gründach Bochum – Sanierung, Abdichtung &amp; Dachbegrünung | Rex Bedachungs GmbH</title>
         <meta
           name="description"
-          content="Flachdach Bochum ✓ Alle Abdichtungssysteme ✓ Sanierung & Neueindeckung ✓ Kostenloses Aufmaß ✓ BAFA/KfW-Förderung – Rex Bedachungs GmbH, Ihr Fachbetrieb im Ruhrgebiet."
+          content="Flachdach & Gründach Bochum ✓ Dachbegrünung extensiv & intensiv ✓ Alle Abdichtungssysteme ✓ Kostenloses Aufmaß ✓ BAFA/KfW-Förderung – Rex Bedachungs GmbH, Ihr Fachbetrieb im Ruhrgebiet."
         />
-        <meta property="og:title" content="Flachdach Bochum – Sanierung, Abdichtung & Neueindeckung | Rex Bedachungs GmbH" />
+        <meta property="og:title" content="Flachdach & Gründach Bochum – Sanierung, Abdichtung & Dachbegrünung | Rex Bedachungs GmbH" />
         <meta
           property="og:description"
-          content="Flachdach Bochum – alle Abdichtungssysteme aus einer Hand. Sanierung, Neueindeckung, Dämmung & Gründach mit kostenlosem Aufmaß und Förderberatung."
+          content="Flachdach & Gründach Bochum ✓ Dachbegrünung extensiv & intensiv ✓ Alle Abdichtungssysteme ✓ Kostenloses Aufmaß ✓ BAFA/KfW-Förderung – Rex Bedachungs GmbH, Ihr Fachbetrieb im Ruhrgebiet."
         />
         <link rel="canonical" href="https://www.rex-bedachung.de/flachdach-bochum" />
         <script type="application/ld+json">{schemaJson}</script>
@@ -194,10 +228,10 @@ export default function FlachdachBochum() {
         <div className="absolute inset-0 bg-gradient-to-r from-black/75 via-black/55 to-black/30" aria-hidden="true" />
         <div className="relative z-10 max-w-7xl mx-auto">
           <h1 className="text-3xl md:text-5xl font-extrabold leading-tight mb-4 max-w-3xl" data-testid="heading-hero">
-            Flachdach Bochum – Abdichtung, Sanierung &amp; Neueindeckung vom Fachbetrieb
+            Flachdach &amp; Gründach Bochum – Abdichtung, Sanierung &amp; Dachbegrünung vom Fachbetrieb
           </h1>
           <p className="text-lg md:text-xl text-slate-200 mb-8 max-w-xl" data-testid="text-hero-subtitle">
-            Ob Bitumen, EPDM oder Flüssigkunststoff – wir finden die optimale Lösung für Ihr Gebäude
+            Ob Flachdach, Gründach oder Dachbegrünung – wir finden die optimale Lösung für Ihr Gebäude in Bochum
           </p>
           <div className="flex flex-wrap gap-3 mb-8">
             <Button
@@ -232,8 +266,9 @@ export default function FlachdachBochum() {
           <p className="text-muted-foreground leading-relaxed text-base md:text-lg" data-testid="text-einleitung">
             Flachdächer erfordern besondere Expertise in der Abdichtung. Mit modernen Materialien und bewährten
             Verfahren sorgen wir für eine zuverlässige, langlebige Dachabdichtung. Ob Bitumen, Kunststoff oder EPDM –
-            wir beraten Sie kompetent und finden die optimale Lösung für Ihr Gebäude. Auf Wunsch realisieren wir auch
-            Gründächer oder begehbare Dachterrassen – inklusive BAFA/KfW-Förderung.
+            wir beraten Sie kompetent und finden die optimale Lösung für Ihr Gebäude. Besonders gefragt in Bochum:
+            Gründächer und Dachbegrünung – extensiv für pflegeleichte Begrünung oder intensiv für begehbare Dachgärten.
+            Alles inklusive Wurzelschutz, Drainage und BAFA/KfW-Förderung.
           </p>
         </div>
       </section>
@@ -246,10 +281,21 @@ export default function FlachdachBochum() {
           </h2>
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
             {services.map((s) => (
-              <Card key={s.testId} data-testid={s.testId}>
+              <Card
+                key={s.testId}
+                data-testid={s.testId}
+                className={s.highlight ? "border-primary ring-1 ring-primary" : ""}
+              >
                 <CardHeader className="flex flex-row items-start gap-4 flex-wrap pb-2">
                   <div className="shrink-0 mt-1">{s.icon}</div>
-                  <CardTitle className="text-lg leading-snug">{s.title}</CardTitle>
+                  <div className="flex flex-col gap-1 flex-1">
+                    <CardTitle className="text-lg leading-snug">{s.title}</CardTitle>
+                    {s.highlight && (
+                      <Badge className="self-start" data-testid="badge-besonders-gefragt">
+                        Besonders gefragt
+                      </Badge>
+                    )}
+                  </div>
                 </CardHeader>
                 <CardContent>
                   <p className="text-muted-foreground text-sm leading-relaxed">{s.text}</p>
@@ -321,8 +367,69 @@ export default function FlachdachBochum() {
         </div>
       </section>
 
+      {/* ── Gründach Bochum Sektion ── */}
+      <section className="py-16 px-4 bg-background" data-testid="section-gruendach">
+        <div className="max-w-7xl mx-auto">
+          <h2 className="text-2xl md:text-3xl font-bold text-center mb-4 text-foreground" data-testid="heading-gruendach">
+            Gründach Bochum – Dachbegrünung vom Fachbetrieb
+          </h2>
+          <p className="text-muted-foreground text-center mb-10 max-w-2xl mx-auto" data-testid="text-gruendach-intro">
+            Ein Gründach ist mehr als Optik – es ist eine Investition in Energieeffizienz, Langlebigkeit und
+            Nachhaltigkeit. Rex Bedachungs GmbH realisiert Gründächer in Bochum und dem gesamten Ruhrgebiet –
+            fachgerecht, termingerecht und mit vollständiger Förderberatung.
+          </p>
+          <div className="grid md:grid-cols-2 gap-6 mb-10">
+            <Card data-testid="card-gruendach-extensiv">
+              <CardHeader className="pb-2">
+                <CardTitle className="text-lg">Extensive Dachbegrünung</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <p className="text-muted-foreground text-sm leading-relaxed">
+                  Leicht, pflegeleicht, ideal für große Flächen. Typische Bepflanzung: Sedum, Gräser, Kräuter.
+                  Aufbaugewicht: 60–150 kg/m².
+                </p>
+              </CardContent>
+            </Card>
+            <Card data-testid="card-gruendach-intensiv">
+              <CardHeader className="pb-2">
+                <CardTitle className="text-lg">Intensive Dachbegrünung</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <p className="text-muted-foreground text-sm leading-relaxed">
+                  Begehbarer Dachgarten mit Sträuchern und Stauden. Höheres Aufbaugewicht, statische Prüfung
+                  erforderlich. Wir übernehmen Planung und Ausführung komplett.
+                </p>
+              </CardContent>
+            </Card>
+          </div>
+          <div className="grid sm:grid-cols-3 gap-6">
+            <div className="flex items-start gap-4" data-testid="item-gruendach-benefit-0">
+              <Thermometer className="w-8 h-8 text-primary shrink-0 mt-1" aria-hidden="true" />
+              <div>
+                <p className="font-semibold text-foreground text-sm">Verbessert Wärme- &amp; Schalldämmung</p>
+                <p className="text-muted-foreground text-sm mt-1">Natürliche Isolationsschicht für mehr Effizienz</p>
+              </div>
+            </div>
+            <div className="flex items-start gap-4" data-testid="item-gruendach-benefit-1">
+              <Droplets className="w-8 h-8 text-primary shrink-0 mt-1" aria-hidden="true" />
+              <div>
+                <p className="font-semibold text-foreground text-sm">Reduziert Regenwasserableitung</p>
+                <p className="text-muted-foreground text-sm mt-1">Entlastet die Kanalisation und spart Gebühren</p>
+              </div>
+            </div>
+            <div className="flex items-start gap-4" data-testid="item-gruendach-benefit-2">
+              <ShieldCheck className="w-8 h-8 text-primary shrink-0 mt-1" aria-hidden="true" />
+              <div>
+                <p className="font-semibold text-foreground text-sm">Verlängert Lebensdauer der Dachabdichtung um bis zu 30 Jahre</p>
+                <p className="text-muted-foreground text-sm mt-1">Schutz vor UV-Strahlung und Temperaturschwankungen</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* ── Förderungs-Sektion ── */}
-      <section className="py-16 px-4 bg-background" data-testid="section-foerderung">
+      <section className="py-16 px-4 bg-muted/40" data-testid="section-foerderung">
         <div className="max-w-7xl mx-auto">
           <div
             className="rounded-md p-8 md:p-12 text-center"
@@ -333,9 +440,14 @@ export default function FlachdachBochum() {
             <h2 className="text-2xl md:text-3xl font-bold text-white mb-4" data-testid="heading-foerderung">
               Bis zu 20% Förderung durch BAFA &amp; KfW
             </h2>
-            <p className="text-slate-300 leading-relaxed mb-8 max-w-2xl mx-auto" data-testid="text-foerderung">
+            <p className="text-slate-300 leading-relaxed mb-4 max-w-2xl mx-auto" data-testid="text-foerderung">
               Flachdachsanierungen mit verbesserter Dämmung werden vom Staat großzügig gefördert. Wir beraten Sie
               kostenlos zu allen Fördermöglichkeiten und übernehmen auf Wunsch die komplette Antragstellung.
+            </p>
+            <p className="text-slate-300 leading-relaxed mb-8 max-w-2xl mx-auto" data-testid="text-foerderung-gruendach">
+              Gründächer werden zusätzlich über das KfW-Programm 297/298 (Klimafreundlicher Neubau) sowie durch
+              städtische Förderprogramme der Stadt Bochum bezuschusst. Wir informieren Sie kostenlos über alle
+              aktuellen Möglichkeiten.
             </p>
             <Button
               size="lg"
@@ -350,7 +462,7 @@ export default function FlachdachBochum() {
       </section>
 
       {/* ── Warum Rex ── */}
-      <section className="py-16 px-4 bg-muted/40" data-testid="section-warum-rex">
+      <section className="py-16 px-4 bg-background" data-testid="section-warum-rex">
         <div className="max-w-4xl mx-auto">
           <h2 className="text-2xl md:text-3xl font-bold text-center mb-10 text-foreground" data-testid="heading-warum-rex">
             Warum Rex Bedachungs GmbH?
@@ -371,7 +483,7 @@ export default function FlachdachBochum() {
       </section>
 
       {/* ── Bild-Galerie ── */}
-      <section className="py-16 px-4 bg-background" data-testid="section-galerie">
+      <section className="py-16 px-4 bg-muted/40" data-testid="section-galerie">
         <div className="max-w-7xl mx-auto">
           <h2 className="text-2xl md:text-3xl font-bold text-center mb-10 text-foreground" data-testid="heading-galerie">
             Einblicke in unsere Arbeit
@@ -396,7 +508,7 @@ export default function FlachdachBochum() {
       </section>
 
       {/* ── FAQ ── */}
-      <section className="py-16 px-4 bg-muted/40" data-testid="section-faq">
+      <section className="py-16 px-4 bg-background" data-testid="section-faq">
         <div className="max-w-3xl mx-auto">
           <h2 className="text-2xl md:text-3xl font-bold text-center mb-10 text-foreground" data-testid="heading-faq">
             Häufige Fragen zum Flachdach in Bochum
@@ -430,6 +542,21 @@ export default function FlachdachBochum() {
               </div>
             ))}
           </div>
+        </div>
+      </section>
+
+      {/* ── Regionale Abdeckung ── */}
+      <section className="py-16 px-4 bg-muted/40" data-testid="section-region">
+        <div className="max-w-4xl mx-auto text-center">
+          <MapPin className="w-10 h-10 text-primary mx-auto mb-4" aria-hidden="true" />
+          <h2 className="text-2xl md:text-3xl font-bold mb-4 text-foreground" data-testid="heading-region">
+            Gründach &amp; Flachdach Bochum – Ruhrgebiet weit tätig
+          </h2>
+          <p className="text-muted-foreground leading-relaxed text-base md:text-lg" data-testid="text-region">
+            Rex Bedachungs GmbH ist Ihr Fachbetrieb für Flachdach und Gründach in Bochum, Herne, Castrop-Rauxel,
+            Witten, Hattingen, Wattenscheid und dem gesamten Ruhrgebiet. Ob Flachdachabdichtung, Dachsanierung
+            oder Dachbegrünung – wir sind Ihr zuverlässiger Partner rund ums Dach.
+          </p>
         </div>
       </section>
 
