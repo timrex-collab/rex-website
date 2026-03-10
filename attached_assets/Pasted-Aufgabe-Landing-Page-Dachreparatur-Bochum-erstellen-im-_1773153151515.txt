@@ -1,0 +1,258 @@
+Aufgabe: Landing Page "Dachreparatur Bochum" erstellen – 
+im exakt gleichen Stil wie /dachfenster-bochum und /flachdach-bochum
+
+WICHTIG: Design identisch zu den bestehenden Landing Pages –
+gleiche Farben, Schriften, Buttons, Icons, Abstände, Komponenten.
+
+---
+
+Schritt 1 – Erstelle client/src/pages/Dachreparatur.tsx
+Route hinzufügen: /dachreparatur-bochum → Dachreparatur.tsx
+
+---
+
+Schritt 2 – Hero-Sektion:
+
+Bild: /images/dachreparatur-bochum-rex-bedachung.webp
+H1: "Dachreparatur Bochum – schnell, zuverlässig, dauerhaft"
+Unterzeile: "Sturmschäden, undichte Stellen, defekte Ziegel – 
+wir reparieren alle Dächer kurzfristig und mit Garantie"
+Button 1 (primär): "Reparatur anfragen" → Kontaktformular
+Button 2 (sekundär): "0234-583100"
+Vertrauenszeichen: "Kurzfristiger Einsatz • 20+ Jahre Erfahrung • Ruhrgebiet"
+
+---
+
+Schritt 3 – Einleitungstext:
+
+"Wenn das Dach undicht ist oder ein Sturm Schäden hinterlassen hat, 
+zählt jede Stunde. Rex Bedachungs GmbH repariert Schäden an 
+Steildächern, Flachdächern und Dachfenstern – schnell, sauber 
+und mit transparenter Kostenaufstellung vor Beginn der Arbeiten. 
+Wir helfen auch bei der Abwicklung mit Ihrer Versicherung."
+
+---
+
+Schritt 4 – Leistungskarten (5 Karten):
+
+Karte 1 – Sturmschaden
+Icon: Blitz/Sturm
+Titel: "Sturmschaden Reparatur Bochum"
+Text: "Abgedeckte Ziegel, beschädigte Dachrinnen oder 
+aufgerissene Abdichtungen – wir sichern Ihr Dach 
+kurzfristig und reparieren dauerhaft. Unterstützung 
+bei der Versicherungsabwicklung inklusive."
+
+Karte 2 – Undichtes Dach
+Icon: Wassertropfen
+Titel: "Undichtes Dach abdichten"
+Text: "Wasserflecken an der Decke sind ein klares Warnsignal. 
+Wir analysieren die Schadensursache vor Ort, dichten 
+fachgerecht ab und dokumentieren alle Maßnahmen – 
+für Sie und Ihre Versicherung."
+
+Karte 3 – Ziegel & Eindeckung
+Icon: Dach/Ziegel
+Titel: "Ziegel & Eindeckung reparieren"
+Text: "Gebrochene, verrutschte oder fehlende Dachziegel 
+reparieren wir schnell und passgenau – egal ob 
+Beton-, Ton- oder Betondachsteine. 
+Für alle gängigen Hersteller und Modelle."
+
+Karte 4 – Dachrinnen & Entwässerung
+Icon: Rohr/Rinne
+Titel: "Dachrinnen & Fallrohre reparieren"
+Text: "Verstopfte, undichte oder beschädigte Dachrinnen 
+und Fallrohre reparieren und reinigen wir fachgerecht – 
+inklusive Laubschutzgitter auf Wunsch."
+
+Karte 5 – Anschlüsse & Durchdringungen
+Icon: Werkzeug
+Titel: "Kaminanschlüsse & Dachdurchdringungen"
+Text: "Undichte Kaminanschlüsse, Dachdurchdringungen 
+oder Gauben sind häufige Schadensquellen. 
+Wir dichten alle Anschlüsse dauerhaft ab – 
+mit Zink, Aluminium oder Kupfer."
+
+---
+
+Schritt 5 – Vorteile & Vorgehen (2-Spalten-Layout, 
+exakt wie bestehende Seite – übernehmen und erweitern):
+
+Linke Spalte – "Ihre Vorteile":
+✓ Schnelle Schadensanalyse vor Ort
+✓ Hilfe bei Sturmschäden & Versicherungsabwicklung
+✓ Kurzfristiger Einsatz – auch bei Notfällen
+✓ Transparentes Angebot mit Kostenaufstellung
+✓ Dauerhafte und sichere Lösungen
+✓ 20+ Jahre Erfahrung im Ruhrgebiet
+✓ Alle Dacharten & Hersteller
+
+Rechte Spalte – "Unser Vorgehen":
+1. Schadensbesichtigung vor Ort
+2. Detaillierte Analyse der Schadensursache
+3. Transparentes Angebot mit Kostenaufstellung
+4. Termingerechte Durchführung der Reparatur
+5. Abschlussprüfung und Dokumentation
+6. Optional: Wartungsvertrag abschließen
+
+---
+
+Schritt 6 – Highlight-Box "Versicherungsschäden":
+
+Icon: Dokument/Versicherung
+H2: "Sturmschaden? Wir helfen bei der Versicherung"
+Text: "Bei Sturmschäden übernehmen viele Gebäudeversicherungen 
+die Reparaturkosten. Wir dokumentieren den Schaden 
+professionell, erstellen einen detaillierten Schadensbericht 
+und unterstützen Sie bei der Kommunikation mit 
+Ihrer Versicherung – damit Sie schnell zu Ihrem 
+Recht kommen."
+Button: "Schaden melden & Beratung anfragen"
+
+---
+
+Schritt 7 – Warum Rex-Sektion (4 Punkte):
+
+✓ Kurzfristiger Einsatz – auch bei Notfällen
+✓ Alle Dacharten: Steildach, Flachdach, Dachfenster
+✓ Versicherungsabwicklung auf Wunsch
+✓ 20+ Jahre Erfahrung in Bochum & Ruhrgebiet
+
+---
+
+Schritt 8 – Bild-Galerie (3 Bilder):
+
+/images/dachreparatur-bochum-rex-bedachung.webp
+/images/dach-hintergrund-rex-bedachung.webp
+/images/kamin-sanierung-bochum-dachdecker.webp
+
+---
+
+Schritt 9 – FAQ-Sektion:
+
+F: "Was kostet eine Dachreparatur in Bochum?"
+A: "Die Kosten hängen von Art und Umfang des Schadens ab. 
+Kleine Reparaturen beginnen ab ca. 150–300 €, 
+größere Sanierungen je nach Aufwand. 
+Wir erstellen Ihnen kostenlos ein transparentes 
+Angebot nach Besichtigung vor Ort."
+
+F: "Wie schnell können Sie einen Sturmschaden reparieren?"
+A: "Bei dringenden Schäden reagieren wir kurzfristig – 
+in der Regel innerhalb von 24–48 Stunden. 
+Bei akuter Gefahr sichern wir Ihr Dach provisorisch 
+ab und führen die dauerhafte Reparatur 
+schnellstmöglich durch."
+
+F: "Übernimmt die Versicherung die Kosten?"
+A: "Bei Sturmschäden zahlt in der Regel die 
+Gebäudeversicherung. Wir dokumentieren den Schaden 
+professionell und helfen bei der Abwicklung. 
+Sprechen Sie uns an – wir beraten Sie kostenlos."
+
+F: "Reparieren Sie alle Dacharten?"
+A: "Ja – wir reparieren Steildächer mit Beton- und 
+Tondachziegeln, Flachdächer aller Abdichtungssysteme, 
+Dachfenster, Kaminanschlüsse, Dachrinnen und 
+Fallrohre. Für alle gängigen Hersteller und Modelle."
+
+F: "Bieten Sie auch Wartungsverträge an?"
+A: "Ja! Mit einem Wartungsvertrag prüfen wir Ihr Dach 
+regelmäßig und beheben kleine Mängel bevor sie 
+zu teuren Schäden werden. 
+Sprechen Sie uns auf unsere Wartungspakete an."
+
+---
+
+Schritt 10 – Regionen-Abschnitt (VOR dem CTA):
+
+H2: "Dachreparatur im gesamten Ruhrgebiet"
+Text: "Rex Bedachungs GmbH repariert Dächer in Bochum, 
+Herne, Castrop-Rauxel, Witten, Hattingen, 
+Wattenscheid, Gelsenkirchen und dem gesamten 
+Ruhrgebiet – kurzfristig, zuverlässig und 
+zu fairen Preisen."
+
+---
+
+Schritt 11 – Abschluss-CTA:
+
+H2: "Interesse an Reparaturen? Jetzt Schaden melden!"
+Text: "Rufen Sie uns an oder schreiben Sie uns – 
+wir melden uns innerhalb von 24 Stunden 
+und kommen zur kostenlosen Besichtigung."
+Button 1 (primär): "Reparatur anfragen"
+Button 2 (sekundär): "0234-583100"
+
+---
+
+Schritt 12 – SEO Meta-Tags:
+
+<title>Dachreparatur Bochum – Sturmschaden, undichtes Dach & Notdienst | Rex Bedachungs GmbH</title>
+<meta name="description" content="Dachreparatur Bochum ✓ Sturmschäden 
+✓ Undichtes Dach ✓ Kurzfristiger Einsatz ✓ Versicherungsabwicklung – 
+Rex Bedachungs GmbH, Ihr Fachbetrieb im Ruhrgebiet. Jetzt anfragen!">
+<link rel="canonical" href="https://www.rex-bedachung.de/dachreparatur-bochum">
+
+---
+
+Schritt 13 – Dropdown-Menü unter "Leistungen" ergänzen:
+
+Leistungen ▾
+    ├── Dachfenster  → /dachfenster-bochum
+    ├── Flachdach    → /flachdach-bochum
+    └── Reparatur    → /dachreparatur-bochum  ← neu
+
+---
+
+Schritt 14 – Reparatur-Abschnitt auf der Homepage zu Teaser kürzen:
+
+Text (max. 2-3 Sätze):
+"Sturmschaden, undichte Stellen oder defekte Ziegel? 
+Wir reparieren alle Dachschäden kurzfristig und dauerhaft – 
+inklusive Versicherungsabwicklung und transparenter 
+Kostenaufstellung."
+Button: "Mehr zu Reparaturen →" → /dachreparatur-bochum
+
+---
+
+Schritt 15 – Schema.org einfügen:
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Service",
+  "name": "Dachreparatur Bochum",
+  "provider": {
+    "@type": "LocalBusiness",
+    "name": "Rex Bedachungs GmbH",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "Paulinenstraße 22",
+      "addressLocality": "Bochum",
+      "postalCode": "44799",
+      "addressCountry": "DE"
+    },
+    "telephone": "+49-234-583100"
+  },
+  "areaServed": ["Bochum", "Herne", "Castrop-Rauxel", 
+    "Witten", "Hattingen", "Ruhrgebiet"],
+  "description": "Dachreparatur in Bochum – Sturmschäden, 
+    undichte Dächer, Ziegel, Dachrinnen und Kaminanschlüsse. 
+    Kurzfristiger Einsatz, Versicherungsabwicklung inklusive.",
+  "offers": {
+    "@type": "Offer",
+    "availability": "https://schema.org/InStock"
+  }
+}
+</script>
+
+---
+
+Schritt 16 – Zeige alle erstellten und geänderten Dateien 
+mit Zeilennummern.
+
+Nach dem Erstellen sofort 
+https://www.rex-bedachung.de/dachreparatur-bochum 
+in der Google Search Console zur Indexierung einreichen!
