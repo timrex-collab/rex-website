@@ -1,0 +1,190 @@
+Aufgabe: Landing Page /flachdach-bochum für Gründach-SEO optimieren.
+
+WICHTIG: 
+- Lösche NICHTS
+- Verändere das Design NICHT
+- Füge NUR hinzu und passe Texte an
+- Alle bestehenden Sektionen bleiben erhalten
+
+---
+
+Schritt 1 – Meta-Tags aktualisieren:
+
+ALT:
+<title>Flachdach Bochum – Sanierung, Abdichtung & Neueindeckung | Rex Bedachungs GmbH</title>
+<meta name="description" content="Flachdach Bochum ✓ Alle Abdichtungssysteme 
+✓ Sanierung & Neueindeckung ✓ Kostenloses Aufmaß ✓ BAFA/KfW-Förderung – 
+Rex Bedachungs GmbH, Ihr Fachbetrieb im Ruhrgebiet.">
+
+NEU:
+<title>Flachdach & Gründach Bochum – Sanierung, Abdichtung & Dachbegrünung | Rex Bedachungs GmbH</title>
+<meta name="description" content="Flachdach & Gründach Bochum ✓ Dachbegrünung extensiv & intensiv 
+✓ Alle Abdichtungssysteme ✓ Kostenloses Aufmaß ✓ BAFA/KfW-Förderung – 
+Rex Bedachungs GmbH, Ihr Fachbetrieb im Ruhrgebiet.">
+
+---
+
+Schritt 2 – H1 anpassen:
+
+ALT:
+"Flachdach Bochum – Abdichtung, Sanierung & Neueindeckung vom Fachbetrieb"
+
+NEU:
+"Flachdach & Gründach Bochum – Abdichtung, Sanierung & Dachbegrünung vom Fachbetrieb"
+
+---
+
+Schritt 3 – Unterzeile im Hero anpassen:
+
+ALT:
+"Ob Bitumen, EPDM oder Flüssigkunststoff – 
+wir finden die optimale Lösung für Ihr Gebäude"
+
+NEU:
+"Ob Flachdach, Gründach oder Dachbegrünung – 
+wir finden die optimale Lösung für Ihr Gebäude in Bochum"
+
+---
+
+Schritt 4 – Einleitungstext erweitern:
+
+ALT:
+"Flachdächer erfordern besondere Expertise in der Abdichtung. 
+Mit modernen Materialien und bewährten Verfahren sorgen wir 
+für eine zuverlässige, langlebige Dachabdichtung. Ob Bitumen, 
+Kunststoff oder EPDM – wir beraten Sie kompetent und finden 
+die optimale Lösung für Ihr Gebäude. Auf Wunsch realisieren 
+wir auch Gründächer oder begehbare Dachterrassen – 
+inklusive BAFA/KfW-Förderung."
+
+NEU:
+"Flachdächer erfordern besondere Expertise in der Abdichtung. 
+Mit modernen Materialien und bewährten Verfahren sorgen wir 
+für eine zuverlässige, langlebige Dachabdichtung. Ob Bitumen, 
+Kunststoff oder EPDM – wir beraten Sie kompetent und finden 
+die optimale Lösung für Ihr Gebäude. Besonders gefragt in Bochum: 
+Gründächer und Dachbegrünung – extensiv für pflegeleichte 
+Begrünung oder intensiv für begehbare Dachgärten. 
+Alles inklusive Wurzelschutz, Drainage und BAFA/KfW-Förderung."
+
+---
+
+Schritt 5 – Leistungskarte "Gründach & Dachterrassen" aufwerten.
+Diese Karte soll optisch hervorgehoben werden (z.B. farbiger Rahmen, 
+Badge "Besonders gefragt" oder ähnliches – passend zum bestehenden Design):
+
+ALT Titel: "Gründach & Dachterrassen Bochum"
+NEU Titel: "Gründach & Dachbegrünung Bochum"
+
+ALT Text:
+"Verwandeln Sie Ihr Flachdach in eine grüne Oase 
+oder begehbare Terrasse – inklusive Wurzelschutzfolie, 
+Drainageschicht und fachgerechter Abdichtung."
+
+NEU Text:
+"Verwandeln Sie Ihr Flachdach in ein Gründach – 
+extensiv (pflegeleicht, Sedum & Moos) oder intensiv 
+(Dachgarten, begehbar). Inklusive Wurzelschutzfolie, 
+Drainageschicht und fachgerechter Abdichtung. 
+Gründächer verbessern die Dämmung, verlängern die 
+Dachabdichtung und werden mit KfW gefördert."
+
+---
+
+Schritt 6 – "Ihre Vorteile" Liste erweitern:
+
+Bestehende Liste BEHALTEN, zusätzlich einfügen:
+✓ Gründach extensiv & intensiv – Bochum & Ruhrgebiet
+✓ Dachbegrünung nach FLL-Richtlinien
+
+---
+
+Schritt 7 – Neue Sektion einfügen – NACH der Abdichtungssysteme-Sektion, 
+VOR der Förderungs-Sektion:
+
+H2: "Gründach Bochum – Dachbegrünung vom Fachbetrieb"
+Text:
+"Ein Gründach ist mehr als Optik – es ist eine Investition 
+in Energieeffizienz, Langlebigkeit und Nachhaltigkeit. 
+Rex Bedachungs GmbH realisiert Gründächer in Bochum 
+und dem gesamten Ruhrgebiet – fachgerecht, termingerecht 
+und mit vollständiger Förderberatung.
+
+Extensive Dachbegrünung:
+Leicht, pflegeleicht, ideal für große Flächen. 
+Typische Bepflanzung: Sedum, Gräser, Kräuter. 
+Aufbaugewicht: 60–150 kg/m².
+
+Intensive Dachbegrünung:
+Begehbarer Dachgarten mit Sträuchern und Stauden. 
+Höheres Aufbaugewicht, statische Prüfung erforderlich. 
+Wir übernehmen Planung und Ausführung komplett."
+
+Darunter 3 Icon-Punkte:
+🌱 Verbessert Wärme- & Schalldämmung
+💧 Reduziert Regenwasserableitung
+♻️ Verlängert Lebensdauer der Dachabdichtung um bis zu 30 Jahre
+
+---
+
+Schritt 8 – Förderungs-Sektion Text ergänzen:
+
+Nach dem bestehenden Text einfügen:
+"Gründächer werden zusätzlich über das 
+KfW-Programm 297/298 (Klimafreundlicher Neubau) 
+sowie durch städtische Förderprogramme der 
+Stadt Bochum bezuschusst. Wir informieren Sie 
+kostenlos über alle aktuellen Möglichkeiten."
+
+---
+
+Schritt 9 – FAQ zwei neue Fragen hinzufügen:
+
+F: "Was kostet ein Gründach in Bochum?"
+A: "Ein extensives Gründach kostet in der Regel 
+50–100 €/m², ein intensives Gründach 
+100–200 €/m² – jeweils inklusive Abdichtung, 
+Wurzelschutz und Substrat. 
+Wir erstellen Ihnen kostenlos ein Aufmaß und Angebot."
+
+F: "Wird ein Gründach in Bochum gefördert?"
+A: "Ja! Gründächer werden über KfW-Programme 
+sowie teilweise durch städtische Förderprogramme 
+der Stadt Bochum unterstützt. 
+Zusätzlich senkt ein Gründach langfristig 
+die Niederschlagswassergebühren. 
+Wir beraten Sie kostenlos zu allen Fördermöglichkeiten."
+
+---
+
+Schritt 10 – Neuen Abschnitt ganz unten VOR dem CTA einfügen:
+
+H2: "Gründach & Flachdach Bochum – Ruhrgebiet weit tätig"
+Text:
+"Rex Bedachungs GmbH ist Ihr Fachbetrieb für 
+Flachdach und Gründach in Bochum, Herne, 
+Castrop-Rauxel, Witten, Hattingen, Wattenscheid 
+und dem gesamten Ruhrgebiet. Ob Flachdachabdichtung, 
+Dachsanierung oder Dachbegrünung – wir sind Ihr 
+zuverlässiger Partner rund ums Dach."
+
+---
+
+Schritt 11 – Canonical URL und Schema.org für Gründach ergänzen.
+In der bestehenden Schema.org hasOfferCatalog sicherstellen dass 
+dieser Eintrag vorhanden ist (falls nicht, einfügen):
+
+{
+  "@type": "Offer",
+  "itemOffered": { 
+    "@type": "Service", 
+    "name": "Gründach & Dachbegrünung Bochum – extensiv und intensiv",
+    "description": "Fachgerechte Dachbegrünung in Bochum – 
+    extensiv und intensiv, inklusive Wurzelschutz, 
+    Drainage und KfW-Förderberatung"
+  }
+}
+
+---
+
+Schritt 12 – Zeige alle geänderten Dateien mit Zeilennummern.
