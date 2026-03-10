@@ -1,93 +1,144 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+
   <url>
     <loc>https://www.rex-bedachung.de/</loc>
-    <lastmod>2026-03-09</lastmod>
+    <lastmod>2026-03-10</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>1.0</priority>
-    <changefreq>monthly</changefreq>
   </url>
+
+  <url>
+    <loc>https://www.rex-bedachung.de/dachfenster-bochum</loc>
+    <lastmod>2026-03-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <url>
+    <loc>https://www.rex-bedachung.de/flachdach-bochum</loc>
+    <lastmod>2026-03-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <url>
+    <loc>https://www.rex-bedachung.de/dachreparatur-bochum</loc>
+    <lastmod>2026-03-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
   <url>
     <loc>https://www.rex-bedachung.de/leistungen</loc>
-    <lastmod>2026-03-09</lastmod>
-    <priority>0.9</priority>
+    <lastmod>2026-03-10</lastmod>
     <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
   </url>
+
   <url>
     <loc>https://www.rex-bedachung.de/leistungen/steildach</loc>
-    <lastmod>2026-03-09</lastmod>
-    <priority>0.8</priority>
+    <lastmod>2026-03-10</lastmod>
     <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
   </url>
+
   <url>
     <loc>https://www.rex-bedachung.de/leistungen/flachdach</loc>
-    <lastmod>2026-03-09</lastmod>
-    <priority>0.8</priority>
+    <lastmod>2026-03-10</lastmod>
     <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
   </url>
+
   <url>
     <loc>https://www.rex-bedachung.de/leistungen/bauklempnerei</loc>
-    <lastmod>2026-03-09</lastmod>
-    <priority>0.8</priority>
+    <lastmod>2026-03-10</lastmod>
     <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
   </url>
+
   <url>
     <loc>https://www.rex-bedachung.de/leistungen/dachfenster</loc>
-    <lastmod>2026-03-09</lastmod>
-    <priority>0.8</priority>
+    <lastmod>2026-03-10</lastmod>
     <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
   </url>
+
   <url>
     <loc>https://www.rex-bedachung.de/leistungen/dachwartung</loc>
-    <lastmod>2026-03-09</lastmod>
-    <priority>0.8</priority>
+    <lastmod>2026-03-10</lastmod>
     <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
   </url>
+
   <url>
     <loc>https://www.rex-bedachung.de/leistungen/reparaturen</loc>
-    <lastmod>2026-03-09</lastmod>
-    <priority>0.8</priority>
+    <lastmod>2026-03-10</lastmod>
     <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
   </url>
+
+  <url>
+    <loc>https://www.rex-bedachung.de/foerderung</loc>
+    <lastmod>2026-03-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://www.rex-bedachung.de/solarpflicht</loc>
+    <lastmod>2026-03-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
   <url>
     <loc>https://www.rex-bedachung.de/faq</loc>
-    <lastmod>2026-03-09</lastmod>
-    <priority>0.8</priority>
+    <lastmod>2026-03-10</lastmod>
     <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
   </url>
+
   <url>
     <loc>https://www.rex-bedachung.de/referenzen</loc>
-    <lastmod>2026-03-09</lastmod>
-    <priority>0.7</priority>
+    <lastmod>2026-03-10</lastmod>
     <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
   </url>
+
   <url>
     <loc>https://www.rex-bedachung.de/ueber-uns</loc>
-    <lastmod>2026-03-09</lastmod>
-    <priority>0.7</priority>
+    <lastmod>2026-03-10</lastmod>
     <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
   </url>
+
   <url>
     <loc>https://www.rex-bedachung.de/karriere</loc>
-    <lastmod>2026-03-09</lastmod>
-    <priority>0.6</priority>
+    <lastmod>2026-03-10</lastmod>
     <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
   </url>
+
   <url>
     <loc>https://www.rex-bedachung.de/kontakt</loc>
-    <lastmod>2026-03-09</lastmod>
-    <priority>0.8</priority>
+    <lastmod>2026-03-10</lastmod>
     <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
   </url>
+
   <url>
     <loc>https://www.rex-bedachung.de/impressum</loc>
     <lastmod>2026-01-01</lastmod>
-    <priority>0.3</priority>
     <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
   </url>
+
   <url>
     <loc>https://www.rex-bedachung.de/datenschutz</loc>
     <lastmod>2026-01-01</lastmod>
-    <priority>0.3</priority>
     <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
   </url>
+
 </urlset>
