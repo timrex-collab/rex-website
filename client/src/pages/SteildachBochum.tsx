@@ -12,10 +12,10 @@ import {
   Thermometer,
   Layers,
   MapPin,
-  Triangle,
-  Pentagon,
   Square,
-  Diamond,
+  TrendingDown,
+  Leaf,
+  Lightbulb,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -61,30 +61,24 @@ const services = [
   },
 ];
 
-const dachformen = [
+const daemmungCards = [
   {
-    icon: <Triangle className="w-8 h-8 text-primary" />,
-    title: "Satteldach",
-    text: "Die häufigste Dachform in Bochum – klassisch, bewährt und langlebig. Neueindeckung und Sanierung aller Satteldächer.",
-    testId: "item-satteldach",
+    icon: <Thermometer className="w-8 h-8 text-primary" />,
+    title: "Aufsparrendämmung – die beste Lösung",
+    text: "Die Aufsparrendämmung (auch Überdämmung genannt) wird auf den Dachsparren verlegt – ohne den Wohnraum zu verkleinern. Kältebrücken werden vollständig eliminiert, die Dämmwirkung ist deutlich besser als bei Zwischen- oder Untersparrendämmung. Ideal bei Neueindeckung oder kompletter Dachsanierung.",
+    testId: "card-aufsparren",
   },
   {
-    icon: <Pentagon className="w-8 h-8 text-primary" />,
-    title: "Walmdach",
-    text: "Alle vier Seiten geneigt – anspruchsvolle Eindeckung, die handwerkliche Präzision erfordert. Unsere Spezialität.",
-    testId: "item-walmdach",
+    icon: <Home className="w-8 h-8 text-primary" />,
+    title: "Zwischensparrendämmung",
+    text: "Klassische Dämmung zwischen den Dachsparren – wirtschaftlich und bewährt. Gut geeignet wenn der Dachboden ausgebaut werden soll und keine vollständige Neueindeckung geplant ist. Wir beraten Sie welches System für Ihr Dach optimal ist.",
+    testId: "card-zwischensparren",
   },
   {
-    icon: <Square className="w-8 h-8 text-primary" />,
-    title: "Pultdach",
-    text: "Modern und geradlinig – ideal für Anbauten und Carports. Eindeckung mit Ziegel oder Flachdach-Systemen.",
-    testId: "item-pultdach",
-  },
-  {
-    icon: <Diamond className="w-8 h-8 text-primary" />,
-    title: "Zeltdach & Sonderformen",
-    text: "Turmdächer, Krüppelwalm, Mansarddach – wir realisieren auch anspruchsvolle Sonderformen präzise und sauber.",
-    testId: "item-sonderformen",
+    icon: <TrendingDown className="w-8 h-8 text-primary" />,
+    title: "Bis zu 20 % Förderung – BAFA & KfW",
+    text: "Energetische Dachsanierungen werden staatlich gefördert: BAFA-Bundesförderung für effiziente Gebäude (BEG) bis 20 % der Investitionskosten. KfW-Kredit mit Niedrigzins zusätzlich möglich. Wir übernehmen die komplette Förderberatung kostenlos.",
+    testId: "card-foerderung-daemmung",
   },
 ];
 
@@ -187,12 +181,12 @@ export default function SteildachBochum() {
         <title>Steildach Bochum – Neueindeckung, Sanierung &amp; Dämmung | Rex Bedachungs GmbH</title>
         <meta
           name="description"
-          content="Steildach Bochum ✓ Neueindeckung & Sanierung ✓ Satteldach, Walmdach, Pultdach ✓ Meisterbetrieb ✓ BAFA/KfW-Förderung – Rex Bedachungs GmbH, Ihr Fachbetrieb im Ruhrgebiet. Jetzt kostenlos anfragen!"
+          content="Steildach & energetische Dachsanierung Bochum ✓ Aufsparrendämmung ✓ Bis zu 20 % BAFA/KfW-Förderung ✓ Heizkosten dauerhaft senken – Rex Bedachungs GmbH, Ihr Fachbetrieb im Ruhrgebiet."
         />
         <meta property="og:title" content="Steildach Bochum – Neueindeckung, Sanierung & Dämmung | Rex Bedachungs GmbH" />
         <meta
           property="og:description"
-          content="Steildach Bochum ✓ Neueindeckung & Sanierung ✓ Satteldach, Walmdach, Pultdach ✓ Meisterbetrieb ✓ BAFA/KfW-Förderung – Rex Bedachungs GmbH, Ihr Fachbetrieb im Ruhrgebiet."
+          content="Steildach & energetische Dachsanierung Bochum ✓ Aufsparrendämmung ✓ Bis zu 20 % BAFA/KfW-Förderung ✓ Heizkosten dauerhaft senken – Rex Bedachungs GmbH, Ihr Fachbetrieb im Ruhrgebiet."
         />
         <link rel="canonical" href="https://www.rex-bedachung.de/steildach-bochum" />
         <script type="application/ld+json">{schemaJson}</script>
@@ -207,7 +201,7 @@ export default function SteildachBochum() {
           src={heroImage}
           alt="Steildach Neueindeckung Bochum – Rex Bedachungs GmbH"
           className="absolute inset-0 w-full h-full object-cover"
-          fetchPriority="high"
+          {...{ fetchpriority: "high" } as any}
         />
         <div className="absolute inset-0 bg-gradient-to-r from-black/75 via-black/55 to-black/30" aria-hidden="true" />
         <div className="relative z-10 max-w-7xl mx-auto">
@@ -278,17 +272,21 @@ export default function SteildachBochum() {
         </div>
       </section>
 
-      {/* Dachformen */}
-      <section className="py-16 px-4 bg-background" data-testid="section-dachformen">
+      {/* Energetische Dachsanierung */}
+      <section className="py-16 px-4 bg-background" data-testid="section-daemmung">
         <div className="max-w-7xl mx-auto">
-          <h2 className="text-2xl md:text-3xl font-bold text-center mb-4 text-foreground" data-testid="heading-dachformen">
-            Alle Dachformen – Steildach Bochum
+          <h2 className="text-2xl md:text-3xl font-bold text-center mb-4 text-foreground" data-testid="heading-daemmung">
+            Energetische Dachsanierung Bochum – jetzt Heizkosten senken
           </h2>
-          <p className="text-muted-foreground text-center mb-10 max-w-2xl mx-auto" data-testid="text-dachformen">
-            Jedes Dach ist anders – wir kennen alle.
+          <p className="text-muted-foreground text-center mb-4 max-w-2xl mx-auto font-medium" data-testid="text-daemmung-subtitle">
+            Ein schlecht gedämmtes Dach kostet Sie jeden Monat bares Geld – wir ändern das.
+          </p>
+          <p className="text-muted-foreground text-center mb-10 max-w-3xl mx-auto text-sm leading-relaxed" data-testid="text-daemmung-intro">
+            Bis zu 30 % der Heizenergie eines Hauses gehen über das Dach verloren. Eine professionelle Dachdämmung ist die
+            effektivste Maßnahme um den Energieverbrauch dauerhaft zu senken – und wird mit bis zu 20 % durch BAFA und KfW gefördert.
           </p>
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            {dachformen.map((d) => (
+            {daemmungCards.map((d) => (
               <Card key={d.testId} data-testid={d.testId}>
                 <CardHeader className="flex flex-col items-start gap-3 pb-2">
                   <div className="shrink-0">{d.icon}</div>
@@ -299,6 +297,52 @@ export default function SteildachBochum() {
                 </CardContent>
               </Card>
             ))}
+            <Card data-testid="card-vorteile-daemmung">
+              <CardHeader className="flex flex-col items-start gap-3 pb-2">
+                <div className="shrink-0"><Leaf className="w-8 h-8 text-primary" /></div>
+                <CardTitle className="text-base leading-snug">Vorteile auf einen Blick</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <div className="space-y-2">
+                  {[
+                    "Heizkosten dauerhaft um bis zu 30 % senken",
+                    "Wohnkomfort spürbar verbessern",
+                    "Immobilienwert steigern",
+                    "CO\u2082-Fußabdruck reduzieren",
+                    "Sommerhitze effektiv abhalten",
+                    "Förderfähig nach GEG (Gebäudeenergiegesetz)",
+                  ].map((item, i) => (
+                    <div key={i} className="flex items-start gap-2">
+                      <CheckCircle className="w-4 h-4 text-primary shrink-0 mt-0.5" aria-hidden="true" />
+                      <span className="text-muted-foreground text-sm">{item}</span>
+                    </div>
+                  ))}
+                </div>
+              </CardContent>
+            </Card>
+          </div>
+
+          <div
+            className="rounded-md p-8 md:p-10 mt-10 flex flex-col md:flex-row items-center gap-6"
+            style={{ background: "linear-gradient(135deg, #0f172a 0%, #1e3a8a 100%)" }}
+            data-testid="box-tipp-daemmung"
+          >
+            <Lightbulb className="w-10 h-10 text-blue-300 shrink-0" aria-hidden="true" />
+            <div className="flex-1 text-center md:text-left">
+              <p className="text-white font-semibold mb-1" data-testid="text-tipp-title">Tipp vom Fachbetrieb</p>
+              <p className="text-slate-300 text-sm leading-relaxed" data-testid="text-tipp-body">
+                Die Aufsparrendämmung lohnt sich besonders dann, wenn das Dach ohnehin neu eingedeckt wird – die Mehrkosten
+                sind gering, der Effekt ist maximal. Rex Bedachungs GmbH berät Sie kostenlos vor Ort.
+              </p>
+            </div>
+            <Button
+              size="lg"
+              className="bg-blue-400 text-white border-blue-400 shrink-0"
+              onClick={() => setLocation("/kontakt")}
+              data-testid="button-tipp-beratung"
+            >
+              Kostenloses Beratungsgespräch anfragen
+            </Button>
           </div>
         </div>
       </section>
