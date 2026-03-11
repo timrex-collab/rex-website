@@ -83,15 +83,16 @@ export default function Home() {
     },
     {
       title: "Bauklempnerei",
-      description: "Maßgefertigte Blecharbeiten, Dachrinnen, Regenfallrohre und Wandbekleidungen",
+      description: "Dachrinnen, Fallrohre, Wandbekleidungen und Fassadenverkleidungen – alles maßgefertigt in unserer eigenen Werkstatt in Bochum. Titanzink, Kupfer oder Aluminium: wir beraten Sie kostenlos.",
       imageUrl: bauklempnereiImage,
       imageAlt: "Kamin Sanierung Bochum – Dachdecker Rex Bedachung",
-      href: "/leistungen/bauklempnerei",
+      href: "/bauklempnerei-bochum",
       benefits: [
         "Präzise Maßanfertigung",
         "Langlebige Materialien",
         "Fachgerechte Montage",
       ],
+      ctaLabel: "Mehr zur Bauklempnerei",
     },
     {
       title: "Dachfenster – VELUX & Roto Fachbetrieb",
