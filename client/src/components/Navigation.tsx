@@ -11,7 +11,7 @@ export default function Navigation() {
   const closeTimeoutRef = useRef<number | null>(null);
 
   const services = [
-    { name: "Steildach", path: "/leistungen/steildach" },
+    { name: "Steildach", path: "/steildach-bochum" },
     { name: "Flachdach", path: "/flachdach-bochum" },
     { name: "Bauklempnerei", path: "/leistungen/bauklempnerei" },
     { name: "Dachfenster", path: "/dachfenster-bochum" },

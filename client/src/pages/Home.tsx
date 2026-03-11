@@ -58,15 +58,16 @@ export default function Home() {
   const services = [
     {
       title: "Steildach",
-      description: "Fachgerechte Eindeckung und Sanierung von Steildächern mit hochwertigen Materialien.",
+      description: "Ob Satteldach, Walmdach oder Pultdach – wir decken alle Steildachformen fachgerecht neu ein oder sanieren sie dauerhaft. Als Meisterbetrieb mit 20+ Jahren Erfahrung stehen wir für Qualität, die hält.",
       imageUrl: steildachImage,
       imageAlt: "Steildach mit roten Ziegeln",
-      href: "/leistungen/steildach",
+      href: "/steildach-bochum",
       benefits: [
         "Alle gängigen Dachformen",
         "Hochwertige Materialien",
         "Langlebige Lösungen",
       ],
+      ctaLabel: "Mehr zu Steildach",
     },
     {
       title: "Flachdach",
