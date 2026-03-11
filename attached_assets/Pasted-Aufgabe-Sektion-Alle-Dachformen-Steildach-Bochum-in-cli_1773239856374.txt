@@ -1,0 +1,102 @@
+Aufgabe: Sektion "Alle Dachformen – Steildach Bochum" 
+in client/src/pages/Steildach.tsx (oder der entsprechenden Datei) 
+komplett ersetzen.
+
+WICHTIG: Nur diese eine Sektion ersetzen – alles andere bleibt.
+
+---
+
+ALT (komplett ersetzen):
+H2: "Alle Dachformen – Steildach Bochum"
+Unterzeile: "Jedes Dach ist anders – wir kennen alle."
+4 Karten: Satteldach, Walmdach, Pultdach, Zeltdach & Sonderformen
+
+---
+
+NEU:
+
+H2: "Energetische Dachsanierung Bochum – jetzt Heizkosten senken"
+Unterzeile: "Ein schlecht gedämmtes Dach kostet Sie jeden Monat bares Geld – 
+wir ändern das."
+
+Einleitungstext (unter der Unterzeile):
+"Bis zu 30 % der Heizenergie eines Hauses gehen über das Dach verloren. 
+Eine professionelle Dachdämmung ist die effektivste Maßnahme 
+um den Energieverbrauch dauerhaft zu senken – 
+und wird mit bis zu 20 % durch BAFA und KfW gefördert."
+
+---
+
+4 Karten (gleiches Layout wie vorher – Icons, Titel, Text):
+
+Karte 1
+Icon: Thermometer/Wärme (z.B. Flame oder Thermometer aus lucide-react)
+Titel: "Aufsparrendämmung – die beste Lösung"
+Text: "Die Aufsparrendämmung (auch Überdämmung genannt) wird 
+auf den Dachsparren verlegt – ohne den Wohnraum zu verkleinern. 
+Kältebrücken werden vollständig eliminiert, 
+die Dämmwirkung ist deutlich besser als bei 
+Zwischen- oder Untersparrendämmung. 
+Ideal bei Neueindeckung oder kompletter Dachsanierung."
+
+Karte 2
+Icon: Home oder Building
+Titel: "Zwischensparrendämmung"
+Text: "Klassische Dämmung zwischen den Dachsparren – 
+wirtschaftlich und bewährt. Gut geeignet wenn 
+der Dachboden ausgebaut werden soll und 
+keine vollständige Neueindeckung geplant ist. 
+Wir beraten Sie welches System für Ihr Dach optimal ist."
+
+Karte 3
+Icon: TrendingDown oder Euro/Coins
+Titel: "Bis zu 20 % Förderung – BAFA & KfW"
+Text: "Energetische Dachsanierungen werden staatlich gefördert: 
+BAFA-Bundesförderung für effiziente Gebäude (BEG) 
+bis 20 % der Investitionskosten. 
+KfW-Kredit mit Niedrigzins zusätzlich möglich. 
+Wir übernehmen die komplette Förderberatung kostenlos."
+
+Karte 4
+Icon: Leaf oder Shield
+Titel: "Vorteile auf einen Blick"
+Text als Liste mit Checkmarks:
+✓ Heizkosten dauerhaft um bis zu 30 % senken
+✓ Wohnkomfort spürbar verbessern
+✓ Immobilienwert steigern
+✓ CO₂-Fußabdruck reduzieren
+✓ Sommerhitze effektiv abhalten
+✓ Förderfähig nach GEG (Gebäudeenergiegesetz)
+
+---
+
+Direkt NACH den 4 Karten eine Highlight-Box einfügen
+(gleicher Stil wie andere Highlight-Boxen auf der Seite):
+
+Icon: Info oder Lightbulb
+Text: "Tipp vom Fachbetrieb: Die Aufsparrendämmung lohnt sich 
+besonders dann, wenn das Dach ohnehin neu eingedeckt wird – 
+die Mehrkosten sind gering, der Effekt ist maximal. 
+Rex Bedachungs GmbH berät Sie kostenlos vor Ort."
+Button: "Kostenloses Beratungsgespräch anfragen"
+
+---
+
+Meta-Ergänzung für diese Seite:
+Falls noch nicht vorhanden, in den Meta-Keywords 
+und Description folgende Begriffe ergänzen:
+- energetische Dachsanierung Bochum
+- Aufsparrendämmung Bochum
+- Dachdämmung Bochum
+- Heizkosten senken Dach Bochum
+- KfW Dachdämmung Bochum
+
+Description anpassen auf:
+"Steildach & energetische Dachsanierung Bochum ✓ 
+Aufsparrendämmung ✓ Bis zu 20 % BAFA/KfW-Förderung 
+✓ Heizkosten dauerhaft senken – Rex Bedachungs GmbH, 
+Ihr Fachbetrieb im Ruhrgebiet."
+
+---
+
+Zeige die geänderten Zeilen mit Zeilennummern.
