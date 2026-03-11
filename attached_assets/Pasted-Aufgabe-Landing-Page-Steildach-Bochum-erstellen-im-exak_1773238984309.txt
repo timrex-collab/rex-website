@@ -1,0 +1,356 @@
+Aufgabe: Landing Page "Steildach Bochum" erstellen –
+im exakt gleichen Stil wie /dachfenster-bochum, 
+/flachdach-bochum und /dachreparatur-bochum
+
+WICHTIG: Design identisch zu den bestehenden Landing Pages –
+gleiche Farben, Schriften, Buttons, Icons, Abstände, Komponenten.
+
+---
+
+Schritt 1 – Erstelle client/src/pages/Steildach.tsx
+Route hinzufügen: /steildach-bochum → Steildach.tsx
+
+---
+
+Schritt 2 – Hero-Sektion:
+
+Bild: /images/tondach-hero-dachdeckung-bochum.webp
+fetchpriority="high"
+H1: "Steildach Bochum – Neueindeckung & Sanierung vom Meisterbetrieb"
+Unterzeile: "Satteldach, Walmdach oder Pultdach – 
+wir decken alle Dachformen fachgerecht mit Tonziegeln 
+und Betondachsteinen neu ein"
+Button 1 (primär): "Angebot anfragen" → Kontaktformular
+Button 2 (sekundär): "0234-583100"
+Vertrauenszeichen: "Meisterbetrieb • 20+ Jahre Erfahrung • Ruhrgebiet"
+
+---
+
+Schritt 3 – Einleitungstext:
+
+"Als Meisterbetrieb bieten wir professionelle Steildacharbeiten 
+für Neubauten und Sanierungen in Bochum und dem gesamten Ruhrgebiet. 
+Ob Satteldach, Walmdach oder Pultdach – wir beherrschen alle 
+gängigen Dachformen und arbeiten mit hochwertigen Materialien 
+wie Tonziegeln und Betondachsteinen führender Hersteller. 
+Unsere erfahrenen Dachdecker sorgen für fachgerechte Ausführung 
+nach den neuesten Standards – damit Ihr Dach Jahrzehnte hält."
+
+---
+
+Schritt 4 – Leistungskarten (5 Karten):
+
+Karte 1 – Neueindeckung
+Icon: Dach/Haus
+Titel: "Steildach Neueindeckung Bochum"
+Text: "Komplette Neueindeckung aller Steildachformen – 
+Satteldach, Walmdach, Zeltdach und Pultdach. 
+Mit Tonziegeln, Betondachsteinen oder Schiefer, 
+fachgerecht verlegt nach DIN-Norm und mit Gewährleistung."
+
+Karte 2 – Sanierung
+Icon: Werkzeug/Renovierung
+Titel: "Steildach Sanierung & Dachstuhl"
+Text: "Sanierung von Altdächern inklusive Dachstuhlprüfung, 
+Lattung, Unterspannbahn und Neueindeckung. 
+Wir erkennen Schwachstellen frühzeitig und beseitigen 
+sie dauerhaft – für ein dichtes, sicheres Dach."
+
+Karte 3 – Dämmung
+Icon: Thermometer/Wärme
+Titel: "Steildach Dämmung & Wärmeschutz"
+Text: "Fachgerechte Zwischensparren-, Aufsparren- 
+und Untersparrendämmung nach aktueller EnEV/GEG. 
+Senkt Heizkosten dauerhaft und steigert den 
+Wohnkomfort im Dachgeschoss spürbar."
+
+Karte 4 – Dachgauben & Dachfenster
+Icon: Fenster/Gaube
+Titel: "Dachgauben & Dachfenster einbauen"
+Text: "Einbau und Sanierung von Dachgauben, Schleppgauben 
+und Dachfenstern aller Hersteller – inklusive 
+fachgerechter Eindeckung, Anschlüsse und Abdichtung 
+rund um die Durchdringung."
+
+Karte 5 – Klempnerarbeiten am Steildach
+Icon: Rohr/Zink
+Titel: "Dachrinnen, Blech & Klempnerarbeiten"
+Text: "Montage und Erneuerung von Dachrinnen, 
+Fallrohren, Traufblechen und Ortgangblechen. 
+Wir arbeiten mit Zink, Aluminium und Kupfer – 
+sauber, dicht und langlebig."
+
+---
+
+Schritt 5 – Dachformen-Sektion (NEU, nach Leistungskarten):
+
+H2: "Alle Dachformen – Steildach Bochum"
+Text: "Jedes Dach ist anders – wir kennen alle."
+
+4 Punkte nebeneinander (Icon + Titel + Kurztext):
+
+1. Satteldach
+"Die häufigste Dachform in Bochum – klassisch, 
+bewährt und langlebig. Neueindeckung und 
+Sanierung aller Satteldächer."
+
+2. Walmdach
+"Alle vier Seiten geneigt – anspruchsvolle 
+Eindeckung, die handwerkliche Präzision erfordert. 
+Unsere Spezialität."
+
+3. Pultdach
+"Modern und geradlinig – ideal für Anbauten 
+und Carports. Eindeckung mit Ziegel oder 
+Flachdach-Systemen."
+
+4. Zeltdach & Sonderformen
+"Turmdächer, Krüppelwalm, Mansarddach – 
+wir realisieren auch anspruchsvolle Sonderformen 
+präzise und sauber."
+
+---
+
+Schritt 6 – Materialien-Sektion:
+
+H2: "Hochwertige Materialien vom Fachbetrieb"
+Text: "Wir arbeiten ausschließlich mit Produkten 
+führender Hersteller."
+
+3 Karten:
+
+Karte 1 – Tonziegel
+"Natürlich, langlebig, bewährt. 
+Tonziegel überzeugen mit über 100 Jahren 
+Lebensdauer, natürlicher Optik und 
+hervorragender Witterungsbeständigkeit."
+
+Karte 2 – Betondachstein
+"Wirtschaftlich und robust. 
+Betondachsteine bieten eine breite 
+Auswahl an Farben und Profilen bei 
+hoher Stabilität und gutem Preis-Leistungs-Verhältnis."
+
+Karte 3 – Schiefer & Sonderdeckungen
+"Exklusiv und einzigartig. 
+Natürschiefer und Kunstschiefer 
+für besondere Anforderungen – 
+repräsentativ, dauerhaft und wertsteigernd."
+
+---
+
+Schritt 7 – Vorteile & Vorgehen (2-Spalten-Layout,
+exakt wie bestehende Seiten – aus Screenshot übernehmen 
+und erweitern):
+
+Linke Spalte – "Ihre Vorteile":
+✓ Alle Dachformen: Sattel-, Walm-, Zelt- und Pultdach
+✓ Hochwertige Materialien von führenden Herstellern
+✓ Fachgerechte Dämmung für optimalen Wärmeschutz
+✓ Langlebige Konstruktionen mit Gewährleistung
+✓ Schnelle und saubere Ausführung
+✓ Meisterbetrieb – 20+ Jahre Erfahrung
+✓ BAFA/KfW-Förderung bei Sanierung
+
+Rechte Spalte – "Unser Vorgehen":
+1. Kostenlose Vor-Ort-Besichtigung und Beratung
+2. Detaillierte Planung und transparentes Angebot
+3. Professionelle Ausführung durch Meisterbetrieb
+4. Abschlusskontrolle und Übergabe
+5. Dokumentation und Gewährleistung
+6. Optional: Wartungsvertrag abschließen
+
+---
+
+Schritt 8 – Förderungs-Sektion:
+
+H2: "Förderung für Steildach-Sanierung in Bochum"
+Text: "Bei der energetischen Sanierung Ihres Steildachs 
+profitieren Sie von attraktiven Förderprogrammen:
+
+BAFA-Bundesförderung BEG – bis zu 20% der Investitionskosten 
+bei Dämmung nach GEG-Standard.
+
+KfW-Programm 261 – günstige Kredite für 
+energieeffiziente Sanierungen.
+
+Wir beraten Sie kostenlos welche Förderung für 
+Ihr Projekt in Frage kommt – und helfen bei 
+der Antragstellung."
+
+Button: "Förderung anfragen"
+
+---
+
+Schritt 9 – Bild-Galerie (3 Bilder):
+
+/images/tondach-ziegel-bochum-steildach-3.webp
+/images/tondach-dachziegel-bochum-typ1.webp
+/images/tondach-dachziegel-bochum-typ2.webp
+
+---
+
+Schritt 10 – FAQ-Sektion:
+
+F: "Was kostet eine Steildach-Neueindeckung in Bochum?"
+A: "Die Kosten hängen von Dachgröße, Dachform und 
+gewähltem Material ab. Als Richtwert: 
+80–180 €/m² für eine Neueindeckung mit 
+Tonziegeln oder Betondachsteinen inklusive 
+Lattung und Unterspannbahn. 
+Wir erstellen kostenlos ein genaues Angebot 
+nach Besichtigung vor Ort."
+
+F: "Wie lange hält ein neu eingedecktes Steildach?"
+A: "Tonziegel halten 60–100 Jahre, 
+Betondachsteine 30–50 Jahre, 
+Naturschiefer über 100 Jahre – 
+vorausgesetzt Lattung, Unterspannbahn 
+und Dachanschlüsse sind fachgerecht ausgeführt. 
+Das garantieren wir als Meisterbetrieb."
+
+F: "Wird die Steildach-Sanierung gefördert?"
+A: "Ja – bei energetischer Sanierung mit Dämmung 
+gibt es BAFA-Zuschüsse bis 20% und 
+günstige KfW-Kredite. 
+Wir beraten Sie kostenlos zu allen 
+aktuellen Fördermöglichkeiten und 
+helfen beim Antrag."
+
+F: "Sanieren Sie auch den Dachstuhl?"
+A: "Ja. Vor jeder Neueindeckung prüfen wir 
+den Dachstuhl auf Schäden und Standfestigkeit. 
+Balken, Pfetten und Sparren reparieren 
+oder ersetzen wir wenn nötig – 
+alles aus einer Hand."
+
+F: "Wie lange dauert eine Steildach-Neueindeckung?"
+A: "Ein durchschnittliches Einfamilienhaus 
+(ca. 150 m² Dachfläche) ist in 3–5 Arbeitstagen 
+neu eingedeckt – abhängig von Dachform, 
+Komplexität und Wetterlage. 
+Wir arbeiten termingerecht und zuverlässig."
+
+---
+
+Schritt 11 – Regionen-Abschnitt (VOR dem CTA):
+
+H2: "Steildach Bochum & Ruhrgebiet – Ihr Meisterbetrieb"
+Text: "Rex Bedachungs GmbH deckt Steildächer im gesamten 
+Ruhrgebiet neu ein – in Bochum, Herne, Castrop-Rauxel, 
+Witten, Hattingen, Wattenscheid, Gelsenkirchen 
+und Recklinghausen. Meisterbetrieb mit über 
+20 Jahren Erfahrung in der Region."
+
+---
+
+Schritt 12 – Abschluss-CTA:
+
+H2: "Interesse an Steildach? Jetzt kostenlos beraten lassen!"
+Text: "Wir kommen zur kostenlosen Besichtigung 
+und erstellen Ihnen ein transparentes Angebot – 
+ohne versteckte Kosten, ohne Verpflichtung."
+Button 1 (primär): "Angebot anfragen"
+Button 2 (sekundär): "0234-583100"
+
+---
+
+Schritt 13 – SEO Meta-Tags:
+
+<title>Steildach Bochum – Neueindeckung, Sanierung & Dämmung | Rex Bedachungs GmbH</title>
+<meta name="description" content="Steildach Bochum ✓ Neueindeckung 
+& Sanierung ✓ Satteldach, Walmdach, Pultdach ✓ Meisterbetrieb 
+✓ BAFA/KfW-Förderung – Rex Bedachungs GmbH, 
+Ihr Fachbetrieb im Ruhrgebiet. Jetzt kostenlos anfragen!">
+<link rel="canonical" href="https://www.rex-bedachung.de/steildach-bochum">
+
+---
+
+Schritt 14 – Dropdown-Menü unter "Leistungen" ergänzen:
+
+Leistungen ▾
+    ├── Dachfenster     → /dachfenster-bochum
+    ├── Flachdach       → /flachdach-bochum
+    ├── Reparatur       → /dachreparatur-bochum
+    └── Steildach       → /steildach-bochum  ← neu
+
+---
+
+Schritt 15 – Steildach-Abschnitt auf der Homepage zu 
+Teaser kürzen:
+
+Text (max. 2-3 Sätze):
+"Ob Satteldach, Walmdach oder Pultdach – 
+wir decken alle Steildachformen fachgerecht 
+neu ein oder sanieren sie dauerhaft. 
+Als Meisterbetrieb mit 20+ Jahren Erfahrung 
+stehen wir für Qualität, die hält."
+Button: "Mehr zu Steildach →" → /steildach-bochum
+
+---
+
+Schritt 16 – Schema.org einfügen:
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Service",
+  "name": "Steildach Bochum – Neueindeckung & Sanierung",
+  "provider": {
+    "@type": "LocalBusiness",
+    "name": "Rex Bedachungs GmbH",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "Paulinenstraße 22",
+      "addressLocality": "Bochum",
+      "postalCode": "44799",
+      "addressCountry": "DE"
+    },
+    "telephone": "+49-234-583100"
+  },
+  "areaServed": ["Bochum", "Herne", "Castrop-Rauxel",
+    "Witten", "Hattingen", "Gelsenkirchen", "Ruhrgebiet"],
+  "description": "Steildach Neueindeckung und Sanierung in Bochum –
+    Satteldach, Walmdach, Pultdach, Dämmung und Klempnerarbeiten.
+    Meisterbetrieb mit 20+ Jahren Erfahrung im Ruhrgebiet.",
+  "offers": {
+    "@type": "Offer",
+    "availability": "https://schema.org/InStock"
+  }
+}
+</script>
+
+---
+
+Schritt 17 – In client/index.html im bestehenden
+hasOfferCatalog Schema ergänzen (nicht ersetzen):
+
+{
+  "@type": "Offer",
+  "itemOffered": {
+    "@type": "Service",
+    "name": "Steildach Bochum – Neueindeckung, Sanierung & Dämmung,
+    Satteldach, Walmdach, Pultdach, Meisterbetrieb"
+  }
+}
+
+---
+
+Schritt 18 – sitemap.xml in client/public/sitemap.xml
+folgenden Eintrag ergänzen (nach /dachreparatur-bochum):
+
+<url>
+  <loc>https://www.rex-bedachung.de/steildach-bochum</loc>
+  <lastmod>2026-03-10</lastmod>
+  <changefreq>monthly</changefreq>
+  <priority>0.9</priority>
+</url>
+
+---
+
+Schritt 19 – Zeige alle erstellten und geänderten 
+Dateien mit Zeilennummern.
+
+Nach dem Erstellen sofort
+https://www.rex-bedachung.de/steildach-bochum
+in der Google Search Console zur Indexierung einreichen!
