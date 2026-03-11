@@ -1,0 +1,334 @@
+Aufgabe: Landing Page "Dachwartung Bochum" erstellen – 
+im exakt gleichen Stil wie /dachfenster-bochum, 
+/flachdach-bochum, /dachreparatur-bochum und 
+/bauklempnerei-bochum
+
+WICHTIG: Design identisch zu den bestehenden Landing Pages –
+gleiche Farben, Schriften, Buttons, Icons, Abstände, Komponenten.
+
+---
+
+Schritt 1 – Erstelle client/src/pages/Dachwartung.tsx
+Route hinzufügen: /dachwartung-bochum → Dachwartung.tsx
+
+---
+
+Schritt 2 – Hero-Sektion:
+
+Bild: /images/dach-hintergrund-rex-bedachung.webp
+H1: "Dachwartung Bochum – Schäden erkennen 
+bevor sie teuer werden"
+Unterzeile: "Regelmäßige Inspektion, Dachrinnenreinigung 
+und Dichtigkeitskontrolle – für die Sicherheit 
+und Werterhaltung Ihres Gebäudes"
+Button 1 (primär): "Wartungsvertrag anfragen" → Kontaktformular
+Button 2 (sekundär): "0234-583100"
+Vertrauenszeichen: 
+"Wartungsverträge verfügbar • Dokumentation mit Fotos • 
+20+ Jahre Erfahrung"
+
+---
+
+Schritt 3 – Einleitungstext:
+
+"Regelmäßige Wartung verlängert die Lebensdauer 
+Ihres Daches erheblich und vermeidet teure Folgeschäden. 
+Wir prüfen Ihr Dach auf Schäden, reinigen Dachrinnen, 
+kontrollieren Abdichtungen und beheben kleine Mängel sofort. 
+Auf Wunsch bieten wir Wartungsverträge mit regelmäßigen 
+Inspektionen – für Ihre Sicherheit und Werterhaltung. 
+Ein gewartetes Dach spart langfristig ein Vielfaches 
+seiner Wartungskosten."
+
+---
+
+Schritt 4 – Leistungskarten (5 Karten):
+
+Karte 1
+Icon: Search oder Eye
+Titel: "Dachinspektion & Sichtprüfung Bochum"
+Text: "Unsere Fachleute prüfen alle Dachbereiche 
+systematisch – Eindeckung, Anschlüsse, Abdichtungen, 
+Dachrinnen, Kehlen und Durchdringungen. 
+Dokumentation mit Fotos, damit Sie genau sehen 
+was wir sehen."
+
+Karte 2
+Icon: Droplets
+Titel: "Dachrinnen & Abläufe reinigen"
+Text: "Verstopfte Dachrinnen und Abläufe sind 
+die häufigste Ursache für Wasserschäden an 
+Fassade und Fundament. Wir reinigen gründlich, 
+prüfen auf Undichtigkeiten und montieren 
+auf Wunsch Laubschutzgitter."
+
+Karte 3
+Icon: Shield oder CheckCircle
+Titel: "Dichtigkeitskontrolle & Anschlüsse"
+Text: "Wir kontrollieren alle Abdichtungen, 
+Kaminanschlüsse, Gaubenanschlüsse und 
+Dachdurchdringungen auf Dichtigkeit. 
+Kleine Mängel beheben wir direkt vor Ort – 
+ohne extra Termin, ohne Mehrkosten."
+
+Karte 4
+Icon: FileText oder Camera
+Titel: "Dokumentation mit Fotos"
+Text: "Nach jeder Wartung erhalten Sie einen 
+detaillierten Bericht mit Fotos aller 
+geprüften Bereiche. So haben Sie stets 
+den Überblick über den Zustand Ihres Daches – 
+ideal auch für Versicherungen und Eigentümernachweise."
+
+Karte 5
+Icon: Calendar oder RefreshCw
+Titel: "Wartungsvertrag – planen statt reagieren"
+Text: "Mit unserem Wartungsvertrag kümmern wir uns 
+regelmäßig um Ihr Dach – jährlich oder halbjährlich. 
+Sie erhalten Terminplanung, Priorität bei Reparaturen 
+und vergünstigte Konditionen. 
+Für Hausverwaltungen und Eigentümer mehrerer Objekte 
+besonders empfehlenswert."
+
+---
+
+Schritt 5 – Vorteile & Vorgehen (2-Spalten-Layout,
+exakt wie bestehende Seiten – aus Screenshot übernehmen 
+und erweitern):
+
+Linke Spalte – "Ihre Vorteile":
+✓ Regelmäßige Inspektion durch Fachleute
+✓ Schadensprävention und Werterhaltung
+✓ Reinigung von Dachrinnen und Kehlen
+✓ Kontrolle aller Abdichtungen und Anschlüsse
+✓ Sofortbehebung kleiner Mängel vor Ort
+✓ Fotodokumentation nach jeder Wartung
+✓ Wartungsverträge – jährlich oder halbjährlich
+✓ Günstigere Konditionen bei Folgereparaturen
+
+Rechte Spalte – "Unser Vorgehen":
+1. Sichtprüfung aller Dachbereiche
+2. Reinigung von Dachrinnen und Abläufen
+3. Kontrolle von Dichtungen und Anschlüssen
+4. Sofortbehebung kleiner Mängel vor Ort
+5. Dokumentation mit Fotos
+6. Übergabe des Wartungsberichts
+
+---
+
+Schritt 6 – Highlight-Box "Wartungsvertrag":
+
+Icon: Calendar oder ClipboardCheck
+H2: "Wartungsvertrag – einmal abschließen, 
+dauerhaft sorgenfrei"
+Text: "Mit einem Wartungsvertrag bei Rex Bedachungs GmbH 
+haben Sie immer einen festen Ansprechpartner für Ihr Dach. 
+Wir planen die Termine im Voraus, erinnern Sie rechtzeitig 
+und reagieren bei akuten Schäden bevorzugt. 
+Besonders geeignet für Hausverwaltungen, 
+Wohnungseigentümergemeinschaften und 
+Eigentümer mehrerer Objekte."
+Button: "Wartungsvertrag anfragen"
+
+---
+
+Schritt 7 – Kosten-Sektion (3 Karten):
+
+H2: "Was kostet Dachwartung in Bochum?"
+Unterzeile: "Kleine Investition – große Wirkung"
+
+Karte 1
+Icon: Home
+Titel: "Einfamilienhaus"
+Text: "Inspektion, Dachrinnenreinigung und 
+Dichtigkeitskontrolle ab ca. 150–250 €. 
+Exakter Preis nach Aufmaß und Dachgröße. 
+Kostenloses Angebot auf Anfrage."
+
+Karte 2
+Icon: Building
+Titel: "Mehrfamilienhaus"
+Text: "Je nach Größe und Anzahl der Wohneinheiten 
+ab ca. 250–500 €. 
+Für Hausverwaltungen bieten wir 
+Rahmenverträge mit vergünstigten Konditionen."
+
+Karte 3
+Icon: TrendingUp
+Titel: "Was Sie sparen"
+Text: "Eine nicht erkannte Undichtigkeit 
+kann innerhalb einer Saison Schäden von 
+5.000–30.000 € verursachen. 
+Regelmäßige Wartung kostet ein Bruchteil davon."
+
+---
+
+Schritt 8 – FAQ-Sektion:
+
+F: "Wie oft sollte ein Dach gewartet werden?"
+A: "Experten empfehlen eine Inspektion 
+mindestens einmal jährlich – idealerweise 
+im Herbst vor der Regenzeit. 
+Bei älteren Dächern oder nach Sturmereignissen 
+ist eine zusätzliche Kontrolle sinnvoll."
+
+F: "Was kostet ein Wartungsvertrag?"
+A: "Die Kosten hängen von Dachgröße und 
+Leistungsumfang ab. Wir erstellen Ihnen 
+ein individuelles Angebot. 
+Als Richtwert: Einfamilienhäuser ab ca. 
+120–200 € pro Jahr inklusive Reinigung 
+und Inspektion."
+
+F: "Beheben Sie Mängel direkt bei der Wartung?"
+A: "Ja – kleine Mängel wie lose Ziegel, 
+defekte Anschlüsse oder verstopfte Abläufe 
+beheben wir direkt vor Ort, 
+ohne extra Termin. 
+Größere Schäden dokumentieren wir und 
+erstellen Ihnen sofort ein Angebot."
+
+F: "Ist Dachwartung für Vermieter Pflicht?"
+A: "Eine gesetzliche Pflicht zur regelmäßigen 
+Dachwartung besteht nicht überall, 
+jedoch sind Eigentümer zur Verkehrssicherungspflicht 
+verpflichtet – das schließt die Instandhaltung 
+des Daches ein. Bei Schäden durch 
+unterlassene Wartung kann die Versicherung 
+Leistungen kürzen."
+
+F: "Bieten Sie Wartungsverträge für 
+Hausverwaltungen an?"
+A: "Ja – wir betreuen mehrere Hausverwaltungen 
+und WEGs im Ruhrgebiet mit individuellen 
+Rahmenverträgen. 
+Feste Ansprechpartner, Priorität bei Reparaturen, 
+vergünstigte Konditionen und 
+zentrale Dokumentation für alle Objekte."
+
+---
+
+Schritt 9 – Regionen-Abschnitt (VOR dem CTA):
+
+H2: "Dachwartung im gesamten Ruhrgebiet"
+Text: "Rex Bedachungs GmbH übernimmt Dachwartung 
+und Dachinspektionen in Bochum, Herne, 
+Castrop-Rauxel, Witten, Hattingen, 
+Wattenscheid, Gelsenkirchen und dem 
+gesamten Ruhrgebiet – zuverlässig, 
+termingerecht und mit vollständiger Dokumentation."
+
+---
+
+Schritt 10 – Abschluss-CTA:
+
+H2: "Interesse an Dachwartung? Jetzt anfragen!"
+Text: "Kostenloses Erstgespräch – 
+wir melden uns innerhalb von 24 Stunden."
+Button 1 (primär): "Wartungsvertrag anfragen"
+Button 2 (sekundär): "0234-583100"
+
+---
+
+Schritt 11 – SEO Meta-Tags:
+
+<title>Dachwartung Bochum – Dachinspektion, 
+Dachrinnenreinigung & Wartungsvertrag | 
+Rex Bedachungs GmbH</title>
+<meta name="description" 
+content="Dachwartung Bochum ✓ Jährliche Dachinspektion 
+✓ Dachrinnenreinigung ✓ Wartungsverträge 
+✓ Fotodokumentation – Rex Bedachungs GmbH, 
+Ihr Fachbetrieb im Ruhrgebiet. Jetzt anfragen!">
+<link rel="canonical" 
+href="https://www.rex-bedachung.de/dachwartung-bochum">
+
+---
+
+Schritt 12 – Dropdown-Menü unter "Leistungen" ergänzen:
+
+Leistungen ▾
+    ├── Dachfenster    → /dachfenster-bochum
+    ├── Flachdach      → /flachdach-bochum
+    ├── Reparatur      → /dachreparatur-bochum
+    ├── Bauklempnerei  → /bauklempnerei-bochum
+    └── Dachwartung    → /dachwartung-bochum  ← neu
+
+---
+
+Schritt 13 – Dachwartung-Abschnitt auf der Homepage 
+zu Teaser kürzen:
+
+Text (max. 2-3 Sätze):
+"Regelmäßige Wartung schützt Ihr Dach 
+vor teuren Folgeschäden – wir inspizieren, 
+reinigen und dokumentieren alles mit Fotos. 
+Wartungsverträge für Privat und 
+Hausverwaltungen verfügbar."
+Button: "Mehr zur Dachwartung →" → /dachwartung-bochum
+
+---
+
+Schritt 14 – Schema.org einfügen:
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Service",
+  "name": "Dachwartung Bochum",
+  "provider": {
+    "@type": "LocalBusiness",
+    "name": "Rex Bedachungs GmbH",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "Paulinenstraße 22",
+      "addressLocality": "Bochum",
+      "postalCode": "44799",
+      "addressCountry": "DE"
+    },
+    "telephone": "+49-234-583100"
+  },
+  "areaServed": ["Bochum", "Herne", "Castrop-Rauxel",
+    "Witten", "Hattingen", "Ruhrgebiet"],
+  "description": "Dachwartung in Bochum – jährliche 
+    Dachinspektion, Dachrinnenreinigung, 
+    Dichtigkeitskontrolle und Wartungsverträge 
+    für Privat und Hausverwaltungen.",
+  "offers": {
+    "@type": "Offer",
+    "availability": "https://schema.org/InStock"
+  }
+}
+</script>
+
+---
+
+Schritt 15 – In client/index.html im bestehenden 
+hasOfferCatalog Schema ergänzen (nicht ersetzen):
+
+{
+  "@type": "Offer",
+  "itemOffered": {
+    "@type": "Service",
+    "name": "Dachwartung Bochum – Dachinspektion, 
+    Dachrinnenreinigung & Wartungsverträge 
+    für Privat und Hausverwaltungen"
+  }
+}
+
+---
+
+Schritt 16 – sitemap.xml in client/public/sitemap.xml 
+folgenden Eintrag ergänzen (nicht ersetzen):
+
+<url>
+  <loc>https://www.rex-bedachung.de/dachwartung-bochum</loc>
+  <lastmod>2026-03-11</lastmod>
+  <changefreq>monthly</changefreq>
+  <priority>0.9</priority>
+</url>
+
+---
+
+Schritt 17 – Zeige alle erstellten und geänderten 
+Dateien mit Zeilennummern.
