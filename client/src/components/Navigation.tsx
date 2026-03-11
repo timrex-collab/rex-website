@@ -16,7 +16,7 @@ export default function Navigation() {
     { name: "Bauklempnerei", path: "/bauklempnerei-bochum" },
     { name: "Dachfenster", path: "/dachfenster-bochum" },
     { name: "Reparatur", path: "/dachreparatur-bochum" },
-    { name: "Dachwartung", path: "/leistungen/dachwartung" },
+    { name: "Dachwartung", path: "/dachwartung-bochum" },
   ];
 
   const mainNav = [

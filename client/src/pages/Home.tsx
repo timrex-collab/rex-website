@@ -122,15 +122,16 @@ export default function Home() {
     },
     {
       title: "Dachwartung",
-      description: "Regelmäßige Inspektion und Wartung zur Werterhaltung und Vermeidung kostspieliger Schäden.",
+      description: "Regelmäßige Wartung schützt Ihr Dach vor teuren Folgeschäden – wir inspizieren, reinigen und dokumentieren alles mit Fotos. Wartungsverträge für Privat und Hausverwaltungen verfügbar.",
       imageUrl: dachwartungImage,
       imageAlt: "Professionelle Dachwartung und Inspektion",
-      href: "/leistungen/dachwartung",
+      href: "/dachwartung-bochum",
       benefits: [
         "Umfassende Inspektion",
         "Schadensprävention",
         "Langfristiger Schutz",
       ],
+      ctaLabel: "Mehr zur Dachwartung",
     },
   ];
 
@@ -199,7 +200,7 @@ export default function Home() {
           { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Bauklempnerei", "url": "https://www.rex-bedachung.de/bauklempnerei-bochum" }},
           { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Dachfenster", "url": "https://www.rex-bedachung.de/dachfenster-bochum" }},
           { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Reparaturen", "url": "https://www.rex-bedachung.de/leistungen/reparaturen" }},
-          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Dachwartung", "url": "https://www.rex-bedachung.de/leistungen/dachwartung" }}
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Dachwartung", "url": "https://www.rex-bedachung.de/dachwartung-bochum" }}
         ]
       },
       "sameAs": [
