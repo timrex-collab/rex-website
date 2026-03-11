@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Helmet } from "react-helmet";
 import { useLocation } from "wouter";
+import heroImagePath from "@assets/Dachdecker bei der Inspektion der Naht_1761081506440.png";
 import {
   CheckCircle,
   ChevronDown,
@@ -19,7 +20,7 @@ import {
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 
-const heroImage = "/images/dach-hintergrund-rex-bedachung.webp";
+const heroImage = heroImagePath;
 
 const services = [
   {
