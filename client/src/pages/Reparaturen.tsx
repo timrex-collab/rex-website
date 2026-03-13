@@ -1,10 +1,15 @@
+import { Helmet } from "react-helmet";
 import ServiceDetail from "./ServiceDetail";
 const reparaturenImage = "/images/dachreparatur-bochum-rex-bedachung.webp";
 
 export default function Reparaturen() {
   return (
-    <ServiceDetail
-      title="Reparaturen"
+    <>
+      <Helmet>
+        <meta name="robots" content="noindex, follow" />
+      </Helmet>
+      <ServiceDetail
+        title="Reparaturen"
       subtitle="Schnelle Hilfe bei Dachschäden"
       description="Ob Sturmschäden, undichte Stellen oder verschlissene Dachziegel – wir reparieren Ihr Dach schnell und zuverlässig. Als erfahrener Meisterbetrieb erkennen wir Schadensursachen präzise und beheben sie fachgerecht. Kleine Reparaturen führen wir oft direkt vor Ort durch. Bei größeren Schäden beraten wir Sie kompetent über die beste Lösung – von der punktuellen Reparatur bis zur Teilsanierung."
       imageUrl={reparaturenImage}
@@ -25,6 +30,7 @@ export default function Reparaturen() {
       ]}
       metaDescription="Professionelle Dachreparaturen bei Sturmschäden und undichten Stellen. Schnelle Hilfe vom Meisterbetrieb in Bochum."
       ctaButtonText="Reparatur anfragen"
-    />
+      />
+    </>
   );
 }

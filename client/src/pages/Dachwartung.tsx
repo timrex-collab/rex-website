@@ -1,10 +1,15 @@
+import { Helmet } from "react-helmet";
 import ServiceDetail from "./ServiceDetail";
 import dachwartungImage from "@assets/Dachdecker bei der Inspektion der Naht_1761081506440.png";
 
 export default function Dachwartung() {
   return (
-    <ServiceDetail
-      title="Dachwartung"
+    <>
+      <Helmet>
+        <meta name="robots" content="noindex, follow" />
+      </Helmet>
+      <ServiceDetail
+        title="Dachwartung"
       subtitle="Vorsorge statt Nachsorge"
       description="Regelmäßige Wartung verlängert die Lebensdauer Ihres Daches erheblich und vermeidet teure Folgeschäden. Wir prüfen Ihr Dach auf Schäden, reinigen Dachrinnen, kontrollieren Abdichtungen und beheben kleine Mängel sofort. Auf Wunsch bieten wir Wartungsverträge mit regelmäßigen Inspektionen – für Ihre Sicherheit und Werterhaltung."
       imageUrl={dachwartungImage}
@@ -24,6 +29,7 @@ export default function Dachwartung() {
         "Behebung kleiner Mängel vor Ort",
       ]}
       metaDescription="Professionelle Dachwartung und Inspektion zur Schadensprävention. Wartungsverträge vom Meisterbetrieb in Bochum."
-    />
+      />
+    </>
   );
 }

@@ -1,10 +1,15 @@
+import { Helmet } from "react-helmet";
 import ServiceDetail from "./ServiceDetail";
 const flachdachImage = "/images/flachdach-sanierung-bochum-rex-bedachung.webp";
 
 export default function Flachdach() {
   return (
-    <ServiceDetail
-      title="Flachdach"
+    <>
+      <Helmet>
+        <meta name="robots" content="noindex, follow" />
+      </Helmet>
+      <ServiceDetail
+        title="Flachdach"
       subtitle="Moderne Abdichtungssysteme"
       description="Flachdächer erfordern besondere Expertise in der Abdichtung. Mit modernen Materialien und bewährten Verfahren sorgen wir für eine zuverlässige, langlebige Dachabdichtung. Ob Bitumen, Kunststoff oder EPDM – wir beraten Sie kompetent und finden die optimale Lösung für Ihr Gebäude. Auf Wunsch realisieren wir auch Gründächer oder begehbare Dachterrassen."
       imageUrl={flachdachImage}
@@ -24,6 +29,7 @@ export default function Flachdach() {
         "Optional: Wartungsvertrag abschließen",
       ]}
       metaDescription="Professionelle Flachdach-Abdichtung und Sanierung für Wohn- und Gewerbeimmobilien. Moderne Systeme vom Meisterbetrieb."
-    />
+      />
+    </>
   );
 }

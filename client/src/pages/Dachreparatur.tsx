@@ -143,10 +143,10 @@ export default function Dachreparatur() {
   return (
     <>
       <Helmet>
-        <title>Dachreparatur Bochum – Sturmschaden, undichtes Dach &amp; Notdienst | Rex Bedachungs GmbH</title>
+        <title>Dachreparatur Bochum – Sturmschaden &amp; Notdienst</title>
         <meta
           name="description"
-          content="Dachreparatur Bochum ✓ Sturmschäden ✓ Undichtes Dach ✓ Kurzfristiger Einsatz ✓ Versicherungsabwicklung – Rex Bedachungs GmbH, Ihr Fachbetrieb im Ruhrgebiet. Jetzt anfragen!"
+          content="Dachreparatur Bochum ✓ Sturmschäden ✓ Undichtes Dach ✓ Kurzfristiger Einsatz ✓ Versicherungsabwicklung – Rex Bedachungs GmbH, Fachbetrieb im Ruhrgebiet."
         />
         <meta property="og:title" content="Dachreparatur Bochum – Sturmschaden, undichtes Dach & Notdienst | Rex Bedachungs GmbH" />
         <meta

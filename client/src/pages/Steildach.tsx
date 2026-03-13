@@ -1,10 +1,15 @@
+import { Helmet } from "react-helmet";
 import ServiceDetail from "./ServiceDetail";
 const steildachImage = "/images/dach-hintergrund-rex-bedachung.webp";
 
 export default function Steildach() {
   return (
-    <ServiceDetail
-      title="Steildach"
+    <>
+      <Helmet>
+        <meta name="robots" content="noindex, follow" />
+      </Helmet>
+      <ServiceDetail
+        title="Steildach"
       subtitle="Fachgerechte Dacheindeckung"
       description="Als Meisterbetrieb bieten wir Ihnen professionelle Steildacharbeiten für Neubauten und Sanierungen. Ob Satteldach, Walmdach oder Pultdach – wir beherrschen alle gängigen Dachformen und arbeiten mit hochwertigen Materialien wie Tonziegeln und Betondachsteinen. Unsere erfahrenen Dachdecker sorgen für eine fachgerechte Ausführung nach den neuesten Standards und gewährleisten so die Langlebigkeit Ihres Daches."
       imageUrl={steildachImage}
@@ -24,6 +29,7 @@ export default function Steildach() {
         "Dokumentation und Gewährleistung",
       ]}
       metaDescription="Professionelle Steildach-Eindeckung und Sanierung in Bochum und Umgebung. Meisterbetrieb mit Erfahrung für alle Dachformen."
-    />
+      />
+    </>
   );
 }

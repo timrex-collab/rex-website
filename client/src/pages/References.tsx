@@ -80,7 +80,8 @@ export default function References() {
     <>
       <Helmet>
         <title>Referenzen - Rex Bedachungs GmbH | Dachdecker Bochum</title>
-        <meta name="description" content="Unsere erfolgreich abgeschlossenen Dachprojekte im Ruhrgebiet. Steildach, Flachdach und mehr vom Meisterbetrieb." />
+        <meta name="description" content="Referenzprojekte von Rex Bedachungs GmbH Bochum – Steildach, Flachdach, Gründach und Bauklempnerei im Ruhrgebiet. Überzeugen Sie sich selbst." />
+        <link rel="canonical" href="https://www.rex-bedachung.de/referenzen" />
         <meta property="og:title" content="Referenzen - Rex Bedachungs GmbH" />
         <meta property="og:description" content="Überzeugen Sie sich von unserer Arbeit. Referenzprojekte aus Bochum und Umgebung." />
       </Helmet>

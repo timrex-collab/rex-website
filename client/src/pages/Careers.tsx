@@ -69,7 +69,8 @@ export default function Careers() {
     <>
       <Helmet>
         <title>Karriere - Rex Bedachungs GmbH | Jobs in Bochum</title>
-        <meta name="description" content="Karriere bei Rex Bedachungs GmbH. Wir suchen Dachdecker und Auszubildende für unser Team in Bochum." />
+        <meta name="description" content="Karriere bei Rex Bedachungs GmbH in Bochum. Wir suchen Dachdecker, Klempner und Auszubildende für unser wachsendes Team im Ruhrgebiet. Jetzt bewerben!" />
+        <link rel="canonical" href="https://www.rex-bedachung.de/karriere" />
         <meta property="og:title" content="Karriere - Rex Bedachungs GmbH" />
         <meta property="og:description" content="Werde Teil unseres Teams. Offene Stellen und Ausbildungsplätze." />
       </Helmet>

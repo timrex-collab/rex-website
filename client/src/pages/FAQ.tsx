@@ -333,6 +333,7 @@ export default function FAQ() {
           name="description"
           content="Antworten auf häufig gestellte Fragen zu Dacharbeiten, Kosten, Wartung und mehr. Erfahren Sie alles über Steildach, Flachdach, Dachfenster und Reparaturen."
         />
+        <link rel="canonical" href="https://www.rex-bedachung.de/faq" />
         <meta property="og:title" content="FAQ - Rex Bedachungs GmbH" />
         <meta
           property="og:description"

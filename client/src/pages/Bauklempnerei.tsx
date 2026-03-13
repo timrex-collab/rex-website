@@ -1,10 +1,15 @@
+import { Helmet } from "react-helmet";
 import ServiceDetail from "./ServiceDetail";
 const bauklempnereiImage = "/images/flachdach-metallverkleidung-bochum-rex-bedachung.webp";
 
 export default function Bauklempnerei() {
   return (
-    <ServiceDetail
-      title="Bauklempnerei"
+    <>
+      <Helmet>
+        <meta name="robots" content="noindex, follow" />
+      </Helmet>
+      <ServiceDetail
+        title="Bauklempnerei"
       subtitle="Präzise Metallarbeiten"
       description="Hochwertige Blecharbeiten sind entscheidend für die Langlebigkeit und Optik Ihres Daches. Unsere Klempner fertigen alle Bauteile maßgenau in unserer Werkstatt: Dachrinnen, Fallrohre, Dachränder, Kehlen und Fassadenbekleidungen. Wir arbeiten mit langlebigen Materialien wie Titanzink, Kupfer oder Aluminium und garantieren fachgerechte Montage."
       imageUrl={bauklempnereiImage}
@@ -24,6 +29,7 @@ export default function Bauklempnerei() {
         "Endabnahme mit Kunden",
       ]}
       metaDescription="Professionelle Bauklempnerei für Dachrinnen, Verwahrungen und Fassadenverkleidungen. Maßanfertigung vom Meisterbetrieb."
-    />
+      />
+    </>
   );
 }

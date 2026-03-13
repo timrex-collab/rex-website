@@ -106,11 +106,12 @@ export default function Foerderung() {
   return (
     <>
       <Helmet>
-        <title>BAFA & KfW Förderung Dachsanierung Bochum | Rex Bedachungs GmbH</title>
+        <title>BAFA &amp; KfW Förderung Dach Bochum | Rex Bedachung</title>
         <meta
           name="description"
-          content="Bis zu 20% staatliche Förderung für Dachsanierung & Velux-Dachfenster in Bochum. BAFA, KfW und Steuerbonus verständlich erklärt. Rex Bedachungs GmbH – Ihr Meisterbetrieb."
+          content="Bis zu 20 % Förderung für Dachsanierung in Bochum. BAFA, KfW und Steuerbonus verständlich erklärt. Kostenlose Förderberatung – Rex Bedachungs GmbH."
         />
+        <link rel="canonical" href="https://www.rex-bedachung.de/foerderung" />
         <meta property="og:title" content="BAFA & KfW Förderung Dachsanierung | Rex Bedachungs GmbH Bochum" />
         <meta property="og:description" content="Bis zu 20% staatliche Förderung für Dachsanierung & Velux-Fenster. Wir begleiten Sie als zertifizierter Meisterbetrieb durch den Förderdschungel." />
         <script type="application/ld+json">{`

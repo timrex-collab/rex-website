@@ -200,11 +200,12 @@ export default function DachLexikon() {
   return (
     <>
       <Helmet>
-        <title>Dach-Lexikon – Fachwissen vom Meisterbetrieb | Rex Bedachungs GmbH</title>
+        <title>Dach-Lexikon – Fachwissen vom Meisterbetrieb Bochum</title>
         <meta
           name="description"
-          content="Unser Dachdecker-Fachlexikon erklärt alle wichtigen Begriffe rund ums Dach: Bauphysik, Materialien, Regelwerke und mehr. Vom Meisterbetrieb Rex Bedachungs GmbH aus Bochum."
+          content="Dachdecker-Fachlexikon vom Meisterbetrieb: Bauphysik, Materialien und Regelwerke rund ums Dach verständlich erklärt – Rex Bedachungs GmbH Bochum."
         />
+        <link rel="canonical" href="https://www.rex-bedachung.de/lexikon" />
         <meta property="og:title" content="Dach-Lexikon – Fachwissen vom Meisterbetrieb | Rex Bedachungs GmbH" />
         <meta
           property="og:description"

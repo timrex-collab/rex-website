@@ -98,7 +98,7 @@ export default function DachfensterBochum() {
   return (
     <>
       <Helmet>
-        <title>Dachfenster Bochum – VELUX &amp; Roto Einbau | Rex Bedachungs GmbH</title>
+        <title>Dachfenster Bochum – VELUX Einbau | Rex Bedachung</title>
         <meta
           name="description"
           content="Dachfenster Bochum ✓ VELUX-zertifiziert ✓ Neueinbau & Austausch ✓ Notdienst ✓ BAFA/KfW-Förderung – Rex Bedachungs GmbH, Ihr Fachbetrieb im Ruhrgebiet."
