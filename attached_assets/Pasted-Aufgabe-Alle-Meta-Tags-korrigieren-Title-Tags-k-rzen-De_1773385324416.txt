@@ -1,0 +1,210 @@
+Aufgabe: Alle Meta-Tags korrigieren – Title-Tags kürzen, 
+Descriptions auf 140-160 Zeichen bringen, 
+Canonical-Tags ergänzen, index.html bereinigen.
+
+WICHTIG: Keine Inhalte ändern – nur Meta-Tags anpassen.
+Alle Änderungen in den jeweiligen .tsx Dateien vornehmen.
+
+---
+
+Schritt 1 – index.html bereinigen:
+
+Die index.html hat eigene Title/Description die mit 
+Home.tsx kollidieren. Entferne aus index.html:
+- <title> Tag (wird von React Helmet überschrieben)
+- <meta name="description"> Tag
+
+Behalte in index.html nur:
+- <meta charset>
+- <meta name="viewport">
+- <link rel="canonical"> → ENTFERNEN (gehört in Home.tsx)
+- Alle anderen technischen Tags (Schema.org, preload etc.)
+
+---
+
+Schritt 2 – Title-Tags korrigieren (max. 60 Zeichen):
+
+Home.tsx:
+NEU: "Dachdecker Bochum – Rex Bedachungs GmbH"
+(42 Zeichen)
+
+DachfensterBochum.tsx:
+NEU: "Dachfenster Bochum – VELUX Einbau | Rex Bedachung"
+(51 Zeichen)
+
+FlachdachBochum.tsx:
+NEU: "Flachdach & Gründach Bochum | Rex Bedachungs GmbH"
+(51 Zeichen)
+
+Dachreparatur.tsx:
+NEU: "Dachreparatur Bochum – Sturmschaden & Notdienst"
+(49 Zeichen)
+
+BauklempnereiBochum.tsx:
+NEU: "Bauklempnerei Bochum – Blecharbeiten | Rex Bedachung"
+(53 Zeichen)
+
+SteildachBochum.tsx:
+NEU: "Steildach Bochum – Sanierung & Dämmung | Rex"
+(46 Zeichen)
+
+DachwartungBochum.tsx:
+NEU: "Dachwartung Bochum – Inspektion & Wartungsvertrag"
+(50 Zeichen)
+
+Foerderung.tsx:
+NEU: "BAFA & KfW Förderung Dach Bochum | Rex Bedachung"
+(50 Zeichen)
+
+Solarpflicht.tsx:
+NEU: "Solarpflicht NRW 2026 – Was Eigentümer wissen müssen"
+(53 Zeichen)
+
+DachLexikon.tsx:
+NEU: "Dach-Lexikon – Fachwissen vom Meisterbetrieb Bochum"
+(52 Zeichen)
+
+---
+
+Schritt 3 – Descriptions korrigieren (140-160 Zeichen):
+
+Home.tsx:
+NEU (158 Zeichen):
+"Dachdecker Bochum ✓ Steildach, Flachdach & Gründach 
+✓ VELUX-zertifiziert ✓ Bauklempnerei ✓ Dachreparatur – 
+Rex Bedachungs GmbH, Meisterbetrieb im Ruhrgebiet."
+
+DachfensterBochum.tsx – bleibt (150 Zeichen ✅)
+
+FlachdachBochum.tsx:
+NEU (157 Zeichen):
+"Flachdach & Gründach Bochum ✓ Dachbegrünung extensiv 
+& intensiv ✓ Alle Abdichtungssysteme ✓ Kostenloses Aufmaß 
+✓ BAFA/KfW-Förderung – Rex Bedachungs GmbH Bochum."
+
+Dachreparatur.tsx:
+NEU (155 Zeichen):
+"Dachreparatur Bochum ✓ Sturmschäden ✓ Undichtes Dach 
+✓ Kurzfristiger Einsatz ✓ Versicherungsabwicklung – 
+Rex Bedachungs GmbH, Fachbetrieb im Ruhrgebiet."
+
+BauklempnereiBochum.tsx:
+NEU (158 Zeichen):
+"Bauklempnerei Bochum ✓ Dachrinnen & Fallrohre 
+✓ Titanzink, Kupfer, Aluminium ✓ Eigene Werkstatt 
+✓ Maßgefertigte Blecharbeiten – Rex Bedachungs GmbH."
+
+SteildachBochum.tsx:
+NEU (156 Zeichen):
+"Steildach Bochum ✓ Energetische Dachsanierung 
+✓ Aufsparrendämmung ✓ Bis zu 20 % BAFA/KfW-Förderung 
+✓ Heizkosten senken – Rex Bedachungs GmbH Bochum."
+
+DachwartungBochum.tsx:
+NEU (155 Zeichen):
+"Dachwartung Bochum ✓ Jährliche Dachinspektion 
+✓ Dachrinnenreinigung ✓ Wartungsverträge 
+✓ Fotodokumentation – Rex Bedachungs GmbH, 
+Fachbetrieb im Ruhrgebiet."
+
+Foerderung.tsx:
+NEU (158 Zeichen):
+"Bis zu 20 % Förderung für Dachsanierung in Bochum. 
+BAFA, KfW und Steuerbonus verständlich erklärt. 
+Kostenlose Förderberatung – Rex Bedachungs GmbH."
+
+DachLexikon.tsx:
+NEU (155 Zeichen):
+"Dachdecker-Fachlexikon vom Meisterbetrieb: 
+Bauphysik, Materialien und Regelwerke rund ums Dach 
+verständlich erklärt – Rex Bedachungs GmbH Bochum."
+
+About.tsx:
+NEU (145 Zeichen):
+"Rex Bedachungs GmbH – Meisterbetrieb in Bochum 
+mit über 40 Jahren Erfahrung im Dachdeckerhandwerk. 
+Ihr zuverlässiger Partner im Ruhrgebiet."
+
+Careers.tsx:
+NEU (148 Zeichen):
+"Karriere bei Rex Bedachungs GmbH in Bochum. 
+Wir suchen Dachdecker, Klempner und Auszubildende 
+für unser wachsendes Team im Ruhrgebiet. Jetzt bewerben!"
+
+Contact.tsx:
+NEU (143 Zeichen):
+"Kontakt zu Rex Bedachungs GmbH Bochum – 
+Telefon: 0234-583100, E-Mail: info@rex-bedachung.de. 
+Kostenloses Aufmaß und Beratung vor Ort."
+
+References.tsx:
+NEU (148 Zeichen):
+"Referenzprojekte von Rex Bedachungs GmbH Bochum – 
+Steildach, Flachdach, Gründach und Bauklempnerei 
+im Ruhrgebiet. Überzeugen Sie sich selbst."
+
+Services.tsx:
+NEU (145 Zeichen):
+"Alle Dachdeckerleistungen von Rex Bedachungs GmbH: 
+Steildach, Flachdach, Gründach, Dachfenster, 
+Bauklempnerei und Dachreparatur im Ruhrgebiet."
+
+Solarpflicht.tsx – bleibt (158 Zeichen ✅)
+
+FAQ.tsx – bleibt (155 Zeichen ✅)
+
+---
+
+Schritt 4 – Canonical-Tags ergänzen 
+(auf allen Seiten ohne Canonical):
+
+Home.tsx:
+<link rel="canonical" href="https://www.rex-bedachung.de/" />
+
+About.tsx:
+<link rel="canonical" href="https://www.rex-bedachung.de/ueber-uns" />
+
+Careers.tsx:
+<link rel="canonical" href="https://www.rex-bedachung.de/karriere" />
+
+Contact.tsx:
+<link rel="canonical" href="https://www.rex-bedachung.de/kontakt" />
+
+DachLexikon.tsx:
+<link rel="canonical" href="https://www.rex-bedachung.de/dach-lexikon" />
+
+FAQ.tsx:
+<link rel="canonical" href="https://www.rex-bedachung.de/faq" />
+
+Foerderung.tsx:
+<link rel="canonical" href="https://www.rex-bedachung.de/foerderung" />
+
+References.tsx:
+<link rel="canonical" href="https://www.rex-bedachung.de/referenzen" />
+
+Services.tsx:
+<link rel="canonical" href="https://www.rex-bedachung.de/leistungen" />
+
+Solarpflicht.tsx:
+<link rel="canonical" href="https://www.rex-bedachung.de/solarpflicht" />
+
+---
+
+Schritt 5 – Legacy-Seiten prüfen:
+
+Folgende Dateien haben keine Meta-Tags und scheinen 
+nicht aktiv genutzt zu werden:
+Bauklempnerei.tsx, Steildach.tsx, Flachdach.tsx, 
+Dachwartung.tsx, Reparaturen.tsx
+
+Prüfe ob diese Seiten aktive Routen in App.tsx haben. 
+Falls ja: noindex-Tag hinzufügen:
+<meta name="robots" content="noindex, follow" />
+
+Falls nein und sie sind nicht geroutet: 
+Dateien so lassen, keine Änderung nötig.
+
+---
+
+Schritt 6 – Zeige alle geänderten Dateien 
+mit Zeilennummern zur Kontrolle.
