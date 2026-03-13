@@ -306,6 +306,23 @@ export default function DachfensterBochum() {
         </div>
       </section>
 
+      {/* ── Velux-Austausch-Teaser ── */}
+      <section className="py-16 px-4 bg-background" data-testid="section-velux-teaser">
+        <div className="max-w-3xl mx-auto text-center">
+          <p className="text-muted-foreground leading-relaxed text-base md:text-lg mb-6" data-testid="text-velux-teaser">
+            Speziell für den Austausch alter Velux Fenster haben wir eine eigene Seite mit Modellvergleich, Preisrahmen und Schritt-für-Schritt-Ablauf:
+          </p>
+          <Button
+            size="lg"
+            variant="outline"
+            onClick={() => setLocation("/velux-dachfenster-austausch-bochum")}
+            data-testid="button-velux-teaser"
+          >
+            Zum Velux Austausch-Guide &rarr;
+          </Button>
+        </div>
+      </section>
+
       {/* ── Abschluss-CTA ── */}
       <section className="py-16 px-4 bg-background" data-testid="section-cta">
         <div className="max-w-3xl mx-auto text-center">

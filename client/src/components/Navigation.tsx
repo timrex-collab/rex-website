@@ -17,6 +17,7 @@ export default function Navigation() {
     { name: "Dachfenster", path: "/dachfenster-bochum" },
     { name: "Reparatur", path: "/dachreparatur-bochum" },
     { name: "Dachwartung", path: "/dachwartung-bochum" },
+    { name: "Velux Austausch", path: "/velux-dachfenster-austausch-bochum" },
   ];
 
   const mainNav = [

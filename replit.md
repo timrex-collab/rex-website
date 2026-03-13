@@ -117,6 +117,7 @@ Preferred communication style: Simple, everyday language.
 **Key Pages:**
 - Home (Hero, services overview)
 - Services overview + 5 detail pages (Steildach, Flachdach, Bauklempnerei, Dachfenster, Dachwartung)
+- Velux Dachfenster Austausch pillar page (/velux-dachfenster-austausch-bochum) with HowTo, FAQPage, Service Schema.org
 - References (project gallery)
 - About (company history, team)
 - Careers (job listings)
