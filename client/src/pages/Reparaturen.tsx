@@ -7,6 +7,7 @@ export default function Reparaturen() {
     <>
       <Helmet>
         <meta name="robots" content="noindex, follow" />
+        <link rel="canonical" href="https://www.rex-bedachung.de/leistungen/reparaturen" />
       </Helmet>
       <ServiceDetail
         title="Reparaturen"

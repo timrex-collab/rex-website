@@ -33,7 +33,7 @@ export default function About() {
     <>
       <Helmet>
         <title>Über uns - Rex Bedachungs GmbH | Meisterbetrieb Bochum</title>
-        <meta name="description" content="Rex Bedachungs GmbH – Meisterbetrieb in Bochum mit über 40 Jahren Erfahrung im Dachdeckerhandwerk. Ihr zuverlässiger Partner im Ruhrgebiet." />
+        <meta name="description" content="Rex Bedachungs GmbH – Meisterbetrieb in Bochum mit über 40 Jahren Erfahrung im Dachdeckerhandwerk. Ihr zuverlässiger Partner für Dächer im Ruhrgebiet." />
         <link rel="canonical" href="https://www.rex-bedachung.de/ueber-uns" />
         <meta property="og:title" content="Über uns - Rex Bedachungs GmbH" />
         <meta property="og:description" content="Meisterbetrieb mit über 40 Jahren Erfahrung im Dachdeckerhandwerk." />

@@ -6,6 +6,7 @@ export default function Datenschutz() {
       <Helmet>
         <title>Datenschutzerklärung - Rex Bedachungs GmbH</title>
         <meta name="robots" content="noindex, follow" />
+        <link rel="canonical" href="https://www.rex-bedachung.de/datenschutz" />
       </Helmet>
 
       <div className="py-16 md:py-20 lg:py-24 bg-background">

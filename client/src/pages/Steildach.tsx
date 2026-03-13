@@ -7,6 +7,7 @@ export default function Steildach() {
     <>
       <Helmet>
         <meta name="robots" content="noindex, follow" />
+        <link rel="canonical" href="https://www.rex-bedachung.de/leistungen/steildach" />
       </Helmet>
       <ServiceDetail
         title="Steildach"

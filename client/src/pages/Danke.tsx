@@ -11,6 +11,7 @@ export default function Danke() {
         <title>Vielen Dank - Rex Bedachungs GmbH</title>
         <meta name="description" content="Vielen Dank für Ihre Nachricht. Wir melden uns zeitnah bei Ihnen." />
         <meta name="robots" content="noindex, nofollow" />
+        <link rel="canonical" href="https://www.rex-bedachung.de/danke" />
       </Helmet>
 
       <section className="py-16 md:py-24 lg:py-32 bg-background">
