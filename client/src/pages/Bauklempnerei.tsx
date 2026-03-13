@@ -7,7 +7,6 @@ export default function Bauklempnerei() {
     <>
       <Helmet>
         <meta name="robots" content="noindex, follow" />
-        <link rel="canonical" href="https://www.rex-bedachung.de/leistungen/bauklempnerei" />
       </Helmet>
       <ServiceDetail
         title="Bauklempnerei"
