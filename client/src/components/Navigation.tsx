@@ -87,7 +87,7 @@ export default function Navigation() {
                             key={service.path}
                             href={service.path}
                             className="block px-4 py-2 text-sm text-card-foreground hover:bg-accent transition-colors"
-                            data-testid={`link-${service.name.toLowerCase()}`}
+                            data-testid={`link-${service.name.toLowerCase().replace(/\s+/g, "-")}`}
                           >
                             {service.name}
                           </Link>
@@ -170,7 +170,7 @@ export default function Navigation() {
                             href={service.path}
                             onClick={() => setMobileMenuOpen(false)}
                             className="flex items-center px-3 min-h-[44px] rounded-md text-sm text-muted-foreground hover:text-foreground hover:bg-accent"
-                            data-testid={`link-mobile-${service.name.toLowerCase()}`}
+                            data-testid={`link-mobile-${service.name.toLowerCase().replace(/\s+/g, "-")}`}
                           >
                             {service.name}
                           </Link>
