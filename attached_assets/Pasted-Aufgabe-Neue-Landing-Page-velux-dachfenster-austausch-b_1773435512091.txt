@@ -1,0 +1,578 @@
+Aufgabe: Neue Landing Page /velux-dachfenster-austausch-bochum erstellen.
+Pillar-Seite für das Velux Topic Cluster – im exakt gleichen 
+Design wie /dachfenster-bochum, /flachdach-bochum etc.
+
+WICHTIG: Design identisch zu den bestehenden Landing Pages.
+Entity-First-Writing: Jeder Satz enthält klare Entitäten –
+"Rex Bedachungs GmbH führt den Austausch von Velux 
+Dachfenstern in Bochum durch" statt "Wir tauschen Fenster".
+
+---
+
+Schritt 1 – Erstelle client/src/pages/VeluxAustausch.tsx
+Route hinzufügen: /velux-dachfenster-austausch-bochum
+
+---
+
+Schritt 2 – SEO Meta-Tags:
+
+<title>Velux Dachfenster Austausch Bochum | Rex Bedachungs GmbH</title>
+<meta name="description" content="Velux Dachfenster Austausch Bochum 
+✓ GGL, GGU, GPU & Integra ✓ Preise ab 1.800 € ✓ VELUX-zertifiziert 
+✓ Kostenlose Beratung – Rex Bedachungs GmbH Ruhrgebiet.">
+<link rel="canonical" 
+href="https://www.rex-bedachung.de/velux-dachfenster-austausch-bochum">
+
+---
+
+Schritt 3 – Hero-Sektion:
+
+Bild: /images/velux-dachfenster-einbau-bochum-fachbetrieb.webp
+H1: "Velux Dachfenster Austausch in Bochum – 
+fachgerecht erneuern lassen"
+Unterzeile: "Austausch alter Velux Dachfenster in Bochum – 
+inklusive Beratung, Aufmaß, Ausbau, Einbau 
+und sauberer Abnahme"
+Button 1 (primär): "Beratung anfragen" → Kontaktformular
+Button 2 (sekundär): "0234-583100"
+Vertrauenszeichen:
+"VELUX-zertifiziert • Bochum & Ruhrgebiet • 
+Preise ab 1.800 €"
+
+---
+
+Schritt 4 – Einleitungstext:
+
+"Rex Bedachungs GmbH ist zertifizierter Velux-Fachbetrieb 
+in Bochum und tauscht Velux Dachfenster aller Modelle 
+fachgerecht aus – im Bestand, ohne unnötige Nebenarbeiten, 
+mit transparenter Kostenaufstellung vor Beginn. 
+Ob GGL, GGU, GPU oder Integra: Wir beraten Sie kostenlos 
+zum passenden Modell für Ihr Dach und Ihren Bedarf."
+
+---
+
+Schritt 5 – H2: "Wann sich ein Velux Dachfenster 
+Austausch lohnt"
+
+Einleitung:
+"Viele Dachfenster in Bochumer Bestandsgebäuden sind 
+20–30 Jahre alt. Ab diesem Alter lohnt sich der Austausch 
+meist mehr als eine Reparatur – energetisch und wirtschaftlich."
+
+6 Icon-Karten (3+3 Grid):
+
+Karte 1 – Icon: Wind
+Titel: "Zugerscheinungen"
+Text: "Kalte Luft dringt trotz geschlossenem Fenster ein – 
+ein sicheres Zeichen für verschlissene Dichtungen 
+oder verzogenen Rahmen."
+
+Karte 2 – Icon: Droplets
+Titel: "Undichte Anschlüsse"
+Text: "Wasserflecken an der Laibung oder am Rahmen 
+deuten auf defekte Eindeckrahmen oder 
+schadhafte Abdichtung hin."
+
+Karte 3 – Icon: Eye (durchgestrichen)
+Titel: "Blindes oder beschädigtes Glas"
+Text: "Beschlagenes Isolierglas, Risse oder 
+Verfärbungen sind nicht reparierbar – 
+ein Fenstertausch ist die einzige Lösung."
+
+Karte 4 – Icon: Thermometer
+Titel: "Veraltete Wärmedämmung"
+Text: "Alte Velux Fenster erreichen moderne Uw-Werte 
+nicht mehr. Ein Austausch senkt den 
+Wärmeverlust um bis zu 30 %."
+
+Karte 5 – Icon: Settings
+Titel: "Schwergängige Bedienung"
+Text: "Fenster lässt sich schwer öffnen oder 
+schließt nicht mehr richtig – 
+meist wirtschaftlicher austauschen als reparieren."
+
+Karte 6 – Icon: Calendar
+Titel: "Alter über 20 Jahre"
+Text: "Ab 20–25 Jahren sind Ersatzteile oft nicht 
+mehr lieferbar. Ein modernes Fenster spart 
+langfristig Energie und Wartungskosten."
+
+---
+
+Schritt 6 – H2: "Velux Modelle im Vergleich – 
+GGL, GGU, GPU und Integra"
+
+Einleitung:
+"Rex Bedachungs GmbH berät Sie in Bochum zu allen 
+aktuellen Velux Modellen und empfiehlt das passende 
+Fenster für Ihre Dachsituation und Ihren Bedarf."
+
+4 Karten:
+
+H3: "Velux GGL – Holzfenster klassisch"
+Icon: Layers
+Text: "Das meistgenutzte Velux Modell – 
+Holzrahmen mit weißer Lackierung, 
+ideal für Wohnräume mit normaler Luftfeuchtigkeit. 
+Langlebig, gut dämmend, natürlich im Erscheinungsbild."
+Badge: "Bestseller"
+
+H3: "Velux GGU – Kunststoff für Feuchträume"
+Icon: Droplets
+Text: "Kunststoffummantelung macht das GGU 
+besonders widerstandsfähig gegen Feuchtigkeit – 
+ideal für Bad, Küche oder Dachgeschoss-Nassbereiche. 
+Pflegeleicht und langlebig."
+Badge: "Empfohlen für Bäder"
+
+H3: "Velux GPU – Klapp-Schwingfenster"
+Icon: Maximize
+Text: "Das GPU öffnet als Klappfenster nach oben 
+und bietet maximalen Ausblick und Bewegungsfreiheit. 
+Ideal für niedrige Kniestöcke und Bereiche 
+mit eingeschränktem Platz."
+Badge: "Mehr Ausblick"
+
+H3: "Velux Integra – elektrisch oder solar"
+Icon: Zap
+Text: "Das Integra öffnet per Fernbedienung oder 
+Smartphone – elektrisch oder solar betrieben. 
+Ideal für schwer erreichbare Fenster und 
+Smart-Home-Installationen."
+Badge: "Komfort & Smart Home"
+
+Darunter: Vergleichstabelle (5 Spalten):
+
+| Merkmal       | GGL      | GGU          | GPU         | Integra      |
+|---------------|----------|--------------|-------------|--------------|
+| Material      | Holz     | Kunststoff   | Holz/Poly   | Holz/Poly    |
+| Öffnungsart   | Schwing  | Schwing      | Klapp       | Schwing/Klapp|
+| Einsatzbereich| Wohnraum | Feuchtraum   | Niedrig KS  | Überall      |
+| Bedienung     | Manuell  | Manuell      | Manuell     | Elektrisch   |
+| Preisniveau   | ●●○○     | ●●○○         | ●●●○        | ●●●●         |
+
+---
+
+Schritt 7 – H2: "Was kostet ein Velux Dachfenster 
+Austausch in Bochum?"
+
+Einleitung:
+"Rex Bedachungs GmbH nennt realistische Preisrahmen – 
+kein Festpreis ohne Aufmaß, aber echte Orientierung 
+für Ihre Planung."
+
+3 Preiskarten (nebeneinander):
+
+Karte 1 – Hintergrund: hellblau
+Titel: "Standard-Austausch"
+Preis: "ab 1.800 – 2.400 €"
+Untertitel: "inkl. Einbau"
+Liste:
+✓ Velux GGL oder GGU
+✓ 1:1 Austausch im Bestand
+✓ Eindeckrahmen erneuern
+✓ Dichtung und Anschlüsse
+
+Karte 2 – Hintergrund: blau (hervorgehoben)
+Titel: "Austausch mit Anpassung"
+Badge: "Häufigste Variante"
+Preis: "ab 2.400 – 3.200 €"
+Untertitel: "inkl. Einbau und Innenarbeiten"
+Liste:
+✓ Alle Modelle inkl. GPU
+✓ Anpassung Innenverkleidung
+✓ Eindeckrahmen + Dämmkragen
+✓ Laibung neu verputzt/verkleidet
+
+Karte 3 – Hintergrund: dunkelblau
+Titel: "Premium / Integra"
+Preis: "ab 3.200 – 4.500 €"
+Untertitel: "inkl. Einbau und Elektroinstallation"
+Liste:
+✓ Velux Integra elektrisch/solar
+✓ Verkabelung und Steuerung
+✓ Smart-Home-Integration möglich
+✓ Komplette Innenarbeiten
+
+Hinweis-Box darunter:
+"ℹ️ Alle Preise sind Orientierungsrahmen für 
+den Großraum Bochum und das Ruhrgebiet. 
+Der genaue Preis hängt ab von Fenstertyp, 
+Größe, Dachzugang und notwendigen Nebenarbeiten. 
+Rex Bedachungs GmbH erstellt Ihnen nach kostenlosem 
+Aufmaß ein verbindliches Festpreisangebot."
+
+---
+
+Schritt 8 – H2: "So läuft der Velux Dachfenster 
+Austausch ab – von Aufmaß bis Abnahme"
+
+7 nummerierte Schritte (gleicher Stil wie Vorgehen-Sektion 
+auf bestehenden Seiten):
+
+1. "Vor-Ort-Termin und Aufmaß"
+   "Rex Bedachungs GmbH kommt kostenlos zu Ihnen – 
+   Bestandsaufnahme, Fenstertyp, Dachsituation, 
+   genaue Maße und Zugänglichkeit."
+
+2. "Modellauswahl und Beratung"
+   "Gemeinsame Auswahl des passenden Velux Modells – 
+   abgestimmt auf Bedarf, Raum, Budget und 
+   technische Eignung."
+
+3. "Angebot und Terminplanung"
+   "Transparentes Festpreisangebot mit 
+   vollständiger Leistungsaufstellung – 
+   kein versteckter Nachtragsaufwand."
+
+4. "Ausbau des alten Dachfensters"
+   "Fachgerechter Rückbau, Schutzmaßnahmen 
+   für Wohnraum und Dachaufbau, 
+   Vorbereitung der Einbauöffnung."
+
+5. "Einbau des neuen Velux Fensters"
+   "Montage, Eindeckrahmen, Dämmkragen, 
+   vollständige Abdichtung aller Anschlüsse 
+   gegen Wasser und Wärmebrücken."
+
+6. "Innenarbeiten und Anschlussdetails"
+   "Innenfutter, Laibung und eventuelle 
+   Nacharbeiten – sauber und passgenau 
+   zum Bestand."
+
+7. "Funktionsprüfung und Abnahme"
+   "Gemeinsame Abnahme: Öffnung, Schließung, 
+   Dichtheit, Optik – erst wenn alles stimmt, 
+   ist der Auftrag abgeschlossen."
+
+---
+
+Schritt 9 – H2: "Wie lange dauert ein 
+Velux Dachfensteraustausch?"
+
+Highlight-Box:
+Icon: Clock
+Text: "Ein Standard-Austausch dauert in der Regel 
+einen Arbeitstag – von Ausbau bis Abnahme. 
+Bei Zusatzarbeiten wie Innenverkleidung oder 
+Elektroinstallation (Integra) können 
+1–2 weitere Tage anfallen. 
+Rex Bedachungs GmbH plant termingerecht 
+und informiert Sie vorab über den genauen Ablauf."
+
+---
+
+Schritt 10 – H2: "Velux Dachfenster 
+austauschen oder reparieren?"
+
+2-Spalten-Vergleich:
+
+Linke Spalte – "Reparatur sinnvoll wenn:":
+✓ Fenster unter 15 Jahre alt
+✓ Einzelner Defekt (Griff, Dichtung, Bediengestänge)
+✓ Glas intakt, Rahmen in Ordnung
+✓ Ersatzteile noch lieferbar
+
+Rechte Spalte – "Austausch sinnvoll wenn:":
+✓ Fenster über 20 Jahre alt
+✓ Mehrere Defekte gleichzeitig
+✓ Blindes Glas oder gerissener Rahmen
+✓ Hohe Energieverluste messbar
+✓ Ersatzteile nicht mehr lieferbar
+
+Hinweis:
+"Rex Bedachungs GmbH berät Sie ehrlich – 
+wenn eine Reparatur wirtschaftlich sinnvoller ist, 
+sagen wir das."
+
+---
+
+Schritt 11 – H2: "Warum Rex Bedachungs GmbH 
+als Velux-Fachbetrieb in Bochum"
+
+4 Punkte (2+2 Grid):
+
+✓ VELUX-zertifizierter Fachbetrieb
+"Rex Bedachungs GmbH ist offiziell zertifizierter 
+Velux-Partner – mit direktem Zugriff auf alle 
+aktuellen Modelle, Zubehör und Ersatzteile."
+
+✓ Kostenlose Beratung vor Ort
+"Wir kommen zu Ihnen nach Bochum oder ins 
+gesamte Ruhrgebiet – Aufmaß, Modellberatung 
+und Angebot sind kostenlos und unverbindlich."
+
+✓ Transparente Festpreise
+"Kein Nachtragsaufwand: Das Angebot von 
+Rex Bedachungs GmbH enthält alle Leistungen 
+mit Festpreisgarantie."
+
+✓ Sauber und termingerecht
+"Schutzmaßnahmen für Ihren Wohnraum, 
+pünktliche Fertigstellung und gemeinsame 
+Abnahme nach jedem Auftrag."
+
+---
+
+Schritt 12 – FAQ-Sektion:
+
+F: "Was kostet der Austausch eines Velux 
+Dachfensters in Bochum?"
+A: "Rex Bedachungs GmbH führt Velux Dachfenster-
+Austausch in Bochum ab ca. 1.800–2.400 € inkl. 
+Einbau durch – je nach Modell, Größe und 
+notwendigen Nebenarbeiten. Nach kostenlosem 
+Aufmaß erhalten Sie ein verbindliches Festpreisangebot."
+
+F: "Wie lange dauert der Austausch?"
+A: "Ein Standard-Velux-Austausch dauert in der 
+Regel einen Arbeitstag. Bei Zusatzarbeiten 
+(Innenverkleidung, Integra-Elektrik) 
+1–2 weitere Tage."
+
+F: "Kann ein altes Velux Fenster 1:1 ersetzt werden?"
+A: "In vielen Fällen ja – besonders bei Velux 
+Fenstern nach Baujahr 1980. Rex Bedachungs GmbH 
+prüft beim Aufmaß ob ein 1:1-Austausch möglich 
+ist oder Anpassungen am Eindeckrahmen oder 
+Innenfutter nötig werden."
+
+F: "Welches Modell ist besser – GGL, GGU oder GPU?"
+A: "Das hängt vom Einsatzbereich ab: GGL für 
+trockene Wohnräume, GGU für Feuchträume wie Bad 
+oder Küche, GPU bei niedrigem Kniestock für 
+mehr Ausblick. Rex Bedachungs GmbH berät Sie 
+kostenlos vor Ort."
+
+F: "Lohnt sich Austausch statt Reparatur?"
+A: "Ab einem Fensteralter von 20+ Jahren und 
+mehreren gleichzeitigen Defekten ist der 
+Austausch meist wirtschaftlicher. 
+Wir beraten Sie ehrlich – 
+wenn Reparatur sinnvoller ist, sagen wir das."
+
+F: "Muss die Innenverkleidung erneuert werden?"
+A: "Nicht immer. Beim 1:1-Austausch auf 
+gleiche Baugröße bleibt die Innenverkleidung 
+meist erhalten. Bei Modellwechsel oder 
+Größenanpassung sind Innenarbeiten nötig – 
+das klären wir beim Aufmaß."
+
+F: "Ist ein Austausch im bewohnten 
+Dachgeschoss möglich?"
+A: "Ja. Rex Bedachungs GmbH schützt Ihren 
+Wohnraum während der Arbeiten vollständig 
+mit Abdeckungen und Folie. 
+In der Regel ist die Wohnung abends 
+wieder vollständig nutzbar."
+
+---
+
+Schritt 13 – Regionen-Abschnitt:
+
+H2: "Velux Dachfenster Austausch im 
+gesamten Ruhrgebiet"
+Text: "Rex Bedachungs GmbH tauscht Velux Dachfenster 
+in Bochum, Herne, Castrop-Rauxel, Witten, 
+Hattingen, Wattenscheid, Altenbochum, 
+Ehrenfeld, Langendreer und dem gesamten 
+Ruhrgebiet aus – termingerecht, 
+zuverlässig und zum Festpreis."
+
+---
+
+Schritt 14 – Abschluss-CTA:
+
+H2: "Jetzt Velux Dachfenster Austausch 
+in Bochum anfragen"
+Text: "Kostenloser Vor-Ort-Termin – 
+wir melden uns innerhalb von 24 Stunden."
+Button 1 (primär): "Beratung anfragen"
+Button 2 (sekundär): "0234-583100"
+
+---
+
+Schritt 15 – Schema.org (3 Typen):
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "HowTo",
+  "name": "Velux Dachfenster Austausch in Bochum – 
+  Ablauf von Aufmaß bis Abnahme",
+  "description": "Rex Bedachungs GmbH erklärt den 
+  vollständigen Ablauf eines Velux Dachfenster-
+  Austauschs in Bochum in 7 Schritten.",
+  "totalTime": "PT8H",
+  "estimatedCost": {
+    "@type": "MonetaryAmount",
+    "currency": "EUR",
+    "value": "1800"
+  },
+  "step": [
+    {"@type": "HowToStep", "position": 1,
+     "name": "Vor-Ort-Termin und Aufmaß",
+     "text": "Kostenlose Bestandsaufnahme vor Ort 
+     in Bochum – Fenstertyp, Dachsituation, 
+     genaue Maße und Zugänglichkeit."},
+    {"@type": "HowToStep", "position": 2,
+     "name": "Modellauswahl und Beratung",
+     "text": "Gemeinsame Auswahl des passenden 
+     Velux Modells (GGL, GGU, GPU oder Integra)."},
+    {"@type": "HowToStep", "position": 3,
+     "name": "Angebot und Terminplanung",
+     "text": "Transparentes Festpreisangebot 
+     mit vollständiger Leistungsaufstellung."},
+    {"@type": "HowToStep", "position": 4,
+     "name": "Ausbau des alten Dachfensters",
+     "text": "Fachgerechter Rückbau mit 
+     Schutzmaßnahmen für Wohnraum und Dachaufbau."},
+    {"@type": "HowToStep", "position": 5,
+     "name": "Einbau des neuen Velux Fensters",
+     "text": "Montage, Eindeckrahmen, Dämmkragen 
+     und vollständige Abdichtung aller Anschlüsse."},
+    {"@type": "HowToStep", "position": 6,
+     "name": "Innenarbeiten und Anschlussdetails",
+     "text": "Innenfutter, Laibung und 
+     Nacharbeiten passgenau zum Bestand."},
+    {"@type": "HowToStep", "position": 7,
+     "name": "Funktionsprüfung und Abnahme",
+     "text": "Gemeinsame Abnahme: Öffnung, 
+     Schließung, Dichtheit und optische Kontrolle."}
+  ]
+}
+</script>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Was kostet der Austausch eines 
+      Velux Dachfensters in Bochum?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Rex Bedachungs GmbH führt 
+        Velux Dachfenster-Austausch in Bochum 
+        ab ca. 1.800–2.400 € inkl. Einbau durch. 
+        Nach kostenlosem Aufmaß erhalten Sie 
+        ein verbindliches Festpreisangebot."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Wie lange dauert ein Velux 
+      Dachfensteraustausch?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Ein Standard-Austausch dauert 
+        in der Regel einen Arbeitstag. 
+        Bei Zusatzarbeiten 1–2 weitere Tage."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Welches Velux Modell ist das 
+      richtige für mein Dach?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "GGL für trockene Wohnräume, 
+        GGU für Feuchträume, GPU bei niedrigem 
+        Kniestock, Integra für elektrischen 
+        Komfort. Rex Bedachungs GmbH berät 
+        kostenlos vor Ort in Bochum."
+      }
+    }
+  ]
+}
+</script>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Service",
+  "name": "Velux Dachfenster Austausch Bochum",
+  "provider": {
+    "@type": "LocalBusiness",
+    "name": "Rex Bedachungs GmbH",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "Paulinenstraße 22",
+      "addressLocality": "Bochum",
+      "postalCode": "44799",
+      "addressCountry": "DE"
+    },
+    "telephone": "+49-234-583100"
+  },
+  "areaServed": ["Bochum","Herne","Castrop-Rauxel",
+    "Witten","Hattingen","Ruhrgebiet"],
+  "description": "Velux Dachfenster Austausch in 
+  Bochum – GGL, GGU, GPU und Integra, 
+  ab 1.800 €, VELUX-zertifizierter Fachbetrieb, 
+  kostenlose Beratung und Festpreisangebot.",
+  "offers": {
+    "@type": "Offer",
+    "priceCurrency": "EUR",
+    "price": "1800",
+    "availability": "https://schema.org/InStock"
+  }
+}
+</script>
+
+---
+
+Schritt 16 – Interne Verlinkung:
+
+In der Datei DachfensterBochum.tsx einen 
+Teaser-Block ergänzen (VOR dem CTA):
+
+Text: "Speziell für den Austausch alter Velux Fenster 
+haben wir eine eigene Seite mit Modellvergleich, 
+Preisrahmen und Schritt-für-Schritt-Ablauf:"
+Button: "Zum Velux Austausch-Guide →" 
+→ /velux-dachfenster-austausch-bochum
+
+---
+
+Schritt 17 – Navigation und Sitemap:
+
+Im Leistungen-Dropdown ergänzen:
+└── Velux Austausch → /velux-dachfenster-austausch-bochum
+
+In client/public/sitemap.xml ergänzen:
+<url>
+  <loc>https://www.rex-bedachung.de/
+  velux-dachfenster-austausch-bochum</loc>
+  <lastmod>2026-03-13</lastmod>
+  <changefreq>monthly</changefreq>
+  <priority>0.9</priority>
+</url>
+
+---
+
+Schritt 18 – In client/index.html im bestehenden 
+hasOfferCatalog ergänzen:
+
+{
+  "@type": "Offer",
+  "itemOffered": {
+    "@type": "Service",
+    "name": "Velux Dachfenster Austausch Bochum – 
+    GGL, GGU, GPU und Integra, ab 1.800 €, 
+    VELUX-zertifizierter Fachbetrieb"
+  }
+}
+
+---
+
+Schritt 19 – Zeige alle erstellten und 
+geänderten Dateien mit Zeilennummern.
+
+Nach dem Deployen sofort die URL
+https://www.rex-bedachung.de/
+velux-dachfenster-austausch-bochum
+in der Google Search Console zur 
+Indexierung einreichen.
