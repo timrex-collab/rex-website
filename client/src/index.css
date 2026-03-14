@@ -332,4 +332,11 @@
     pointer-events: none;
     z-index: 0;
   }
+
+  @media (prefers-reduced-motion: reduce) {
+    .pulse-ring::before {
+      animation: none;
+      display: none;
+    }
+  }
 }
