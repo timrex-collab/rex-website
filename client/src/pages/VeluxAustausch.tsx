@@ -117,7 +117,7 @@ const ablaufSteps = [
 const faqItems = [
   {
     question: "Was kostet der Austausch eines Velux Dachfensters in Bochum?",
-    answer: "Rex Bedachungs GmbH führt Velux Dachfenster-Austausch in Bochum ab ca. 1.000 € inkl. Lieferung und Einbau durch – je nach Modell, Größe und notwendigen Nebenarbeiten. Nach kostenlosem Aufmaß erhalten Sie ein verbindliches Festpreisangebot.",
+    answer: "Rex Bedachungs GmbH führt Velux Dachfenster-Austausch in Bochum ab 1.000 € inkl. Lieferung und Einbau durch – je nach Modell, Größe und notwendigen Nebenarbeiten. Nach kostenlosem Aufmaß erhalten Sie ein verbindliches Festpreisangebot.",
   },
   {
     question: "Wie lange dauert der Austausch?",
@@ -176,7 +176,7 @@ const faqSchema = JSON.stringify({
       "name": "Was kostet der Austausch eines Velux Dachfensters in Bochum?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Rex Bedachungs GmbH führt Velux Dachfenster-Austausch in Bochum ab ca. 1.000 € inkl. Lieferung und Einbau durch. Nach kostenlosem Aufmaß erhalten Sie ein verbindliches Festpreisangebot.",
+        "text": "Rex Bedachungs GmbH führt Velux Dachfenster-Austausch in Bochum ab 1.000 € inkl. Lieferung und Einbau durch. Nach kostenlosem Aufmaß erhalten Sie ein verbindliches Festpreisangebot.",
       },
     },
     {
@@ -291,7 +291,7 @@ export default function VeluxAustausch() {
       <section className="py-16 px-4 bg-muted/40" data-testid="section-einleitung">
         <div className="max-w-4xl mx-auto text-center">
           <p className="text-muted-foreground leading-relaxed text-base md:text-lg" data-testid="text-einleitung">
-            Rex Bedachungs GmbH ist Velux-Fachbetrieb in Bochum und tauscht Velux Dachfenster aller Modelle fachgerecht aus – im Bestand, ohne unnötige Nebenarbeiten, mit transparenter Kostenaufstellung vor Beginn. Ob GGL, GGU, GPU oder Integra: Wir beraten Sie kostenlos zum passenden Modell für Ihr Dach und Ihren Bedarf.
+            Rex Bedachungs GmbH ist VELUX-Partner in Bochum und tauscht Velux Dachfenster aller Modelle fachgerecht aus – im Bestand, ohne unnötige Nebenarbeiten, mit transparenter Kostenaufstellung ab 1.000 €. Ob GGL, GGU, GPU oder Integra: Wir beraten Sie kostenlos zum passenden Modell für Ihr Dach und Ihren Bedarf.
           </p>
         </div>
       </section>
