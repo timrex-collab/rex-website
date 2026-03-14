@@ -245,6 +245,14 @@ export default function VeluxAustausch() {
         <script type="application/ld+json">{howToSchema}</script>
         <script type="application/ld+json">{faqSchema}</script>
         <script type="application/ld+json">{serviceSchema}</script>
+        <script type="application/ld+json">{`{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {"@type":"ListItem","position":1,"name":"Startseite","item":"https://www.rex-bedachung.de/"},
+    {"@type":"ListItem","position":2,"name":"Velux Dachfenster Austausch Bochum","item":"https://www.rex-bedachung.de/velux-dachfenster-austausch-bochum"}
+  ]
+}`}</script>
       </Helmet>
 
       {/* ── Hero ── */}

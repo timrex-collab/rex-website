@@ -195,6 +195,14 @@ export default function SteildachBochum() {
         <meta name="twitter:image" content="https://www.rex-bedachung.de/images/tondach-hero-dachdeckung-bochum.webp" />
         <link rel="canonical" href="https://www.rex-bedachung.de/steildach-bochum" />
         <script type="application/ld+json">{schemaJson}</script>
+        <script type="application/ld+json">{`{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {"@type":"ListItem","position":1,"name":"Startseite","item":"https://www.rex-bedachung.de/"},
+    {"@type":"ListItem","position":2,"name":"Steildach Bochum","item":"https://www.rex-bedachung.de/steildach-bochum"}
+  ]
+}`}</script>
       </Helmet>
       {/* Hero */}
       <section

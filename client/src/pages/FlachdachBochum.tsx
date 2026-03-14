@@ -218,6 +218,14 @@ export default function FlachdachBochum() {
         <meta name="twitter:image" content="https://www.rex-bedachung.de/images/flachdach-sanierung-bochum-rex-bedachung.webp" />
         <link rel="canonical" href="https://www.rex-bedachung.de/flachdach-bochum" />
         <script type="application/ld+json">{schemaJson}</script>
+        <script type="application/ld+json">{`{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {"@type":"ListItem","position":1,"name":"Startseite","item":"https://www.rex-bedachung.de/"},
+    {"@type":"ListItem","position":2,"name":"Flachdach Bochum","item":"https://www.rex-bedachung.de/flachdach-bochum"}
+  ]
+}`}</script>
       </Helmet>
 
       {/* ── Hero ── */}

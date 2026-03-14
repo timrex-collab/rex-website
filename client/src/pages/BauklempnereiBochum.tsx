@@ -171,6 +171,14 @@ export default function BauklempnereiBochum() {
         <meta name="twitter:image" content="https://www.rex-bedachung.de/images/kamin-sanierung-bochum-dachdecker.webp" />
         <link rel="canonical" href="https://www.rex-bedachung.de/bauklempnerei-bochum" />
         <script type="application/ld+json">{schemaJson}</script>
+        <script type="application/ld+json">{`{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {"@type":"ListItem","position":1,"name":"Startseite","item":"https://www.rex-bedachung.de/"},
+    {"@type":"ListItem","position":2,"name":"Bauklempnerei Bochum","item":"https://www.rex-bedachung.de/bauklempnerei-bochum"}
+  ]
+}`}</script>
       </Helmet>
 
       {/* Hero */}
