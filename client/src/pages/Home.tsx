@@ -96,7 +96,7 @@ export default function Home() {
     },
     {
       title: "Dachfenster – VELUX & Roto Fachbetrieb",
-      description: "Als zertifizierter VELUX- und Roto-Partner übernehmen wir Neueinbau, Austausch und Reparatur von Dachfenstern – schnell, sauber und auf Wunsch mit BAFA/KfW-Förderung.",
+      description: "Als VELUX-Fachbetrieb und Roto-Spezialist übernehmen wir Neueinbau, Austausch und Reparatur von Dachfenstern – schnell, sauber und auf Wunsch mit BAFA/KfW-Förderung.",
       imageUrl: dachfensterImage,
       imageAlt: "VELUX Dachfenster Bochum – Rex Bedachungs GmbH",
       href: "/dachfenster-bochum",
@@ -139,7 +139,7 @@ export default function Home() {
     <>
       <Helmet>
   <title>Dachdecker Bochum – Rex Bedachungs GmbH</title>
-  <meta name="description" content="Dachdecker Bochum ✓ Steildach, Flachdach & Gründach ✓ VELUX-zertifiziert ✓ Bauklempnerei ✓ Dachreparatur – Rex Bedachungs GmbH, Meisterbetrieb im Ruhrgebiet." />
+  <meta name="description" content="Dachdecker Bochum ✓ Steildach, Flachdach & Gründach ✓ VELUX-Fachbetrieb ✓ Bauklempnerei ✓ Dachreparatur – Rex Bedachungs GmbH, Meisterbetrieb im Ruhrgebiet." />
   <link rel="canonical" href="https://www.rex-bedachung.de/" />
   <meta property="og:title" content="Rex Bedachungs GmbH - Ihr Dach in Meisterhand" />
   <meta property="og:description" content="Professionelle Dachdeckerarbeiten im Ruhrgebiet. Meisterbetrieb mit 40 Jahren Erfahrung." />
@@ -220,7 +220,7 @@ export default function Home() {
       <Hero
         title="Dachdecker Bochum – Ihr Partner rund um's Dach"
         subtitle="Rex Bedachungs GmbH"
-        description="Ihr Partner für handwerkliche Präzision im Ruhrgebiet. Wir realisieren Ihre energetische Dachsanierung nach GEG und maximieren Ihre Ersparnis durch staatliche Förderungen von BAFA und KfW. Von der fachgerechten Flachdachabdichtung bis zum zertifizierten VELUX-Fenstereinbau – wir bringen Meisterqualität auf Ihr Dach, die schützt, überzeugt und sich durch attraktive Zuschüsse bezahlt macht. Steildach, Flachdach, Reparatur, Sanierung, Dachfenster und Bauklempnerei - Wir sind Ihr zuverlässiger Partner für alle Arbeiten rund um's Dach."
+        description="Ihr Partner für handwerkliche Präzision im Ruhrgebiet. Wir realisieren Ihre energetische Dachsanierung nach GEG und maximieren Ihre Ersparnis durch staatliche Förderungen von BAFA und KfW. Von der fachgerechten Flachdachabdichtung bis zum professionellen VELUX-Fenstereinbau – wir bringen Meisterqualität auf Ihr Dach, die schützt, überzeugt und sich durch attraktive Zuschüsse bezahlt macht. Steildach, Flachdach, Reparatur, Sanierung, Dachfenster und Bauklempnerei - Wir sind Ihr zuverlässiger Partner für alle Arbeiten rund um's Dach."
         imageUrl={heroImage}
         imageAlt="Dachdecker Bochum – Rex Bedachungs GmbH Steildach"
         showCTAs={true}

@@ -88,7 +88,7 @@ const faqItems = [
   },
   {
     question: "Welche Velux-Fenster werden gefördert?",
-    answer: "Alle Velux-Fenster mit einem U-Wert von 1,0 oder besser werden gefördert. Moderne Velux-Modelle erfüllen diese Anforderung problemlos. Als offizieller Velux-Partner beraten wir Sie gerne zu den passenden Modellen.",
+    answer: "Alle Velux-Fenster mit einem U-Wert von 1,0 oder besser werden gefördert. Moderne Velux-Modelle erfüllen diese Anforderung problemlos. Als VELUX-Fachbetrieb beraten wir Sie gerne zu den passenden Modellen.",
   },
   {
     question: "Wie hoch ist die maximale Fördersumme?",
@@ -113,7 +113,7 @@ export default function Foerderung() {
         />
         <link rel="canonical" href="https://www.rex-bedachung.de/foerderung" />
         <meta property="og:title" content="BAFA & KfW Förderung Dachsanierung | Rex Bedachungs GmbH Bochum" />
-        <meta property="og:description" content="Bis zu 20% staatliche Förderung für Dachsanierung & Velux-Fenster. Wir begleiten Sie als zertifizierter Meisterbetrieb durch den Förderdschungel." />
+        <meta property="og:description" content="Bis zu 20% staatliche Förderung für Dachsanierung & Velux-Fenster. Wir begleiten Sie als Meisterbetrieb durch den Förderdschungel." />
         <script type="application/ld+json">{`
           {
             "@context": "https://schema.org",
@@ -155,7 +155,7 @@ export default function Foerderung() {
             <span className="text-blue-400">Staatliche Zuschüsse clever nutzen</span>
           </h1>
           <p className="text-xl text-slate-300 max-w-2xl mx-auto leading-relaxed mb-8">
-            Sparen Sie bis zu 20% der Sanierungskosten durch BAFA und KfW. Wir begleiten Sie als zertifizierter Meisterbetrieb durch den Förderdschungel.
+            Sparen Sie bis zu 20% der Sanierungskosten durch BAFA und KfW. Wir begleiten Sie als Meisterbetrieb durch den Förderdschungel.
           </p>
           <a
             href="#video"
@@ -351,7 +351,7 @@ export default function Foerderung() {
                 </div>
                 <h3 className="text-2xl font-bold mb-4 text-blue-100">Energieeffizienz-Experte (EEE)</h3>
                 <p className="text-slate-400 mb-6 leading-relaxed">
-                  Für BAFA und KfW ist die Einbindung eines zertifizierten Energieberaters Pflicht. Wir arbeiten eng mit lokalen Experten in Bochum zusammen und koordinieren den gesamten Prozess für Sie. Die Experten-Kosten werden zu 50% gefördert!
+                  Für BAFA und KfW ist die Einbindung eines Energieeffizienz-Experten (EEE) Pflicht. Wir arbeiten eng mit lokalen Experten in Bochum zusammen und koordinieren den gesamten Prozess für Sie. Die Experten-Kosten werden zu 50% gefördert!
                 </p>
               </div>
               <div className="text-sm font-medium border-t border-slate-700 pt-4 flex justify-between">

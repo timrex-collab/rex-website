@@ -115,15 +115,15 @@ export default function FAQ() {
         },
         {
           question:
-            "Bieten Sie auch kurzfristige Reparaturen oder einen Notdienst an?",
+            "Bieten Sie auch kurzfristige Reparaturen an?",
           answer:
-            "Wir versuchen, bei akuten Schäden so schnell wie möglich zu helfen. Wenn es unsere Kapazitäten zulassen, kommen wir auch kurzfristig vorbei – insbesondere bei Sturmschäden oder plötzlich auftretenden Dachundichtigkeiten in unserer Region reagieren wir so zeitnah wie möglich. Einen durchgehenden 24h-Notdienst bieten wir derzeit zwar nicht an, doch in dringenden Fällen finden wir meist eine schnelle Lösung innerhalb unserer Geschäftszeiten. Melden Sie Schäden also am besten sofort, damit wir schnell helfen können.",
+            "Wir versuchen, bei akuten Schäden so schnell wie möglich zu helfen. Wenn es unsere Kapazitäten zulassen, kommen wir auch kurzfristig vorbei – insbesondere bei Sturmschäden oder plötzlich auftretenden Dachundichtigkeiten in unserer Region reagieren wir so zeitnah wie möglich. In dringenden Fällen finden wir meist eine schnelle Lösung innerhalb unserer Geschäftszeiten. Melden Sie Schäden also am besten sofort, damit wir schnell helfen können.",
         },
         {
           question:
             "Was soll ich tun, wenn mein Dach undicht ist oder einen Schaden hat?",
           answer:
-            "Bewahren Sie Ruhe, aber handeln Sie zeitnah. Kontaktieren Sie uns anschließend umgehend – wir kümmern uns so schnell wie möglich um die Reparatur. Bitte haben Sie Verständnis, dass wir keinen 24h-Notdienst anbieten; wir tun jedoch unser Bestes, um dringende Lecks so zeitnah wie möglich während unserer Arbeitszeit zu beheben.",
+            "Bewahren Sie Ruhe, aber handeln Sie zeitnah. Kontaktieren Sie uns anschließend umgehend – wir kümmern uns so schnell wie möglich um die Reparatur. Wir tun unser Bestes, um dringende Lecks so zeitnah wie möglich während unserer Arbeitszeit zu beheben.",
         },
         {
           question:
@@ -145,7 +145,7 @@ export default function FAQ() {
           question:
             "Wie lange dauert der Einbau oder Austausch eines Dachfensters?",
           answer:
-            "Erfreulicherweise ist der Fenstereinbau in der Regel an einem Tag erledigt. Pro Dachfenster planen wir normalerweise etwa einen Arbeitstag ein – darin sind Vorbereitung (z.B. Zuschnitt der Dachöffnung), die eigentliche Montage sowie der Innenausbau und die Abdichtung enthalten. Sie können Ihr neues VELUX-Fenster also meist schon am Abend des Einbautages voll nutzen.",
+            "Erfreulicherweise ist der Fenstereinbau in der Regel zügig erledigt. Pro Dachfenster planen wir normalerweise einen halben bis ganzen Arbeitstag ein – darin sind Vorbereitung (z.B. Zuschnitt der Dachöffnung), die eigentliche Montage sowie der Innenausbau und die Abdichtung enthalten. Sie können Ihr neues VELUX-Fenster also meist schon am Abend des Einbautages voll nutzen.",
         },
         {
           question:
@@ -173,7 +173,7 @@ export default function FAQ() {
         {
           question: "Was kostet der Austausch einer Dachrinne mit Fallrohren?",
           answer:
-            "Die Kosten für eine Dachrinnenerneuerung hängen vor allem vom gewählten Material und der Gebäudelänge ab. Als groben Richtwert kann man mit ca. 20–40 € pro laufendem Meter Regenrinne inklusive Montage rechnen – Kunststoff-Dachrinnen liegen am unteren Ende, Kupfer-Dachrinnen am oberen. Für ein Einfamilienhaus mit rund 20 m Dachrinne ergibt sich so beispielsweise ein Gesamtpreis von etwa 600–1.200 € (inkl. Montage, Fallrohre und Gerüst). Wir schauen uns Ihr Haus an und machen Ihnen dann einen konkreten Festpreis.",
+            "Die Kosten für eine Dachrinnenerneuerung hängen vor allem vom gewählten Material und der Gebäudelänge ab. Als groben Richtwert kann man mit ca. 20–40 € pro laufendem Meter Regenrinne inklusive Montage rechnen – Kunststoff-Dachrinnen liegen am unteren Ende, Kupfer-Dachrinnen am oberen. Für ein Einfamilienhaus mit rund 20 m Dachrinne ergibt sich so beispielsweise ein Gesamtpreis von etwa 600–1.200 € (inkl. Montage, Fallrohre und Gerüst). Wir schauen uns Ihr Haus an und machen Ihnen dann ein transparentes Angebot.",
         },
         {
           question:
@@ -394,10 +394,10 @@ export default function FAQ() {
               },
               {
                 "@type": "Question",
-                "name": "Bieten Sie auch kurzfristige Reparaturen oder einen Notdienst an?",
+                "name": "Bieten Sie auch kurzfristige Reparaturen an?",
                 "acceptedAnswer": {
                   "@type": "Answer",
-                  "text": "Wir versuchen, bei akuten Schäden so schnell wie möglich zu helfen. Einen durchgehenden 24h-Notdienst bieten wir derzeit nicht an, doch in dringenden Fällen finden wir meist eine schnelle Lösung innerhalb unserer Geschäftszeiten."
+                  "text": "Wir versuchen, bei akuten Schäden so schnell wie möglich zu helfen. In dringenden Fällen finden wir meist eine schnelle Lösung innerhalb unserer Geschäftszeiten."
                 }
               },
               {

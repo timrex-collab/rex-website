@@ -35,16 +35,16 @@ const services = [
   },
   {
     icon: <Wrench className="w-8 h-8 text-primary" />,
-    title: "Dachfenster Reparatur – auch als Notdienst",
-    text: "Klemmt, tropft oder schließt nicht mehr richtig? Wir reparieren alle gängigen Dachfenster-Modelle – bei Notfällen auch kurzfristig.",
+    title: "Dachfenster Reparatur – schnelle Unterstützung",
+    text: "Klemmt, tropft oder schließt nicht mehr richtig? Wir reparieren alle gängigen Dachfenster-Modelle – bei dringenden Fällen auch kurzfristig.",
     testId: "card-reparatur",
   },
 ];
 
 const reasons = [
-  "VELUX-zertifizierter Fachbetrieb",
+  "VELUX-Fachbetrieb",
   "40+ Jahre Erfahrung im Ruhrgebiet",
-  "Schnelle Reaktionszeit – auch Notdienst",
+  "Schnelle Reaktionszeit – kurzfristige Hilfe",
   "Kostenlose Beratung & Förderantrag",
 ];
 
@@ -52,7 +52,7 @@ const faqItems = [
   {
     question: "Was kostet ein Dachfenster Einbau in Bochum?",
     answer:
-      "Die Kosten variieren je nach Modell und Aufwand. Ein einfacher Austausch beginnt ab ca. 600–800 €, ein Neueinbau je nach Dachkonstruktion ab ca. 1.200 €. Kontaktieren Sie uns für ein kostenloses Angebot.",
+      "Die Kosten variieren je nach Modell und Aufwand. Ein einfacher Austausch beginnt ab ca. 1.000 €, ein Standard-Austausch (GGL/GGU/GPU) ab ca. 1.500 €, Premium-/Integra-Modelle ab ca. 1.800 €. Die genauen Kosten ermitteln wir nach kostenlosem Aufmaß vor Ort – kein verbindlicher Preis ohne Besichtigung, aber realistische Preisrahmen als Orientierung.",
   },
   {
     question: "Wie lange dauert der Einbau eines Dachfensters?",
@@ -67,7 +67,7 @@ const faqItems = [
   {
     question: "Welche Dachfenster-Marken verbauen Sie?",
     answer:
-      "Wir sind zertifizierter VELUX-Partner und verbauen zusätzlich Roto Dachfenster in allen Ausführungen.",
+      "Wir sind VELUX-Fachbetrieb und verbauen zusätzlich Roto Dachfenster in allen Ausführungen.",
   },
 ];
 
@@ -101,17 +101,17 @@ export default function DachfensterBochum() {
         <title>Dachfenster Bochum – VELUX Einbau | Rex Bedachung</title>
         <meta
           name="description"
-          content="Dachfenster Bochum ✓ VELUX-zertifiziert ✓ Neueinbau & Austausch ✓ Notdienst ✓ BAFA/KfW-Förderung – Rex Bedachungs GmbH, Ihr Fachbetrieb im Ruhrgebiet."
+          content="Dachfenster Bochum ✓ VELUX-Fachbetrieb ✓ Neueinbau & Austausch ✓ Kurzfristige Hilfe ✓ BAFA/KfW-Förderung – Rex Bedachungs GmbH, Ihr Fachbetrieb im Ruhrgebiet."
         />
         <meta property="og:title" content="Dachfenster Bochum – VELUX & Roto Einbau | Rex Bedachungs GmbH" />
         <meta
           property="og:description"
-          content="VELUX-zertifizierter Fachbetrieb für Dachfenster in Bochum. Neueinbau, Austausch & Reparatur – mit Förderberatung."
+          content="VELUX-Fachbetrieb für Dachfenster in Bochum. Neueinbau, Austausch & Reparatur – mit Förderberatung."
         />
         <meta property="og:image" content="https://www.rex-bedachung.de/images/velux-dachfenster-einbau-bochum-fachbetrieb.webp" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="Dachfenster Bochum – VELUX Einbau | Rex Bedachung" />
-        <meta name="twitter:description" content="Dachfenster Bochum ✓ VELUX-zertifiziert ✓ Neueinbau & Austausch ✓ Notdienst ✓ BAFA/KfW-Förderung – Rex Bedachungs GmbH." />
+        <meta name="twitter:description" content="Dachfenster Bochum ✓ VELUX-Fachbetrieb ✓ Neueinbau & Austausch ✓ Kurzfristige Hilfe ✓ BAFA/KfW-Förderung – Rex Bedachungs GmbH." />
         <meta name="twitter:image" content="https://www.rex-bedachung.de/images/velux-dachfenster-einbau-bochum-fachbetrieb.webp" />
         <link rel="canonical" href="https://www.rex-bedachung.de/dachfenster-bochum" />
         <script type="application/ld+json">{schemaJson}</script>
@@ -130,7 +130,7 @@ export default function DachfensterBochum() {
         <div className="absolute inset-0 bg-gradient-to-r from-black/75 via-black/55 to-black/30" aria-hidden="true" />
         <div className="relative z-10 max-w-7xl mx-auto">
           <h1 className="text-3xl md:text-5xl font-extrabold leading-tight mb-4 max-w-3xl" data-testid="heading-hero">
-            Dachfenster Bochum – VELUX &amp; Roto vom zertifizierten Fachbetrieb
+            Dachfenster Bochum – VELUX &amp; Roto vom Fachbetrieb
           </h1>
           <p className="text-lg md:text-xl text-slate-200 mb-8 max-w-xl" data-testid="text-hero-subtitle">
             Neueinbau, Austausch und Reparatur – schnell, sauber, mit Förderung
@@ -157,7 +157,7 @@ export default function DachfensterBochum() {
             </Button>
           </div>
           <p className="text-sm text-slate-300 font-medium" data-testid="text-trust-badge">
-            VELUX-zertifiziert &bull; 40+ Jahre Erfahrung &bull; Ruhrgebiet
+            VELUX-Fachbetrieb &bull; 40+ Jahre Erfahrung &bull; Ruhrgebiet
           </p>
         </div>
       </section>
@@ -191,7 +191,7 @@ export default function DachfensterBochum() {
             Ihr VELUX &amp; Roto Fachbetrieb in Bochum
           </h2>
           <p className="text-muted-foreground leading-relaxed text-base md:text-lg" data-testid="text-marken">
-            Als zertifizierter VELUX-Partner verfügen wir über umfassendes Fachwissen und direkten Zugang zu
+            Als VELUX-Fachbetrieb verfügen wir über umfassendes Fachwissen und direkten Zugang zu
             Originalteilen und Zubehör. Natürlich verbauen wir auch Roto Dachfenster in allen gängigen Ausführungen –
             vom einfachen Klappfenster bis zum elektrischen Dachflächenfenster mit Fernbedienung.
           </p>
@@ -335,7 +335,7 @@ export default function DachfensterBochum() {
             Dachfenster in Bochum – Jetzt kostenlos beraten lassen
           </h2>
           <p className="text-muted-foreground mb-8 text-base" data-testid="text-cta">
-            Rufen Sie uns an oder schreiben Sie uns – wir melden uns innerhalb von 24 Stunden.
+            Rufen Sie uns an oder schreiben Sie uns – wir melden uns zeitnah.
           </p>
           <div className="flex flex-wrap justify-center gap-3">
             <Button

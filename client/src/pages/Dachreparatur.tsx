@@ -93,7 +93,7 @@ const faqItems = [
   {
     question: "Wie schnell können Sie einen Sturmschaden reparieren?",
     answer:
-      "Bei dringenden Schäden reagieren wir kurzfristig – in der Regel innerhalb von 24–48 Stunden. Bei akuter Gefahr sichern wir Ihr Dach provisorisch ab und führen die dauerhafte Reparatur schnellstmöglich durch.",
+      "Bei dringenden Schäden reagieren wir kurzfristig. Bei akuter Gefahr sichern wir Ihr Dach provisorisch ab und führen die dauerhafte Reparatur schnellstmöglich durch.",
   },
   {
     question: "Übernimmt die Versicherung die Kosten?",
@@ -143,19 +143,19 @@ export default function Dachreparatur() {
   return (
     <>
       <Helmet>
-        <title>Dachreparatur Bochum – Sturmschaden &amp; Notdienst</title>
+        <title>Dachreparatur Bochum – Sturmschaden &amp; schnelle Hilfe</title>
         <meta
           name="description"
           content="Dachreparatur Bochum ✓ Sturmschäden ✓ Undichtes Dach ✓ Kurzfristiger Einsatz ✓ Versicherungsabwicklung – Rex Bedachungs GmbH, Fachbetrieb im Ruhrgebiet."
         />
-        <meta property="og:title" content="Dachreparatur Bochum – Sturmschaden, undichtes Dach & Notdienst | Rex Bedachungs GmbH" />
+        <meta property="og:title" content="Dachreparatur Bochum – Sturmschaden, undichtes Dach & schnelle Hilfe | Rex Bedachungs GmbH" />
         <meta
           property="og:description"
           content="Dachreparatur Bochum ✓ Sturmschäden ✓ Undichtes Dach ✓ Kurzfristiger Einsatz ✓ Versicherungsabwicklung – Rex Bedachungs GmbH, Ihr Fachbetrieb im Ruhrgebiet."
         />
         <meta property="og:image" content="https://www.rex-bedachung.de/images/dachreparatur-bochum-rex-bedachung.webp" />
         <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content="Dachreparatur Bochum – Sturmschaden & Notdienst | Rex Bedachung" />
+        <meta name="twitter:title" content="Dachreparatur Bochum – Sturmschaden & schnelle Hilfe | Rex Bedachung" />
         <meta name="twitter:description" content="Dachreparatur Bochum ✓ Sturmschäden ✓ Undichtes Dach ✓ Kurzfristiger Einsatz ✓ Versicherungsabwicklung – Rex Bedachungs GmbH." />
         <meta name="twitter:image" content="https://www.rex-bedachung.de/images/dachreparatur-bochum-rex-bedachung.webp" />
         <link rel="canonical" href="https://www.rex-bedachung.de/dachreparatur-bochum" />
@@ -410,7 +410,7 @@ export default function Dachreparatur() {
             Interesse an Reparaturen? Jetzt Schaden melden!
           </h2>
           <p className="text-muted-foreground mb-8 text-base" data-testid="text-cta">
-            Rufen Sie uns an oder schreiben Sie uns – wir melden uns innerhalb von 24 Stunden und kommen zur
+            Rufen Sie uns an oder schreiben Sie uns – wir melden uns kurzfristig und kommen zur
             kostenlosen Besichtigung.
           </p>
           <div className="flex flex-wrap justify-center gap-3">

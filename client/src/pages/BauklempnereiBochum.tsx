@@ -399,7 +399,7 @@ export default function BauklempnereiBochum() {
             Interesse an Klempnerarbeiten? Jetzt anfragen!
           </h2>
           <p className="text-muted-foreground mb-8 text-base" data-testid="text-cta">
-            Kostenloses Aufmaß vor Ort – wir melden uns innerhalb von 24 Stunden.
+            Kostenloses Aufmaß vor Ort – wir melden uns kurzfristig.
           </p>
           <div className="flex flex-wrap justify-center gap-3">
             <Button

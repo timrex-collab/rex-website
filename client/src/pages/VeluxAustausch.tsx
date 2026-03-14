@@ -107,7 +107,7 @@ const comparisonRows = [
 const ablaufSteps = [
   { name: "Vor-Ort-Termin und Aufmaß", text: "Rex Bedachungs GmbH kommt kostenlos zu Ihnen – Bestandsaufnahme, Fenstertyp, Dachsituation, genaue Maße und Zugänglichkeit." },
   { name: "Modellauswahl und Beratung", text: "Gemeinsame Auswahl des passenden Velux Modells – abgestimmt auf Bedarf, Raum, Budget und technische Eignung." },
-  { name: "Angebot und Terminplanung", text: "Transparentes Festpreisangebot mit vollständiger Leistungsaufstellung – kein versteckter Nachtragsaufwand." },
+  { name: "Angebot und Terminplanung", text: "Transparentes Angebot mit vollständiger Leistungsaufstellung – kein versteckter Nachtragsaufwand." },
   { name: "Ausbau des alten Dachfensters", text: "Fachgerechter Rückbau, Schutzmaßnahmen für Wohnraum und Dachaufbau, Vorbereitung der Einbauöffnung." },
   { name: "Einbau des neuen Velux Fensters", text: "Montage, Eindeckrahmen, Dämmkragen, vollständige Abdichtung aller Anschlüsse gegen Wasser und Wärmebrücken." },
   { name: "Innenarbeiten und Anschlussdetails", text: "Innenfutter, Laibung und eventuelle Nacharbeiten – sauber und passgenau zum Bestand." },
@@ -117,7 +117,7 @@ const ablaufSteps = [
 const faqItems = [
   {
     question: "Was kostet der Austausch eines Velux Dachfensters in Bochum?",
-    answer: "Rex Bedachungs GmbH führt Velux Dachfenster-Austausch in Bochum ab 1.000 € inkl. Lieferung und Einbau durch – je nach Modell, Größe und notwendigen Nebenarbeiten. Nach kostenlosem Aufmaß erhalten Sie ein verbindliches Festpreisangebot.",
+    answer: "Rex Bedachungs GmbH führt Velux Dachfenster-Austausch in Bochum ab 1.000 € inkl. Lieferung und Einbau durch – je nach Modell, Größe und notwendigen Nebenarbeiten. Nach kostenlosem Aufmaß erhalten Sie ein transparentes Angebot.",
   },
   {
     question: "Wie lange dauert der Austausch?",
@@ -159,7 +159,7 @@ const howToSchema = JSON.stringify({
   "step": [
     { "@type": "HowToStep", "position": 1, "name": "Vor-Ort-Termin und Aufmaß", "text": "Kostenlose Bestandsaufnahme vor Ort in Bochum – Fenstertyp, Dachsituation, genaue Maße und Zugänglichkeit." },
     { "@type": "HowToStep", "position": 2, "name": "Modellauswahl und Beratung", "text": "Gemeinsame Auswahl des passenden Velux Modells (GGL, GGU, GPU oder Integra)." },
-    { "@type": "HowToStep", "position": 3, "name": "Angebot und Terminplanung", "text": "Transparentes Festpreisangebot mit vollständiger Leistungsaufstellung." },
+    { "@type": "HowToStep", "position": 3, "name": "Angebot und Terminplanung", "text": "Transparentes Angebot mit vollständiger Leistungsaufstellung." },
     { "@type": "HowToStep", "position": 4, "name": "Ausbau des alten Dachfensters", "text": "Fachgerechter Rückbau mit Schutzmaßnahmen für Wohnraum und Dachaufbau." },
     { "@type": "HowToStep", "position": 5, "name": "Einbau des neuen Velux Fensters", "text": "Montage, Eindeckrahmen, Dämmkragen und vollständige Abdichtung aller Anschlüsse." },
     { "@type": "HowToStep", "position": 6, "name": "Innenarbeiten und Anschlussdetails", "text": "Innenfutter, Laibung und Nacharbeiten passgenau zum Bestand." },
@@ -176,7 +176,7 @@ const faqSchema = JSON.stringify({
       "name": "Was kostet der Austausch eines Velux Dachfensters in Bochum?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Rex Bedachungs GmbH führt Velux Dachfenster-Austausch in Bochum ab 1.000 € inkl. Lieferung und Einbau durch. Nach kostenlosem Aufmaß erhalten Sie ein verbindliches Festpreisangebot.",
+        "text": "Rex Bedachungs GmbH führt Velux Dachfenster-Austausch in Bochum ab 1.000 € inkl. Lieferung und Einbau durch. Nach kostenlosem Aufmaß erhalten Sie ein transparentes Angebot.",
       },
     },
     {
@@ -215,7 +215,7 @@ const serviceSchema = JSON.stringify({
     "telephone": "+49-234-583100",
   },
   "areaServed": ["Bochum", "Herne", "Castrop-Rauxel", "Witten", "Hattingen", "Ruhrgebiet"],
-  "description": "Velux Dachfenster Austausch in Bochum – GGL, GGU, GPU und Integra, ab 1.000 €, VELUX-Partner, kostenlose Beratung und Festpreisangebot.",
+  "description": "Velux Dachfenster Austausch in Bochum – GGL, GGU, GPU und Integra, ab 1.000 €, VELUX-Fachbetrieb, kostenlose Beratung und transparentes Angebot.",
   "offers": {
     "@type": "Offer",
     "priceCurrency": "EUR",
@@ -387,7 +387,7 @@ export default function VeluxAustausch() {
             Was kostet ein Velux Dachfenster Austausch in Bochum?
           </h2>
           <p className="text-muted-foreground text-center mb-10 max-w-3xl mx-auto" data-testid="text-preise-intro">
-            Rex Bedachungs GmbH nennt realistische Preisrahmen – kein Festpreis ohne Aufmaß, aber echte Orientierung für Ihre Planung.
+            Rex Bedachungs GmbH nennt realistische Preisrahmen – kein verbindlicher Preis ohne Aufmaß, aber echte Orientierung für Ihre Planung.
           </p>
           <div className="grid md:grid-cols-3 gap-6 mb-8">
             {/* Standard */}
@@ -448,7 +448,7 @@ export default function VeluxAustausch() {
           {/* Hinweis-Box */}
           <div className="rounded-md border border-border p-6 bg-muted/40" data-testid="box-preishinweis">
             <p className="text-sm text-muted-foreground leading-relaxed">
-              <span className="font-semibold text-foreground">Hinweis:</span> Alle Preise sind Orientierungsrahmen für den Großraum Bochum und das Ruhrgebiet. Der genaue Preis hängt ab von Anzahl, Fenstertyp, Verglasung, Größe, Dachzugang und notwendigen Nebenarbeiten sowie Sicherheitsbestimmungen. Rex Bedachungs GmbH erstellt Ihnen nach kostenlosem Aufmaß ein verbindliches Festpreisangebot.
+              <span className="font-semibold text-foreground">Hinweis:</span> Alle Preise sind Orientierungsrahmen für den Großraum Bochum und das Ruhrgebiet. Der genaue Preis hängt ab von Anzahl, Fenstertyp, Verglasung, Größe, Dachzugang und notwendigen Nebenarbeiten sowie Sicherheitsbestimmungen. Rex Bedachungs GmbH erstellt Ihnen nach kostenlosem Aufmaß ein transparentes Angebot.
             </p>
           </div>
         </div>
@@ -551,8 +551,8 @@ export default function VeluxAustausch() {
             <div className="flex items-start gap-3" data-testid="item-usp-0">
               <CheckCircle className="w-5 h-5 text-primary shrink-0 mt-0.5" aria-hidden="true" />
               <div>
-                <p className="font-semibold text-foreground mb-1">VELUX-zertifizierter Fachbetrieb</p>
-                <p className="text-sm text-muted-foreground leading-relaxed">Rex Bedachungs GmbH ist offiziell zertifizierter Velux-Partner – mit direktem Zugriff auf alle aktuellen Modelle, Zubehör und Ersatzteile.</p>
+                <p className="font-semibold text-foreground mb-1">VELUX-Fachbetrieb</p>
+                <p className="text-sm text-muted-foreground leading-relaxed">Rex Bedachungs GmbH ist VELUX-Fachbetrieb – mit direktem Zugriff auf alle aktuellen Modelle, Zubehör und Ersatzteile.</p>
               </div>
             </div>
             <div className="flex items-start gap-3" data-testid="item-usp-1">
@@ -565,8 +565,8 @@ export default function VeluxAustausch() {
             <div className="flex items-start gap-3" data-testid="item-usp-2">
               <CheckCircle className="w-5 h-5 text-primary shrink-0 mt-0.5" aria-hidden="true" />
               <div>
-                <p className="font-semibold text-foreground mb-1">Transparente Festpreise</p>
-                <p className="text-sm text-muted-foreground leading-relaxed">Kein Nachtragsaufwand: Das Angebot von Rex Bedachungs GmbH enthält alle Leistungen mit Festpreisgarantie.</p>
+                <p className="font-semibold text-foreground mb-1">Faire, transparente Preise</p>
+                <p className="text-sm text-muted-foreground leading-relaxed">Kein Nachtragsaufwand: Das Angebot von Rex Bedachungs GmbH enthält alle Leistungen – transparent und verbindlich kalkuliert.</p>
               </div>
             </div>
             <div className="flex items-start gap-3" data-testid="item-usp-3">
@@ -626,7 +626,7 @@ export default function VeluxAustausch() {
           </h2>
           <p className="text-muted-foreground leading-relaxed text-base md:text-lg flex items-center justify-center gap-2 flex-wrap" data-testid="text-regionen">
             <MapPin className="w-5 h-5 text-primary shrink-0" aria-hidden="true" />
-            Rex Bedachungs GmbH tauscht Velux Dachfenster in Bochum, Herne, Castrop-Rauxel, Witten, Hattingen, Wattenscheid, Altenbochum, Ehrenfeld, Langendreer und dem gesamten Ruhrgebiet aus – termingerecht, zuverlässig und zum Festpreis.
+            Rex Bedachungs GmbH tauscht Velux Dachfenster in Bochum, Herne, Castrop-Rauxel, Witten, Hattingen, Wattenscheid, Altenbochum, Ehrenfeld, Langendreer und dem gesamten Ruhrgebiet aus – termingerecht, zuverlässig und zu fairen Preisen.
           </p>
         </div>
       </section>
@@ -638,7 +638,7 @@ export default function VeluxAustausch() {
             Jetzt Velux Dachfenster Austausch in Bochum anfragen
           </h2>
           <p className="text-muted-foreground mb-8 text-base" data-testid="text-cta">
-            Kostenloser Vor-Ort-Termin – wir melden uns innerhalb von 24 Stunden.
+            Kostenloser Vor-Ort-Termin – wir melden uns zeitnah.
           </p>
           <div className="flex flex-wrap justify-center gap-3">
             <Button

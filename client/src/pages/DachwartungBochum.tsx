@@ -398,7 +398,7 @@ export default function DachwartungBochum() {
             Interesse an Dachwartung? Jetzt anfragen!
           </h2>
           <p className="text-muted-foreground mb-8 text-base" data-testid="text-cta">
-            Kostenloses Erstgespräch – wir melden uns innerhalb von 24 Stunden.
+            Kostenloses Erstgespräch – wir melden uns zeitnah.
           </p>
           <div className="flex flex-wrap justify-center gap-3">
             <Button

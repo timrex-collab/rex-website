@@ -24,7 +24,7 @@ export default function References() {
       year: "2025",
       description: "Lichtlösung Raum.  Mehr Raumgewinn und Kopffreiheit durch Kombi-Aufkeilrahmen. Mit Solar-Rollläden für Hitzeschutz und Verdunkelung.",
       imageUrl: velux1,
-      imageAlt: "VELUX Dachfenster Einbau Bochum – zertifizierter Fachbetrieb Rex",
+      imageAlt: "VELUX Dachfenster Einbau Bochum – Fachbetrieb Rex",
     },
     {
       title: "Neubaugebiet Hattingen",
