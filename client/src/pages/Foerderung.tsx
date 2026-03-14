@@ -141,10 +141,6 @@ export default function Foerderung() {
         className="relative text-white py-20 px-4 overflow-hidden"
         style={{ background: "linear-gradient(to right, #0f172a, #1e3a8a)" }}
       >
-        <div
-          className="absolute inset-0 opacity-20 bg-cover bg-center"
-          style={{ backgroundImage: "url('https://firebasestorage.googleapis.com/v0/b/gen-lang-client-0869378336.firebasestorage.app/o/videos%2Fimage_fx_%20(4).jpg?alt=media&token=1801c402-4f33-4f51-874b-c1285090f779')" }}
-        />
         <div className="max-w-5xl mx-auto text-center relative z-10">
           <div className="inline-flex items-center gap-2 bg-blue-500/20 border border-blue-400/30 rounded-full px-4 py-1 mb-6">
             <Euro className="w-4 h-4 text-blue-300" />
@@ -202,7 +198,7 @@ export default function Foerderung() {
             playsInline
             controlsList="nodownload"
             poster="https://images.unsplash.com/photo-1629815039233-5c2c5448c985?q=80&w=2070&auto=format&fit=crop"
-            src="https://firebasestorage.googleapis.com/v0/b/velux-foerderung-2026.firebasestorage.app/o/video.mp4?alt=media&token=b528d1c3-360c-40bd-8840-d938230cfae5"
+            src="/videos/foerderung-dachsanierung-bochum.mp4"
           >
             Ihr Browser unterstützt dieses Video nicht.
           </video>
