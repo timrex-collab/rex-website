@@ -25,6 +25,7 @@ export default function Navigation() {
     { name: "Leistungen", path: "/leistungen", hasDropdown: true },
     { name: "Referenzen", path: "/referenzen" },
     { name: "FAQ", path: "/faq" },
+    { name: "Lexikon", path: "/lexikon" },
     { name: "Über uns", path: "/ueber-uns" },
     { name: "Karriere", path: "/karriere" },
     { name: "Solarpflicht", path: "/solarpflicht" },

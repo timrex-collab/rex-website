@@ -1,0 +1,98 @@
+Führe folgende Korrekturen in exakt dieser Reihenfolge aus. Keine Datei starten ohne vorher zu öffnen.
+
+## 1. References.tsx – Ungenutzte Imports entfernen
+
+Öffne client/src/pages/References.tsx und entferne diese 3 Import-Zeilen vollständig:
+- import ref2Image from "@assets/generated_images/Flat_roof_installation_f99a2939.png";
+- import ref3Image from "@assets/generated_images/Metal_roofing_craftsmanship_aa78a2e6.png";
+- import ref4Image from "@assets/generated_images/Roof_windows_installation_be212f7f.png";
+
+Diese Variablen werden im JSX nicht genutzt.
+
+## 2. Home.tsx – Schema-Fehler beheben
+
+Öffne client/src/pages/Home.tsx und ändere im JSON-Schema (Script-Block):
+
+ÄNDERUNG A – Logo und Image URL korrigieren:
+SUCHE:
+"logo": "https://www.rex-bedachung.de/logo.png",
+"image": "https://www.rex-bedachung.de/og-image.jpg",
+ERSETZE DURCH:
+"logo": "https://www.rex-bedachung.de/images/logo-rex-bedachungs-gmbh-bochum-2025.webp",
+"image": "https://www.rex-bedachung.de/images/dachdecker-bochum-steildach-hero.webp",
+
+ÄNDERUNG B – Koordinaten korrigieren:
+SUCHE:
+"geo": {
+  "@type": "GeoCoordinates",
+  "latitude": "51.4818",
+  "longitude": "7.2162"
+},
+ERSETZE DURCH:
+"geo": {
+  "@type": "GeoCoordinates",
+  "latitude": 51.46262,
+  "longitude": 7.24442
+},
+
+ÄNDERUNG C – Öffnungszeiten anpassen (auf 16:30 wie in index.html):
+SUCHE:
+"closes": "17:00"
+ERSETZE DURCH:
+"closes": "16:30"
+
+ÄNDERUNG D – og:image auf absoluten Pfad setzen:
+SUCHE:
+<meta property="og:image" content={heroImage} />
+ERSETZE DURCH:
+<meta property="og:image" content="https://www.rex-bedachung.de/images/dachdecker-bochum-steildach-hero.webp" />
+
+## 3. Sitemap.xml – /lexikon Eintrag hinzufügen
+
+Öffne client/public/sitemap.xml und füge vor dem <url>-Block für /foerderung diesen Eintrag ein:
+
+  <url>
+    <loc>https://www.rex-bedachung.de/lexikon</loc>
+    <lastmod>2026-03-14</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+## 4. Services.tsx – Links auf neue SEO-Landing-Pages umstellen
+
+Öffne client/src/pages/Services.tsx und ändere im services-Array folgende href-Werte:
+
+SUCHE: href: "/leistungen/steildach"
+ERSETZE: href: "/steildach-bochum"
+
+SUCHE: href: "/leistungen/flachdach"
+ERSETZE: href: "/flachdach-bochum"
+
+SUCHE: href: "/leistungen/bauklempnerei"
+ERSETZE: href: "/bauklempnerei-bochum"
+
+SUCHE: href: "/leistungen/dachwartung"
+ERSETZE: href: "/dachwartung-bochum"
+
+SUCHE: href: "/leistungen/reparaturen"
+ERSETZE: href: "/dachreparatur-bochum"
+
+## 5. Foerderung.tsx – Video-Poster lokal setzen
+
+Öffne client/src/pages/Foerderung.tsx und ändere den poster-Attribut:
+SUCHE:
+poster="https://images.unsplash.com/photo-1629815039233-5c2c5448c985?q=80&w=2070&auto=format&fit=crop"
+ERSETZE DURCH:
+poster="/images/foerderung-hero.webp"
+
+## 6. Navigation.tsx – Lexikon-Link hinzufügen
+
+Öffne client/src/components/Navigation.tsx und füge im mainNav-Array nach dem FAQ-Eintrag folgenden Eintrag ein:
+{ name: "Lexikon", path: "/lexikon" },
+
+## 7. Build prüfen
+
+Führe aus: npm run build
+Stelle sicher dass kein Fehler auftritt.
+
+Melde am Ende: welche Dateien geändert wurden + Build-Status.

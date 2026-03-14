@@ -145,15 +145,15 @@ export default function Home() {
   <meta property="og:description" content="Professionelle Dachdeckerarbeiten im Ruhrgebiet. Meisterbetrieb mit 40 Jahren Erfahrung." />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://www.rex-bedachung.de/" />
-  <meta property="og:image" content={heroImage} />
+  <meta property="og:image" content="https://www.rex-bedachung.de/images/dachdecker-bochum-steildach-hero.webp" />
   <script type="application/ld+json">
     {JSON.stringify({
       "@context": "https://schema.org",
       "@type": "RoofingContractor",
       "name": "Rex Bedachungs GmbH",
       "url": "https://www.rex-bedachung.de",
-      "logo": "https://www.rex-bedachung.de/logo.png",
-      "image": "https://www.rex-bedachung.de/og-image.jpg",
+      "logo": "https://www.rex-bedachung.de/images/logo-rex-bedachungs-gmbh-bochum-2025.webp",
+      "image": "https://www.rex-bedachung.de/images/dachdecker-bochum-steildach-hero.webp",
       "description": "Rex Bedachungs GmbH ist ein Dachdecker-Meisterbetrieb in Bochum mit über 40 Jahren Erfahrung. Wir bieten Steildach, Flachdach, Bauklempnerei, Dachfenster, Reparaturen und Dachwartung im gesamten Ruhrgebiet.",
       "foundingYear": "1984",
       "telephone": "+49-234-583100",
@@ -169,8 +169,8 @@ export default function Home() {
       },
       "geo": {
         "@type": "GeoCoordinates",
-        "latitude": "51.4818",
-        "longitude": "7.2162"
+        "latitude": 51.46262,
+        "longitude": 7.24442
       },
       "areaServed": [
         { "@type": "City", "name": "Bochum" },
@@ -186,7 +186,7 @@ export default function Home() {
           "@type": "OpeningHoursSpecification",
           "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
           "opens": "07:00",
-          "closes": "17:00"
+          "closes": "16:30"
         }
       ],
       "priceRange": "€€",

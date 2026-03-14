@@ -1,9 +1,6 @@
 import { Helmet } from "react-helmet";
 import Hero from "@/components/Hero";
 import ReferenceCard from "@/components/ReferenceCard";
-import ref2Image from "@assets/generated_images/Flat_roof_installation_f99a2939.png";
-import ref3Image from "@assets/generated_images/Metal_roofing_craftsmanship_aa78a2e6.png";
-import ref4Image from "@assets/generated_images/Roof_windows_installation_be212f7f.png";
 import entwaesserung1 from "@assets/Entwaesserung1.jpg";
 
 const heroImage = "/images/tondach-hero-dachdeckung-bochum.webp";

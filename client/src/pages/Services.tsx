@@ -17,7 +17,7 @@ export default function Services() {
       description: "Fachgerechte Eindeckung und Sanierung von Steildächern mit hochwertigen Materialien wie Ton-, Beton- oder Schieferziegeln.",
       imageUrl: steildachImage,
       imageAlt: "Steildach mit roten Ziegeln",
-      href: "/leistungen/steildach",
+      href: "/steildach-bochum",
       benefits: [
         "Alle gängigen Dachformen",
         "Hochwertige Materialien",
@@ -29,7 +29,7 @@ export default function Services() {
       description: "Professionelle Abdichtung und Sanierung von Flachdächern für Wohn- und Gewerbeimmobilien mit modernen Systemen.",
       imageUrl: flachdachImage,
       imageAlt: "Flachdach Sanierung Bochum – Rex Bedachungs GmbH Fachbetrieb",
-      href: "/leistungen/flachdach",
+      href: "/flachdach-bochum",
       benefits: [
         "Moderne Abdichtungssysteme",
         "Energieeffiziente Lösungen",
@@ -41,7 +41,7 @@ export default function Services() {
       description: "Maßgefertigte Blecharbeiten, Dachrinnen, Regenfallrohre und Wandbekleidungen",
       imageUrl: bauklempnereiImage,
       imageAlt: "Kamin Sanierung Bochum – Dachdecker Rex Bedachung",
-      href: "/leistungen/bauklempnerei",
+      href: "/bauklempnerei-bochum",
       benefits: [
         "Präzise Maßanfertigung",
         "Langlebige Materialien",
@@ -65,7 +65,7 @@ export default function Services() {
       description: "Schnelle und zuverlässige Reparatur von Dachschäden, Sturmschäden und undichten Stellen mit fachgerechter Ausführung.",
       imageUrl: reparaturenImage,
       imageAlt: "Dachreparatur Bochum – schnell und zuverlässig, Rex Bedachung",
-      href: "/leistungen/reparaturen",
+      href: "/dachreparatur-bochum",
       benefits: [
         "Schnelle Schadensanalyse",
         "Unkomplizierte Hilfe",
@@ -77,7 +77,7 @@ export default function Services() {
       description: "Regelmäßige Inspektion und Wartung Ihres Daches zur Vermeidung kostspieliger Schäden und Verlängerung der Lebensdauer.",
       imageUrl: dachwartungImage,
       imageAlt: "Professionelle Dachwartung",
-      href: "/leistungen/dachwartung",
+      href: "/dachwartung-bochum",
       benefits: [
         "Schadensprävention",
         "Werterhaltung",

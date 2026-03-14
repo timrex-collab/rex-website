@@ -201,7 +201,7 @@ export default function Foerderung() {
             controls
             playsInline
             controlsList="nodownload"
-            poster="https://images.unsplash.com/photo-1629815039233-5c2c5448c985?q=80&w=2070&auto=format&fit=crop"
+            poster="/images/foerderung-hero.webp"
             src="/videos/foerderung-dachsanierung-bochum.mp4"
           >
             Ihr Browser unterstützt dieses Video nicht.
