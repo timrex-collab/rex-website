@@ -1,0 +1,71 @@
+Du arbeitest im Projekt RoofingPros (TypeScript/React/Vite).
+Alle Seiteninhalte liegen in: client/src/pages/
+
+AUFTRAG: Gehe jede .tsx-Datei in client/src/pages/ durch und führe die folgenden
+Änderungen direkt im Code aus. Ändere ausschließlich Textinhalte (Strings, Template
+Literals, JSX-Text). Keine Logik, kein Styling, keine Komponenten anfassen.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+REGEL 1 – VELUX-Status
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Ersetze jedes Vorkommen von:
+  "zertifizierter Velux-Partner"  →  "VELUX-Fachbetrieb"
+  "Velux-zertifiziert"            →  "VELUX-Fachbetrieb"
+  "zertifizierter VELUX-Partner"  →  "VELUX-Fachbetrieb"
+Formuliere den umgebenden Satz neu, wenn der Ersatz sprachlich nicht passt.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+REGEL 2 – Preisversprechen
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Ersetze jedes Vorkommen von:
+  "Festpreis"           →  "transparentes Angebot"
+  "Festpreisangebot"    →  "transparentes Angebot"
+  "Festpreisgarantie"   →  "faire, nachvollziehbare Preise"
+Kein Text darf einen garantierten Preis ohne Aufmaß suggerieren.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+REGEL 3 – Reaktionszeit
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Ersetze jedes Vorkommen von:
+  "innerhalb von 24 Stunden"  →  "zeitnah" oder "kurzfristig"
+Wähle je nach Kontext die passendere Variante.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+REGEL 4 – Arbeitsdauer
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Ersetze jedes Vorkommen von:
+  "dauert in der Regel einen Arbeitstag"
+  →  "dauert in der Regel einen halben bis ganzen Arbeitstag"
+Formuliere den Satz neu, wenn der Kontext eine präzisere Angabe erlaubt.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+REGEL 5 – Kein Notdienst
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Wir bieten KEINEN Notdienst an. Ersetze jedes Vorkommen von:
+  "Notdienst"  →  "kurzfristige Hilfe" oder "schnelle Unterstützung"
+Kein Text darf einen 24/7-Notdienst andeuten.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+REGEL 6 – Einheitliche VELUX-Preisstruktur
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Verbindliche Preisrahmen für alle Seiten und FAQs mit VELUX-/Dachfenster-Inhalten:
+  - Einfacher Austausch:            ab 1.000 €
+  - Standard (GGL / GGU / GPU):     ab 1.500 €
+  - Premium / Integra:              ab 1.800 €
+
+Passe alle abweichenden Preisangaben und FAQ-Antworten auf diese Werte an.
+Füge bei jeder Preisangabe einen Hinweis in dieser Logik ein (sinngemäß, nicht wörtlich):
+  "Kein Festpreis ohne Aufmaß – aber realistische Preisrahmen als Orientierung."
+
+Die Pillar Page client/src/pages/VeluxDachfensterAustausch.tsx ist die Referenz.
+Alle anderen Seiten müssen mit dieser Preisstruktur übereinstimmen.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+VORGEHEN
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+1. Liste zuerst alle .tsx-Dateien in client/src/pages/ auf
+2. Öffne jede Datei, suche nach allen Regelverstößen
+3. Ändere direkt im Code – kontextgerecht, nie schematisch
+4. Erhalte alle SEO-Begriffe (Dachfenster, VELUX, Bochum, Ruhrgebiet etc.)
+5. Nach allen Änderungen: Gib eine kompakte Zusammenfassung aus –
+   welche Datei, welche Regel, was wurde geändert
