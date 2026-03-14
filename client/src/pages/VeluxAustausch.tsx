@@ -121,7 +121,7 @@ const faqItems = [
   },
   {
     question: "Wie lange dauert der Austausch?",
-    answer: "Ein Standard-Velux-Austausch dauert in der Regel einen Arbeitstag. Bei Zusatzarbeiten (Innenverkleidung, Integra-Elektrik) 1–2 weitere Tage.",
+    answer: "Ein Standard-Velux-Austausch dauert in der Regel einen halben bis ganzen Arbeitstag. Bei Zusatzarbeiten (Innenverkleidung, Integra-Elektrik) 1–2 weitere Tage.",
   },
   {
     question: "Kann ein altes Velux Fenster 1:1 ersetzt werden?",
@@ -184,7 +184,7 @@ const faqSchema = JSON.stringify({
       "name": "Wie lange dauert ein Velux Dachfensteraustausch?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Ein Standard-Austausch dauert in der Regel einen Arbeitstag. Bei Zusatzarbeiten 1–2 weitere Tage.",
+        "text": "Ein Standard-Austausch dauert in der Regel einen halben bis ganzen Arbeitstag. Bei Zusatzarbeiten 1–2 weitere Tage.",
       },
     },
     {
@@ -234,12 +234,12 @@ export default function VeluxAustausch() {
         <title>Velux Dachfenster Austausch Bochum | Rex Bedachungs GmbH</title>
         <meta
           name="description"
-          content="Velux Dachfenster Austausch Bochum ✓ GGL, GGU, GPU & Integra ✓ Preise ab 1.000 € ✓ VELUX-Partner ✓ Kostenlose Beratung – Rex Bedachungs GmbH Ruhrgebiet."
+          content="Velux Dachfenster Austausch Bochum ✓ GGL, GGU, GPU & Integra ✓ Preise ab 1.000 € ✓ VELUX-Fachbetrieb ✓ Kostenlose Beratung – Rex Bedachungs GmbH Ruhrgebiet."
         />
         <meta property="og:image" content="https://www.rex-bedachung.de/images/velux-dachfenster-einbau-bochum-fachbetrieb.webp" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="Velux Dachfenster Austausch Bochum | Rex Bedachung" />
-        <meta name="twitter:description" content="Velux Dachfenster Austausch Bochum ✓ GGL, GGU, GPU & Integra ✓ Ab 1.000 € ✓ VELUX-Partner – Rex Bedachungs GmbH." />
+        <meta name="twitter:description" content="Velux Dachfenster Austausch Bochum ✓ GGL, GGU, GPU & Integra ✓ Ab 1.000 € ✓ VELUX-Fachbetrieb – Rex Bedachungs GmbH." />
         <meta name="twitter:image" content="https://www.rex-bedachung.de/images/velux-dachfenster-einbau-bochum-fachbetrieb.webp" />
         <link rel="canonical" href="https://www.rex-bedachung.de/velux-dachfenster-austausch-bochum" />
         <script type="application/ld+json">{howToSchema}</script>
@@ -287,7 +287,7 @@ export default function VeluxAustausch() {
             </Button>
           </div>
           <p className="text-sm text-slate-300 font-medium" data-testid="text-trust-badge">
-            VELUX-Partner &bull; Bochum &amp; Ruhrgebiet &bull; Preise ab 1.000 &euro;
+            VELUX-Fachbetrieb &bull; Bochum &amp; Ruhrgebiet &bull; Preise ab 1.000 &euro;
           </p>
         </div>
       </section>
@@ -296,7 +296,7 @@ export default function VeluxAustausch() {
       <section className="py-16 px-4 bg-muted/40" data-testid="section-einleitung">
         <div className="max-w-4xl mx-auto text-center">
           <p className="text-muted-foreground leading-relaxed text-base md:text-lg" data-testid="text-einleitung">
-            Rex Bedachungs GmbH ist VELUX-Partner in Bochum und tauscht Velux Dachfenster aller Modelle fachgerecht aus – im Bestand, ohne unnötige Nebenarbeiten, mit transparenter Kostenaufstellung ab 1.000 €. Ob GGL, GGU, GPU oder Integra: Wir beraten Sie kostenlos zum passenden Modell für Ihr Dach und Ihren Bedarf.
+            Rex Bedachungs GmbH ist VELUX-Fachbetrieb in Bochum und tauscht Velux Dachfenster aller Modelle fachgerecht aus – im Bestand, ohne unnötige Nebenarbeiten, mit transparenter Kostenaufstellung ab 1.000 €. Ob GGL, GGU, GPU oder Integra: Wir beraten Sie kostenlos zum passenden Modell für Ihr Dach und Ihren Bedarf.
           </p>
         </div>
       </section>
@@ -485,7 +485,7 @@ export default function VeluxAustausch() {
           <div className="rounded-md border border-border p-8 bg-muted/40 flex gap-6 items-start" data-testid="box-dauer">
             <Clock className="w-10 h-10 text-primary shrink-0 mt-1" aria-hidden="true" />
             <p className="text-muted-foreground leading-relaxed">
-              Ein Standard-Austausch dauert in der Regel einen Arbeitstag – von Ausbau bis Abnahme. Bei Zusatzarbeiten wie Innenverkleidung oder Elektroinstallation (Integra) können 1–2 weitere Tage anfallen. Rex Bedachungs GmbH plant termingerecht und informiert Sie vorab über den genauen Ablauf.
+              Ein Standard-Austausch dauert in der Regel einen halben bis ganzen Arbeitstag – von Ausbau bis Abnahme. Bei Zusatzarbeiten wie Innenverkleidung oder Elektroinstallation (Integra) können 1–2 weitere Tage anfallen. Rex Bedachungs GmbH plant termingerecht und informiert Sie vorab über den genauen Ablauf.
             </p>
           </div>
         </div>

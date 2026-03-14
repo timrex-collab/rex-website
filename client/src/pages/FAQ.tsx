@@ -139,7 +139,7 @@ export default function FAQ() {
         {
           question: "Was kostet der Einbau eines VELUX-Dachfensters?",
           answer:
-            "Die Kosten für den nachträglichen Einbau eines neuen VELUX-Dachfensters liegen – inklusive Fenster – je nach Größe, Verglasung und Innenfutter typischerweise bei etwa 1.200 bis 2.500 €. Wenn bereits ein altes Dachfenster vorhanden ist und es nur ausgetauscht wird, ist es meist etwas günstiger, da der Dachauschnitt schon existiert und weniger Anpassungen nötig sind. In diesem Preis sind alle notwendigen Arbeiten (Montage, Innenverkleidung, Anschlüsse und Entsorgung des alten Fensters) eingerechnet. Gern erstellen wir Ihnen für Ihr konkretes Vorhaben ein individuelles Angebot.",
+            "Die Kosten für ein VELUX-Dachfenster richten sich nach Modell, Größe und Aufwand. Orientierungsrahmen: Ein einfacher Austausch beginnt ab ca. 1.000 €, ein Standard-Austausch (GGL/GGU/GPU) ab ca. 1.500 €, Premium-/Integra-Modelle ab ca. 1.800 €. Bei Neueinbau ohne vorhandene Öffnung kann der Aufwand höher liegen. Die genauen Kosten ermitteln wir nach kostenlosem Aufmaß vor Ort. Alle Preise sind Orientierungswerte – kein verbindlicher Preis ohne Besichtigung.",
         },
         {
           question:
@@ -405,7 +405,7 @@ export default function FAQ() {
                 "name": "Was kostet der Einbau eines VELUX-Dachfensters?",
                 "acceptedAnswer": {
                   "@type": "Answer",
-                  "text": "Die Kosten für den nachträglichen Einbau eines neuen VELUX-Dachfensters liegen inklusive Fenster je nach Größe und Verglasung typischerweise bei etwa 1.200 bis 2.500 €. In diesem Preis sind alle notwendigen Arbeiten (Montage, Innenverkleidung, Anschlüsse und Entsorgung) eingerechnet."
+                  "text": "Orientierungsrahmen: Ein einfacher Austausch ab ca. 1.000 €, Standard-Austausch (GGL/GGU/GPU) ab ca. 1.500 €, Premium-/Integra-Modelle ab ca. 1.800 €. Die genauen Kosten ermitteln wir nach kostenlosem Aufmaß vor Ort – kein verbindlicher Preis ohne Besichtigung."
                 }
               },
               {
