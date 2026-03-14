@@ -58,7 +58,7 @@ export default function Home() {
   const services = [
     {
       title: "Steildach",
-      description: "Ob Satteldach, Walmdach oder Pultdach – wir decken alle Steildachformen fachgerecht neu ein oder sanieren sie dauerhaft. Als Meisterbetrieb mit 20+ Jahren Erfahrung stehen wir für Qualität, die hält.",
+      description: "Ob Satteldach, Walmdach oder Pultdach – wir decken alle Steildachformen fachgerecht neu ein oder sanieren sie dauerhaft. Als Meisterbetrieb mit 40+ Jahren Erfahrung stehen wir für Qualität, die hält.",
       imageUrl: steildachImage,
       imageAlt: "Steildach mit roten Ziegeln",
       href: "/steildach-bochum",

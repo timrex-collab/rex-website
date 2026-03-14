@@ -64,7 +64,7 @@ const vorteile = [
   "Kurzfristiger Einsatz – auch bei Notfällen",
   "Transparentes Angebot mit Kostenaufstellung",
   "Dauerhafte und sichere Lösungen",
-  "20+ Jahre Erfahrung im Ruhrgebiet",
+  "40+ Jahre Erfahrung im Ruhrgebiet",
   "Alle Dacharten & Hersteller",
 ];
 
@@ -81,7 +81,7 @@ const reasons = [
   "Kurzfristiger Einsatz – auch bei Notfällen",
   "Alle Dacharten: Steildach, Flachdach, Dachfenster",
   "Versicherungsabwicklung auf Wunsch",
-  "20+ Jahre Erfahrung in Bochum & Ruhrgebiet",
+  "40+ Jahre Erfahrung in Bochum & Ruhrgebiet",
 ];
 
 const faqItems = [
@@ -202,7 +202,7 @@ export default function Dachreparatur() {
             </Button>
           </div>
           <p className="text-sm text-slate-300 font-medium" data-testid="text-trust-badge">
-            Kurzfristiger Einsatz &bull; 20+ Jahre Erfahrung &bull; Ruhrgebiet
+            Kurzfristiger Einsatz &bull; 40+ Jahre Erfahrung &bull; Ruhrgebiet
           </p>
         </div>
       </section>

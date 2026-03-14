@@ -106,7 +106,7 @@ const vorteile = [
   "Fachgerechte Dämmung für optimalen Wärmeschutz",
   "Langlebige Konstruktionen mit Gewährleistung",
   "Schnelle und saubere Ausführung",
-  "Meisterbetrieb – 20+ Jahre Erfahrung",
+  "Meisterbetrieb – 40+ Jahre Erfahrung",
   "BAFA/KfW-Förderung bei Sanierung",
 ];
 
@@ -164,7 +164,7 @@ const schemaJson = JSON.stringify({
     "telephone": "+49-234-583100",
   },
   "areaServed": ["Bochum", "Herne", "Castrop-Rauxel", "Witten", "Hattingen", "Gelsenkirchen", "Ruhrgebiet"],
-  "description": "Steildach Neueindeckung und Sanierung in Bochum – Satteldach, Walmdach, Pultdach, Dämmung und Klempnerarbeiten. Meisterbetrieb mit 20+ Jahren Erfahrung im Ruhrgebiet.",
+  "description": "Steildach Neueindeckung und Sanierung in Bochum – Satteldach, Walmdach, Pultdach, Dämmung und Klempnerarbeiten. Meisterbetrieb mit 40+ Jahren Erfahrung im Ruhrgebiet.",
   "offers": {
     "@type": "Offer",
     "availability": "https://schema.org/InStock",
@@ -508,7 +508,7 @@ export default function SteildachBochum() {
           </h2>
           <p className="text-muted-foreground leading-relaxed text-base md:text-lg" data-testid="text-regionen">
             Rex Bedachungs GmbH deckt Steildächer im gesamten Ruhrgebiet neu ein – in Bochum, Herne, Castrop-Rauxel,
-            Witten, Hattingen, Wattenscheid, Gelsenkirchen und Recklinghausen. Meisterbetrieb mit über 20 Jahren Erfahrung
+            Witten, Hattingen, Wattenscheid, Gelsenkirchen und Recklinghausen. Meisterbetrieb mit über 40 Jahren Erfahrung
             in der Region.
           </p>
         </div>

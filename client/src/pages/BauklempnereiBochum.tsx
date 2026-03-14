@@ -62,7 +62,7 @@ const vorteile = [
   "Wandbekleidungen, Attiken und Fassadenverkleidungen",
   "Fachgerechte Montage und vollständige Abdichtung",
   "Sonderanfertigungen für jede Dachform",
-  "20+ Jahre Erfahrung im Ruhrgebiet",
+  "40+ Jahre Erfahrung im Ruhrgebiet",
 ];
 
 const vorgehen = [
@@ -213,7 +213,7 @@ export default function BauklempnereiBochum() {
             </Button>
           </div>
           <p className="text-sm text-slate-300 font-medium" data-testid="text-trust-badge">
-            Eigene Werkstatt &bull; Zink, Kupfer, Aluminium &bull; 20+ Jahre Erfahrung
+            Eigene Werkstatt &bull; Zink, Kupfer, Aluminium &bull; 40+ Jahre Erfahrung
           </p>
         </div>
       </section>

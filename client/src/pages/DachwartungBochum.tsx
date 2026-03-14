@@ -214,7 +214,7 @@ export default function DachwartungBochum() {
             </Button>
           </div>
           <p className="text-sm text-slate-300 font-medium" data-testid="text-trust-badge">
-            Wartungsverträge verfügbar &bull; Dokumentation mit Fotos &bull; 20+ Jahre Erfahrung
+            Wartungsverträge verfügbar &bull; Dokumentation mit Fotos &bull; 40+ Jahre Erfahrung
           </p>
         </div>
       </section>

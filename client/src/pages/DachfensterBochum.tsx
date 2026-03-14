@@ -43,7 +43,7 @@ const services = [
 
 const reasons = [
   "VELUX-zertifizierter Fachbetrieb",
-  "20+ Jahre Erfahrung im Ruhrgebiet",
+  "40+ Jahre Erfahrung im Ruhrgebiet",
   "Schnelle Reaktionszeit – auch Notdienst",
   "Kostenlose Beratung & Förderantrag",
 ];
@@ -157,7 +157,7 @@ export default function DachfensterBochum() {
             </Button>
           </div>
           <p className="text-sm text-slate-300 font-medium" data-testid="text-trust-badge">
-            VELUX-zertifiziert &bull; 20+ Jahre Erfahrung &bull; Ruhrgebiet
+            VELUX-zertifiziert &bull; 40+ Jahre Erfahrung &bull; Ruhrgebiet
           </p>
         </div>
       </section>

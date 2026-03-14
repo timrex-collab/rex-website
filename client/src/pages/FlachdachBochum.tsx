@@ -118,7 +118,7 @@ const systems = [
 const reasons = [
   "Alle Abdichtungssysteme aus einer Hand",
   "Kostenloses Aufmaß vor Ort in Bochum",
-  "20+ Jahre Erfahrung im Ruhrgebiet",
+  "40+ Jahre Erfahrung im Ruhrgebiet",
   "Kostenlose Beratung & Förderantrag",
 ];
 
@@ -260,7 +260,7 @@ export default function FlachdachBochum() {
             </Button>
           </div>
           <p className="text-sm text-slate-300 font-medium" data-testid="text-trust-badge">
-            20+ Jahre Erfahrung &bull; Kostenloses Aufmaß &bull; Ruhrgebiet
+            40+ Jahre Erfahrung &bull; Kostenloses Aufmaß &bull; Ruhrgebiet
           </p>
         </div>
       </section>
