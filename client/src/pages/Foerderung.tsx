@@ -141,6 +141,10 @@ export default function Foerderung() {
         className="relative text-white py-20 px-4 overflow-hidden"
         style={{ background: "linear-gradient(to right, #0f172a, #1e3a8a)" }}
       >
+        <div
+          className="absolute inset-0 opacity-20 bg-cover bg-center"
+          style={{ backgroundImage: "url('/images/foerderung-hero.webp')" }}
+        />
         <div className="max-w-5xl mx-auto text-center relative z-10">
           <div className="inline-flex items-center gap-2 bg-blue-500/20 border border-blue-400/30 rounded-full px-4 py-1 mb-6">
             <Euro className="w-4 h-4 text-blue-300" />
