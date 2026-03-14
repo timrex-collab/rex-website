@@ -1,0 +1,203 @@
+Aufgabe: Neue Landing Page /velux-dachfenster-austausch-bochum erstellen.
+Pillar-Seite für das Velux Topic Cluster – im exakt gleichen 
+Design wie /dachfenster-bochum, /flachdach-bochum etc.
+
+WICHTIG: Design identisch zu den bestehenden Landing Pages.
+Entity-First-Writing: Jeder Satz enthält klare Entitäten.
+
+---
+
+Schritt 1 – Datei und Route:
+
+Erstelle: client/src/pages/VeluxAustausch.tsx
+Route:    /velux-dachfenster-austausch-bochum → VeluxAustausch.tsx
+
+---
+
+Schritt 2 – SEO Meta-Tags:
+
+<title>Velux Dachfenster Austausch Bochum | Rex Bedachungs GmbH</title>
+<meta name="description" content="Velux Dachfenster Austausch Bochum 
+✓ GGL, GGU, GPU & Integra ✓ Preise ab 1.000 € 
+✓ VELUX-Partner ✓ Kostenlose Beratung – 
+Rex Bedachungs GmbH Ruhrgebiet.">
+<link rel="canonical" 
+href="https://www.rex-bedachung.de/velux-dachfenster-austausch-bochum">
+
+---
+
+Schritt 3 – Hero-Sektion:
+
+Bild: /images/velux-dachfenster-einbau-bochum-fachbetrieb.webp
+H1: "Velux Dachfenster Austausch in Bochum – 
+fachgerecht erneuern lassen"
+Unterzeile: "Austausch alter Velux Dachfenster in Bochum – 
+inklusive Beratung, Aufmaß, Ausbau, Einbau 
+und sauberer Abnahme"
+Button 1 (primär): "Beratung anfragen" → Kontaktformular
+Button 2 (sekundär): "0234-583100"
+Vertrauenszeichen:
+"VELUX-Partner • Bochum & Ruhrgebiet • Preise ab 1.000 €"
+
+---
+
+Schritt 4 – Einleitungstext:
+
+"Rex Bedachungs GmbH ist Velux-Fachbetrieb in Bochum 
+und tauscht Velux Dachfenster aller Modelle fachgerecht aus – 
+im Bestand, ohne unnötige Nebenarbeiten, mit transparenter 
+Kostenaufstellung vor Beginn. Ob GGL, GGU, GPU oder Integra: 
+Wir beraten Sie kostenlos zum passenden Modell 
+für Ihr Dach und Ihren Bedarf."
+
+---
+
+Schritt 5 – H2: "Wann sich ein Velux Dachfenster 
+Austausch lohnt"
+
+Einleitung:
+"Viele Dachfenster in Bochumer Bestandsgebäuden sind 
+20–30 Jahre alt. Ab diesem Alter lohnt sich der Austausch 
+meist mehr als eine Reparatur – energetisch und wirtschaftlich."
+
+6 Icon-Karten (3+3 Grid):
+
+Karte 1 – Icon: Wind
+Titel: "Zugerscheinungen"
+Text: "Kalte Luft dringt trotz geschlossenem Fenster ein – 
+ein sicheres Zeichen für verschlissene Dichtungen 
+oder verzogenen Rahmen."
+
+Karte 2 – Icon: Droplets
+Titel: "Undichte Anschlüsse"
+Text: "Wasserflecken an der Laibung oder am Rahmen 
+deuten auf defekte Eindeckrahmen oder 
+schadhafte Abdichtung hin."
+
+Karte 3 – Icon: Eye
+Titel: "Blindes oder beschädigtes Glas"
+Text: "Beschlagenes Isolierglas, Risse oder 
+Verfärbungen sind nicht reparierbar – 
+ein Fenstertausch ist die einzige Lösung."
+
+Karte 4 – Icon: Thermometer
+Titel: "Veraltete Wärmedämmung"
+Text: "Alte Velux Fenster erreichen moderne Uw-Werte 
+nicht mehr. Ein Austausch senkt den 
+Wärmeverlust um bis zu 30 %."
+
+Karte 5 – Icon: Settings
+Titel: "Schwergängige Bedienung"
+Text: "Fenster lässt sich schwer öffnen oder 
+schließt nicht mehr richtig – 
+meist wirtschaftlicher austauschen als reparieren."
+
+Karte 6 – Icon: Calendar
+Titel: "Alter über 20 Jahre"
+Text: "Ab 20–25 Jahren sind Ersatzteile oft nicht 
+mehr lieferbar. Ein modernes Fenster spart 
+langfristig Energie und Wartungskosten."
+
+---
+
+Schritt 6 – H2: "Velux Modelle im Vergleich – 
+GGL, GGU, GPU und Integra"
+
+Einleitung:
+"Rex Bedachungs GmbH berät Sie in Bochum zu allen 
+aktuellen Velux Modellen und empfiehlt das passende 
+Fenster für Ihre Dachsituation und Ihren Bedarf."
+
+4 Karten:
+
+H3: "Velux GGL – Holzfenster klassisch"
+Icon: Layers
+Badge: "Der Klassiker"
+Text: "Das meistgenutzte Velux Modell – Holzrahmen 
+mit klarer oder weißer Lackierung, ideal für Wohnräume 
+mit normaler Luftfeuchtigkeit. Langlebig, gut dämmend, 
+natürlich im Erscheinungsbild."
+
+H3: "Velux GGU – Kunststoff für Langlebigkeit"
+Icon: Droplets
+Badge: "Bestseller"
+Text: "Kunststoffummantelung macht das GGU besonders 
+widerstandsfähig gegen Feuchtigkeit – ideal für jeden Raum: 
+Bad, Küche oder Dachgeschoss-Nassbereiche. 
+Pflegeleicht und langlebig."
+
+H3: "Velux GPU – Klapp-Schwingfenster"
+Icon: Maximize
+Badge: "Mehr Ausblick"
+Text: "Das GPU öffnet als Klappfenster nach oben 
+und bietet maximalen Ausblick und Bewegungsfreiheit. 
+Ideal für niedrige Kniestöcke und Bereiche 
+mit eingeschränktem Platz."
+
+H3: "Velux Integra – elektrisch oder solar"
+Icon: Zap
+Badge: "Komfort & Smart Home"
+Text: "Das Integra öffnet per Fernbedienung oder 
+Smartphone – elektrisch oder solar betrieben. 
+Ideal für schwer erreichbare Fenster und 
+Smart-Home-Installationen."
+
+Vergleichstabelle (5 Spalten):
+
+| Merkmal        | GGL      | GGU          | GPU          | Integra       |
+|----------------|----------|--------------|--------------|---------------|
+| Material       | Holz     | Kunststoff   | Holz/Poly    | Holz/Poly     |
+| Öffnungsart    | Schwing  | Schwing      | Klapp        | Schwing/Klapp |
+| Einsatzbereich | Wohnraum | Feuchtraum   | Niedrig KS   | Überall       |
+| Bedienung      | Manuell  | Manuell      | Manuell      | Elektrisch    |
+| Preisniveau    | ●●○○     | ●●○○         | ●●●○         | ●●●●          |
+
+---
+
+Schritt 7 – H2: "Was kostet ein Velux Dachfenster 
+Austausch in Bochum?"
+
+Einleitung:
+"Rex Bedachungs GmbH nennt realistische Preisrahmen – 
+kein Festpreis ohne Aufmaß, aber echte Orientierung 
+für Ihre Planung."
+
+3 Preiskarten (nebeneinander):
+
+Karte 1:
+Titel: "Standard-Austausch"
+Preis: "ab 1.000 €"
+Untertitel: "inkl. Lieferung und Einbau"
+Liste:
+✓ Velux GGL oder GGU
+✓ 1:1 Austausch im Bestand
+✓ Eindeckrahmen erneuern
+✓ Dachanschlüsse
+
+Karte 2 (hervorgehoben):
+Titel: "GPU-Variante"
+Badge: "Häufigste Variante"
+Preis: "ab 1.500 €"
+Untertitel: "inkl. Lieferung und Einbau"
+Liste:
+✓ Alle Modelle inkl. GPU
+✓ Auf Wunsch: Anpassung Innenverkleidung
+✓ Eindeckrahmen + Dämmrahmen
+✓ Dachanschlüsse
+
+Karte 3:
+Titel: "Premium / Integra"
+Preis: "ab 1.800 €"
+Untertitel: "inkl. Lieferung und Einbau"
+Liste:
+✓ Velux Integra elektrisch/solar
+✓ Verkabelung und Steuerung
+✓ Smart-Home-Integration möglich
+✓ Dachanschlüsse
+
+Hinweis-Box:
+"ℹ️ Alle Preise sind Orientierungsrahmen für den Großraum 
+Bochum und das Ruhrgebiet. Der genaue Preis hängt ab von 
+Anzahl, Fenstertyp, Verglasung, Größe, Dachzugang und 
+notwendigen Nebenarbeiten sowie Sicherheitsbestimmungen. 
+Rex Bedachungs GmbH erstellt Ihnen na
