@@ -196,7 +196,6 @@ export default function SteildachBochum() {
         <link rel="canonical" href="https://www.rex-bedachung.de/steildach-bochum" />
         <script type="application/ld+json">{schemaJson}</script>
       </Helmet>
-
       {/* Hero */}
       <section
         className="relative text-white py-24 px-4 overflow-hidden"
@@ -237,12 +236,9 @@ export default function SteildachBochum() {
               </a>
             </Button>
           </div>
-          <p className="text-sm text-slate-300 font-medium" data-testid="text-trust-badge">
-            Meisterbetrieb &bull; 20+ Jahre Erfahrung &bull; Ruhrgebiet
-          </p>
+          <p className="text-sm text-slate-300 font-medium" data-testid="text-trust-badge">Meisterbetrieb • 40+ Jahre Erfahrung • Ruhrgebiet</p>
         </div>
       </section>
-
       {/* Einleitung */}
       <section className="py-16 px-4 bg-background" data-testid="section-einleitung">
         <div className="max-w-4xl mx-auto text-center">
@@ -254,7 +250,6 @@ export default function SteildachBochum() {
           </p>
         </div>
       </section>
-
       {/* Leistungskarten */}
       <section className="py-16 px-4 bg-muted/40" data-testid="section-leistungen">
         <div className="max-w-7xl mx-auto">
@@ -276,7 +271,6 @@ export default function SteildachBochum() {
           </div>
         </div>
       </section>
-
       {/* Energetische Dachsanierung */}
       <section className="py-16 px-4 bg-background" data-testid="section-daemmung">
         <div className="max-w-7xl mx-auto">
@@ -351,7 +345,6 @@ export default function SteildachBochum() {
           </div>
         </div>
       </section>
-
       {/* Materialien */}
       <section className="py-16 px-4 bg-muted/40" data-testid="section-materialien">
         <div className="max-w-7xl mx-auto">
@@ -375,7 +368,6 @@ export default function SteildachBochum() {
           </div>
         </div>
       </section>
-
       {/* Vorteile & Vorgehen */}
       <section className="py-16 px-4 bg-background" data-testid="section-vorteile">
         <div className="max-w-7xl mx-auto">
@@ -411,7 +403,6 @@ export default function SteildachBochum() {
           </div>
         </div>
       </section>
-
       {/* Förderung */}
       <section className="py-16 px-4 bg-muted/40" data-testid="section-foerderung">
         <div className="max-w-7xl mx-auto">
@@ -447,7 +438,6 @@ export default function SteildachBochum() {
           </div>
         </div>
       </section>
-
       {/* Bild-Galerie */}
       <section className="py-16 px-4 bg-background" data-testid="section-galerie">
         <div className="max-w-7xl mx-auto">
@@ -472,7 +462,6 @@ export default function SteildachBochum() {
           </div>
         </div>
       </section>
-
       {/* FAQ */}
       <section className="py-16 px-4 bg-muted/40" data-testid="section-faq">
         <div className="max-w-3xl mx-auto">
@@ -510,7 +499,6 @@ export default function SteildachBochum() {
           </div>
         </div>
       </section>
-
       {/* Regionen */}
       <section className="py-16 px-4 bg-background" data-testid="section-regionen">
         <div className="max-w-4xl mx-auto text-center">
@@ -525,7 +513,6 @@ export default function SteildachBochum() {
           </p>
         </div>
       </section>
-
       {/* Abschluss-CTA */}
       <section className="py-16 px-4 bg-muted/40" data-testid="section-cta">
         <div className="max-w-3xl mx-auto text-center">
