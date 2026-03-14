@@ -211,6 +211,11 @@ export default function FlachdachBochum() {
           property="og:description"
           content="Flachdach & Gründach Bochum ✓ Dachbegrünung extensiv & intensiv ✓ Alle Abdichtungssysteme ✓ Kostenloses Aufmaß ✓ BAFA/KfW-Förderung – Rex Bedachungs GmbH, Ihr Fachbetrieb im Ruhrgebiet."
         />
+        <meta property="og:image" content="https://www.rex-bedachung.de/images/flachdach-sanierung-bochum-rex-bedachung.webp" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="Flachdach & Gründach Bochum | Rex Bedachung" />
+        <meta name="twitter:description" content="Flachdach & Gründach Bochum ✓ Dachbegrünung ✓ Alle Abdichtungssysteme ✓ BAFA/KfW-Förderung – Rex Bedachungs GmbH." />
+        <meta name="twitter:image" content="https://www.rex-bedachung.de/images/flachdach-sanierung-bochum-rex-bedachung.webp" />
         <link rel="canonical" href="https://www.rex-bedachung.de/flachdach-bochum" />
         <script type="application/ld+json">{schemaJson}</script>
       </Helmet>

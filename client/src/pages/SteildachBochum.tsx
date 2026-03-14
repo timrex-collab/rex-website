@@ -188,6 +188,11 @@ export default function SteildachBochum() {
           property="og:description"
           content="Steildach & energetische Dachsanierung Bochum ✓ Aufsparrendämmung ✓ Bis zu 20 % BAFA/KfW-Förderung ✓ Heizkosten dauerhaft senken – Rex Bedachungs GmbH, Ihr Fachbetrieb im Ruhrgebiet."
         />
+        <meta property="og:image" content="https://www.rex-bedachung.de/images/tondach-hero-dachdeckung-bochum.webp" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="Steildach Bochum – Sanierung & Dämmung | Rex Bedachung" />
+        <meta name="twitter:description" content="Steildach Bochum ✓ Energetische Dachsanierung ✓ Aufsparrendämmung ✓ Bis zu 20% BAFA/KfW-Förderung – Rex Bedachungs GmbH." />
+        <meta name="twitter:image" content="https://www.rex-bedachung.de/images/tondach-hero-dachdeckung-bochum.webp" />
         <link rel="canonical" href="https://www.rex-bedachung.de/steildach-bochum" />
         <script type="application/ld+json">{schemaJson}</script>
       </Helmet>

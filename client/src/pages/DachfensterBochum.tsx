@@ -108,6 +108,11 @@ export default function DachfensterBochum() {
           property="og:description"
           content="VELUX-zertifizierter Fachbetrieb für Dachfenster in Bochum. Neueinbau, Austausch & Reparatur – mit Förderberatung."
         />
+        <meta property="og:image" content="https://www.rex-bedachung.de/images/velux-dachfenster-einbau-bochum-fachbetrieb.webp" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="Dachfenster Bochum – VELUX Einbau | Rex Bedachung" />
+        <meta name="twitter:description" content="Dachfenster Bochum ✓ VELUX-zertifiziert ✓ Neueinbau & Austausch ✓ Notdienst ✓ BAFA/KfW-Förderung – Rex Bedachungs GmbH." />
+        <meta name="twitter:image" content="https://www.rex-bedachung.de/images/velux-dachfenster-einbau-bochum-fachbetrieb.webp" />
         <link rel="canonical" href="https://www.rex-bedachung.de/dachfenster-bochum" />
         <script type="application/ld+json">{schemaJson}</script>
       </Helmet>

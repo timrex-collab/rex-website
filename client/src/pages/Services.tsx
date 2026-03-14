@@ -1,7 +1,7 @@
 import { Helmet } from "react-helmet";
 import Hero from "@/components/Hero";
 import ServiceCard from "@/components/ServiceCard";
-import dachwartungImage from "@assets/Dachdecker bei der Inspektion der Naht_1761081506440.png";
+const dachwartungImage = "/images/dachdecker-inspektion-dachwartung-bochum.webp";
 
 const heroImage = "/images/tondach-hero-dachdeckung-bochum.webp";
 const steildachImage = "/images/dach-hintergrund-rex-bedachung.webp";

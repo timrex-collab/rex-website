@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { Helmet } from "react-helmet";
 import { useLocation } from "wouter";
-import heroImagePath from "@assets/Dachdecker bei der Inspektion der Naht_1761081506440.png";
 import {
   CheckCircle,
   ChevronDown,
@@ -20,6 +19,7 @@ import {
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 
+const heroImagePath = "/images/dachdecker-inspektion-dachwartung-bochum.webp";
 const heroImage = heroImagePath;
 
 const services = [
@@ -165,6 +165,11 @@ export default function DachwartungBochum() {
           property="og:description"
           content="Dachwartung Bochum ✓ Jährliche Dachinspektion ✓ Dachrinnenreinigung ✓ Wartungsverträge ✓ Fotodokumentation – Rex Bedachungs GmbH, Ihr Fachbetrieb im Ruhrgebiet."
         />
+        <meta property="og:image" content="https://www.rex-bedachung.de/images/dachdecker-inspektion-dachwartung-bochum.webp" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="Dachwartung Bochum – Inspektion & Wartungsvertrag | Rex Bedachung" />
+        <meta name="twitter:description" content="Dachwartung Bochum ✓ Jährliche Dachinspektion ✓ Dachrinnenreinigung ✓ Wartungsverträge – Rex Bedachungs GmbH." />
+        <meta name="twitter:image" content="https://www.rex-bedachung.de/images/dachdecker-inspektion-dachwartung-bochum.webp" />
         <link rel="canonical" href="https://www.rex-bedachung.de/dachwartung-bochum" />
         <script type="application/ld+json">{schemaJson}</script>
       </Helmet>
