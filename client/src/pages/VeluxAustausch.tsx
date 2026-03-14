@@ -8,7 +8,7 @@ import {
   Phone,
   Wind,
   Droplets,
-  EyeOff,
+  Eye,
   Thermometer,
   Settings,
   Calendar,
@@ -40,7 +40,7 @@ const symptomCards = [
     testId: "card-symptom-undicht",
   },
   {
-    icon: <EyeOff className="w-8 h-8 text-primary" />,
+    icon: <Eye className="w-8 h-8 text-primary" />,
     title: "Blindes oder beschädigtes Glas",
     text: "Beschlagenes Isolierglas, Risse oder Verfärbungen sind nicht reparierbar – ein Fenstertausch ist die einzige Lösung.",
     testId: "card-symptom-glas",
@@ -69,15 +69,15 @@ const modelCards = [
   {
     icon: <Layers className="w-8 h-8 text-primary" />,
     title: "Velux GGL – Holzfenster klassisch",
-    text: "Das meistgenutzte Velux Modell – Holzrahmen mit weißer Lackierung, ideal für Wohnräume mit normaler Luftfeuchtigkeit. Langlebig, gut dämmend, natürlich im Erscheinungsbild.",
-    badge: "Bestseller",
+    text: "Das meistgenutzte Velux Modell – Holzrahmen mit klarer oder weißer Lackierung, ideal für Wohnräume mit normaler Luftfeuchtigkeit. Langlebig, gut dämmend, natürlich im Erscheinungsbild.",
+    badge: "Der Klassiker",
     testId: "card-model-ggl",
   },
   {
     icon: <Droplets className="w-8 h-8 text-primary" />,
-    title: "Velux GGU – Kunststoff für Feuchträume",
-    text: "Kunststoffummantelung macht das GGU besonders widerstandsfähig gegen Feuchtigkeit – ideal für Bad, Küche oder Dachgeschoss-Nassbereiche. Pflegeleicht und langlebig.",
-    badge: "Empfohlen für Bäder",
+    title: "Velux GGU – Kunststoff für Langlebigkeit",
+    text: "Kunststoffummantelung macht das GGU besonders widerstandsfähig gegen Feuchtigkeit – ideal für jeden Raum: Bad, Küche oder Dachgeschoss-Nassbereiche. Pflegeleicht und langlebig.",
+    badge: "Bestseller",
     testId: "card-model-ggu",
   },
   {
@@ -117,7 +117,7 @@ const ablaufSteps = [
 const faqItems = [
   {
     question: "Was kostet der Austausch eines Velux Dachfensters in Bochum?",
-    answer: "Rex Bedachungs GmbH führt Velux Dachfenster-Austausch in Bochum ab ca. 1.800–2.400 € inkl. Einbau durch – je nach Modell, Größe und notwendigen Nebenarbeiten. Nach kostenlosem Aufmaß erhalten Sie ein verbindliches Festpreisangebot.",
+    answer: "Rex Bedachungs GmbH führt Velux Dachfenster-Austausch in Bochum ab ca. 1.000 € inkl. Lieferung und Einbau durch – je nach Modell, Größe und notwendigen Nebenarbeiten. Nach kostenlosem Aufmaß erhalten Sie ein verbindliches Festpreisangebot.",
   },
   {
     question: "Wie lange dauert der Austausch?",
@@ -154,7 +154,7 @@ const howToSchema = JSON.stringify({
   "estimatedCost": {
     "@type": "MonetaryAmount",
     "currency": "EUR",
-    "value": "1800",
+    "value": "1000",
   },
   "step": [
     { "@type": "HowToStep", "position": 1, "name": "Vor-Ort-Termin und Aufmaß", "text": "Kostenlose Bestandsaufnahme vor Ort in Bochum – Fenstertyp, Dachsituation, genaue Maße und Zugänglichkeit." },
@@ -176,7 +176,7 @@ const faqSchema = JSON.stringify({
       "name": "Was kostet der Austausch eines Velux Dachfensters in Bochum?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Rex Bedachungs GmbH führt Velux Dachfenster-Austausch in Bochum ab ca. 1.800–2.400 € inkl. Einbau durch. Nach kostenlosem Aufmaß erhalten Sie ein verbindliches Festpreisangebot.",
+        "text": "Rex Bedachungs GmbH führt Velux Dachfenster-Austausch in Bochum ab ca. 1.000 € inkl. Lieferung und Einbau durch. Nach kostenlosem Aufmaß erhalten Sie ein verbindliches Festpreisangebot.",
       },
     },
     {
@@ -215,11 +215,11 @@ const serviceSchema = JSON.stringify({
     "telephone": "+49-234-583100",
   },
   "areaServed": ["Bochum", "Herne", "Castrop-Rauxel", "Witten", "Hattingen", "Ruhrgebiet"],
-  "description": "Velux Dachfenster Austausch in Bochum – GGL, GGU, GPU und Integra, ab 1.800 €, VELUX-zertifizierter Fachbetrieb, kostenlose Beratung und Festpreisangebot.",
+  "description": "Velux Dachfenster Austausch in Bochum – GGL, GGU, GPU und Integra, ab 1.000 €, VELUX-Partner, kostenlose Beratung und Festpreisangebot.",
   "offers": {
     "@type": "Offer",
     "priceCurrency": "EUR",
-    "price": "1800",
+    "price": "1000",
     "availability": "https://schema.org/InStock",
   },
 });
@@ -234,7 +234,7 @@ export default function VeluxAustausch() {
         <title>Velux Dachfenster Austausch Bochum | Rex Bedachungs GmbH</title>
         <meta
           name="description"
-          content="Velux Dachfenster Austausch Bochum ✓ GGL, GGU, GPU & Integra ✓ Preise ab 1.800 € ✓ VELUX-zertifiziert ✓ Kostenlose Beratung – Rex Bedachungs GmbH Ruhrgebiet."
+          content="Velux Dachfenster Austausch Bochum ✓ GGL, GGU, GPU & Integra ✓ Preise ab 1.000 € ✓ VELUX-Partner ✓ Kostenlose Beratung – Rex Bedachungs GmbH Ruhrgebiet."
         />
         <link rel="canonical" href="https://www.rex-bedachung.de/velux-dachfenster-austausch-bochum" />
         <script type="application/ld+json">{howToSchema}</script>
@@ -282,7 +282,7 @@ export default function VeluxAustausch() {
             </Button>
           </div>
           <p className="text-sm text-slate-300 font-medium" data-testid="text-trust-badge">
-            VELUX-zertifiziert &bull; Bochum &amp; Ruhrgebiet &bull; Preise ab 1.800 &euro;
+            VELUX-Partner &bull; Bochum &amp; Ruhrgebiet &bull; Preise ab 1.000 &euro;
           </p>
         </div>
       </section>
@@ -291,7 +291,7 @@ export default function VeluxAustausch() {
       <section className="py-16 px-4 bg-muted/40" data-testid="section-einleitung">
         <div className="max-w-4xl mx-auto text-center">
           <p className="text-muted-foreground leading-relaxed text-base md:text-lg" data-testid="text-einleitung">
-            Rex Bedachungs GmbH ist zertifizierter Velux-Fachbetrieb in Bochum und tauscht Velux Dachfenster aller Modelle fachgerecht aus – im Bestand, ohne unnötige Nebenarbeiten, mit transparenter Kostenaufstellung vor Beginn. Ob GGL, GGU, GPU oder Integra: Wir beraten Sie kostenlos zum passenden Modell für Ihr Dach und Ihren Bedarf.
+            Rex Bedachungs GmbH ist Velux-Fachbetrieb in Bochum und tauscht Velux Dachfenster aller Modelle fachgerecht aus – im Bestand, ohne unnötige Nebenarbeiten, mit transparenter Kostenaufstellung vor Beginn. Ob GGL, GGU, GPU oder Integra: Wir beraten Sie kostenlos zum passenden Modell für Ihr Dach und Ihren Bedarf.
           </p>
         </div>
       </section>
@@ -389,35 +389,35 @@ export default function VeluxAustausch() {
             <Card className="border-blue-200 dark:border-blue-900 bg-blue-50/50 dark:bg-blue-950/20" data-testid="card-preis-standard">
               <CardHeader>
                 <CardTitle className="text-lg">Standard-Austausch</CardTitle>
-                <p className="text-2xl font-bold text-foreground mt-2" data-testid="text-preis-standard">ab 1.800 – 2.400 &euro;</p>
-                <p className="text-sm text-muted-foreground">inkl. Einbau</p>
+                <p className="text-2xl font-bold text-foreground mt-2" data-testid="text-preis-standard">ab 1.000 &euro;</p>
+                <p className="text-sm text-muted-foreground">inkl. Lieferung und Einbau</p>
               </CardHeader>
               <CardContent>
                 <ul className="space-y-2 text-sm text-muted-foreground">
                   <li className="flex items-start gap-2"><CheckCircle className="w-4 h-4 text-primary shrink-0 mt-0.5" />Velux GGL oder GGU</li>
                   <li className="flex items-start gap-2"><CheckCircle className="w-4 h-4 text-primary shrink-0 mt-0.5" />1:1 Austausch im Bestand</li>
                   <li className="flex items-start gap-2"><CheckCircle className="w-4 h-4 text-primary shrink-0 mt-0.5" />Eindeckrahmen erneuern</li>
-                  <li className="flex items-start gap-2"><CheckCircle className="w-4 h-4 text-primary shrink-0 mt-0.5" />Dichtung und Anschlüsse</li>
+                  <li className="flex items-start gap-2"><CheckCircle className="w-4 h-4 text-primary shrink-0 mt-0.5" />Dachanschlüsse</li>
                 </ul>
               </CardContent>
             </Card>
 
-            {/* Anpassung – hervorgehoben */}
+            {/* GPU-Variante – hervorgehoben */}
             <Card className="border-primary bg-primary/5 dark:bg-primary/10 ring-2 ring-primary" data-testid="card-preis-anpassung">
               <CardHeader>
                 <div className="flex items-center justify-between gap-2 flex-wrap">
-                  <CardTitle className="text-lg">Austausch mit Anpassung</CardTitle>
+                  <CardTitle className="text-lg">GPU-Variante</CardTitle>
                   <Badge data-testid="badge-haeufigste">Häufigste Variante</Badge>
                 </div>
-                <p className="text-2xl font-bold text-foreground mt-2" data-testid="text-preis-anpassung">ab 2.400 – 3.200 &euro;</p>
-                <p className="text-sm text-muted-foreground">inkl. Einbau und Innenarbeiten</p>
+                <p className="text-2xl font-bold text-foreground mt-2" data-testid="text-preis-anpassung">ab 1.500 &euro;</p>
+                <p className="text-sm text-muted-foreground">inkl. Lieferung und Einbau</p>
               </CardHeader>
               <CardContent>
                 <ul className="space-y-2 text-sm text-muted-foreground">
                   <li className="flex items-start gap-2"><CheckCircle className="w-4 h-4 text-primary shrink-0 mt-0.5" />Alle Modelle inkl. GPU</li>
-                  <li className="flex items-start gap-2"><CheckCircle className="w-4 h-4 text-primary shrink-0 mt-0.5" />Anpassung Innenverkleidung</li>
-                  <li className="flex items-start gap-2"><CheckCircle className="w-4 h-4 text-primary shrink-0 mt-0.5" />Eindeckrahmen + Dämmkragen</li>
-                  <li className="flex items-start gap-2"><CheckCircle className="w-4 h-4 text-primary shrink-0 mt-0.5" />Laibung neu verputzt/verkleidet</li>
+                  <li className="flex items-start gap-2"><CheckCircle className="w-4 h-4 text-primary shrink-0 mt-0.5" />Auf Wunsch: Anpassung Innenverkleidung</li>
+                  <li className="flex items-start gap-2"><CheckCircle className="w-4 h-4 text-primary shrink-0 mt-0.5" />Eindeckrahmen + Dämmrahmen</li>
+                  <li className="flex items-start gap-2"><CheckCircle className="w-4 h-4 text-primary shrink-0 mt-0.5" />Dachanschlüsse</li>
                 </ul>
               </CardContent>
             </Card>
@@ -426,15 +426,15 @@ export default function VeluxAustausch() {
             <Card className="border-blue-800 dark:border-blue-700 bg-blue-900/10 dark:bg-blue-900/30" data-testid="card-preis-premium">
               <CardHeader>
                 <CardTitle className="text-lg">Premium / Integra</CardTitle>
-                <p className="text-2xl font-bold text-foreground mt-2" data-testid="text-preis-premium">ab 3.200 – 4.500 &euro;</p>
-                <p className="text-sm text-muted-foreground">inkl. Einbau und Elektroinstallation</p>
+                <p className="text-2xl font-bold text-foreground mt-2" data-testid="text-preis-premium">ab 1.800 &euro;</p>
+                <p className="text-sm text-muted-foreground">inkl. Lieferung und Einbau</p>
               </CardHeader>
               <CardContent>
                 <ul className="space-y-2 text-sm text-muted-foreground">
                   <li className="flex items-start gap-2"><CheckCircle className="w-4 h-4 text-primary shrink-0 mt-0.5" />Velux Integra elektrisch/solar</li>
                   <li className="flex items-start gap-2"><CheckCircle className="w-4 h-4 text-primary shrink-0 mt-0.5" />Verkabelung und Steuerung</li>
                   <li className="flex items-start gap-2"><CheckCircle className="w-4 h-4 text-primary shrink-0 mt-0.5" />Smart-Home-Integration möglich</li>
-                  <li className="flex items-start gap-2"><CheckCircle className="w-4 h-4 text-primary shrink-0 mt-0.5" />Komplette Innenarbeiten</li>
+                  <li className="flex items-start gap-2"><CheckCircle className="w-4 h-4 text-primary shrink-0 mt-0.5" />Dachanschlüsse</li>
                 </ul>
               </CardContent>
             </Card>
@@ -443,7 +443,7 @@ export default function VeluxAustausch() {
           {/* Hinweis-Box */}
           <div className="rounded-md border border-border p-6 bg-muted/40" data-testid="box-preishinweis">
             <p className="text-sm text-muted-foreground leading-relaxed">
-              <span className="font-semibold text-foreground">Hinweis:</span> Alle Preise sind Orientierungsrahmen für den Großraum Bochum und das Ruhrgebiet. Der genaue Preis hängt ab von Fenstertyp, Größe, Dachzugang und notwendigen Nebenarbeiten. Rex Bedachungs GmbH erstellt Ihnen nach kostenlosem Aufmaß ein verbindliches Festpreisangebot.
+              <span className="font-semibold text-foreground">Hinweis:</span> Alle Preise sind Orientierungsrahmen für den Großraum Bochum und das Ruhrgebiet. Der genaue Preis hängt ab von Anzahl, Fenstertyp, Verglasung, Größe, Dachzugang und notwendigen Nebenarbeiten sowie Sicherheitsbestimmungen. Rex Bedachungs GmbH erstellt Ihnen nach kostenlosem Aufmaß ein verbindliches Festpreisangebot.
             </p>
           </div>
         </div>
