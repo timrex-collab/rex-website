@@ -10,6 +10,10 @@ import {
   Wrench,
   RefreshCw,
   AlertTriangle,
+  BookOpen,
+  ArrowRight,
+  BarChart3,
+  ListChecks,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -312,19 +316,35 @@ export default function DachfensterBochum() {
       </section>
 
       {/* ── Velux-Austausch-Teaser ── */}
-      <section className="py-16 px-4 bg-background" data-testid="section-velux-teaser">
-        <div className="max-w-3xl mx-auto text-center">
-          <p className="text-muted-foreground leading-relaxed text-base md:text-lg mb-6" data-testid="text-velux-teaser">
-            Speziell für den Austausch alter Velux Fenster haben wir eine eigene Seite mit Modellvergleich, Preisrahmen und Schritt-für-Schritt-Ablauf:
-          </p>
-          <Button
-            size="lg"
-            variant="outline"
-            onClick={() => setLocation("/velux-dachfenster-austausch-bochum")}
-            data-testid="button-velux-teaser"
-          >
-            Zum Velux Austausch-Guide &rarr;
-          </Button>
+      <section className="py-16 px-4 bg-blue-50 dark:bg-blue-950/20" data-testid="section-velux-teaser">
+        <div className="max-w-3xl mx-auto">
+          <div className="rounded-md border border-blue-200 dark:border-blue-800 bg-white dark:bg-blue-950/30 p-8 md:p-10 text-center" data-testid="box-velux-teaser">
+            <div className="flex justify-center mb-5">
+              <div className="w-14 h-14 rounded-full bg-blue-100 dark:bg-blue-900/50 flex items-center justify-center">
+                <BookOpen className="w-7 h-7 text-blue-600 dark:text-blue-400" aria-hidden="true" />
+              </div>
+            </div>
+            <h3 className="text-xl md:text-2xl font-bold text-foreground mb-3" data-testid="heading-velux-teaser">
+              Velux Fenster austauschen?
+            </h3>
+            <p className="text-muted-foreground leading-relaxed text-base md:text-lg mb-4" data-testid="text-velux-teaser">
+              Speziell für den Austausch alter Velux Fenster haben wir eine eigene Seite mit Modellvergleich, Preisrahmen und Schritt-für-Schritt-Ablauf.
+            </p>
+            <div className="flex flex-wrap justify-center gap-4 text-sm text-blue-700 dark:text-blue-300 mb-6">
+              <span className="flex items-center gap-1.5"><BarChart3 className="w-4 h-4" aria-hidden="true" />Preisvergleich</span>
+              <span className="flex items-center gap-1.5"><ListChecks className="w-4 h-4" aria-hidden="true" />Schritt-für-Schritt</span>
+              <span className="flex items-center gap-1.5"><RefreshCw className="w-4 h-4" aria-hidden="true" />Modellvergleich</span>
+            </div>
+            <Button
+              size="lg"
+              className="bg-blue-600 text-white border-blue-600"
+              onClick={() => setLocation("/velux-dachfenster-austausch-bochum")}
+              data-testid="button-velux-teaser"
+            >
+              Zum Velux Austausch-Guide
+              <ArrowRight className="w-4 h-4 ml-2" aria-hidden="true" />
+            </Button>
+          </div>
         </div>
       </section>
 
