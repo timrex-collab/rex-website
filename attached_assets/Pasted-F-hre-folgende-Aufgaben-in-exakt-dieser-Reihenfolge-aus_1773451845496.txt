@@ -1,0 +1,48 @@
+Führe folgende Aufgaben in exakt dieser Reihenfolge aus:
+
+## Schritt 1: Verzeichnisse anlegen
+Stelle sicher, dass diese Ordner existieren:
+- client/public/images/
+- client/public/videos/
+
+## Schritt 2: Hero-Bild herunterladen und in WebP konvertieren
+Lade dieses Bild herunter:
+https://firebasestorage.googleapis.com/v0/b/gen-lang-client-0869378336.firebasestorage.app/o/videos%2Fimage_fx_%20(4).jpg?alt=media&token=1801c402-4f33-4f51-874b-c1285090f779
+
+Installiere sharp falls nötig (npm install sharp).
+Konvertiere das Bild mit sharp zu WebP (Qualität 82) und speichere es als:
+client/public/images/foerderung-hero.webp
+
+## Schritt 3: Video herunterladen
+Lade diese Videodatei herunter:
+https://firebasestorage.googleapis.com/v0/b/velux-foerderung-2026.firebasestorage.app/o/video.mp4?alt=media&token=b528d1c3-360c-40bd-8840-d938230cfae5
+
+Speichere sie als:
+client/public/videos/foerderung-dachsanierung-bochum.mp4
+
+## Schritt 4: Foerderung.tsx aktualisieren
+Öffne client/src/pages/Foerderung.tsx und ersetze:
+
+ERSETZEN (Hero backgroundImage):
+url('https://firebasestorage.googleapis.com/v0/b/gen-lang-client-0869378336.firebasestorage.app/o/videos%2Fimage_fx_%20(4).jpg?alt=media&token=1801c402-4f33-4f51-874b-c1285090f779')
+
+DURCH:
+url('/images/foerderung-hero.webp')
+
+ERSETZEN (Video src):
+src="https://firebasestorage.googleapis.com/v0/b/velux-foerderung-2026.firebasestorage.app/o/video.mp4?alt=media&token=b528d1c3-360c-40bd-8840-d938230cfae5"
+
+DURCH:
+src="/videos/foerderung-dachsanierung-bochum.mp4"
+
+## Schritt 5: Preload in index.html eintragen
+Öffne client/index.html und füge im <head>-Bereich (nach den vorhandenen <link rel="preload">-Einträgen, falls vorhanden, sonst direkt vor </head>) folgende Zeile ein:
+
+<link rel="preload" as="image" href="/images/foerderung-hero.webp" type="image/webp" />
+
+## Schritt 6: Verifizieren
+- Prüfe, dass beide Firebase-URLs nicht mehr in Foerderung.tsx vorkommen
+- Prüfe, dass die Dateien client/public/images/foerderung-hero.webp und client/public/videos/foerderung-dachsanierung-bochum.mp4 existieren und eine Dateigröße > 0 haben
+- Führe npm run build aus und stelle sicher, dass kein Build-Fehler auftritt
+
+Melde am Ende: Dateigrößen beider Dateien + Build-Status.
