@@ -63,7 +63,7 @@ export default function Home() {
       imageAlt: "Steildach mit roten Ziegeln",
       href: "/steildach-bochum",
       benefits: [
-        "Alle gängigen Dachformen",
+        "Moderne Dacheindeckung",
         "Hochwertige Materialien",
         "Langlebige Lösungen",
       ],
@@ -71,7 +71,7 @@ export default function Home() {
     },
     {
       title: "Flachdach",
-      description: "Mit modernen Abdichtungssystemen wie Bitumen, EPDM oder Flüssigkunststoff sorgen wir für ein langlebiges, dichtes Flachdach – kostenlos aufgemessen und auf Wunsch mit BAFA/KfW-Förderung.",
+      description: "Mit modernen Abdichtungssystemen wie Bitumen, PVC oder Flüssigkunststoff sorgen wir für ein langlebiges, dichtes Flachdach – kostenlos aufgemessen und auf Wunsch mit BAFA/KfW-Förderung.",
       imageUrl: flachdachImage,
       imageAlt: "Flachdach Sanierung Bochum – Rex Bedachungs GmbH Fachbetrieb",
       href: "/flachdach-bochum",
@@ -186,7 +186,7 @@ export default function Home() {
           "@type": "OpeningHoursSpecification",
           "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
           "opens": "07:00",
-          "closes": "16:30"
+          "closes": "17:00"
         }
       ],
       "priceRange": "€€",
