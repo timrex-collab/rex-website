@@ -194,6 +194,7 @@ export default function BauklempnereiBochum() {
           <div className="flex flex-wrap gap-3 mb-8">
             <Button
               size="lg"
+              className="pulse-ring"
               onClick={() => setLocation("/kontakt")}
               data-testid="button-hero-angebot"
             >
@@ -404,6 +405,7 @@ export default function BauklempnereiBochum() {
           <div className="flex flex-wrap justify-center gap-3">
             <Button
               size="lg"
+              className="pulse-ring"
               onClick={() => setLocation("/kontakt")}
               data-testid="button-cta-angebot"
             >

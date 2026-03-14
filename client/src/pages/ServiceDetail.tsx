@@ -106,7 +106,7 @@ export default function ServiceDetail({
               Lassen Sie sich von uns beraten.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button asChild variant="default" size="lg" data-testid="button-service-quote">
+              <Button asChild variant="default" size="lg" className="pulse-ring" data-testid="button-service-quote">
                 <Link href="/kontakt">{ctaButtonText}</Link>
               </Button>
               <Button asChild variant="outline" size="lg" data-testid="button-service-call">

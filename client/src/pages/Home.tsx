@@ -317,7 +317,7 @@ export default function Home() {
               asChild
               variant="outline"
               size="lg"
-              className="bg-white text-primary hover:bg-white/90 border-white"
+              className="bg-white text-primary hover:bg-white/90 border-white pulse-ring"
               data-testid="button-cta-quote"
             >
               <Link href="/kontakt">Angebot anfragen</Link>

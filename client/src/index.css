@@ -301,4 +301,35 @@
   .border.active-elevate-2:not(.no-active-interaction-elevate)::after {
     inset: -1px;
   }
+
+  @keyframes pulse-ring {
+    0% {
+      transform: scale(1);
+      opacity: 0.5;
+    }
+    70% {
+      transform: scale(1.05, 1.3);
+      opacity: 0;
+    }
+    100% {
+      transform: scale(1.05, 1.3);
+      opacity: 0;
+    }
+  }
+
+  .pulse-ring {
+    position: relative;
+    overflow: visible !important;
+  }
+
+  .pulse-ring::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    border: 2px solid hsl(var(--primary));
+    animation: pulse-ring 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+    pointer-events: none;
+    z-index: 0;
+  }
 }
