@@ -41,7 +41,7 @@ export default function Navigation() {
             <img 
               src={logoPath} 
               alt="Logo Rex Bedachungs GmbH Bochum"
-              className="h-12 w-auto object-contain"
+              className="h-12 w-12 object-contain rounded-full"
               width="200"
               height="114"
               data-testid="img-header-logo"
