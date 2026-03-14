@@ -1,0 +1,93 @@
+Führe folgende Korrekturen in exakt dieser Reihenfolge aus.
+
+## 1. og:image + Twitter Card auf allen 7 Landing Pages ergänzen
+
+Öffne jede der folgenden Dateien und füge NACH dem vorhandenen <meta property="og:description" .../> Tag diese beiden Blöcke ein:
+
+### client/src/pages/BauklempnereiBochum.tsx
+Einfügen:
+<meta property="og:image" content="https://www.rex-bedachung.de/images/kamin-sanierung-bochum-dachdecker.webp" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="Bauklempnerei Bochum – Blecharbeiten | Rex Bedachung" />
+<meta name="twitter:description" content="Bauklempnerei Bochum ✓ Dachrinnen & Fallrohre ✓ Titanzink, Kupfer, Aluminium ✓ Eigene Werkstatt – Rex Bedachungs GmbH." />
+<meta name="twitter:image" content="https://www.rex-bedachung.de/images/kamin-sanierung-bochum-dachdecker.webp" />
+
+### client/src/pages/Dachreparatur.tsx
+Einfügen:
+<meta property="og:image" content="https://www.rex-bedachung.de/images/dachreparatur-bochum-rex-bedachung.webp" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="Dachreparatur Bochum – Sturmschaden & Notdienst | Rex Bedachung" />
+<meta name="twitter:description" content="Dachreparatur Bochum ✓ Sturmschäden ✓ Undichtes Dach ✓ Kurzfristiger Einsatz ✓ Versicherungsabwicklung – Rex Bedachungs GmbH." />
+<meta name="twitter:image" content="https://www.rex-bedachung.de/images/dachreparatur-bochum-rex-bedachung.webp" />
+
+### client/src/pages/FlachdachBochum.tsx
+Einfügen:
+<meta property="og:image" content="https://www.rex-bedachung.de/images/flachdach-sanierung-bochum-rex-bedachung.webp" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="Flachdach & Gründach Bochum | Rex Bedachung" />
+<meta name="twitter:description" content="Flachdach & Gründach Bochum ✓ Dachbegrünung ✓ Alle Abdichtungssysteme ✓ BAFA/KfW-Förderung – Rex Bedachungs GmbH." />
+<meta name="twitter:image" content="https://www.rex-bedachung.de/images/flachdach-sanierung-bochum-rex-bedachung.webp" />
+
+### client/src/pages/DachwartungBochum.tsx
+Einfügen:
+<meta property="og:image" content="https://www.rex-bedachung.de/images/dachdecker-inspektion-dachwartung-bochum.webp" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="Dachwartung Bochum – Inspektion & Wartungsvertrag | Rex Bedachung" />
+<meta name="twitter:description" content="Dachwartung Bochum ✓ Jährliche Dachinspektion ✓ Dachrinnenreinigung ✓ Wartungsverträge – Rex Bedachungs GmbH." />
+<meta name="twitter:image" content="https://www.rex-bedachung.de/images/dachdecker-inspektion-dachwartung-bochum.webp" />
+
+### client/src/pages/SteildachBochum.tsx
+Einfügen:
+<meta property="og:image" content="https://www.rex-bedachung.de/images/tondach-hero-dachdeckung-bochum.webp" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="Steildach Bochum – Sanierung & Dämmung | Rex Bedachung" />
+<meta name="twitter:description" content="Steildach Bochum ✓ Energetische Dachsanierung ✓ Aufsparrendämmung ✓ Bis zu 20% BAFA/KfW-Förderung – Rex Bedachungs GmbH." />
+<meta name="twitter:image" content="https://www.rex-bedachung.de/images/tondach-hero-dachdeckung-bochum.webp" />
+
+### client/src/pages/DachfensterBochum.tsx
+Einfügen:
+<meta property="og:image" content="https://www.rex-bedachung.de/images/velux-dachfenster-einbau-bochum-fachbetrieb.webp" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="Dachfenster Bochum – VELUX Einbau | Rex Bedachung" />
+<meta name="twitter:description" content="Dachfenster Bochum ✓ VELUX-zertifiziert ✓ Neueinbau & Austausch ✓ Notdienst ✓ BAFA/KfW-Förderung – Rex Bedachungs GmbH." />
+<meta name="twitter:image" content="https://www.rex-bedachung.de/images/velux-dachfenster-einbau-bochum-fachbetrieb.webp" />
+
+### client/src/pages/VeluxAustausch.tsx
+Einfügen:
+<meta property="og:image" content="https://www.rex-bedachung.de/images/velux-dachfenster-einbau-bochum-fachbetrieb.webp" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="Velux Dachfenster Austausch Bochum | Rex Bedachung" />
+<meta name="twitter:description" content="Velux Dachfenster Austausch Bochum ✓ GGL, GGU, GPU & Integra ✓ Ab 1.000 € ✓ VELUX-Partner – Rex Bedachungs GmbH." />
+<meta name="twitter:image" content="https://www.rex-bedachung.de/images/velux-dachfenster-einbau-bochum-fachbetrieb.webp" />
+
+## 2. PNG-Imports in DachwartungBochum.tsx ersetzen
+
+Öffne client/src/pages/DachwartungBochum.tsx.
+
+SUCHE diese Import-Zeile:
+import heroImagePath from "@assets/Dachdecker bei der Inspektion der Naht_1761081506440.png";
+
+ERSETZE DURCH:
+const heroImagePath = "/images/dachdecker-inspektion-dachwartung-bochum.webp";
+
+Entferne außerdem die Zeile direkt darunter:
+const heroImage = heroImagePath;
+
+Und ersetze alle Vorkommen von heroImage im Template durch heroImagePath — oder lasse die const heroImage-Zuweisung bestehen wenn es einfacher ist.
+
+## 3. PNG-Import in Services.tsx ersetzen
+
+Öffne client/src/pages/Services.tsx.
+
+SUCHE:
+import dachwartungImage from "@assets/Dachdecker bei der Inspektion der Naht_1761081506440.png";
+
+ERSETZE DURCH:
+const dachwartungImage = "/images/dachdecker-inspektion-dachwartung-bochum.webp";
+
+## 4. Build prüfen
+
+Führe aus: npm run build
+Stelle sicher dass kein Fehler auftritt.
+
+Melde am Ende: welche Dateien geändert wurden + Build-Status.
