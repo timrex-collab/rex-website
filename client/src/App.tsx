@@ -10,11 +10,6 @@ import ScrollToTop from "@/components/ScrollToTop";
 import Home from "@/pages/Home";
 
 const Services     = lazy(() => import("@/pages/Services"));
-const Steildach    = lazy(() => import("@/pages/Steildach"));
-const Flachdach    = lazy(() => import("@/pages/Flachdach"));
-const Bauklempnerei = lazy(() => import("@/pages/Bauklempnerei"));
-const Reparaturen  = lazy(() => import("@/pages/Reparaturen"));
-const Dachwartung  = lazy(() => import("@/pages/Dachwartung"));
 const References   = lazy(() => import("@/pages/References"));
 const About        = lazy(() => import("@/pages/About"));
 const Careers      = lazy(() => import("@/pages/Careers"));
@@ -40,11 +35,6 @@ function Router() {
     <Switch>
       <Route path="/" component={Home} />
       <Route path="/leistungen" component={Services} />
-      <Route path="/leistungen/steildach" component={Steildach} />
-      <Route path="/leistungen/flachdach" component={Flachdach} />
-      <Route path="/leistungen/bauklempnerei" component={Bauklempnerei} />
-      <Route path="/leistungen/reparaturen" component={Reparaturen} />
-      <Route path="/leistungen/dachwartung" component={Dachwartung} />
       <Route path="/referenzen" component={References} />
       <Route path="/foerderung" component={Foerderung} />
       <Route path="/solarpflicht" component={Solarpflicht} />
