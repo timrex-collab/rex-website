@@ -1,0 +1,91 @@
+Erstelle eine neue Datei client/src/pages/VeluxRolllaeden.tsx.
+
+Orientiere dich exakt am Aufbau und Design von VeluxAustausch.tsx –
+gleiche Sektionsstruktur, gleiche Komponenten (Card, CardContent, CardHeader,
+CardTitle, Button, Badge), gleicher FAQ-Accordion-Stil, gleiche Hero-Struktur
+mit Hintergrundbild und Gradient.
+
+Verwende folgende Imports:
+import { useState } from "react";
+import { Helmet } from "react-helmet";
+import { useLocation } from "wouter";
+import {
+  CheckCircle, ChevronDown, ChevronUp, Phone,
+  Sun, Zap, Wind, Thermometer, Volume2, Shield,
+  Smartphone, Wrench, MapPin,
+} from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
+
+const heroImage = "/images/velux-dachfenster-einbau-bochum-fachbetrieb.webp";
+
+═══════════════════════════════════════════
+SCHEMA-KONSTANTEN (vor dem return-Statement)
+═══════════════════════════════════════════
+
+const faqSchema = JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Was kostet ein Velux SSL Solar-Rollladen inkl. Montage in Bochum?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Der SSL kostet je nach Fenstergröße ab ca. 536 € (Produkt) zzgl. Montage durch Rex Bedachungs GmbH. Gesamtkosten inkl. Einbau ab ca. 700–900 €. Nach kostenlosem Aufmaß vor Ort erhalten Sie ein verbindliches Festpreisangebot." }
+    },
+    {
+      "@type": "Question",
+      "name": "Kann der SSL auf mein bestehendes Velux Fenster nachgerüstet werden?",
+      "acceptedAnswer": { "@type": "Answer", "text": "In den meisten Fällen ja – der SSL ist speziell für die Nachrüstung entwickelt und benötigt keinen Stromanschluss. Für ältere Fenster vor Mitte 2000 wird das Montageset ZOZ 253 benötigt. Rex Bedachungs GmbH prüft das kostenlos beim Aufmaß." }
+    },
+    {
+      "@type": "Question",
+      "name": "Funktioniert der SSL auch bei bewölktem Himmel und nachts?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Ja. Der integrierte Hochleistungsakku speichert genug Energie für zuverlässigen Betrieb bei Bewölkung und in der Nacht – auch im Ruhrgebiets-Herbst." }
+    },
+    {
+      "@type": "Question",
+      "name": "Was ist der Unterschied zwischen SSL und SML?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Der SSL ist solar-betrieben und braucht keinen Stromanschluss. Der SML benötigt 220V und zusätzlich die Steuereinheit KUX 110 (ca. 120 €) – damit sind beide preislich ähnlich. Für Nachrüstungen empfehlen wir klar den SSL, da keine Elektrikerarbeiten nötig sind." }
+    },
+    {
+      "@type": "Question",
+      "name": "Ist der Außenrollladen wirklich besser als ein innenliegendes Verdunkelungsrollo?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Ja, deutlich. Der Außenrollladen SSL erreicht bis zu 94% Hitzeschutz, weil er die Wärme vor dem Glas stoppt. Ein Innenrollo lässt die Wärme erst durch das Glas und erreicht nur 20–40% Wirkungsgrad." }
+    }
+  ]
+});
+
+const serviceSchema = JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "Service",
+  "name": "Velux Außenrollladen Montage Bochum",
+  "provider": {
+    "@type": "LocalBusiness",
+    "name": "Rex Bedachungs GmbH",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "Paulinenstraße 22",
+      "addressLocality": "Bochum",
+      "postalCode": "44799",
+      "addressCountry": "DE"
+    },
+    "telephone": "+49-234-583100"
+  },
+  "areaServed": ["Bochum", "Herne", "Castrop-Rauxel", "Witten", "Hattingen", "Ruhrgebiet"],
+  "description": "Montage und Nachrüstung von Velux Außenrollläden in Bochum – SSL Solar, SML Elektro, von innen montierbar, VELUX-Fachbetrieb.",
+  "offers": {
+    "@type": "Offer",
+    "priceCurrency": "EUR",
+    "price": "700",
+    "availability": "https://schema.org/InStock"
+  }
+});
+
+const breadcrumbSchema = JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Startseite", "item": "https://www.rex-bedachung.de/" },
+    { "@type": "ListItem", "position": 2, "name": "Dachfenster Bochum", "item": "https://www.rex-bedachung.de/dachfenster-bochum" },
+    { "@​​​​​​​​​​​​​​​​
