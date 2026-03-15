@@ -1,0 +1,127 @@
+Führe folgende Aufgaben in exakt dieser Reihenfolge aus.
+
+## Schritt 1: VeluxAustausch.tsx – BreadcrumbList auf 3 Ebenen korrigieren
+
+Öffne client/src/pages/VeluxAustausch.tsx.
+
+Suche den vorhandenen BreadcrumbList-Script-Block (er hat aktuell
+nur 2 itemListElement-Einträge: Startseite und Velux Austausch).
+
+ERSETZE den gesamten BreadcrumbList-Script-Block durch:
+
+<script type="application/ld+json">{`{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {"@type":"ListItem","position":1,"name":"Startseite","item":"https://www.rex-bedachung.de/"},
+    {"@type":"ListItem","position":2,"name":"Dachfenster Bochum","item":"https://www.rex-bedachung.de/dachfenster-bochum"},
+    {"@type":"ListItem","position":3,"name":"Velux Dachfenster Austausch Bochum","item":"https://www.rex-bedachung.de/velux-dachfenster-austausch-bochum"}
+  ]
+}`}</script>
+
+## Schritt 2: VeluxRolllaeden.tsx – breadcrumbSchema prüfen und korrigieren
+
+Öffne client/src/pages/VeluxRolllaeden.tsx.
+
+Stelle sicher dass das breadcrumbSchema EXAKT so lautet
+(unabhängig vom aktuellen Inhalt – einfach komplett ersetzen):
+
+const breadcrumbSchema = JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Startseite", "item": "https://www.rex-bedachung.de/" },
+    { "@type": "ListItem", "position": 2, "name": "Dachfenster Bochum", "item": "https://www.rex-bedachung.de/dachfenster-bochum" },
+    { "@type": "ListItem", "position": 3, "name": "Velux Außenrollladen Bochum", "item": "https://www.rex-bedachung.de/velux-dachfenster-rolllaeden-bochum" }
+  ]
+});
+
+Prüfe außerdem den internen Link-Button in der CTA-Sektion
+(data-testid="button-pillar-link" oder ähnlich).
+Stelle sicher dass er auf "/dachfenster-bochum" zeigt,
+NICHT auf "/velux-dachfenster-austausch-bochum".
+
+Falls er auf "/velux-dachfenster-austausch-bochum" zeigt:
+SUCHE:
+setLocation("/velux-dachfenster-austausch-bochum")
+(beim pillar-link Button)
+ERSETZE DURCH:
+setLocation("/dachfenster-bochum")
+
+UND ändere den Button-Text:
+SUCHE:
+Zum Velux Austausch-Guide Bochum &rarr;
+ERSETZE DURCH:
+Alle Dachfenster-Leistungen in Bochum &rarr;
+
+## Schritt 3: DachfensterBochum.tsx – Pillar-Page um Cluster-Links erweitern
+
+Öffne client/src/pages/DachfensterBochum.tsx.
+
+### 3a: Import ergänzen
+Stelle sicher dass useLocation importiert ist.
+Falls nicht vorhanden, ergänze:
+import { useLocation } from "wouter";
+
+Und am Anfang der Komponente:
+const [, setLocation] = useLocation();
+
+### 3b: Neue Sektion vor dem Abschluss-CTA einfügen
+
+Füge VOR der section data-testid="section-cta" diese neue Sektion ein:
+
+<section className="py-16 px-4 bg-muted/40" data-testid="section-cluster">
+  <div className="max-w-4xl mx-auto">
+    <h2 className="text-2xl md:text-3xl font-bold text-center mb-4 text-foreground" data-testid="heading-cluster">
+      Velux Dachfenster – Ratgeber & Spezialthemen
+    </h2>
+    <p className="text-muted-foreground text-center mb-10 max-w-2xl mx-auto">
+      Alles was Sie zu Velux Dachfenstern in Bochum wissen müssen – von Austausch bis Sonnenschutz.
+    </p>
+    <div className="grid md:grid-cols-2 gap-6">
+      <div
+        className="bg-card border border-border rounded-md p-6 cursor-pointer hover:border-primary transition-colors"
+        onClick={() => setLocation("/velux-dachfenster-austausch-bochum")}
+        data-testid="card-cluster-austausch"
+      >
+        <h3 className="font-semibold text-lg text-foreground mb-2">
+          Velux Dachfenster Austausch Bochum
+        </h3>
+        <p className="text-muted-foreground text-sm leading-relaxed mb-4">
+          Altes Velux Fenster austauschen lassen – Modellvergleich GGL, GGU, GPU und Integra, 
+          Preise ab 1.000 €, 7-Schritte-Ablauf und kostenlose Beratung vor Ort.
+        </p>
+        <span className="text-primary text-sm font-medium">
+          Zum Austausch-Guide &rarr;
+        </span>
+      </div>
+      <div
+        className="bg-card border border-border rounded-md p-6 cursor-pointer hover:border-primary transition-colors"
+        onClick={() => setLocation("/velux-dachfenster-rolllaeden-bochum")}
+        data-testid="card-cluster-rolllaeden"
+      >
+        <h3 className="font-semibold text-lg text-foreground mb-2">
+          Velux Außenrollladen Bochum – SSL Solar nachrüsten
+        </h3>
+        <p className="text-muted-foreground text-sm leading-relaxed mb-4">
+          Bis zu 94% Hitzeschutz durch Außenrollladen – SSL Solar kabellos nachrüsten, 
+          Vergleich SSL vs. SML, Montage von innen ab ca. 700 €.
+        </p>
+        <span className="text-primary text-sm font-medium">
+          Zum Rollladen-Guide &rarr;
+        </span>
+      </div>
+    </div>
+  </div>
+</section>
+
+## Schritt 4: Build prüfen
+
+Führe npm run build aus.
+
+Melde am Ende:
+- Welche Dateien geändert wurden
+- Ob BreadcrumbList in VeluxAustausch.tsx jetzt 3 Ebenen hat
+- Ob breadcrumbSchema in VeluxRolllaeden.tsx auf /dachfenster-bochum zeigt
+- Ob interner Link in VeluxRolllaeden.tsx auf /dachfenster-bochum zeigt
+- Build-Status
