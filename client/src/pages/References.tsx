@@ -1,7 +1,7 @@
 import { Helmet } from "react-helmet";
 import Hero from "@/components/Hero";
 import ReferenceCard from "@/components/ReferenceCard";
-import entwaesserung1 from "@assets/Entwaesserung1.jpg";
+const entwaesserung1 = "/images/flachdach-sanierung-bochum-rex-bedachung.webp";
 
 const heroImage = "/images/tondach-hero-dachdeckung-bochum.webp";
 const ref1Image = "/images/gruendach-intensive-begruenung-bochum.webp";

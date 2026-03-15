@@ -1,6 +1,6 @@
 import { Helmet } from "react-helmet";
 import ServiceDetail from "./ServiceDetail";
-import dachwartungImage from "@assets/Dachdecker bei der Inspektion der Naht_1761081506440.png";
+const dachwartungImage = "/images/dachdecker-inspektion-dachwartung-bochum.webp";
 
 export default function Dachwartung() {
   return (
