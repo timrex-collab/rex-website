@@ -361,6 +361,51 @@ export default function DachfensterBochum() {
         </div>
       </section>
 
+      <section className="py-16 px-4 bg-muted/40" data-testid="section-cluster">
+        <div className="max-w-4xl mx-auto">
+          <h2 className="text-2xl md:text-3xl font-bold text-center mb-4 text-foreground" data-testid="heading-cluster">
+            Velux Dachfenster – Ratgeber & Spezialthemen
+          </h2>
+          <p className="text-muted-foreground text-center mb-10 max-w-2xl mx-auto">
+            Alles was Sie zu Velux Dachfenstern in Bochum wissen müssen – von Austausch bis Sonnenschutz.
+          </p>
+          <div className="grid md:grid-cols-2 gap-6">
+            <div
+              className="bg-card border border-border rounded-md p-6 cursor-pointer hover:border-primary transition-colors"
+              onClick={() => setLocation("/velux-dachfenster-austausch-bochum")}
+              data-testid="card-cluster-austausch"
+            >
+              <h3 className="font-semibold text-lg text-foreground mb-2">
+                Velux Dachfenster Austausch Bochum
+              </h3>
+              <p className="text-muted-foreground text-sm leading-relaxed mb-4">
+                Altes Velux Fenster austauschen lassen – Modellvergleich GGL, GGU, GPU und Integra, 
+                Preise ab 1.000 €, 7-Schritte-Ablauf und kostenlose Beratung vor Ort.
+              </p>
+              <span className="text-primary text-sm font-medium">
+                Zum Austausch-Guide &rarr;
+              </span>
+            </div>
+            <div
+              className="bg-card border border-border rounded-md p-6 cursor-pointer hover:border-primary transition-colors"
+              onClick={() => setLocation("/velux-dachfenster-rolllaeden-bochum")}
+              data-testid="card-cluster-rolllaeden"
+            >
+              <h3 className="font-semibold text-lg text-foreground mb-2">
+                Velux Außenrollladen Bochum – SSL Solar nachrüsten
+              </h3>
+              <p className="text-muted-foreground text-sm leading-relaxed mb-4">
+                Bis zu 94% Hitzeschutz durch Außenrollladen – SSL Solar kabellos nachrüsten, 
+                Vergleich SSL vs. SML, Montage von innen ab ca. 700 €.
+              </p>
+              <span className="text-primary text-sm font-medium">
+                Zum Rollladen-Guide &rarr;
+              </span>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* ── Abschluss-CTA ── */}
       <section className="py-16 px-4 bg-background" data-testid="section-cta">
         <div className="max-w-3xl mx-auto text-center">
