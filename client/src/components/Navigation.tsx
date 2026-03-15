@@ -23,13 +23,13 @@ export default function Navigation() {
   const mainNav = [
     { name: "Startseite", path: "/" },
     { name: "Leistungen", path: "/leistungen", hasDropdown: true },
+    { name: "Förderung", path: "/foerderung" },
+    { name: "Solarpflicht", path: "/solarpflicht" },
     { name: "Referenzen", path: "/referenzen" },
-    { name: "FAQ", path: "/faq" },
-    { name: "Lexikon", path: "/lexikon" },
     { name: "Über uns", path: "/ueber-uns" },
     { name: "Karriere", path: "/karriere" },
-    { name: "Solarpflicht", path: "/solarpflicht" },
-    { name: "Förderung", path: "/foerderung" },
+    { name: "FAQ", path: "/faq" },
+    { name: "Lexikon", path: "/lexikon" },
     { name: "Kontakt", path: "/kontakt" },
   ];
 
