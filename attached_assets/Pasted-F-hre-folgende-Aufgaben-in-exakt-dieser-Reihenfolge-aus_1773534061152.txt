@@ -1,0 +1,58 @@
+Führe folgende Aufgaben in exakt dieser Reihenfolge aus.
+
+## Schritt 1: Netlify _redirects Datei erstellen
+
+Erstelle die Datei client/public/_redirects mit folgendem Inhalt:
+
+/leistungen/steildach        /steildach-bochum          301
+/leistungen/flachdach        /flachdach-bochum           301
+/leistungen/bauklempnerei    /bauklempnerei-bochum       301
+/leistungen/dachwartung      /dachwartung-bochum         301
+/leistungen/reparaturen      /dachreparatur-bochum       301
+/leistungen/dachfenster      /dachfenster-bochum         301
+
+## Schritt 2: Alte Routen aus App.tsx entfernen
+
+Öffne client/src/App.tsx und entferne folgende 6 Zeilen komplett
+(sowohl die Imports als auch die Route-Einträge):
+
+IMPORTS entfernen:
+const Steildach    = lazy(() => import("@/pages/Steildach"));
+const Flachdach    = lazy(() => import("@/pages/Flachdach"));
+const Bauklempnerei = lazy(() => import("@/pages/Bauklempnerei"));
+const Reparaturen  = lazy(() => import("@/pages/Reparaturen"));
+const Dachwartung  = lazy(() => import("@/pages/Dachwartung"));
+
+ROUTEN entfernen:
+<Route path="/leistungen/steildach" component={Steildach} />
+<Route path="/leistungen/flachdach" component={Flachdach} />
+<Route path="/leistungen/bauklempnerei" component={Bauklempnerei} />
+<Route path="/leistungen/reparaturen" component={Reparaturen} />
+<Route path="/leistungen/dachwartung" component={Dachwartung} />
+
+Den Import und die Route für /leistungen/dachfenster gibt es nicht
+in App.tsx – diese URL wird bereits über die _redirects Datei abgedeckt.
+
+WICHTIG: Die Route /leistungen bleibt bestehen – nur die Unterseiten
+werden entfernt. Services.tsx bleibt unverändert.
+
+## Schritt 3: Home.tsx Hero-Text kürzen
+
+Öffne client/src/pages/Home.tsx und ersetze den description-Text
+im Hero-Komponent:
+
+SUCHE:
+description="Ihr Partner für handwerkliche Präzision im Ruhrgebiet. Wir realisieren Ihre energetische Dachsanierung nach GEG und maximieren Ihre Ersparnis durch staatliche Förderungen von BAFA und KfW. Von der fachgerechten Flachdachabdichtung bis zum zertifizierten VELUX-Fenstereinbau – wir bringen Meisterqualität auf Ihr Dach, die schützt, überzeugt und sich durch attraktive Zuschüsse bezahlt macht. Steildach, Flachdach, Reparatur, Sanierung, Dachfenster und Bauklempnerei - Wir sind Ihr zuverlässiger Partner für alle Arbeiten rund um's Dach."
+
+ERSETZE DURCH:
+description="Rex Bedachungs GmbH ist Ihr Dachdecker-Meisterbetrieb in Bochum – VELUX-zertifiziert, spezialisiert auf energetische Dachsanierung nach GEG, Flachdachabdichtung, Steildach und Bauklempnerei. BAFA/KfW-Förderung bis 20% – wir übernehmen die Antragstellung."
+
+## Schritt 4: Build prüfen
+
+Führe npm run build aus.
+Stelle sicher dass kein Fehler auftritt.
+
+Melde am Ende:
+- Welche Dateien erstellt/geändert wurden
+- Ob die 5 Imports und 5 Routen korrekt entfernt wurden
+- Build-Status
