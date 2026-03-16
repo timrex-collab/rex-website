@@ -1,0 +1,132 @@
+Bitte führe folgende drei Korrekturen durch. Keine anderen Änderungen.
+
+---
+
+## FIX 1: Footer.tsx — 5 Service-Links korrigieren
+
+Datei: client/src/components/Footer.tsx
+
+Ersetze folgende href-Werte:
+- href="/leistungen/steildach"    → href="/steildach-bochum"
+- href="/leistungen/flachdach"    → href="/flachdach-bochum"
+- href="/leistungen/bauklempnerei" → href="/bauklempnerei-bochum"
+- href="/leistungen/reparaturen"  → href="/dachreparatur-bochum"
+- href="/leistungen/dachwartung"  → href="/dachwartung-bochum"
+
+Den Link-Text (Steildach, Flachdach, etc.) und alle anderen Attribute (className, data-testid) unverändert lassen.
+
+---
+
+## FIX 2: netlify.toml — Redirects auf korrekte Ziel-URLs zeigen
+
+Datei: netlify.toml
+
+Ersetze diese 5 Redirect-Blöcke komplett:
+
+ALT:
+[[redirects]]
+  from = "/flachdach"
+  to = "/leistungen/flachdach"
+  status = 301
+
+[[redirects]]
+  from = "/flachdach/"
+  to = "/leistungen/flachdach"
+  status = 301
+
+[[redirects]]
+  from = "/bauklempnerei"
+  to = "/leistungen/bauklempnerei"
+  status = 301
+
+[[redirects]]
+  from = "/bauklempnerei/"
+  to = "/leistungen/bauklempnerei"
+  status = 301
+
+[[redirects]]
+  from = "/reparaturen"
+  to = "/leistungen/reparaturen"
+  status = 301
+
+[[redirects]]
+  from = "/reparaturen/"
+  to = "/leistungen/reparaturen"
+  status = 301
+
+[[redirects]]
+  from = "/waermedaemmung"
+  to = "/leistungen/dachwartung"
+  status = 301
+
+[[redirects]]
+  from = "/waermedaemmung/"
+  to = "/leistungen/dachwartung"
+  status = 301
+
+NEU (ersetzen durch):
+[[redirects]]
+  from = "/flachdach"
+  to = "/flachdach-bochum"
+  status = 301
+
+[[redirects]]
+  from = "/flachdach/"
+  to = "/flachdach-bochum"
+  status = 301
+
+[[redirects]]
+  from = "/bauklempnerei"
+  to = "/bauklempnerei-bochum"
+  status = 301
+
+[[redirects]]
+  from = "/bauklempnerei/"
+  to = "/bauklempnerei-bochum"
+  status = 301
+
+[[redirects]]
+  from = "/reparaturen"
+  to = "/dachreparatur-bochum"
+  status = 301
+
+[[redirects]]
+  from = "/reparaturen/"
+  to = "/dachreparatur-bochum"
+  status = 301
+
+[[redirects]]
+  from = "/waermedaemmung"
+  to = "/dachwartung-bochum"
+  status = 301
+
+[[redirects]]
+  from = "/waermedaemmung/"
+  to = "/dachwartung-bochum"
+  status = 301
+
+Alle anderen Redirect-Blöcke (firma., /dachfenster, /velux-fenster, /fassaden, /betondachsteine, SPA-Fallback) bleiben unverändert.
+
+---
+
+## FIX 3: Home.tsx — 3 Service-URLs im Schema.org OfferCatalog korrigieren
+
+Datei: client/src/pages/Home.tsx
+
+Im JSON-Objekt (structured data / Schema.org) die hasOfferCatalog-Array-Einträge anpassen:
+
+ALT:
+{ "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Steildach", "url": "https://www.rex-bedachung.de/leistungen/steildach" }},
+{ "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Flachdach", "url": "https://www.rex-bedachung.de/leistungen/flachdach" }},
+{ "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Reparaturen", "url": "https://www.rex-bedachung.de/leistungen/reparaturen" }},
+
+NEU:
+{ "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Steildach", "url": "https://www.rex-bedachung.de/steildach-bochum" }},
+{ "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Flachdach", "url": "https://www.rex-bedachung.de/flachdach-bochum" }},
+{ "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Reparaturen", "url": "https://www.rex-bedachung.de/dachreparatur-bochum" }},
+
+Alle anderen Einträge im Array (Bauklempnerei, Dachfenster, Dachwartung) bleiben unverändert.
+
+---
+
+Nach allen drei Änderungen: npm run build ausführen und prüfen ob der Build fehlerfrei durchläuft.
