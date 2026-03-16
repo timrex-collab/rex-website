@@ -1,0 +1,114 @@
+# Fixes Batch 2 — Schema, Social Tags, Cleanup
+
+Führe die folgenden 6 Aufgaben nacheinander aus. Ändere NUR das, was beschrieben ist. Keine Umstrukturierungen, keine neuen Features, keine Designänderungen.
+
+---
+
+## Aufgabe 1: Schema-Typ überall auf RoofingContractor vereinheitlichen
+
+Das Unternehmen Rex Bedachungs GmbH wird aktuell mit verschiedenen Schema-Typen beschrieben (Roofer, RoofingContractor, LocalBusiness). Das muss vereinheitlicht werden.
+
+### 1a: Globales Schema in client/index.html
+- Ändere `"@type"` auf `"RoofingContractor"` (falls es dort noch `"Roofer"` oder etwas anderes ist).
+- Stelle sicher, dass das Schema ein `"@id": "https://www.rex-bedachung.de/#organization"` enthält. Falls nicht vorhanden, ergänze es.
+- Alle anderen Daten (Name, Adresse, Telefon, openingHours, areaServed, geo etc.) bleiben unverändert.
+
+### 1b: Home.tsx Helmet-Schema
+- Öffne `client/src/pages/Home.tsx`.
+- Falls im Helmet-Block ein JSON-LD-Schema mit `"@type": "RoofingContractor"` oder einem anderen Typ vorhanden ist, stelle sicher, dass es `"@type": "RoofingContractor"` verwendet.
+- Ergänze `"@id": "https://www.rex-bedachung.de/#organization"` falls nicht vorhanden.
+
+### 1c: Alle Leistungsseiten
+Prüfe ALLE Page-Komponenten in `client/src/pages/` auf JSON-LD-Schemas im Helmet-Block. Überall wo `"@type": "LocalBusiness"` steht und es sich um das Unternehmens-Schema handelt (nicht um ein Service-Schema), ersetze es durch `"@type": "RoofingContractor"` und ergänze `"@id": "https://www.rex-bedachung.de/#organization"`.
+
+Betrifft potenziell: FlachdachBochum.tsx, SteildachBochum.tsx, DachfensterBochum.tsx, Dachreparatur.tsx, BauklempnereiBochum.tsx, GruendachBochum.tsx, VeluxAustausch.tsx, VeluxRolllaeden.tsx, DachwartungBochum.tsx, Foerderung.tsx, Solarpflicht.tsx, FAQ.tsx, DachLexikon.tsx und alle weiteren.
+
+**Wichtig:** Falls eine Seite ein separates Service-Schema oder FAQPage-Schema oder HowTo-Schema hat, lass dieses UNVERÄNDERT. Es geht NUR um den Unternehmens-Typ.
+
+---
+
+## Aufgabe 2: Footer-Schema bereinigen
+
+Öffne `client/src/components/Footer.tsx`.
+
+Suche nach einem inline JSON-LD-Schema (script type="application/ld+json"). Falls vorhanden:
+- Entferne das gesamte Schema-Script-Tag aus dem Footer.
+
+**Begründung:** Das globale Schema in index.html ist das primäre Unternehmens-Schema. Ein doppeltes Schema im Footer ohne @id-Verknüpfung erzeugt Duplikate. Das globale Schema reicht aus.
+
+---
+
+## Aufgabe 3: DachLexikon Schema-Injektion umstellen
+
+Öffne `client/src/pages/DachLexikon.tsx`.
+
+Suche nach einem `useEffect`-Block, der ein `<script type="application/ld+json">`-Tag per `document.createElement('script')` in `document.head` einfügt (vermutlich das DefinedTermSet-Schema).
+
+**Aktion:**
+1. Entferne den gesamten useEffect-Block, der das Schema injiziert.
+2. Verschiebe den Schema-Inhalt (das JSON-LD-Objekt) in den bestehenden `<Helmet>`-Block der Seite als:
+```jsx
+<script type="application/ld+json">
+  {JSON.stringify(SCHEMA_OBJEKT)}
+</script>
+```
+3. Falls die Seite noch keinen Helmet-Block hat, erstelle einen.
+4. Das Schema-Objekt selbst (DefinedTermSet mit allen Begriffen) bleibt inhaltlich UNVERÄNDERT.
+
+---
+
+## Aufgabe 4: Twitter Card Tags auf allen Seiten ergänzen
+
+Folgende Meta-Tags müssen in den Helmet-Block JEDER Page-Komponente, die sie noch nicht hat:
+
+```html
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="[gleicher Wert wie og:title]" />
+<meta name="twitter:description" content="[gleicher Wert wie og:description oder meta description]" />
+<meta name="twitter:image" content="[gleicher Wert wie og:image]" />
+```
+
+Prüfe ALLE Dateien in `client/src/pages/`. Seiten, die diese Tags schon haben (z.B. BauklempnereiBochum.tsx, DachwartungBochum.tsx, VeluxAustausch.tsx), überspringe.
+
+Für alle anderen Seiten: Verwende die bereits vorhandenen og:title, og:description und og:image Werte als Quelle für die Twitter-Tags. Falls og:image auf einer Seite fehlt, verwende: `https://www.rex-bedachung.de/images/rex-og-default.webp` (oder das OG-Image das in der og-inject Edge Function als Default hinterlegt ist — schau dort nach welche URL das ist und verwende diese).
+
+---
+
+## Aufgabe 5: og:site_name auf allen Seiten ergänzen
+
+Füge auf ALLEN Page-Komponenten in `client/src/pages/` folgendes Meta-Tag in den Helmet-Block ein (falls noch nicht vorhanden):
+
+```html
+<meta property="og:site_name" content="Rex Bedachungs GmbH" />
+```
+
+Prüfe jede Datei einzeln. Überspringe Seiten, die es bereits haben.
+
+---
+
+## Aufgabe 6: aggregateRating in index.html aktualisieren
+
+Öffne `client/index.html` und suche das `aggregateRating`-Objekt im JSON-LD-Schema.
+
+Aktualisiere die Werte auf:
+- "ratingValue": "4.5"
+- "reviewCount": "15"
+- "bestRating": "5" (falls noch nicht vorhanden, ergänzen)
+- "worstRating": "1" (falls noch nicht vorhanden, ergänzen)
+
+Falls bestRating und worstRating bereits vorhanden sind, belasse sie.
+
+---
+
+## Nach Abschluss aller 6 Aufgaben:
+
+Erstelle eine kurze Zusammenfassung mit:
+- Welche Dateien wurden geändert?
+- Wie viele Seiten haben jetzt Twitter Card Tags bekommen?
+- Wie viele Seiten haben jetzt og:site_name bekommen?
+- Welche Schema-Typen wurden geändert (alt → neu)?
+- Wurde das Footer-Schema entfernt?
+- Wurde das DachLexikon-Schema umgestellt?
+- Gab es Probleme oder Unklarheiten?
+
+Deploye anschließend auf Netlify.
