@@ -134,6 +134,14 @@ export default function Foerderung() {
             }
           }
         `}</script>
+        <script type="application/ld+json">{JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "BreadcrumbList",
+          "itemListElement": [
+            { "@type": "ListItem", "position": 1, "name": "Startseite", "item": "https://www.rex-bedachung.de/" },
+            { "@type": "ListItem", "position": 2, "name": "Förderung", "item": "https://www.rex-bedachung.de/foerderung" }
+          ]
+        })}</script>
       </Helmet>
 
       {/* ── Hero (Gemini-Gradient + mein Hintergrundbild) ── */}
