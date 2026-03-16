@@ -95,3 +95,8 @@
   from = "/*"
   to = "/index.html"
   status = 200
+
+# OG-Tag-Injektion für Social-Media-Crawler
+[[edge_functions]]
+  path = "/*"
+  function = "og-inject"
