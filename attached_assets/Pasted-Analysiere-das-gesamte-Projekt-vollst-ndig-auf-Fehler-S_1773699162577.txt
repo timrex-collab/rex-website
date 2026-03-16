@@ -1,0 +1,118 @@
+Analysiere das gesamte Projekt vollständig auf Fehler, Schwachstellen, fehlende Elemente, technische Risiken, SEO-Potenziale, Performance-Probleme und Optimierungsmöglichkeiten für maximale Sichtbarkeit bei Google sowie für KI-Modelle.
+
+Ziel:
+Ich möchte eine vollständige technische und inhaltliche Projektprüfung mit klaren Handlungsempfehlungen. Die Analyse soll nicht oberflächlich sein, sondern das gesamte Projekt strukturiert und priorisiert bewerten.
+
+Prüfe insbesondere diese Bereiche:
+
+1. Technische Fehler
+- Codefehler
+- Build-Probleme
+- Routing-Probleme
+- kaputte Links
+- fehlerhafte Weiterleitungen
+- fehlende oder fehlerhafte Canonicals
+- Indexierungsprobleme
+- doppelte Inhalte
+- inkonsistente URLs
+- fehlerhafte Meta-Daten
+- fehlende Alt-Texte
+- Schema-Markup-Fehler
+- Probleme bei Sitemap, robots.txt oder Headern
+
+2. SEO und Sichtbarkeit bei Google
+- Titel, Meta-Descriptions, H1-H6-Struktur
+- interne Verlinkung
+- Linkstruktur und URL-Struktur
+- Duplicate Content
+- Cannibalization zwischen Seiten
+- Breadcrumbs
+- strukturierte Daten / Schema.org
+- Canonical-Konzept
+- lokale SEO-Signale
+- Seiten mit zu wenig relevantem Content
+- fehlende FAQ-, Service-, LocalBusiness- oder Breadcrumb-Markups
+- Potenziale für bessere Rankings durch Content-Struktur, interne Links und semantische Optimierung
+
+3. Sichtbarkeit für KI-Modelle / AI Search
+- klare Seitenstruktur
+- verständliche semantische Gliederung
+- eindeutige Leistungsseiten
+- maschinenlesbare Inhalte
+- strukturierte Daten
+- präzise Entitäten, Leistungen, Orte und Angebote
+- Inhalte, die für AI Overviews, Chatbots und Suchassistenten besser verwertbar sind
+- Hinweise auf fehlende Inhalte, die für KI-Modelle hilfreich wären
+
+4. Performance und Ladegeschwindigkeit
+- große oder unkomprimierte Bilder
+- unnötige Skripte
+- Render-Blocker
+- CSS-/JS-Ballast
+- Lazy Loading
+- Bildformate
+- Caching-Potenziale
+- unnötige Abhängigkeiten
+- unnötige Requests
+- Probleme bei Core Web Vitals
+- allgemeine Ladezeit-Optimierung
+
+5. Medien und Assets
+- Sind alle Bilder sinnvoll komprimiert?
+- Gibt es zu große Bilder?
+- Werden moderne Formate genutzt?
+- Gibt es doppelte oder ungenutzte Assets?
+- Fehlen Alt-Texte oder sinnvolle Dateinamen?
+
+6. Struktur und Inhalte
+- Passt die Seitenarchitektur?
+- Passt die interne Verlinkung?
+- Gibt es doppelte oder sehr ähnliche Seiten?
+- Welche Seiten fehlen?
+- Welche Inhalte sollten ergänzt, zusammengeführt, getrennt oder umgebaut werden?
+- Gibt es Keyword-Überschneidungen oder inhaltliche Doppelungen?
+
+Wichtige Arbeitsweise:
+- Prüfe das komplette Projekt systematisch.
+- Nenne konkrete Dateien, Komponenten, Seiten oder Bereiche, wenn du Probleme findest.
+- Arbeite nicht nur Probleme auf, sondern nenne auch konkrete Verbesserungen.
+- Zeige nicht nur „was falsch ist“, sondern auch „wie es besser gelöst werden sollte“.
+- Bewerte die Punkte nach Relevanz und Priorität.
+- Denke aus Sicht von Technik, SEO, Nutzerführung, Conversion, Google und KI-Modellen.
+
+Ausgabeformat:
+Erstelle die Antwort in diesen 5 Bereichen:
+
+1. Executive Summary
+- Kurze Gesamtbewertung des Projekts
+- wichtigste Risiken
+- größte Chancen
+- wichtigste Sofortmaßnahmen
+
+2. Detaillierte Analyse
+Für jeden gefundenen Punkt:
+- Bereich
+- Problem
+- warum relevant
+- konkrete betroffene Datei / Seite / URL / Komponente
+- klare Handlungsempfehlung
+
+3. Was konkret optimiert oder geändert werden muss
+- nur konkrete To-dos
+- klar formuliert
+- keine allgemeinen Floskeln
+
+4. Fehlende Elemente
+- was derzeit fehlt
+- warum es wichtig ist
+- wie es ergänzt werden sollte
+
+5. Maßnahmenplan nach Priorität
+Erstelle einen klaren Umsetzungsplan Punkt für Punkt, sortiert nach:
+- Prio 1 = kritisch / sofort
+- Prio 2 = wichtig / kurzfristig
+- Prio 3 = sinnvoll / mittelfristig
+- Prio 4 = optional / Feinschliff
+
+Wichtig:
+Ich möchte am Ende einen belastbaren, praxisnahen Maßnahmenplan, den ich direkt abarbeiten kann. Keine allgemeine SEO-Erklärung, sondern eine echte Projektprüfung mit klaren Prioritäten, konkreten Fundstellen und konkreten Verbesserungsvorschlägen.
