@@ -150,6 +150,7 @@ export default function Home() {
     {JSON.stringify({
       "@context": "https://schema.org",
       "@type": "RoofingContractor",
+      "@id": "https://www.rex-bedachung.de/#organization",
       "name": "Rex Bedachungs GmbH",
       "url": "https://www.rex-bedachung.de",
       "logo": "https://www.rex-bedachung.de/images/logo-rex-bedachungs-gmbh-bochum-2025.webp",

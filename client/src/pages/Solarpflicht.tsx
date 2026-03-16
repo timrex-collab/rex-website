@@ -143,7 +143,10 @@ export default function Solarpflicht() {
         <meta property="og:image:height" content="630" />
         <script type="application/ld+json">{`{
           "@context": "https://schema.org",
-          "@type": "WebPage",
+          "@type": "Article",
+          "headline": "Solarpflicht NRW 2026 – Was Eigentümer wissen müssen",
+          "author": { "@type": "Organization", "name": "Rex Bedachungs GmbH" },
+          "publisher": { "@type": "Organization", "name": "Rex Bedachungs GmbH", "url": "https://www.rex-bedachung.de" },
           "name": "Solarpflicht NRW 2026",
           "description": "Informationen zur Solardachpflicht in NRW – § 42a BauO NRW, SAN-VO NRW",
           "url": "https://www.rex-bedachung.de/solarpflicht",

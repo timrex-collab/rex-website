@@ -5,6 +5,7 @@ const logoPath = "/images/logo-rex-bedachungs-gmbh-bochum-2025.webp";
 const localBusinessSchema = {
   "@context": "https://schema.org",
   "@type": "LocalBusiness",
+  "@id": "https://www.rex-bedachung.de/#organization",
   "name": "Rex Bedachungs GmbH",
   "url": "https://www.rex-bedachung.de",
   "telephone": "+49-234-583100",
