@@ -232,12 +232,12 @@ export default function GruendachBochum() {
         />
         <meta property="og:image" content="https://rex-bedachung.de/images/gruendach-bochum-dachbegruenung-experten.webp" />
         <meta property="og:type" content="article" />
-        <meta property="og:url" content="https://rex-bedachung.de/gruendach-dachbegrunung-bochum" />
+        <meta property="og:url" content="https://www.rex-bedachung.de/gruendach-dachbegrunung-bochum" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="Gründach Bochum: Alles zu Aufbau, Vorteilen & Förderung" />
         <meta name="twitter:description" content="Extensiv vs. Intensiv, 7 Schichten, Förderprogramme 2026. Der vollständige Gründach-Ratgeber für Bochum und das Ruhrgebiet." />
         <meta name="twitter:image" content="https://rex-bedachung.de/images/gruendach-bochum-dachbegruenung-experten.webp" />
-        <link rel="canonical" href="https://rex-bedachung.de/gruendach-dachbegrunung-bochum" />
+        <link rel="canonical" href="https://www.rex-bedachung.de/gruendach-dachbegrunung-bochum" />
         <script type="application/ld+json">{JSON.stringify(faqSchema)}</script>
         <script type="application/ld+json">{JSON.stringify(articleSchema)}</script>
         <script type="application/ld+json">{JSON.stringify(serviceSchema)}</script>
