@@ -81,6 +81,16 @@ export default function Footer() {
                   Dachwartung
                 </Link>
               </li>
+              <li>
+                <Link href="/velux-dachfenster-rolllaeden-bochum" className="flex items-center min-h-[44px] text-muted-foreground hover:text-primary transition-colors" data-testid="link-footer-velux-rolllaeden">
+                  Velux Rollläden
+                </Link>
+              </li>
+              <li>
+                <Link href="/gruendach-dachbegrunung-bochum" className="flex items-center min-h-[44px] text-muted-foreground hover:text-primary transition-colors" data-testid="link-footer-gruendach">
+                  Gründach
+                </Link>
+              </li>
             </ul>
           </div>
 

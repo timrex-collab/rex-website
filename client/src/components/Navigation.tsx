@@ -18,6 +18,8 @@ export default function Navigation() {
     { name: "Reparatur", path: "/dachreparatur-bochum" },
     { name: "Dachwartung", path: "/dachwartung-bochum" },
     { name: "Velux Austausch", path: "/velux-dachfenster-austausch-bochum" },
+    { name: "Velux Rollläden", path: "/velux-dachfenster-rolllaeden-bochum" },
+    { name: "Gründach", path: "/gruendach-dachbegrunung-bochum" },
   ];
 
   const mainNav = [
