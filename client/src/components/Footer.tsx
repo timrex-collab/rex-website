@@ -160,6 +160,18 @@ export default function Footer() {
                 Paulinenstr. 22<br />
                 44799 Bochum
               </div>
+              <div className="pt-3">
+                <a
+                  href="https://www.google.com/maps/place/Rex+Bedachungs+GmbH/@51.4623584,7.2428438,519m/data=!3m2!1e3!4b1!4m6!3m5!1s0x47b8e00fdd91a96d:0xb0e424e0f275f1b6!8m2!3d51.4623584!4d7.2428438!16s%2Fg%2F1tfqkgvg"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-primary transition-colors"
+                  aria-label="Rex Bedachung auf Google bewerten"
+                  data-testid="link-footer-google-review"
+                >
+                  ⭐ Google Bewertung schreiben
+                </a>
+              </div>
             </div>
           </div>
         </div>

@@ -117,6 +117,26 @@ export default function Contact() {
                 </div>
               </div>
 
+              <div className="mt-8 p-6 bg-muted rounded-xl border border-border text-center">
+                <p className="font-medium mb-2">
+                  Zufrieden mit unserer Arbeit?
+                </p>
+                <p className="text-muted-foreground text-sm mb-4">
+                  Wir freuen uns über Ihre Bewertung auf Google –
+                  das hilft anderen Hausbesitzern in Bochum, uns zu finden.
+                </p>
+                <a
+                  href="https://www.google.com/maps/place/Rex+Bedachungs+GmbH/@51.4623584,7.2428438,519m/data=!3m2!1e3!4b1!4m6!3m5!1s0x47b8e00fdd91a96d:0xb0e424e0f275f1b6!8m2!3d51.4623584!4d7.2428438!16s%2Fg%2F1tfqkgvg"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 bg-background border border-border rounded-lg px-6 py-3 font-medium hover:bg-muted transition-colors shadow-sm"
+                  aria-label="Rex Bedachung auf Google bewerten"
+                  data-testid="link-contact-google-review"
+                >
+                  ⭐ Jetzt auf Google bewerten
+                </a>
+              </div>
+
               <Card className="p-6">
                 <div className="relative w-full" style={{ paddingBottom: '66.67%' }}>
                   {!mapLoaded ? (
