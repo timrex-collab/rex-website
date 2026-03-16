@@ -12,12 +12,12 @@
 # Alte URLs → Neue Leistungsseiten
 [[redirects]]
   from = "/dachfenster"
-  to = "/leistungen/dachfenster"
+  to = "/dachfenster-bochum"
   status = 301
 
 [[redirects]]
   from = "/dachfenster/"
-  to = "/leistungen/dachfenster"
+  to = "/dachfenster-bochum"
   status = 301
 
 [[redirects]]
@@ -62,32 +62,32 @@
 
 [[redirects]]
   from = "/velux-fenster"
-  to = "/leistungen/dachfenster"
+  to = "/dachfenster-bochum"
   status = 301
 
 [[redirects]]
   from = "/velux-fenster/"
-  to = "/leistungen/dachfenster"
+  to = "/dachfenster-bochum"
   status = 301
 
 [[redirects]]
   from = "/fassaden"
-  to = "/leistungen/bauklempnerei"
+  to = "/bauklempnerei-bochum"
   status = 301
 
 [[redirects]]
   from = "/fassaden/"
-  to = "/leistungen/bauklempnerei"
+  to = "/bauklempnerei-bochum"
   status = 301
 
 [[redirects]]
   from = "/betondachsteine"
-  to = "/leistungen/steildach"
+  to = "/steildach-bochum"
   status = 301
 
 [[redirects]]
   from = "/betondachsteine/"
-  to = "/leistungen/steildach"
+  to = "/steildach-bochum"
   status = 301
 
 # SPA Fallback

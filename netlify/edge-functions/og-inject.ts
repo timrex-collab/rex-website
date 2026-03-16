@@ -188,19 +188,6 @@ function buildOGTags(og: OGData, url: string): string {
 export default async function handler(request: Request, context: Context) {
   const url = new URL(request.url);
 
-  const userAgent = request.headers.get("user-agent") || "";
-  const isSocialCrawler = [
-    "Twitterbot",
-    "LinkedInBot",
-    "TelegramBot",
-    "Slackbot",
-    "Discordbot",
-  ].some((bot) => userAgent.toLowerCase().includes(bot.toLowerCase()));
-
-  if (isSocialCrawler) {
-    return context.next();
-  }
-
   const pathname = url.pathname.replace(/\/$/, "") || "/";
 
   const response = await context.next();

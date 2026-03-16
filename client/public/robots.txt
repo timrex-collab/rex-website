@@ -1,6 +1,8 @@
 User-agent: *
 Allow: /
 Disallow: /danke
+Disallow: /datenschutz
+Disallow: /impressum
 
 User-agent: GPTBot
 Allow: /
