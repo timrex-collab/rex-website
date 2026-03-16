@@ -211,6 +211,9 @@ export default function DachLexikon() {
           property="og:description"
           content="Unser Dachdecker-Fachlexikon erklärt alle wichtigen Begriffe rund ums Dach: Bauphysik, Materialien, Regelwerke und mehr."
         />
+        <meta property="og:image" content="https://www.rex-bedachung.de/images/dach-hintergrund-rex-bedachung.webp" />
+        <meta property="og:image:width" content="1200" />
+        <meta property="og:image:height" content="630" />
       </Helmet>
 
       <Hero

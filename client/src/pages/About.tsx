@@ -37,6 +37,9 @@ export default function About() {
         <link rel="canonical" href="https://www.rex-bedachung.de/ueber-uns" />
         <meta property="og:title" content="Über uns - Rex Bedachungs GmbH" />
         <meta property="og:description" content="Meisterbetrieb mit über 40 Jahren Erfahrung im Dachdeckerhandwerk." />
+        <meta property="og:image" content="https://www.rex-bedachung.de/images/dach-hintergrund-rex-bedachung.webp" />
+        <meta property="og:image:width" content="1200" />
+        <meta property="og:image:height" content="630" />
       </Helmet>
 
       <Hero

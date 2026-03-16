@@ -114,6 +114,9 @@ export default function Foerderung() {
         <link rel="canonical" href="https://www.rex-bedachung.de/foerderung" />
         <meta property="og:title" content="BAFA & KfW Förderung Dachsanierung | Rex Bedachungs GmbH Bochum" />
         <meta property="og:description" content="Bis zu 20% staatliche Förderung für Dachsanierung & Velux-Fenster. Wir begleiten Sie als Meisterbetrieb durch den Förderdschungel." />
+        <meta property="og:image" content="https://www.rex-bedachung.de/images/dach-hintergrund-rex-bedachung.webp" />
+        <meta property="og:image:width" content="1200" />
+        <meta property="og:image:height" content="630" />
         <script type="application/ld+json">{`
           {
             "@context": "https://schema.org",

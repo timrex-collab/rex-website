@@ -94,6 +94,9 @@ export default function Services() {
         <link rel="canonical" href="https://www.rex-bedachung.de/leistungen" />
         <meta property="og:title" content="Unsere Leistungen - Rex Bedachungs GmbH" />
         <meta property="og:description" content="Umfassende Dachdeckerleistungen von Ihrem Meisterbetrieb im Ruhrgebiet." />
+        <meta property="og:image" content="https://www.rex-bedachung.de/images/dach-hintergrund-rex-bedachung.webp" />
+        <meta property="og:image:width" content="1200" />
+        <meta property="og:image:height" content="630" />
       </Helmet>
 
       <Hero

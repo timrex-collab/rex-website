@@ -138,6 +138,9 @@ export default function Solarpflicht() {
         <link rel="canonical" href="https://www.rex-bedachung.de/solarpflicht" />
         <meta property="og:title" content="Solarpflicht NRW 2026 | Rex Bedachungs GmbH Bochum" />
         <meta property="og:description" content="Solarpflicht bei Dachsanierung in NRW ab 2026. Alle Regeln, Ausnahmen, kWp-Tabelle und interaktiver Schnellcheck." />
+        <meta property="og:image" content="https://www.rex-bedachung.de/images/dach-hintergrund-rex-bedachung.webp" />
+        <meta property="og:image:width" content="1200" />
+        <meta property="og:image:height" content="630" />
         <script type="application/ld+json">{`{
           "@context": "https://schema.org",
           "@type": "WebPage",

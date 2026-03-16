@@ -339,6 +339,9 @@ export default function FAQ() {
           property="og:description"
           content="Häufig gestellte Fragen zu allen Dacharbeiten - von Angeboten über Reparaturen bis zur Wartung."
         />
+        <meta property="og:image" content="https://www.rex-bedachung.de/images/dach-hintergrund-rex-bedachung.webp" />
+        <meta property="og:image:width" content="1200" />
+        <meta property="og:image:height" content="630" />
         <script type="application/ld+json">{`
           {
             "@context": "https://schema.org",

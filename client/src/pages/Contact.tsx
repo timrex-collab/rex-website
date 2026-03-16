@@ -18,6 +18,9 @@ export default function Contact() {
         <link rel="canonical" href="https://www.rex-bedachung.de/kontakt" />
         <meta property="og:title" content="Kontakt - Rex Bedachungs GmbH" />
         <meta property="og:description" content="Nehmen Sie Kontakt mit uns auf. Wir beraten Sie gerne zu Ihrem Dachprojekt." />
+        <meta property="og:image" content="https://www.rex-bedachung.de/images/dach-hintergrund-rex-bedachung.webp" />
+        <meta property="og:image:width" content="1200" />
+        <meta property="og:image:height" content="630" />
       </Helmet>
 
       <Hero
