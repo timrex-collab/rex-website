@@ -1,0 +1,74 @@
+Bitte führe folgende Änderungen durch. Keine anderen Änderungen.
+
+---
+
+## FIX 4: GruendachBochum.tsx — Title-Tag einzeilig machen
+
+Datei: client/src/pages/GruendachBochum.tsx
+
+Den mehrzeiligen <title>-Tag suchen und durch eine einzeilige Version ersetzen:
+
+ALT (mehrzeilig, erzeugt Whitespace):
+<title>
+  Gründach Bochum: Aufbau, Vorteile &amp; Förderung – Dachbegrünung vom Experten | Rex Bedachungs
+  GmbH
+</title>
+
+NEU (einzeilig):
+<title>Gründach Bochum: Aufbau, Vorteile & Förderung – Dachbegrünung vom Experten | Rex Bedachungs GmbH</title>
+
+---
+
+## FIX 5: Navigation.tsx — 2 neue Einträge im services-Array ergänzen
+
+Datei: client/src/components/Navigation.tsx
+
+Im services-Array (das sind die Dropdown-Einträge unter "Leistungen") am Ende vor der schließenden ]-Klammer zwei Einträge ergänzen:
+
+ALT (letzter Eintrag):
+    { name: "Velux Austausch", path: "/velux-dachfenster-austausch-bochum" },
+  ];
+
+NEU:
+    { name: "Velux Austausch", path: "/velux-dachfenster-austausch-bochum" },
+    { name: "Velux Rollläden", path: "/velux-dachfenster-rolllaeden-bochum" },
+    { name: "Gründach", path: "/gruendach-dachbegrunung-bochum" },
+  ];
+
+---
+
+## FIX 6: Footer.tsx — 2 neue Links in der Leistungen-Spalte ergänzen
+
+Datei: client/src/components/Footer.tsx
+
+In der Leistungen-Spalte (ul-Liste) nach dem letzten vorhandenen <li>-Eintrag (Dachwartung) zwei neue Einträge ergänzen:
+
+ALT (letzter li-Eintrag in Leistungen):
+              <li>
+                <Link href="/dachwartung-bochum" className="flex items-center min-h-[44px] text-muted-foreground hover:text-primary transition-colors" data-testid="link-footer-dachwartung">
+                  Dachwartung
+                </Link>
+              </li>
+            </ul>
+
+NEU:
+              <li>
+                <Link href="/dachwartung-bochum" className="flex items-center min-h-[44px] text-muted-foreground hover:text-primary transition-colors" data-testid="link-footer-dachwartung">
+                  Dachwartung
+                </Link>
+              </li>
+              <li>
+                <Link href="/velux-dachfenster-rolllaeden-bochum" className="flex items-center min-h-[44px] text-muted-foreground hover:text-primary transition-colors" data-testid="link-footer-velux-rolllaeden">
+                  Velux Rollläden
+                </Link>
+              </li>
+              <li>
+                <Link href="/gruendach-dachbegrunung-bochum" className="flex items-center min-h-[44px] text-muted-foreitung hover:text-primary transition-colors" data-testid="link-footer-gruendach">
+                  Gründach
+                </Link>
+              </li>
+            </ul>
+
+---
+
+Nach allen Änderungen: npm run build ausführen und prüfen ob der Build fehlerfrei durchläuft.
