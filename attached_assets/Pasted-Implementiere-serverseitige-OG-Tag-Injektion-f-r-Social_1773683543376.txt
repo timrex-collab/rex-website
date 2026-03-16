@@ -1,0 +1,216 @@
+Implementiere serverseitige OG-Tag-Injektion für Social-Media-Crawler 
+via Netlify Edge Function. React-Helmet funktioniert für Crawler nicht 
+(kein JS-Rendering) – die Edge Function injiziert statische Meta-Tags 
+direkt in den <head> vor der Auslieferung.
+
+---
+
+## SCHRITT 1 – Verzeichnis und Edge Function anlegen
+
+Erstelle: netlify/edge-functions/og-inject.ts
+
+Inhalt:
+
+import type { Context } from "https://edge.netlify.com";
+
+interface OGData {
+  title: string;
+  description: string;
+  image: string;
+  imageWidth?: string;
+  imageHeight?: string;
+}
+
+const BASE_URL = "https://www.rex-bedachung.de";
+const DEFAULT_IMAGE = `${BASE_URL}/images/dach-hintergrund-rex-bedachung.webp`;
+
+const routes: Record<string, OGData> = {
+  "/": {
+    title: "Dachdecker Bochum – Rex Bedachungs GmbH",
+    description: "Ihr Dachdecker in Bochum seit über 30 Jahren. Flachdach, Steildach, Dachsanierung, Bauklempnerei. Jetzt kostenlos anfragen: 0234 583100.",
+    image: DEFAULT_IMAGE,
+    imageWidth: "1200",
+    imageHeight: "630",
+  },
+  "/flachdach": {
+    title: "Flachdach Bochum – Abdichtung, Sanierung & Neubau | Rex Bedachungs GmbH",
+    description: "Flachdach-Experten in Bochum: Abdichtung, Sanierung, Neubau und Gründach. Kostenlose Beratung. Tel. 0234 583100.",
+    image: `${BASE_URL}/images/flachdach-abdichtung-bochum-rex-bedachung.webp`,
+    imageWidth: "1200",
+    imageHeight: "630",
+  },
+  "/steildach-bochum": {
+    title: "Steildach Bochum – Eindeckung, Sanierung & Dämmung | Rex Bedachungs GmbH",
+    description: "Steildach-Arbeiten in Bochum: Neueindeckung, Sanierung, Aufsparrendämmung. BAFA/KfW-gefördert. Tel. 0234 583100.",
+    image: `${BASE_URL}/images/steildach-bochum-rex-bedachung.webp`,
+    imageWidth: "1200",
+    imageHeight: "630",
+  },
+  "/dachreparatur-bochum": {
+    title: "Dachreparatur Bochum – Schnell & Zuverlässig | Rex Bedachungs GmbH",
+    description: "Dachreparatur in Bochum: Sturmschäden, undichte Stellen, Ziegel tauschen. Schnelle Reaktionszeit. Tel. 0234 583100.",
+    image: `${BASE_URL}/images/dachreparatur-bochum-rex-bedachung.webp`,
+    imageWidth: "1200",
+    imageHeight: "630",
+  },
+  "/bauklempnerei-bochum": {
+    title: "Bauklempnerei Bochum – Dachrinnen & Blecharbeiten | Rex Bedachungs GmbH",
+    description: "Bauklempnerei in Bochum: Dachrinnen, Fallrohre, Blechverkleidungen, Dachabdichtungen. Tel. 0234 583100.",
+    image: `${BASE_URL}/images/bauklempnerei-bochum-rex-bedachung.webp`,
+    imageWidth: "1200",
+    imageHeight: "630",
+  },
+  "/gruendach-dachbegrunung-bochum": {
+    title: "Gründach Bochum – Dachbegrünung & Extensive Begrünung | Rex Bedachungs GmbH",
+    description: "Gründach-Experten in Bochum: extensive und intensive Dachbegrünung. Förderung möglich. Tel. 0234 583100.",
+    image: `${BASE_URL}/images/gruendach-bochum-dachbegruenung-experten.webp`,
+    imageWidth: "1200",
+    imageHeight: "630",
+  },
+  "/foerderung": {
+    title: "Förderung Dachsanierung Bochum – BAFA & KfW | Rex Bedachungs GmbH",
+    description: "Bis zu 20% Förderung für Dachsanierung in Bochum. BAFA und KfW Zuschüsse für Dämmung und Sanierung. Jetzt beraten lassen.",
+    image: `${BASE_URL}/images/foerderung-hero.webp`,
+    imageWidth: "1200",
+    imageHeight: "630",
+  },
+  "/solarpflicht": {
+    title: "Solarpflicht NRW – Was Eigentümer in Bochum wissen müssen | Rex Bedachungs GmbH",
+    description: "Solarpflicht NRW: Wer ist betroffen? Was kostet es? Rex Bedachung berät Eigentümer in Bochum. Tel. 0234 583100.",
+    image: DEFAULT_IMAGE,
+    imageWidth: "1200",
+    imageHeight: "630",
+  },
+  "/velux-dachfenster-austausch-bochum": {
+    title: "Velux Dachfenster Austausch Bochum | Rex Bedachungs GmbH",
+    description: "Velux Dachfenster austauschen in Bochum: GGL, GGU, GPU, Integra. Festpreis ab 1.800 €. Zertifizierter Velux-Partner. Tel. 0234 583100.",
+    image: DEFAULT_IMAGE,
+    imageWidth: "1200",
+    imageHeight: "630",
+  },
+  "/leistungen": {
+    title: "Dachdecker Leistungen Bochum – Rex Bedachungs GmbH",
+    description: "Alle Dachdeckerleistungen in Bochum: Flachdach, Steildach, Reparatur, Bauklempnerei, Gründach und mehr. Tel. 0234 583100.",
+    image: DEFAULT_IMAGE,
+    imageWidth: "1200",
+    imageHeight: "630",
+  },
+  "/ueber-uns": {
+    title: "Über uns – Rex Bedachungs GmbH Bochum",
+    description: "Rex Bedachungs GmbH – Ihr Dachdecker in Bochum seit über 30 Jahren. Inhabergeführt, regional verwurzelt. Tel. 0234 583100.",
+    image: DEFAULT_IMAGE,
+    imageWidth: "1200",
+    imageHeight: "630",
+  },
+  "/kontakt": {
+    title: "Kontakt – Rex Bedachungs GmbH Bochum",
+    description: "Kontakt zu Rex Bedachung Bochum: Paulinenstraße 22, 44799 Bochum. Tel. 0234 583100. Kostenlose Beratung und Angebote.",
+    image: DEFAULT_IMAGE,
+    imageWidth: "1200",
+    imageHeight: "630",
+  },
+  "/referenzen": {
+    title: "Referenzen – Rex Bedachungs GmbH Bochum",
+    description: "Abgeschlossene Dachprojekte in Bochum und dem Ruhrgebiet. Überzeugen Sie sich von der Qualität unserer Arbeit.",
+    image: DEFAULT_IMAGE,
+    imageWidth: "1200",
+    imageHeight: "630",
+  },
+  "/lexikon": {
+    title: "Dachlexikon – Fachbegriffe rund ums Dach | Rex Bedachungs GmbH",
+    description: "Das Dachlexikon von Rex Bedachung erklärt Fachbegriffe rund ums Dach verständlich und praxisnah.",
+    image: DEFAULT_IMAGE,
+    imageWidth: "1200",
+    imageHeight: "630",
+  },
+  "/faq": {
+    title: "FAQ – Häufige Fragen zum Dach | Rex Bedachungs GmbH Bochum",
+    description: "Antworten auf die häufigsten Fragen rund ums Dach: Kosten, Förderung, Ablauf, Materialien. Rex Bedachung Bochum.",
+    image: DEFAULT_IMAGE,
+    imageWidth: "1200",
+    imageHeight: "630",
+  },
+};
+
+function buildOGTags(og: OGData, url: string): string {
+  return `
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="${url}" />
+    <meta property="og:title" content="${og.title}" />
+    <meta property="og:description" content="${og.description}" />
+    <meta property="og:image" content="${og.image}" />
+    ${og.imageWidth ? `<meta property="og:image:width" content="${og.imageWidth}" />` : ""}
+    ${og.imageHeight ? `<meta property="og:image:height" content="${og.imageHeight}" />` : ""}
+    <meta property="og:site_name" content="Rex Bedachungs GmbH" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="${og.title}" />
+    <meta name="twitter:description" content="${og.description}" />
+    <meta name="twitter:image" content="${og.image}" />
+  `.trim();
+}
+
+export default async function handler(request: Request, context: Context) {
+  const url = new URL(request.url);
+  const pathname = url.pathname.replace(/\/$/, "") || "/";
+
+  // Nur HTML-Requests verarbeiten
+  const accept = request.headers.get("accept") || "";
+  if (!accept.includes("text/html")) {
+    return context.next();
+  }
+
+  const response = await context.next();
+  const contentType = response.headers.get("content-type") || "";
+  if (!contentType.includes("text/html")) {
+    return response;
+  }
+
+  const ogData = routes[pathname] ?? {
+    title: "Rex Bedachungs GmbH Bochum",
+    description: "Ihr Dachdecker in Bochum. Tel. 0234 583100.",
+    image: `${BASE_URL}/images/dach-hintergrund-rex-bedachung.webp`,
+    imageWidth: "1200",
+    imageHeight: "630",
+  };
+
+  const ogTags = buildOGTags(ogData, `${BASE_URL}${pathname}`);
+  const html = await response.text();
+
+  // OG-Tags direkt nach <head> injizieren
+  const modified = html.replace("<head>", `<head>\n${ogTags}`);
+
+  return new Response(modified, {
+    status: response.status,
+    headers: response.headers,
+  });
+}
+
+export const config = { path: "/*" };
+
+---
+
+## SCHRITT 2 – netlify.toml anpassen
+
+Prüfe ob netlify.toml existiert. Falls ja, ergänze:
+
+[[edge_functions]]
+  path = "/*"
+  function = "og-inject"
+
+Falls netlify.toml noch nicht existiert, neu anlegen mit:
+
+[build]
+  command = "npm run build"
+  publish = "dist/public"
+
+[[edge_functions]]
+  path = "/*"
+  function = "og-inject"
+
+---
+
+## SCHRITT 3 – Prüfung
+
+Prüfe ob der TypeScript-Import in der Edge Function korrekt ist.
+Stelle sicher dass netlify/edge-functions/og-inject.ts existiert.
+Keinen Build starten – nur Dateien anlegen und kurze Bestätigung ausgeben.
