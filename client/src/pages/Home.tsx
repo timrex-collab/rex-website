@@ -196,11 +196,11 @@ export default function Home() {
         "@type": "OfferCatalog",
         "name": "Dachdeckerleistungen",
         "itemListElement": [
-          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Steildach", "url": "https://www.rex-bedachung.de/leistungen/steildach" }},
-          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Flachdach", "url": "https://www.rex-bedachung.de/leistungen/flachdach" }},
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Steildach", "url": "https://www.rex-bedachung.de/steildach-bochum" }},
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Flachdach", "url": "https://www.rex-bedachung.de/flachdach-bochum" }},
           { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Bauklempnerei", "url": "https://www.rex-bedachung.de/bauklempnerei-bochum" }},
           { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Dachfenster", "url": "https://www.rex-bedachung.de/dachfenster-bochum" }},
-          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Reparaturen", "url": "https://www.rex-bedachung.de/leistungen/reparaturen" }},
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Reparaturen", "url": "https://www.rex-bedachung.de/dachreparatur-bochum" }},
           { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Dachwartung", "url": "https://www.rex-bedachung.de/dachwartung-bochum" }}
         ]
       },

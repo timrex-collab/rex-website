@@ -22,42 +22,42 @@
 
 [[redirects]]
   from = "/bauklempnerei"
-  to = "/leistungen/bauklempnerei"
+  to = "/bauklempnerei-bochum"
   status = 301
 
 [[redirects]]
   from = "/bauklempnerei/"
-  to = "/leistungen/bauklempnerei"
+  to = "/bauklempnerei-bochum"
   status = 301
 
 [[redirects]]
   from = "/flachdach"
-  to = "/leistungen/flachdach"
+  to = "/flachdach-bochum"
   status = 301
 
 [[redirects]]
   from = "/flachdach/"
-  to = "/leistungen/flachdach"
+  to = "/flachdach-bochum"
   status = 301
 
 [[redirects]]
   from = "/reparaturen"
-  to = "/leistungen/reparaturen"
+  to = "/dachreparatur-bochum"
   status = 301
 
 [[redirects]]
   from = "/reparaturen/"
-  to = "/leistungen/reparaturen"
+  to = "/dachreparatur-bochum"
   status = 301
 
 [[redirects]]
   from = "/waermedaemmung"
-  to = "/leistungen/dachwartung"
+  to = "/dachwartung-bochum"
   status = 301
 
 [[redirects]]
   from = "/waermedaemmung/"
-  to = "/leistungen/dachwartung"
+  to = "/dachwartung-bochum"
   status = 301
 
 [[redirects]]

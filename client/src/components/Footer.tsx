@@ -52,17 +52,17 @@ export default function Footer() {
             <h3 className="font-semibold mb-2">Leistungen</h3>
             <ul className="text-sm">
               <li>
-                <Link href="/leistungen/steildach" className="flex items-center min-h-[44px] text-muted-foreground hover:text-primary transition-colors" data-testid="link-footer-steildach">
+                <Link href="/steildach-bochum" className="flex items-center min-h-[44px] text-muted-foreground hover:text-primary transition-colors" data-testid="link-footer-steildach">
                   Steildach
                 </Link>
               </li>
               <li>
-                <Link href="/leistungen/flachdach" className="flex items-center min-h-[44px] text-muted-foreground hover:text-primary transition-colors" data-testid="link-footer-flachdach">
+                <Link href="/flachdach-bochum" className="flex items-center min-h-[44px] text-muted-foreground hover:text-primary transition-colors" data-testid="link-footer-flachdach">
                   Flachdach
                 </Link>
               </li>
               <li>
-                <Link href="/leistungen/bauklempnerei" className="flex items-center min-h-[44px] text-muted-foreground hover:text-primary transition-colors" data-testid="link-footer-bauklempnerei">
+                <Link href="/bauklempnerei-bochum" className="flex items-center min-h-[44px] text-muted-foreground hover:text-primary transition-colors" data-testid="link-footer-bauklempnerei">
                   Bauklempnerei
                 </Link>
               </li>
@@ -72,12 +72,12 @@ export default function Footer() {
                 </Link>
               </li>
               <li>
-                <Link href="/leistungen/reparaturen" className="flex items-center min-h-[44px] text-muted-foreground hover:text-primary transition-colors" data-testid="link-footer-reparaturen">
+                <Link href="/dachreparatur-bochum" className="flex items-center min-h-[44px] text-muted-foreground hover:text-primary transition-colors" data-testid="link-footer-reparaturen">
                   Reparaturen
                 </Link>
               </li>
               <li>
-                <Link href="/leistungen/dachwartung" className="flex items-center min-h-[44px] text-muted-foreground hover:text-primary transition-colors" data-testid="link-footer-dachwartung">
+                <Link href="/dachwartung-bochum" className="flex items-center min-h-[44px] text-muted-foreground hover:text-primary transition-colors" data-testid="link-footer-dachwartung">
                   Dachwartung
                 </Link>
               </li>
