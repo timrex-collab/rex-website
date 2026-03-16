@@ -1,0 +1,91 @@
+Führe folgende 2 Schema-Ergänzungen durch. Nur gezielte Ergänzungen, nichts anderes anfassen.
+
+---
+
+## FIX A – AggregateRating in LocalBusiness-Schema (index.html)
+
+Datei: index.html (oder wo das zentrale JSON-LD LocalBusiness/Roofer-Schema liegt)
+
+Im bestehenden JSON-LD Schema-Objekt (Type: "Roofer" oder "LocalBusiness") folgendes Property ergänzen:
+
+"aggregateRating": {
+  "@type": "AggregateRating",
+  "ratingValue": "4.48",
+  "bestRating": "5",
+  "worstRating": "1",
+  "reviewCount": "13",
+  "ratingCount": "13"
+}
+
+Wichtig: Nicht als neues Script-Tag anlegen – in das bestehende LocalBusiness JSON-LD-Objekt einfügen.
+
+---
+
+## FIX B – BreadcrumbList auf 6 Seiten ergänzen
+
+Für jede der folgenden Seiten im Helmet-Block ein neues <script type="application/ld+json"> ergänzen.
+Nicht in bestehende Schemas einbauen – als separates Script-Tag anlegen.
+
+### /ueber-uns (About.tsx)
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {"@type": "ListItem", "position": 1, "name": "Startseite", "item": "https://www.rex-bedachung.de/"},
+    {"@type": "ListItem", "position": 2, "name": "Über uns", "item": "https://www.rex-bedachung.de/ueber-uns"}
+  ]
+}
+
+### /leistungen (Services.tsx)
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {"@type": "ListItem", "position": 1, "name": "Startseite", "item": "https://www.rex-bedachung.de/"},
+    {"@type": "ListItem", "position": 2, "name": "Leistungen", "item": "https://www.rex-bedachung.de/leistungen"}
+  ]
+}
+
+### /lexikon (DachLexikon.tsx)
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {"@type": "ListItem", "position": 1, "name": "Startseite", "item": "https://www.rex-bedachung.de/"},
+    {"@type": "ListItem", "position": 2, "name": "Dachlexikon", "item": "https://www.rex-bedachung.de/lexikon"}
+  ]
+}
+
+### /karriere (Careers.tsx)
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {"@type": "ListItem", "position": 1, "name": "Startseite", "item": "https://www.rex-bedachung.de/"},
+    {"@type": "ListItem", "position": 2, "name": "Karriere", "item": "https://www.rex-bedachung.de/karriere"}
+  ]
+}
+
+### /referenzen (References.tsx)
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {"@type": "ListItem", "position": 1, "name": "Startseite", "item": "https://www.rex-bedachung.de/"},
+    {"@type": "ListItem", "position": 2, "name": "Referenzen", "item": "https://www.rex-bedachung.de/referenzen"}
+  ]
+}
+
+### /kontakt (Contact.tsx)
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {"@type": "ListItem", "position": 1, "name": "Startseite", "item": "https://www.rex-bedachung.de/"},
+    {"@type": "ListItem", "position": 2, "name": "Kontakt", "item": "https://www.rex-bedachung.de/kontakt"}
+  ]
+}
+
+---
+
+Nach allen Änderungen: Kurze Bestätigung welche Dateien geändert wurden.
