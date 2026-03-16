@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Helmet } from "react-helmet";
-import { useLocation } from "wouter";
+import { useLocation, Link } from "wouter";
 import {
   CheckCircle,
   ChevronDown,
@@ -390,7 +390,12 @@ export default function FlachdachBochum() {
           <p className="text-muted-foreground text-center mb-10 max-w-2xl mx-auto" data-testid="text-gruendach-intro">
             Ein Gründach ist mehr als Optik – es ist eine Investition in Energieeffizienz, Langlebigkeit und
             Nachhaltigkeit. Rex Bedachungs GmbH realisiert Gründächer in Bochum und dem gesamten Ruhrgebiet –
-            fachgerecht, termingerecht und mit vollständiger Förderberatung.
+            fachgerecht, termingerecht und mit vollständiger Förderberatung.{" "}
+            <Link href="/gruendach-dachbegrunung-bochum">
+              <a className="text-green-700 hover:text-green-600 underline font-medium" data-testid="link-gruendach-ratgeber">
+                Gründach &amp; Dachbegrünung – der vollständige Ratgeber
+              </a>
+            </Link>
           </p>
           <div className="grid md:grid-cols-2 gap-6 mb-10">
             <Card data-testid="card-gruendach-extensiv">
