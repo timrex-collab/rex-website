@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Helmet } from "react-helmet";
 import { useLocation } from "wouter";
+import Breadcrumb from "@/components/Breadcrumb";
 import {
   CheckCircle,
   ChevronDown,
@@ -170,7 +171,29 @@ export default function Dachreparatur() {
     {"@type":"ListItem","position":2,"name":"Dachreparatur Bochum","item":"https://www.rex-bedachung.de/dachreparatur-bochum"}
   ]
 }`}</script>
+        <script type="application/ld+json">{`{
+  "@context": "https://schema.org",
+  "@type": "Service",
+  "name": "Dachreparatur und Notdienst",
+  "description": "Schnelle Dachreparatur bei Sturmschäden, Undichtigkeiten und akuten Dachproblemen in Bochum.",
+  "provider": {
+    "@type": "RoofingContractor",
+    "@id": "https://www.rex-bedachung.de/#organization"
+  },
+  "areaServed": {
+    "@type": "City",
+    "name": "Bochum",
+    "sameAs": "https://www.wikidata.org/wiki/Q2103"
+  },
+  "serviceType": "Dachreparatur"
+}`}</script>
       </Helmet>
+
+      <Breadcrumb items={[
+        { label: "Startseite", href: "/" },
+        { label: "Leistungen", href: "/leistungen" },
+        { label: "Dachreparatur" }
+      ]} />
 
       {/* ── Hero ── */}
       <section
@@ -193,6 +216,7 @@ export default function Dachreparatur() {
           <div className="flex flex-wrap gap-3 mb-8">
             <Button
               size="lg"
+              className="cta-pulse"
               onClick={() => setLocation("/kontakt")}
               data-testid="button-hero-anfragen"
             >
@@ -449,6 +473,7 @@ export default function Dachreparatur() {
           <div className="flex flex-wrap justify-center gap-3">
             <Button
               size="lg"
+              className="cta-pulse"
               onClick={() => setLocation("/kontakt")}
               data-testid="button-cta-anfragen"
             >

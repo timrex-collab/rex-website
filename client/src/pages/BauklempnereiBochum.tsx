@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Helmet } from "react-helmet";
 import { useLocation } from "wouter";
+import Breadcrumb from "@/components/Breadcrumb";
 import {
   CheckCircle,
   ChevronDown,
@@ -181,7 +182,29 @@ export default function BauklempnereiBochum() {
     {"@type":"ListItem","position":2,"name":"Bauklempnerei Bochum","item":"https://www.rex-bedachung.de/bauklempnerei-bochum"}
   ]
 }`}</script>
+        <script type="application/ld+json">{`{
+  "@context": "https://schema.org",
+  "@type": "Service",
+  "name": "Bauklempnerei und Fassadenverkleidung",
+  "description": "Bauklempnerei, Dachentwässerung und Metallfassaden in Bochum – Zink, Kupfer, Aluminium.",
+  "provider": {
+    "@type": "RoofingContractor",
+    "@id": "https://www.rex-bedachung.de/#organization"
+  },
+  "areaServed": {
+    "@type": "City",
+    "name": "Bochum",
+    "sameAs": "https://www.wikidata.org/wiki/Q2103"
+  },
+  "serviceType": "Bauklempnerei"
+}`}</script>
       </Helmet>
+
+      <Breadcrumb items={[
+        { label: "Startseite", href: "/" },
+        { label: "Leistungen", href: "/leistungen" },
+        { label: "Bauklempnerei" }
+      ]} />
 
       {/* Hero */}
       <section
@@ -204,7 +227,7 @@ export default function BauklempnereiBochum() {
           <div className="flex flex-wrap gap-3 mb-8">
             <Button
               size="lg"
-              className="pulse-ring"
+              className="pulse-ring cta-pulse"
               onClick={() => setLocation("/kontakt")}
               data-testid="button-hero-angebot"
             >
@@ -415,7 +438,7 @@ export default function BauklempnereiBochum() {
           <div className="flex flex-wrap justify-center gap-3">
             <Button
               size="lg"
-              className="pulse-ring"
+              className="pulse-ring cta-pulse"
               onClick={() => setLocation("/kontakt")}
               data-testid="button-cta-angebot"
             >

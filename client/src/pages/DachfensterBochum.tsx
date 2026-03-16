@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Helmet } from "react-helmet";
 import { useLocation } from "wouter";
+import Breadcrumb from "@/components/Breadcrumb";
 import {
   CheckCircle,
   ChevronDown,
@@ -129,7 +130,29 @@ export default function DachfensterBochum() {
     {"@type":"ListItem","position":2,"name":"Dachfenster Bochum","item":"https://www.rex-bedachung.de/dachfenster-bochum"}
   ]
 }`}</script>
+        <script type="application/ld+json">{`{
+  "@context": "https://schema.org",
+  "@type": "Service",
+  "name": "Dachfenster Einbau und Austausch",
+  "description": "Einbau, Austausch und Wartung von Dachfenstern aller Marken in Bochum – inkl. Velux.",
+  "provider": {
+    "@type": "RoofingContractor",
+    "@id": "https://www.rex-bedachung.de/#organization"
+  },
+  "areaServed": {
+    "@type": "City",
+    "name": "Bochum",
+    "sameAs": "https://www.wikidata.org/wiki/Q2103"
+  },
+  "serviceType": "Dachfenstereinbau"
+}`}</script>
       </Helmet>
+
+      <Breadcrumb items={[
+        { label: "Startseite", href: "/" },
+        { label: "Leistungen", href: "/leistungen" },
+        { label: "Dachfenster" }
+      ]} />
 
       {/* ── Hero ── */}
       <section
@@ -152,7 +175,7 @@ export default function DachfensterBochum() {
           <div className="flex flex-wrap gap-3 mb-8">
             <Button
               size="lg"
-              className="pulse-ring"
+              className="pulse-ring cta-pulse"
               onClick={() => setLocation("/kontakt")}
               data-testid="button-hero-angebot"
             >
@@ -420,7 +443,7 @@ export default function DachfensterBochum() {
           <div className="flex flex-wrap justify-center gap-3">
             <Button
               size="lg"
-              className="pulse-ring"
+              className="pulse-ring cta-pulse"
               onClick={() => setLocation("/kontakt")}
               data-testid="button-cta-angebot"
             >

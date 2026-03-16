@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Helmet } from "react-helmet";
+import Breadcrumb from "@/components/Breadcrumb";
 import {
   Euro, FileCheck, Lightbulb, ShieldCheck, ArrowRight,
   CheckCircle, CheckCircle2, Info, ChevronDown, ChevronUp,
@@ -152,6 +153,11 @@ export default function Foerderung() {
           ]
         })}</script>
       </Helmet>
+
+      <Breadcrumb items={[
+        { label: "Startseite", href: "/" },
+        { label: "Förderung & Zuschüsse" }
+      ]} />
 
       {/* ── Hero (Gemini-Gradient + mein Hintergrundbild) ── */}
       <header

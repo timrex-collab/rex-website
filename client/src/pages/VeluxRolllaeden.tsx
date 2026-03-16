@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Helmet } from "react-helmet";
 import { useLocation } from "wouter";
+import Breadcrumb from "@/components/Breadcrumb";
 import {
   CheckCircle, ChevronDown, ChevronUp, Phone,
   Sun, Zap, Wind, Thermometer, Volume2, Shield,
@@ -182,7 +183,29 @@ export default function VeluxRolllaeden() {
         <script type="application/ld+json">{faqSchema}</script>
         <script type="application/ld+json">{serviceSchema}</script>
         <script type="application/ld+json">{breadcrumbSchema}</script>
+        <script type="application/ld+json">{`{
+  "@context": "https://schema.org",
+  "@type": "Service",
+  "name": "Velux Dachfenster Rollläden nachrüsten",
+  "description": "Velux Rollläden und Sonnenschutz nachrüsten in Bochum – Beratung und Montage.",
+  "provider": {
+    "@type": "RoofingContractor",
+    "@id": "https://www.rex-bedachung.de/#organization"
+  },
+  "areaServed": {
+    "@type": "City",
+    "name": "Bochum",
+    "sameAs": "https://www.wikidata.org/wiki/Q2103"
+  },
+  "serviceType": "Rollladenmontage"
+}`}</script>
       </Helmet>
+
+      <Breadcrumb items={[
+        { label: "Startseite", href: "/" },
+        { label: "Dachfenster", href: "/dachfenster-bochum" },
+        { label: "Velux Rollläden" }
+      ]} />
 
       {/* ── Hero ── */}
       <section
@@ -205,6 +228,7 @@ export default function VeluxRolllaeden() {
           <div className="flex flex-wrap gap-3 mb-8">
             <Button
               size="lg"
+              className="cta-pulse"
               onClick={() => setLocation("/kontakt")}
               data-testid="button-hero-beratung"
             >
@@ -529,6 +553,7 @@ export default function VeluxRolllaeden() {
           <div className="flex flex-wrap justify-center gap-3 mb-6">
             <Button
               size="lg"
+              className="cta-pulse"
               onClick={() => setLocation("/kontakt")}
               data-testid="button-cta-beratung"
             >

@@ -1,5 +1,6 @@
 import { Helmet } from "react-helmet";
 import Hero from "@/components/Hero";
+import Breadcrumb from "@/components/Breadcrumb";
 import {
   Accordion,
   AccordionContent,
@@ -474,6 +475,11 @@ export default function FAQ() {
           ]
         })}</script>
       </Helmet>
+
+      <Breadcrumb items={[
+        { label: "Startseite", href: "/" },
+        { label: "Häufige Fragen" }
+      ]} />
 
       <Hero
         title="Häufig gestellte Fragen"

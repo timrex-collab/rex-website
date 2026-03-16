@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Helmet } from "react-helmet";
 import { useLocation } from "wouter";
+import Breadcrumb from "@/components/Breadcrumb";
 import {
   CheckCircle,
   ChevronDown,
@@ -256,7 +257,29 @@ export default function VeluxAustausch() {
     {"@type":"ListItem","position":3,"name":"Velux Dachfenster Austausch Bochum","item":"https://www.rex-bedachung.de/velux-dachfenster-austausch-bochum"}
   ]
 }`}</script>
+        <script type="application/ld+json">{`{
+  "@context": "https://schema.org",
+  "@type": "Service",
+  "name": "Velux Dachfenster Austausch",
+  "description": "Professioneller Austausch von Velux Dachfenstern in Bochum – alle Modelle, fachgerechte Montage.",
+  "provider": {
+    "@type": "RoofingContractor",
+    "@id": "https://www.rex-bedachung.de/#organization"
+  },
+  "areaServed": {
+    "@type": "City",
+    "name": "Bochum",
+    "sameAs": "https://www.wikidata.org/wiki/Q2103"
+  },
+  "serviceType": "Dachfensteraustausch"
+}`}</script>
       </Helmet>
+
+      <Breadcrumb items={[
+        { label: "Startseite", href: "/" },
+        { label: "Dachfenster", href: "/dachfenster-bochum" },
+        { label: "Velux Dachfenster Austausch" }
+      ]} />
 
       {/* ── Hero ── */}
       <section
@@ -279,6 +302,7 @@ export default function VeluxAustausch() {
           <div className="flex flex-wrap gap-3 mb-8">
             <Button
               size="lg"
+              className="cta-pulse"
               onClick={() => setLocation("/kontakt")}
               data-testid="button-hero-beratung"
             >
@@ -654,6 +678,7 @@ export default function VeluxAustausch() {
           <div className="flex flex-wrap justify-center gap-3">
             <Button
               size="lg"
+              className="cta-pulse"
               onClick={() => setLocation("/kontakt")}
               data-testid="button-cta-beratung"
             >

@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Helmet } from "react-helmet";
+import Breadcrumb from "@/components/Breadcrumb";
 import {
   Sun, Euro, Home, CheckCircle, XCircle, AlertTriangle,
   Phone, Mail, ChevronDown, ChevronUp, ArrowRight, Shield,
@@ -169,6 +170,11 @@ export default function Solarpflicht() {
           ]
         })}</script>
       </Helmet>
+
+      <Breadcrumb items={[
+        { label: "Startseite", href: "/" },
+        { label: "Solarpflicht NRW" }
+      ]} />
 
       {/* ── Hero ── */}
       <header className="relative text-white py-20 px-4 overflow-hidden"

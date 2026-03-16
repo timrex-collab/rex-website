@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Helmet } from "react-helmet";
 import { useLocation } from "wouter";
+import Breadcrumb from "@/components/Breadcrumb";
 import {
   CheckCircle,
   ChevronDown,
@@ -207,7 +208,28 @@ export default function SteildachBochum() {
     {"@type":"ListItem","position":2,"name":"Steildach Bochum","item":"https://www.rex-bedachung.de/steildach-bochum"}
   ]
 }`}</script>
+        <script type="application/ld+json">{`{
+  "@context": "https://schema.org",
+  "@type": "Service",
+  "name": "Steildachsanierung und Dacheindeckung",
+  "description": "Steildachsanierung, Neueindeckung und energetische Dachsanierung mit Aufsparrendämmung in Bochum.",
+  "provider": {
+    "@type": "RoofingContractor",
+    "@id": "https://www.rex-bedachung.de/#organization"
+  },
+  "areaServed": {
+    "@type": "City",
+    "name": "Bochum",
+    "sameAs": "https://www.wikidata.org/wiki/Q2103"
+  },
+  "serviceType": "Steildachsanierung"
+}`}</script>
       </Helmet>
+      <Breadcrumb items={[
+        { label: "Startseite", href: "/" },
+        { label: "Leistungen", href: "/leistungen" },
+        { label: "Steildach" }
+      ]} />
       {/* Hero */}
       <section
         className="relative text-white py-24 px-4 overflow-hidden"
@@ -230,7 +252,7 @@ export default function SteildachBochum() {
           <div className="flex flex-wrap gap-3 mb-8">
             <Button
               size="lg"
-              className="pulse-ring"
+              className="pulse-ring cta-pulse"
               onClick={() => setLocation("/kontakt")}
               data-testid="button-hero-angebot"
             >
@@ -562,7 +584,7 @@ export default function SteildachBochum() {
           <div className="flex flex-wrap justify-center gap-3">
             <Button
               size="lg"
-              className="pulse-ring"
+              className="pulse-ring cta-pulse"
               onClick={() => setLocation("/kontakt")}
               data-testid="button-cta-angebot"
             >

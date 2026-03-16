@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Helmet } from "react-helmet";
 import { Search, Book, ShieldCheck } from "lucide-react";
 import Hero from "@/components/Hero";
+import Breadcrumb from "@/components/Breadcrumb";
 const heroImage = "/images/tondach-hero-dachdeckung-bochum.webp";
 
 const terms = [
@@ -209,6 +210,11 @@ export default function DachLexikon() {
         <script type="application/ld+json">{`{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Startseite","item":"https://www.rex-bedachung.de/"},{"@type":"ListItem","position":2,"name":"Dachlexikon","item":"https://www.rex-bedachung.de/lexikon"}]}`}</script>
         <script type="application/ld+json">{JSON.stringify(definedTermSetSchema)}</script>
       </Helmet>
+
+      <Breadcrumb items={[
+        { label: "Startseite", href: "/" },
+        { label: "Dach-Lexikon" }
+      ]} />
 
       <Hero
         title="Dach-Lexikon"

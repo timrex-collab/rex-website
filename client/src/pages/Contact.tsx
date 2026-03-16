@@ -141,14 +141,10 @@ export default function Contact() {
               <Card className="p-6">
                 <div className="relative w-full" style={{ paddingBottom: '66.67%' }}>
                   {!mapLoaded ? (
-                    <div className="absolute top-0 left-0 w-full h-full flex flex-col items-center justify-center bg-muted rounded-md">
-                      <MapPin className="w-16 h-16 text-muted-foreground mb-4" />
-                      <h3 className="text-xl font-semibold mb-2 text-center px-4">
-                        Standortkarte anzeigen
-                      </h3>
-                      <p className="text-sm text-muted-foreground mb-4 text-center max-w-md px-4">
-                        Durch das Laden der Karte werden Daten an Google übertragen. 
-                        Details finden Sie in unserer Datenschutzerklärung.
+                    <div className="absolute top-0 left-0 w-full h-full flex flex-col items-center justify-center rounded-md px-6 text-center" style={{ backgroundColor: '#f3f4f6' }}>
+                      <MapPin className="w-12 h-12 text-gray-400 mb-4" />
+                      <p className="text-sm text-gray-600 mb-4 max-w-sm">
+                        Karte wird von Google Maps geladen. Mit dem Laden akzeptieren Sie die Datenschutzerklärung von Google.
                       </p>
                       <Button
                         onClick={() => setMapLoaded(true)}
@@ -156,7 +152,8 @@ export default function Contact() {
                         size="lg"
                         data-testid="button-load-map"
                       >
-                        Karte laden
+                        <MapPin className="w-4 h-4 mr-1" />
+                        Google Maps laden
                       </Button>
                       <a
                         href="https://www.google.com/maps/place/Rex+Bedachungs+GmbH/@51.4623595,7.2420155,17z"

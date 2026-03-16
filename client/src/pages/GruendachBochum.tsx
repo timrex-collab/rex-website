@@ -1,6 +1,7 @@
 import { Helmet } from "react-helmet";
 import { Link } from "wouter";
 import { useState } from "react";
+import Breadcrumb from "@/components/Breadcrumb";
 import {
   Leaf, Droplets, Thermometer, Shield, Layers, Wrench,
   CheckCircle, Phone, ArrowRight, ChevronDown, AlertCircle, Home, Zap
@@ -266,7 +267,29 @@ export default function GruendachBochum() {
         <script type="application/ld+json">{JSON.stringify(articleSchema)}</script>
         <script type="application/ld+json">{JSON.stringify(serviceSchema)}</script>
         <script type="application/ld+json">{JSON.stringify(breadcrumbSchema)}</script>
+        <script type="application/ld+json">{`{
+  "@context": "https://schema.org",
+  "@type": "Service",
+  "name": "Dachbegrünung und Gründach",
+  "description": "Extensive und intensive Dachbegrünung in Bochum – Planung, Aufbau und Pflege.",
+  "provider": {
+    "@type": "RoofingContractor",
+    "@id": "https://www.rex-bedachung.de/#organization"
+  },
+  "areaServed": {
+    "@type": "City",
+    "name": "Bochum",
+    "sameAs": "https://www.wikidata.org/wiki/Q2103"
+  },
+  "serviceType": "Dachbegrünung"
+}`}</script>
       </Helmet>
+
+      <Breadcrumb items={[
+        { label: "Startseite", href: "/" },
+        { label: "Leistungen", href: "/leistungen" },
+        { label: "Gründach & Dachbegrünung" }
+      ]} />
 
       <section className="bg-gradient-to-br from-slate-900 to-green-950 py-20 px-4" data-testid="section-hero">
         <div className="max-w-4xl mx-auto text-center">
@@ -286,7 +309,7 @@ export default function GruendachBochum() {
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <a
               href="tel:0234583100"
-              className="pulse-ring inline-flex items-center justify-center gap-2 bg-red-700 hover:bg-red-600 text-white font-semibold px-6 py-3 rounded-md transition-colors"
+              className="pulse-ring cta-pulse inline-flex items-center justify-center gap-2 bg-red-700 hover:bg-red-600 text-white font-semibold px-6 py-3 rounded-md transition-colors"
               data-testid="button-hero-anrufen"
             >
               <Phone className="w-5 h-5" /> 0234 583100 – Kostenlos anfragen
@@ -601,7 +624,7 @@ export default function GruendachBochum() {
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <a
               href="tel:0234583100"
-              className="pulse-ring inline-flex items-center justify-center gap-2 bg-red-700 hover:bg-red-600 text-white font-semibold px-8 py-4 rounded-md transition-colors text-lg"
+              className="pulse-ring cta-pulse inline-flex items-center justify-center gap-2 bg-red-700 hover:bg-red-600 text-white font-semibold px-8 py-4 rounded-md transition-colors text-lg"
               data-testid="button-cta-anrufen"
             >
               <Phone className="w-5 h-5" /> 0234 583100

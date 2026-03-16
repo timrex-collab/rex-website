@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Helmet } from "react-helmet";
 import { useLocation } from "wouter";
+import Breadcrumb from "@/components/Breadcrumb";
 import {
   CheckCircle,
   ChevronDown,
@@ -182,7 +183,29 @@ export default function DachwartungBochum() {
     {"@type":"ListItem","position":2,"name":"Dachwartung Bochum","item":"https://www.rex-bedachung.de/dachwartung-bochum"}
   ]
 }`}</script>
+        <script type="application/ld+json">{`{
+  "@context": "https://schema.org",
+  "@type": "Service",
+  "name": "Dachwartung und Dachinspektion",
+  "description": "Regelmäßige Dachwartung und professionelle Dachinspektion in Bochum zur Werterhaltung.",
+  "provider": {
+    "@type": "RoofingContractor",
+    "@id": "https://www.rex-bedachung.de/#organization"
+  },
+  "areaServed": {
+    "@type": "City",
+    "name": "Bochum",
+    "sameAs": "https://www.wikidata.org/wiki/Q2103"
+  },
+  "serviceType": "Dachwartung"
+}`}</script>
       </Helmet>
+
+      <Breadcrumb items={[
+        { label: "Startseite", href: "/" },
+        { label: "Leistungen", href: "/leistungen" },
+        { label: "Dachwartung" }
+      ]} />
 
       {/* Hero */}
       <section
@@ -205,6 +228,7 @@ export default function DachwartungBochum() {
           <div className="flex flex-wrap gap-3 mb-8">
             <Button
               size="lg"
+              className="cta-pulse"
               onClick={() => setLocation("/kontakt")}
               data-testid="button-hero-wartungsvertrag"
             >
@@ -413,6 +437,7 @@ export default function DachwartungBochum() {
           <div className="flex flex-wrap justify-center gap-3">
             <Button
               size="lg"
+              className="cta-pulse"
               onClick={() => setLocation("/kontakt")}
               data-testid="button-cta-wartungsvertrag"
             >
