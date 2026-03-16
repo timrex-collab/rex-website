@@ -190,10 +190,8 @@ export default async function handler(request: Request, context: Context) {
 
   const userAgent = request.headers.get("user-agent") || "";
   const isSocialCrawler = [
-    "facebookexternalhit",
     "Twitterbot",
     "LinkedInBot",
-    "WhatsApp",
     "TelegramBot",
     "Slackbot",
     "Discordbot",
