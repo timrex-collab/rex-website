@@ -1,0 +1,334 @@
+# Fixes Batch 3 — DSGVO, Schema, Breadcrumbs, Conversion
+
+Führe die folgenden 4 Aufgaben nacheinander aus. Ändere NUR das, was beschrieben ist. Keine Umstrukturierungen, keine neuen Features außer den beschriebenen.
+
+---
+
+## Aufgabe 1: Google Maps Iframe hinter Consent-Klick verstecken (DSGVO)
+
+Öffne `client/src/pages/Contact.tsx` (oder die Datei, die die Kontaktseite enthält).
+
+Suche den Google Maps `<iframe>`. Aktuell wird er direkt beim Seitenaufruf geladen — das ist DSGVO-problematisch, weil Google-Ressourcen ohne Einwilligung geladen werden.
+
+**Ersetze den iframe durch eine Consent-Lösung:**
+
+1. Zeige initial einen Platzhalter-Container an derselben Stelle, wo jetzt der iframe steht:
+   - Hintergrundfarbe: `#f3f4f6` (helles Grau)
+   - Zentrierter Text: "Karte wird von Google Maps geladen. Mit dem Laden akzeptieren Sie die Datenschutzerklärung von Google."
+   - Darunter ein Button: "Google Maps laden"
+   - Der Platzhalter soll die gleiche Größe haben wie der iframe (gleiche Höhe und Breite)
+
+2. Erst wenn der Nutzer auf "Google Maps laden" klickt, wird der iframe eingeblendet (per React State, z.B. `const [mapsConsent, setMapsConsent] = useState(false)`).
+
+3. Styling des Platzhalters:
+   - Gleiche Breite/Höhe wie der iframe
+   - Abgerundete Ecken (border-radius: 8px oder passend zum bestehenden Design)
+   - Der Button soll als normaler Button erkennbar sein (Hintergrund in der Primärfarbe der Seite oder #1a365d, weiße Schrift, padding, border-radius)
+   - Ein kleines Map-Pin-Icon oder 📍 Emoji vor dem Button-Text ist optional aber nett
+
+4. Ändere NICHTS am restlichen Layout der Kontaktseite.
+
+---
+
+## Aufgabe 2: Service-Schema auf allen Leistungsseiten ergänzen
+
+Jede Leistungsseite soll zusätzlich zum bestehenden RoofingContractor-Schema ein eigenes `Service`-Schema bekommen. Das Service-Schema kommt als SEPARATER `<script type="application/ld+json">`-Block in den Helmet-Bereich — NICHT das bestehende Schema ersetzen.
+
+### Vorlage für das Service-Schema:
+```json
+{
+  "@context": "https://schema.org",
+  "@type": "Service",
+  "name": "[DIENSTLEISTUNGSNAME]",
+  "description": "[KURZBESCHREIBUNG DER LEISTUNG]",
+  "provider": {
+    "@type": "RoofingContractor",
+    "@id": "https://www.rex-bedachung.de/#organization"
+  },
+  "areaServed": {
+    "@type": "City",
+    "name": "Bochum",
+    "sameAs": "https://www.wikidata.org/wiki/Q2103"
+  },
+  "serviceType": "[SERVICE-TYP]"
+}
+```
+
+### Werte pro Seite:
+
+**FlachdachBochum.tsx:**
+- name: "Flachdachsanierung und Flachdachabdichtung"
+- description: "Professionelle Flachdachsanierung, Abdichtung und Gründachaufbau in Bochum und Umgebung."
+- serviceType: "Flachdachsanierung"
+
+**SteildachBochum.tsx:**
+- name: "Steildachsanierung und Dacheindeckung"
+- description: "Steildachsanierung, Neueindeckung und energetische Dachsanierung mit Aufsparrendämmung in Bochum."
+- serviceType: "Steildachsanierung"
+
+**DachfensterBochum.tsx:**
+- name: "Dachfenster Einbau und Austausch"
+- description: "Einbau, Austausch und Wartung von Dachfenstern aller Marken in Bochum – inkl. Velux."
+- serviceType: "Dachfenstereinbau"
+
+**Dachreparatur.tsx:**
+- name: "Dachreparatur und Notdienst"
+- description: "Schnelle Dachreparatur bei Sturmschäden, Undichtigkeiten und akuten Dachproblemen in Bochum."
+- serviceType: "Dachreparatur"
+
+**BauklempnereiBochum.tsx:**
+- name: "Bauklempnerei und Fassadenverkleidung"
+- description: "Bauklempnerei, Dachentwässerung und Metallfassaden in Bochum – Zink, Kupfer, Aluminium."
+- serviceType: "Bauklempnerei"
+
+**GruendachBochum.tsx:**
+- name: "Dachbegrünung und Gründach"
+- description: "Extensive und intensive Dachbegrünung in Bochum – Planung, Aufbau und Pflege."
+- serviceType: "Dachbegrünung"
+
+**VeluxAustausch.tsx:**
+- name: "Velux Dachfenster Austausch"
+- description: "Professioneller Austausch von Velux Dachfenstern in Bochum – alle Modelle, fachgerechte Montage."
+- serviceType: "Dachfensteraustausch"
+
+**VeluxRolllaeden.tsx:**
+- name: "Velux Dachfenster Rollläden nachrüsten"
+- description: "Velux Rollläden und Sonnenschutz nachrüsten in Bochum – Beratung und Montage."
+- serviceType: "Rollladenmontage"
+
+**DachwartungBochum.tsx:**
+- name: "Dachwartung und Dachinspektion"
+- description: "Regelmäßige Dachwartung und professionelle Dachinspektion in Bochum zur Werterhaltung."
+- serviceType: "Dachwartung"
+
+**Wichtig:** Das bestehende Schema (RoofingContractor, FAQPage, HowTo etc.) in jeder Datei bleibt UNVERÄNDERT. Das Service-Schema wird als zusätzlicher, separater script-Block im Helmet eingefügt.
+
+---
+
+## Aufgabe 3: Sichtbare Breadcrumb-Komponente erstellen und einbinden
+
+### 3a: Breadcrumb-Komponente erstellen
+
+Erstelle eine neue Datei `client/src/components/Breadcrumb.tsx`:
+
+```tsx
+import { Link } from "wouter";
+
+interface BreadcrumbItem {
+  label: string;
+  href?: string;
+}
+
+interface BreadcrumbProps {
+  items: BreadcrumbItem[];
+}
+
+export default function Breadcrumb({ items }: BreadcrumbProps) {
+  return (
+    <nav aria-label="Breadcrumb" className="w-full bg-gray-50 border-b border-gray-200">
+      <div className="max-w-6xl mx-auto px-4 py-2">
+        <ol className="flex flex-wrap items-center gap-1 text-sm text-gray-500">
+          {items.map((item, index) => (
+            <li key={index} className="flex items-center gap-1">
+              {index > 0 && <span className="text-gray-300">›</span>}
+              {item.href ? (
+                <Link href={item.href} className="hover:text-gray-700 hover:underline">
+                  {item.label}
+                </Link>
+              ) : (
+                <span className="text-gray-700 font-medium">{item.label}</span>
+              )}
+            </li>
+          ))}
+        </ol>
+      </div>
+    </nav>
+  );
+}
+```
+
+### 3b: Breadcrumb auf allen Leistungsseiten einbinden
+
+Füge die Breadcrumb-Komponente auf ALLEN folgenden Seiten ein — direkt NACH dem Helmet-Block und VOR dem ersten sichtbaren Content-Container (also ganz oben im sichtbaren Bereich, unter der Navigation):
+
+**FlachdachBochum.tsx:**
+```tsx
+<Breadcrumb items={[
+  { label: "Startseite", href: "/" },
+  { label: "Leistungen", href: "/leistungen" },
+  { label: "Flachdach" }
+]} />
+```
+
+**SteildachBochum.tsx:**
+```tsx
+<Breadcrumb items={[
+  { label: "Startseite", href: "/" },
+  { label: "Leistungen", href: "/leistungen" },
+  { label: "Steildach" }
+]} />
+```
+
+**DachfensterBochum.tsx:**
+```tsx
+<Breadcrumb items={[
+  { label: "Startseite", href: "/" },
+  { label: "Leistungen", href: "/leistungen" },
+  { label: "Dachfenster" }
+]} />
+```
+
+**Dachreparatur.tsx:**
+```tsx
+<Breadcrumb items={[
+  { label: "Startseite", href: "/" },
+  { label: "Leistungen", href: "/leistungen" },
+  { label: "Dachreparatur" }
+]} />
+```
+
+**BauklempnereiBochum.tsx:**
+```tsx
+<Breadcrumb items={[
+  { label: "Startseite", href: "/" },
+  { label: "Leistungen", href: "/leistungen" },
+  { label: "Bauklempnerei" }
+]} />
+```
+
+**GruendachBochum.tsx:**
+```tsx
+<Breadcrumb items={[
+  { label: "Startseite", href: "/" },
+  { label: "Leistungen", href: "/leistungen" },
+  { label: "Gründach & Dachbegrünung" }
+]} />
+```
+
+**VeluxAustausch.tsx:**
+```tsx
+<Breadcrumb items={[
+  { label: "Startseite", href: "/" },
+  { label: "Dachfenster", href: "/dachfenster-bochum" },
+  { label: "Velux Dachfenster Austausch" }
+]} />
+```
+
+**VeluxRolllaeden.tsx:**
+```tsx
+<Breadcrumb items={[
+  { label: "Startseite", href: "/" },
+  { label: "Dachfenster", href: "/dachfenster-bochum" },
+  { label: "Velux Rollläden" }
+]} />
+```
+
+**DachwartungBochum.tsx:**
+```tsx
+<Breadcrumb items={[
+  { label: "Startseite", href: "/" },
+  { label: "Leistungen", href: "/leistungen" },
+  { label: "Dachwartung" }
+]} />
+```
+
+**Dachreparatur.tsx:**
+```tsx
+<Breadcrumb items={[
+  { label: "Startseite", href: "/" },
+  { label: "Leistungen", href: "/leistungen" },
+  { label: "Dachreparatur" }
+]} />
+```
+
+**Foerderung.tsx:**
+```tsx
+<Breadcrumb items={[
+  { label: "Startseite", href: "/" },
+  { label: "Förderung & Zuschüsse" }
+]} />
+```
+
+**Solarpflicht.tsx:**
+```tsx
+<Breadcrumb items={[
+  { label: "Startseite", href: "/" },
+  { label: "Solarpflicht NRW" }
+]} />
+```
+
+**FAQ.tsx:**
+```tsx
+<Breadcrumb items={[
+  { label: "Startseite", href: "/" },
+  { label: "Häufige Fragen" }
+]} />
+```
+
+**DachLexikon.tsx:**
+```tsx
+<Breadcrumb items={[
+  { label: "Startseite", href: "/" },
+  { label: "Dach-Lexikon" }
+]} />
+```
+
+### 3c: Wichtig
+- Importiere die Komponente in jeder Datei: `import Breadcrumb from "@/components/Breadcrumb";` (oder den korrekten Importpfad, der im Projekt üblich ist — prüfe andere Komponenten-Imports als Referenz).
+- Die Breadcrumb-Komponente soll NICHT auf der Startseite (Home.tsx), nicht auf Impressum, nicht auf Datenschutz und nicht auf der Danke-Seite erscheinen.
+- Die Breadcrumb soll ÜBER dem Hero-Bereich / ersten Content-Block der Seite erscheinen, nicht darin.
+
+---
+
+## Aufgabe 4: Pulsierender CTA-Button (CSS-Animation)
+
+### 4a: CSS-Animation erstellen
+
+Füge in die globale CSS-Datei (vermutlich `client/src/index.css` oder eine ähnliche zentrale CSS-Datei) folgende Animation hinzu:
+
+```css
+@keyframes pulse-ring {
+  0% {
+    box-shadow: 0 0 0 0 rgba(234, 88, 12, 0.5);
+  }
+  70% {
+    box-shadow: 0 0 0 12px rgba(234, 88, 12, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(234, 88, 12, 0);
+  }
+}
+
+.cta-pulse {
+  animation: pulse-ring 2s ease-out infinite;
+}
+```
+
+Die Farbe `rgba(234, 88, 12, ...)` ist Orange — passe den RGB-Wert an, falls die CTA-Buttons auf der Seite eine andere Primärfarbe haben. Prüfe die bestehende Button-Farbe und verwende deren RGB-Werte.
+
+### 4b: Animation auf CTA-Buttons anwenden
+
+Suche auf ALLEN Seiten nach den primären Call-to-Action-Buttons, die typischerweise den Text "Angebot anfragen", "Jetzt anfragen", "Kostenloses Angebot" oder ähnlich tragen.
+
+Füge diesen Buttons die CSS-Klasse `cta-pulse` hinzu. Beispiel:
+- Vorher: `className="bg-orange-600 text-white px-6 py-3 rounded-lg ..."`
+- Nachher: `className="bg-orange-600 text-white px-6 py-3 rounded-lg ... cta-pulse"`
+
+**Regeln:**
+- NUR auf primäre CTA-Buttons anwenden (Angebot anfragen / Jetzt anfragen / Kontakt aufnehmen), NICHT auf sekundäre Buttons, Navigation oder andere Links.
+- Pro Seite maximal 2 Buttons mit der Animation (typisch: Hero-CTA und ein CTA am Seitenende). Falls eine Seite mehr als 2 solcher Buttons hat, wähle die prominentesten 2.
+- Die Animation soll nur die visuelle Wirkung des Buttons verändern (pulsierender Schatten), NICHT die Größe, Form oder Farbe des Buttons selbst.
+
+---
+
+## Nach Abschluss aller 4 Aufgaben:
+
+Erstelle eine kurze Zusammenfassung mit:
+- Wurde die Google Maps Consent-Lösung eingebaut? Funktioniert der Klick?
+- Wie viele Seiten haben ein Service-Schema bekommen?
+- Auf wie vielen Seiten wurde die Breadcrumb eingebunden?
+- Wie viele CTA-Buttons haben die pulse-Animation bekommen?
+- Welche Dateien wurden geändert?
+- Gab es Probleme oder Unklarheiten?
+
+Deploye anschließend auf Netlify.
