@@ -1,0 +1,89 @@
+Bitte führe folgende drei Korrekturen durch. Keine anderen Änderungen.
+
+---
+
+## FIX 18: Footer.tsx — @id zum LocalBusiness-Schema ergänzen
+
+Datei: client/src/components/Footer.tsx
+
+Im localBusinessSchema-Objekt nach der Zeile mit "name" folgendes ergänzen:
+
+ALT:
+  "@type": "LocalBusiness",
+  "name": "Rex Bedachungs GmbH",
+  "url": "https://www.rex-bedachung.de",
+
+NEU:
+  "@type": "LocalBusiness",
+  "@id": "https://www.rex-bedachung.de/#organization",
+  "name": "Rex Bedachungs GmbH",
+  "url": "https://www.rex-bedachung.de",
+
+---
+
+## FIX 19: Home.tsx — @id zum RoofingContractor-Schema ergänzen
+
+Datei: client/src/pages/Home.tsx
+
+Im Schema-Objekt (RoofingContractor) nach der Zeile mit "@type" ergänzen:
+
+ALT:
+  "@type": "RoofingContractor",
+
+NEU:
+  "@type": "RoofingContractor",
+  "@id": "https://www.rex-bedachung.de/#organization",
+
+---
+
+## FIX 20: Foerderung.tsx — Schema-Typ von WebPage auf Article ändern
+
+Datei: client/src/pages/Foerderung.tsx
+
+Im Schema-Objekt:
+
+ALT:
+  "@type": "WebPage",
+
+NEU:
+  "@type": "Article",
+
+Zusätzlich nach "@type": "Article" folgende Felder ergänzen 
+(falls noch nicht vorhanden):
+  "headline": "BAFA & KfW Förderung für Dacharbeiten in Bochum",
+  "author": { "@type": "Organization", "name": "Rex Bedachungs GmbH" },
+  "publisher": { "@type": "Organization", "name": "Rex Bedachungs GmbH", "url": "https://www.rex-bedachung.de" },
+
+---
+
+## FIX 21: Solarpflicht.tsx — Schema-Typ von WebPage auf Article ändern
+
+Datei: client/src/pages/Solarpflicht.tsx
+
+Im Schema-Objekt:
+
+ALT:
+  "@type": "WebPage",
+
+NEU:
+  "@type": "Article",
+
+Zusätzlich nach "@type": "Article" folgende Felder ergänzen
+(falls noch nicht vorhanden):
+  "headline": "Solarpflicht NRW 2026 – Was Eigentümer wissen müssen",
+  "author": { "@type": "Organization", "name": "Rex Bedachungs GmbH" },
+  "publisher": { "@type": "Organization", "name": "Rex Bedachungs GmbH", "url": "https://www.rex-bedachung.de" },
+
+---
+
+## FIX 22: package.json — @tailwindcss/vite entfernen
+
+Datei: package.json
+
+In devDependencies folgende Zeile vollständig entfernen:
+"@tailwindcss/vite": "^4.1.3",
+
+---
+
+Nach allen Änderungen: npm run build ausführen und prüfen ob der 
+Build fehlerfrei durchläuft.
