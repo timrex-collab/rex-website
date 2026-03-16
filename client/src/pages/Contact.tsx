@@ -21,6 +21,10 @@ export default function Contact() {
         <meta property="og:image" content="https://www.rex-bedachung.de/images/dach-hintergrund-rex-bedachung.webp" />
         <meta property="og:image:width" content="1200" />
         <meta property="og:image:height" content="630" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="Kontakt – Rex Bedachungs GmbH Bochum" />
+        <meta name="twitter:description" content="Jetzt Kontakt aufnehmen – Dachdecker Rex Bedachung in Bochum. Tel. 0234 583100. Kostenlose Beratung und Angebote." />
+        <meta name="twitter:image" content="https://www.rex-bedachung.de/images/dach-hintergrund-rex-bedachung.webp" />
       </Helmet>
 
       <Hero

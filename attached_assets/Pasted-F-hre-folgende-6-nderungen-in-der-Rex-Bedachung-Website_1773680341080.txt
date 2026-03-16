@@ -1,0 +1,59 @@
+Führe folgende 6 Änderungen in der Rex Bedachung Website durch. Keine neuen Features, nur gezielte Korrekturen.
+
+---
+
+## FIX 1 – Impressum + Datenschutz aus Sitemap entfernen
+Datei: client/public/sitemap.xml (oder wo die Sitemap generiert wird)
+Entferne die <url>-Einträge für /impressum und /datenschutz vollständig.
+Beide Seiten haben noindex gesetzt – sie gehören nicht in die Sitemap.
+
+---
+
+## FIX 2 – twitter:card in Contact.tsx ergänzen
+Datei: client/src/pages/Contact.tsx
+Im Helmet-Block folgende Meta-Tags ergänzen (falls nicht vorhanden):
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="Kontakt – Rex Bedachungs GmbH Bochum" />
+<meta name="twitter:description" content="Jetzt Kontakt aufnehmen – Dachdecker Rex Bedachung in Bochum. Tel. 0234 583100. Kostenlose Beratung und Angebote." />
+<meta name="twitter:image" content="https://www.rex-bedachung.de/images/dach-hintergrund-rex-bedachung.webp" />
+
+---
+
+## FIX 3 – fetchpriority="high" in Hero-Komponente
+Datei: client/src/components/Hero.tsx
+Das <img>-Element, das das Hero-Bild rendert, bekommt das Attribut:
+fetchpriority="high"
+Beispiel: <img src={...} alt={...} fetchpriority="high" loading="eager" ... />
+Falls loading="lazy" gesetzt ist, auf loading="eager" ändern.
+
+---
+
+## FIX 4 – Title-Tag Flachdach-Seite korrigieren
+Datei: client/src/pages/FlachdachBochum.tsx
+Den <title>-Tag ändern von:
+"Flachdach & Gründach Bochum | Rex Bedachungs GmbH"
+auf:
+"Flachdach Bochum – Abdichtung, Sanierung & Neubau | Rex Bedachungs GmbH"
+Gleichzeitig og:title auf denselben neuen Wert setzen.
+
+---
+
+## FIX 5 – og:title Services-Seite mit lokalem Keyword
+Datei: client/src/pages/Services.tsx
+Den og:title Meta-Tag ändern von:
+"Unsere Leistungen - Rex Bedachungs GmbH"
+auf:
+"Dachdecker Leistungen Bochum – Rex Bedachungs GmbH"
+Falls der <title>-Tag noch kein "Bochum" enthält, ebenfalls anpassen.
+
+---
+
+## FIX 6 – og:image Dimensionen in SteildachBochum.tsx
+Datei: client/src/pages/SteildachBochum.tsx
+Im Helmet-Block folgende zwei Meta-Tags ergänzen (falls nicht vorhanden):
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+
+---
+
+Nach allen Änderungen: Kurze Bestätigung, welche Dateien geändert wurden. Kein Neustart, kein Deployment – nur die Änderungen vornehmen.
