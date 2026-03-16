@@ -1,0 +1,115 @@
+Du bist ein präziser Web-Entwickler. Führe folgende Änderungen im Projekt durch.
+Ändere NICHTS außer den explizit genannten Stellen.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+AUFGABE 1 – llms.txt: Erfahrungsangabe korrigieren
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Datei: public/llms.txt (oder llms.txt im Root)
+
+Ersetze ALLE Vorkommen von:
+- "20+ Jahre Erfahrung"
+- "seit über 20 Jahren"
+- "20+ Jahren"
+durch jeweils: "40+ Jahre Erfahrung" / "seit über 40 Jahren" / "40+ Jahren"
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+AUFGABE 2 – llms.txt: Fehlende URLs ergänzen
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Im Abschnitt "Wichtige Seiten" folgende URLs ergänzen, falls noch nicht vorhanden:
+- https://www.rex-bedachung.de/steildach-bochum
+- https://www.rex-bedachung.de/gruendach-dachbegrunung-bochum
+- https://www.rex-bedachung.de/dachwartung-bochum
+- https://www.rex-bedachung.de/lexikon
+- https://www.rex-bedachung.de/karriere
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+AUFGABE 3 – index.html: ContactPoint WhatsApp-Nummer korrekt labeln
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Datei: index.html
+
+Im Schema.org JSON-LD Block den ContactPoint mit "+49-234-583126" wie folgt anpassen:
+{
+  "@type": "ContactPoint",
+  "telephone": "+49-234-583126",
+  "contactType": "customer service",
+  "description": "WhatsApp",
+  "availableLanguage": "German"
+}
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+AUFGABE 4 – index.html: og:title keyword-optimieren
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Datei: index.html
+
+Suche nach dem og:title Meta-Tag und ändere den content-Wert auf:
+"Dachdecker Bochum – Rex Bedachungs GmbH"
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+AUFGABE 5 – index.html: Preload foerderung-hero.webp entfernen
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Datei: index.html
+
+Entferne diese Zeile vollständig (oder die Zeile die foerderung-hero.webp als preload enthält):
+<link rel="preload" ... href="...foerderung-hero.webp" ...>
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+AUFGABE 6 – index.html: llms.txt-Hinweis in robots.txt
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Datei: public/robots.txt
+
+Ergänze am Ende der Datei folgende Zeile:
+# llms.txt: https://www.rex-bedachung.de/llms.txt
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+AUFGABE 7 – robots.txt: Disallow entfernen, noindex in Seiten setzen
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Datei: public/robots.txt
+
+Entferne folgende Zeilen:
+Disallow: /datenschutz
+Disallow: /impressum
+
+Datei: client/src/pages/Datenschutz.tsx
+Im <Helmet>-Block ergänzen (falls nicht vorhanden):
+<meta name="robots" content="noindex, nofollow" />
+
+Datei: client/src/pages/Impressum.tsx
+Im <Helmet>-Block ergänzen (falls nicht vorhanden):
+<meta name="robots" content="noindex, nofollow" />
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+AUFGABE 8 – Karriere.tsx: Social-Sharing-Tags ergänzen
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Datei: client/src/pages/Karriere.tsx
+
+Im <Helmet>-Block folgende Tags ergänzen, falls nicht vorhanden:
+<meta property="og:image" content="https://www.rex-bedachung.de/images/dach-hintergrund-rex-bedachung.webp" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:image" content="https://www.rex-bedachung.de/images/dach-hintergrund-rex-bedachung.webp" />
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+AUFGABE 9 – twitter:card auf allen Info-Seiten ergänzen
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+In folgenden Dateien jeweils im <Helmet>-Block ergänzen,
+falls twitter:card und twitter:image noch nicht vorhanden sind:
+
+- client/src/pages/About.tsx
+- client/src/pages/Services.tsx
+- client/src/pages/DachLexikon.tsx
+- client/src/pages/References.tsx
+- client/src/pages/FAQ.tsx
+- client/src/pages/Foerderung.tsx
+- client/src/pages/Solarpflicht.tsx
+
+In jede dieser Dateien:
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:image" content="https://www.rex-bedachung.de/images/dach-hintergrund-rex-bedachung.webp" />
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+ABSCHLUSS
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Nach allen Änderungen:
+1. Prüfe ob der Build fehlerfrei durchläuft (npm run build)
+2. Gib eine kurze Zusammenfassung welche Dateien geändert wurden

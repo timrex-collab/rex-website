@@ -5,7 +5,7 @@ export default function Impressum() {
     <>
       <Helmet>
         <title>Impressum - Rex Bedachungs GmbH</title>
-        <meta name="robots" content="noindex, follow" />
+        <meta name="robots" content="noindex, nofollow" />
         <link rel="canonical" href="https://www.rex-bedachung.de/impressum" />
       </Helmet>
       <div className="py-16 md:py-20 lg:py-24 bg-background">

@@ -5,7 +5,7 @@ export default function Datenschutz() {
     <>
       <Helmet>
         <title>Datenschutzerklärung - Rex Bedachungs GmbH</title>
-        <meta name="robots" content="noindex, follow" />
+        <meta name="robots" content="noindex, nofollow" />
         <link rel="canonical" href="https://www.rex-bedachung.de/datenschutz" />
       </Helmet>
 

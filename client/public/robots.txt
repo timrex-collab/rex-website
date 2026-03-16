@@ -1,7 +1,5 @@
 User-agent: *
 Allow: /
-Disallow: /datenschutz
-Disallow: /impressum
 Disallow: /danke
 
 User-agent: GPTBot
@@ -23,3 +21,4 @@ User-agent: anthropic-ai
 Allow: /
 
 Sitemap: https://www.rex-bedachung.de/sitemap.xml
+# llms.txt: https://www.rex-bedachung.de/llms.txt
