@@ -1,0 +1,117 @@
+# Sofort-Fixes Batch 1 — Kritische Fehler beheben
+
+Führe die folgenden 5 Aufgaben nacheinander aus. Ändere NUR das, was beschrieben ist. Keine Umstrukturierungen, keine neuen Features, keine Designänderungen.
+
+---
+
+## Aufgabe 1: Broken 301-Redirects in netlify.toml reparieren
+
+Öffne `netlify.toml` und suche alle 301-Redirect-Einträge. Folgende Redirect-Ziele existieren NICHT als Routen in `client/src/App.tsx` und müssen korrigiert werden:
+
+**Ersetze diese Ziel-URLs:**
+- `/leistungen/dachfenster` → ersetze durch `/dachfenster-bochum`
+- `/leistungen/steildach` → ersetze durch `/steildach-bochum`
+- `/leistungen/bauklempnerei` → ersetze durch `/bauklempnerei-bochum`
+
+Das betrifft alle Redirects, die auf diese drei falschen Ziele zeigen. Beispiele:
+- `/dachfenster` → `/dachfenster-bochum`
+- `/velux-fenster` → `/dachfenster-bochum`
+- `/betondachsteine` → `/steildach-bochum`
+- `/fassaden` → `/bauklempnerei-bochum`
+
+Prüfe ALLE Redirect-Einträge in der Datei und stelle sicher, dass jedes Ziel einer tatsächlich existierenden Route in App.tsx entspricht. Liste am Ende alle geänderten Redirects auf.
+
+---
+
+## Aufgabe 2: OG-Inject Edge Function reparieren
+
+Öffne `netlify/edge-functions/og-inject.ts`.
+
+### 2a: Invertierte Logik korrigieren
+Suche die Stelle, an der Social Crawler erkannt werden (isSocialCrawler o.ä.). Das aktuelle Verhalten ist FALSCH: Social Crawler bekommen die rohe index.html OHNE injizierte OG-Tags. 
+
+Korrigiere die Logik so, dass die OG-Tag-Injektion für ALLE Requests ausgeführt wird — nicht nur für Nicht-Social-Crawler. Die OG-Injektion muss insbesondere für Social Crawler (Facebook, LinkedIn, WhatsApp, Twitter, Telegram) funktionieren.
+
+### 2b: Fehlende Routen in der Route-Map ergänzen
+Suche die Route-Map / das Objekt, das seitenspezifische OG-Daten enthält. Ergänze folgende zwei Routen, falls sie fehlen:
+
+**Route: `/velux-dachfenster-austausch-bochum`**
+- title: "Velux Dachfenster Austausch in Bochum | Rex Bedachungs GmbH"
+- description: "Professioneller Velux Dachfenster Austausch in Bochum – alle Modelle, transparente Preise, fachgerechte Montage. Jetzt Angebot anfragen."
+- image: (verwende das gleiche OG-Image wie bei /dachfenster-bochum oder das Standard-OG-Image)
+
+**Route: `/velux-dachfenster-rolllaeden-bochum`**
+- title: "Velux Dachfenster Rollläden nachrüsten in Bochum | Rex Bedachungs GmbH"
+- description: "Velux Rollläden und Sonnenschutz nachrüsten in Bochum – Beratung, Montage und alle Optionen. Rex Bedachungs GmbH."
+- image: (verwende das gleiche OG-Image wie bei /dachfenster-bochum oder das Standard-OG-Image)
+
+---
+
+## Aufgabe 3: 404-Seite mit Helmet und noindex ausstatten
+
+Öffne `client/src/pages/not-found.tsx`.
+
+Füge einen `<Helmet>`-Block hinzu (importiere Helmet wie in den anderen Page-Komponenten). Der Helmet-Block soll enthalten:
+
+```jsx
+<Helmet>
+  <title>Seite nicht gefunden – Rex Bedachungs GmbH</title>
+  <meta name="description" content="Die angeforderte Seite wurde nicht gefunden. Zurück zur Startseite von Rex Bedachungs GmbH – Ihrem Dachdecker in Bochum." />
+  <meta name="robots" content="noindex, nofollow" />
+  <meta property="og:title" content="Seite nicht gefunden – Rex Bedachungs GmbH" />
+  <meta property="og:description" content="Die angeforderte Seite wurde nicht gefunden." />
+  <meta property="og:type" content="website" />
+</Helmet>
+```
+
+Ändere nichts am bestehenden Layout oder Design der 404-Seite.
+
+---
+
+## Aufgabe 4: robots.txt zusammenführen
+
+Es gibt zwei robots.txt-Dateien im Projekt:
+- `/public/robots.txt`
+- `/client/public/robots.txt`
+
+Nur `client/public/robots.txt` wird deployed (Build-Target ist dist/public aus client/).
+
+**Aktion:**
+1. Öffne beide Dateien und vergleiche den Inhalt.
+2. Ergänze in `client/public/robots.txt` folgende Disallow-Einträge (falls sie dort noch fehlen):
+   ```
+   Disallow: /datenschutz
+   Disallow: /impressum
+   ```
+3. Stelle sicher, dass alle anderen bestehenden Einträge (Sitemap-Verweis, KI-Bot-Regeln etc.) erhalten bleiben.
+4. Lösche danach die Datei `/public/robots.txt` (die im Root-public-Ordner, NICHT die in client/public/).
+
+---
+
+## Aufgabe 5: Doppelte Dateien aufräumen
+
+### 5a: Doppelte sitemap.xml entfernen
+Es gibt `/public/sitemap.xml` und `/client/public/sitemap.xml`. Nur die Version in `client/public/` wird deployed.
+
+- Lösche `/public/sitemap.xml`.
+- Ändere NICHTS an `client/public/sitemap.xml`.
+
+### 5b: Statische danke.html prüfen und entfernen
+Es gibt eine statische Datei `public/danke.html` (oder `client/public/danke.html`). Es gibt außerdem eine React-Komponente `client/src/pages/Danke.tsx` mit der Route `/danke`.
+
+- Prüfe, ob die Route `/danke` in App.tsx registriert ist und auf Danke.tsx verweist.
+- Falls ja: Lösche die statische `danke.html`-Datei, da die React-Version aktiv ist.
+- Falls nein: Lass die statische Datei stehen und melde das.
+
+---
+
+## Nach Abschluss aller 5 Aufgaben:
+
+Erstelle eine kurze Zusammenfassung mit:
+- Welche Dateien wurden geändert?
+- Welche Dateien wurden gelöscht?
+- Welche Redirect-Ziele wurden korrigiert (alt → neu)?
+- Wurde die OG-Inject-Logik erfolgreich korrigiert?
+- Gab es Probleme oder Unklarheiten?
+
+Deploye anschließend auf Netlify.
