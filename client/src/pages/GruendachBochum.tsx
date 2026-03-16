@@ -194,7 +194,8 @@ export default function GruendachBochum() {
     "@type": "Service",
     name: "Gründach & Dachbegrünung",
     provider: {
-      "@type": "LocalBusiness",
+      "@type": "RoofingContractor",
+      "@id": "https://www.rex-bedachung.de/#organization",
       name: "Rex Bedachungs GmbH",
       address: {
         "@type": "PostalAddress",
@@ -247,6 +248,7 @@ export default function GruendachBochum() {
           content="Der vollständige Ratgeber zum Gründach in Bochum: Extensiv vs. Intensiv, 7 Schichten, Förderprogramme und Pflegetipps vom Flachdach-Experten Rex Bedachungs GmbH."
         />
         <meta property="og:image" content="https://rex-bedachung.de/images/gruendach-bochum-dachbegruenung-experten.webp" />
+        <meta property="og:site_name" content="Rex Bedachungs GmbH" />
         <meta property="og:type" content="article" />
         <meta property="og:url" content="https://www.rex-bedachung.de/gruendach-dachbegrunung-bochum" />
         <meta name="twitter:card" content="summary_large_image" />

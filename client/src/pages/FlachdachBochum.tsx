@@ -165,7 +165,8 @@ const schemaJson = JSON.stringify({
   "@type": "Service",
   "name": "Flachdach Sanierung Bochum",
   "provider": {
-    "@type": "LocalBusiness",
+    "@type": "RoofingContractor",
+    "@id": "https://www.rex-bedachung.de/#organization",
     "name": "Rex Bedachungs GmbH",
     "address": {
       "@type": "PostalAddress",
@@ -212,6 +213,7 @@ export default function FlachdachBochum() {
           content="Flachdach & Gründach Bochum ✓ Dachbegrünung extensiv & intensiv ✓ Alle Abdichtungssysteme ✓ Kostenloses Aufmaß ✓ BAFA/KfW-Förderung – Rex Bedachungs GmbH, Ihr Fachbetrieb im Ruhrgebiet."
         />
         <meta property="og:image" content="https://www.rex-bedachung.de/images/flachdach-sanierung-bochum-rex-bedachung.webp" />
+        <meta property="og:site_name" content="Rex Bedachungs GmbH" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="Flachdach Bochum – Abdichtung & Sanierung | Rex Bedachung" />
         <meta name="twitter:description" content="Flachdach & Gründach Bochum ✓ Dachbegrünung ✓ Alle Abdichtungssysteme ✓ BAFA/KfW-Förderung – Rex Bedachungs GmbH." />

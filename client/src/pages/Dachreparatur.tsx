@@ -117,7 +117,8 @@ const schemaJson = JSON.stringify({
   "@type": "Service",
   "name": "Dachreparatur Bochum",
   "provider": {
-    "@type": "LocalBusiness",
+    "@type": "RoofingContractor",
+    "@id": "https://www.rex-bedachung.de/#organization",
     "name": "Rex Bedachungs GmbH",
     "address": {
       "@type": "PostalAddress",
@@ -154,6 +155,7 @@ export default function Dachreparatur() {
           content="Dachreparatur Bochum ✓ Sturmschäden ✓ Undichtes Dach ✓ Kurzfristiger Einsatz ✓ Versicherungsabwicklung – Rex Bedachungs GmbH, Ihr Fachbetrieb im Ruhrgebiet."
         />
         <meta property="og:image" content="https://www.rex-bedachung.de/images/dachreparatur-bochum-rex-bedachung.webp" />
+        <meta property="og:site_name" content="Rex Bedachungs GmbH" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="Dachreparatur Bochum – Sturmschaden & schnelle Hilfe | Rex Bedachung" />
         <meta name="twitter:description" content="Dachreparatur Bochum ✓ Sturmschäden ✓ Undichtes Dach ✓ Kurzfristiger Einsatz ✓ Versicherungsabwicklung – Rex Bedachungs GmbH." />

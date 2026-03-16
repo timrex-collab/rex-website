@@ -146,6 +146,11 @@ export default function Home() {
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://www.rex-bedachung.de/" />
   <meta property="og:image" content="https://www.rex-bedachung.de/images/dachdecker-bochum-steildach-hero.webp" />
+  <meta property="og:site_name" content="Rex Bedachungs GmbH" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Dachdecker Bochum – Rex Bedachungs GmbH" />
+  <meta name="twitter:description" content="Professionelle Dachdeckerarbeiten im Ruhrgebiet. Meisterbetrieb mit 40 Jahren Erfahrung." />
+  <meta name="twitter:image" content="https://www.rex-bedachung.de/images/dachdecker-bochum-steildach-hero.webp" />
   <script type="application/ld+json">
     {JSON.stringify({
       "@context": "https://schema.org",

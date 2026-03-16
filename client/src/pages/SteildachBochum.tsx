@@ -152,7 +152,8 @@ const schemaJson = JSON.stringify({
   "@type": "Service",
   "name": "Steildach Bochum – Neueindeckung & Sanierung",
   "provider": {
-    "@type": "LocalBusiness",
+    "@type": "RoofingContractor",
+    "@id": "https://www.rex-bedachung.de/#organization",
     "name": "Rex Bedachungs GmbH",
     "address": {
       "@type": "PostalAddress",
@@ -189,6 +190,7 @@ export default function SteildachBochum() {
           content="Steildach & energetische Dachsanierung Bochum ✓ Aufsparrendämmung ✓ Bis zu 20 % BAFA/KfW-Förderung ✓ Heizkosten dauerhaft senken – Rex Bedachungs GmbH, Ihr Fachbetrieb im Ruhrgebiet."
         />
         <meta property="og:image" content="https://www.rex-bedachung.de/images/tondach-hero-dachdeckung-bochum.webp" />
+        <meta property="og:site_name" content="Rex Bedachungs GmbH" />
         <meta property="og:image:width" content="1200" />
         <meta property="og:image:height" content="630" />
         <meta name="twitter:card" content="summary_large_image" />

@@ -74,6 +74,7 @@ export default function Careers() {
         <meta property="og:title" content="Karriere - Rex Bedachungs GmbH" />
         <meta property="og:description" content="Werde Teil unseres Teams. Offene Stellen und Ausbildungsplätze." />
         <meta property="og:image" content="https://www.rex-bedachung.de/images/dach-hintergrund-rex-bedachung.webp" />
+        <meta property="og:site_name" content="Rex Bedachungs GmbH" />
         <meta property="og:image:width" content="1200" />
         <meta property="og:image:height" content="630" />
         <meta name="twitter:card" content="summary_large_image" />

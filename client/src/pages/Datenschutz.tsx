@@ -7,6 +7,11 @@ export default function Datenschutz() {
         <title>Datenschutzerklärung - Rex Bedachungs GmbH</title>
         <meta name="robots" content="noindex, nofollow" />
         <link rel="canonical" href="https://www.rex-bedachung.de/datenschutz" />
+        <meta property="og:site_name" content="Rex Bedachungs GmbH" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="Datenschutzerklärung - Rex Bedachungs GmbH" />
+        <meta name="twitter:description" content="Datenschutzerklärung der Rex Bedachungs GmbH, Bochum." />
+        <meta name="twitter:image" content="https://www.rex-bedachung.de/images/dach-hintergrund-rex-bedachung.webp" />
       </Helmet>
 
       <div className="py-16 md:py-20 lg:py-24 bg-background">

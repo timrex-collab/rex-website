@@ -203,7 +203,8 @@ const serviceSchema = JSON.stringify({
   "@type": "Service",
   "name": "Velux Dachfenster Austausch Bochum",
   "provider": {
-    "@type": "LocalBusiness",
+    "@type": "RoofingContractor",
+    "@id": "https://www.rex-bedachung.de/#organization",
     "name": "Rex Bedachungs GmbH",
     "address": {
       "@type": "PostalAddress",
@@ -237,6 +238,7 @@ export default function VeluxAustausch() {
           content="Velux Dachfenster Austausch Bochum ✓ GGL, GGU, GPU & Integra ✓ Preise ab 1.000 € ✓ VELUX-Fachbetrieb ✓ Kostenlose Beratung – Rex Bedachungs GmbH Ruhrgebiet."
         />
         <meta property="og:image" content="https://www.rex-bedachung.de/images/velux-dachfenster-einbau-bochum-fachbetrieb.webp" />
+        <meta property="og:site_name" content="Rex Bedachungs GmbH" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="Velux Dachfenster Austausch Bochum | Rex Bedachung" />
         <meta name="twitter:description" content="Velux Dachfenster Austausch Bochum ✓ GGL, GGU, GPU & Integra ✓ Ab 1.000 € ✓ VELUX-Fachbetrieb – Rex Bedachungs GmbH." />

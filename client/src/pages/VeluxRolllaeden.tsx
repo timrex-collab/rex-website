@@ -126,7 +126,8 @@ const serviceSchema = JSON.stringify({
   "@type": "Service",
   "name": "Velux Außenrollladen Montage Bochum",
   "provider": {
-    "@type": "LocalBusiness",
+    "@type": "RoofingContractor",
+    "@id": "https://www.rex-bedachung.de/#organization",
     "name": "Rex Bedachungs GmbH",
     "address": {
       "@type": "PostalAddress",
@@ -172,6 +173,7 @@ export default function VeluxRolllaeden() {
         <meta property="og:title" content="Velux Außenrollladen Bochum – SSL Solar nachrüsten | Rex Bedachung" />
         <meta property="og:description" content="Velux Außenrollladen Bochum ✓ SSL Solar kabellos nachrüsten ✓ Bis zu 94% Hitzeschutz ✓ Ab ca. 700 € ✓ VELUX-Fachbetrieb – Rex Bedachungs GmbH." />
         <meta property="og:image" content="https://www.rex-bedachung.de/images/velux-dachfenster-einbau-bochum-fachbetrieb.webp" />
+        <meta property="og:site_name" content="Rex Bedachungs GmbH" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="Velux Außenrollladen Bochum – SSL Solar nachrüsten | Rex Bedachung" />
         <meta name="twitter:description" content="Velux Außenrollladen Bochum ✓ SSL Solar kabellos nachrüsten ✓ Bis zu 94% Hitzeschutz ✓ Ab ca. 700 € ✓ VELUX-Fachbetrieb – Rex Bedachungs GmbH." />

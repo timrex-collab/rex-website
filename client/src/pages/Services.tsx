@@ -95,6 +95,7 @@ export default function Services() {
         <meta property="og:title" content="Dachdecker Leistungen Bochum – Rex Bedachungs GmbH" />
         <meta property="og:description" content="Umfassende Dachdeckerleistungen von Ihrem Meisterbetrieb im Ruhrgebiet." />
         <meta property="og:image" content="https://www.rex-bedachung.de/images/dach-hintergrund-rex-bedachung.webp" />
+        <meta property="og:site_name" content="Rex Bedachungs GmbH" />
         <meta property="og:image:width" content="1200" />
         <meta property="og:image:height" content="630" />
         <meta name="twitter:card" content="summary_large_image" />

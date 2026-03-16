@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { Helmet } from "react-helmet";
 import { Search, Book, ShieldCheck } from "lucide-react";
 import Hero from "@/components/Hero";
@@ -161,33 +161,22 @@ const terms = [
   },
 ];
 
+const definedTermSetSchema = {
+  "@context": "https://schema.org",
+  "@type": "DefinedTermSet",
+  name: "Dachdecker Fachlexikon - Rex Bedachungs GmbH",
+  description:
+    "Umfangreiches Glossar für Dachdecker-Fachbegriffe vom Meisterbetrieb aus Bochum. Erklärt Bauphysik, Materialien und Regelwerke.",
+  hasDefinedTerm: terms.map((item) => ({
+    "@type": "DefinedTerm",
+    name: item.term,
+    description: item.definition,
+    url: `https://www.rex-bedachung.de/lexikon#${item.anchor}`,
+  })),
+};
+
 export default function DachLexikon() {
   const [searchTerm, setSearchTerm] = useState("");
-
-  useEffect(() => {
-    const schema = {
-      "@context": "https://schema.org",
-      "@type": "DefinedTermSet",
-      name: "Dachdecker Fachlexikon - Rex Bedachungs GmbH",
-      description:
-        "Umfangreiches Glossar für Dachdecker-Fachbegriffe vom Meisterbetrieb aus Bochum. Erklärt Bauphysik, Materialien und Regelwerke.",
-      hasDefinedTerm: terms.map((item) => ({
-        "@type": "DefinedTerm",
-        name: item.term,
-        description: item.definition,
-        url: `https://www.rex-bedachung.de/lexikon#${item.anchor}`,
-      })),
-    };
-
-    const script = document.createElement("script");
-    script.type = "application/ld+json";
-    script.innerHTML = JSON.stringify(schema);
-    document.head.appendChild(script);
-
-    return () => {
-      document.head.removeChild(script);
-    };
-  }, []);
 
   const filteredTerms = terms
     .sort((a, b) => a.term.localeCompare(b.term))
@@ -212,11 +201,13 @@ export default function DachLexikon() {
           content="Unser Dachdecker-Fachlexikon erklärt alle wichtigen Begriffe rund ums Dach: Bauphysik, Materialien, Regelwerke und mehr."
         />
         <meta property="og:image" content="https://www.rex-bedachung.de/images/dach-hintergrund-rex-bedachung.webp" />
+        <meta property="og:site_name" content="Rex Bedachungs GmbH" />
         <meta property="og:image:width" content="1200" />
         <meta property="og:image:height" content="630" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:image" content="https://www.rex-bedachung.de/images/dach-hintergrund-rex-bedachung.webp" />
         <script type="application/ld+json">{`{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Startseite","item":"https://www.rex-bedachung.de/"},{"@type":"ListItem","position":2,"name":"Dachlexikon","item":"https://www.rex-bedachung.de/lexikon"}]}`}</script>
+        <script type="application/ld+json">{JSON.stringify(definedTermSetSchema)}</script>
       </Helmet>
 
       <Hero

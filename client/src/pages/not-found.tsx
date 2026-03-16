@@ -13,6 +13,7 @@ export default function NotFound() {
         <meta property="og:title" content="Seite nicht gefunden – Rex Bedachungs GmbH" />
         <meta property="og:description" content="Die angeforderte Seite wurde nicht gefunden." />
         <meta property="og:type" content="website" />
+        <meta property="og:site_name" content="Rex Bedachungs GmbH" />
       </Helmet>
       <div className="text-center max-w-2xl">
         <h1 className="text-9xl font-bold text-primary mb-4">404</h1>

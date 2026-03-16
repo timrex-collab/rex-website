@@ -12,6 +12,11 @@ export default function Danke() {
         <meta name="description" content="Vielen Dank für Ihre Nachricht. Wir melden uns zeitnah bei Ihnen." />
         <meta name="robots" content="noindex, nofollow" />
         <link rel="canonical" href="https://www.rex-bedachung.de/danke" />
+        <meta property="og:site_name" content="Rex Bedachungs GmbH" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="Vielen Dank - Rex Bedachungs GmbH" />
+        <meta name="twitter:description" content="Vielen Dank für Ihre Nachricht. Wir melden uns zeitnah bei Ihnen." />
+        <meta name="twitter:image" content="https://www.rex-bedachung.de/images/dach-hintergrund-rex-bedachung.webp" />
       </Helmet>
 
       <section className="py-16 md:py-24 lg:py-32 bg-background">
