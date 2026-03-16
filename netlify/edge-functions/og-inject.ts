@@ -206,11 +206,14 @@ export default async function handler(request: Request, context: Context) {
   const ogTags = buildOGTags(ogData, `${BASE_URL}${pathname}`);
   const html = await response.text();
 
-  const modified = html.replace("<head>", `<head>\n${ogTags}`);
+  const modified = html.replace(/<head[^>]*>/i, `$&\n${ogTags}`);
+
+  const headers = new Headers(response.headers);
+  headers.delete("content-length");
 
   return new Response(modified, {
     status: response.status,
-    headers: response.headers,
+    headers,
   });
 }
 
