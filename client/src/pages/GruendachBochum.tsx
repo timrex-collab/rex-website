@@ -2,7 +2,7 @@ import { Helmet } from "react-helmet";
 import { Link } from "wouter";
 import { useState } from "react";
 import {
-  Leaf, Droplets, Thermometer, Shield, Wrench,
+  Leaf, Droplets, Thermometer, Shield, Layers, Wrench,
   CheckCircle, Phone, ArrowRight, ChevronDown, AlertCircle, Home, Zap
 } from "lucide-react";
 
@@ -23,13 +23,13 @@ const vorteile = [
     Icon: Shield, color: "text-red-500", bg: "bg-red-50 border-red-100",
     zahl: "2× länger", einheit: "Lebensdauer der Abdichtung",
     title: "Abdichtungsschutz",
-    text: "Die Begrünung schützt die Abdichtung vor UV-Strahlung und Temperaturschwankungen. Statt 20 Jahre hält eine geschützte Abdichtung 40+ Jahre — ein erheblicher wirtschaftlicher Vorteil.",
+    text: "Die Begrünung schützt die Abdichtung vor UV-Strahlung und Temperaturschwankungen. Statt 20 Jahre hält eine geschützte Abdichtung 40+ Jahre.",
   },
   {
     Icon: Leaf, color: "text-green-600", bg: "bg-green-50 border-green-100",
     zahl: "200+", einheit: "Tier- und Pflanzenarten",
     title: "Biodiversität & Ökologie",
-    text: "Selbst ein kleines Extensivdach bietet Lebensraum für Bienen, Wildbienen, Schmetterlinge und Vögel — ein ökologischer Trittstein im urbanen Biotopverbund Bochums.",
+    text: "Selbst ein kleines Extensivdach bietet Lebensraum für Bienen, Wildbienen, Schmetterlinge und Vögel — ökologischer Trittstein im urbanen Biotopverbund Bochums.",
   },
   {
     Icon: Zap, color: "text-yellow-600", bg: "bg-yellow-50 border-yellow-100",
@@ -41,34 +41,34 @@ const vorteile = [
     Icon: Home, color: "text-purple-500", bg: "bg-purple-50 border-purple-100",
     zahl: "+3–8 %", einheit: "Immobilienwert (geschätzt)",
     title: "Wertsteigerung der Immobilie",
-    text: "Ein Gründach verbessert die Energiebilanz, die Optik und die Nachhaltigkeitsbewertung Ihres Gebäudes — besonders bei Gewerbeimmobilien und ESG-Ratings gewinnt das an Bedeutung.",
+    text: "Ein Gründach verbessert die Energiebilanz, die Optik und die Nachhaltigkeitsbewertung Ihres Gebäudes — besonders bei Gewerbeimmobilien und ESG-Ratings.",
   },
 ];
 
 const vergleich = [
-  { label: "Substratdicke",      ext: "6–15 cm",           int: "20–100 cm" },
-  { label: "Aufbaulast",         ext: "80–200 kg/m²",      int: "300–1.500 kg/m²" },
+  { label: "Substratdicke",      ext: "6–15 cm",              int: "20–100 cm" },
+  { label: "Aufbaulast",         ext: "80–200 kg/m²",         int: "300–1.500 kg/m²" },
   { label: "Typische Pflanzen",  ext: "Sedum, Moose, Gräser", int: "Stauden, Sträucher, Bäume" },
-  { label: "Bewässerung nötig?", ext: "Nein",               int: "Ja (automatisch)" },
-  { label: "Wartungsaufwand",    ext: "1× jährlich",        int: "2–4× jährlich" },
-  { label: "Begehbar?",          ext: "Nein (nur Wartung)", int: "Ja, Dachterrasse möglich" },
-  { label: "Statikprüfung?",     ext: "Selten nötig",       int: "Erforderlich" },
+  { label: "Bewässerung nötig?", ext: "Nein",                  int: "Ja (automatisch)" },
+  { label: "Wartungsaufwand",    ext: "1× jährlich",           int: "2–4× jährlich" },
+  { label: "Begehbar?",          ext: "Nein (nur Wartung)",    int: "Ja, Dachterrasse möglich" },
+  { label: "Statikprüfung?",     ext: "Selten nötig",          int: "Erforderlich" },
 ];
 
 const schichten = [
-  { nr: "1", Icon: Wrench, bg: "bg-slate-50 border-slate-200", title: "Tragende Dachkonstruktion", text: "Die Basis: Beton, Holz oder Stahl. Die Konstruktion muss die Zusatzlasten der Begrünung dauerhaft tragen. Bei intensiver Begrünung ist ein Statikgutachten Pflicht." },
-  { nr: "2", Icon: Shield, bg: "bg-red-50 border-red-200",    title: "Wurzelfeste Abdichtung",      text: "Das Herzstück des Gründachs. Rex setzt ausschließlich FLL-geprüfte, wurzelfeste Abdichtungen ein (EPDM, Bitumenschweißbahn). Nur diese schützen dauerhaft vor eindringenden Pflanzenwurzeln." },
-  { nr: "3", Icon: Shield, bg: "bg-orange-50 border-orange-200", title: "Schutz- & Trennlage",      text: "Ein Vlies schützt die Abdichtung vor mechanischen Beschädigungen und trennt Abdichtung und Drainage sauber voneinander." },
-  { nr: "4", Icon: Droplets, bg: "bg-blue-50 border-blue-200",   title: "Drainageschicht",             text: "Kunststoff-Noppenmatten oder Blähton leiten überschüssiges Regenwasser schnell ab und puffern gleichzeitig Wasser für Trockenperioden." },
-  { nr: "5", Icon: CheckCircle, bg: "bg-yellow-50 border-yellow-200", title: "Filtervlies",               text: "Verhindert, dass Feinpartikel aus dem Substrat die Drainageschicht verstopfen — ein häufig unterschätztes Detail mit großer Langzeitwirkung." },
-  { nr: "6", Icon: Leaf, bg: "bg-green-50 border-green-200", title: "Vegetationssubstrat",         text: "Mineralisches, leichtes Substrat (400–600 g/l) als Wachstumsmedium. Schichtdicke: 6–15 cm bei extensiver, 20–100 cm bei intensiver Begrünung." },
-  { nr: "7", Icon: Leaf, bg: "bg-emerald-50 border-emerald-200", title: "Vegetation",              text: "Sedum-Matten, Wildkräuter, Stauden oder Bäume — auf das lokale Klima in Bochum und das Regenwassermanagement des jeweiligen Dachs abgestimmt." },
+  { nr: "1", Icon: Wrench, bg: "bg-slate-50 border-slate-200", title: "Tragende Dachkonstruktion", text: "Die Basis: Beton, Holz oder Stahl. Die Konstruktion muss die Zusatzlasten dauerhaft tragen. Bei intensiver Begrünung ist ein Statikgutachten Pflicht." },
+  { nr: "2", Icon: Shield, bg: "bg-red-50 border-red-200", title: "Wurzelfeste Abdichtung", text: "Das Herzstück. Rex setzt ausschließlich FLL-geprüfte, wurzelfeste Abdichtungen ein (EPDM, Bitumenschweißbahn). Nur diese schützen dauerhaft vor eindringenden Pflanzenwurzeln." },
+  { nr: "3", Icon: Layers, bg: "bg-orange-50 border-orange-200", title: "Schutz- & Trennlage", text: "Ein Vlies schützt die Abdichtung vor mechanischen Beschädigungen und trennt Abdichtung und Drainage sauber voneinander." },
+  { nr: "4", Icon: Droplets, bg: "bg-blue-50 border-blue-200", title: "Drainageschicht", text: "Kunststoff-Noppenmatten oder Blähton leiten überschüssiges Regenwasser schnell ab und puffern gleichzeitig Wasser für Trockenperioden." },
+  { nr: "5", Icon: CheckCircle, bg: "bg-yellow-50 border-yellow-200", title: "Filtervlies", text: "Verhindert, dass Feinpartikel aus dem Substrat die Drainageschicht verstopfen — ein häufig unterschätztes Detail mit großer Langzeitwirkung." },
+  { nr: "6", Icon: Leaf, bg: "bg-green-50 border-green-200", title: "Vegetationssubstrat", text: "Mineralisches, leichtes Substrat (400–600 g/l) als Wachstumsmedium. Schichtdicke: 6–15 cm extensiv, 20–100 cm intensiv." },
+  { nr: "7", Icon: Leaf, bg: "bg-emerald-50 border-emerald-200", title: "Vegetation", text: "Sedum-Matten, Wildkräuter, Stauden oder Bäume — auf das lokale Klima in Bochum und das Regenwassermanagement des Dachs abgestimmt." },
 ];
 
 const foerderungen = [
   {
     Icon: Home, title: "Städtische Förderung Bochum",
-    text: "Die Stadt Bochum fördert Dachbegrünung im Rahmen des Klimaanpassungsprogramms und Starkregenkonzepts. Antrag vor Baubeginn beim Umwelt- und Grünflächenamt.",
+    text: "Die Stadt Bochum fördert Dachbegrünung im Rahmen des Klimaanpassungsprogramms und Starkregenkonzepts. Antrag beim Umwelt- und Grünflächenamt — vor Baubeginn.",
     hinweis: "Antrag vor Baubeginn!",
   },
   {
@@ -83,7 +83,7 @@ const foerderungen = [
   },
   {
     Icon: Droplets, title: "Regenwassergebühr-Entlastung",
-    text: "Gründächer gelten in Bochum als gedrosselte Fläche — die Niederschlagswassergebühr der Stadtwerke Bochum sinkt dauerhaft. Keine Einmalzahlung, sondern jährliche Dauerersparnis.",
+    text: "Gründächer gelten in Bochum als gedrosselte Fläche — die Niederschlagswassergebühr der Stadtwerke Bochum sinkt dauerhaft über die gesamte Lebensdauer.",
     hinweis: "Beim Stadtentwicklungsamt anfragen",
   },
 ];
@@ -113,7 +113,7 @@ const pruefliste = [
 const faqItems = [
   {
     q: "Kann ein Gründach auf jedem Flachdach angelegt werden?",
-    a: "Für extensive Begrünung (80–200 kg/m²) reicht in den meisten Fällen die vorhandene Statik aus. Intensive Begrünung erfordert einen statischen Nachweis. Rex Bedachungs GmbH prüft das kostenlos vor Ort in Bochum.",
+    a: "Für extensive Begrünung (80–200 kg/m²) reicht in den meisten Fällen die vorhandene Statik aus. Intensive Begrünung erfordert einen statischen Nachweis. Rex Bedachungs GmbH prüft das kostenlos vor Ort in Bochum — bei Bedarf koordinieren wir auch das Statikgutachten.",
   },
   {
     q: "Brauche ich eine spezielle Abdichtung für ein Gründach?",
@@ -137,7 +137,7 @@ const faqItems = [
   },
   {
     q: "Welche Pflanzen eignen sich für extensive Begrünung?",
-    a: "Sedum-Arten (Fetthenne) sind am beliebtesten: frost- und trockenheitsresistent, flachwurzelnd, pflegeleicht. Ergänzend eignen sich Moose, Wildgräser und heimische Wildkräuter. Alle kommen ohne Bewässerung aus.",
+    a: "Sedum-Arten (Fetthenne) sind am beliebtesten: frost- und trockenheitsresistent, flachwurzelnd, pflegeleicht. Ergänzend eignen sich Moose, Wildgräser und heimische Wildkräuter.",
   },
   {
     q: "Ist ein Gründach ökologisch wirklich sinnvoll?",
@@ -162,13 +162,17 @@ export default function GruendachBochum() {
     "@context": "https://schema.org",
     "@type": "Article",
     headline: "Gründach Bochum: Aufbau, Vorteile, Varianten & Förderung – der vollständige Ratgeber",
-    description: "Alles zum Thema Gründach und Dachbegrünung in Bochum: Extensiv vs. intensiv, 7 Schichten Aufbau, Vorteile, Förderprogramme und Pflegetipps vom Flachdach-Experten Rex Bedachungs GmbH.",
+    description:
+      "Alles zum Thema Gründach und Dachbegrünung in Bochum: Extensiv vs. intensiv, 7 Schichten Aufbau, Vorteile, Förderprogramme und Pflegetipps vom Flachdach-Experten Rex Bedachungs GmbH.",
     author: { "@type": "Organization", name: "Rex Bedachungs GmbH" },
     publisher: {
       "@type": "Organization",
       name: "Rex Bedachungs GmbH",
       url: "https://rex-bedachung.de",
-      logo: { "@type": "ImageObject", url: "https://rex-bedachung.de/images/logo-rex-bedachungs-gmbh-bochum-2025.webp" },
+      logo: {
+        "@type": "ImageObject",
+        url: "https://rex-bedachung.de/images/logo-rex-bedachungs-gmbh-bochum-2025.webp",
+      },
     },
     datePublished: "2026-03-01",
     dateModified: "2026-03-01",
@@ -202,8 +206,12 @@ export default function GruendachBochum() {
       telephone: "+49-234-583100",
       url: "https://rex-bedachung.de",
     },
-    areaServed: ["Bochum", "Dortmund", "Essen", "Herne", "Gelsenkirchen", "Witten", "Hattingen", "Ruhrgebiet"],
-    description: "Planung und Einbau von extensiven und intensiven Gründächern auf Flachdächern in Bochum und dem Ruhrgebiet.",
+    areaServed: [
+      "Bochum", "Dortmund", "Essen", "Herne",
+      "Gelsenkirchen", "Witten", "Hattingen", "Ruhrgebiet",
+    ],
+    description:
+      "Planung und Einbau von extensiven und intensiven Gründächern auf Flachdächern in Bochum und dem Ruhrgebiet.",
     serviceType: "Dachbegrünung",
   };
 
@@ -213,19 +221,30 @@ export default function GruendachBochum() {
     itemListElement: [
       { "@type": "ListItem", position: 1, name: "Startseite", item: "https://rex-bedachung.de/" },
       { "@type": "ListItem", position: 2, name: "Flachdach", item: "https://rex-bedachung.de/flachdach-bochum" },
-      { "@type": "ListItem", position: 3, name: "Gründach & Dachbegrünung", item: "https://rex-bedachung.de/gruendach-dachbegrunung-bochum" },
+      {
+        "@type": "ListItem",
+        position: 3,
+        name: "Gründach & Dachbegrünung",
+        item: "https://rex-bedachung.de/gruendach-dachbegrunung-bochum",
+      },
     ],
   };
 
   return (
     <>
       <Helmet>
-        <title>Gründach Bochum: Aufbau, Vorteile &amp; Förderung – Dachbegrünung vom Experten | Rex Bedachungs GmbH</title>
+        <title>
+          Gründach Bochum: Aufbau, Vorteile &amp; Förderung – Dachbegrünung vom Experten | Rex Bedachungs
+          GmbH
+        </title>
         <meta
           name="description"
           content="Gründach in Bochum ✓ Extensiv & Intensiv ✓ 7 Schichten Aufbau ✓ bis 90 % Regenwasserrückhalt ✓ Förderprogramme 2026 ✓ Kostenlose Beratung ☎ 0234 583100"
         />
-        <meta property="og:title" content="Gründach Bochum: Alles zu Aufbau, Vorteilen & Förderung der Dachbegrünung" />
+        <meta
+          property="og:title"
+          content="Gründach Bochum: Alles zu Aufbau, Vorteilen & Förderung der Dachbegrünung"
+        />
         <meta
           property="og:description"
           content="Der vollständige Ratgeber zum Gründach in Bochum: Extensiv vs. Intensiv, 7 Schichten, Förderprogramme und Pflegetipps vom Flachdach-Experten Rex Bedachungs GmbH."
@@ -234,8 +253,14 @@ export default function GruendachBochum() {
         <meta property="og:type" content="article" />
         <meta property="og:url" content="https://www.rex-bedachung.de/gruendach-dachbegrunung-bochum" />
         <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content="Gründach Bochum: Alles zu Aufbau, Vorteilen & Förderung" />
-        <meta name="twitter:description" content="Extensiv vs. Intensiv, 7 Schichten, Förderprogramme 2026. Der vollständige Gründach-Ratgeber für Bochum und das Ruhrgebiet." />
+        <meta
+          name="twitter:title"
+          content="Gründach Bochum: Alles zu Aufbau, Vorteilen & Förderung"
+        />
+        <meta
+          name="twitter:description"
+          content="Extensiv vs. Intensiv, 7 Schichten, Förderprogramme 2026. Der vollständige Gründach-Ratgeber für Bochum und das Ruhrgebiet."
+        />
         <meta name="twitter:image" content="https://rex-bedachung.de/images/gruendach-bochum-dachbegruenung-experten.webp" />
         <link rel="canonical" href="https://www.rex-bedachung.de/gruendach-dachbegrunung-bochum" />
         <script type="application/ld+json">{JSON.stringify(faqSchema)}</script>
@@ -251,17 +276,18 @@ export default function GruendachBochum() {
             Gründach &amp; Dachbegrünung – Rex Bedachungs GmbH, Bochum
           </div>
           <h1 className="text-3xl md:text-5xl font-bold text-white mb-6 leading-tight" data-testid="heading-hero">
-            Gründach: Alles was Sie wissen müssen —<br className="hidden md:block" />
+            Gründach: Alles was Sie wissen müssen —
+            <br className="hidden md:block" />
             Aufbau, Vorteile, Varianten &amp; Förderung
           </h1>
           <p className="text-lg text-slate-300 mb-8 max-w-2xl mx-auto" data-testid="text-hero-subtitle">
             Der vollständige Ratgeber zur Dachbegrünung in Bochum und dem Ruhrgebiet. Von der richtigen
-            Variante bis zur Förderung — alles aus einer Hand vom Flachdach-Experten Rex Bedachungs GmbH.
+            Variante bis zur Förderung — alles aus einer Hand.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <a
               href="tel:0234583100"
-              className="inline-flex items-center justify-center gap-2 bg-red-700 hover:bg-red-600 text-white font-semibold px-6 py-3 rounded-md transition-colors"
+              className="pulse-ring inline-flex items-center justify-center gap-2 bg-red-700 hover:bg-red-600 text-white font-semibold px-6 py-3 rounded-md transition-colors"
               data-testid="button-hero-anrufen"
             >
               <Phone className="w-5 h-5" /> 0234 583100 – Kostenlos anfragen
@@ -275,24 +301,7 @@ export default function GruendachBochum() {
         </div>
       </section>
 
-      <nav className="bg-green-950/80 border-b border-green-900/50 px-4 py-3 sticky top-0 z-50" data-testid="nav-inhalt">
-        <div className="max-w-5xl mx-auto flex flex-wrap gap-x-5 gap-y-1 justify-center text-xs font-medium text-green-300">
-          {[
-            ["#vorteile", "Vorteile"],
-            ["#aufbau", "Aufbau & Schichten"],
-            ["#varianten", "Extensiv vs. Intensiv"],
-            ["#foerderung", "Förderung"],
-            ["#pflege", "Pflege & Wartung"],
-            ["#faq", "FAQ"],
-          ].map(([href, label]) => (
-            <a key={href} href={href} className="hover:text-green-100 transition-colors">
-              {label}
-            </a>
-          ))}
-        </div>
-      </nav>
-
-      <section id="vorteile" className="py-16 px-4 bg-white scroll-mt-10" data-testid="section-vorteile">
+      <section className="py-16 px-4 bg-white" data-testid="section-vorteile">
         <div className="max-w-5xl mx-auto">
           <h2 className="text-2xl md:text-3xl font-bold text-slate-900 mb-3 text-center">
             7 Gründe für ein Gründach in Bochum
@@ -315,7 +324,7 @@ export default function GruendachBochum() {
         </div>
       </section>
 
-      <section id="aufbau" className="py-16 px-4 bg-slate-50 scroll-mt-10" data-testid="section-aufbau">
+      <section className="py-16 px-4 bg-slate-50" data-testid="section-aufbau">
         <div className="max-w-3xl mx-auto">
           <h2 className="text-2xl md:text-3xl font-bold text-slate-900 mb-3 text-center">
             Die 7 Schichten eines Gründachs
@@ -324,7 +333,6 @@ export default function GruendachBochum() {
             Jede Schicht hat eine genaue Funktion. Das Weglassen oder Falscheinbauen einer einzigen Lage
             kann das gesamte System gefährden.
           </p>
-
           <div className="space-y-3 mb-8">
             {schichten.map((s, i) => (
               <div key={i} className={`rounded-md p-5 border ${s.bg} flex gap-4`} data-testid={`card-schicht-${i}`}>
@@ -339,11 +347,12 @@ export default function GruendachBochum() {
               </div>
             ))}
           </div>
-
           <div className="bg-red-50 border border-red-200 rounded-md p-5 flex gap-4" data-testid="box-abdichtung-hinweis">
             <Shield className="w-8 h-8 text-red-600 flex-shrink-0 mt-1" />
             <div>
-              <h3 className="font-bold text-slate-900 mb-2">Die Abdichtung ist das Fundament — ohne Kompromisse</h3>
+              <h3 className="font-bold text-slate-900 mb-2">
+                Die Abdichtung ist das Fundament — ohne Kompromisse
+              </h3>
               <p className="text-slate-700 text-sm leading-relaxed">
                 Viele Schadensfälle bei Gründächern haben dieselbe Ursache: eine mangelhafte oder nicht
                 wurzelfeste Abdichtung. Pflanzenwurzeln finden jede Schwachstelle. Rex Bedachungs GmbH
@@ -355,7 +364,7 @@ export default function GruendachBochum() {
         </div>
       </section>
 
-      <section id="varianten" className="py-16 px-4 bg-white scroll-mt-10" data-testid="section-varianten">
+      <section className="py-16 px-4 bg-white" data-testid="section-varianten">
         <div className="max-w-4xl mx-auto">
           <h2 className="text-2xl md:text-3xl font-bold text-slate-900 mb-3 text-center">
             Extensiv oder Intensiv — welche Variante passt?
@@ -364,7 +373,6 @@ export default function GruendachBochum() {
             Beide Varianten begrünen Ihr Flachdach in Bochum. Der Unterschied liegt in Substratdicke,
             Pflegeaufwand und Nutzungsmöglichkeiten.
           </p>
-
           <div className="overflow-x-auto rounded-md shadow-sm mb-8">
             <table className="w-full text-sm border-collapse" data-testid="table-vergleich">
               <thead>
@@ -385,23 +393,24 @@ export default function GruendachBochum() {
               </tbody>
             </table>
           </div>
-
           <div className="bg-green-50 border border-green-200 rounded-md p-5 flex gap-4" data-testid="box-empfehlung">
             <CheckCircle className="w-7 h-7 text-green-700 flex-shrink-0 mt-0.5" />
             <div>
-              <h3 className="font-bold text-slate-900 mb-2">Empfehlung für Bochum: Extensiv als Einstieg</h3>
+              <h3 className="font-bold text-slate-900 mb-2">
+                Empfehlung für Bochum: Extensiv als Einstieg
+              </h3>
               <p className="text-slate-700 text-sm leading-relaxed">
-                Für die meisten Eigentümer im Ruhrgebiet ist extensive Begrünung der sinnvollste Einstieg:
-                geringe Anforderungen an die Statik, kein Bewässerungsaufwand, maximale Wirkung für
-                Klimaanpassung und Dachabdichtungsschutz. Für Garagen, Tiefgaragen oder Gebäude mit
-                nachgewiesener Tragreserve lohnt sich ein Blick auf die intensive Variante.
+                Für die meisten Eigentümer im Ruhrgebiet ist extensive Begrünung der sinnvollste
+                Einstieg: geringe Anforderungen an die Statik, kein Bewässerungsaufwand, maximale Wirkung
+                für Klimaanpassung und Dachabdichtungsschutz. Für Garagen oder Gebäude mit nachgewiesener
+                Tragreserve lohnt sich ein Blick auf die intensive Variante.
               </p>
             </div>
           </div>
         </div>
       </section>
 
-      <section id="foerderung" className="py-16 px-4 bg-slate-50 scroll-mt-10" data-testid="section-foerderung">
+      <section className="py-16 px-4 bg-slate-50" data-testid="section-foerderung">
         <div className="max-w-5xl mx-auto">
           <h2 className="text-2xl md:text-3xl font-bold text-slate-900 mb-3 text-center">
             Förderung für Gründächer in Bochum 2026
@@ -425,24 +434,23 @@ export default function GruendachBochum() {
           <div className="bg-amber-50 border border-amber-200 rounded-md p-4 flex gap-3" data-testid="box-foerderung-hinweis">
             <AlertCircle className="w-5 h-5 text-amber-600 flex-shrink-0 mt-0.5" />
             <p className="text-slate-700 text-sm leading-relaxed">
-              Förderkonditionen und Fördersätze ändern sich regelmäßig. Alle Angaben entsprechen dem Stand
-              März 2026. Bitte bestätigen Sie aktuelle Bedingungen bei der jeweiligen Förderstelle.
-              Rex Bedachungs GmbH unterstützt Sie bei der Antragstellung kostenlos.
+              Förderkonditionen und Fördersätze ändern sich regelmäßig. Alle Angaben entsprechen dem
+              Stand März 2026. Rex Bedachungs GmbH unterstützt Sie bei der Antragstellung kostenlos.
             </p>
           </div>
         </div>
       </section>
 
-      <section id="pflege" className="py-16 px-4 bg-white scroll-mt-10" data-testid="section-pflege">
+      <section className="py-16 px-4 bg-white" data-testid="section-pflege">
         <div className="max-w-5xl mx-auto">
           <h2 className="text-2xl md:text-3xl font-bold text-slate-900 mb-3 text-center">
             Pflege &amp; Wartung: Was Ihr Gründach wirklich braucht
           </h2>
           <p className="text-slate-600 text-center mb-10 max-w-2xl mx-auto">
-            Ein extensives Gründach ist pflegeleichter als ein Garten. Trotzdem: Eine jährliche
-            Fachinspektion sichert die 40+-Jahre-Lebensdauer der Abdichtung.
+            Ein extensives Gründach ist pflegeleichter als ein Garten — eine jährliche Fachinspektion
+            sichert die 40+-Jahre-Lebensdauer der Abdichtung.
           </p>
-          <div className="grid md:grid-cols-2 gap-8 mb-10">
+          <div className="grid md:grid-cols-2 gap-8 mb-8">
             <div>
               <div className="flex items-center gap-3 mb-4">
                 <div className="w-9 h-9 bg-green-100 rounded-md flex items-center justify-center">
@@ -483,7 +491,7 @@ export default function GruendachBochum() {
             </div>
           </div>
 
-          <div className="bg-slate-50 rounded-md p-5 border border-slate-100" data-testid="box-jahresinspektion">
+          <div className="bg-slate-50 rounded-md p-5 border border-slate-200" data-testid="box-jahresinspektion">
             <div className="flex items-center gap-3 mb-4">
               <Wrench className="w-6 h-6 text-red-600" />
               <h3 className="font-bold text-slate-900">Was Rex bei der Jahresinspektion prüft</h3>
@@ -509,8 +517,14 @@ export default function GruendachBochum() {
             Paulinenstraße 22, 44799 Bochum · Kostenloser Vor-Ort-Termin in der gesamten Region:
           </p>
           <div className="flex flex-wrap gap-2 justify-center">
-            {["Bochum", "Dortmund", "Essen", "Herne", "Gelsenkirchen", "Witten", "Hattingen", "Recklinghausen"].map((city) => (
-              <span key={city} className="bg-green-100 text-green-800 text-xs font-medium px-3 py-1.5 rounded-full">
+            {[
+              "Bochum", "Dortmund", "Essen", "Herne",
+              "Gelsenkirchen", "Witten", "Hattingen", "Recklinghausen",
+            ].map((city) => (
+              <span
+                key={city}
+                className="bg-green-100 text-green-800 text-xs font-medium px-3 py-1.5 rounded-full"
+              >
                 {city}
               </span>
             ))}
@@ -518,7 +532,7 @@ export default function GruendachBochum() {
         </div>
       </section>
 
-      <section id="faq" className="py-16 px-4 bg-white scroll-mt-10" data-testid="section-faq">
+      <section className="py-16 px-4 bg-white" data-testid="section-faq">
         <div className="max-w-3xl mx-auto">
           <h2 className="text-2xl md:text-3xl font-bold text-slate-900 mb-3 text-center">
             Häufige Fragen zum Gründach
@@ -536,7 +550,9 @@ export default function GruendachBochum() {
                 >
                   <span className="font-semibold text-slate-900 pr-4">{item.q}</span>
                   <ChevronDown
-                    className={`w-5 h-5 text-slate-400 flex-shrink-0 transition-transform duration-200 ${openFaq === i ? "rotate-180" : ""}`}
+                    className={`w-5 h-5 text-slate-400 flex-shrink-0 transition-transform duration-200 ${
+                      openFaq === i ? "rotate-180" : ""
+                    }`}
                   />
                 </button>
                 {openFaq === i && (
@@ -552,9 +568,6 @@ export default function GruendachBochum() {
 
       <section className="py-16 px-4 bg-slate-900" data-testid="section-cta">
         <div className="max-w-3xl mx-auto text-center">
-          <p className="text-green-400 text-xs font-semibold uppercase tracking-widest mb-3">
-            Nächster Schritt
-          </p>
           <h2 className="text-2xl md:text-3xl font-bold text-white mb-4">
             Ihr Gründach-Angebot aus Bochum
           </h2>
@@ -566,7 +579,7 @@ export default function GruendachBochum() {
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <a
               href="tel:0234583100"
-              className="inline-flex items-center justify-center gap-2 bg-red-700 hover:bg-red-600 text-white font-semibold px-8 py-4 rounded-md transition-colors text-lg"
+              className="pulse-ring inline-flex items-center justify-center gap-2 bg-red-700 hover:bg-red-600 text-white font-semibold px-8 py-4 rounded-md transition-colors text-lg"
               data-testid="button-cta-anrufen"
             >
               <Phone className="w-5 h-5" /> 0234 583100
