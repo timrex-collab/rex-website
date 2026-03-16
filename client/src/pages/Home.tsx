@@ -216,9 +216,10 @@ export default function Home() {
       ],
       "aggregateRating": {
         "@type": "AggregateRating",
-        "ratingValue": "4.4",
-        "reviewCount": "12",
-        "bestRating": "5"
+        "ratingValue": "4.5",
+        "reviewCount": "15",
+        "bestRating": "5",
+        "worstRating": "1"
       }
     })}
   </script>
