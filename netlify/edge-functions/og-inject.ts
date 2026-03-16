@@ -206,14 +206,23 @@ export default async function handler(request: Request, context: Context) {
   const ogTags = buildOGTags(ogData, `${BASE_URL}${pathname}`);
   const html = await response.text();
 
-  const modified = html.replace(/<head[^>]*>/i, `$&\n${ogTags}`);
+  if (!html.includes("<head") && !html.includes("<HEAD")) {
+    return response;
+  }
 
-  const headers = new Headers(response.headers);
-  headers.delete("content-length");
+  const modified = html.replace(
+    /<head([^>]*)>/i,
+    `<head$1>\n${ogTags}`
+  );
+
+  const newHeaders = new Headers(response.headers);
+  newHeaders.delete("content-length");
+  newHeaders.set("x-og-inject", "fired");
+  newHeaders.set("content-type", "text/html; charset=utf-8");
 
   return new Response(modified, {
     status: response.status,
-    headers,
+    headers: newHeaders,
   });
 }
 
