@@ -1,0 +1,214 @@
+Prüfe das gesamte Projekt der Website rex-bedachung.de gezielt auf die bereits identifizierten SEO-, Struktur-, Inhalts- und Technikprobleme und liefere eine konkrete, priorisierte Maßnahmenliste zur Behebung.
+
+Ziel:
+Das Projekt soll technisch konsistent, SEO-sauber, inhaltlich einheitlich und maximal verständlich für Google sowie KI-Modelle werden. Prüfe nicht nur oberflächlich, sondern auf Datei-, Routing-, Meta-, Canonical-, Redirect-, Content- und Struktur-Ebene.
+
+Kontext / bereits erkannte Problemfelder:
+1. Domain-Konsistenz prüfen
+Es gibt Hinweise auf Inkonsistenzen zwischen:
+- https://www.rex-bedachung.de/
+- https://firma.rex-bedachung.de/
+
+Prüfe:
+- welche Domain intern als Hauptdomain verwendet wird
+- ob Redirects sauber gesetzt sind
+- ob Canonical-Tags konsistent sind
+- ob Sitemap und interne Links dieselbe Hauptdomain verwenden
+- ob es SEO-Risiken durch unterschiedliche Domain-Signale gibt
+
+Ziel:
+Eine eindeutig definierte Hauptdomain ohne widersprüchliche Signale.
+
+2. Doppelungen / URL-Kannibalisierung prüfen
+Es gibt Hinweise auf mögliche Überschneidungen bei:
+- /dachwartung-bochum
+- /leistungen/dachwartung
+
+Prüfe:
+- ob beide Seiten indexierbar sind
+- ob beide dieselbe Suchintention bedienen
+- ob Content, Meta-Daten, H1 oder interne Verlinkung zu ähnlich sind
+- ob hier Duplicate Content oder Keyword-Kannibalisierung entsteht
+
+Ziel:
+Eine klare Hauptseite je Suchintention, keine unnötigen Doppelstrukturen.
+
+3. Meta-Descriptions und Snippets prüfen
+Mehrere Leistungsseiten scheinen zu ähnliche oder generische Snippets zu haben.
+
+Prüfe insbesondere:
+- ob Title und Meta-Description pro Seite individuell genug sind
+- ob Leistungsseiten sich sauber voneinander unterscheiden
+- ob Seiten dieselben Standardformulierungen wiederverwenden
+- ob Snippets die jeweilige Suchintention klar genug treffen
+
+Ziel:
+Jede wichtige URL soll ein eigenständiges, präzises Suchergebnis erhalten.
+
+4. Sprachliche Inkonsistenzen im Content prüfen
+Folgende alte/problematische Formulierungen sollen projektweit gesucht und geprüft werden:
+
+VELUX:
+- „zertifizierter Velux-Partner“
+- „Velux-zertifiziert“
+
+stattdessen bevorzugt:
+- „VELUX-Partner“
+- „VELUX-Fachbetrieb“
+oder logisch saubere Alternativen
+
+Preise:
+- „Festpreis“
+- „Festpreisangebot“
+- „Festpreisgarantie“
+
+stattdessen bevorzugt:
+- „Angebot“
+- „transparentes Angebot“
+- „faire Preise“
+oder logisch saubere Alternativen
+
+Reaktionszeit:
+- „wir melden uns innerhalb von 24 Stunden“
+
+stattdessen bevorzugt:
+- „wir melden uns kurzfristig“
+- „wir melden uns zeitnah“
+
+Arbeitsdauer:
+- „dauert in der Regel einen Arbeitstag“
+
+stattdessen bevorzugt:
+- „dauert in der Regel einen halben Arbeitstag“
+oder realistische Alternativen
+
+Notdienst:
+Wir bieten keinen Notdienst an.
+Suche daher alle Formulierungen mit:
+- „Notdienst“
+
+und prüfe, ob sie ersetzt werden müssen durch:
+- „schnelle Hilfe“
+- „kurzfristige Hilfe“
+- „kurzfristige Unterstützung“
+oder logisch passende Alternativen
+
+Ziel:
+Projektweit einheitliche, realistische und rechtlich saubere Sprache.
+
+5. Einheitliche Preislogik für VELUX-/Dachfensterleistungen prüfen
+Für alle Preisangaben rund um VELUX / Dachfenster gilt als verbindliche Grundlage:
+https://www.rex-bedachung.de/velux-dachfenster-austausch-bochum
+
+Verbindliche Preisstruktur:
+- Standard-Austausch: ab 1.000 €
+- Häufigste Variante / GGL / GGU / GPU: ab 1.500 €
+- Premium / Integra: ab 1.800 €
+
+Zusätzliche Preislogik:
+Kein Festpreis ohne Aufmaß, aber realistische Preisrahmen als Orientierung.
+
+Prüfe im gesamten Projekt:
+- ob diese Preisstruktur überall einheitlich verwendet wird
+- ob FAQs, Leistungsseiten oder Module abweichende Preisangaben haben
+- ob alte Festpreis-Formulierungen noch vorhanden sind
+- ob Preisbausteine sprachlich konsistent dargestellt sind
+
+Ziel:
+Überall identische und widerspruchsfreie Preislogik.
+
+6. Interne Verlinkung und Seitenarchitektur prüfen
+Prüfe:
+- ob die Linkstruktur logisch und SEO-sauber ist
+- ob wichtige Leistungsseiten ausreichend intern verlinkt sind
+- ob es verwaiste Seiten gibt
+- ob Seiten gegenseitig sinnvoll gestützt werden
+- ob Breadcrumbs, Canonicals und interne Links konsistent zusammenspielen
+
+Ziel:
+Klare Seitenarchitektur ohne unnötige Konkurrenz zwischen eigenen URLs.
+
+7. Strukturierte Daten / Schema.org prüfen
+Prüfe:
+- ob vorhandene JSON-LD-Markups korrekt eingebunden sind
+- ob Breadcrumbs sinnvoll und vollständig sind
+- ob Service-, FAQ-, LocalBusiness- oder Breadcrumb-Markups fehlen
+- ob strukturierte Daten fehlerhaft, doppelt oder inkonsistent sind
+
+Ziel:
+Maximale Maschinenlesbarkeit für Google und KI-Modelle.
+
+8. Performance / Medien / technische Sauberkeit prüfen
+Prüfe zusätzlich:
+- Bildgrößen und Bildkompression
+- ungenutzte Assets
+- doppelte Assets
+- zu große Bilder
+- moderne Bildformate
+- Lazy Loading
+- unnötige Skripte oder Abhängigkeiten
+- Ladezeitpotenziale
+- Build-Fehler
+- Routing-Probleme
+- fehlerhafte interne Links
+- fehlende Alt-Texte
+
+Ziel:
+Sauberes, schnelles und technisch belastbares Projekt.
+
+Arbeitsweise:
+- Prüfe das komplette Projekt systematisch.
+- Arbeite auf Datei-, Komponenten-, Routing- und Seitenebene.
+- Nenne konkrete Fundstellen.
+- Wenn möglich, zeige direkt die betroffenen Dateien, Routen oder Komponenten.
+- Erkläre nicht allgemein, sondern konkret auf dieses Projekt bezogen.
+- Priorisiere nach Wirkung und Dringlichkeit.
+- Nenne nicht nur Probleme, sondern die beste empfohlene Lösung.
+
+Ausgabeformat:
+Erstelle die Antwort in 6 Bereichen:
+
+1. Executive Summary
+- Gesamtbewertung
+- größte Risiken
+- größte Chancen
+- wichtigste Sofortmaßnahmen
+
+2. Kritische Probleme
+Für jeden Punkt:
+- Problem
+- warum relevant
+- betroffene Datei / Route / Seite
+- empfohlene Lösung
+
+3. SEO- und Sichtbarkeitsprobleme
+- Domain
+- Canonicals
+- Meta-Daten
+- Duplicate Content
+- interne Verlinkung
+- strukturierte Daten
+- URL-Struktur
+
+4. Sprachliche und inhaltliche Inkonsistenzen
+- alle Fundstellen mit problematischen Formulierungen
+- empfohlene neue Formulierung
+- betroffene Datei / Seite
+
+5. Technische und Performance-Probleme
+- Bilder
+- Assets
+- Scripts
+- Build / Routing / Ladezeit
+- konkrete Fundstellen
+- konkrete Optimierung
+
+6. Maßnahmenplan nach Priorität
+Sortiere alle To-dos nach:
+- Prio 1 = kritisch / sofort
+- Prio 2 = wichtig / kurzfristig
+- Prio 3 = sinnvoll / mittelfristig
+- Prio 4 = Feinschliff / optional
+
+Wichtig:
+Ich möchte keine allgemeine SEO-Erklärung, sondern eine echte Projektprüfung mit klaren Fundstellen, konkreten Problemen, konkreten Lösungsvorschlägen und einem Maßnahmenplan zum direkten Abarbeiten.
