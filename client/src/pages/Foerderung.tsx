@@ -422,6 +422,29 @@ export default function Foerderung() {
         </div>
       </section>
 
+      {/* Verwandte Leistungen */}
+      <section className="py-12 bg-gray-50">
+        <div className="container mx-auto px-4">
+          <h2 className="text-xl font-bold text-gray-900 mb-6">
+            Unsere geförderten Leistungen
+          </h2>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+            <a href="/steildach-bochum" className="block p-5 bg-white rounded-xl border border-gray-200 hover:border-primary hover:shadow-md transition-all">
+              <div className="font-semibold text-gray-900 mb-1">Steildach Sanierung</div>
+              <div className="text-sm text-gray-500">Energetische Steildachsanierung mit Aufsparrendämmung – BAFA-förderfähig.</div>
+            </a>
+            <a href="/flachdach-bochum" className="block p-5 bg-white rounded-xl border border-gray-200 hover:border-primary hover:shadow-md transition-all">
+              <div className="font-semibold text-gray-900 mb-1">Flachdach Abdichtung</div>
+              <div className="text-sm text-gray-500">Flachdachdämmung und Abdichtung – mit KfW-Förderung kombinierbar.</div>
+            </a>
+            <a href="/dachreparatur-bochum" className="block p-5 bg-white rounded-xl border border-gray-200 hover:border-primary hover:shadow-md transition-all">
+              <div className="font-semibold text-gray-900 mb-1">Dachreparatur</div>
+              <div className="text-sm text-gray-500">Sturmschäden und dringende Reparaturen – schnell und zuverlässig.</div>
+            </a>
+          </div>
+        </div>
+      </section>
+
       {/* ── CTA (Gemini-Gradient-Design – viel stärker als meine Version) ── */}
       <section
         className="mx-4 mb-16 rounded-[2rem] p-12 text-center text-white shadow-2xl"

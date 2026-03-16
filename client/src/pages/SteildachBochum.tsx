@@ -524,6 +524,29 @@ export default function SteildachBochum() {
           </p>
         </div>
       </section>
+      {/* Verwandte Leistungen */}
+      <section className="py-12 bg-gray-50">
+        <div className="container mx-auto px-4">
+          <h2 className="text-xl font-bold text-gray-900 mb-6">
+            Das könnte Sie auch interessieren
+          </h2>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+            <a href="/foerderung" className="block p-5 bg-white rounded-xl border border-gray-200 hover:border-primary hover:shadow-md transition-all">
+              <div className="font-semibold text-gray-900 mb-1">BAFA & KfW Förderung</div>
+              <div className="text-sm text-gray-500">Bis zu 20% Zuschuss für Ihre Dachsanierung – wir beraten Sie kostenlos.</div>
+            </a>
+            <a href="/bauklempnerei-bochum" className="block p-5 bg-white rounded-xl border border-gray-200 hover:border-primary hover:shadow-md transition-all">
+              <div className="font-semibold text-gray-900 mb-1">Bauklempnerei & Dachrinnen</div>
+              <div className="text-sm text-gray-500">Dachrinnen, Fallrohre und Blecharbeiten aus einer Hand.</div>
+            </a>
+            <a href="/dachreparatur-bochum" className="block p-5 bg-white rounded-xl border border-gray-200 hover:border-primary hover:shadow-md transition-all">
+              <div className="font-semibold text-gray-900 mb-1">Dachreparatur Bochum</div>
+              <div className="text-sm text-gray-500">Schnelle Hilfe bei Sturmschäden, undichten Stellen und defekten Ziegeln.</div>
+            </a>
+          </div>
+        </div>
+      </section>
+
       {/* Abschluss-CTA */}
       <section className="py-16 px-4 bg-muted/40" data-testid="section-cta">
         <div className="max-w-3xl mx-auto text-center">

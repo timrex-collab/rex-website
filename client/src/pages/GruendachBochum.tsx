@@ -563,6 +563,29 @@ export default function GruendachBochum() {
         </div>
       </section>
 
+      {/* Verwandte Leistungen */}
+      <section className="py-12 bg-gray-50">
+        <div className="container mx-auto px-4">
+          <h2 className="text-xl font-bold text-gray-900 mb-6">
+            Das könnte Sie auch interessieren
+          </h2>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+            <a href="/flachdach-bochum" className="block p-5 bg-white rounded-xl border border-gray-200 hover:border-primary hover:shadow-md transition-all">
+              <div className="font-semibold text-gray-900 mb-1">Flachdach Abdichtung</div>
+              <div className="text-sm text-gray-500">Professionelle Flachdachabdichtung als Grundlage für Ihr Gründach.</div>
+            </a>
+            <a href="/foerderung" className="block p-5 bg-white rounded-xl border border-gray-200 hover:border-primary hover:shadow-md transition-all">
+              <div className="font-semibold text-gray-900 mb-1">Förderung für Gründach</div>
+              <div className="text-sm text-gray-500">Dachbegrünung wird in vielen Städten gefördert – wir beraten Sie.</div>
+            </a>
+            <a href="/bauklempnerei-bochum" className="block p-5 bg-white rounded-xl border border-gray-200 hover:border-primary hover:shadow-md transition-all">
+              <div className="font-semibold text-gray-900 mb-1">Bauklempnerei & Entwässerung</div>
+              <div className="text-sm text-gray-500">Fachgerechte Entwässerungslösungen für Ihr begrüntes Dach.</div>
+            </a>
+          </div>
+        </div>
+      </section>
+
       <section className="py-16 px-4 bg-slate-900" data-testid="section-cta">
         <div className="max-w-3xl mx-auto text-center">
           <h2 className="text-2xl md:text-3xl font-bold text-white mb-4">
