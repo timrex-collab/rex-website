@@ -1,5 +1,5 @@
 import { Link } from "wouter";
-import { Phone, Mail, Clock } from "lucide-react";
+import { Phone, Mail, Clock, MapPin } from "lucide-react";
 const logoPath = "/images/logo-rex-bedachungs-gmbh-bochum-2025.webp";
 
 export default function Footer() {
@@ -129,6 +129,16 @@ export default function Footer() {
                 Paulinenstr. 22<br />
                 44799 Bochum
               </div>
+              <a
+                href="https://www.google.com/maps/search/?api=1&query=Rex+Bedachungs+GmbH+Paulinenstra%C3%9Fe+22+44799+Bochum"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-sm text-primary hover:underline inline-flex items-center gap-1 mt-1"
+                data-testid="link-footer-anfahrt"
+              >
+                <MapPin className="w-3 h-3" />
+                Anfahrt auf Google Maps
+              </a>
               <div className="pt-3">
                 <a
                   href="https://www.google.com/maps/place/Rex+Bedachungs+GmbH/@51.4623584,7.2428438,519m/data=!3m2!1e3!4b1!4m6!3m5!1s0x47b8e00fdd91a96d:0xb0e424e0f275f1b6!8m2!3d51.4623584!4d7.2428438!16s%2Fg%2F1tfqkgvg"
