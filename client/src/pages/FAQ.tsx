@@ -51,7 +51,7 @@ export default function FAQ() {
           question:
             "Was kostet eine neue Dacheindeckung oder Dachsanierung beim Steildach?",
           answer:
-            "Die Kosten für ein neues Steildach hängen von vielen Faktoren ab – insbesondere von der Dachgröße, der gewählten Eindeckung und eventuellen Dämm-Maßnahmen. Als grobe Orientierung kann man bei einer Neueindeckung mit etwa 80–130 € pro Quadratmeter Dachfläche rechnen; wird zusätzlich eine Wärmedämmung eingebaut, eher 150–250 € pro m², da hier mehr Material und Aufwand nötig sind. Den genauen Preis ermitteln wir jedoch immer durch eine Vor-Ort-Besichtigung und einen detaillierten Kostenvoranschlag, um alle Besonderheiten Ihres Dachs zu berücksichtigen.",
+            "Die Kosten für ein neues Steildach hängen von vielen Faktoren ab – insbesondere von der Dachgröße, der gewählten Eindeckung und eventuellen Dämm-Maßnahmen. Den genauen Preis ermitteln wir durch eine Vor-Ort-Besichtigung und einen detaillierten Kostenvoranschlag. Wir erstellen Ihnen nach kostenloser Besichtigung ein transparentes Angebot.",
         },
         {
           question: "Wie lange dauert eine Dachsanierung bei einem Steildach?",
@@ -140,7 +140,7 @@ export default function FAQ() {
         {
           question: "Was kostet der Einbau eines VELUX-Dachfensters?",
           answer:
-            "Die Kosten für ein VELUX-Dachfenster richten sich nach Modell, Größe und Aufwand. Orientierungsrahmen: Ein einfacher Austausch beginnt ab ca. 1.000 €, ein Standard-Austausch (GGL/GGU/GPU) ab ca. 1.500 €, Premium-/Integra-Modelle ab ca. 1.800 €. Bei Neueinbau ohne vorhandene Öffnung kann der Aufwand höher liegen. Die genauen Kosten ermitteln wir nach kostenlosem Aufmaß vor Ort. Alle Preise sind Orientierungswerte – kein verbindlicher Preis ohne Besichtigung.",
+            "Die Kosten für ein VELUX-Dachfenster richten sich nach Modell, Größe und Aufwand. Bei Neueinbau ohne vorhandene Öffnung kann der Aufwand höher liegen. Die genauen Kosten ermitteln wir nach kostenlosem Aufmaß vor Ort. Wir erstellen Ihnen nach kostenloser Besichtigung ein transparentes Angebot.",
         },
         {
           question:
@@ -174,7 +174,7 @@ export default function FAQ() {
         {
           question: "Was kostet der Austausch einer Dachrinne mit Fallrohren?",
           answer:
-            "Die Kosten für eine Dachrinnenerneuerung hängen vor allem vom gewählten Material und der Gebäudelänge ab. Als groben Richtwert kann man mit ca. 20–40 € pro laufendem Meter Regenrinne inklusive Montage rechnen – Kunststoff-Dachrinnen liegen am unteren Ende, Kupfer-Dachrinnen am oberen. Für ein Einfamilienhaus mit rund 20 m Dachrinne ergibt sich so beispielsweise ein Gesamtpreis von etwa 600–1.200 € (inkl. Montage, Fallrohre und Gerüst). Wir schauen uns Ihr Haus an und machen Ihnen dann ein transparentes Angebot.",
+            "Die Kosten für eine Dachrinnenerneuerung hängen vor allem vom gewählten Material und der Gebäudelänge ab – Preis nach Aufmaß. Wir schauen uns Ihr Haus an und machen Ihnen dann ein transparentes Angebot.",
         },
         {
           question:
@@ -314,7 +314,7 @@ export default function FAQ() {
         {
           question: "Was kostet eine professionelle Dachrinnenreinigung?",
           answer:
-            "Die Kosten sind überschaubar und richten sich meist nach der Länge der Dachrinne. Als Anhaltspunkt verlangen Fachbetriebe oft ca. 2,50 € bis 3,50 € pro laufendem Meter Dachrinne für die Reinigung. Hinzu kommt in der Regel eine Anfahrt- und Aufwandspauschale von ~35–50 €. Für ein typisches Einfamilienhaus mit z.B. 30 m Rinnenlänge können Sie insgesamt ungefähr 100 bis 200 € einplanen. Diese Investition lohnt sich, wenn man bedenkt, dass eine verstopfte Rinne schwere Wasserschäden verursachen könnte. Selbstverständlich erstellen wir Ihnen gern einen festen Preis für Ihr Objekt – oftmals können wir bei regelmäßiger Beauftragung einen Pauschalpreis vereinbaren.",
+            "Die Kosten richten sich nach der Länge der Dachrinne und dem Aufwand – Preis nach Aufmaß. Diese Investition lohnt sich, wenn man bedenkt, dass eine verstopfte Rinne schwere Wasserschäden verursachen könnte. Wir erstellen Ihnen gern einen festen Preis für Ihr Objekt – kostenloses Angebot auf Anfrage.",
         },
         {
           question:
@@ -372,7 +372,7 @@ export default function FAQ() {
                 "name": "Was kostet eine neue Dacheindeckung oder Dachsanierung beim Steildach?",
                 "acceptedAnswer": {
                   "@type": "Answer",
-                  "text": "Bei einer Neueindeckung kann man mit etwa 80–130 € pro Quadratmeter Dachfläche rechnen. Wird zusätzlich eine Wärmedämmung eingebaut, eher 150–250 € pro m². Den genauen Preis ermitteln wir durch eine Vor-Ort-Besichtigung und einen detaillierten Kostenvoranschlag."
+                  "text": "Den genauen Preis ermitteln wir durch eine Vor-Ort-Besichtigung und einen detaillierten Kostenvoranschlag – kostenloses Angebot auf Anfrage."
                 }
               },
               {
@@ -412,7 +412,7 @@ export default function FAQ() {
                 "name": "Was kostet der Einbau eines VELUX-Dachfensters?",
                 "acceptedAnswer": {
                   "@type": "Answer",
-                  "text": "Orientierungsrahmen: Ein einfacher Austausch ab ca. 1.000 €, Standard-Austausch (GGL/GGU/GPU) ab ca. 1.500 €, Premium-/Integra-Modelle ab ca. 1.800 €. Die genauen Kosten ermitteln wir nach kostenlosem Aufmaß vor Ort – kein verbindlicher Preis ohne Besichtigung."
+                  "text": "Die Kosten richten sich nach Modell, Größe und Aufwand. Die genauen Kosten ermitteln wir nach kostenlosem Aufmaß vor Ort – kein verbindlicher Preis ohne Besichtigung."
                 }
               },
               {
@@ -428,7 +428,7 @@ export default function FAQ() {
                 "name": "Was kostet der Austausch einer Dachrinne mit Fallrohren?",
                 "acceptedAnswer": {
                   "@type": "Answer",
-                  "text": "Als groben Richtwert kann man mit ca. 20–40 € pro laufendem Meter Regenrinne inklusive Montage rechnen. Für ein Einfamilienhaus mit rund 20 m Dachrinne ergibt sich so ein Gesamtpreis von etwa 600–1.200 €."
+                  "text": "Die Kosten hängen vom gewählten Material und der Gebäudelänge ab – Preis nach Aufmaß. Wir erstellen Ihnen ein transparentes Angebot nach Vor-Ort-Besichtigung."
                 }
               },
               {

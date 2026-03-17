@@ -124,7 +124,7 @@ const faqItems = [
   {
     question: "Was kostet eine Steildach-Neueindeckung in Bochum?",
     answer:
-      "Die Kosten hängen von Dachgröße, Dachform und gewähltem Material ab. Als Richtwert: 80–180 €/m² für eine Neueindeckung mit Tonziegeln oder Betondachsteinen inklusive Lattung und Unterspannbahn. Wir erstellen kostenlos ein genaues Angebot nach Besichtigung vor Ort.",
+      "Die Kosten hängen von Dachgröße, Dachform und gewähltem Material ab – Preis nach Aufmaß. Wir erstellen kostenlos ein genaues Angebot nach Besichtigung vor Ort.",
   },
   {
     question: "Wie lange hält ein neu eingedecktes Steildach?",
@@ -233,7 +233,7 @@ export default function SteildachBochum() {
       "name": "Was kostet eine Steildach-Neueindeckung in Bochum?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Die Kosten hängen von Dachgröße, Dachform und gewähltem Material ab. Als Richtwert: 80–180 €/m² für eine Neueindeckung mit Tonziegeln oder Betondachsteinen inklusive Lattung und Unterspannbahn. Wir erstellen kostenlos ein genaues Angebot nach Besichtigung vor Ort."
+        "text": "Die Kosten hängen von Dachgröße, Dachform und gewähltem Material ab – Preis nach Aufmaß. Wir erstellen kostenlos ein genaues Angebot nach Besichtigung vor Ort."
       }
     },
     {

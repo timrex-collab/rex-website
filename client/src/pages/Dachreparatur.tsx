@@ -89,7 +89,7 @@ const faqItems = [
   {
     question: "Was kostet eine Dachreparatur in Bochum?",
     answer:
-      "Die Kosten hängen von Art und Umfang des Schadens ab. Kleine Reparaturen beginnen ab ca. 150–300 €, größere Sanierungen je nach Aufwand. Wir erstellen Ihnen kostenlos ein transparentes Angebot nach Besichtigung vor Ort.",
+      "Die Kosten hängen von Art und Umfang des Schadens ab – Preis nach Aufmaß und Schadensumfang. Wir erstellen Ihnen kostenlos ein transparentes Angebot nach Vor-Ort-Diagnose.",
   },
   {
     question: "Wie schnell können Sie einen Sturmschaden reparieren?",

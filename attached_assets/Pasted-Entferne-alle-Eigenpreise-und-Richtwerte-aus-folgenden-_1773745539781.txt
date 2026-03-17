@@ -1,0 +1,66 @@
+Entferne alle Eigenpreise und Richtwerte aus folgenden vier Dateien.
+Keine anderen Änderungen vornehmen.
+
+Regel für alle Ersetzungen:
+- €-Angaben und Richtwerte entfernen
+- Satz sinnvoll umformulieren: 
+  "Angebot nach kostenlosem Aufmaß" oder 
+  "Preis nach Aufmaß und Schadensumfang"
+- Satzstruktur erhalten, nur Preisangabe herausnehmen
+
+---
+
+DATEI 1 – client/src/pages/FlachdachBochum.tsx
+2 Fundstellen mit m²-Preisangaben.
+Suche alle Vorkommen von €/m² oder Preisbereichen 
+(z.B. "40–80 €/m²", "ab ca. ... €") und ersetze den 
+jeweiligen Satz durch eine Formulierung ohne Preisangabe.
+Beispiel:
+  "ab ca. 40–80 €/m²" → "– Preis nach Aufmaß und Dachgröße"
+
+---
+
+DATEI 2 – client/src/pages/SteildachBochum.tsx
+2 Fundstellen mit Richtwerten (z.B. "80–180 €/m²").
+Suche alle Vorkommen und ersetze analog zu Datei 1.
+Beispiel:
+  "80–180 €/m² für eine Neueindeckung" → 
+  "Preis nach Aufmaß – abhängig von Dachgröße, 
+  Dachform und gewähltem Material"
+
+---
+
+DATEI 3 – client/src/pages/Dachreparatur.tsx
+1 Fundstelle ("ab ca. 150–300 €").
+Suche den Satz und ersetze die Preisangabe durch:
+  "Preis nach Aufmaß und Schadensumfang – 
+  kostenloses Angebot nach Vor-Ort-Diagnose"
+
+---
+
+DATEI 4 – client/src/pages/FAQ.tsx
+5 Fundstellen – diverse Preisangaben zu 
+Steildach, Dachfenster, Regenrinne etc.
+Gehe jeden Treffer durch und ersetze die Preisangabe 
+kontextgerecht:
+- Preise für Leistungen → 
+  "Preis nach Aufmaß – kostenloses Angebot auf Anfrage"
+- Preisbereiche in FAQ-Antworten → 
+  Preisangabe entfernen, Antwort mit 
+  "Wir erstellen Ihnen nach kostenloser Besichtigung 
+  ein transparentes Angebot." abschließen
+
+---
+
+Nach allen Änderungen:
+Führe folgenden Check aus:
+  grep -rn "€" client/src/pages/FlachdachBochum.tsx 
+    client/src/pages/SteildachBochum.tsx 
+    client/src/pages/Dachreparatur.tsx 
+    client/src/pages/FAQ.tsx
+
+Erwartetes Ergebnis: keine Treffer mehr in diesen vier Dateien.
+
+Build ausführen (npm run build).
+Zusammenfassung: pro Datei auflisten welche Stellen 
+geändert wurden und das grep-Ergebnis ausgeben.

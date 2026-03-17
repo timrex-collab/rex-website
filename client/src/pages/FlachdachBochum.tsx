@@ -127,7 +127,7 @@ const faqItems = [
   {
     question: "Was kostet eine Flachdachsanierung in Bochum?",
     answer:
-      "Die Kosten hängen von Fläche, Zustand und gewähltem Abdichtungssystem ab. Orientierung: Abdichtung ab ca. 40–80 €/m², Komplettsanierung mit Dämmung ab ca. 80–150 €/m². Wir erstellen Ihnen kostenlos ein genaues Aufmaß und transparentes Angebot.",
+      "Die Kosten hängen von Fläche, Zustand und gewähltem Abdichtungssystem ab – Preis nach Aufmaß und Dachgröße. Wir erstellen Ihnen kostenlos ein genaues Aufmaß und transparentes Angebot.",
   },
   {
     question: "Wie lange hält eine Flachdachabdichtung?",
@@ -152,7 +152,7 @@ const faqItems = [
   {
     question: "Was kostet ein Gründach in Bochum?",
     answer:
-      "Ein extensives Gründach kostet in der Regel 50–100 €/m², ein intensives Gründach 100–200 €/m² – jeweils inklusive Abdichtung, Wurzelschutz und Substrat. Wir erstellen Ihnen kostenlos ein Aufmaß und Angebot.",
+      "Die Kosten hängen von Typ und Umfang ab – Preis nach Aufmaß und Dachgröße, jeweils inklusive Abdichtung, Wurzelschutz und Substrat. Wir erstellen Ihnen kostenlos ein Aufmaß und Angebot.",
   },
   {
     question: "Wird ein Gründach in Bochum gefördert?",
