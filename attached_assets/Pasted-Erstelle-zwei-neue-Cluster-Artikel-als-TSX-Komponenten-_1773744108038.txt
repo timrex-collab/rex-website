@@ -1,0 +1,468 @@
+Erstelle zwei neue Cluster-Artikel als TSX-Komponenten für den 
+Steildach-Cluster. Beide Seiten folgen den etablierten 
+Projektkonventionen.
+
+KONVENTIONEN (für beide Seiten):
+- Vier Schema-Typen: FAQPage + Article + Service + BreadcrumbList
+- BreadcrumbList: 3-stufig (Startseite → Steildach Bochum → [Seite])
+- Pulse-ring CTA: className="pulse-ring cta-pulse" auf primären Buttons
+- Button-Stil: rounded-md, font-semibold
+- Icons: ausschließlich Lucide React (kein Emoji)
+- Sektionsstruktur: alternierend bg-background / bg-muted/40
+- Kein Sticky-Navigation
+- Canonical, og:image, og:title, og:description, Twitter Card im Helmet
+- Interner Link zurück zur Pillar Page /steildach-bochum vorhanden
+- KEINE Kosten, KEINE Preise, KEINE €-Angaben – 
+  weder im sichtbaren Content noch im Schema
+
+---
+
+SEITE 1: /aufsparrendaemmung-bochum
+Datei: client/src/pages/AufsparrendaemmungBochum.tsx
+
+Helmet:
+- title: "Aufsparrendämmung Bochum – Kosten, Ablauf & Förderung | 
+  Rex Bedachung"
+- description: "Aufsparrendämmung in Bochum: Die effektivste 
+  Dämmvariante für Steildächer. GEG-konform, BAFA-förderfähig. 
+  Rex Bedachungs GmbH – Meisterbetrieb seit 1984."
+- canonical: https://www.rex-bedachung.de/aufsparrendaemmung-bochum
+- og:image: https://www.rex-bedachung.de/images/tondach-hero-dachdeckung-bochum.webp
+
+BreadcrumbList (3-stufig):
+Position 1: Startseite → https://www.rex-bedachung.de/
+Position 2: Steildach Bochum → 
+  https://www.rex-bedachung.de/steildach-bochum
+Position 3: Aufsparrendämmung Bochum → 
+  https://www.rex-bedachung.de/aufsparrendaemmung-bochum
+
+Article-Schema:
+- headline: "Aufsparrendämmung Bochum – Ablauf, Vorteile und 
+  Förderung im Überblick"
+- author/publisher: Rex Bedachungs GmbH
+- datePublished: 2026-03-17
+- url: https://www.rex-bedachung.de/aufsparrendaemmung-bochum
+
+Service-Schema:
+- name: "Aufsparrendämmung Bochum"
+- serviceType: "Dachdämmung Steildach"
+- provider: { "@id": "https://www.rex-bedachung.de/#organization" }
+- areaServed: Bochum
+
+FAQPage-Schema mit 5 Fragen (siehe Abschnitt 7).
+
+Seitenstruktur:
+
+1. Hero (bg-gradient from-slate-900 to-slate-800, weißer Text)
+   H1: Aufsparrendämmung Bochum – die effektivste 
+   Dämmung für Ihr Steildach
+   Subtitle: Ohne Wärmeverlust, ohne Kältebrücken, ohne 
+   Raumverlust – die Aufsparrendämmung ist die überlegene 
+   Lösung bei Dachsanierung oder Neueindeckung.
+   Trust-Badge: Meisterbetrieb • GEG-konform • BAFA-förderfähig
+   CTA: Button "Beratung anfragen" (pulse-ring cta-pulse) + 
+   Telefon-Button href="tel:+49234583100"
+
+2. Einleitung (bg-background)
+   H2: Was ist die Aufsparrendämmung?
+   Text: Erklärung des Prinzips – Dämmung wird auf den 
+   Dachsparren verlegt (nicht zwischen ihnen), dadurch 
+   keine Unterbrechung der Dämmebene, keine Kältebrücken, 
+   kein Verlust von Wohnraum im Dachgeschoss.
+   Interner Link: "Alle Steildach-Leistungen im Überblick"
+   → href="/steildach-bochum"
+   Fact-Snippet als <p className="text-sm text-slate-600">:
+   "Die Aufsparrendämmung gilt als technisch überlegenste 
+   Dämmvariante für Steildächer – Rex Bedachungs GmbH führt 
+   sie in Bochum GEG-konform und BAFA-förderfähig aus."
+
+3. Vergleich der Dämmvarianten (bg-muted/40)
+   H2: Aufsparrendämmung vs. andere Varianten
+   3 Cards im Vergleich:
+   Card 1 – Thermometer (hervorgehoben, border-2 border-primary):
+     Titel: Aufsparrendämmung – empfohlen
+     Text: Dämmung über den Sparren. Keine Kältebrücken, 
+     kein Raumverlust, maximale Dämmwirkung. 
+     Ideal bei Neueindeckung oder kompletter Sanierung.
+   Card 2 – Layers:
+     Titel: Zwischensparrendämmung
+     Text: Dämmung zwischen den Sparren. Wirtschaftlich, 
+     aber Kältebrücken an den Sparren unvermeidbar. 
+     Geeignet wenn keine Neueindeckung geplant ist.
+   Card 3 – TrendingDown:
+     Titel: Untersparrendämmung
+     Text: Dämmung unterhalb der Sparren. Reduziert 
+     Raumhöhe im Dachgeschoss. Nur als Ergänzung 
+     zu anderen Varianten empfehlenswert.
+
+4. Vorteile Aufsparrendämmung (bg-background)
+   H2: Warum Aufsparrendämmung die beste Wahl ist
+   Checkliste mit CheckCircle-Icons (8 Punkte):
+   - Vollständig wärmebrückenfreie Dämmebene
+   - Kein Verlust von Wohnfläche oder Raumhöhe
+   - Deutlich bessere Dämmwirkung als Zwischensparrendämmung
+   - GEG-konforme U-Werte problemlos erreichbar
+   - BAFA-Förderung bis zu 20 % möglich
+   - Kombination mit KfW-Kredit möglich
+   - Langlebige Konstruktion ohne Folgeschäden
+   - Ideal kombinierbar mit Neueindeckung
+
+5. Wann lohnt sich die Aufsparrendämmung? (bg-muted/40)
+   H2: Wann ist die Aufsparrendämmung die richtige Wahl?
+   4 Cards (Lucide Icons):
+   Card 1 – Home:
+     Titel: Bei Neueindeckung
+     Text: Die Aufsparrendämmung lohnt sich besonders dann, 
+     wenn das Dach ohnehin neu eingedeckt wird – 
+     die Mehrarbeiten sind gering, der Effekt maximal.
+   Card 2 – Thermometer:
+     Titel: Bei hohen Heizkosten
+     Text: Bis zu 30 % der Heizenergie gehen über ein 
+     ungedämmtes Steildach verloren – 
+     Aufsparrendämmung schließt diese Lücke dauerhaft.
+   Card 3 – AlertTriangle:
+     Titel: Bei GEG-Pflicht
+     Text: Wer sein Steildach neu eindeckt, ist nach GEG 
+     zur Dämmung verpflichtet – 
+     die Aufsparrendämmung erfüllt die Anforderungen optimal.
+   Card 4 – Award:
+     Titel: Bei Dachgeschossausbau
+     Text: Wer das Dachgeschoss ausbauen möchte, 
+     profitiert doppelt – volle Raumhöhe bleibt erhalten, 
+     Wohnkomfort wird maximiert.
+   Info-Box (border-l-4 border-primary bg-primary/5):
+   "Tipp vom Fachbetrieb: Die Aufsparrendämmung in Kombination 
+   mit einer Neueindeckung ist die effizienteste Investition 
+   in Ihr Steildach – Rex Bedachungs GmbH berät Sie 
+   kostenlos vor Ort."
+
+6. Ablauf (bg-background)
+   H2: So läuft die Aufsparrendämmung bei Rex Bedachung ab
+   6 nummerierte Schritte:
+   1. Kostenlose Vor-Ort-Beratung und Dachinspektion
+   2. Bedarfsanalyse und Auswahl der Dämmstärke nach GEG
+   3. Transparentes Angebot nach Aufmaß
+   4. Demontage der bestehenden Eindeckung
+   5. Verlegung der Dämmplatten auf den Sparren
+   6. Neueindeckung mit gewähltem Material
+
+7. FAQ (bg-muted/40)
+   H2: Häufige Fragen zur Aufsparrendämmung in Bochum
+   5 Fragen als Accordion (openFaq-State):
+
+   Q1: Was ist der Unterschied zwischen Aufsparren- 
+   und Zwischensparrendämmung?
+   A1: Bei der Aufsparrendämmung wird die Dämmschicht 
+   vollflächig auf die Sparren gelegt – ohne Unterbrechung, 
+   ohne Kältebrücken. Bei der Zwischensparrendämmung liegt 
+   die Dämmung zwischen den Sparren, die Sparren selbst 
+   bilden Kältebrücken und mindern die Gesamtwirkung.
+
+   Q2: Muss das Dach für die Aufsparrendämmung 
+   komplett neu eingedeckt werden?
+   A2: Ja – die Aufsparrendämmung erfordert die Demontage 
+   der bestehenden Eindeckung. Sie wird daher immer in 
+   Kombination mit einer Neueindeckung durchgeführt. 
+   Das macht sie besonders wirtschaftlich, wenn das 
+   Dach ohnehin saniert werden soll.
+
+   Q3: Wird die Aufsparrendämmung gefördert?
+   A3: Ja – GEG-konforme Aufsparrendämmung ist über 
+   BAFA (BEG Einzelmaßnahme) mit bis zu 20 % förderfähig. 
+   Zusätzlich ist ein KfW-Kredit (Programm 261) möglich. 
+   Rex Bedachung berät kostenlos zur Antragstellung.
+
+   Q4: Verliere ich durch die Aufsparrendämmung 
+   Raumhöhe im Dachgeschoss?
+   A4: Nein – das ist der entscheidende Vorteil gegenüber 
+   der Untersparrendämmung. Die Dämmschicht liegt außen 
+   auf den Sparren, der Innenraum bleibt vollständig erhalten.
+
+   Q5: Wie dick muss die Dämmschicht sein?
+   A5: Die erforderliche Dämmstärke hängt vom U-Wert-Ziel 
+   nach GEG und dem vorhandenen Sparrenquerschnitt ab. 
+   Rex Bedachung ermittelt die optimale Stärke im 
+   Rahmen der kostenlosen Vor-Ort-Beratung.
+
+8. CTA-Sektion (bg-muted/40)
+   H2: Aufsparrendämmung in Bochum – jetzt beraten lassen
+   Text: Wir prüfen vor Ort ob Aufsparrendämmung für 
+   Ihr Dach die richtige Lösung ist – kostenlos, 
+   unverbindlich und ohne Verpflichtung.
+   CTA: Button "Beratung anfragen" (pulse-ring cta-pulse) + 
+   Telefon-Button href="tel:+49234583100"
+
+9. Cluster-Link-Block (bg-slate-50)
+   H2: Weitere Informationen zum Steildach
+   3 Link-Cards:
+   - /steildach-bochum → "Steildach Bochum" / 
+     "Alle Steildach-Leistungen im Überblick"
+   - /steildach-foerderung-bochum → 
+     "Steildach Förderung Bochum" / 
+     "BAFA & KfW für Steildachsanierung erklärt"
+   - /foerderung → "Alle Förderprogramme" / 
+     "BAFA & KfW für alle Dachmaßnahmen"
+
+---
+
+SEITE 2: /steildach-undicht-bochum
+Datei: client/src/pages/SteildachUndichtBochum.tsx
+
+Helmet:
+- title: "Steildach undicht Bochum – Ursachen & Lösung | 
+  Rex Bedachungs GmbH"
+- description: "Steildach undicht in Bochum? Ursachen erkennen, 
+  Schäden richtig einschätzen, dauerhaft abdichten. 
+  Rex Bedachungs GmbH – Meisterbetrieb seit 1984."
+- canonical: https://www.rex-bedachung.de/steildach-undicht-bochum
+- og:image: https://www.rex-bedachung.de/images/tondach-hero-dachdeckung-bochum.webp
+
+BreadcrumbList (3-stufig):
+Position 1: Startseite → https://www.rex-bedachung.de/
+Position 2: Steildach Bochum → 
+  https://www.rex-bedachung.de/steildach-bochum
+Position 3: Steildach undicht Bochum → 
+  https://www.rex-bedachung.de/steildach-undicht-bochum
+
+Article-Schema:
+- headline: "Steildach undicht – Ursachen, Sofortmaßnahmen 
+  und dauerhafte Lösung in Bochum"
+- author/publisher: Rex Bedachungs GmbH
+- datePublished: 2026-03-17
+- url: https://www.rex-bedachung.de/steildach-undicht-bochum
+
+Service-Schema:
+- name: "Dachreparatur undichtes Steildach Bochum"
+- serviceType: "Dachreparatur und Schadensbeseitigung"
+- provider: { "@id": "https://www.rex-bedachung.de/#organization" }
+- areaServed: Bochum
+
+FAQPage-Schema mit 5 Fragen (siehe Abschnitt 7).
+
+Seitenstruktur:
+
+1. Hero (bg-gradient from-slate-900 to-red-950, weißer Text)
+   H1: Steildach undicht in Bochum – 
+   Ursachen erkennen und dauerhaft abdichten
+   Subtitle: Feuchte Flecken, nasse Balken, Schimmel im 
+   Dachgeschoss – Rex Bedachungs GmbH findet die Ursache 
+   und behebt den Schaden dauerhaft.
+   Trust-Badge: Meisterbetrieb • Vor-Ort-Diagnose • Ruhrgebiet
+   CTA: Button "Schaden melden" (pulse-ring cta-pulse) + 
+   Telefon-Button href="tel:+49234583100"
+
+2. Einleitung (bg-background)
+   H2: Undichtes Steildach – warum schnelles Handeln wichtig ist
+   Text: Ein undichtes Dach verursacht Folgeschäden, 
+   die weit über den eigentlichen Eintrittsbereich 
+   hinausgehen – Dachstuhl, Dämmung, Decke und 
+   Wände können betroffen sein. Je länger gewartet wird, 
+   desto größer der Schaden.
+   Interner Link: "Alle Steildach-Leistungen und Informationen"
+   → href="/steildach-bochum"
+   Fact-Snippet als <p className="text-sm text-slate-600">:
+   "Die Rex Bedachungs GmbH bewertet undichte Steildächer 
+   in Bochum und dem Ruhrgebiet vor Ort – 
+   transparente Einschätzung, Reparatur nur wenn nötig, 
+   Neueindeckung nur wenn sinnvoll."
+
+3. Häufige Ursachen (bg-muted/40)
+   H2: Die häufigsten Ursachen für ein undichtes Steildach
+   6 Cards (AlertTriangle-Icon):
+   Card 1:
+     Titel: Defekte oder verrutschte Ziegel
+     Text: Gebrochene, verrutschte oder poröse Ziegel 
+     sind die häufigste Einzelursache. Oft nach Sturm 
+     oder Frost entstanden.
+   Card 2:
+     Titel: Undichte Dachanschlüsse
+     Text: An Gauben, Schornsteinen, Dachfenstern und 
+     Ortgängen können Dichtungen und Bleche mit der 
+     Zeit versagen.
+   Card 3:
+     Titel: Beschädigte Unterspannbahn
+     Text: Die Unterspannbahn schützt als zweite 
+     Abdichtungsebene – Risse oder Fehlstellen 
+     lassen Wasser durch.
+   Card 4:
+     Titel: Moos- und Algenbefall
+     Text: Starker Bewuchs hält dauerhaft Feuchtigkeit 
+     und kann Ziegel durch Frost aufsprengen.
+   Card 5:
+     Titel: Alterung und Materialermüdung
+     Text: Nach 30–40 Jahren sind Ziegel, Lattung und 
+     Unterspannbahn am Ende ihrer Lebensdauer – 
+     eine Inspektion ist dann Pflicht.
+   Card 6:
+     Titel: Sturmschäden
+     Text: Starke Winde können Ziegel abheben, 
+     verschieben oder beschädigen – 
+     nach jedem Sturmereignis prüfen lassen.
+
+4. Schadensbild erkennen (bg-background)
+   H2: So erkennen Sie ein undichtes Steildach
+   Checkliste mit AlertTriangle-Icons in amber:
+   - Feuchte oder dunkle Flecken an Decken oder Wänden
+   - Wasserränder oder Salzausblühungen im Dachgeschoss
+   - Schimmelbildung an Dachbalken oder Wänden
+   - Muffiger Geruch im Dachgeschoss
+   - Sichtbar beschädigte oder fehlende Ziegel
+   - Nasse Dämmung oder Unterspannbahn
+   Info-Box (border-l-4 border-amber-500 bg-amber-50):
+   "Wichtig: Feuchte Flecken innen zeigen den Schaden 
+   oft erst Wochen nach dem eigentlichen Wassereintritt – 
+   die tatsächliche Schadenstelle liegt häufig 
+   mehrere Meter entfernt vom sichtbaren Fleck."
+
+5. Reparatur vs. Neueindeckung (bg-muted/40)
+   H2: Reparatur oder Neueindeckung – was ist sinnvoll?
+   2 Cards nebeneinander:
+   Card 1 – Wrench:
+     Titel: Reparatur sinnvoll wenn...
+     Text als Liste:
+     - Dach jünger als 20 Jahre
+     - Schaden lokal begrenzt (einzelne Ziegel, 
+       ein Anschluss)
+     - Dachstuhl und Lattung in gutem Zustand
+     - Unterspannbahn intakt
+   Card 2 – Home:
+     Titel: Neueindeckung sinnvoll wenn...
+     Text als Liste:
+     - Dach älter als 30–40 Jahre
+     - Mehrere Schadenstellen gleichzeitig
+     - Lattung oder Dachstuhl beschädigt
+     - Gleichzeitig Dämmung geplant (GEG/Förderung)
+   Fact-Snippet:
+   "Rex Bedachungs GmbH empfiehlt nur, was wirklich 
+   notwendig ist – nach kostenloser Vor-Ort-Diagnose 
+   erhalten Sie eine ehrliche Einschätzung."
+
+6. Ablauf Schadensbeseitigung (bg-background)
+   H2: So gehen wir bei einem undichten Steildach vor
+   5 nummerierte Schritte:
+   1. Kostenlose Vor-Ort-Diagnose und Schadensanalyse
+   2. Schriftliche Einschätzung: Reparatur oder Neueindeckung
+   3. Transparentes Angebot nach Aufmaß
+   4. Schadensbeseitigung durch Meisterbetrieb
+   5. Abschlusskontrolle und Dokumentation
+
+7. FAQ (bg-muted/40)
+   H2: Häufige Fragen zum undichten Steildach in Bochum
+   5 Fragen als Accordion (openFaq-State):
+
+   Q1: Was tun wenn das Steildach undicht ist?
+   A1: Zunächst sichtbare Wasserschäden im Innenraum 
+   sichern und dokumentieren. Dann einen Fachbetrieb 
+   zur Diagnose hinzuziehen – die eigentliche 
+   Schadenstelle liegt oft weit entfernt vom 
+   sichtbaren Wassereintritt. Rex Bedachung kommt 
+   zur kostenlosen Vor-Ort-Diagnose.
+
+   Q2: Kann ich ein undichtes Dach selbst reparieren?
+   A2: Kleine Maßnahmen wie das Einsetzen einzelner 
+   Ersatzziegel sind möglich, aber ohne Fachkenntnis 
+   riskant. Die eigentliche Ursache bleibt oft 
+   unerkannt. Bei Dacharbeiten besteht zudem 
+   erhebliche Absturzgefahr – 
+   Fachbetrieb beauftragen ist immer die sicherere Wahl.
+
+   Q3: Übernimmt die Hausratversicherung 
+   Schäden durch ein undichtes Dach?
+   A3: Sturmschäden werden in der Regel von der 
+   Wohngebäudeversicherung übernommen. 
+   Schäden durch normalen Verschleiß sind 
+   typischerweise nicht versichert. 
+   Wir erstellen auf Wunsch eine Schadendokumentation 
+   für Ihre Versicherung.
+
+   Q4: Wie lange dauert die Reparatur eines 
+   undichten Steildachs?
+   A4: Eine lokale Reparatur (einzelne Ziegel, 
+   ein Anschluss) ist oft in einem halben bis 
+   ganzen Arbeitstag erledigt. 
+   Größere Schäden oder Teilsanierungen dauern 
+   entsprechend länger – wir nennen Ihnen den 
+   genauen Zeitrahmen im Angebot.
+
+   Q5: Wie erkenne ich ob mein Steildach 
+   eine Reparatur oder Neueindeckung braucht?
+   A5: Das lässt sich ohne Fachkenntnis kaum 
+   beurteilen – entscheidend sind Alter des Dachs, 
+   Zustand von Lattung und Unterspannbahn sowie 
+   die Anzahl der Schadenstellen. 
+   Rex Bedachung gibt Ihnen nach der 
+   Vor-Ort-Diagnose eine ehrliche Empfehlung.
+
+8. Verweis Dachreparatur (bg-background)
+   H2: Schnelle Hilfe bei Dachschäden in Bochum
+   Text: Für alle akuten Dachschäden – nicht nur am 
+   Steildach – steht Rex Bedachungs GmbH bereit. 
+   Alle Informationen zur Dachreparatur finden Sie hier.
+   Link-Card (volle Breite):
+   - /dachreparatur-bochum → "Dachreparatur Bochum" / 
+     "Schadensbeseitigung an allen Dachformen – 
+     Meisterbetrieb Rex Bedachungs GmbH"
+
+9. CTA-Sektion (bg-muted/40)
+   H2: Steildach undicht? Jetzt Diagnose anfragen.
+   Text: Wir kommen zur kostenlosen Vor-Ort-Diagnose 
+   und geben Ihnen eine ehrliche Einschätzung – 
+   Reparatur nur wenn nötig.
+   CTA: Button "Diagnose anfragen" (pulse-ring cta-pulse) + 
+   Telefon-Button href="tel:+49234583100"
+
+10. Cluster-Link-Block (bg-slate-50)
+    H2: Weitere Informationen zum Steildach
+    3 Link-Cards:
+    - /steildach-bochum → "Steildach Bochum" / 
+      "Alle Steildach-Leistungen im Überblick"
+    - /dachreparatur-bochum → "Dachreparatur Bochum" / 
+      "Schadensbeseitigung an allen Dachformen"
+    - /dachwartung-bochum → "Dachwartung Bochum" / 
+      "Regelmäßige Inspektion verhindert teure Schäden"
+
+---
+
+NACH BEIDEN SEITEN:
+
+1. App.tsx: Beide Komponenten importieren und Routen registrieren:
+   import AufsparrendaemmungBochum from 
+     "@/pages/AufsparrendaemmungBochum";
+   import SteildachUndichtBochum from 
+     "@/pages/SteildachUndichtBochum";
+   <Route path="/aufsparrendaemmung-bochum" 
+     component={AufsparrendaemmungBochum} />
+   <Route path="/steildach-undicht-bochum" 
+     component={SteildachUndichtBochum} />
+
+2. sitemap.xml: Beide URLs ergänzen:
+   <url>
+     <loc>https://www.rex-bedachung.de/aufsparrendaemmung-bochum</loc>
+     <lastmod>2026-03-17</lastmod>
+     <priority>0.7</priority>
+   </url>
+   <url>
+     <loc>https://www.rex-bedachung.de/steildach-undicht-bochum</loc>
+     <lastmod>2026-03-17</lastmod>
+     <priority>0.7</priority>
+   </url>
+
+3. SteildachBochum.tsx: Im section-cluster-links-Block prüfen 
+   ob Links zu /aufsparrendaemmung-bochum und 
+   /steildach-undicht-bochum bereits vorhanden sind – 
+   falls nicht ergänzen:
+   - /aufsparrendaemmung-bochum → 
+     "Aufsparrendämmung Bochum" / 
+     "Die effektivste Dämmvariante – Ablauf und Förderung"
+   - /steildach-undicht-bochum → 
+     "Steildach undicht – was tun?" / 
+     "Ursachen erkennen und Schaden dauerhaft beheben"
+
+4. llms.txt: Beide neuen Seiten mit Kurzbeschreibung eintragen.
+
+5. Build ausführen (npm run build) – muss fehlerfrei durchlaufen.
+
+6. Zusammenfassung: Welche Dateien erstellt/geändert wurden, 
+   Routen registriert, Sitemap aktualisiert, 
+   bestätigen dass keine Preis- oder Kostenangaben 
+   enthalten sind.
