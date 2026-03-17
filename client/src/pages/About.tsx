@@ -122,6 +122,54 @@ export default function About() {
               })}
             </div>
           </div>
+
+          <div className="mt-20">
+            <h2 className="text-3xl md:text-4xl font-bold mb-6 text-center">
+              Unsere Fachgebiete
+            </h2>
+            <p className="text-center text-lg text-muted-foreground mb-12 max-w-2xl mx-auto">
+              Als Dachdecker-Meisterbetrieb aus Bochum decken wir das gesamte
+              Spektrum des modernen Dachdeckerhandwerks ab – von klassischen
+              Steildächern bis zur energetischen Sanierung nach GEG.
+            </p>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+              <div className="bg-slate-50 rounded-md p-6">
+                <h3 className="font-semibold text-lg mb-4">Steildach & Eindeckung</h3>
+                <ul className="space-y-2 text-muted-foreground">
+                  <li>Neueindeckung mit Ton- und Betonziegeln</li>
+                  <li>Schieferdeckung und Metalleindeckung</li>
+                  <li>Aufsparrendämmung nach GEG</li>
+                  <li>Gaube und Dachaufbau</li>
+                  <li>Sanierung und Teilreparatur</li>
+                </ul>
+              </div>
+              <div className="bg-slate-50 rounded-md p-6">
+                <h3 className="font-semibold text-lg mb-4">Flachdach & Abdichtung</h3>
+                <ul className="space-y-2 text-muted-foreground">
+                  <li>EPDM-Folienabdichtung</li>
+                  <li>Bitumenbahnen nach DIN 18531</li>
+                  <li>Gründach und Dachbegrünung</li>
+                  <li>Gefälledämmung und Wärmedämmung</li>
+                  <li>Lichtkuppeln und Dachdurchdringungen</li>
+                </ul>
+              </div>
+              <div className="bg-slate-50 rounded-md p-6">
+                <h3 className="font-semibold text-lg mb-4">Spezialbereiche</h3>
+                <ul className="space-y-2 text-muted-foreground">
+                  <li>VELUX-Dachfenster (zertifizierter Partner)</li>
+                  <li>Bauklempnerei und Blecharbeiten</li>
+                  <li>Asbestentsorgung nach TRGS 519</li>
+                  <li>BAFA & KfW Förderberatung</li>
+                  <li>Dachwartung und Wartungsverträge</li>
+                </ul>
+              </div>
+            </div>
+            <p className="text-sm text-slate-600 text-center mt-8">
+              Die Rex Bedachungs GmbH ist seit 1984 Meisterbetrieb in Bochum und
+              führt alle Dacharbeiten nach den aktuellen Normen DIN 18531 und
+              TRGS 519 sowie den Anforderungen des Gebäudeenergiegesetzes (GEG) aus.
+            </p>
+          </div>
         </div>
       </section>
     </>
