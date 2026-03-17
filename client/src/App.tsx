@@ -31,6 +31,8 @@ const DachwartungBochum = lazy(() => import("@/pages/DachwartungBochum"));
 const VeluxAustausch = lazy(() => import("@/pages/VeluxAustausch"));
 const VeluxRolllaeden = lazy(() => import("@/pages/VeluxRolllaeden"));
 const GruendachBochum = lazy(() => import("@/pages/GruendachBochum"));
+const SteildachFoerderungBochum = lazy(() => import("@/pages/SteildachFoerderungBochum"));
+const DachgaubeBochum = lazy(() => import("@/pages/DachgaubeBochum"));
 
 function Router() {
   return (
@@ -57,6 +59,8 @@ function Router() {
       <Route path="/velux-dachfenster-austausch-bochum" component={VeluxAustausch} />
       <Route path="/velux-dachfenster-rolllaeden-bochum" component={VeluxRolllaeden} />
       <Route path="/gruendach-dachbegrunung-bochum" component={GruendachBochum} />
+      <Route path="/steildach-foerderung-bochum" component={SteildachFoerderungBochum} />
+      <Route path="/dachgaube-bochum" component={DachgaubeBochum} />
       <Route component={NotFound} />
     </Switch>
   );

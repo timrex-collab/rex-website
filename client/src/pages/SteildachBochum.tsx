@@ -744,6 +744,14 @@ export default function SteildachBochum() {
               <div className="font-semibold text-gray-900 mb-1">Dachziegel Bochum</div>
               <div className="text-sm text-gray-500">Tonziegel, Betondachsteine und Schiefer – Materialvergleich und Beratung.</div>
             </a>
+            <a href="/steildach-foerderung-bochum" className="block p-5 bg-white rounded-xl border border-gray-200 hover:border-primary hover:shadow-md transition-all">
+              <div className="font-semibold text-gray-900 mb-1">Steildach Förderung Bochum</div>
+              <div className="text-sm text-gray-500">BAFA &amp; KfW für Steildachsanierung – was ist förderfähig?</div>
+            </a>
+            <a href="/dachgaube-bochum" className="block p-5 bg-white rounded-xl border border-gray-200 hover:border-primary hover:shadow-md transition-all">
+              <div className="font-semibold text-gray-900 mb-1">Dachgaube Bochum</div>
+              <div className="text-sm text-gray-500">Schleppgaube, Spitzgaube, Kastengaube – Einbau vom Meisterbetrieb.</div>
+            </a>
           </div>
         </div>
       </section>
