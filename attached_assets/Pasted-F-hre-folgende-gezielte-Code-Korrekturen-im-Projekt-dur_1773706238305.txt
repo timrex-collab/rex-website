@@ -1,0 +1,95 @@
+Führe folgende gezielte Code-Korrekturen im Projekt durch. Keine neuen Features, keine Umstrukturierungen – nur die beschriebenen Fixes exakt umsetzen.
+
+---
+
+FIX 1 – GruendachBochum.tsx: Domain-Inkonsistenz in OG/Twitter-Meta-Tags
+Datei: client/src/pages/GruendachBochum.tsx
+Problem: OG-Image und Twitter-Image verwenden https://rex-bedachung.de/ (ohne www).
+Aktion: Ersetze in den Meta-Tags (ca. Zeile 251 und 264) alle Vorkommen von:
+  https://rex-bedachung.de/images/
+durch:
+  https://www.rex-bedachung.de/images/
+Nur in den og:image und twitter:image Meta-Tags ändern, nirgendwo sonst.
+
+---
+
+FIX 2 – Dachreparatur.tsx: "Notdienst" aus JSON-LD Schema entfernen
+Datei: client/src/pages/Dachreparatur.tsx
+Problem: Im schemaJson-Objekt (ca. Zeile 177) steht der Service-Name "Dachreparatur und Notdienst" – Notdienst wird nicht angeboten.
+Aktion: Ändere den name-Wert im Schema-Objekt von:
+  "Dachreparatur und Notdienst"
+zu:
+  "Dachreparatur Bochum"
+Nur dieser eine String im JSON-LD-Schema, kein sichtbarer Content ändern.
+
+---
+
+FIX 3 – VeluxRolllaeden.tsx: "Festpreisangebot" komplett ersetzen
+Datei: client/src/pages/VeluxRolllaeden.tsx
+Problem: Die Formulierung "verbindliches Festpreisangebot" erscheint mehrfach (ca. Zeilen 64, 73, 100, 369, 426) – sowohl im sichtbaren Content als auch im JSON-LD. Kein Festpreis ohne Aufmaß möglich.
+Aktion: Ersetze alle Vorkommen von:
+  "verbindliches Festpreisangebot"
+durch:
+  "Angebot nach kostenlosem Aufmaß"
+Und alle Vorkommen von:
+  "Festpreisangebot"
+durch:
+  "transparentes Angebot"
+(Falls "verbindliches Festpreisangebot" bereits die vollständige Phrase ist, reicht der erste Ersatz.)
+Gilt für sichtbaren Text UND JSON-LD-Schema.
+
+---
+
+FIX 4 – SteildachBochum.tsx: Title-Tag vervollständigen
+Datei: client/src/pages/SteildachBochum.tsx
+Problem: Title endet auf "| Rex" statt einheitlich "| Rex Bedachung".
+Aktion: Ändere den <title>-Tag (ca. Zeile 183) von:
+  Steildach Bochum – Sanierung & Dämmung | Rex
+zu:
+  Steildach Bochum – Sanierung & Dämmung | Rex Bedachung
+
+---
+
+FIX 5 – DachwartungBochum.tsx: Unternehmensname in Title-Tag ergänzen
+Datei: client/src/pages/DachwartungBochum.tsx
+Problem: Title-Tag enthält keinen Unternehmensnamen.
+Aktion: Ändere den <title>-Tag (ca. Zeile 160) von:
+  Dachwartung Bochum – Inspektion & Wartungsvertrag
+zu:
+  Dachwartung Bochum – Inspektion & Wartungsvertrag | Rex Bedachung
+
+---
+
+FIX 6 – Danke.tsx: Canonical durch noindex ersetzen
+Datei: client/src/pages/Danke.tsx
+Problem: Die Seite /danke ist per robots.txt disallowed, hat aber einen Canonical-Tag – der ist wirkungslos.
+Aktion: Ersetze den Canonical-Tag (ca. Zeile 14):
+  <link rel="canonical" href="https://www.rex-bedachung.de/danke" />
+durch:
+  <meta name="robots" content="noindex, nofollow" />
+
+---
+
+FIX 7 – robots.txt: llms.txt-Eintrag aktivieren
+Datei: client/public/robots.txt
+Problem: Der llms.txt-Hinweis ist auskommentiert.
+Aktion: Finde die Zeile:
+  # llms.txt: https://www.rex-bedachung.de/llms.txt
+Ersetze sie durch:
+  llms.txt: https://www.rex-bedachung.de/llms.txt
+
+---
+
+FIX 8 – examples/ServiceCard.tsx: Defekten Link korrigieren
+Datei: client/src/components/examples/ServiceCard.tsx
+Problem: Link href="/leistungen/steildach" führt auf eine nicht existierende Route.
+Aktion: Prüfe zunächst, ob diese Komponente irgendwo in App.tsx oder einer anderen Seite eingebunden ist.
+- Falls NICHT eingebunden: Lösche die Datei client/src/components/examples/ServiceCard.tsx
+- Falls doch eingebunden: Ersetze href="/leistungen/steildach" durch href="/steildach-bochum"
+
+---
+
+Nach allen Fixes:
+- Führe einen Build aus (npm run build) und stelle sicher, dass keine Fehler auftreten
+- Kein Deployment, kein weiterer Umbau
+- Gib eine kurze Zusammenfassung aus, welche Dateien geändert wurden
