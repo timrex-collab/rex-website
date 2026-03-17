@@ -1,0 +1,62 @@
+Führe eine vollständige Prüfung von sitemap.xml und llms.txt durch.
+Keine Änderungen vornehmen – erst prüfen, dann Bericht ausgeben,
+dann auf Anweisung korrigieren.
+
+---
+
+PRÜFUNG 1 – client/public/sitemap.xml
+
+Lies die gesamte Datei und prüfe jeden Eintrag auf folgende Punkte:
+
+1. Vollständigkeit – sind alle aktiven Routen aus App.tsx enthalten?
+   Vergleiche jeden <Route path="..."> Eintrag in App.tsx mit 
+   den URLs in der Sitemap. Fehlende URLs melden.
+
+2. Keine unerwünschten URLs – sind URLs enthalten die 
+   NICHT in der Sitemap sein sollten?
+   Folgende URLs dürfen NICHT in der Sitemap stehen:
+   - /danke (noindex-Seite)
+   - /impressum
+   - /datenschutz
+   - /not-found oder 404-Seiten
+   - Jede URL mit noindex-Meta-Tag
+   Falls solche URLs vorhanden sind, melden.
+
+3. Domain-Konsistenz – alle URLs müssen mit 
+   https://www.rex-bedachung.de/ beginnen (mit www).
+   URLs ohne www melden.
+
+4. Prioritäten-Logik – prüfe ob die priority-Werte 
+   der Seitenrelevanz entsprechen:
+   - Startseite /: 1.0
+   - Pillar Pages (Hauptleistungsseiten): 0.9
+   - Cluster-Artikel und Infoseiten: 0.7–0.8
+   - Sonstige (Karriere, Referenzen etc.): 0.5–0.6
+   Abweichungen melden.
+
+5. lastmod-Werte – prüfe ob alle Einträge einen 
+   lastmod-Wert haben und ob das Format korrekt ist (YYYY-MM-DD).
+   Fehlende oder falsch formatierte Werte melden.
+
+6. changefreq – falls vorhanden, auf Plausibilität prüfen.
+   Falls komplett fehlend, als Hinweis melden (nicht kritisch).
+
+---
+
+PRÜFUNG 2 – client/public/llms.txt
+
+Lies die gesamte Datei und prüfe auf folgende Punkte:
+
+1. Vollständigkeit – sind alle SEO-relevanten Seiten eingetragen?
+   Pflichteinträge (müssen vorhanden sein):
+   - Startseite /
+   - Alle Pillar Pages
+   - Alle Cluster-Artikel (Velux, Flachdach/Gründach, Steildach)
+   - /foerderung, /solarpflicht, /faq, /lexikon
+   - /dachwartung-bochum, /dachreparatur-bochum
+   - /bauklempnerei-bochum, /dachfenster-bochum
+   Fehlende Einträge melden.
+
+2. Format-Konsistenz – prüfe ob alle Einträge 
+   dasselbe Format verwenden:
+   Erwartetes Format p
