@@ -163,7 +163,7 @@ const schemaJson = JSON.stringify({
       "postalCode": "44799",
       "addressCountry": "DE",
     },
-    "telephone": "+49-234-583100",
+    "telephone": "+49 234 583100",
   },
   "areaServed": ["Bochum", "Herne", "Castrop-Rauxel", "Witten", "Hattingen", "Gelsenkirchen", "Ruhrgebiet"],
   "description": "Steildach Neueindeckung und Sanierung in Bochum – Satteldach, Walmdach, Pultdach, Dämmung und Klempnerarbeiten. Meisterbetrieb mit 40+ Jahren Erfahrung im Ruhrgebiet.",
@@ -223,6 +223,96 @@ export default function SteildachBochum() {
     "sameAs": "https://www.wikidata.org/wiki/Q2103"
   },
   "serviceType": "Steildachsanierung"
+}`}</script>
+        <script type="application/ld+json">{`{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Was kostet eine Steildach-Neueindeckung in Bochum?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Die Kosten hängen von Dachgröße, Dachform und gewähltem Material ab. Als Richtwert: 80–180 €/m² für eine Neueindeckung mit Tonziegeln oder Betondachsteinen inklusive Lattung und Unterspannbahn. Wir erstellen kostenlos ein genaues Angebot nach Besichtigung vor Ort."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Wie lange hält ein neu eingedecktes Steildach?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Tonziegel halten 60–100 Jahre, Betondachsteine 30–50 Jahre, Naturschiefer über 100 Jahre – vorausgesetzt Lattung, Unterspannbahn und Dachanschlüsse sind fachgerecht ausgeführt."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Wird die Steildach-Sanierung gefördert?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Ja – bei energetischer Sanierung mit Dämmung gibt es BAFA-Zuschüsse bis 20% und günstige KfW-Kredite. Rex Bedachung berät kostenlos zu allen aktuellen Fördermöglichkeiten."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Wie lange dauert eine Steildach-Neueindeckung?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Ein durchschnittliches Einfamilienhaus (ca. 150 m² Dachfläche) ist in 3–5 Arbeitstagen neu eingedeckt – abhängig von Dachform, Komplexität und Wetterlage."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Sanieren Sie auch den Dachstuhl?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Ja. Vor jeder Neueindeckung prüfen wir den Dachstuhl auf Schäden und Standfestigkeit. Balken, Pfetten und Sparren reparieren oder ersetzen wir wenn nötig – alles aus einer Hand."
+      }
+    }
+  ]
+}`}</script>
+        <script type="application/ld+json">{`{
+  "@context": "https://schema.org",
+  "@type": "HowTo",
+  "name": "Steildach sanieren lassen – Ablauf bei Rex Bedachungs GmbH",
+  "description": "In 6 Schritten zur neuen Steildacheindeckung in Bochum – vom ersten Kontakt bis zur Gewährleistung.",
+  "step": [
+    {
+      "@type": "HowToStep",
+      "position": 1,
+      "name": "Kostenlose Vor-Ort-Besichtigung",
+      "text": "Wir kommen zu Ihnen und begutachten den aktuellen Zustand des Dachs – kostenlos und unverbindlich."
+    },
+    {
+      "@type": "HowToStep",
+      "position": 2,
+      "name": "Detaillierte Planung und transparentes Angebot",
+      "text": "Sie erhalten ein schriftliches Angebot mit allen Leistungen und Materialien – keine versteckten Kosten."
+    },
+    {
+      "@type": "HowToStep",
+      "position": 3,
+      "name": "Professionelle Ausführung durch Meisterbetrieb",
+      "text": "Unsere erfahrenen Dachdecker führen alle Arbeiten fachgerecht nach DIN-Norm aus."
+    },
+    {
+      "@type": "HowToStep",
+      "position": 4,
+      "name": "Abschlusskontrolle und Übergabe",
+      "text": "Nach Fertigstellung prüfen wir gemeinsam mit Ihnen das Ergebnis und übergeben alle Unterlagen."
+    },
+    {
+      "@type": "HowToStep",
+      "position": 5,
+      "name": "Dokumentation und Gewährleistung",
+      "text": "Sie erhalten vollständige Dokumentation aller verbauten Materialien sowie unsere Gewährleistung."
+    },
+    {
+      "@type": "HowToStep",
+      "position": 6,
+      "name": "Optional: Wartungsvertrag abschließen",
+      "text": "Mit einem Wartungsvertrag sichern Sie die Langlebigkeit Ihres neuen Dachs dauerhaft ab."
+    }
+  ]
 }`}</script>
       </Helmet>
       <Breadcrumb items={[
@@ -284,6 +374,56 @@ export default function SteildachBochum() {
           </p>
         </div>
       </section>
+      {/* Preise */}
+      <section className="py-12 px-4 bg-muted/40" data-testid="section-preise">
+        <div className="max-w-4xl mx-auto">
+          <h2 className="text-2xl md:text-3xl font-bold text-center mb-8 text-foreground">
+            Steildach Kosten Bochum – Richtwerte
+          </h2>
+          <div className="overflow-x-auto">
+            <table className="w-full text-sm border-collapse">
+              <thead>
+                <tr className="bg-primary text-primary-foreground">
+                  <th className="text-left px-4 py-3 rounded-tl-md">Maßnahme</th>
+                  <th className="text-left px-4 py-3">Richtwert</th>
+                  <th className="text-left px-4 py-3 rounded-tr-md">Hinweis</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr className="border-b border-border bg-card">
+                  <td className="px-4 py-3 font-medium">Neueindeckung Tonziegel</td>
+                  <td className="px-4 py-3">80 – 130 €/m²</td>
+                  <td className="px-4 py-3 text-muted-foreground">inkl. Lattung &amp; Unterspannbahn</td>
+                </tr>
+                <tr className="border-b border-border bg-muted/30">
+                  <td className="px-4 py-3 font-medium">Neueindeckung Betondachstein</td>
+                  <td className="px-4 py-3">70 – 110 €/m²</td>
+                  <td className="px-4 py-3 text-muted-foreground">inkl. Lattung &amp; Unterspannbahn</td>
+                </tr>
+                <tr className="border-b border-border bg-card">
+                  <td className="px-4 py-3 font-medium">Aufsparrendämmung</td>
+                  <td className="px-4 py-3">80 – 150 €/m²</td>
+                  <td className="px-4 py-3 text-muted-foreground">abhängig von Dämmstärke nach GEG</td>
+                </tr>
+                <tr className="border-b border-border bg-muted/30">
+                  <td className="px-4 py-3 font-medium">Zwischensparrendämmung</td>
+                  <td className="px-4 py-3">40 – 80 €/m²</td>
+                  <td className="px-4 py-3 text-muted-foreground">ohne Neueindeckung</td>
+                </tr>
+                <tr className="bg-card">
+                  <td className="px-4 py-3 font-medium">Teilreparatur / Ziegel tauschen</td>
+                  <td className="px-4 py-3">ab 300 €</td>
+                  <td className="px-4 py-3 text-muted-foreground">je nach Schadensumfang</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <p className="text-xs text-muted-foreground text-center mt-4">
+            Alle Preise sind Richtwerte inkl. MwSt. – der tatsächliche Preis hängt von
+            Dachgröße, Dachform und Materialwahl ab. Kostenloses Angebot nach Vor-Ort-Besichtigung.
+          </p>
+        </div>
+      </section>
       {/* Leistungskarten */}
       <section className="py-16 px-4 bg-muted/40" data-testid="section-leistungen">
         <div className="max-w-7xl mx-auto">
@@ -303,6 +443,41 @@ export default function SteildachBochum() {
               </Card>
             ))}
           </div>
+        </div>
+      </section>
+      {/* Wann ist Sanierung nötig? */}
+      <section className="py-16 px-4 bg-background" data-testid="section-wann-sanierung">
+        <div className="max-w-4xl mx-auto">
+          <h2 className="text-2xl md:text-3xl font-bold text-center mb-4 text-foreground">
+            Wann braucht Ihr Steildach eine Sanierung?
+          </h2>
+          <p className="text-muted-foreground text-center mb-10 max-w-2xl mx-auto">
+            Diese Warnsignale sollten Sie nicht ignorieren – früh erkannt,
+            günstig behoben.
+          </p>
+          <div className="grid sm:grid-cols-2 gap-4">
+            {[
+              { signal: "Dach ist älter als 30 Jahre", detail: "Ab diesem Alter sind Ziegel, Lattung und Unterspannbahn verschlissen – eine Inspektion ist Pflicht." },
+              { signal: "Feuchte Flecken an der Decke", detail: "Eindringendes Wasser zeigt sich oft erst Wochen nach dem eigentlichen Schaden – sofort prüfen lassen." },
+              { signal: "Defekte oder verrutschte Ziegel", detail: "Einzelne Schäden können schnell größere Wasserschäden am Dachstuhl verursachen." },
+              { signal: "Moos- und Algenbefall", detail: "Starker Bewuchs hält Feuchtigkeit und kann Ziegel aufsprengen – besonders bei Frost." },
+              { signal: "Hohe Heizkosten trotz Heizungstausch", detail: "Bis zu 30 % der Wärme entweichen über ein ungedämmtes Dach – Dämmung zahlt sich schnell aus." },
+              { signal: "Schimmel im Dachgeschoss", detail: "Häufig ein Zeichen für fehlende oder beschädigte Dampfbremse – Fachbetrieb einschalten." },
+            ].map((item, i) => (
+              <div key={i} className="flex items-start gap-3 p-4 bg-slate-50 rounded-md border border-border">
+                <AlertTriangle className="w-5 h-5 text-amber-500 shrink-0 mt-0.5" aria-hidden="true" />
+                <div>
+                  <p className="font-semibold text-foreground text-sm">{item.signal}</p>
+                  <p className="text-muted-foreground text-sm mt-1">{item.detail}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+          <p className="text-sm text-slate-600 text-center mt-8">
+            Die Rex Bedachungs GmbH inspiziert Ihr Steildach in Bochum kostenlos
+            und gibt eine ehrliche Einschätzung – Sanierung nur wenn nötig,
+            Reparatur wenn ausreichend.
+          </p>
         </div>
       </section>
       {/* Energetische Dachsanierung */}
@@ -547,24 +722,27 @@ export default function SteildachBochum() {
           </p>
         </div>
       </section>
-      {/* Verwandte Leistungen */}
-      <section className="py-12 bg-gray-50">
-        <div className="container mx-auto px-4">
-          <h2 className="text-xl font-bold text-gray-900 mb-6">
-            Das könnte Sie auch interessieren
+      {/* Cluster-Links */}
+      <section className="py-12 px-4 bg-slate-50" data-testid="section-cluster-links">
+        <div className="max-w-7xl mx-auto">
+          <h2 className="text-xl font-bold text-gray-900 mb-2">
+            Steildach – alles Wichtige im Überblick
           </h2>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-            <a href="/foerderung" className="block p-5 bg-white rounded-xl border border-gray-200 hover:border-primary hover:shadow-md transition-all">
-              <div className="font-semibold text-gray-900 mb-1">BAFA & KfW Förderung</div>
-              <div className="text-sm text-gray-500">Bis zu 20% Zuschuss für Ihre Dachsanierung – wir beraten Sie kostenlos.</div>
+          <p className="text-sm text-gray-500 mb-6">
+            Vertiefende Informationen zu einzelnen Themen rund ums Steildach:
+          </p>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8">
+            <a href="/steildach-kosten-bochum" className="block p-5 bg-white rounded-xl border border-gray-200 hover:border-primary hover:shadow-md transition-all">
+              <div className="font-semibold text-gray-900 mb-1">Steildach Kosten Bochum</div>
+              <div className="text-sm text-gray-500">Preise für Neueindeckung, Dämmung und Sanierung – transparente Richtwerte.</div>
             </a>
-            <a href="/bauklempnerei-bochum" className="block p-5 bg-white rounded-xl border border-gray-200 hover:border-primary hover:shadow-md transition-all">
-              <div className="font-semibold text-gray-900 mb-1">Bauklempnerei & Dachrinnen</div>
-              <div className="text-sm text-gray-500">Dachrinnen, Fallrohre und Blecharbeiten aus einer Hand.</div>
+            <a href="/aufsparrendaemmung-bochum" className="block p-5 bg-white rounded-xl border border-gray-200 hover:border-primary hover:shadow-md transition-all">
+              <div className="font-semibold text-gray-900 mb-1">Aufsparrendämmung Bochum</div>
+              <div className="text-sm text-gray-500">Die effektivste Dämmvariante – Kosten, Ablauf und Förderung erklärt.</div>
             </a>
-            <a href="/dachreparatur-bochum" className="block p-5 bg-white rounded-xl border border-gray-200 hover:border-primary hover:shadow-md transition-all">
-              <div className="font-semibold text-gray-900 mb-1">Dachreparatur Bochum</div>
-              <div className="text-sm text-gray-500">Schnelle Hilfe bei Sturmschäden, undichten Stellen und defekten Ziegeln.</div>
+            <a href="/dachziegel-bochum" className="block p-5 bg-white rounded-xl border border-gray-200 hover:border-primary hover:shadow-md transition-all">
+              <div className="font-semibold text-gray-900 mb-1">Dachziegel Bochum</div>
+              <div className="text-sm text-gray-500">Tonziegel, Betondachsteine und Schiefer – Materialvergleich und Beratung.</div>
             </a>
           </div>
         </div>
