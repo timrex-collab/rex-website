@@ -1,0 +1,97 @@
+Ergänze fehlende alt-Attribute bei <img>-Tags. Jede Änderung ist 
+exakt lokalisiert. Kein anderer Code wird angefasst.
+
+Regel für alle Alt-Texte:
+- Beschreibend, keyword-relevant, auf Deutsch
+- Format: "[Was zu sehen ist] – Rex Bedachungs GmbH Bochum"
+- Maximal 100 Zeichen
+
+---
+
+FIX 1 – client/src/pages/About.tsx, Zeile 94
+Kontext: Über-uns-Seite, vermutlich Team- oder Firmengebäude-Foto
+Alt-Text: alt="Team Rex Bedachungs GmbH – Dachdecker Meisterbetrieb Bochum seit 1984"
+
+---
+
+FIX 2 – client/src/pages/DachfensterBochum.tsx, Zeile 302
+Kontext: Dachfenster-Landingpage, vermutlich VELUX-Fenster oder Einbausituation
+Alt-Text: alt="Dachfenster Einbau Bochum – VELUX Partner Rex Bedachungs GmbH"
+
+---
+
+FIX 3 – client/src/pages/FlachdachBochum.tsx, Zeile 541
+Kontext: Flachdach-Pillarpage, vermutlich Flachdach-Aufbau oder Abdichtung
+Alt-Text: alt="Flachdach Abdichtung Bochum – Fachbetrieb Rex Bedachungs GmbH"
+
+---
+
+FIX 4 – client/src/pages/Dachreparatur.tsx, Zeile 375
+Kontext: Dachreparatur-Seite, vermutlich Schadensbild oder Reparaturarbeit
+Alt-Text: alt="Dachreparatur Bochum – Schnelle Schadensbeseitigung Rex Bedachungs GmbH"
+
+---
+
+FIX 5 – client/src/pages/SteildachBochum.tsx, Zeile 237
+Kontext: Steildach-Seite, vermutlich Ziegeldach oder Sanierungsarbeit
+Alt-Text: alt="Steildach Sanierung Bochum – Neueindeckung Rex Bedachungs GmbH"
+
+---
+
+FIX 6 – client/src/pages/SteildachBochum.tsx, Zeile 488
+Kontext: Steildach-Seite, zweites Bild – vermutlich Dämmung oder Detailaufnahme
+Alt-Text: alt="Steildach Dämmung Bochum – Aufsparrendämmung Rex Bedachungs GmbH"
+
+---
+
+FIX 7 – client/src/components/ReferenceCard.tsx, Zeile 71
+Kontext: Referenz-Karte, Projektfoto eines abgeschlossenen Auftrags
+Alt-Text: Hier keinen statischen Alt-Text setzen – stattdessen den 
+Alt-Text dynamisch aus den Props ziehen:
+  alt={reference.altText || reference.title || "Referenzprojekt Rex Bedachungs GmbH Bochum"}
+Falls keine altText-Prop existiert, verwende:
+  alt={reference.title || "Referenzprojekt Rex Bedachungs GmbH Bochum"}
+
+---
+
+FIX 8 – client/src/components/ReferenceCard.tsx, Zeile 116
+Kontext: Zweites Bild in der Referenz-Karte (ggf. Vorher/Nachher)
+Gleiche Logik wie FIX 7:
+  alt={reference.altText || reference.title || "Referenzprojekt Rex Bedachungs GmbH Bochum"}
+
+---
+
+FIX 9 – client/src/components/ServiceCard.tsx, Zeile 28
+Kontext: Service-Karte, Icon oder Leistungsbild
+Alt-Text dynamisch aus Props:
+  alt={service.altText || service.title || "Leistung Rex Bedachungs GmbH Bochum"}
+
+---
+
+FIX 10 – client/src/components/Hero.tsx, Zeile 26
+Kontext: Hero-Bild auf der Startseite, prominentestes Bild der Website
+Alt-Text: alt="Dachdecker Bochum – Rex Bedachungs GmbH Meisterbetrieb seit 1984"
+
+---
+
+FIX 11 – client/src/components/Navigation.tsx, Zeile 43
+Kontext: Logo in der Navigation
+Alt-Text: alt="Rex Bedachungs GmbH – Dachdecker Meisterbetrieb Bochum"
+
+---
+
+FIX 12 – client/src/components/Footer.tsx, Zeile 150
+Kontext: Logo oder Bild im Footer
+Alt-Text: alt="Rex Bedachungs GmbH Bochum – Ihr Dachdecker seit 1984"
+
+---
+
+Wichtige Hinweise für den Agent:
+- Schaue dir jeden img-Tag vor der Änderung kurz an
+- Falls der Kontext des Bildes klar vom Dateinamen oder src-Pfad 
+  abweicht, passe den Alt-Text entsprechend an – die obigen Texte 
+  sind Vorschläge basierend auf dem Seitenkontext
+- Kein anderer Code wird verändert
+- Build ausführen (npm run build) nach allen Änderungen
+- Zusammenfassung: welche Alt-Texte gesetzt wurden und ob dynamische 
+  Props verfügbar waren (Fix 7–9)
