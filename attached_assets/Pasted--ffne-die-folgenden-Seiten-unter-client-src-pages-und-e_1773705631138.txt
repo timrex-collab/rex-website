@@ -1,0 +1,44 @@
+Öffne die folgenden Seiten unter `client/src/pages/` und ersetze jeweils 
+die bestehende Meta-Description im Helmet-Block durch die neue Version. 
+Nur die Meta-Description ändern – nichts anderes anfassen.
+
+---
+
+1. Startseite (Home.tsx oder index.tsx):
+<meta name="description" content="Meisterbetrieb für Dachdeckerei in Bochum. Steildach, Flachdach, Bauklempnerei & Dachfenster – Rex Bedachungs GmbH. Jetzt Angebot anfragen." />
+
+2. Steildach (Steildach.tsx):
+<meta name="description" content="Steildach-Sanierung in Bochum: Neueindeckung, Aufsparrendämmung & energetische Modernisierung. BAFA/KfW-förderfähig. Kostenlos beraten lassen." />
+
+3. Flachdach (Flachdach.tsx):
+<meta name="description" content="Flachdach in Bochum undicht oder sanierungsbedürftig? Rex Bedachung: Abdichtung, Gründach & Neuaufbau vom Meisterbetrieb. Angebot anfragen." />
+
+4. Bauklempnerei (BauklempnereiBochu.tsx o.ä.):
+<meta name="description" content="Bauklempnerei in Bochum: Dachrinnen, Blecharbeiten & Entwässerung vom Meisterbetrieb. Sauber ausgeführt, langlebig. Jetzt anfragen." />
+
+5. Dachfenster (DachfensterBochum.tsx o.ä.):
+<meta name="description" content="Dachfenster in Bochum einbauen oder ersetzen? Rex Bedachung montiert Velux & Fakro – inkl. Dämmung und Anschlussabdichtung. Angebot anfragen." />
+
+6. Dachreparatur (DachreparaturBochum.tsx o.ä.):
+<meta name="description" content="Dachreparatur in Bochum: Sturmschäden, Undichtigkeiten & defekte Ziegel kurzfristig beheben. Meisterbetrieb Rex Bedachung – jetzt anfragen." />
+
+7. Dachwartung (Dachwartung.tsx o.ä.):
+<meta name="description" content="Dachwartung in Bochum: Dach prüfen, reinigen & Schäden früh erkennen. Rex Bedachungs GmbH – Meisterbetrieb mit jahrelanger Erfahrung." />
+
+8. Velux-Austausch (VeluxDachfenster.tsx o.ä.):
+<meta name="description" content="Velux Dachfenster austauschen in Bochum: Modellvergleich, Festpreise ab 1.800 € & Komplettmontage vom Meisterbetrieb. Jetzt Termin anfragen." />
+
+9. Förderung (Foerderung.tsx o.ä.):
+<meta name="description" content="Förderung für Dachsanierung in NRW: BAFA & KfW-Zuschüsse für Dämmung & Fenster. Rex Bedachung berät zu allen aktuellen Förderprogrammen." />
+
+10. Solarpflicht (Solarpflicht.tsx o.ä.):
+<meta name="description" content="Solarpflicht NRW ab 2026: Was gilt für Ihr Gebäude? Rex Bedachung erklärt § 42a BauO NRW, Ausnahmen & Fördermöglichkeiten. Jetzt informieren." />
+
+---
+
+Zusätzlich: Suche sitewide nach der Formulierung "innerhalb von 24 Stunden" 
+und ersetze jeden Treffer durch "kurzfristig". Alle Dateien unter 
+`client/src/` durchsuchen.
+
+Nach allen Änderungen einmal speichern und kurz bestätigen welche Dateien 
+angepasst wurden.
