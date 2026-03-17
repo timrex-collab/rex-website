@@ -308,6 +308,7 @@ export default function FlachdachBochum() {
             Gründächer und Dachbegrünung – extensiv für pflegeleichte Begrünung oder intensiv für begehbare Dachgärten.
             Alles inklusive Wurzelschutz, Drainage und BAFA/KfW-Förderung.
           </p>
+          <p className="text-sm text-slate-600 mt-4">Bei Flachdachsanierungen in Bochum setzt Rex Bedachung auf EPDM-Folien und Bitumenbahnen nach DIN 18531 – mit einer Lebensdauer von bis zu 50 Jahren bei fachgerechter Ausführung.</p>
         </div>
       </section>
 

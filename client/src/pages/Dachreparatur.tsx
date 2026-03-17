@@ -248,6 +248,7 @@ export default function Dachreparatur() {
             repariert Schäden an Steildächern, Flachdächern und Dachfenstern – schnell, sauber und mit transparenter
             Kostenaufstellung vor Beginn der Arbeiten. Wir helfen auch bei der Abwicklung mit Ihrer Versicherung.
           </p>
+          <p className="text-sm text-slate-600 mt-4">Bei Dachschäden in Bochum und dem Ruhrgebiet bewertet die Rex Bedachungs GmbH den Schaden vor Ort und gibt ein transparentes Angebot – ohne Notdienstpauschalen, ohne versteckte Kosten.</p>
         </div>
       </section>
 

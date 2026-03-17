@@ -287,6 +287,7 @@ export default function Foerderung() {
               <p className="text-muted-foreground leading-relaxed mb-3">
                 Das GEG schreibt bei größeren Sanierungen Mindestdämmwerte vor (U-Wert max. 0,24 W/m²K). Wir sorgen dafür, dass Ihr neues Dach nicht nur die gesetzlichen Anforderungen erfüllt, sondern diese für maximale Effizienz sogar übertrifft.
               </p>
+              <p className="text-sm text-slate-600">Für energetische Dachsanierungen in Bochum sind über BAFA und KfW Förderungen von bis zu 20 % der Investitionskosten möglich – Rex Bedachung berät kostenlos zur passenden Fördermaßnahme.</p>
               <div className="flex items-center gap-2 text-blue-600 font-bold">
                 <Info className="w-5 h-5" />
                 <span>Wichtig: Ohne Einhaltung der GEG-Werte gibt es keine Förderung!</span>

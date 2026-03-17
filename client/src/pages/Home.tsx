@@ -278,6 +278,7 @@ export default function Home() {
               Von der fachgerechten Dacheindeckung bis zur professionellen Wartung – 
               wir bieten Ihnen das komplette Leistungsspektrum rund um Ihr Dach.
             </p>
+            <p className="text-sm text-slate-600">Als Dachdecker-Meisterbetrieb aus Bochum führt die Rex Bedachungs GmbH seit 1984 Dacharbeiten im gesamten Ruhrgebiet durch – von der Steildachsanierung über Flachdachabdichtung bis zum VELUX-Fenstereinbau.</p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 mb-12">
