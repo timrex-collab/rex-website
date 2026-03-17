@@ -31,7 +31,7 @@ export default function Impressum() {
             <section>
               <h2 className="text-2xl font-semibold mb-4">Kontakt</h2>
               <p>
-                Telefon: 0234-583100<br />
+                Telefon: +49 234 583100<br />
                 E-Mail: info@rex-bedachung.de
               </p>
             </section>

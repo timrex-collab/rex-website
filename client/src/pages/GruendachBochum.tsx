@@ -237,7 +237,7 @@ export default function GruendachBochum() {
         <title>Gründach Bochum: Aufbau, Vorteile & Förderung – Dachbegrünung vom Experten | Rex Bedachungs GmbH</title>
         <meta
           name="description"
-          content="Gründach in Bochum ✓ Extensiv & Intensiv ✓ 7 Schichten Aufbau ✓ bis 90 % Regenwasserrückhalt ✓ Förderprogramme 2026 ✓ Kostenlose Beratung ☎ 0234 583100"
+          content="Gründach in Bochum ✓ Extensiv & Intensiv ✓ 7 Schichten Aufbau ✓ bis 90 % Regenwasserrückhalt ✓ Förderprogramme 2026 ✓ Kostenlose Beratung ☎ +49 234 583100"
         />
         <meta
           property="og:title"
@@ -306,11 +306,11 @@ export default function GruendachBochum() {
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <a
-              href="tel:0234583100"
+              href="tel:+49234583100"
               className="pulse-ring cta-pulse inline-flex items-center justify-center gap-2 bg-red-700 hover:bg-red-600 text-white font-semibold px-6 py-3 rounded-md transition-colors"
               data-testid="button-hero-anrufen"
             >
-              <Phone className="w-5 h-5" /> 0234 583100 – Kostenlos anfragen
+              <Phone className="w-5 h-5" /> +49 234 583100 – Kostenlos anfragen
             </a>
             <Link href="/flachdach-bochum">
               <a className="inline-flex items-center justify-center gap-2 bg-white/10 hover:bg-white/20 text-white font-semibold px-6 py-3 rounded-md transition-colors border border-white/20" data-testid="link-flachdach">
@@ -621,11 +621,11 @@ export default function GruendachBochum() {
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <a
-              href="tel:0234583100"
+              href="tel:+49234583100"
               className="pulse-ring cta-pulse inline-flex items-center justify-center gap-2 bg-red-700 hover:bg-red-600 text-white font-semibold px-8 py-4 rounded-md transition-colors text-lg"
               data-testid="button-cta-anrufen"
             >
-              <Phone className="w-5 h-5" /> 0234 583100
+              <Phone className="w-5 h-5" /> +49 234 583100
             </a>
             <Link href="/flachdach-bochum">
               <a className="inline-flex items-center justify-center gap-2 bg-white/10 hover:bg-white/20 text-white font-semibold px-8 py-4 rounded-md transition-colors text-lg border border-white/20" data-testid="link-cta-flachdach">

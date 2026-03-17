@@ -188,7 +188,7 @@ export default function DachfensterBochum() {
               className="bg-white/10 border-white/40 text-white"
               data-testid="button-hero-anrufen"
             >
-              <a href="tel:0234583100" className="flex items-center gap-2">
+              <a href="tel:+49234583100" className="flex items-center gap-2">
                 <Phone className="w-4 h-4" />
                 Jetzt anrufen
               </a>
@@ -455,7 +455,7 @@ export default function DachfensterBochum() {
               variant="outline"
               data-testid="button-cta-anrufen"
             >
-              <a href="tel:0234583100" className="flex items-center gap-2">
+              <a href="tel:+49234583100" className="flex items-center gap-2">
                 <Phone className="w-4 h-4" />
                 Anrufen
               </a>

@@ -336,9 +336,9 @@ export default function Home() {
               className="bg-transparent border-white text-white hover:bg-white/10"
               data-testid="button-cta-call"
             >
-              <a href="tel:0234583100" className="flex items-center gap-2">
+              <a href="tel:+49234583100" className="flex items-center gap-2">
                 <Phone className="w-5 h-5" />
-                <span>0234-583100</span>
+                <span>+49 234 583100</span>
               </a>
             </Button>
           </div>

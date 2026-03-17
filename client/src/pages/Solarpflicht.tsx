@@ -157,7 +157,7 @@ export default function Solarpflicht() {
           "provider": {
             "@type": "RoofingContractor",
             "name": "Rex Bedachungs GmbH",
-            "telephone": "0234583100",
+            "telephone": "+49 234 583100",
             "address": {"@type": "PostalAddress", "streetAddress": "Paulinenstraße 22", "addressLocality": "Bochum", "postalCode": "44799"}
           }
         }`}</script>
@@ -634,9 +634,9 @@ export default function Solarpflicht() {
             className="bg-white text-slate-900 px-8 py-4 rounded-full font-bold text-lg hover:bg-blue-50 transition shadow-lg flex items-center justify-center gap-2">
             Kostenlose Beratung anfragen <ArrowRight className="w-5 h-5" />
           </a>
-          <a href="tel:0234583100"
+          <a href="tel:+49234583100"
             className="bg-white/10 border border-white/30 text-white px-8 py-4 rounded-full font-bold text-lg hover:bg-white/20 transition flex items-center justify-center gap-2">
-            <Phone className="w-5 h-5" /> 0234 583100
+            <Phone className="w-5 h-5" /> +49 234 583100
           </a>
         </div>
         <p className="mt-8 text-xs text-blue-300 opacity-70">Meisterbetrieb Rex Bedachungs GmbH · Paulinenstraße 22, 44799 Bochum</p>

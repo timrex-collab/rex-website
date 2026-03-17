@@ -239,9 +239,9 @@ export default function VeluxRolllaeden() {
               className="bg-white/10 border-white/40 text-white"
               data-testid="button-hero-anrufen"
             >
-              <a href="tel:0234583100" className="flex items-center gap-2">
+              <a href="tel:+49234583100" className="flex items-center gap-2">
                 <Phone className="w-4 h-4" />
-                Jetzt anrufen: 0234 583100
+                Jetzt anrufen: +49 234 583100
               </a>
             </Button>
           </div>
@@ -563,9 +563,9 @@ export default function VeluxRolllaeden() {
               variant="outline"
               data-testid="button-cta-anrufen"
             >
-              <a href="tel:0234583100" className="flex items-center gap-2">
+              <a href="tel:+49234583100" className="flex items-center gap-2">
                 <Phone className="w-4 h-4" />
-                0234 583100 anrufen
+                +49 234 583100 anrufen
               </a>
             </Button>
           </div>

@@ -14,7 +14,7 @@ export default function Contact() {
     <>
       <Helmet>
         <title>Kontakt - Rex Bedachungs GmbH | Dachdecker Bochum</title>
-        <meta name="description" content="Kontakt zu Rex Bedachungs GmbH Bochum – Telefon: 0234-583100, E-Mail: info@rex-bedachung.de. Kostenloses Aufmaß und Beratung vor Ort." />
+        <meta name="description" content="Kontakt zu Rex Bedachungs GmbH Bochum – Telefon: +49 234 583100, E-Mail: info@rex-bedachung.de. Kostenloses Aufmaß und Beratung vor Ort." />
         <link rel="canonical" href="https://www.rex-bedachung.de/kontakt" />
         <meta property="og:title" content="Kontakt - Rex Bedachungs GmbH" />
         <meta property="og:description" content="Nehmen Sie Kontakt mit uns auf. Wir beraten Sie gerne zu Ihrem Dachprojekt." />
@@ -24,7 +24,7 @@ export default function Contact() {
         <meta property="og:image:height" content="630" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="Kontakt – Rex Bedachungs GmbH Bochum" />
-        <meta name="twitter:description" content="Jetzt Kontakt aufnehmen – Dachdecker Rex Bedachung in Bochum. Tel. 0234 583100. Kostenlose Beratung und Angebote." />
+        <meta name="twitter:description" content="Jetzt Kontakt aufnehmen – Dachdecker Rex Bedachung in Bochum. Tel. +49 234 583100. Kostenlose Beratung und Angebote." />
         <meta name="twitter:image" content="https://www.rex-bedachung.de/images/dach-hintergrund-rex-bedachung.webp" />
         <script type="application/ld+json">{`{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Startseite","item":"https://www.rex-bedachung.de/"},{"@type":"ListItem","position":2,"name":"Kontakt","item":"https://www.rex-bedachung.de/kontakt"}]}`}</script>
       </Helmet>
@@ -54,11 +54,11 @@ export default function Contact() {
                   <div>
                     <h3 className="font-semibold mb-1">Telefon</h3>
                     <a 
-                      href="tel:0234583100" 
+                      href="tel:+49234583100" 
                       className="text-lg text-primary hover:underline"
                       data-testid="link-contact-phone"
                     >
-                      0234-583100
+                      +49 234 583100
                     </a>
                   </div>
                 </div>

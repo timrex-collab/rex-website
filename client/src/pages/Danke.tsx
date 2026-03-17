@@ -40,12 +40,12 @@ export default function Danke() {
                 In dringenden Fällen erreichen Sie uns telefonisch unter:
               </p>
               <a 
-                href="tel:0234583100" 
+                href="tel:+49234583100" 
                 className="inline-flex items-center gap-2 text-lg md:text-xl font-semibold text-primary hover:underline"
                 data-testid="link-phone"
               >
                 <Phone className="w-5 h-5" />
-                0234-583100
+                +49 234 583100
               </a>
             </div>
 

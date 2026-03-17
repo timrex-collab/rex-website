@@ -123,9 +123,9 @@ export default function Navigation() {
               size="sm"
               data-testid="button-call-desktop"
             >
-              <a href="tel:0234583100" className="flex items-center gap-2">
+              <a href="tel:+49234583100" className="flex items-center gap-2">
                 <Phone className="w-4 h-4" />
-                <span>0234-583100</span>
+                <span>+49 234 583100</span>
               </a>
             </Button>
             <Button 
@@ -206,9 +206,9 @@ export default function Navigation() {
                 className="w-full"
                 data-testid="button-call-mobile"
               >
-                <a href="tel:0234583100" className="flex items-center justify-center gap-2">
+                <a href="tel:+49234583100" className="flex items-center justify-center gap-2">
                   <Phone className="w-4 h-4" />
-                  <span>0234-583100</span>
+                  <span>+49 234 583100</span>
                 </a>
               </Button>
               <Button

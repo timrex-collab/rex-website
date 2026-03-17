@@ -67,7 +67,7 @@ export default function Hero({
                 className="text-sm sm:text-base w-full sm:w-auto bg-white/10 backdrop-blur-sm border-white/20 text-white hover:bg-white/20"
                 data-testid="button-hero-call"
               >
-                <a href="tel:0234583100" className="flex items-center justify-center gap-2">
+                <a href="tel:+49234583100" className="flex items-center justify-center gap-2">
                   <Phone className="w-4 h-4 sm:w-5 sm:h-5" />
                   <span>Jetzt anrufen</span>
                 </a>

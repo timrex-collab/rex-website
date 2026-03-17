@@ -134,7 +134,7 @@ export default function Foerderung() {
             "provider": {
               "@type": "RoofingContractor",
               "name": "Rex Bedachungs GmbH",
-              "telephone": "0234583100",
+              "telephone": "+49 234 583100",
               "address": {
                 "@type": "PostalAddress",
                 "streetAddress": "Paulinenstraße 22",
@@ -152,6 +152,25 @@ export default function Foerderung() {
             { "@type": "ListItem", "position": 2, "name": "Förderung", "item": "https://www.rex-bedachung.de/foerderung" }
           ]
         })}</script>
+        <script type="application/ld+json">{`
+          {
+            "@context": "https://schema.org",
+            "@type": "GovernmentService",
+            "name": "BAFA & KfW Förderberatung Dach Bochum",
+            "provider": {
+              "@id": "https://www.rex-bedachung.de/#organization"
+            },
+            "serviceOutput": "Zuschüsse und Förderung für energetische Dachsanierung",
+            "audience": {
+              "@type": "Audience",
+              "audienceType": "Hauseigentümer und Vermieter in Bochum und Umgebung"
+            },
+            "areaServed": {
+              "@type": "City",
+              "name": "Bochum"
+            }
+          }
+        `}</script>
       </Helmet>
 
       <Breadcrumb items={[
@@ -470,11 +489,11 @@ export default function Foerderung() {
             <ArrowRight className="w-5 h-5" />
           </a>
           <a
-            href="tel:0234583100"
+            href="tel:+49234583100"
             className="bg-blue-800/50 border border-blue-400/30 text-white px-8 py-4 rounded-full font-bold text-lg hover:bg-blue-800/70 transition flex items-center justify-center gap-2"
           >
             <Phone className="w-5 h-5" />
-            0234 583100
+            +49 234 583100
           </a>
         </div>
         <p className="mt-8 text-xs text-blue-300 opacity-70">Meisterbetrieb Rex Bedachungs GmbH · Paulinenstraße 22, 44799 Bochum</p>

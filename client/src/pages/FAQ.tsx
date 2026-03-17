@@ -538,11 +538,11 @@ export default function FAQ() {
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center flex-wrap">
               <a
-                href="tel:0234583100"
+                href="tel:+49234583100"
                 className="inline-flex items-center justify-center gap-2 min-h-9 px-4 py-2 rounded-md text-sm font-medium bg-primary text-primary-foreground border border-primary-border hover-elevate active-elevate-2"
                 data-testid="button-call-faq"
               >
-                <span>0234-583100</span>
+                <span>+49 234 583100</span>
               </a>
               <a
                 href="/kontakt"
