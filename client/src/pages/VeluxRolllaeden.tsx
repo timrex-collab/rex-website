@@ -154,8 +154,7 @@ const breadcrumbSchema = JSON.stringify({
   "@type": "BreadcrumbList",
   "itemListElement": [
     { "@type": "ListItem", "position": 1, "name": "Startseite", "item": "https://www.rex-bedachung.de/" },
-    { "@type": "ListItem", "position": 2, "name": "Dachfenster Bochum", "item": "https://www.rex-bedachung.de/dachfenster-bochum" },
-    { "@type": "ListItem", "position": 3, "name": "Velux Außenrollladen Bochum", "item": "https://www.rex-bedachung.de/velux-dachfenster-rolllaeden-bochum" }
+    { "@type": "ListItem", "position": 2, "name": "Velux Außenrollladen Bochum", "item": "https://www.rex-bedachung.de/velux-dachfenster-rolllaeden-bochum" }
   ]
 });
 
@@ -203,7 +202,6 @@ export default function VeluxRolllaeden() {
 
       <Breadcrumb items={[
         { label: "Startseite", href: "/" },
-        { label: "Dachfenster", href: "/dachfenster-bochum" },
         { label: "Velux Rollläden" }
       ]} />
 

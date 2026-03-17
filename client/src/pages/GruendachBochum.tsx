@@ -221,13 +221,12 @@ export default function GruendachBochum() {
     "@context": "https://schema.org",
     "@type": "BreadcrumbList",
     itemListElement: [
-      { "@type": "ListItem", position: 1, name: "Startseite", item: "https://rex-bedachung.de/" },
-      { "@type": "ListItem", position: 2, name: "Flachdach", item: "https://rex-bedachung.de/flachdach-bochum" },
+      { "@type": "ListItem", position: 1, name: "Startseite", item: "https://www.rex-bedachung.de/" },
       {
         "@type": "ListItem",
-        position: 3,
-        name: "Gründach & Dachbegrünung",
-        item: "https://rex-bedachung.de/gruendach-dachbegrunung-bochum",
+        position: 2,
+        name: "Gründach & Dachbegrünung Bochum",
+        item: "https://www.rex-bedachung.de/gruendach-dachbegrunung-bochum",
       },
     ],
   };
@@ -287,7 +286,6 @@ export default function GruendachBochum() {
 
       <Breadcrumb items={[
         { label: "Startseite", href: "/" },
-        { label: "Leistungen", href: "/leistungen" },
         { label: "Gründach & Dachbegrünung" }
       ]} />
 

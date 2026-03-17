@@ -202,7 +202,6 @@ export default function BauklempnereiBochum() {
 
       <Breadcrumb items={[
         { label: "Startseite", href: "/" },
-        { label: "Leistungen", href: "/leistungen" },
         { label: "Bauklempnerei" }
       ]} />
 

@@ -227,7 +227,6 @@ export default function SteildachBochum() {
       </Helmet>
       <Breadcrumb items={[
         { label: "Startseite", href: "/" },
-        { label: "Leistungen", href: "/leistungen" },
         { label: "Steildach" }
       ]} />
       {/* Hero */}

@@ -191,7 +191,6 @@ export default function Dachreparatur() {
 
       <Breadcrumb items={[
         { label: "Startseite", href: "/" },
-        { label: "Leistungen", href: "/leistungen" },
         { label: "Dachreparatur" }
       ]} />
 
