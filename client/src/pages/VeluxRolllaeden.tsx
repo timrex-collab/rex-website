@@ -61,7 +61,7 @@ const comparisonRows = [
 ];
 
 const ablaufSteps = [
-  { name: "Kostenloses Aufmaß & Beratung vor Ort", text: "Rex Bedachungs GmbH kommt zu Ihnen – Fenstergröße, Typ und Einbausituation werden geprüft. Sie erhalten ein verbindliches Festpreisangebot." },
+  { name: "Kostenloses Aufmaß & Beratung vor Ort", text: "Rex Bedachungs GmbH kommt zu Ihnen – Fenstergröße, Typ und Einbausituation werden geprüft. Sie erhalten ein Angebot nach kostenlosem Aufmaß." },
   { name: "Modell & Größe auswählen", text: "Gemeinsam wählen wir den passenden Rollladen – in den meisten Fällen empfehlen wir den SSL Solar für kabellose Nachrüstung." },
   { name: "Lieferung & Montage von innen", text: "Der SSL wird komplett von innen montiert – kein Gerüst nötig. Die Montage dauert ca. 2 Stunden pro Fenster." },
   { name: "Funktionstest & Einweisung", text: "Gemeinsamer Test aller Funktionen, Einrichtung der Fernbedienung und auf Wunsch der VELUX App – erst wenn alles läuft, ist der Auftrag abgeschlossen." },
@@ -70,7 +70,7 @@ const ablaufSteps = [
 const faqItems = [
   {
     question: "Was kostet ein Velux SSL Solar-Rollladen inkl. Montage in Bochum?",
-    answer: "Der SSL kostet je nach Fenstergröße ab ca. 536 \u20AC (Produkt) zzgl. Montage durch Rex Bedachungs GmbH. Gesamtkosten inkl. Einbau ab ca. 700\u2013900 \u20AC. Nach kostenlosem Aufmaß vor Ort erhalten Sie ein verbindliches Festpreisangebot.",
+    answer: "Der SSL kostet je nach Fenstergröße ab ca. 536 \u20AC (Produkt) zzgl. Montage durch Rex Bedachungs GmbH. Gesamtkosten inkl. Einbau ab ca. 700\u2013900 \u20AC. Nach kostenlosem Aufmaß vor Ort erhalten Sie ein Angebot nach kostenlosem Aufmaß.",
   },
   {
     question: "Kann der SSL auf mein bestehendes Velux Fenster nachgerüstet werden?",
@@ -97,7 +97,7 @@ const faqSchema = JSON.stringify({
     {
       "@type": "Question",
       "name": "Was kostet ein Velux SSL Solar-Rollladen inkl. Montage in Bochum?",
-      "acceptedAnswer": { "@type": "Answer", "text": "Der SSL kostet je nach Fenstergröße ab ca. 536 € (Produkt) zzgl. Montage durch Rex Bedachungs GmbH. Gesamtkosten inkl. Einbau ab ca. 700–900 €. Nach kostenlosem Aufmaß vor Ort erhalten Sie ein verbindliches Festpreisangebot." }
+      "acceptedAnswer": { "@type": "Answer", "text": "Der SSL kostet je nach Fenstergröße ab ca. 536 € (Produkt) zzgl. Montage durch Rex Bedachungs GmbH. Gesamtkosten inkl. Einbau ab ca. 700–900 €. Nach kostenlosem Aufmaß vor Ort erhalten Sie ein Angebot nach kostenlosem Aufmaß." }
     },
     {
       "@type": "Question",
@@ -366,7 +366,7 @@ export default function VeluxRolllaeden() {
             Velux SSL Rollladen – Kosten in Bochum
           </h2>
           <p className="text-muted-foreground text-center mb-10 max-w-3xl mx-auto" data-testid="text-preise-intro">
-            Realistische Preisrahmen inkl. Montage durch Rex Bedachungs GmbH – nach kostenlosem Aufmaß erhalten Sie ein verbindliches Festpreisangebot.
+            Realistische Preisrahmen inkl. Montage durch Rex Bedachungs GmbH – nach kostenlosem Aufmaß erhalten Sie ein Angebot nach kostenlosem Aufmaß.
           </p>
           <div className="grid md:grid-cols-3 gap-6 mb-8">
             <Card className="border-blue-200 dark:border-blue-900 bg-blue-50/50 dark:bg-blue-950/20" data-testid="card-preis-standard">
@@ -423,7 +423,7 @@ export default function VeluxRolllaeden() {
 
           <div className="rounded-md border border-border p-6 bg-muted/40" data-testid="box-preishinweis">
             <p className="text-sm text-muted-foreground leading-relaxed">
-              <strong className="text-foreground">Hinweis:</strong> Alle Preise sind Richtwerte inkl. Montage. Nach kostenlosem Aufmaß vor Ort erhalten Sie ein verbindliches Festpreisangebot von Rex Bedachungs GmbH – ohne versteckte Zusatzkosten.
+              <strong className="text-foreground">Hinweis:</strong> Alle Preise sind Richtwerte inkl. Montage. Nach kostenlosem Aufmaß vor Ort erhalten Sie ein Angebot nach kostenlosem Aufmaß von Rex Bedachungs GmbH – ohne versteckte Zusatzkosten.
             </p>
           </div>
         </div>

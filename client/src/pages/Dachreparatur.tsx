@@ -174,7 +174,7 @@ export default function Dachreparatur() {
         <script type="application/ld+json">{`{
   "@context": "https://schema.org",
   "@type": "Service",
-  "name": "Dachreparatur und Notdienst",
+  "name": "Dachreparatur Bochum",
   "description": "Schnelle Dachreparatur bei Sturmschäden, Undichtigkeiten und akuten Dachproblemen in Bochum.",
   "provider": {
     "@type": "RoofingContractor",

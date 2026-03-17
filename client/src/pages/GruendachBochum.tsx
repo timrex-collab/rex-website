@@ -248,7 +248,7 @@ export default function GruendachBochum() {
           property="og:description"
           content="Der vollständige Ratgeber zum Gründach in Bochum: Extensiv vs. Intensiv, 7 Schichten, Förderprogramme und Pflegetipps vom Flachdach-Experten Rex Bedachungs GmbH."
         />
-        <meta property="og:image" content="https://rex-bedachung.de/images/gruendach-bochum-dachbegruenung-experten.webp" />
+        <meta property="og:image" content="https://www.rex-bedachung.de/images/gruendach-bochum-dachbegruenung-experten.webp" />
         <meta property="og:site_name" content="Rex Bedachungs GmbH" />
         <meta property="og:type" content="article" />
         <meta property="og:url" content="https://www.rex-bedachung.de/gruendach-dachbegrunung-bochum" />
@@ -261,7 +261,7 @@ export default function GruendachBochum() {
           name="twitter:description"
           content="Extensiv vs. Intensiv, 7 Schichten, Förderprogramme 2026. Der vollständige Gründach-Ratgeber für Bochum und das Ruhrgebiet."
         />
-        <meta name="twitter:image" content="https://rex-bedachung.de/images/gruendach-bochum-dachbegruenung-experten.webp" />
+        <meta name="twitter:image" content="https://www.rex-bedachung.de/images/gruendach-bochum-dachbegruenung-experten.webp" />
         <link rel="canonical" href="https://www.rex-bedachung.de/gruendach-dachbegrunung-bochum" />
         <script type="application/ld+json">{JSON.stringify(faqSchema)}</script>
         <script type="application/ld+json">{JSON.stringify(articleSchema)}</script>

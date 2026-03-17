@@ -23,4 +23,4 @@ User-agent: anthropic-ai
 Allow: /
 
 Sitemap: https://www.rex-bedachung.de/sitemap.xml
-# llms.txt: https://www.rex-bedachung.de/llms.txt
+llms.txt: https://www.rex-bedachung.de/llms.txt
