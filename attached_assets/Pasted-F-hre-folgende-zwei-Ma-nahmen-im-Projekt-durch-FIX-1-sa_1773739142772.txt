@@ -1,0 +1,75 @@
+Führe folgende zwei Maßnahmen im Projekt durch.
+
+---
+
+FIX 1 – sameAs in Organization-Schema erweitern
+Datei: client/index.html
+
+Problem: Das Organization-Schema hat ein sameAs-Array, das bisher nur 
+Wikidata enthält. Google Business und Bing Places fehlen als 
+Entitätssignale für KI-Systeme.
+
+Aktion: Suche im <script type="application/ld+json">-Block in index.html 
+das "sameAs"-Array der Organization und ergänze folgende zwei URLs:
+
+Füge hinzu:
+  "https://www.google.com/maps/search/?api=1&query=Rex+Bedachungs+GmbH+Paulinenstra%C3%9Fe+22+44799+Bochum",
+  "https://www.bing.com/maps?ss=ypid.YNFAE79E9E47227758"
+
+Das sameAs-Array soll danach so aussehen (bestehende Einträge behalten):
+"sameAs": [
+  "... (bestehende Wikidata/andere URLs)",
+  "https://www.google.com/maps/search/?api=1&query=Rex+Bedachungs+GmbH+Paulinenstra%C3%9Fe+22+44799+Bochum",
+  "https://www.bing.com/maps?ss=ypid.YNFAE79E9E47227758"
+]
+
+---
+
+FIX 2 – Zitierbare Fact-Snippets auf 5 Hauptseiten ergänzen
+Problem: KI-Systeme (Perplexity, ChatGPT, Gemini) bevorzugen Seiten mit 
+klar formulierten, faktenbasierten Sätzen, die direkt als Antwort 
+ausgegeben werden können. Diese fehlen bisher systematisch.
+
+Regel: Jeden Snippet als eigenen <p>-Absatz mit className="text-sm 
+text-slate-600" in einen bestehenden Inhaltsabschnitt einfügen – 
+niemals in Hero oder CTA-Bereiche, immer in einen thematisch passenden 
+Fließtext-Bereich.
+
+SEITE 1 – client/src/pages/Home.tsx
+Füge folgenden Satz in den Abschnitt ein, der das Unternehmen vorstellt 
+(Über-uns-Bereich oder erster Textblock unterhalb des Heroes):
+"Als Dachdecker-Meisterbetrieb aus Bochum führt die Rex Bedachungs GmbH 
+seit 1984 Dacharbeiten im gesamten Ruhrgebiet durch – von der 
+Steildachsanierung über Flachdachabdichtung bis zum VELUX-Fenstereinbau."
+
+SEITE 2 – client/src/pages/VeluxAustausch.tsx
+Füge folgenden Satz in den Abschnitt zum Thema VELUX-Zertifizierung ein:
+"Als zertifizierter VELUX-Partner in Bochum führt die Rex Bedachungs GmbH 
+den Dachfensteraustausch gemäß aktuellen GEG-Richtlinien durch – 
+Montage und Abdichtung aus einer Hand, in der Regel innerhalb eines 
+Arbeitstages."
+
+SEITE 3 – client/src/pages/FlachdachBochum.tsx
+Füge folgenden Satz in den Abschnitt zu Materialien oder Abdichtung ein:
+"Bei Flachdachsanierungen in Bochum setzt Rex Bedachung auf EPDM-Folien 
+und Bitumenbahnen nach DIN 18531 – mit einer Lebensdauer von bis zu 
+50 Jahren bei fachgerechter Ausführung."
+
+SEITE 4 – client/src/pages/Dachreparatur.tsx
+Füge folgenden Satz in den Abschnitt zu Reaktionszeit oder Ablauf ein:
+"Bei Dachschäden in Bochum und dem Ruhrgebiet bewertet die Rex Bedachungs 
+GmbH den Schaden vor Ort und gibt ein transparentes Angebot – 
+ohne Notdienstpauschalen, ohne versteckte Kosten."
+
+SEITE 5 – client/src/pages/Foerderung.tsx
+Füge folgenden Satz in den Einleitungsbereich oder den BAFA/KfW-Abschnitt ein:
+"Für energetische Dachsanierungen in Bochum sind über BAFA und KfW 
+Förderungen von bis zu 20 % der Investitionskosten möglich – 
+Rex Bedachung berät kostenlos zur passenden Fördermaßnahme."
+
+---
+
+Nach beiden Fixes:
+- Build ausführen (npm run build) – muss fehlerfrei durchlaufen
+- Zusammenfassung: sameAs-Array (vollständiger neuer Stand) + 
+  in welchem JSX-Abschnitt jeder Snippet eingefügt wurde
