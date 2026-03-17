@@ -183,7 +183,7 @@ export default function SteildachBochum() {
         <title>Steildach Bochum – Sanierung &amp; Dämmung | Rex</title>
         <meta
           name="description"
-          content="Steildach Bochum ✓ Energetische Dachsanierung ✓ Aufsparrendämmung ✓ Bis zu 20 % BAFA/KfW-Förderung ✓ Heizkosten senken – Rex Bedachungs GmbH Bochum."
+          content="Steildach-Sanierung in Bochum: Neueindeckung, Aufsparrendämmung & energetische Modernisierung. BAFA/KfW-förderfähig. Kostenlos beraten lassen."
         />
         <meta property="og:title" content="Steildach Bochum – Neueindeckung, Sanierung & Dämmung | Rex Bedachungs GmbH" />
         <meta

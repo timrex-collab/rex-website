@@ -139,7 +139,7 @@ export default function Home() {
     <>
       <Helmet>
   <title>Dachdecker Bochum – Rex Bedachungs GmbH</title>
-  <meta name="description" content="Dachdecker Bochum ✓ Steildach, Flachdach & Gründach ✓ VELUX-Fachbetrieb ✓ Bauklempnerei ✓ Dachreparatur – Rex Bedachungs GmbH, Meisterbetrieb im Ruhrgebiet." />
+  <meta name="description" content="Meisterbetrieb für Dachdeckerei in Bochum. Steildach, Flachdach, Bauklempnerei & Dachfenster – Rex Bedachungs GmbH. Jetzt Angebot anfragen." />
   <link rel="canonical" href="https://www.rex-bedachung.de/" />
   <meta property="og:title" content="Dachdecker Bochum – Rex Bedachungs GmbH" />
   <meta property="og:description" content="Professionelle Dachdeckerarbeiten im Ruhrgebiet. Meisterbetrieb mit 40 Jahren Erfahrung." />

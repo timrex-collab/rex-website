@@ -236,7 +236,7 @@ export default function VeluxAustausch() {
         <title>Velux Dachfenster Austausch Bochum | Rex Bedachungs GmbH</title>
         <meta
           name="description"
-          content="Velux Dachfenster Austausch Bochum ✓ GGL, GGU, GPU & Integra ✓ Preise ab 1.000 € ✓ VELUX-Fachbetrieb ✓ Kostenlose Beratung – Rex Bedachungs GmbH Ruhrgebiet."
+          content="Velux Dachfenster austauschen in Bochum: Modellvergleich, Festpreise ab 1.800 € & Komplettmontage vom Meisterbetrieb. Jetzt Termin anfragen."
         />
         <meta property="og:image" content="https://www.rex-bedachung.de/images/velux-dachfenster-einbau-bochum-fachbetrieb.webp" />
         <meta property="og:site_name" content="Rex Bedachungs GmbH" />

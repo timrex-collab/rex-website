@@ -135,7 +135,7 @@ export default function Solarpflicht() {
     <>
       <Helmet>
         <title>Solarpflicht NRW 2026 – Was Eigentümer wissen müssen</title>
-        <meta name="description" content="Ab 1. Januar 2026 gilt in NRW die Solarpflicht auch bei Dachsanierungen. Rex Bedachungs GmbH Bochum erklärt Regeln, Ausnahmen, Mindestgrößen und Schnellcheck." />
+        <meta name="description" content="Solarpflicht NRW ab 2026: Was gilt für Ihr Gebäude? Rex Bedachung erklärt § 42a BauO NRW, Ausnahmen & Fördermöglichkeiten. Jetzt informieren." />
         <link rel="canonical" href="https://www.rex-bedachung.de/solarpflicht" />
         <meta property="og:title" content="Solarpflicht NRW 2026 | Rex Bedachungs GmbH Bochum" />
         <meta property="og:description" content="Solarpflicht bei Dachsanierung in NRW ab 2026. Alle Regeln, Ausnahmen, kWp-Tabelle und interaktiver Schnellcheck." />
