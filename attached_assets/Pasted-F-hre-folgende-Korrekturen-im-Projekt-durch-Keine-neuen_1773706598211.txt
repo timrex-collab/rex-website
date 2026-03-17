@@ -1,0 +1,83 @@
+Führe folgende Korrekturen im Projekt durch. Keine neuen Features, nur die beschriebenen Fixes.
+
+---
+
+FIX 1 – Sitemap: lastmod-Daten differenzieren
+Datei: client/public/sitemap.xml
+Problem: Alle URLs haben denselben lastmod-Wert (2026-03-10), was unrealistisch wirkt und Google wenig Mehrwert bietet.
+Aktion: Vergib pro URL einen realistisch differenzierten lastmod-Wert nach folgender Logik:
+- Startseite (/) → 2026-03-17 (aktuellstes Datum)
+- Hauptleistungsseiten (/flachdach, /steildach-bochum, /dachreparatur-bochum, /bauklempnerei-bochum, /dachwartung-bochum) → 2026-03-14
+- Velux-Seiten (/velux-dachfenster-austausch-bochum, /velux-dachfenster-rolllaeden-bochum) → 2026-03-15
+- Förder-/Infoseiten (/foerderung, /solarpflicht, /gruendach-dachbegrunung-bochum) → 2026-03-10
+- Sonstige (/leistungen, /referenzen, /lexikon, /ueber-uns, /karriere, /kontakt, /faq) → 2026-03-07
+Kein Datum in der Zukunft verwenden.
+
+---
+
+FIX 2 – Danke.tsx: Canonical-Tag prüfen und robots-Eintrag sichern
+Datei: client/src/pages/Danke.tsx
+Aktion:
+1. Prüfe, ob die Seite einen <link rel="canonical"> enthält – falls ja, entfernen.
+2. Stelle sicher, dass folgender Meta-Tag vorhanden ist (falls noch nicht):
+   <meta name="robots" content="noindex, nofollow" />
+3. Prüfe client/public/robots.txt: Der Eintrag "Disallow: /danke" soll vorhanden bleiben.
+Falls alles bereits korrekt ist → keine Änderung, nur bestätigen.
+
+---
+
+FIX 3 – Breadcrumb-Konsistenz über alle Seiten
+Problem: Einige Seiten zeigen Startseite → Leistungen → [Seite], andere nur Startseite → [Seite]. Das BreadcrumbList-Schema folgt derselben Inkonsistenz.
+Aktion: Vereinheitliche auf das einfachere Muster ohne /leistungen-Zwischenschritt:
+  Startseite → [Seitenname]
+Gehe folgende Seiten durch und passe jeweils an:
+- Sichtbares Breadcrumb-UI (falls vorhanden)
+- BreadcrumbList JSON-LD im Helmet-Block
+
+Ziel-Schema für jede betroffene Seite:
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Startseite",
+      "item": "https://www.rex-bedachung.de/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "[Seitenname auf Deutsch, z.B. Dachreparatur Bochum]",
+      "item": "https://www.rex-bedachung.de/[slug]"
+    }
+  ]
+}
+
+Betroffene Dateien (alle Seiten mit abweichendem Breadcrumb prüfen):
+client/src/pages/Dachreparatur.tsx
+client/src/pages/DachwartungBochum.tsx
+client/src/pages/SteildachBochum.tsx
+client/src/pages/Bauklempnerei.tsx
+client/src/pages/Flachdach.tsx
+client/src/pages/GruendachBochum.tsx
+client/src/pages/VeluxAustausch.tsx
+client/src/pages/VeluxRolllaeden.tsx
+Falls eine Seite kein BreadcrumbList-Schema hat, füge es im Helmet-Block hinzu.
+
+---
+
+FIX 4 – examples/-Ordner bereinigen
+Verzeichnis: client/src/components/examples/
+Problem: Der Ordner enthält ungenutzte Komponenten mit z.T. veralteten Links. ServiceCard.tsx wurde bereits gelöscht.
+Aktion:
+1. Prüfe für jede verbleibende Datei im Ordner (ContactForm, Footer, Hero, Navigation, ReferenceCard), ob sie irgendwo in App.tsx oder einer anderen aktiven Seite importiert wird.
+2. Falls NICHT importiert → Datei löschen.
+3. Falls der gesamte Ordner danach leer ist → Ordner ebenfalls löschen.
+4. Stelle sicher, dass keine Imports auf gelöschte Dateien zeigen (würde den Build brechen).
+
+---
+
+Nach allen Fixes:
+- Build ausführen (npm run build) – muss fehlerfrei durchlaufen
+- Kurze Zusammenfassung: welche Dateien geändert, welche gelöscht, was bereits korrekt war
