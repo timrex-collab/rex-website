@@ -695,6 +695,12 @@ export default function SteildachBochum() {
               <div className="text-sm text-gray-500">Schleppgaube, Spitzgaube, Kastengaube – Einbau vom Meisterbetrieb.</div>
             </a>
           </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
+            <a href="/steildach-undicht-bochum" className="block p-5 bg-white rounded-xl border border-gray-200 hover:border-primary hover:shadow-md transition-all">
+              <div className="font-semibold text-gray-900 mb-1">Steildach undicht – was tun?</div>
+              <div className="text-sm text-gray-500">Ursachen erkennen und Schaden dauerhaft beheben.</div>
+            </a>
+          </div>
         </div>
       </section>
 
