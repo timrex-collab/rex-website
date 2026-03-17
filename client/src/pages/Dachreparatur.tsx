@@ -145,7 +145,7 @@ export default function Dachreparatur() {
   return (
     <>
       <Helmet>
-        <title>Dachreparatur Bochum – Sturmschaden &amp; schnelle Hilfe</title>
+        <title>Dachreparatur Bochum – Sturmschaden &amp; schnelle Hilfe | Rex Bedachung</title>
         <meta
           name="description"
           content="Dachreparatur in Bochum: Sturmschäden, Undichtigkeiten & defekte Ziegel kurzfristig beheben. Meisterbetrieb Rex Bedachung – jetzt anfragen."

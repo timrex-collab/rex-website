@@ -234,10 +234,10 @@ export default function GruendachBochum() {
   return (
     <>
       <Helmet>
-        <title>Gründach Bochum: Aufbau, Vorteile & Förderung – Dachbegrünung vom Experten | Rex Bedachungs GmbH</title>
+        <title>Gründach Bochum – Dachbegrünung & Förderung | Rex Bedachung</title>
         <meta
           name="description"
-          content="Gründach in Bochum ✓ Extensiv & Intensiv ✓ 7 Schichten Aufbau ✓ bis 90 % Regenwasserrückhalt ✓ Förderprogramme 2026 ✓ Kostenlose Beratung ☎ +49 234 583100"
+          content="Gründach in Bochum: Extensiv & Intensiv, fachgerechter Aufbau, bis 90 % Regenwasserrückhalt. BAFA-förderfähig. Rex Bedachungs GmbH – Meisterbetrieb seit 1984."
         />
         <meta
           property="og:title"

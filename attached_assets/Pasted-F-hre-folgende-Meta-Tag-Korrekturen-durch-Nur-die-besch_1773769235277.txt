@@ -1,0 +1,79 @@
+Führe folgende Meta-Tag-Korrekturen durch. Nur die beschriebenen 
+Stellen anfassen, kein anderer Code wird verändert.
+
+---
+
+FIX 1 – GruendachBochum.tsx: Title kürzen
+Problem: Title ist ~95 Zeichen lang – Google kürzt ab 60 Zeichen.
+Suche den <title>-Tag und ersetze:
+  "Gründach Bochum: Aufbau, Vorteile & Förderung – Dachbegrünung 
+  vom Experten | Rex Bedachungs GmbH"
+durch:
+  "Gründach Bochum – Dachbegrünung & Förderung | Rex Bedachung"
+
+---
+
+FIX 2 – GruendachBochum.tsx: Description bereinigen
+Problem: ✓-Symbole und Telefonnummer wirken spam-artig.
+Suche den <meta name="description">-Tag und ersetze den 
+content-Wert durch:
+  "Gründach in Bochum: Extensiv & Intensiv, fachgerechter 
+  Aufbau, bis 90 % Regenwasserrückhalt. BAFA-förderfähig. 
+  Rex Bedachungs GmbH – Meisterbetrieb seit 1984."
+
+---
+
+FIX 3 – Separator-Konsistenz: - → – in Title-Tags
+Problem: 6 Seiten verwenden Bindestrich (-) statt Gedankenstrich (–).
+Ändere in folgenden Dateien den <title>-Tag:
+
+About.tsx:
+  "Über uns - Rex Bedachungs GmbH | Meisterbetrieb Bochum"
+  → "Über uns – Rex Bedachungs GmbH | Meisterbetrieb Bochum"
+
+Careers.tsx:
+  "Karriere - Rex Bedachungs GmbH | Jobs in Bochum"
+  → "Karriere – Rex Bedachungs GmbH | Jobs in Bochum"
+
+Contact.tsx:
+  "Kontakt - Rex Bedachungs GmbH | Dachdecker Bochum"
+  → "Kontakt – Rex Bedachungs GmbH | Dachdecker Bochum"
+
+References.tsx:
+  "Referenzen - Rex Bedachungs GmbH | Dachdecker Bochum"
+  → "Referenzen – Rex Bedachungs GmbH | Dachdecker Bochum"
+
+Services.tsx:
+  "Leistungen - Rex Bedachungs GmbH | Dachdecker Bochum"
+  → "Leistungen – Rex Bedachungs GmbH | Dachdecker Bochum"
+
+FAQ.tsx:
+  "FAQ - Häufig gestellte Fragen | Rex Bedachungs GmbH"
+  → "FAQ – Häufig gestellte Fragen | Rex Bedachungs GmbH"
+
+---
+
+FIX 4 – Unternehmensname in Title-Tags ergänzen
+
+Dachreparatur.tsx:
+  "Dachreparatur Bochum – Sturmschaden & schnelle Hilfe"
+  → "Dachreparatur Bochum – Sturmschaden & schnelle Hilfe | Rex Bedachung"
+
+DachLexikon.tsx:
+  "Dach-Lexikon – Fachwissen vom Meisterbetrieb Bochum"
+  → "Dach-Lexikon Bochum – Fachwissen vom Meisterbetrieb | Rex Bedachung"
+
+Solarpflicht.tsx:
+  "Solarpflicht NRW 2026 – Was Eigentümer wissen müssen"
+  → "Solarpflicht NRW 2026 – Was Eigentümer wissen müssen | Rex Bedachung"
+
+---
+
+Wichtig:
+- Nur <title>-Tags und <meta name="description"> anfassen
+- og:title, og:description, twitter:title, twitter:description 
+  NICHT verändern
+- Keine anderen Änderungen im Code
+
+Build ausführen (npm run build).
+Zusammenfassung: pro Datei welche Zeile geändert wurde.

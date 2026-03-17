@@ -13,7 +13,7 @@ export default function Contact() {
   return (
     <>
       <Helmet>
-        <title>Kontakt - Rex Bedachungs GmbH | Dachdecker Bochum</title>
+        <title>Kontakt – Rex Bedachungs GmbH | Dachdecker Bochum</title>
         <meta name="description" content="Kontakt zu Rex Bedachungs GmbH Bochum – Telefon: +49 234 583100, E-Mail: info@rex-bedachung.de. Kostenloses Aufmaß und Beratung vor Ort." />
         <link rel="canonical" href="https://www.rex-bedachung.de/kontakt" />
         <meta property="og:title" content="Kontakt - Rex Bedachungs GmbH" />

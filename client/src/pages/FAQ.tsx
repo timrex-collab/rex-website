@@ -329,7 +329,7 @@ export default function FAQ() {
   return (
     <>
       <Helmet>
-        <title>FAQ - Häufig gestellte Fragen | Rex Bedachungs GmbH</title>
+        <title>FAQ – Häufig gestellte Fragen | Rex Bedachungs GmbH</title>
         <meta
           name="description"
           content="Antworten auf häufig gestellte Fragen zu Dacharbeiten, Kosten, Wartung und mehr. Erfahren Sie alles über Steildach, Flachdach, Dachfenster und Reparaturen."

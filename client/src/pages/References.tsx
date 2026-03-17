@@ -76,7 +76,7 @@ export default function References() {
   return (
     <>
       <Helmet>
-        <title>Referenzen - Rex Bedachungs GmbH | Dachdecker Bochum</title>
+        <title>Referenzen – Rex Bedachungs GmbH | Dachdecker Bochum</title>
         <meta name="description" content="Referenzprojekte von Rex Bedachungs GmbH Bochum – Steildach, Flachdach, Gründach und Bauklempnerei im Ruhrgebiet. Überzeugen Sie sich selbst." />
         <link rel="canonical" href="https://www.rex-bedachung.de/referenzen" />
         <meta property="og:title" content="Referenzen - Rex Bedachungs GmbH" />

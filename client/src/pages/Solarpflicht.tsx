@@ -134,7 +134,7 @@ export default function Solarpflicht() {
   return (
     <>
       <Helmet>
-        <title>Solarpflicht NRW 2026 – Was Eigentümer wissen müssen</title>
+        <title>Solarpflicht NRW 2026 – Was Eigentümer wissen müssen | Rex Bedachung</title>
         <meta name="description" content="Solarpflicht NRW ab 2026: Was gilt für Ihr Gebäude? Rex Bedachung erklärt § 42a BauO NRW, Ausnahmen & Fördermöglichkeiten. Jetzt informieren." />
         <link rel="canonical" href="https://www.rex-bedachung.de/solarpflicht" />
         <meta property="og:title" content="Solarpflicht NRW 2026 | Rex Bedachungs GmbH Bochum" />
