@@ -374,56 +374,6 @@ export default function SteildachBochum() {
           </p>
         </div>
       </section>
-      {/* Preise */}
-      <section className="py-12 px-4 bg-muted/40" data-testid="section-preise">
-        <div className="max-w-4xl mx-auto">
-          <h2 className="text-2xl md:text-3xl font-bold text-center mb-8 text-foreground">
-            Steildach Kosten Bochum – Richtwerte
-          </h2>
-          <div className="overflow-x-auto">
-            <table className="w-full text-sm border-collapse">
-              <thead>
-                <tr className="bg-primary text-primary-foreground">
-                  <th className="text-left px-4 py-3 rounded-tl-md">Maßnahme</th>
-                  <th className="text-left px-4 py-3">Richtwert</th>
-                  <th className="text-left px-4 py-3 rounded-tr-md">Hinweis</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr className="border-b border-border bg-card">
-                  <td className="px-4 py-3 font-medium">Neueindeckung Tonziegel</td>
-                  <td className="px-4 py-3">80 – 130 €/m²</td>
-                  <td className="px-4 py-3 text-muted-foreground">inkl. Lattung &amp; Unterspannbahn</td>
-                </tr>
-                <tr className="border-b border-border bg-muted/30">
-                  <td className="px-4 py-3 font-medium">Neueindeckung Betondachstein</td>
-                  <td className="px-4 py-3">70 – 110 €/m²</td>
-                  <td className="px-4 py-3 text-muted-foreground">inkl. Lattung &amp; Unterspannbahn</td>
-                </tr>
-                <tr className="border-b border-border bg-card">
-                  <td className="px-4 py-3 font-medium">Aufsparrendämmung</td>
-                  <td className="px-4 py-3">80 – 150 €/m²</td>
-                  <td className="px-4 py-3 text-muted-foreground">abhängig von Dämmstärke nach GEG</td>
-                </tr>
-                <tr className="border-b border-border bg-muted/30">
-                  <td className="px-4 py-3 font-medium">Zwischensparrendämmung</td>
-                  <td className="px-4 py-3">40 – 80 €/m²</td>
-                  <td className="px-4 py-3 text-muted-foreground">ohne Neueindeckung</td>
-                </tr>
-                <tr className="bg-card">
-                  <td className="px-4 py-3 font-medium">Teilreparatur / Ziegel tauschen</td>
-                  <td className="px-4 py-3">ab 300 €</td>
-                  <td className="px-4 py-3 text-muted-foreground">je nach Schadensumfang</td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-          <p className="text-xs text-muted-foreground text-center mt-4">
-            Alle Preise sind Richtwerte inkl. MwSt. – der tatsächliche Preis hängt von
-            Dachgröße, Dachform und Materialwahl ab. Kostenloses Angebot nach Vor-Ort-Besichtigung.
-          </p>
-        </div>
-      </section>
       {/* Leistungskarten */}
       <section className="py-16 px-4 bg-muted/40" data-testid="section-leistungen">
         <div className="max-w-7xl mx-auto">
@@ -732,17 +682,9 @@ export default function SteildachBochum() {
             Vertiefende Informationen zu einzelnen Themen rund ums Steildach:
           </p>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8">
-            <a href="/steildach-kosten-bochum" className="block p-5 bg-white rounded-xl border border-gray-200 hover:border-primary hover:shadow-md transition-all">
-              <div className="font-semibold text-gray-900 mb-1">Steildach Kosten Bochum</div>
-              <div className="text-sm text-gray-500">Preise für Neueindeckung, Dämmung und Sanierung – transparente Richtwerte.</div>
-            </a>
             <a href="/aufsparrendaemmung-bochum" className="block p-5 bg-white rounded-xl border border-gray-200 hover:border-primary hover:shadow-md transition-all">
               <div className="font-semibold text-gray-900 mb-1">Aufsparrendämmung Bochum</div>
               <div className="text-sm text-gray-500">Die effektivste Dämmvariante – Kosten, Ablauf und Förderung erklärt.</div>
-            </a>
-            <a href="/dachziegel-bochum" className="block p-5 bg-white rounded-xl border border-gray-200 hover:border-primary hover:shadow-md transition-all">
-              <div className="font-semibold text-gray-900 mb-1">Dachziegel Bochum</div>
-              <div className="text-sm text-gray-500">Tonziegel, Betondachsteine und Schiefer – Materialvergleich und Beratung.</div>
             </a>
             <a href="/steildach-foerderung-bochum" className="block p-5 bg-white rounded-xl border border-gray-200 hover:border-primary hover:shadow-md transition-all">
               <div className="font-semibold text-gray-900 mb-1">Steildach Förderung Bochum</div>
