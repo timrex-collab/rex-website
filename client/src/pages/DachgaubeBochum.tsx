@@ -10,10 +10,10 @@ import {
   Home,
   Triangle,
   Square,
-  Wind,
-  Shield,
-  FileText,
+  Layers,
   AlertTriangle,
+  MessageSquare,
+  LayoutGrid,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -22,7 +22,7 @@ const faqItems = [
   {
     question: "Brauche ich für eine Dachgaube eine Baugenehmigung?",
     answer:
-      "In NRW ist für den Einbau einer Dachgaube in der Regel eine Baugenehmigung erforderlich. Die genauen Voraussetzungen hängen von Größe, Lage und kommunalen Bebauungsplänen ab – wir beraten Sie dazu kostenlos.",
+      "In NRW ist für den Einbau einer Dachgaube in der Regel eine Baugenehmigung erforderlich. Die genauen Voraussetzungen hängen von Größe, Lage und kommunalen Bebauungsplänen ab – wir beraten Sie kostenlos dazu.",
   },
   {
     question: "Welche Dachgaube passt zu meinem Haus?",
@@ -42,30 +42,30 @@ const faqItems = [
   {
     question: "Wie lange dauert der Einbau einer Dachgaube?",
     answer:
-      "Je nach Typ und Größe dauert der Einbau einer Dachgaube in der Regel 3–7 Arbeitstage. Wir arbeiten termingerecht und koordinieren alle Gewerke aus einer Hand.",
+      "Je nach Typ und Größe dauert der Einbau in der Regel 3–7 Arbeitstage. Wir arbeiten termingerecht und koordinieren alle Gewerke aus einer Hand.",
   },
 ];
 
 const gaubenTypen = [
   {
-    icon: <Wind className="w-7 h-7 text-primary" />,
+    icon: <Square className="w-7 h-7 text-primary" />,
     title: "Schleppgaube",
-    text: "Flaches Pultdach, viel nutzbarer Raum, harmonisch in das Steildach integrierbar. Die vielseitigste Gaubenform – passt zu nahezu allen Steildachtypen.",
+    text: "Flaches Pultdach, viel Platz, harmonisch ins Steildach integrierbar – universell einsetzbar und besonders beliebt.",
   },
   {
     icon: <Triangle className="w-7 h-7 text-primary" />,
-    title: "Spitzgaube (Dreiecksgaube)",
-    text: "Klassische Dreiecksform mit zwei geneigten Dachflächen. Ideal für Satteldächer – wirkt traditionell und harmoniert gut mit historischen Fassaden.",
+    title: "Spitzgaube",
+    text: "Klassische Dreiecksgaube, ideal für Satteldächer, zeitloser Stil der sich ins Bestandsdach einfügt.",
   },
   {
-    icon: <Home className="w-7 h-7 text-primary" />,
+    icon: <Layers className="w-7 h-7 text-primary" />,
     title: "Fledermausgaube",
-    text: "Geschwungene Form mit organisch geformter Eindeckung. Aufwendiger in der Ausführung – besonders repräsentativ und architektonisch anspruchsvoll.",
+    text: "Geschwungene Form, aufwendiger in der Ausführung, besonders repräsentativ und wertsteigernd.",
   },
   {
-    icon: <Square className="w-7 h-7 text-primary" />,
+    icon: <LayoutGrid className="w-7 h-7 text-primary" />,
     title: "Kastengaube",
-    text: "Kubische Form mit senkrechter Front – maximale Raumausnutzung und moderne Optik. Ideal wenn maximale Kopffreiheit und Lichteinfall gewünscht sind.",
+    text: "Kubische Form, maximale Raumausnutzung, modernes Erscheinungsbild.",
   },
 ];
 
@@ -81,19 +81,19 @@ const leistungen = [
 
 const hinweisCards = [
   {
-    icon: <FileText className="w-6 h-6 text-primary" />,
+    icon: <AlertTriangle className="w-6 h-6 text-primary" />,
     title: "Baugenehmigung",
-    text: "In NRW ist eine Baugenehmigung bei Gauben in der Regel erforderlich. Die genauen Voraussetzungen hängen von Größe, Lage und kommunalen Bebauungsplänen ab – wir beraten Sie zum Ablauf.",
+    text: "In NRW ist für den Einbau einer Dachgaube in der Regel eine Baugenehmigung erforderlich. Die genauen Voraussetzungen hängen von Größe, Lage und kommunalen Bebauungsplänen ab – wir beraten Sie dazu kostenlos.",
   },
   {
-    icon: <Shield className="w-6 h-6 text-primary" />,
+    icon: <AlertTriangle className="w-6 h-6 text-primary" />,
     title: "Statik",
-    text: "Der Dachstuhl muss die zusätzliche Last tragen. Eine statische Prüfung durch einen Fachbetrieb ist Pflicht – wir koordinieren dies im Rahmen der Planung.",
+    text: "Der Dachstuhl muss die zusätzliche Last tragen – eine statische Prüfung durch den Fachbetrieb ist Pflicht vor Baubeginn.",
   },
   {
     icon: <AlertTriangle className="w-6 h-6 text-primary" />,
     title: "Anschlüsse",
-    text: "Undichte Gaubenanschlüsse sind die häufigste Fehlerquelle bei Gaubeneinbauten. Fachgerechte Ausführung aller Anschlüsse und Abdichtungen ist entscheidend für die Dauerhaftigkeit.",
+    text: "Undichte Gaubenanschlüsse sind die häufigste Fehlerquelle bei Dachgauben – fachgerechte Ausführung ist entscheidend für Langlebigkeit.",
   },
 ];
 
@@ -134,7 +134,7 @@ export default function DachgaubeBochum() {
         "@type": "Service",
         "name": "Dachgaube einbauen Bochum",
         "serviceType": "Dachgaubeneinbau und Sanierung",
-        "provider": { "@type": "Organization", "name": "Rex Bedachungs GmbH" },
+        "provider": { "@id": "https://www.rex-bedachung.de/#organization" },
         "areaServed": { "@type": "City", "name": "Bochum" },
       },
       {
@@ -154,14 +154,14 @@ export default function DachgaubeBochum() {
         <title>Dachgaube Bochum – Einbau &amp; Sanierung | Rex Bedachungs GmbH</title>
         <meta
           name="description"
-          content="Dachgaube einbauen oder sanieren in Bochum: Schleppgaube, Spitzgaube, Fledermausgaube. Meisterbetrieb mit 40+ Jahren Erfahrung. Angebot nach kostenlosem Aufmaß."
+          content="Dachgaube einbauen oder sanieren in Bochum: Schleppgaube, Spitzgaube, Fledermausgaube, Kastengaube. Meisterbetrieb seit 1984. Angebot nach kostenlosem Aufmaß."
         />
         <link rel="canonical" href="https://www.rex-bedachung.de/dachgaube-bochum" />
         <meta property="og:type" content="article" />
         <meta property="og:title" content="Dachgaube Bochum – Einbau & Sanierung | Rex Bedachungs GmbH" />
         <meta
           property="og:description"
-          content="Dachgaube einbauen oder sanieren in Bochum: Schleppgaube, Spitzgaube, Fledermausgaube. Meisterbetrieb mit 40+ Jahren Erfahrung. Angebot nach kostenlosem Aufmaß."
+          content="Dachgaube einbauen oder sanieren in Bochum: Schleppgaube, Spitzgaube, Fledermausgaube, Kastengaube. Meisterbetrieb seit 1984. Angebot nach kostenlosem Aufmaß."
         />
         <meta property="og:image" content="https://www.rex-bedachung.de/images/tondach-hero-dachdeckung-bochum.webp" />
         <meta property="og:url" content="https://www.rex-bedachung.de/dachgaube-bochum" />
@@ -169,7 +169,7 @@ export default function DachgaubeBochum() {
         <meta name="twitter:title" content="Dachgaube Bochum – Einbau & Sanierung | Rex Bedachungs GmbH" />
         <meta
           name="twitter:description"
-          content="Dachgaube einbauen oder sanieren in Bochum: Schleppgaube, Spitzgaube, Fledermausgaube. Meisterbetrieb mit 40+ Jahren Erfahrung. Angebot nach kostenlosem Aufmaß."
+          content="Dachgaube einbauen oder sanieren in Bochum: Schleppgaube, Spitzgaube, Fledermausgaube, Kastengaube. Meisterbetrieb seit 1984. Angebot nach kostenlosem Aufmaß."
         />
         <meta name="twitter:image" content="https://www.rex-bedachung.de/images/tondach-hero-dachdeckung-bochum.webp" />
         <script type="application/ld+json">{JSON.stringify(schemaData)}</script>
@@ -186,16 +186,19 @@ export default function DachgaubeBochum() {
 
       {/* 1. Hero */}
       <section
-        className="py-20 px-4 bg-gradient-to-br from-slate-900 to-slate-800 text-white"
+        className="py-20 px-4 bg-gradient-to-br from-slate-900 to-slate-700 text-white"
         data-testid="section-hero"
       >
         <div className="max-w-4xl mx-auto text-center">
           <h1 className="text-3xl md:text-5xl font-bold mb-6 leading-tight" data-testid="heading-hero">
             Dachgaube Bochum – Einbau &amp; Sanierung vom Meisterbetrieb
           </h1>
-          <p className="text-lg md:text-xl text-slate-300 mb-10 max-w-2xl mx-auto" data-testid="text-hero-subtitle">
+          <p className="text-lg md:text-xl text-slate-300 mb-6 max-w-2xl mx-auto" data-testid="text-hero-subtitle">
             Mehr Licht, mehr Raum, mehr Wohnqualität – Rex Bedachungs GmbH plant und baut Ihre Dachgaube
             fachgerecht in Bochum und dem Ruhrgebiet.
+          </p>
+          <p className="text-sm text-slate-400 mb-10" data-testid="text-hero-badge">
+            Meisterbetrieb&nbsp;•&nbsp;Seit 1984&nbsp;•&nbsp;Ruhrgebiet
           </p>
           <div className="flex flex-wrap justify-center gap-4">
             <Button
@@ -229,11 +232,11 @@ export default function DachgaubeBochum() {
             Was bringt eine Dachgaube?
           </h2>
           <p className="text-muted-foreground mb-4 text-base leading-relaxed">
-            Eine Dachgaube verwandelt nutzbaren Dachraum in echten Wohnraum: Sie bringt natürliches Tageslicht ins
-            Dachgeschoss, erhöht die Raumhöhe spürbar und vergrößert die nutzbare Wohnfläche – ohne einen Anbau.
-            Das steigert den Wohnwert und den Immobilienwert gleichermaßen.
+            Eine Dachgaube bringt mehr natürliches Licht, mehr Raumhöhe und mehr nutzbare Wohnfläche. Sie ist
+            eine der wirkungsvollsten Maßnahmen zur Aufwertung eines Dachgeschosses – ohne Anbau, ohne
+            Grundrissveränderung. Das steigert den Wohnwert und den Immobilienwert gleichermaßen.
           </p>
-          <p className="text-muted-foreground mb-4 text-base leading-relaxed">
+          <p className="text-muted-foreground mb-5 text-base leading-relaxed">
             Dachgauben sind Teil unserer Steildach-Leistungen –{" "}
             <a href="/steildach-bochum" className="text-primary font-semibold hover:underline">
               alle Informationen zur Steildachsanierung finden Sie hier
@@ -336,13 +339,14 @@ export default function DachgaubeBochum() {
         data-testid="section-angebot-box"
       >
         <div className="max-w-3xl mx-auto text-center">
+          <MessageSquare className="w-10 h-10 mx-auto mb-4 text-slate-300" />
           <h2 className="text-2xl md:text-3xl font-bold mb-5">
-            Was kostet eine Dachgaube?
+            Angebot nach kostenlosem Aufmaß
           </h2>
           <p className="text-slate-300 mb-8 text-base leading-relaxed">
             Der Preis für eine Dachgaube hängt von Typ, Größe, Eindeckmaterial und Dachstuhlsituation ab –
             eine pauschale Angabe ist nicht seriös möglich. Rex Bedachungs GmbH erstellt Ihnen nach kostenlosem
-            Aufmaß ein transparentes Festangebot.
+            Aufmaß ein transparentes Angebot.
           </p>
           <Button
             size="lg"
@@ -441,8 +445,8 @@ export default function DachgaubeBochum() {
               className="block p-5 bg-white dark:bg-card rounded-xl border border-gray-200 dark:border-border hover:border-primary hover:shadow-md transition-all"
               data-testid="link-cluster-steildach"
             >
-              <div className="font-semibold text-gray-900 dark:text-foreground mb-1">Steildach Bochum – alle Leistungen</div>
-              <div className="text-sm text-gray-500 dark:text-muted-foreground">Neueindeckung, Sanierung, Dämmung und mehr auf einen Blick.</div>
+              <div className="font-semibold text-gray-900 dark:text-foreground mb-1">Steildach Bochum</div>
+              <div className="text-sm text-gray-500 dark:text-muted-foreground">Alle Steildach-Leistungen im Überblick.</div>
             </a>
             <a
               href="/dachfenster-bochum"
@@ -450,7 +454,7 @@ export default function DachgaubeBochum() {
               data-testid="link-cluster-dachfenster"
             >
               <div className="font-semibold text-gray-900 dark:text-foreground mb-1">Dachfenster Bochum</div>
-              <div className="text-sm text-gray-500 dark:text-muted-foreground">VELUX-Einbau, Austausch und Reparatur – alle Modelle.</div>
+              <div className="text-sm text-gray-500 dark:text-muted-foreground">VELUX-Partner für Dachfenster und Gaubeneinbau.</div>
             </a>
             <a
               href="/steildach-foerderung-bochum"
@@ -458,7 +462,7 @@ export default function DachgaubeBochum() {
               data-testid="link-cluster-foerderung"
             >
               <div className="font-semibold text-gray-900 dark:text-foreground mb-1">Steildach Förderung Bochum</div>
-              <div className="text-sm text-gray-500 dark:text-muted-foreground">BAFA & KfW für Steildachsanierung – was ist förderfähig?</div>
+              <div className="text-sm text-gray-500 dark:text-muted-foreground">BAFA &amp; KfW für Steildachsanierung und Dämmung.</div>
             </a>
           </div>
         </div>

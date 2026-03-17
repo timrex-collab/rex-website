@@ -1,0 +1,397 @@
+Erstelle zwei neue Cluster-Artikel als TSX-Komponenten für den 
+Steildach-Cluster. Beide Seiten folgen den etablierten 
+Projektkonventionen.
+
+KONVENTIONEN (für beide Seiten):
+- Vier Schema-Typen: FAQPage + Article + Service + BreadcrumbList
+- BreadcrumbList: 3-stufig (Startseite → Steildach Bochum → [Seite])
+- Pulse-ring CTA: className="pulse-ring cta-pulse" auf primären Buttons
+- Button-Stil: rounded-md, font-semibold
+- Icons: ausschließlich Lucide React (kein Emoji)
+- Sektionsstruktur: alternierend bg-background / bg-muted/40
+- Kein Sticky-Navigation
+- Canonical, og:image, og:title, og:description, Twitter Card im Helmet
+- Interner Link zurück zur Pillar Page /steildach-bochum vorhanden
+- KEINE Kosten, KEINE Preise, KEINE €-Angaben, 
+  KEINE Richtwerte – weder im sichtbaren Content noch im Schema
+
+---
+
+SEITE 1: /steildach-foerderung-bochum
+Datei: client/src/pages/SteildachFoerderungBochum.tsx
+
+Helmet:
+- title: "Steildach Förderung Bochum – BAFA & KfW 2026 | Rex Bedachung"
+- description: "Steildach sanieren und Förderung nutzen: BAFA bis 20 %, 
+  KfW-Kredit, GEG-konforme Dämmung. Rex Bedachungs GmbH berät kostenlos 
+  in Bochum."
+- canonical: https://www.rex-bedachung.de/steildach-foerderung-bochum
+- og:image: https://www.rex-bedachung.de/images/tondach-hero-dachdeckung-bochum.webp
+
+BreadcrumbList (3-stufig):
+Position 1: Startseite → https://www.rex-bedachung.de/
+Position 2: Steildach Bochum → https://www.rex-bedachung.de/steildach-bochum
+Position 3: Steildach Förderung Bochum → 
+  https://www.rex-bedachung.de/steildach-foerderung-bochum
+
+Article-Schema:
+- headline: "Steildach Förderung Bochum – BAFA, KfW und GEG 2026"
+- author/publisher: Rex Bedachungs GmbH
+- datePublished: 2026-03-17
+- url: https://www.rex-bedachung.de/steildach-foerderung-bochum
+
+Service-Schema:
+- name: "Förderberatung Steildach Bochum"
+- serviceType: "Förderberatung energetische Dachsanierung"
+- provider: { "@id": "https://www.rex-bedachung.de/#organization" }
+- areaServed: Bochum
+
+FAQPage-Schema mit 5 Fragen (siehe Seitenstruktur Abschnitt 7).
+
+Seitenstruktur:
+
+1. Hero (bg-gradient from-slate-900 to-blue-950, weißer Text)
+   H1: Steildach Förderung Bochum – BAFA & KfW 2026
+   Subtitle: Energetische Steildachsanierung wird staatlich gefördert – 
+   wir beraten Sie kostenlos welche Programme für Ihr Projekt passen.
+   Trust-Badge: Meisterbetrieb • Kostenlose Förderberatung • Ruhrgebiet
+   CTA: Button "Förderberatung anfragen" (pulse-ring cta-pulse) + 
+   Telefon-Button href="tel:+49234583100"
+
+2. Einleitung (bg-background)
+   Text: Erklärung warum energetische Dachsanierung förderfähig ist –
+   GEG-Anforderungen, staatliche Klimaziele, Kombination aus 
+   Pflicht und Förderanreiz.
+   Interner Link: "Alle Informationen zur Steildachsanierung 
+   finden Sie auf unserer Steildach-Hauptseite." 
+   → href="/steildach-bochum"
+   Fact-Snippet als <p className="text-sm text-slate-600">:
+   "Bei Steildachsanierungen in Bochum stellt die Rex Bedachungs GmbH 
+   sicher, dass alle Dämmmaßnahmen GEG-konform ausgeführt werden – 
+   Voraussetzung für BAFA-Förderung und KfW-Kredit."
+
+3. BAFA-Abschnitt (bg-muted/40)
+   H2: BAFA-Förderung für Steildach – Bundesförderung BEG
+   4 Cards (Lucide Icons):
+   Card 1 – CheckCircle: 
+     Titel: Bis zu 20 % Zuschuss
+     Text: Offizieller Fördersatz auf die förderfähigen Kosten 
+     der Dämmmaßnahme – unabhängig von der Höhe der Investition
+   Card 2 – Home:
+     Titel: Förderfähige Maßnahmen
+     Text: Aufsparrendämmung und Zwischensparrendämmung sind 
+     förderfähig, wenn GEG-konforme U-Werte erreicht werden
+   Card 3 – AlertTriangle:
+     Titel: Antrag vor Auftragsvergabe
+     Text: Der BAFA-Antrag muss zwingend vor Beginn der Maßnahme 
+     gestellt werden – Rex Bedachung begleitet Sie dabei
+   Card 4 – Users:
+     Titel: Kostenlose Beratung
+     Text: Wir übernehmen die Vorbereitung aller Unterlagen 
+     und begleiten Sie durch den Antragsprozess
+   Info-Box (border-l-4 border-blue-500 bg-blue-50):
+   "Wichtig: Der BAFA-Antrag muss vor Beginn der Maßnahme 
+   gestellt werden. Rex Bedachung stellt sicher, dass alle 
+   Voraussetzungen erfüllt sind."
+
+4. KfW-Abschnitt (bg-background)
+   H2: KfW-Kredit für Steildachsanierung
+   3 Cards:
+   Card 1 – TrendingDown:
+     Titel: KfW-Programm 261
+     Text: Zinsgünstiger Kredit für energetische Einzelmaßnahmen 
+     am Gebäude – beantragbar über die Hausbank
+   Card 2 – CheckCircle:
+     Titel: Kombinierbar mit BAFA
+     Text: BAFA-Zuschuss und KfW-Kredit lassen sich für 
+     dieselbe Maßnahme kombinieren
+   Card 3 – Award:
+     Titel: Tilgungszuschuss möglich
+     Text: Bei Erreichen bestimmter Effizienzstandards 
+     ist ein zusätzlicher Tilgungszuschuss möglich
+
+5. GEG-Abschnitt (bg-muted/40)
+   H2: GEG 2026 – Pflicht und Fördervoraussetzung
+   Text: Mindest-U-Wert für Dachflächen nach GEG ist einzuhalten. 
+   Förderung setzt GEG-konforme Ausführung voraus. 
+   Reine Neueindeckung ohne Dämmung ist nicht förderfähig – 
+   nur Dämmmaßnahmen berechtigen zur BAFA/KfW-Förderung.
+
+6. Ablauf Förderberatung (bg-background)
+   H2: So läuft die Förderberatung bei Rex Bedachung ab
+   5 nummerierte Schritte:
+   1. Kostenloses Beratungsgespräch vor Ort
+   2. Prüfung der Förderfähigkeit Ihrer Maßnahme
+   3. Vorbereitung der BAFA-/KfW-Unterlagen
+   4. Antragstellung vor Auftragsvergabe
+   5. Ausführung und Fachunternehmererklärung
+
+7. FAQ (bg-muted/40)
+   H2: Häufige Fragen zur Steildach-Förderung
+   5 Fragen als Accordion (openFaq-State wie in SteildachBochum.tsx):
+
+   Q1: Welche Förderung gibt es für die Steildachsanierung?
+   A1: Über BAFA (BEG Einzelmaßnahme) sind bis zu 20 % der 
+   förderfähigen Kosten als Zuschuss möglich. Zusätzlich kann 
+   ein KfW-Kredit (Programm 261) beantragt werden. 
+   Beide Programme sind kombinierbar.
+
+   Q2: Muss ich den Antrag selbst stellen?
+   A2: Den BAFA-Antrag stellt der Eigentümer über das BAFA-Portal. 
+   Rex Bedachung bereitet alle notwendigen Unterlagen vor und 
+   begleitet Sie durch den Prozess. Wichtig: Antrag vor 
+   Auftragsvergabe stellen.
+
+   Q3: Welche Dämmmaßnahmen am Steildach sind förderfähig?
+   A3: Aufsparrendämmung und Zwischensparrendämmung sind förderfähig, 
+   wenn sie GEG-konforme U-Werte erreichen. Die reine Neueindeckung 
+   ohne Dämmung ist nicht förderfähig.
+
+   Q4: Kann ich BAFA und KfW kombinieren?
+   A4: Ja – BAFA-Zuschuss und KfW-Kredit können für dieselbe 
+   Maßnahme kombiniert werden. Die genauen Bedingungen prüfen 
+   wir gemeinsam in der Beratung.
+
+   Q5: Gilt die Förderung auch für ältere Häuser?
+   A5: Ja – die BEG-Förderung gilt für bestehende Wohngebäude 
+   unabhängig vom Baujahr. Entscheidend ist, dass die 
+   Mindestanforderungen ans Dämmniveau nach GEG eingehalten werden.
+
+8. CTA-Sektion (bg-muted/40)
+   H2: Kostenlose Förderberatung anfragen
+   Text: Wir prüfen welche Förderung für Ihr Steildachprojekt 
+   in Frage kommt – kostenlos und unverbindlich.
+   CTA: Button "Beratung anfragen" (pulse-ring cta-pulse) + 
+   Telefon-Button href="tel:+49234583100"
+
+9. Cluster-Link-Block (bg-slate-50)
+   H2: Weitere Informationen zum Steildach
+   3 Link-Cards:
+   - /steildach-bochum → "Steildach Bochum" / 
+     "Alle Steildach-Leistungen im Überblick"
+   - /aufsparrendaemmung-bochum → "Aufsparrendämmung Bochum" / 
+     "Die effektivste Dämmvariante – Ablauf und Förderung erklärt"
+   - /foerderung → "Alle Förderprogramme" / 
+     "BAFA & KfW für alle Dachmaßnahmen im Überblick"
+
+---
+
+SEITE 2: /dachgaube-bochum
+Datei: client/src/pages/DachgaubeBochum.tsx
+
+Helmet:
+- title: "Dachgaube Bochum – Einbau & Sanierung | Rex Bedachungs GmbH"
+- description: "Dachgaube einbauen oder sanieren in Bochum: 
+  Schleppgaube, Spitzgaube, Fledermausgaube, Kastengaube. 
+  Meisterbetrieb seit 1984. Angebot nach kostenlosem Aufmaß."
+- canonical: https://www.rex-bedachung.de/dachgaube-bochum
+- og:image: https://www.rex-bedachung.de/images/tondach-hero-dachdeckung-bochum.webp
+
+BreadcrumbList (3-stufig):
+Position 1: Startseite → https://www.rex-bedachung.de/
+Position 2: Steildach Bochum → https://www.rex-bedachung.de/steildach-bochum
+Position 3: Dachgaube Bochum → 
+  https://www.rex-bedachung.de/dachgaube-bochum
+
+Article-Schema:
+- headline: "Dachgaube Bochum – Einbau, Sanierung und Typen im Überblick"
+- author/publisher: Rex Bedachungs GmbH
+- datePublished: 2026-03-17
+- url: https://www.rex-bedachung.de/dachgaube-bochum
+
+Service-Schema:
+- name: "Dachgaube einbauen Bochum"
+- serviceType: "Dachgaubeneinbau und Sanierung"
+- provider: { "@id": "https://www.rex-bedachung.de/#organization" }
+- areaServed: Bochum
+
+FAQPage-Schema mit 5 Fragen (siehe Seitenstruktur Abschnitt 8).
+
+Seitenstruktur:
+
+1. Hero (bg-gradient from-slate-900 to-slate-700, weißer Text)
+   H1: Dachgaube Bochum – Einbau & Sanierung vom Meisterbetrieb
+   Subtitle: Mehr Licht, mehr Raum, mehr Wohnqualität – 
+   Rex Bedachungs GmbH plant und baut Ihre Dachgaube fachgerecht 
+   in Bochum und dem Ruhrgebiet.
+   Trust-Badge: Meisterbetrieb • Seit 1984 • Ruhrgebiet
+   CTA: Button "Angebot anfragen" (pulse-ring cta-pulse) + 
+   Telefon-Button href="tel:+49234583100"
+
+2. Einleitung (bg-background)
+   Text: Was eine Dachgaube bringt – mehr natürliches Licht, 
+   mehr Raumhöhe, mehr nutzbare Wohnfläche. Eine der 
+   wirkungsvollsten Maßnahmen zur Aufwertung eines Dachgeschosses.
+   Interner Link: "Dachgauben sind Teil unserer Steildach-Leistungen – 
+   alle Informationen zur Steildachsanierung finden Sie hier."
+   → href="/steildach-bochum"
+   Fact-Snippet als <p className="text-sm text-slate-600">:
+   "Die Rex Bedachungs GmbH plant und baut Dachgauben in Bochum 
+   seit 1984 – inklusive fachgerechter Eindeckung, Anschlüsse 
+   und Abdichtung aus einer Hand."
+
+3. Gaubentypen (bg-muted/40)
+   H2: Welche Dachgauben-Typen gibt es?
+   4 Cards (je ein Lucide Icon):
+   Card 1 – Square: 
+     Titel: Schleppgaube
+     Text: Flaches Pultdach, viel Platz, harmonisch ins Steildach 
+     integrierbar – universell einsetzbar und besonders beliebt
+   Card 2 – Triangle (oder Home):
+     Titel: Spitzgaube
+     Text: Klassische Dreiecksgaube, ideal für Satteldächer, 
+     zeitloser Stil der sich ins Bestandsdach einfügt
+   Card 3 – Layers:
+     Titel: Fledermausgaube
+     Text: Geschwungene Form, aufwendiger in der Ausführung, 
+     besonders repräsentativ und wertsteigernd
+   Card 4 – Box (oder LayoutGrid):
+     Titel: Kastengaube
+     Text: Kubische Form, maximale Raumausnutzung, 
+     modernes Erscheinungsbild
+
+4. Leistungsumfang (bg-background)
+   H2: Unser Leistungsumfang beim Gaubeneinbau
+   Checkliste mit CheckCircle-Icons:
+   - Statische Prüfung und Planung
+   - Dachstuhlarbeiten und Zimmermannarbeiten
+   - Eindeckung passend zum Bestandsdach
+   - Dachanschlüsse und Abdichtung
+   - Dachfenstereinbau optional
+   - Dämmung nach GEG
+   - Spengler- und Blecharbeiten
+
+5. Worauf kommt es an? (bg-muted/40)
+   H2: Was Sie beim Gaubeneinbau beachten sollten
+   3 Cards (AlertTriangle-Icon):
+   Card 1:
+     Titel: Baugenehmigung
+     Text: In NRW ist für den Einbau einer Dachgaube in der Regel 
+     eine Baugenehmigung erforderlich. Die genauen Voraussetzungen 
+     hängen von Größe, Lage und kommunalen Bebauungsplänen ab – 
+     wir beraten Sie dazu kostenlos.
+   Card 2:
+     Titel: Statik
+     Text: Der Dachstuhl muss die zusätzliche Last tragen – 
+     eine statische Prüfung durch den Fachbetrieb ist Pflicht 
+     vor Baubeginn.
+   Card 3:
+     Titel: Anschlüsse
+     Text: Undichte Gaubenanschlüsse sind die häufigste 
+     Fehlerquelle bei Dachgauben – fachgerechte Ausführung 
+     ist entscheidend für Langlebigkeit.
+
+6. Ablauf (bg-background)
+   H2: So läuft der Gaubeneinbau ab
+   7 nummerierte Schritte:
+   1. Kostenloses Beratungsgespräch und Aufmaß vor Ort
+   2. Planung und Angebotserstellung
+   3. Baugenehmigung einholen (Beratung durch Rex Bedachung)
+   4. Dachstuhlarbeiten und Rohbau der Gaube
+   5. Eindeckung, Anschlüsse und Abdichtung
+   6. Dachfenstereinbau (optional)
+   7. Abnahme und Übergabe
+
+7. Angebot-Box (bg-gradient from-slate-900 to-slate-800, 
+   weißer Text, zentriert)
+   Icon: MessageSquare oder Phone (Lucide)
+   H2: Angebot nach kostenlosem Aufmaß
+   Text: Der Preis für eine Dachgaube hängt von Typ, Größe, 
+   Eindeckmaterial und Dachstuhlsituation ab – 
+   eine pauschale Angabe ist nicht seriös möglich. 
+   Rex Bedachungs GmbH erstellt Ihnen nach kostenlosem Aufmaß 
+   ein transparentes Angebot.
+   CTA: Button "Kostenloses Aufmaß anfragen" (pulse-ring cta-pulse)
+
+8. FAQ (bg-muted/40)
+   H2: Häufige Fragen zur Dachgaube in Bochum
+   5 Fragen als Accordion (openFaq-State):
+
+   Q1: Brauche ich für eine Dachgaube eine Baugenehmigung?
+   A1: In NRW ist für den Einbau einer Dachgaube in der Regel 
+   eine Baugenehmigung erforderlich. Die genauen Voraussetzungen 
+   hängen von Größe, Lage und kommunalen Bebauungsplänen ab – 
+   wir beraten Sie kostenlos dazu.
+
+   Q2: Welche Dachgaube passt zu meinem Haus?
+   A2: Das hängt von der Dachform, der Dachneigung und dem 
+   Baustil des Hauses ab. Schleppgauben passen zu fast allen 
+   Steildächern, Spitzgauben wirken klassisch, Kastengauben 
+   modern. Rex Bedachung berät Sie vor Ort.
+
+   Q3: Kann ich eine Dachgaube nachträglich einbauen lassen?
+   A3: Ja – der nachträgliche Einbau ist in den meisten Fällen 
+   möglich. Voraussetzung ist eine statische Prüfung des 
+   Dachstuhls. Wir beurteilen das kostenlos im Rahmen 
+   des Aufmaßtermins.
+
+   Q4: Wird eine Dachgaube gefördert?
+   A4: Wenn im Zuge des Gaubeneinbaus eine GEG-konforme Dämmung 
+   eingebaut wird, kann der Dämmanteil über BAFA oder KfW 
+   gefördert werden. Die reine Gaubenstruktur ist nicht förderfähig.
+
+   Q5: Wie lange dauert der Einbau einer Dachgaube?
+   A5: Je nach Typ und Größe dauert der Einbau in der Regel 
+   3–7 Arbeitstage. Wir arbeiten termingerecht und koordinieren 
+   alle Gewerke aus einer Hand.
+
+9. CTA-Sektion (bg-muted/40)
+   H2: Jetzt Dachgaube planen – kostenloses Aufmaß anfragen
+   Text: Wir kommen zur kostenlosen Besichtigung, prüfen die 
+   Machbarkeit und erstellen ein transparentes Angebot.
+   CTA: Button "Aufmaß anfragen" (pulse-ring cta-pulse) + 
+   Telefon-Button href="tel:+49234583100"
+
+10. Cluster-Link-Block (bg-slate-50)
+    H2: Weitere Informationen zum Steildach
+    3 Link-Cards:
+    - /steildach-bochum → "Steildach Bochum" / 
+      "Alle Steildach-Leistungen im Überblick"
+    - /dachfenster-bochum → "Dachfenster Bochum" / 
+      "VELUX-Partner für Dachfenster und Gaubeneinbau"
+    - /steildach-foerderung-bochum → "Steildach Förderung Bochum" / 
+      "BAFA & KfW für Steildachsanierung und Dämmung"
+
+---
+
+NACH BEIDEN SEITEN:
+
+1. App.tsx: Beide Komponenten importieren und Routen registrieren:
+   import SteildachFoerderungBochum from 
+     "@/pages/SteildachFoerderungBochum";
+   import DachgaubeBochum from "@/pages/DachgaubeBochum";
+   <Route path="/steildach-foerderung-bochum" 
+     component={SteildachFoerderungBochum} />
+   <Route path="/dachgaube-bochum" 
+     component={DachgaubeBochum} />
+
+2. sitemap.xml: Beide URLs ergänzen:
+   <url>
+     <loc>https://www.rex-bedachung.de/steildach-foerderung-bochum</loc>
+     <lastmod>2026-03-17</lastmod>
+     <priority>0.7</priority>
+   </url>
+   <url>
+     <loc>https://www.rex-bedachung.de/dachgaube-bochum</loc>
+     <lastmod>2026-03-17</lastmod>
+     <priority>0.7</priority>
+   </url>
+
+3. SteildachBochum.tsx: Im section-cluster-links-Block prüfen 
+   ob die Links zu /steildach-foerderung-bochum und 
+   /dachgaube-bochum bereits vorhanden sind – falls nicht, 
+   in der zweiten Reihe ergänzen:
+   - /steildach-foerderung-bochum → 
+     "Steildach Förderung Bochum" / 
+     "BAFA & KfW für Steildachsanierung – was ist förderfähig?"
+   - /dachgaube-bochum → 
+     "Dachgaube Bochum" / 
+     "Schleppgaube, Spitzgaube, Kastengaube – Einbau vom Meisterbetrieb"
+
+4. llms.txt: Beide neuen Seiten mit Kurzbeschreibung eintragen.
+
+5. Build ausführen (npm run build) – muss fehlerfrei durchlaufen.
+
+6. Zusammenfassung: Welche Dateien erstellt/geändert wurden, 
+   Routen registriert, Sitemap aktualisiert, 
+   ob keine Preis- oder Kostenangaben enthalten sind.
