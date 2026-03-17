@@ -80,19 +80,19 @@ const kostenKarten = [
   {
     icon: <Home className="w-8 h-8 text-primary" />,
     title: "Einfamilienhaus",
-    text: "Inspektion, Dachrinnenreinigung und Dichtigkeitskontrolle ab ca. 150–250 \u20AC. Exakter Preis nach Aufmaß und Dachgröße. Kostenloses Angebot auf Anfrage.",
+    text: "Inspektion, Dachrinnenreinigung und Dichtigkeitskontrolle – exakter Preis nach Aufmaß und Dachgröße. Kostenloses Angebot auf Anfrage.",
     testId: "card-kosten-efh",
   },
   {
     icon: <Building2 className="w-8 h-8 text-primary" />,
     title: "Mehrfamilienhaus",
-    text: "Je nach Größe und Anzahl der Wohneinheiten ab ca. 250–500 \u20AC. Für Hausverwaltungen bieten wir Rahmenverträge mit vergünstigten Konditionen.",
+    text: "Je nach Größe und Anzahl der Wohneinheiten – Preis nach Aufmaß. Für Hausverwaltungen bieten wir Rahmenverträge mit vergünstigten Konditionen.",
     testId: "card-kosten-mfh",
   },
   {
     icon: <TrendingUp className="w-8 h-8 text-primary" />,
     title: "Was Sie sparen",
-    text: "Eine nicht erkannte Undichtigkeit kann innerhalb einer Saison Schäden von 5.000–30.000 \u20AC verursachen. Regelmäßige Wartung kostet ein Bruchteil davon.",
+    text: "Eine nicht erkannte Undichtigkeit kann innerhalb einer Saison erhebliche Folgeschäden verursachen. Regelmäßige Wartung kostet ein Bruchteil davon.",
     testId: "card-kosten-sparen",
   },
 ];
@@ -106,7 +106,7 @@ const faqItems = [
   {
     question: "Was kostet ein Wartungsvertrag?",
     answer:
-      "Die Kosten hängen von Dachgröße und Leistungsumfang ab. Wir erstellen Ihnen ein individuelles Angebot. Als Richtwert: Einfamilienhäuser ab ca. 120–200 \u20AC pro Jahr inklusive Reinigung und Inspektion.",
+      "Die Kosten hängen von Dachgröße und Leistungsumfang ab. Wir erstellen Ihnen ein individuelles Angebot nach Aufmaß.",
   },
   {
     question: "Beheben Sie Mängel direkt bei der Wartung?",
