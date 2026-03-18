@@ -88,7 +88,7 @@ const faqItems = [
   {
     question: "Kann ein altes VELUX-Fenster 1:1 ersetzt werden?",
     answer:
-      "In der Regel ja – VELUX bietet für ältere Modelle passende Austauschfenster an, die ohne großen Eingriff in die Dachkonstruktion eingebaut werden können. Der Austausch ist meist in einem halben bis ganzen Arbeitstag erledigt. Als zertifizierter VELUX-Fachbetrieb findet Rex Bedachungs GmbH die passende Lösung für Ihr Fenster.",
+      "In der Regel ja – VELUX bietet für ältere Modelle passende Austauschfenster an, die ohne großen Eingriff in die Dachkonstruktion eingebaut werden können. Der Austausch ist meist in einem halben bis ganzen Arbeitstag erledigt. Als anerkannter VELUX-Fachbetrieb findet Rex Bedachungs GmbH die passende Lösung für Ihr Fenster.",
   },
 ];
 
@@ -219,7 +219,7 @@ export default function DachfensterBochum() {
       "name": "Kann ein altes VELUX-Fenster 1:1 ersetzt werden?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "In der Regel ja – VELUX bietet für ältere Modelle passende Austauschfenster an, die ohne großen Eingriff in die Dachkonstruktion eingebaut werden können. Der Austausch ist meist in einem halben bis ganzen Arbeitstag erledigt. Als zertifizierter VELUX-Fachbetrieb findet Rex Bedachungs GmbH die passende Lösung für Ihr Fenster."
+        "text": "In der Regel ja – VELUX bietet für ältere Modelle passende Austauschfenster an, die ohne großen Eingriff in die Dachkonstruktion eingebaut werden können. Der Austausch ist meist in einem halben bis ganzen Arbeitstag erledigt. Als anerkannter VELUX-Fachbetrieb findet Rex Bedachungs GmbH die passende Lösung für Ihr Fenster."
       }
     }
   ]
@@ -523,7 +523,7 @@ export default function DachfensterBochum() {
           </p>
           <p className="text-sm text-slate-600">
             Als Dachdecker-Meisterbetrieb aus Bochum führt die Rex Bedachungs GmbH Dachfensterarbeiten seit 1984
-            im gesamten Stadtgebiet durch – zertifizierter VELUX-Partner mit über 40 Jahren Erfahrung im Ruhrgebiet.
+            im gesamten Stadtgebiet durch – autorisierter VELUX-Partner mit über 40 Jahren Erfahrung im Ruhrgebiet.
           </p>
         </div>
       </section>

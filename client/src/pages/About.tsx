@@ -156,7 +156,7 @@ export default function About() {
               <div className="bg-slate-50 rounded-md p-6">
                 <h3 className="font-semibold text-lg mb-4">Spezialbereiche</h3>
                 <ul className="space-y-2 text-muted-foreground">
-                  <li>VELUX-Dachfenster (zertifizierter Partner)</li>
+                  <li>VELUX-Dachfenster (autorisierter Partner)</li>
                   <li>Bauklempnerei und Blecharbeiten</li>
                   <li>Asbestentsorgung nach TRGS 519</li>
                   <li>BAFA & KfW Förderberatung</li>
