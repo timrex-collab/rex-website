@@ -117,7 +117,7 @@ const faqItems = [
 const schemaJson = JSON.stringify({
   "@context": "https://schema.org",
   "@type": "Service",
-  "name": "Dachreparatur Bochum",
+  "name": "Dachreparatur Bochum – Schnelle Hilfe bei Dachschäden",
   "provider": {
     "@type": "RoofingContractor",
     "@id": "https://www.rex-bedachung.de/#organization",
@@ -131,7 +131,7 @@ const schemaJson = JSON.stringify({
     },
     "telephone": "+49-234-583100",
   },
-  "areaServed": ["Bochum", "Herne", "Castrop-Rauxel", "Witten", "Hattingen", "Ruhrgebiet"],
+  "areaServed": ["Bochum", "Wiemelhausen", "Stiepel", "Weitmar", "Querenburg", "Altenbochum", "Steinkuhl", "Ehrenfeld", "Langendreer", "Wattenscheid", "Herne", "Castrop-Rauxel", "Witten", "Hattingen", "Gelsenkirchen"],
   "description": "Dachreparatur in Bochum – Sturmschäden, undichte Dächer, Ziegel, Dachrinnen und Kaminanschlüsse. Kurzfristiger Einsatz, Versicherungsabwicklung inklusive.",
   "offers": {
     "@type": "Offer",
@@ -488,8 +488,14 @@ export default function Dachreparatur() {
             Dachreparatur im gesamten Ruhrgebiet
           </h2>
           <p className="text-muted-foreground leading-relaxed text-base md:text-lg" data-testid="text-regionen">
-            Rex Bedachungs GmbH repariert Dächer in Bochum, Herne, Castrop-Rauxel, Witten, Hattingen, Wattenscheid,
-            Gelsenkirchen und dem gesamten Ruhrgebiet – kurzfristig, zuverlässig und zu fairen Preisen.
+            Rex Bedachungs GmbH führt Dachreparaturen im gesamten Bochumer Stadtgebiet durch – in Wiemelhausen, Stiepel,
+            Weitmar, Querenburg, Altenbochum, Steinkuhl, Ehrenfeld, Langendreer und Wattenscheid. Auch im direkten Umland
+            sind wir für Sie da: Herne, Castrop-Rauxel, Witten, Hattingen und Gelsenkirchen.
+          </p>
+          <p className="text-sm text-slate-600 text-center mt-6">
+            Bei Dachschäden in Bochum bewertet die Rex Bedachungs GmbH den Schaden vor Ort und gibt eine ehrliche
+            Einschätzung – Reparatur nur wenn nötig, Neueindeckung nur wenn sinnvoll. Auf Wunsch unterstützen wir bei
+            der Schadensdokumentation für Ihre Versicherung.
           </p>
         </div>
       </section>
