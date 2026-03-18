@@ -13,13 +13,11 @@ export default function Navigation() {
   const services = [
     { name: "Steildach", path: "/steildach-bochum" },
     { name: "Flachdach", path: "/flachdach-bochum" },
-    { name: "Bauklempnerei", path: "/bauklempnerei-bochum" },
-    { name: "Dachfenster", path: "/dachfenster-bochum" },
-    { name: "Reparatur", path: "/dachreparatur-bochum" },
-    { name: "Dachwartung", path: "/dachwartung-bochum" },
-    { name: "Velux Austausch", path: "/velux-dachfenster-austausch-bochum" },
-    { name: "Velux Rollläden", path: "/velux-dachfenster-rolllaeden-bochum" },
     { name: "Gründach", path: "/gruendach-dachbegrunung-bochum" },
+    { name: "Dachfenster", path: "/dachfenster-bochum" },
+    { name: "Bauklempnerei", path: "/bauklempnerei-bochum" },
+    { name: "Dachreparatur", path: "/dachreparatur-bochum" },
+    { name: "Dachwartung", path: "/dachwartung-bochum" },
   ];
 
   const mainNav = [
