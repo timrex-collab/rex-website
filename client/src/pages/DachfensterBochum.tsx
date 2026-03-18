@@ -15,6 +15,7 @@ import {
   ArrowRight,
   BarChart3,
   ListChecks,
+  MapPin,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -74,6 +75,21 @@ const faqItems = [
     answer:
       "Wir sind VELUX-Fachbetrieb und verbauen zusätzlich Roto Dachfenster in allen Ausführungen.",
   },
+  {
+    question: "Brauche ich für ein Dachfenster eine Baugenehmigung?",
+    answer:
+      "Der reine Austausch eines bestehenden Dachfensters ist in den meisten Fällen genehmigungsfrei – vorausgesetzt, das Erscheinungsbild des Dachs wird nicht wesentlich verändert. Beim Neueinbau zusätzlicher Fenster hängt die Genehmigungspflicht von der Gemeinde und dem Bebauungsplan ab. Rex Bedachungs GmbH berät Sie kostenlos zum genauen Ablauf in Bochum.",
+  },
+  {
+    question: "Gibt es Förderung für den Einbau von Dachfenstern?",
+    answer:
+      "Ja – wenn im Zuge des Dachfenstereinbaus eine GEG-konforme Dämmung am Eindeckrahmen oder der Laibung ausgeführt wird, kann die Maßnahme über BAFA (BEG Einzelmaßnahme) mit bis zu 15 % gefördert werden. Zusätzlich ist ein KfW-Kredit möglich. Wir beraten Sie kostenlos zu allen aktuellen Fördermöglichkeiten.",
+  },
+  {
+    question: "Kann ein altes VELUX-Fenster 1:1 ersetzt werden?",
+    answer:
+      "In der Regel ja – VELUX bietet für ältere Modelle passende Austauschfenster an, die ohne großen Eingriff in die Dachkonstruktion eingebaut werden können. Der Austausch ist meist in einem halben bis ganzen Arbeitstag erledigt. Als zertifizierter VELUX-Fachbetrieb findet Rex Bedachungs GmbH die passende Lösung für Ihr Fenster.",
+  },
 ];
 
 const schemaJson = JSON.stringify({
@@ -104,7 +120,7 @@ export default function DachfensterBochum() {
   return (
     <>
       <Helmet>
-        <title>Dachfenster Bochum – VELUX Einbau | Rex Bedachung</title>
+        <title>Dachfenster Bochum – Einbau & Austausch | Rex Bedachung</title>
         <meta
           name="description"
           content="Dachfenster in Bochum einbauen oder ersetzen? Rex Bedachung montiert Velux & Fakro – inkl. Dämmung und Anschlussabdichtung. Angebot anfragen."
@@ -146,6 +162,68 @@ export default function DachfensterBochum() {
   },
   "serviceType": "Dachfenstereinbau"
 }`}</script>
+        <script type="application/ld+json">{`{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Was kostet ein Dachfenster Einbau in Bochum?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Die Kosten variieren je nach Modell und Aufwand. Ein einfacher Austausch beginnt ab ca. 1.000 Euro, ein Standard-Austausch (GGL/GGU/GPU) ab ca. 1.500 Euro, Premium-/Integra-Modelle ab ca. 1.800 Euro."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Wie lange dauert der Einbau eines Dachfensters?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Ein Austausch ist in der Regel an einem halben Tag erledigt. Ein Neueinbau dauert je nach Dachkonstruktion 1–2 Tage."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Kann ich Förderung für neue Dachfenster bekommen?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Ja! Beim Austausch gegen energieeffiziente Modelle können Sie über BAFA oder KfW bis zu 15% der Kosten fördern lassen. Wir beraten Sie kostenlos dazu."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Welche Dachfenster-Marken verbauen Sie?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Wir sind VELUX-Fachbetrieb und verbauen zusätzlich Roto Dachfenster in allen Ausführungen."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Brauche ich für ein Dachfenster eine Baugenehmigung?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Der reine Austausch eines bestehenden Dachfensters ist in den meisten Fällen genehmigungsfrei – vorausgesetzt, das Erscheinungsbild des Dachs wird nicht wesentlich verändert. Beim Neueinbau zusätzlicher Fenster hängt die Genehmigungspflicht von der Gemeinde und dem Bebauungsplan ab. Rex Bedachungs GmbH berät Sie kostenlos zum genauen Ablauf in Bochum."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Gibt es Förderung für den Einbau von Dachfenstern?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Ja – wenn im Zuge des Dachfenstereinbaus eine GEG-konforme Dämmung am Eindeckrahmen oder der Laibung ausgeführt wird, kann die Maßnahme über BAFA (BEG Einzelmaßnahme) mit bis zu 15 % gefördert werden. Zusätzlich ist ein KfW-Kredit möglich. Wir beraten Sie kostenlos zu allen aktuellen Fördermöglichkeiten."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Kann ein altes VELUX-Fenster 1:1 ersetzt werden?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "In der Regel ja – VELUX bietet für ältere Modelle passende Austauschfenster an, die ohne großen Eingriff in die Dachkonstruktion eingebaut werden können. Der Austausch ist meist in einem halben bis ganzen Arbeitstag erledigt. Als zertifizierter VELUX-Fachbetrieb findet Rex Bedachungs GmbH die passende Lösung für Ihr Fenster."
+      }
+    }
+  ]
+}`}</script>
       </Helmet>
 
       <Breadcrumb items={[
@@ -167,7 +245,7 @@ export default function DachfensterBochum() {
         <div className="absolute inset-0 bg-gradient-to-r from-black/75 via-black/55 to-black/30" aria-hidden="true" />
         <div className="relative z-10 max-w-7xl mx-auto">
           <h1 className="text-3xl md:text-5xl font-extrabold leading-tight mb-4 max-w-3xl" data-testid="heading-hero">
-            Dachfenster Bochum – VELUX &amp; Roto vom Fachbetrieb
+            Dachfenster Bochum – Einbau &amp; Austausch vom Meisterbetrieb
           </h1>
           <p className="text-lg md:text-xl text-slate-200 mb-8 max-w-xl" data-testid="text-hero-subtitle">
             Neueinbau, Austausch und Reparatur – schnell, sauber, mit Förderung
@@ -428,6 +506,25 @@ export default function DachfensterBochum() {
               </span>
             </div>
           </div>
+        </div>
+      </section>
+
+      {/* ── Stadtteile ── */}
+      <section className="py-16 px-4 bg-muted/40" data-testid="section-stadtteile">
+        <div className="max-w-4xl mx-auto text-center">
+          <MapPin className="w-8 h-8 text-primary mx-auto mb-4" aria-hidden="true" />
+          <h2 className="text-2xl md:text-3xl font-bold mb-4 text-foreground">
+            Dachfenster-Einbau in Bochum – alle Stadtteile
+          </h2>
+          <p className="text-muted-foreground leading-relaxed text-base md:text-lg mb-6">
+            Rex Bedachungs GmbH montiert und tauscht Dachfenster in allen Bochumer Stadtteilen – von Wiemelhausen und
+            Stiepel über Weitmar, Querenburg und Altenbochum bis nach Steinkuhl und Ehrenfeld.
+            Kurze Wege, schnelle Termine, saubere Ausführung vom Meisterbetrieb.
+          </p>
+          <p className="text-sm text-slate-600">
+            Als Dachdecker-Meisterbetrieb aus Bochum führt die Rex Bedachungs GmbH Dachfensterarbeiten seit 1984
+            im gesamten Stadtgebiet durch – zertifizierter VELUX-Partner mit über 40 Jahren Erfahrung im Ruhrgebiet.
+          </p>
         </div>
       </section>
 

@@ -1,0 +1,106 @@
+Datei: client/src/pages/DachfensterBochum.tsx
+
+Führe folgende SEO-Optimierungen durch. Bestehende Sektionen 
+bleiben unverändert – nur die beschriebenen Ergänzungen vornehmen.
+
+---
+
+FIX 1 – H1 schärfen
+Suche den H1-Tag im Hero-Bereich.
+Ersetze den bestehenden H1-Text durch:
+  "Dachfenster Bochum – Einbau & Austausch vom Meisterbetrieb"
+
+---
+
+FIX 2 – FAQ erweitern
+Die FAQ-Sektion hat aktuell 4 Fragen.
+Füge folgende 3 neue Fragen als zusätzliche Accordion-Items 
+am Ende der bestehenden FAQ-Liste ein 
+(gleiche Komponenten-Struktur wie bestehende FAQ-Items):
+
+Frage 1:
+Q: "Brauche ich für ein Dachfenster eine Baugenehmigung?"
+A: "Der reine Austausch eines bestehenden Dachfensters 
+ist in den meisten Fällen genehmigungsfrei – vorausgesetzt, 
+das Erscheinungsbild des Dachs wird nicht wesentlich verändert. 
+Beim Neueinbau zusätzlicher Fenster hängt die 
+Genehmigungspflicht von der Gemeinde und dem Bebauungsplan ab. 
+Rex Bedachungs GmbH berät Sie kostenlos zum genauen Ablauf 
+in Bochum."
+
+Frage 2:
+Q: "Gibt es Förderung für den Einbau von Dachfenstern?"
+A: "Ja – wenn im Zuge des Dachfenstereinbaus eine 
+GEG-konforme Dämmung am Eindeckrahmen oder der 
+Laibung ausgeführt wird, kann die Maßnahme über 
+BAFA (BEG Einzelmaßnahme) mit bis zu 15 % gefördert werden. 
+Zusätzlich ist ein KfW-Kredit möglich. 
+Wir beraten Sie kostenlos zu allen aktuellen Fördermöglichkeiten."
+
+Frage 3:
+Q: "Kann ein altes VELUX-Fenster 1:1 ersetzt werden?"
+A: "In der Regel ja – VELUX bietet für ältere Modelle 
+passende Austauschfenster an, die ohne großen Eingriff 
+in die Dachkonstruktion eingebaut werden können. 
+Der Austausch ist meist in einem halben bis ganzen 
+Arbeitstag erledigt. Als zertifizierter VELUX-Fachbetrieb 
+findet Rex Bedachungs GmbH die passende Lösung für Ihr Fenster."
+
+Aktualisiere auch das FAQPage-JSON-LD-Schema im Helmet-Block 
+um diese drei neuen Fragen mit den entsprechenden Antworten 
+zu ergänzen.
+
+---
+
+FIX 3 – Stadtteilbezug als neue Sektion
+Füge eine neue Sektion direkt VOR dem Abschluss-CTA ein
+(also nach dem Cluster-Grid / Velux-Teaser, 
+vor dem letzten CTA-Block):
+
+<section className="py-16 px-4 bg-muted/40" 
+  data-testid="section-stadtteile">
+  <div className="max-w-4xl mx-auto text-center">
+    <MapPin className="w-8 h-8 text-primary mx-auto mb-4" 
+      aria-hidden="true" />
+    <h2 className="text-2xl md:text-3xl font-bold mb-4 
+      text-foreground">
+      Dachfenster-Einbau in Bochum – alle Stadtteile
+    </h2>
+    <p className="text-muted-foreground leading-relaxed 
+      text-base md:text-lg mb-6">
+      Rex Bedachungs GmbH montiert und tauscht Dachfenster 
+      in allen Bochumer Stadtteilen – von Wiemelhausen und 
+      Stiepel über Weitmar, Querenburg und Altenbochum 
+      bis nach Steinkuhl und Ehrenfeld. 
+      Kurze Wege, schnelle Termine, saubere Ausführung 
+      vom Meisterbetrieb.
+    </p>
+    <p className="text-sm text-slate-600">
+      Als Dachdecker-Meisterbetrieb aus Bochum führt 
+      die Rex Bedachungs GmbH Dachfensterarbeiten seit 1984 
+      im gesamten Stadtgebiet durch – 
+      zertifizierter VELUX-Partner mit über 40 Jahren 
+      Erfahrung im Ruhrgebiet.
+    </p>
+  </div>
+</section>
+
+Prüfe ob MapPin bereits aus lucide-react importiert ist –
+falls nicht, zum bestehenden Import ergänzen.
+
+---
+
+FIX 4 – Meta Title aktualisieren
+Suche den <title>-Tag im Helmet-Block.
+Ersetze:
+  "Dachfenster Bochum – VELUX Einbau | Rex Bedachung"
+durch:
+  "Dachfenster Bochum – Einbau & Austausch | Rex Bedachung"
+
+---
+
+Nach allen Fixes:
+- Build ausführen (npm run build)
+- Bestätigen welche Sektionen/Zeilen geändert wurden
+- Bestätigen dass FAQPage-Schema aktualisiert wurde
+- Bestätigen dass kein €-Zeichen in den neuen Texten enthalten ist
