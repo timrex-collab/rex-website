@@ -3,6 +3,7 @@ import { Helmet } from "react-helmet";
 import { useLocation } from "wouter";
 import Breadcrumb from "@/components/Breadcrumb";
 import {
+  AlertTriangle,
   CheckCircle,
   ChevronDown,
   ChevronUp,
@@ -145,10 +146,10 @@ export default function Dachreparatur() {
   return (
     <>
       <Helmet>
-        <title>Dachreparatur Bochum – Sturmschaden &amp; schnelle Hilfe | Rex Bedachung</title>
+        <title>Dachreparatur Bochum | Schnelle Hilfe bei undichtem Dach</title>
         <meta
           name="description"
-          content="Dachreparatur in Bochum: Sturmschäden, Undichtigkeiten & defekte Ziegel kurzfristig beheben. Meisterbetrieb Rex Bedachung – jetzt anfragen."
+          content="Dach undicht, Sturmschaden oder Ziegel gebrochen? Rex Bedachungs GmbH behebt Dachschäden in Bochum schnell und dauerhaft – Meisterbetrieb seit 1984. Jetzt anfragen."
         />
         <meta property="og:title" content="Dachreparatur Bochum – Sturmschaden, undichtes Dach & schnelle Hilfe | Rex Bedachungs GmbH" />
         <meta
@@ -207,7 +208,7 @@ export default function Dachreparatur() {
         <div className="absolute inset-0 bg-gradient-to-r from-black/75 via-black/55 to-black/30" aria-hidden="true" />
         <div className="relative z-10 max-w-7xl mx-auto">
           <h1 className="text-3xl md:text-5xl font-extrabold leading-tight mb-4 max-w-3xl" data-testid="heading-hero">
-            Dachreparatur Bochum – schnell, zuverlässig, dauerhaft
+            Dachreparatur in Bochum – schnelle Hilfe bei Dachschäden
           </h1>
           <p className="text-lg md:text-xl text-slate-200 mb-8 max-w-xl" data-testid="text-hero-subtitle">
             Sturmschäden, undichte Stellen, defekte Ziegel – wir reparieren alle Dächer kurzfristig und mit Garantie
@@ -249,6 +250,62 @@ export default function Dachreparatur() {
             Kostenaufstellung vor Beginn der Arbeiten. Wir helfen auch bei der Abwicklung mit Ihrer Versicherung.
           </p>
           <p className="text-sm text-slate-600 mt-4">Bei Dachschäden in Bochum und dem Ruhrgebiet bewertet die Rex Bedachungs GmbH den Schaden vor Ort und gibt ein transparentes Angebot – ohne Notdienstpauschalen, ohne versteckte Kosten.</p>
+        </div>
+      </section>
+
+      {/* ── Schadensbilder ── */}
+      <section className="py-16 px-4 bg-muted/40" data-testid="section-schadensbilder">
+        <div className="max-w-7xl mx-auto">
+          <h2 className="text-2xl md:text-3xl font-bold text-center mb-4 text-foreground">
+            Welcher Dachschaden liegt vor?
+          </h2>
+          <p className="text-muted-foreground text-center mb-10 max-w-2xl mx-auto">
+            Erkennen Sie Ihr Schadensbild – wir beheben es dauerhaft.
+          </p>
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
+            {[
+              {
+                titel: "Dach undicht",
+                text: "Feuchte Flecken an der Decke oder nasse Balken – wir finden die Schadenstelle und beheben sie dauerhaft.",
+              },
+              {
+                titel: "Dachziegel verrutscht oder gebrochen",
+                text: "Einzelne oder mehrere beschädigte Ziegel lassen Wasser ein – schnelle Reparatur verhindert Folgeschäden.",
+              },
+              {
+                titel: "Flachdach undicht",
+                text: "Blasen, Risse oder Nahtschäden in der Abdichtung – wir reparieren EPDM, Bitumen und Folienabdichtungen.",
+              },
+              {
+                titel: "Kaminanschluss undicht",
+                text: "Undichte Anschlussbleche am Schornstein sind eine häufige Schadensursache – fachgerechte Abdichtung inklusive.",
+              },
+              {
+                titel: "Dachrinne beschädigt",
+                text: "Verstopfte, gerissene oder durchhängende Dachrinnen leiten Wasser falsch ab – Reparatur oder Austausch.",
+              },
+              {
+                titel: "Sturmschaden & Hagelschaden",
+                text: "Nach Sturmereignissen prüfen wir das gesamte Dach auf Schäden und erstellen eine Dokumentation für Ihre Versicherung.",
+              },
+              {
+                titel: "Feuchtigkeit im Dachgeschoss",
+                text: "Schimmel oder Feuchte im Dachgeschoss deutet auf Undichtigkeiten hin – wir lokalisieren die Ursache vor Ort.",
+              },
+            ].map((item, i) => (
+              <div
+                key={i}
+                className="flex items-start gap-3 p-4 bg-card rounded-md border border-border"
+                data-testid={`item-schadensbild-${i}`}
+              >
+                <AlertTriangle className="w-5 h-5 text-amber-500 shrink-0 mt-0.5" aria-hidden="true" />
+                <div>
+                  <p className="font-semibold text-foreground text-sm">{item.titel}</p>
+                  <p className="text-muted-foreground text-sm mt-1">{item.text}</p>
+                </div>
+              </div>
+            ))}
+          </div>
         </div>
       </section>
 

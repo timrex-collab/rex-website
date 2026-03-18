@@ -1,0 +1,115 @@
+Datei: client/src/pages/Dachreparatur.tsx
+
+Führe folgende SEO-Optimierungen durch. Bestehende Sektionen 
+bleiben unverändert – nur die beschriebenen Ergänzungen 
+und Änderungen vornehmen.
+
+---
+
+FIX 1 – Title schärfen
+Suche den <title>-Tag im Helmet-Block.
+Ersetze:
+  "Dachreparatur Bochum – Sturmschaden & schnelle Hilfe 
+  | Rex Bedachung"
+durch:
+  "Dachreparatur Bochum | Schnelle Hilfe bei undichtem Dach"
+
+---
+
+FIX 2 – H1 schärfen
+Suche den H1-Tag im Hero-Bereich.
+Ersetze den bestehenden H1-Text:
+  "Dachreparatur Bochum – schnell, zuverlässig, dauerhaft"
+durch:
+  "Dachreparatur in Bochum – schnelle Hilfe bei Dachschäden"
+
+---
+
+FIX 3 – Meta Description schärfen
+Suche den <meta name="description">-Tag.
+Ersetze den content-Wert durch:
+  "Dach undicht, Sturmschaden oder Ziegel gebrochen? 
+  Rex Bedachungs GmbH behebt Dachschäden in Bochum 
+  schnell und dauerhaft – Meisterbetrieb seit 1984. 
+  Jetzt anfragen."
+
+---
+
+FIX 4 – Symptom-orientierte Schadensbilder als neue Sektion
+Füge eine neue Sektion direkt NACH der Einleitungssektion 
+(section-einleitung) ein:
+
+<section className="py-16 px-4 bg-muted/40" 
+  data-testid="section-schadensbilder">
+  <div className="max-w-7xl mx-auto">
+    <h2 className="text-2xl md:text-3xl font-bold text-center 
+      mb-4 text-foreground">
+      Welcher Dachschaden liegt vor?
+    </h2>
+    <p className="text-muted-foreground text-center mb-10 
+      max-w-2xl mx-auto">
+      Erkennen Sie Ihr Schadensbild – wir beheben es dauerhaft.
+    </p>
+    <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
+      {[
+        {
+          titel: "Dach undicht",
+          text: "Feuchte Flecken an der Decke oder nasse Balken – wir finden die Schadenstelle und beheben sie dauerhaft."
+        },
+        {
+          titel: "Dachziegel verrutscht oder gebrochen",
+          text: "Einzelne oder mehrere beschädigte Ziegel lassen Wasser ein – schnelle Reparatur verhindert Folgeschäden."
+        },
+        {
+          titel: "Flachdach undicht",
+          text: "Blasen, Risse oder Nahtschäden in der Abdichtung – wir reparieren EPDM, Bitumen und Folienabdichtungen."
+        },
+        {
+          titel: "Kaminanschluss undicht",
+          text: "Undichte Anschlussbleche am Schornstein sind eine häufige Schadensursache – fachgerechte Abdichtung inklusive."
+        },
+        {
+          titel: "Dachrinne beschädigt",
+          text: "Verstopfte, gerissene oder durchhängende Dachrinnen leiten Wasser falsch ab – Reparatur oder Austausch."
+        },
+        {
+          titel: "Sturmschaden & Hagelschaden",
+          text: "Nach Sturmereignissen prüfen wir das gesamte Dach auf Schäden und erstellen eine Dokumentation für Ihre Versicherung."
+        },
+        {
+          titel: "Feuchtigkeit im Dachgeschoss",
+          text: "Schimmel oder Feuchte im Dachgeschoss deutet auf Undichtigkeiten hin – wir lokalisieren die Ursache vor Ort."
+        },
+      ].map((item, i) => (
+        <div key={i} 
+          className="flex items-start gap-3 p-4 bg-slate-50 
+            rounded-md border border-border"
+          data-testid={`item-schadensbild-${i}`}>
+          <AlertTriangle 
+            className="w-5 h-5 text-amber-500 shrink-0 mt-0.5" 
+            aria-hidden="true" />
+          <div>
+            <p className="font-semibold text-foreground text-sm">
+              {item.titel}
+            </p>
+            <p className="text-muted-foreground text-sm mt-1">
+              {item.text}
+            </p>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+Prüfe ob AlertTriangle bereits importiert ist – 
+falls nicht, ergänzen.
+
+---
+
+FIX 5 – Stadtteile in Regionen-Sektion ergänzen
+Suche die Regionen-Sektion (enthält "Wattenscheid" ca. Zeile 434).
+Ersetze den bestehenden Regionentext durch:
+
+"Rex Bedachungs GmbH führt Dachreparaturen im gesamten 
+Bochumer Stadtgebiet durch – in Wiemelhausen, Stiepel,
