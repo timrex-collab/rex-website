@@ -16,6 +16,7 @@ import {
   Building2,
   TrendingUp,
   MapPin,
+  AlertTriangle,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -45,7 +46,7 @@ const services = [
   {
     icon: <FileText className="w-8 h-8 text-primary" />,
     title: "Dokumentation mit Fotos",
-    text: "Nach jeder Wartung erhalten Sie einen detaillierten Bericht mit Fotos aller geprüften Bereiche. So haben Sie stets den Überblick über den Zustand Ihres Daches – ideal auch für Versicherungen und Eigentümernachweise.",
+    text: "Nach jeder Wartung erhalten Sie einen detaillierten Bericht mit Fotos aller geprüften Bereiche. So haben Sie stets den Überblick über den Zustand Ihres Daches – ideal auch für Versicherungen und Eigentümernachweise. Auf Wunsch erstellen wir eine vollständige Schadensdokumentation für Ihre Gebäudeversicherung.",
     testId: "card-dokumentation",
   },
   {
@@ -128,7 +129,7 @@ const faqItems = [
 const schemaJson = JSON.stringify({
   "@context": "https://schema.org",
   "@type": "Service",
-  "name": "Dachwartung Bochum",
+  "name": "Dachwartung Bochum – Dachinspektion & Wartungsvertrag",
   "provider": {
     "@type": "RoofingContractor",
     "@id": "https://www.rex-bedachung.de/#organization",
@@ -142,7 +143,7 @@ const schemaJson = JSON.stringify({
     },
     "telephone": "+49-234-583100",
   },
-  "areaServed": ["Bochum", "Herne", "Castrop-Rauxel", "Witten", "Hattingen", "Ruhrgebiet"],
+  "areaServed": ["Bochum", "Herne", "Castrop-Rauxel", "Witten", "Hattingen", "Ruhrgebiet", "Wiemelhausen", "Stiepel", "Weitmar", "Querenburg", "Altenbochum", "Steinkuhl", "Ehrenfeld", "Langendreer"],
   "description": "Dachwartung in Bochum – jährliche Dachinspektion, Dachrinnenreinigung, Dichtigkeitskontrolle und Wartungsverträge für Privat und Hausverwaltungen.",
   "offers": {
     "@type": "Offer",
@@ -157,10 +158,10 @@ export default function DachwartungBochum() {
   return (
     <>
       <Helmet>
-        <title>Dachwartung Bochum – Inspektion &amp; Wartungsvertrag | Rex Bedachung</title>
+        <title>Dachwartung Bochum | Dachinspektion &amp; Wartungsvertrag vom Meisterbetrieb</title>
         <meta
           name="description"
-          content="Dachwartung in Bochum: Dach prüfen, reinigen & Schäden früh erkennen. Rex Bedachungs GmbH – Meisterbetrieb mit jahrelanger Erfahrung."
+          content="Dachwartung in Bochum: Schäden früh erkennen, Folgekosten vermeiden, Wartungsvertrag abschließen. Rex Bedachungs GmbH – Meisterbetrieb seit 1984. Jetzt Termin anfragen."
         />
         <meta property="og:title" content="Dachwartung Bochum – Dachinspektion, Dachrinnenreinigung & Wartungsvertrag | Rex Bedachungs GmbH" />
         <meta
@@ -258,6 +259,58 @@ export default function DachwartungBochum() {
           <p className="text-muted-foreground leading-relaxed text-base md:text-lg" data-testid="text-einleitung">
             Regelmäßige Wartung verlängert die Lebensdauer Ihres Daches erheblich und vermeidet teure Folgeschäden. Wir prüfen Ihr Dach auf Schäden, reinigen Dachrinnen, kontrollieren Abdichtungen und beheben kleine Mängel sofort. Auf Wunsch bieten wir Wartungsverträge mit regelmäßigen Inspektionen – für Ihre Sicherheit und Werterhaltung. Ein gewartetes Dach spart langfristig ein Vielfaches seiner Wartungskosten.
           </p>
+        </div>
+      </section>
+
+      {/* Wann ist Dachwartung nötig? */}
+      <section className="py-16 px-4 bg-muted/40" data-testid="section-wartung-wann">
+        <div className="max-w-7xl mx-auto">
+          <h2 className="text-2xl md:text-3xl font-bold text-center mb-4 text-foreground">
+            Wann sollten Sie Ihr Dach warten lassen?
+          </h2>
+          <p className="text-muted-foreground text-center mb-10 max-w-2xl mx-auto">
+            Diese Signale sollten Sie nicht ignorieren – früh erkannt, günstig behoben.
+          </p>
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
+            {[
+              {
+                titel: "Dach älter als 10 Jahre",
+                text: "Ab diesem Alter empfiehlt sich eine regelmäßige professionelle Inspektion – unabhängig vom sichtbaren Zustand.",
+              },
+              {
+                titel: "Nach Sturm oder Hagel",
+                text: "Sturmschäden sind oft nicht sofort sichtbar – eine Inspektion nach starken Wetterereignissen verhindert teure Folgeschäden.",
+              },
+              {
+                titel: "Moos- und Algenbefall",
+                text: "Starker Bewuchs hält Feuchtigkeit und kann Ziegel durch Frost aufsprengen – rechtzeitige Reinigung verlängert die Lebensdauer.",
+              },
+              {
+                titel: "Verstopfte Dachrinnen",
+                text: "Überlaufendes Wasser beschädigt Fassade und Fundament – regelmäßige Reinigung ist Pflicht.",
+              },
+              {
+                titel: "Feuchtigkeit im Dachgeschoss",
+                text: "Feuchte Flecken oder Schimmel im Dachgeschoss deuten auf Undichtigkeiten hin – sofortige Inspektion notwendig.",
+              },
+              {
+                titel: "Vor Ablauf der Gewährleistung",
+                text: "Eine Inspektion vor Ablauf der Gewährleistung sichert Ansprüche gegenüber dem ausführenden Betrieb – wir dokumentieren den Zustand.",
+              },
+            ].map((item, i) => (
+              <div
+                key={i}
+                className="flex items-start gap-3 p-4 bg-background rounded-md border border-border"
+                data-testid={`item-wartung-signal-${i}`}
+              >
+                <AlertTriangle className="w-5 h-5 text-amber-500 shrink-0 mt-0.5" aria-hidden="true" />
+                <div>
+                  <p className="font-semibold text-foreground text-sm">{item.titel}</p>
+                  <p className="text-muted-foreground text-sm mt-1">{item.text}</p>
+                </div>
+              </div>
+            ))}
+          </div>
         </div>
       </section>
 
@@ -419,7 +472,10 @@ export default function DachwartungBochum() {
             </h2>
           </div>
           <p className="text-muted-foreground leading-relaxed text-base" data-testid="text-regionen">
-            Rex Bedachungs GmbH übernimmt Dachwartung und Dachinspektionen in Bochum, Herne, Castrop-Rauxel, Witten, Hattingen, Wattenscheid, Gelsenkirchen und dem gesamten Ruhrgebiet – zuverlässig, termingerecht und mit vollständiger Dokumentation.
+            Rex Bedachungs GmbH führt Dachwartungen im gesamten Bochumer Stadtgebiet durch – in Wiemelhausen, Stiepel, Weitmar, Querenburg, Altenbochum, Steinkuhl, Ehrenfeld, Langendreer und Wattenscheid. Auch im direkten Umland sind wir für Sie da: Herne, Castrop-Rauxel, Witten, Hattingen und Gelsenkirchen.
+          </p>
+          <p className="text-sm text-muted-foreground text-center mt-6" data-testid="text-regionen-fact">
+            Die Rex Bedachungs GmbH führt Dachwartungen in Bochum seit 1984 durch – mit vollständiger Dokumentation, transparentem Befundbericht und auf Wunsch mit Wartungsvertrag für langfristige Sicherheit.
           </p>
         </div>
       </section>

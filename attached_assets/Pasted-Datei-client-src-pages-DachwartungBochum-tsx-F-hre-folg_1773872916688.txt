@@ -1,0 +1,161 @@
+Datei: client/src/pages/DachwartungBochum.tsx
+
+Führe folgende SEO-Optimierungen durch. Bestehende Sektionen 
+bleiben unverändert – nur die beschriebenen Ergänzungen 
+und Änderungen vornehmen.
+
+WICHTIG: Der H1-Text "Dachwartung Bochum – Schäden erkennen 
+bevor sie teuer werden" bleibt unverändert.
+
+---
+
+FIX 1 – Title schärfen
+Suche den <title>-Tag im Helmet-Block.
+Ersetze:
+  "Dachwartung Bochum – Inspektion & Wartungsvertrag | Rex Bedachung"
+durch:
+  "Dachwartung Bochum | Dachinspektion & Wartungsvertrag vom Meisterbetrieb"
+
+---
+
+FIX 2 – Meta Description schärfen
+Suche den <meta name="description">-Tag.
+Ersetze den content-Wert durch:
+  "Dachwartung in Bochum: Schäden früh erkennen, Folgekosten 
+  vermeiden, Wartungsvertrag abschließen. Rex Bedachungs GmbH – 
+  Meisterbetrieb seit 1984. Jetzt Termin anfragen."
+
+---
+
+FIX 3 – Symptom-orientierte Sektion "Wann ist Dachwartung nötig?"
+Füge eine neue Sektion direkt NACH der Einleitungssektion ein:
+
+<section className="py-16 px-4 bg-muted/40"
+  data-testid="section-wartung-wann">
+  <div className="max-w-7xl mx-auto">
+    <h2 className="text-2xl md:text-3xl font-bold text-center
+      mb-4 text-foreground">
+      Wann sollten Sie Ihr Dach warten lassen?
+    </h2>
+    <p className="text-muted-foreground text-center mb-10
+      max-w-2xl mx-auto">
+      Diese Signale sollten Sie nicht ignorieren –
+      früh erkannt, günstig behoben.
+    </p>
+    <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
+      {[
+        {
+          titel: "Dach älter als 10 Jahre",
+          text: "Ab diesem Alter empfiehlt sich eine regelmäßige 
+          professionelle Inspektion – unabhängig vom 
+          sichtbaren Zustand."
+        },
+        {
+          titel: "Nach Sturm oder Hagel",
+          text: "Sturmschäden sind oft nicht sofort sichtbar – 
+          eine Inspektion nach starken Wetterereignissen 
+          verhindert teure Folgeschäden."
+        },
+        {
+          titel: "Moos- und Algenbefall",
+          text: "Starker Bewuchs hält Feuchtigkeit und kann 
+          Ziegel durch Frost aufsprengen – 
+          rechtzeitige Reinigung verlängert die Lebensdauer."
+        },
+        {
+          titel: "Verstopfte Dachrinnen",
+          text: "Überlaufendes Wasser beschädigt Fassade und 
+          Fundament – regelmäßige Reinigung ist Pflicht."
+        },
+        {
+          titel: "Feuchtigkeit im Dachgeschoss",
+          text: "Feuchte Flecken oder Schimmel im Dachgeschoss 
+          deuten auf Undichtigkeiten hin – 
+          sofortige Inspektion notwendig."
+        },
+        {
+          titel: "Vor Ablauf der Gewährleistung",
+          text: "Eine Inspektion vor Ablauf der Gewährleistung 
+          sichert Ansprüche gegenüber dem ausführenden 
+          Betrieb – wir dokumentieren den Zustand."
+        },
+      ].map((item, i) => (
+        <div key={i}
+          className="flex items-start gap-3 p-4 bg-slate-50
+            rounded-md border border-border"
+          data-testid={`item-wartung-signal-${i}`}>
+          <AlertTriangle
+            className="w-5 h-5 text-amber-500 shrink-0 mt-0.5"
+            aria-hidden="true" />
+          <div>
+            <p className="font-semibold text-foreground text-sm">
+              {item.titel}
+            </p>
+            <p className="text-muted-foreground text-sm mt-1">
+              {item.text}
+            </p>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+Prüfe ob AlertTriangle bereits importiert ist –
+falls nicht, zum bestehenden lucide-react-Import ergänzen.
+
+---
+
+FIX 4 – Versicherungshinweis als eigenen Block stärken
+Suche die Stelle wo Versicherung erwähnt wird (ca. Zeile 48).
+Füge direkt nach dem bestehenden Versicherungshinweis 
+folgenden Satz ein falls er noch nicht vorhanden ist:
+"Auf Wunsch erstellen wir eine vollständige Schadensdokumentation 
+für Ihre Gebäudeversicherung."
+
+---
+
+FIX 5 – Stadtteile in Regionen-Sektion ergänzen
+Suche die Regionen-Sektion (enthält Ruhrgebiet-Städte).
+Ersetze den bestehenden Regionstext durch:
+
+"Rex Bedachungs GmbH führt Dachwartungen im gesamten 
+Bochumer Stadtgebiet durch – in Wiemelhausen, Stiepel, 
+Weitmar, Querenburg, Altenbochum, Steinkuhl, Ehrenfeld, 
+Langendreer und Wattenscheid. Auch im direkten Umland 
+sind wir für Sie da: Herne, Castrop-Rauxel, Witten, 
+Hattingen und Gelsenkirchen."
+
+---
+
+FIX 6 – Fact-Snippet ergänzen
+Füge am Ende der Regionen-Sektion folgenden Absatz ein:
+
+<p className="text-sm text-slate-600 text-center mt-6">
+  Die Rex Bedachungs GmbH führt Dachwartungen in Bochum 
+  seit 1984 durch – mit vollständiger Dokumentation, 
+  transparentem Befundbericht und auf Wunsch 
+  mit Wartungsvertrag für langfristige Sicherheit.
+</p>
+
+---
+
+FIX 7 – Schema aktualisieren
+Im JSON-LD Service-Schema:
+Ändere den name-Wert auf:
+  "Dachwartung Bochum – Dachinspektion & Wartungsvertrag"
+
+Ergänze im areaServed-Array folgende Stadtteile
+falls noch nicht vorhanden:
+  "Wiemelhausen", "Stiepel", "Weitmar", "Querenburg",
+  "Altenbochum", "Steinkuhl", "Ehrenfeld", "Langendreer"
+
+---
+
+Nach allen Fixes:
+- H1 "Dachwartung Bochum – Schäden erkennen bevor sie 
+  teuer werden" bestätigen dass er unverändert ist
+- Build ausführen (npm run build)
+- Bestätigen welche Sektionen geändert/eingefügt wurden
+- Bestätigen dass kein €-Zeichen in neuen Texten enthalten ist
+- AlertTriangle-Import bestätigen
