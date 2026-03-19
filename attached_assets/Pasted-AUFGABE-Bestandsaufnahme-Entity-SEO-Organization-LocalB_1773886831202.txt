@@ -1,0 +1,70 @@
+AUFGABE: Bestandsaufnahme Entity SEO — Organization, LocalBusiness, sameAs, Author Schema
+
+KONTEXT:
+Für die Sichtbarkeit bei KI-Modellen (Perplexity, ChatGPT, Gemini) muss Rex Bedachungs GmbH als erkennbare Entität aufgebaut werden. Dafür wird geprüft, welche Entity-relevanten Schema-Daten bereits existieren und wo Lücken sind.
+
+Firmendaten:
+- Name: Rex Bedachungs GmbH
+- Adresse: Paulinenstraße 22, 44799 Bochum
+- Telefon: +49 234 583100
+- Gegründet: 1984
+- Öffnungszeiten: Mo–Fr 07:00–17:00
+- Koordinaten: 51.46262 / 7.24442
+- Domain: www.rex-bedachung.de
+
+---
+
+SCHRITT 1: Organization / LocalBusiness Schema suchen
+- Durchsuche ALLE .tsx-Dateien im Projekt nach:
+  a) "@type": "Organization"
+  b) "@type": "LocalBusiness"
+  c) "@type": "RoofingContractor"
+  d) "@type": "HomeAndConstructionBusiness"
+  e) Jede andere Schema.org-Typisierung, die sich auf das Unternehmen als Ganzes bezieht
+- Liste pro Fund auf: Datei, Zeile, vollständiges JSON-LD-Objekt
+- Falls NICHT vorhanden: explizit melden
+
+SCHRITT 2: sameAs-Verknüpfungen suchen
+- Durchsuche ALLE .tsx-Dateien nach:
+  a) "sameAs" in JSON-LD-Blöcken
+  b) Externe Links zu Profilen (Google Maps, Google Business Profile, Facebook, Instagram, LinkedIn, Handwerkerportale wie MyHammer, Gelbe Seiten, 11880, Yelp, etc.)
+  c) Links in Footer.tsx, About.tsx, Contact.tsx und Impressum/Datenschutz-Seiten
+- Liste alle gefundenen externen Profil-URLs auf
+- Falls keine sameAs-Property vorhanden: explizit melden
+
+SCHRITT 3: Author / Person Schema suchen
+- Durchsuche ALLE .tsx-Dateien nach:
+  a) "@type": "Person"
+  b) "author" in JSON-LD-Blöcken
+  c) Namentliche Erwähnung des Inhabers/Geschäftsführers
+- Liste pro Fund auf: Datei, Zeile, Kontext
+- Falls NICHT vorhanden: explizit melden
+
+SCHRITT 4: Bestehende Schema-Typen pro Seite inventarisieren
+- Durchsuche ALLE .tsx-Dateien in client/src/pages/ nach JSON-LD script-Tags
+- Erstelle eine Tabelle:
+  Datei | Vorhandene Schema-Typen (z.B. FAQPage, Article, Service, BreadcrumbList, HowTo)
+- Markiere, welche Seiten KEIN Organization/LocalBusiness Schema haben
+
+SCHRITT 5: llms.txt prüfen
+- Zeige den vollständigen Inhalt von llms.txt (falls vorhanden im Projekt-Root oder in client/public/)
+- Prüfe ob Firmendaten, Leistungen, Zertifizierungen und Kontaktdaten dort enthalten sind
+
+SCHRITT 6: robots.txt prüfen
+- Zeige den vollständigen Inhalt von robots.txt
+- Prüfe ob KI-Crawler explizit erlaubt sind (GPTBot, ClaudeBot, Claude-Web, Google-Extended, PerplexityBot, anthropic-ai)
+
+SCHRITT 7: Zusammenfassung
+- Organization/LocalBusiness Schema: vorhanden ja/nein, auf welchen Seiten
+- sameAs-Links: Anzahl und URLs, in Schema eingebunden ja/nein
+- Author/Person Schema: vorhanden ja/nein
+- Schema-Abdeckung pro Seite (Tabelle)
+- llms.txt: vollständig / unvollständig / fehlt
+- robots.txt: KI-Crawler erlaubt ja/nein
+
+---
+
+EINSCHRÄNKUNGEN:
+- NUR LESEN — keine Dateien verändern, erstellen oder löschen
+- Keine Änderungen an irgendeiner Datei im Projekt
+- Nur Analyse und Ausgabe
