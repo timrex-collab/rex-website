@@ -27,9 +27,31 @@ const tondach7 = "/images/tondach-dachziegel-bochum-typ7.webp";
 const tondach7Fallback = "/images/tondach-dachziegel-bochum-typ7.jpg";
 const velux1 = "/images/velux-dachfenster-einbau-bochum-typ1.webp";
 const velux1Fallback = "/images/velux-dachfenster-einbau-bochum-typ1.jpg";
+const velux3erKombination = "/images/velux-dachfenster-3er-kombination-steildach-bochum.webp";
+const veluxDoppelanlage = "/images/velux-dachfenster-doppelanlage-einbau-tonziegel-bochum.webp";
 
 export default function References() {
   const references = [
+    {
+      title: "VELUX 3er-Kombination",
+      location: "Bochum",
+      service: "velux",
+      year: "2024",
+      description: "VELUX 3er-Kombination auf anthrazitem Steildach – fachgerecht eingebaut von Rex Bedachungs GmbH.",
+      imageUrl: velux3erKombination,
+      imageUrlFallback: velux3erKombination,
+      imageAlt: "VELUX Dachfenster 3er-Kombination auf anthrazitem Steildach – Rex Bedachungs GmbH Bochum",
+    },
+    {
+      title: "VELUX Doppelanlage Einbau",
+      location: "Bochum",
+      service: "velux",
+      year: "2024",
+      description: "VELUX Doppelanlage auf Tonziegel-Steildach – professioneller Einbau durch Rex Bedachungs GmbH.",
+      imageUrl: veluxDoppelanlage,
+      imageUrlFallback: veluxDoppelanlage,
+      imageAlt: "VELUX Dachfenster Doppelanlage Einbau auf Tonziegel-Steildach – Rex Bedachungs GmbH Bochum",
+    },
     {
       title: "Velux Dachfenster Sanierung Bochum",
       location: "Bochum",

@@ -393,6 +393,45 @@ export default function DachfensterBochum() {
         </div>
       </section>
 
+      {/* ── Referenz-Galerie ── */}
+      <section className="py-12 bg-slate-50 dark:bg-muted/40 px-4" data-testid="section-referenz-galerie">
+        <div className="max-w-6xl mx-auto">
+          <h2 className="text-2xl font-semibold text-slate-900 dark:text-foreground mb-8" data-testid="heading-referenz-galerie">
+            VELUX Dachfenster – Unsere Referenzen
+          </h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <figure>
+              <img
+                src="/images/velux-dachfenster-3er-kombination-steildach-bochum.webp"
+                alt="VELUX Dachfenster 3er-Kombination auf anthrazitem Steildach – Rex Bedachungs GmbH Bochum"
+                width="1920"
+                height="1561"
+                loading="lazy"
+                className="w-full rounded-md object-cover"
+                data-testid="img-referenz-3er-kombination"
+              />
+              <figcaption className="mt-2 text-sm text-slate-500 dark:text-muted-foreground">
+                VELUX 3er-Kombination · Anthrazit-Steildach · Bochum 2024
+              </figcaption>
+            </figure>
+            <figure>
+              <img
+                src="/images/velux-dachfenster-doppelanlage-einbau-tonziegel-bochum.webp"
+                alt="VELUX Dachfenster Doppelanlage Einbau auf Tonziegel-Steildach – Rex Bedachungs GmbH Bochum"
+                width="1920"
+                height="1470"
+                loading="lazy"
+                className="w-full rounded-md object-cover"
+                data-testid="img-referenz-doppelanlage"
+              />
+              <figcaption className="mt-2 text-sm text-slate-500 dark:text-muted-foreground">
+                VELUX Doppelanlage · Tonziegel · Bochum 2024
+              </figcaption>
+            </figure>
+          </div>
+        </div>
+      </section>
+
       {/* ── FAQ ── */}
       <section className="py-16 px-4 bg-muted/40" data-testid="section-faq">
         <div className="max-w-3xl mx-auto">
