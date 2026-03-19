@@ -17,7 +17,6 @@ Notes:
 
 import os
 import sys
-import struct
 import piexif
 
 # --------------------------------------------------------------------------
@@ -73,9 +72,13 @@ def embed_gps(filepath, lat, lon):
     except piexif.InvalidImageDataError:
         print(f"  [WARNUNG] Kein gueltiges JPEG oder EXIF-Fehler: {filepath}")
         return False
-    except Exception as e:
-        print(f"  [WARNUNG] Konnte EXIF nicht lesen: {filepath} ({e})")
+    except ValueError:
+        # File has no EXIF segment yet — start with an empty dict
         exif_dict = {"0th": {}, "Exif": {}, "GPS": {}, "1st": {}}
+    except Exception as e:
+        # Unexpected error reading EXIF — abort to avoid potential metadata loss
+        print(f"  [FEHLER] Unerwarteter EXIF-Lesefehler: {filepath} ({e})")
+        return False
 
     exif_dict["GPS"] = build_gps_ifd(lat, lon)
 
