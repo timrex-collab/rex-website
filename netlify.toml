@@ -90,7 +90,37 @@
   to = "/steildach-bochum"
   status = 301
 
-# SPA Fallback
+[[redirects]]
+  from = "/leistungen/steildach"
+  to = "/steildach-bochum"
+  status = 301
+
+[[redirects]]
+  from = "/leistungen/flachdach"
+  to = "/flachdach-bochum"
+  status = 301
+
+[[redirects]]
+  from = "/leistungen/bauklempnerei"
+  to = "/bauklempnerei-bochum"
+  status = 301
+
+[[redirects]]
+  from = "/leistungen/dachfenster"
+  to = "/dachfenster-bochum"
+  status = 301
+
+[[redirects]]
+  from = "/leistungen/dachwartung"
+  to = "/dachwartung-bochum"
+  status = 301
+
+[[redirects]]
+  from = "/leistungen/reparaturen"
+  to = "/dachreparatur-bochum"
+  status = 301
+
+# SPA Fallback — MUSS IMMER ZULETZT STEHEN
 [[redirects]]
   from = "/*"
   to = "/index.html"

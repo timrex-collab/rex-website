@@ -23,4 +23,8 @@ User-agent: anthropic-ai
 Allow: /
 
 Sitemap: https://www.rex-bedachung.de/sitemap.xml
+
+# NICHT AKTIVIEREN — llms.txt ist kein gültiges robots.txt-Direktiv.
+# Google meldet "Unknown directive". Die llms.txt-Datei wird von KI-Crawlern
+# automatisch unter /llms.txt gefunden und braucht keinen Eintrag hier.
 # llms.txt: https://www.rex-bedachung.de/llms.txt
