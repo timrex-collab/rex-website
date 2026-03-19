@@ -1,0 +1,62 @@
+AUFGABE: Automatischer Bildvergleich für unklare WebP-JPEG-Zuordnungen (Phase 3 – Vorbereitung)
+
+KONTEXT:
+6 WebP-Dateien in client/public/images/ haben keine gesicherte JPEG-Zuordnung. Ein automatischer Bildvergleich soll die korrekte Zuordnung ermitteln.
+
+---
+
+SCHRITT 1: Pillow und NumPy sicherstellen
+- pip install Pillow numpy (falls nicht vorhanden)
+
+SCHRITT 2: Vergleichs-Script erstellen und ausführen
+
+Erstelle scripts/match-images.py mit folgender Logik:
+
+Für jedes der folgenden 6 WebP-Bilder soll das Script die visuell ähnlichste JPEG-Datei aus den Kandidaten ermitteln. Methode: Histogramm-Vergleich (RGB-Histogramme normalisieren, Korrelation berechnen).
+
+Vergleich 1:
+  WebP: client/public/images/gruendach-bochum-dachbegruenung-experten.webp
+  Kandidaten: attached_assets/Gründach1.jpg, attached_assets/Gründach2.jpg, attached_assets/Gruendach3.jpg
+
+Vergleich 2:
+  WebP: client/public/images/gruendach-extensive-begruenung-bochum.webp
+  Kandidaten: attached_assets/Gründach1.jpg, attached_assets/Gründach2.jpg, attached_assets/Gruendach3.jpg
+
+Vergleich 3:
+  WebP: client/public/images/gruendach-intensive-begruenung-bochum.webp
+  Kandidaten: attached_assets/Gründach1.jpg, attached_assets/Gründach2.jpg, attached_assets/Gruendach3.jpg
+
+Vergleich 4:
+  WebP: client/public/images/dachdecker-bochum-steildach-hero.webp
+  Kandidaten: attached_assets/stock_images/professional_roofer__9ee8341f.jpg, attached_assets/S7300254.jpg
+
+Vergleich 5:
+  WebP: client/public/images/velux-dachfenster-einbau-bochum-fachbetrieb.webp
+  Kandidaten: "attached_assets/Datei 20.10.25, 19 56 47.jpeg"
+  (Nur 1 Kandidat — trotzdem Ähnlichkeitswert ausgeben, um zu prüfen ob es wirklich dasselbe Bild ist)
+
+Vergleich 6:
+  WebP: client/public/images/flachdach-metallverkleidung-bochum-rex-bedachung.webp
+  Kandidaten: attached_assets/Entwaesserung1.jpg
+  (Nur 1 Kandidat — Ähnlichkeitswert ausgeben zur Bestätigung)
+
+Ausgabe pro Vergleich:
+- WebP-Dateiname
+- Bester Match (JPEG-Dateiname)
+- Ähnlichkeitswert (0.0–1.0)
+- Auflösung beider Bilder
+- Bewertung: "Sicher" (>0.90), "Wahrscheinlich" (0.75–0.90), "Unklar" (<0.75)
+
+Am Ende: Zusammenfassungstabelle aller 6 Zuordnungen.
+
+SCHRITT 3: Ergebnisse ausgeben
+- Zeige die vollständige Zusammenfassungstabelle
+- Das Script scripts/match-images.py im Projekt behalten
+
+---
+
+EINSCHRÄNKUNGEN:
+- NUR LESEN und VERGLEICHEN — keine Bilddateien verändern
+- Keine Dateien kopieren, umbenennen oder löschen
+- Keine TSX-Dateien anfassen
+- Nur das Script erstellen, ausführen und Ergebnisse zeigen
