@@ -1,0 +1,283 @@
+# REPLIT AGENT PROMPT — Phase 1: Drei kritische Sofort-Fixes
+
+## KONTEXT
+
+Die Website rex-bedachung.de hat durch eine Kaskade von Änderungen in den letzten 4 Tagen Ranking-Verluste erlitten. Drei technische Konflikte müssen sofort behoben werden. Dieser Prompt behebt alle drei in einem Durchlauf.
+
+WICHTIG: Nur die beschriebenen Änderungen vornehmen. Keine anderen Dateien anfassen. Keine Inhalte, Styles oder Layouts verändern.
+
+---
+
+## FIX 1 — robots.txt: Ungültiges Direktiv dauerhaft deaktivieren
+
+Datei: client/public/robots.txt
+
+### Problem:
+Die Zeile `llms.txt: https://www.rex-bedachung.de/llms.txt` ist KEIN gültiges robots.txt-Direktiv. Google meldet "Unknown directive". Diese Zeile wurde in den letzten Tagen dreimal geändert (hinzugefügt → auskommentiert → wieder aktiviert). Sie muss dauerhaft deaktiviert bleiben.
+
+### Aktion:
+1. Suche nach der Zeile die mit `llms.txt:` beginnt (mit oder ohne vorangestelltes #)
+2. Ersetze sie durch EXAKT diese zwei Zeilen:
+
+```
+# NICHT AKTIVIEREN — llms.txt ist kein gültiges robots.txt-Direktiv.
+# Google meldet "Unknown directive". Die llms.txt-Datei wird von KI-Crawlern
+# automatisch unter /llms.txt gefunden und braucht keinen Eintrag hier.
+# llms.txt: https://www.rex-bedachung.de/llms.txt
+```
+
+3. Stelle sicher, dass die Sitemap-Zeile weiterhin vorhanden und NICHT auskommentiert ist:
+```
+Sitemap: https://www.rex-bedachung.de/sitemap.xml
+```
+
+4. Zeige den vollständigen Inhalt der robots.txt nach der Änderung.
+
+---
+
+## FIX 2 — SPA-Fallback-Dopplung und Redirect-Chaos bereinigen
+
+### Problem:
+Der SPA-Fallback `/* → /index.html 200` existiert an ZWEI Stellen:
+- In netlify.toml (als [[redirects]] Block)
+- In client/public/_redirects (als letzte Zeile)
+
+Zusätzlich stehen in _redirects 301-Redirects NACH dem /*-Catch-all — diese werden von Netlify nie erreicht, weil /* alles vorher abfängt.
+
+### Aktion:
+
+#### Schritt 2a: _redirects analysieren
+- Zeige den vollständigen Inhalt von client/public/_redirects
+- Identifiziere:
+  a) Alle 301-Redirect-Regeln die VOR dem `/*`-Fallback stehen
+  b) Alle 301-Redirect-Regeln die NACH dem `/*`-Fallback stehen (= unerreichbar)
+  c) Den `/*`-Fallback selbst
+
+#### Schritt 2b: _redirects bereinigen
+- Ersetze den gesamten Inhalt von client/public/_redirects durch NUR diese eine Zeile:
+
+```
+https://firma.rex-bedachung.de/* https://www.rex-bedachung.de/:splat 301!
+```
+
+BEGRÜNDUNG: Der firma-Redirect MUSS in _redirects bleiben, weil er eine externe Domain betrifft und nur hier korrekt mit dem ! (force) Flag funktioniert. Alle anderen Regeln (301-Pfad-Redirects und SPA-Fallback) werden ausschließlich über netlify.toml gesteuert.
+
+#### Schritt 2c: netlify.toml prüfen und ergänzen
+- Zeige alle [[redirects]]-Blöcke in netlify.toml
+- Prüfe ob folgende Redirects vorhanden sind (sie sollten bereits existieren — falls nicht, VOR dem SPA-Fallback einfügen):
+
+```toml
+# Alte URLs → Neue Seiten
+[[redirects]]
+  from = "/dachfenster"
+  to = "/dachfenster-bochum"
+  status = 301
+
+[[redirects]]
+  from = "/dachfenster/"
+  to = "/dachfenster-bochum"
+  status = 301
+
+[[redirects]]
+  from = "/bauklempnerei"
+  to = "/bauklempnerei-bochum"
+  status = 301
+
+[[redirects]]
+  from = "/bauklempnerei/"
+  to = "/bauklempnerei-bochum"
+  status = 301
+
+[[redirects]]
+  from = "/flachdach"
+  to = "/flachdach-bochum"
+  status = 301
+
+[[redirects]]
+  from = "/flachdach/"
+  to = "/flachdach-bochum"
+  status = 301
+
+[[redirects]]
+  from = "/reparaturen"
+  to = "/dachreparatur-bochum"
+  status = 301
+
+[[redirects]]
+  from = "/reparaturen/"
+  to = "/dachreparatur-bochum"
+  status = 301
+
+[[redirects]]
+  from = "/waermedaemmung"
+  to = "/dachwartung-bochum"
+  status = 301
+
+[[redirects]]
+  from = "/waermedaemmung/"
+  to = "/dachwartung-bochum"
+  status = 301
+
+[[redirects]]
+  from = "/velux-fenster"
+  to = "/dachfenster-bochum"
+  status = 301
+
+[[redirects]]
+  from = "/velux-fenster/"
+  to = "/dachfenster-bochum"
+  status = 301
+
+[[redirects]]
+  from = "/fassaden"
+  to = "/bauklempnerei-bochum"
+  status = 301
+
+[[redirects]]
+  from = "/fassaden/"
+  to = "/bauklempnerei-bochum"
+  status = 301
+
+[[redirects]]
+  from = "/betondachsteine"
+  to = "/steildach-bochum"
+  status = 301
+
+[[redirects]]
+  from = "/betondachsteine/"
+  to = "/steildach-bochum"
+  status = 301
+
+[[redirects]]
+  from = "/leistungen/steildach"
+  to = "/steildach-bochum"
+  status = 301
+
+[[redirects]]
+  from = "/leistungen/flachdach"
+  to = "/flachdach-bochum"
+  status = 301
+
+[[redirects]]
+  from = "/leistungen/bauklempnerei"
+  to = "/bauklempnerei-bochum"
+  status = 301
+
+[[redirects]]
+  from = "/leistungen/dachfenster"
+  to = "/dachfenster-bochum"
+  status = 301
+
+[[redirects]]
+  from = "/leistungen/dachwartung"
+  to = "/dachwartung-bochum"
+  status = 301
+
+[[redirects]]
+  from = "/leistungen/reparaturen"
+  to = "/dachreparatur-bochum"
+  status = 301
+```
+
+- Stelle sicher, dass der SPA-Fallback der LETZTE Redirect-Block in netlify.toml ist:
+
+```toml
+# SPA Fallback — MUSS IMMER ZULETZT STEHEN
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
+```
+
+- Stelle sicher, dass der Edge Function Block NACH allen Redirects steht:
+
+```toml
+[[edge_functions]]
+  path = "/*"
+  function = "og-inject"
+```
+
+- Falls Duplikate existieren (gleiche from-Regel mehrfach): Duplikate entfernen, nur eine Version behalten.
+
+#### Schritt 2d: Ergebnis dokumentieren
+- Zeige den vollständigen finalen Inhalt von client/public/_redirects
+- Zeige alle [[redirects]]-Blöcke in netlify.toml (nur die from/to/status Zeilen, kompakt)
+- Bestätige: Wie viele 301-Redirects stehen in netlify.toml VOR dem /*-Fallback?
+
+---
+
+## FIX 3 — AggregateRating und Schema-Duplikate klären
+
+### Problem:
+Am 16.03 wurde ein AggregateRating (4.48 Sterne, 13 Bewertungen) in das LocalBusiness-Schema in client/index.html eingefügt. Am 18.03 wurde ein neues OrganizationSchema als React-Komponente erstellt und das alte inline-Schema aus Home.tsx entfernt. Möglicherweise existieren jetzt zwei konkurrierende Unternehmens-Schemas.
+
+### Aktion:
+
+#### Schritt 3a: client/index.html analysieren
+- Zeige alle <script type="application/ld+json"> Blöcke in client/index.html
+- Prüfe: Enthält index.html ein LocalBusiness-, Roofer- oder RoofingContractor-Schema?
+- Prüfe: Enthält es ein aggregateRating?
+
+#### Schritt 3b: OrganizationSchema.tsx analysieren
+- Zeige den vollständigen Inhalt von client/src/components/OrganizationSchema.tsx
+- Prüfe: Welche @type hat das Schema?
+- Prüfe: Enthält es ein aggregateRating?
+
+#### Schritt 3c: Konflikt beheben
+- Falls in client/index.html ein LocalBusiness/Roofer/RoofingContractor-Schema existiert UND OrganizationSchema.tsx ebenfalls ein solches Schema rendert:
+  → Das Schema in client/index.html KOMPLETT ENTFERNEN (den gesamten <script type="application/ld+json">...</script> Block)
+  → BEGRÜNDUNG: Die OrganizationSchema-React-Komponente ist die Single Source of Truth und wird auf jeder Seite gerendert. Ein zweites Schema in index.html erzeugt Duplikate.
+
+- Falls in client/index.html KEIN konkurrierendes Schema existiert:
+  → Keine Änderung nötig, nur bestätigen.
+
+#### Schritt 3d: AggregateRating-Entscheidung
+- Das AggregateRating wird NICHT wieder eingefügt.
+- BEGRÜNDUNG: Google rät davon ab, eigene GBP-Bewertungen im Website-Schema zu spiegeln. Die Bewertungsdaten kommen direkt aus dem Google Business Profile. Selbstdeklarierte Ratings ohne externe Verifizierung riskieren eine manuelle Abstrafung.
+- Bestätige: Kein aggregateRating in irgendeiner Schema-Quelle vorhanden.
+
+---
+
+## SCHRITT 4 — Build und Verifikation
+
+1. npm run build ausführen
+2. Bestätige: Build erfolgreich, keine TypeScript-Fehler
+
+3. Folgende Prüfungen durchführen:
+
+   a) grep -c "llms.txt:" client/public/robots.txt
+      → Erwartetes Ergebnis: 1 (die auskommentierte Zeile)
+   
+   b) grep "^[^#]*llms.txt:" client/public/robots.txt
+      → Erwartetes Ergebnis: 0 Treffer (keine aktive llms.txt-Direktive)
+   
+   c) grep -c "/index.html" client/public/_redirects
+      → Erwartetes Ergebnis: 0 (kein SPA-Fallback mehr in _redirects)
+   
+   d) Zähle die Zeilen in client/public/_redirects
+      → Erwartetes Ergebnis: 1 (nur der firma-Redirect)
+   
+   e) grep -c "aggregateRating" client/index.html
+      → Erwartetes Ergebnis: 0
+   
+   f) grep -c "aggregateRating" client/src/components/OrganizationSchema.tsx
+      → Erwartetes Ergebnis: 0
+
+4. Zusammenfassung ausgeben:
+   - Welche Dateien wurden geändert?
+   - robots.txt: llms.txt deaktiviert? Ja/Nein
+   - _redirects: Nur noch 1 Zeile (firma-Redirect)? Ja/Nein
+   - netlify.toml: Wie viele 301-Redirects VOR dem /*-Fallback?
+   - index.html: Konkurrierendes Schema entfernt? Ja/Nein/Keins vorhanden
+   - Build erfolgreich? Ja/Nein
+
+---
+
+## EINSCHRÄNKUNGEN
+
+- NUR die drei genannten Dateien ändern: robots.txt, _redirects, index.html (und ggf. netlify.toml ergänzen)
+- KEINE .tsx-Dateien ändern (kein React-Code)
+- KEINE Styles, Layouts oder sichtbaren Inhalte ändern
+- KEINE neuen Dateien erstellen
+- KEINE Abhängigkeiten installieren oder entfernen
+- KEINE Emojis (Projektkonvention)
