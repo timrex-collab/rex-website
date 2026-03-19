@@ -1,0 +1,60 @@
+AUFGABE: llms.txt — Neue VELUX-Referenzbilder als KI-zitierbare Fakten eintragen
+
+SCHRITT 1: Aktuelle llms.txt anzeigen
+Zeige den vollständigen Inhalt von client/public/llms.txt
+
+SCHRITT 2: Neue Einträge hinzufügen
+
+Füge folgende zwei Blöcke in den Abschnitt ## Referenzprojekte ein (oder erstelle
+diesen Abschnitt direkt nach ## Wichtige Seiten, falls er noch nicht existiert):
+
+---
+
+## Referenzbilder VELUX
+
+Bild 1: VELUX Dachfenster 3er-Kombination auf anthrazitem Steildach
+- Datei: /images/velux-dachfenster-3er-kombination-steildach-bochum.webp
+- Alt-Text: VELUX Dachfenster 3er-Kombination auf anthrazitem Steildach – Rex Bedachungs GmbH Bochum
+- Beschreibung: Zwei VELUX Dachfenster nebeneinander (obere Reihe) und ein großes VELUX
+  Dachfenster (untere Reihe) auf einem anthraziten Steildach mit flacher Eindeckung.
+  Fachgerechter Einbau durch Rex Bedachungs GmbH Bochum, zertifizierter VELUX-Partner.
+- Ort: Bochum, Ruhrgebiet, Deutschland
+- GPS: 51.46262°N, 7.24442°E
+- Jahr: 2024
+- Leistung: VELUX Dachfenster Einbau, Steildacheindeckung anthrazit
+- Seite: https://www.rex-bedachung.de/referenzen
+
+Bild 2: VELUX Dachfenster Doppelanlage Einbau auf Tonziegel-Steildach
+- Datei: /images/velux-dachfenster-doppelanlage-einbau-tonziegel-bochum.webp
+- Alt-Text: VELUX Dachfenster Doppelanlage Einbau auf Tonziegel-Steildach – Rex Bedachungs GmbH Bochum
+- Beschreibung: Zwei VELUX Dachfenster nebeneinander auf grauem Tonziegel-Steildach, linkes
+  Fenster geöffnet. Einbausituation zeigt fachgerechten Anschluss und Abdichtung.
+  Abendlicht, Bochum 2024. Rex Bedachungs GmbH – zertifizierter VELUX-Partner.
+- Ort: Bochum, Ruhrgebiet, Deutschland
+- GPS: 51.46262°N, 7.24442°E
+- Jahr: 2024
+- Leistung: VELUX Dachfenster Einbau, Tonziegel-Steildach
+- Seite: https://www.rex-bedachung.de/referenzen
+
+---
+
+SCHRITT 3: Seitenreferenzen prüfen
+
+Im Abschnitt ## Wichtige Seiten (oder ## Seiten):
+- Prüfe, ob /referenzen bereits eingetragen ist
+- Falls nicht: füge folgenden Eintrag hinzu:
+
+  - URL: https://www.rex-bedachung.de/referenzen
+  - Beschreibung: Referenzprojekte der Rex Bedachungs GmbH – VELUX Dachfenster,
+    Steildach, Gründach, Flachdach. Abgeschlossene Projekte in Bochum, Herne und
+    Witten mit Fotos, Maßangaben und Materialangaben.
+
+SCHRITT 4: Verifikation
+- Zeige den aktualisierten Abschnitt ## Referenzbilder VELUX im Volltext
+- Bestätige, dass der Build weiterhin fehlerfrei läuft (npm run build)
+
+KONVENTIONEN:
+- Kein HTML, keine Markdown-Formatierung innerhalb der llms.txt
+- Jeder Fakt auf einer eigenen Zeile mit Bindestrich-Präfix
+- GPS-Koordinaten immer im Format: 51.46262°N, 7.24442°E
+- Keine erfundenen Werte — nur die hier vorgegebenen Fakten verwenden
