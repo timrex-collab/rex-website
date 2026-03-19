@@ -60,6 +60,7 @@ export default function Home() {
       title: "Steildach",
       description: "Ob Satteldach, Walmdach oder Pultdach – wir decken alle Steildachformen fachgerecht neu ein oder sanieren sie dauerhaft. Als Meisterbetrieb mit 40+ Jahren Erfahrung stehen wir für Qualität, die hält.",
       imageUrl: steildachImage,
+      imageUrlFallback: "/images/dach-hintergrund-rex-bedachung.jpg",
       imageAlt: "Steildach mit roten Ziegeln",
       href: "/steildach-bochum",
       benefits: [
@@ -85,6 +86,7 @@ export default function Home() {
       title: "Bauklempnerei",
       description: "Dachrinnen, Fallrohre, Wandbekleidungen und Fassadenverkleidungen – alles maßgefertigt in unserer eigenen Werkstatt in Bochum. Titanzink, Kupfer oder Aluminium: wir beraten Sie kostenlos.",
       imageUrl: bauklempnereiImage,
+      imageUrlFallback: "/images/kamin-sanierung-bochum-dachdecker.jpg",
       imageAlt: "Kamin Sanierung Bochum – Dachdecker Rex Bedachung",
       href: "/bauklempnerei-bochum",
       benefits: [

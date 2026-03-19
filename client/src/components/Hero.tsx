@@ -1,12 +1,14 @@
 import { Button } from "@/components/ui/button";
 import { Phone } from "lucide-react";
 import { Link } from "wouter";
+import Picture from "@/components/Picture";
 
 interface HeroProps {
   title: string;
   subtitle: string;
   description?: string;
   imageUrl: string;
+  imageFallbackUrl?: string;
   imageAlt: string;
   showCTAs?: boolean;
   loading?: "eager" | "lazy";
@@ -17,20 +19,21 @@ export default function Hero({
   subtitle,
   description,
   imageUrl,
+  imageFallbackUrl,
   imageAlt,
   showCTAs = true,
   loading = "eager",
 }: HeroProps) {
   return (
     <div className="relative h-[80vh] min-h-[500px] max-h-[900px] w-full overflow-hidden">
-      <img
+      <Picture
         src={imageUrl}
+        fallback={imageFallbackUrl}
         alt={imageAlt}
         className="absolute inset-0 w-full h-full object-cover"
-        width="1920"
-        height="1080"
+        width={1920}
+        height={1080}
         loading={loading}
-        // @ts-ignore – fetchpriority is a valid HTML attribute, React support added in 18.3
         fetchpriority={loading === "eager" ? "high" : "auto"}
       />
       <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/40 to-black/60" />

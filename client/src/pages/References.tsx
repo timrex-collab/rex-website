@@ -10,9 +10,13 @@ const gruendach3 = "/images/gruendach-bochum-dachbegruenung-experten.webp";
 const tondach1 = "/images/tondach-dachziegel-bochum-typ1.webp";
 const tondach2 = "/images/tondach-dachziegel-bochum-typ2.webp";
 const tondach3 = "/images/tondach-ziegel-bochum-steildach-3.webp";
+const tondach3Fallback = "/images/tondach-ziegel-bochum-steildach-3.jpg";
 const tondach4 = "/images/tondach-dachziegel-bochum-typ4.webp";
+const tondach4Fallback = "/images/tondach-dachziegel-bochum-typ4.jpg";
 const tondach6 = "/images/tondach-dachziegel-bochum-typ6.webp";
+const tondach6Fallback = "/images/tondach-dachziegel-bochum-typ6.jpg";
 const tondach7 = "/images/tondach-dachziegel-bochum-typ7.webp";
+const tondach7Fallback = "/images/tondach-dachziegel-bochum-typ7.jpg";
 const velux1 = "/images/velux-dachfenster-einbau-bochum-typ1.webp";
 
 export default function References() {
@@ -33,6 +37,7 @@ export default function References() {
       year: "2022",
       description: "Steil- und Zeltdächer mit Tondachziegeln und hochwertigen Zinkblechen.",
       imageUrls: [tondach4, tondach6, tondach7, entwaesserung1],
+      imageFallbacks: [tondach4Fallback, tondach6Fallback, tondach7Fallback, undefined],
       imageAlt: "Neubaugebiet mit Steildächern und Tondachziegeln",
     },
     {
@@ -69,6 +74,7 @@ export default function References() {
       year: "2019",
       description: "Steildach mit hochwertigen Tondachziegeln. Professionelle Ausführung für langlebigen Wetterschutz.",
       imageUrl: tondach3,
+      imageUrlFallback: tondach3Fallback,
       imageAlt: "Tondach Dachziegel Bochum – Steildach Qualität Rex Bedachung",
     },
   ];

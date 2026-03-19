@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Helmet } from "react-helmet";
 import { useLocation } from "wouter";
 import Breadcrumb from "@/components/Breadcrumb";
+import Picture from "@/components/Picture";
 import {
   CheckCircle,
   ChevronDown,
@@ -24,9 +25,9 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 const heroImage = "/images/tondach-hero-dachdeckung-bochum.webp";
 
 const galleryImages = [
-  { src: "/images/tondach-ziegel-bochum-steildach-3.webp", alt: "Steildach mit Tonziegeln Bochum – Rex Bedachungs GmbH" },
-  { src: "/images/tondach-dachziegel-bochum-typ1.webp", alt: "Dachziegel Bochum Typ 1 – Rex Bedachungs GmbH" },
-  { src: "/images/tondach-dachziegel-bochum-typ2.webp", alt: "Dachziegel Bochum Typ 2 – Rex Bedachungs GmbH" },
+  { src: "/images/tondach-ziegel-bochum-steildach-3.webp", fallback: "/images/tondach-ziegel-bochum-steildach-3.jpg", alt: "Steildach mit Tonziegeln Bochum – Rex Bedachungs GmbH" },
+  { src: "/images/tondach-dachziegel-bochum-typ1.webp", fallback: undefined, alt: "Dachziegel Bochum Typ 1 – Rex Bedachungs GmbH" },
+  { src: "/images/tondach-dachziegel-bochum-typ2.webp", fallback: undefined, alt: "Dachziegel Bochum Typ 2 – Rex Bedachungs GmbH" },
 ];
 
 const services = [
@@ -610,8 +611,9 @@ export default function SteildachBochum() {
                 className="overflow-hidden rounded-md aspect-video bg-muted"
                 data-testid={`img-galerie-${i}`}
               >
-                <img
+                <Picture
                   src={img.src}
+                  fallback={img.fallback}
                   alt={img.alt}
                   className="w-full h-full object-cover"
                   loading="lazy"

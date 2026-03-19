@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Helmet } from "react-helmet";
 import { useLocation } from "wouter";
 import Breadcrumb from "@/components/Breadcrumb";
+import Picture from "@/components/Picture";
 import {
   CheckCircle,
   ChevronDown,
@@ -22,8 +23,8 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 
 const heroImage = "/images/velux-dachfenster-einbau-bochum-fachbetrieb.webp";
 const galleryImages = [
-  { src: "/images/velux-dachfenster-bochum-typ2.webp", alt: "VELUX Dachfenster Typ 2 – Bochum" },
-  { src: "/images/velux-dachfenster-einbau-bochum-fachbetrieb.webp", alt: "Dachfenster Einbau Bochum – Rex Bedachungs GmbH Fachbetrieb" },
+  { src: "/images/velux-dachfenster-bochum-typ2.webp", fallback: "/images/velux-dachfenster-bochum-typ2.jpg", alt: "VELUX Dachfenster Typ 2 – Bochum" },
+  { src: "/images/velux-dachfenster-einbau-bochum-fachbetrieb.webp", fallback: undefined, alt: "Dachfenster Einbau Bochum – Rex Bedachungs GmbH Fachbetrieb" },
 ];
 
 const services = [
@@ -377,8 +378,9 @@ export default function DachfensterBochum() {
                 className="overflow-hidden rounded-md aspect-video bg-muted"
                 data-testid={`img-galerie-${i}`}
               >
-                <img
+                <Picture
                   src={img.src}
+                  fallback={img.fallback}
                   alt={img.alt}
                   className="w-full h-full object-cover"
                   loading="lazy"

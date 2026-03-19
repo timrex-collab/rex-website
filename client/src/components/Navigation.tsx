@@ -2,7 +2,9 @@ import { Link, useLocation } from "wouter";
 import { useState, useRef } from "react";
 import { Menu, X, Phone, ChevronDown } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import Picture from "@/components/Picture";
 const logoPath = "/images/logo-rex-bedachungs-gmbh-bochum-2025.webp";
+const logoFallback = "/images/logo-rex-bedachungs-gmbh-bochum-2025.jpg";
 
 export default function Navigation() {
   const [location, setLocation] = useLocation();
@@ -38,12 +40,13 @@ export default function Navigation() {
       <div className="max-w-7xl mx-auto px-4 md:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
           <Link href="/" aria-label="Rex Bedachungs GmbH – Zur Startseite" className="flex items-center space-x-3" data-testid="link-home">
-            <img 
-              src={logoPath} 
+            <Picture
+              src={logoPath}
+              fallback={logoFallback}
               alt="Logo Rex Bedachungs GmbH Bochum"
               className="h-12 w-12 object-contain rounded-full"
-              width="200"
-              height="114"
+              width={200}
+              height={114}
               data-testid="img-header-logo"
             />
             <div className="hidden sm:block">

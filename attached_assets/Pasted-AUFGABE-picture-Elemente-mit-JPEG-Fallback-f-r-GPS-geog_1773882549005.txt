@@ -1,0 +1,122 @@
+AUFGABE: <picture>-Elemente mit JPEG-Fallback für GPS-geogetaggte Bilder (Phase 1)
+
+KONTEXT:
+Die JPEG-Bilder in attached_assets/ wurden mit GPS-EXIF-Daten versehen (Task #35). Jetzt sollen die 10 sicher zugeordneten JPEGs als Fallback neben den bestehenden WebP-Dateien eingebunden werden, damit Google die GPS-Koordinaten crawlen kann. Die WebP-Dateien bleiben die primäre Quelle für Browser (Performance), die JPEGs dienen als Fallback mit SEO-relevanten EXIF-Geodaten.
+
+---
+
+SCHRITT 1: JPEGs nach client/public/images/ kopieren und umbenennen
+
+Kopiere folgende Dateien mit den neuen SEO-Dateinamen:
+
+attached_assets/kamin_1.jpg → client/public/images/kamin-sanierung-bochum-dachdecker.jpg
+attached_assets/hintergrund.jpg → client/public/images/dach-hintergrund-rex-bedachung.jpg
+attached_assets/Hintergrund Unternehmen.jpg → client/public/images/rex-bedachung-unternehmen-bochum.jpg
+attached_assets/01_Logo2025.jpg → client/public/images/logo-rex-bedachungs-gmbh-bochum-2025.jpg
+attached_assets/Logo_Rex2013.jpg → client/public/images/logo-rex-bedachungs-gmbh-bochum-alt.jpg
+attached_assets/Tondach4.jpg → client/public/images/tondach-dachziegel-bochum-typ4.jpg
+attached_assets/Tondach6.jpg → client/public/images/tondach-dachziegel-bochum-typ6.jpg
+attached_assets/Tondach7.jpg → client/public/images/tondach-dachziegel-bochum-typ7.jpg
+"attached_assets/Tondach 3.jpeg" → client/public/images/tondach-ziegel-bochum-steildach-3.jpg
+attached_assets/Velux2.jpg → client/public/images/velux-dachfenster-bochum-typ2.jpg
+
+SCHRITT 2: Wiederverwendbare Picture-Komponente erstellen
+
+Erstelle client/src/components/Picture.tsx:
+
+- Props: src (string, WebP-Pfad), fallback (string | undefined, JPEG-Pfad), alt (string), className (string | undefined), loading (string | undefined), width (number | undefined), height (number | undefined)
+- Wenn fallback gesetzt ist → rendere <picture> mit <source srcset={src} type="image/webp" /> und <img src={fallback} alt={alt} ... />
+- Wenn fallback NICHT gesetzt ist → rendere normales <img src={src} alt={alt} ... />
+- Alle zusätzlichen Props (className, loading, width, height) werden an das <img>-Element weitergegeben
+
+SCHRITT 3: Hero-Komponente anpassen
+
+In der Hero-Komponente (client/src/components/ — exakten Pfad prüfen):
+- Importiere die neue Picture-Komponente
+- Füge ein optionales Prop hinzu: imageFallbackUrl?: string
+- Ersetze das interne <img src={imageUrl}> durch <Picture src={imageUrl} fallback={imageFallbackUrl} alt={...} ... />
+- Alle bestehenden Props und Styles beibehalten
+
+SCHRITT 4: Seiten mit Hero-Bildern aktualisieren (Muster A)
+
+Nur für Seiten, deren Hero-Bild ein sicheres JPEG-Mapping hat. Füge die Fallback-Konstante und das Prop hinzu:
+
+BauklempnereiBochum.tsx:
+  const heroImageFallback = "/images/kamin-sanierung-bochum-dachdecker.jpg"
+  → <Hero ... imageFallbackUrl={heroImageFallback} />
+
+Alle anderen Hero-Seiten verwenden WebP-Bilder OHNE sicheres JPEG-Mapping (tondach-hero, flachdach-sanierung, dachdecker-steildach-hero, velux-fachbetrieb, dachdecker-inspektion, dachreparatur, foerderung-hero). Diese Seiten NICHT anfassen.
+
+SCHRITT 5: Direkte <img>-Tags aktualisieren (Muster B)
+
+Ersetze <img>-Tags durch die Picture-Komponente, NUR wo ein sicheres JPEG-Mapping existiert:
+
+About.tsx — teamImage (rex-bedachung-unternehmen-bochum.webp):
+  Importiere Picture, ersetze <img src={teamImage} ...> durch
+  <Picture src={teamImage} fallback="/images/rex-bedachung-unternehmen-bochum.jpg" ... />
+
+Navigation.tsx — Logo (logo-rex-bedachungs-gmbh-bochum-2025.webp):
+  Importiere Picture, ersetze <img src={logoPath} ...> durch
+  <Picture src={logoPath} fallback="/images/logo-rex-bedachungs-gmbh-bochum-2025.jpg" ... />
+
+Footer.tsx — Logo (logo-rex-bedachungs-gmbh-bochum-2025.webp):
+  Importiere Picture, ersetze <img src={logoPath} ...> durch
+  <Picture src={logoPath} fallback="/images/logo-rex-bedachungs-gmbh-bochum-2025.jpg" ... />
+
+SCHRITT 6: Galerien aktualisieren (Muster B — Arrays)
+
+In den Galerie-Arrays auf folgenden Seiten: Ersetze die Galerie-Einträge so, dass sie neben src auch ein fallback-Feld haben. Passe die Galerie-Render-Logik an, um die Picture-Komponente statt <img> zu nutzen.
+
+NUR die Einträge mit sicherem JPEG-Mapping erhalten ein Fallback. Alle anderen Einträge bekommen fallback: undefined.
+
+SteildachBochum.tsx — Galerie:
+  tondach-ziegel-bochum-steildach-3.webp → fallback: tondach-ziegel-bochum-steildach-3.jpg
+  tondach-dachziegel-bochum-typ4.webp → fallback: tondach-dachziegel-bochum-typ4.jpg
+  tondach-dachziegel-bochum-typ6.webp → fallback: tondach-dachziegel-bochum-typ6.jpg
+  tondach-dachziegel-bochum-typ7.webp → fallback: tondach-dachziegel-bochum-typ7.jpg
+  (tondach-dachziegel-bochum-typ1.webp und typ2.webp → fallback: undefined, kein JPEG)
+
+DachfensterBochum.tsx — Galerie:
+  velux-dachfenster-bochum-typ2.webp → fallback: velux-dachfenster-bochum-typ2.jpg
+  (andere Einträge → fallback: undefined)
+
+FlachdachBochum.tsx — Galerie:
+  (Prüfe ob eines der 10 sicheren Mappings in der Galerie vorkommt. Falls ja → Fallback setzen. Falls nicht → nichts ändern.)
+
+Dachreparatur.tsx — Galerie:
+  kamin-sanierung-bochum-dachdecker.webp → fallback: kamin-sanierung-bochum-dachdecker.jpg
+  (andere Einträge → fallback: undefined)
+
+References.tsx — Bildkonstanten:
+  tondach-dachziegel-bochum-typ4.webp → fallback: tondach-dachziegel-bochum-typ4.jpg
+  tondach-dachziegel-bochum-typ6.webp → fallback: tondach-dachziegel-bochum-typ6.jpg
+  tondach-dachziegel-bochum-typ7.webp → fallback: tondach-dachziegel-bochum-typ7.jpg
+  tondach-ziegel-bochum-steildach-3.webp → fallback: tondach-ziegel-bochum-steildach-3.jpg
+  velux-dachfenster-bochum-typ2.webp → fallback: velux-dachfenster-bochum-typ2.jpg (falls als velux1 referenziert → prüfen)
+  (alle anderen → fallback: undefined)
+
+Home.tsx — Bildkonstanten:
+  kamin-sanierung-bochum-dachdecker.webp (bauklempnereiImage) → fallback setzen
+  dach-hintergrund-rex-bedachung.webp (steildachImage) → fallback setzen
+  (andere → fallback: undefined)
+  Passe die Render-Logik an, um Picture statt <img> zu verwenden.
+
+SCHRITT 7: Build und Verifikation
+- Führe npm run build aus
+- Behebe etwaige TypeScript- oder Build-Fehler
+- Öffne die Seite im Browser und prüfe:
+  a) Bilder laden korrekt
+  b) Im DOM ist <picture> mit <source type="image/webp"> und <img src="...jpg"> sichtbar
+  c) Keine visuellen Veränderungen
+
+---
+
+EINSCHRÄNKUNGEN:
+- Bestehende Styles, Klassen und Layouts NICHT verändern
+- Keine Emojis verwenden (Projektkonvention)
+- button-Styles beibehalten (rounded-md, font-semibold)
+- Lucide React Icons beibehalten
+- Alternating bg-white / bg-slate-50 Sektionsstruktur beibehalten
+- NUR die 10 genannten sicheren Mappings einbinden — bei Unsicherheit das Bild OHNE Fallback lassen
+- Seiten die KEIN sicheres JPEG-Mapping haben NICHT anfassen
+- Foerderung.tsx NICHT anfassen (Sonderfall, separate Lösung)

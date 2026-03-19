@@ -2,11 +2,13 @@ import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Link } from "wouter";
 import { ArrowRight } from "lucide-react";
+import Picture from "@/components/Picture";
 
 interface ServiceCardProps {
   title: string;
   description: string;
   imageUrl: string;
+  imageUrlFallback?: string;
   imageAlt: string;
   href: string;
   benefits: string[];
@@ -17,6 +19,7 @@ export default function ServiceCard({
   title,
   description,
   imageUrl,
+  imageUrlFallback,
   imageAlt,
   href,
   benefits,
@@ -25,12 +28,13 @@ export default function ServiceCard({
   return (
     <Card className="overflow-hidden hover:-translate-y-1 transition-all duration-200" data-testid={`card-service-${title.toLowerCase()}`}>
       <div className="aspect-video overflow-hidden">
-        <img
+        <Picture
           src={imageUrl}
+          fallback={imageUrlFallback}
           alt={imageAlt}
           className="w-full h-full object-cover"
-          width="800"
-          height="450"
+          width={800}
+          height={450}
           loading="lazy"
         />
       </div>

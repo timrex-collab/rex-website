@@ -2,8 +2,10 @@ import { Helmet } from "react-helmet";
 import Hero from "@/components/Hero";
 import { Card } from "@/components/ui/card";
 import { Shield, Users, Award, ThumbsUp } from "lucide-react";
+import Picture from "@/components/Picture";
 const heroImage = "/images/tondach-hero-dachdeckung-bochum.webp";
 const teamImage = "/images/rex-bedachung-unternehmen-bochum.webp";
+const teamImageFallback = "/images/rex-bedachung-unternehmen-bochum.jpg";
 
 export default function About() {
   const values = [
@@ -91,12 +93,13 @@ export default function About() {
               </div>
             </div>
             <div>
-              <img
+              <Picture
                 src={teamImage}
+                fallback={teamImageFallback}
                 alt="Rex Bedachungs GmbH Bochum – Ihr Dachdecker im Ruhrgebiet"
                 className="rounded-md shadow-lg w-full"
-                width="1600"
-                height="1067"
+                width={1600}
+                height={1067}
                 style={{ width: "100%", height: "auto" }}
                 loading="lazy"
               />

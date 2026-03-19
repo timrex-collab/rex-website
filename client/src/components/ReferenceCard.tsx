@@ -3,6 +3,7 @@ import { useState, useCallback, useEffect } from "react";
 import useEmblaCarousel from "embla-carousel-react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import Picture from "@/components/Picture";
 
 interface ReferenceCardProps {
   title: string;
@@ -11,7 +12,9 @@ interface ReferenceCardProps {
   year: string;
   description: string;
   imageUrl?: string;
+  imageUrlFallback?: string;
   imageUrls?: string[];
+  imageFallbacks?: (string | undefined)[];
   imageAlt: string;
 }
 
@@ -22,7 +25,9 @@ export default function ReferenceCard({
   year,
   description,
   imageUrl,
+  imageUrlFallback,
   imageUrls,
+  imageFallbacks,
   imageAlt,
 }: ReferenceCardProps) {
   const images = imageUrls && imageUrls.length > 0 ? imageUrls : imageUrl ? [imageUrl] : [];
@@ -68,12 +73,13 @@ export default function ReferenceCard({
             <div className="embla__container h-full flex">
               {images.map((img, index) => (
                 <div key={index} className="embla__slide flex-[0_0_100%] min-w-0 relative">
-                  <img
+                  <Picture
                     src={img}
+                    fallback={imageFallbacks?.[index]}
                     alt={`${imageAlt} - Bild ${index + 1}`}
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-                    width="800"
-                    height="600"
+                    width={800}
+                    height={600}
                     loading="lazy"
                   />
                 </div>
@@ -113,12 +119,13 @@ export default function ReferenceCard({
             </div>
           </div>
         ) : (
-          <img
+          <Picture
             src={images[0]}
+            fallback={imageUrlFallback}
             alt={imageAlt}
             className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-            width="800"
-            height="600"
+            width={800}
+            height={600}
             loading="lazy"
           />
         )}

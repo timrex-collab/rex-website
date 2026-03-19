@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Helmet } from "react-helmet";
 import { useLocation } from "wouter";
 import Breadcrumb from "@/components/Breadcrumb";
+import Picture from "@/components/Picture";
 import {
   AlertTriangle,
   CheckCircle,
@@ -22,9 +23,9 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 const heroImage = "/images/dachreparatur-bochum-rex-bedachung.webp";
 
 const galleryImages = [
-  { src: "/images/dachreparatur-bochum-rex-bedachung.webp", alt: "Dachreparatur Bochum – Rex Bedachungs GmbH" },
-  { src: "/images/dach-hintergrund-rex-bedachung.webp", alt: "Dach Bochum – Rex Bedachungs GmbH" },
-  { src: "/images/kamin-sanierung-bochum-dachdecker.webp", alt: "Kamin Sanierung Bochum – Dachdecker Rex Bedachung" },
+  { src: "/images/dachreparatur-bochum-rex-bedachung.webp", fallback: undefined, alt: "Dachreparatur Bochum – Rex Bedachungs GmbH" },
+  { src: "/images/dach-hintergrund-rex-bedachung.webp", fallback: "/images/dach-hintergrund-rex-bedachung.jpg", alt: "Dach Bochum – Rex Bedachungs GmbH" },
+  { src: "/images/kamin-sanierung-bochum-dachdecker.webp", fallback: "/images/kamin-sanierung-bochum-dachdecker.jpg", alt: "Kamin Sanierung Bochum – Dachdecker Rex Bedachung" },
 ];
 
 const services = [
@@ -430,8 +431,9 @@ export default function Dachreparatur() {
                 className="overflow-hidden rounded-md aspect-video bg-muted"
                 data-testid={`img-galerie-${i}`}
               >
-                <img
+                <Picture
                   src={img.src}
+                  fallback={img.fallback}
                   alt={img.alt}
                   className="w-full h-full object-cover"
                   loading="lazy"
