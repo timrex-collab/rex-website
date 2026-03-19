@@ -1,0 +1,187 @@
+AUFGABE: Referenzseite (/referenzen) — Masonry-Galerie mit Vollbild-Lightbox
+
+ZIEL: Die bestehende Bilddarstellung in References.tsx durch eine Masonry-Galerie mit
+Vollbild-Lightbox ersetzen. Klick auf ein Bild öffnet ein Overlay mit Navigation,
+Thumbnails und Projektdetails. Kein Seitenwechsel, kein externes Package.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+SCHRITT 1 – Aktuellen Stand prüfen
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Zeige den vollständigen aktuellen Inhalt von client/src/pages/References.tsx,
+insbesondere das Bilder-Array und die aktuelle Darstellungslogik.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+SCHRITT 2 – Projektdaten-Array definieren
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Ersetze das bestehende Bilder-Array durch folgendes. Die ersten beiden Einträge
+sind die neuen VELUX-Bilder mit neuen Beschreibungen. Alle weiteren Einträge
+behalten ihre bisherigen Beschreibungen exakt bei:
+
+const projects = [
+  {
+    src: "/images/velux-dachfenster-3er-kombination-steildach-bochum.webp",
+    alt: "VELUX Dachfenster 3er-Kombination auf anthrazitem Steildach – Rex Bedachungs GmbH Bochum",
+    title: "VELUX 3er-Kombination",
+    location: "Bochum",
+    year: "2024",
+    category: "velux",
+    tag: "VELUX",
+    description:
+      "VELUX 3er-Kombination auf Steildach mit anthrazitem Flachziegel. Zwei GGL-Fenster nebeneinander in der oberen Reihe, ein breiteres GGL-Fenster darunter – optimale Belichtung des Dachgeschosses auf zwei Ebenen. Fachgerechter Einbau durch Rex Bedachungs GmbH Bochum, zertifizierter VELUX-Partner.",
+  },
+  {
+    src: "/images/velux-dachfenster-doppelanlage-einbau-tonziegel-bochum.webp",
+    alt: "VELUX Lichtlösung DUO Einbau auf Tonziegel-Steildach – Rex Bedachungs GmbH Bochum",
+    title: "VELUX Lichtlösung DUO",
+    location: "Bochum",
+    year: "2024",
+    category: "velux",
+    tag: "VELUX",
+    description:
+      "VELUX Lichtlösung DUO frisch eingebaut auf grauem Tonziegel-Steildach. Linkes Fenster geöffnet – der sichtbare Holzrahmen und die präzise Abdichtung zeigen handwerkliche Qualität. Warmes Abendlicht, Bochum 2024. Einbau durch Rex Bedachungs GmbH, zertifizierter VELUX-Partner.",
+  },
+  // Alle weiteren bestehenden Bildeinträge hier eintragen.
+  // Beschreibungen EXAKT aus dem bestehenden Array übernehmen.
+  // Fehlende Felder (description) aus alt-Text ableiten, falls nicht vorhanden.
+];
+
+Ergänze dabei jeden bestehenden Eintrag um das Feld "description" — falls keine
+Beschreibung vorhanden war, leite sie aus dem vorhandenen alt-Text ab.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+SCHRITT 3 – Masonry-Galerie implementieren
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Ersetze die bestehende Bilddarstellungslogik durch folgende Implementierung:
+
+MASONRY-GRID:
+- CSS columns: 3 Spalten auf Desktop (md:), 2 auf Tablet (sm:), 1 auf Mobile
+- gap-3 zwischen den Bildern
+- break-inside-avoid auf jeder Karte
+
+JEDE KARTE (.masonry-item):
+- position: relative, overflow: hidden, rounded-md, cursor-pointer
+- Hover: Bild skaliert sanft auf scale-105 (transition-transform duration-300)
+- Hover-Overlay erscheint (bg-black/60, opacity-0 → opacity-100 on hover)
+  - Im Overlay unten links: Projekttitel (font-semibold text-sm text-white)
+    und Ort · Jahr (text-xs text-white/70)
+  - Oben rechts: kleines Zoom-Icon (Lucide ZoomIn, 16px, weiß)
+- Bilder: w-full object-cover, loading="lazy", mit width/height-Attributen
+
+Bilderhöhen variieren für visuellen Rhythmus:
+- Index 0, 4, 7: h-48
+- Index 1, 5, 8: h-36
+- Index 2, 6:    h-44
+- Index 3:       h-52
+(Logik: const heights = [192, 144, 176, 208, 192, 144, 176, 192, 144])
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+SCHRITT 4 – Lightbox implementieren
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Die Lightbox ist eine React-State-gesteuerte Komponente im selben File.
+Kein externes Package.
+
+STATE:
+const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
+const isOpen = lightboxIndex !== null;
+
+LIGHTBOX-OVERLAY (wenn isOpen):
+- Außen: fixed inset-0 z-50, bg-black/95, flex flex-col items-center
+  justify-center, p-4, onClick={closeLightbox}
+
+SCHLIESSEN-BUTTON:
+- Oben rechts: absolute top-3 right-3
+- Lucide X Icon, 22px, text-white/80, cursor-pointer, hover:text-white
+
+HAUPTBILD-BEREICH:
+- max-w-3xl w-full (onClick stopPropagation)
+- Bild: w-full max-h-[60vh] object-contain rounded-md
+
+INFO-LEISTE (unter dem Hauptbild):
+- Flex, justify-between, mt-3
+- Links:
+  - Titel (text-white font-semibold text-base)
+  - Ort · Jahr (text-white/60 text-sm mt-1)
+  - Beschreibung (text-white/70 text-sm mt-2 max-w-xl leading-relaxed)
+- Rechts: Navigations-Buttons ‹ und ›
+  (border border-white/25 rounded-md px-4 py-2 text-white text-lg
+   hover:bg-white/15, gap-2)
+
+THUMBNAIL-LEISTE:
+- mt-4, flex, gap-2, flex-wrap, justify-center
+- Jedes Thumbnail: w-14 h-10 rounded object-cover cursor-pointer
+  - Aktiv: ring-2 ring-white opacity-100
+  - Inaktiv: opacity-40 hover:opacity-70
+
+KEYBOARD-NAVIGATION:
+useEffect(() => {
+  if (!isOpen) return;
+  const handler = (e: KeyboardEvent) => {
+    if (e.key === "ArrowRight") navigateLightbox(1);
+    if (e.key === "ArrowLeft") navigateLightbox(-1);
+    if (e.key === "Escape") closeLightbox();
+  };
+  window.addEventListener("keydown", handler);
+  return () => window.removeEventListener("keydown", handler);
+}, [isOpen, lightboxIndex]);
+
+FUNKTIONEN:
+const openLightbox = (index: number) => setLightboxIndex(index);
+const closeLightbox = () => setLightboxIndex(null);
+const navigateLightbox = (dir: number) =>
+  setLightboxIndex((prev) =>
+    prev === null ? 0 : (prev + dir + projects.length) % projects.length
+  );
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+SCHRITT 5 – Bestehende Seitenstruktur erhalten
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+BEHALTEN (unverändert):
+- Hero-Bereich / Seitentitel
+- Bestehende Schema-Tags (FAQPage, BreadcrumbList etc.)
+- Pulsierender CTA-Button am Seitenende (Pulse-Ring-Animation bleibt)
+- Alle Meta-Tags im Helmet-Block
+- Alle Lucide-Icons werden aus "lucide-react" importiert (kein Emoji)
+- Buttons: rounded-md, font-semibold
+
+NICHT BEHALTEN:
+- Alte Grid/Flex-Darstellung der Bilder
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+SCHRITT 6 – BreadcrumbList prüfen
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Prüfe, ob im Helmet-Block ein BreadcrumbList-Schema vorhanden ist.
+Falls nicht, füge es hinzu:
+
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Startseite",
+      "item": "https://www.rex-bedachung.de/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Referenzen",
+      "item": "https://www.rex-bedachung.de/referenzen"
+    }
+  ]
+}
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+SCHRITT 7 – Build-Verifikation
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+npm run build — muss fehlerfrei durchlaufen.
+Kein TypeScript-Fehler, keine undefinierten Variablen.
+
+Bestätige anschließend:
+- Masonry-Grid implementiert ✓
+- Lightbox mit Keyboard-Navigation implementiert ✓
+- Neue VELUX-Bilder mit Beschreibungen eingetragen ✓
+- "VELUX Lichtlösung DUO" korrekt als Titel und in alt-Text ✓
+- BreadcrumbList vorhanden ✓
+- Pulse-Ring-CTA erhalten ✓
+- Build: fehlerfrei ✓
