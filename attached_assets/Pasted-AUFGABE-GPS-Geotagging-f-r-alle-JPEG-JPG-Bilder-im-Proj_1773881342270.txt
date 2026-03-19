@@ -1,0 +1,61 @@
+AUFGABE: GPS-Geotagging für alle JPEG/JPG-Bilder im Projekt (Task #35)
+
+KONTEXT:
+Alle JPG/JPEG-Bilder sollen mit GPS-Koordinaten von Rex Bedachungs GmbH versehen werden (Local SEO). PNG- und WEBP-Dateien werden übersprungen.
+
+Koordinaten:
+- Breitengrad: 51.46262
+- Längengrad: 7.24442
+
+---
+
+SCHRITT 1: Python-Umgebung prüfen und piexif installieren
+- Prüfe welche Python-Version verfügbar ist
+- Installiere piexif (pip install piexif)
+
+SCHRITT 2: Bestandsaufnahme
+- Liste alle Bilddateien (.jpg, .jpeg, .png, .webp) im Projekt mit vollständigen Pfaden und Formaten
+- Ignoriere .cache und node_modules Verzeichnisse
+- Zeige die Ergebnisse gruppiert nach Format an
+
+SCHRITT 3: Script erstellen
+- Erstelle die Datei scripts/geotag-images.py
+- Das Script soll:
+  a) Alle .jpg/.jpeg-Dateien im Projekt finden (ohne .cache, node_modules)
+  b) GPS-EXIF-Daten (Breitengrad 51.46262, Längengrad 7.24442) einbetten
+  c) Bestehende EXIF-Daten (Kamera-Infos etc.) NICHT löschen — nur GPS-Daten hinzufügen oder überschreiben
+  d) Für .png/.webp-Dateien: Warnung loggen und Datei überspringen
+  e) Abschlusszusammenfassung ausgeben: Anzahl getaggt / Anzahl übersprungen
+
+Ziel-Dateien (14 JPEGs):
+- attached_assets/kamin_1.jpg
+- attached_assets/hintergrund.jpg
+- attached_assets/Logo_Rex2013.jpg
+- attached_assets/Velux2.jpg
+- attached_assets/Gründach1.jpg
+- attached_assets/Tondach4.jpg
+- attached_assets/Tondach6.jpg
+- attached_assets/Tondach7.jpg
+- attached_assets/Gründach2.jpg
+- attached_assets/Entwaesserung1.jpg
+- attached_assets/Gruendach3.jpg
+- attached_assets/S7300254.jpg
+- attached_assets/01_Logo2025.jpg
+- attached_assets/stock_images/professional_roofer__9ee8341f.jpg
+
+SCHRITT 4: Script ausführen
+- Führe scripts/geotag-images.py aus
+- Zeige die Zusammenfassung
+
+SCHRITT 5: Verifizierung
+- Lese die EXIF-Daten von attached_assets/Gründach1.jpg aus
+- Bestätige, dass GPS-Koordinaten 51.46262 / 7.24442 korrekt eingebettet sind
+
+---
+
+EINSCHRÄNKUNGEN:
+- NUR Dateien in attached_assets/ und Unterordnern bearbeiten
+- KEINE Änderungen an Frontend-Dateien (.tsx, .ts, .css)
+- KEINE Änderungen an package.json, vite.config.ts oder anderen Konfigurationsdateien
+- KEINE Änderungen an Dateien in client/public/
+- Das Script scripts/geotag-images.py im Projekt behalten (wird bei neuen Bildern erneut genutzt)
