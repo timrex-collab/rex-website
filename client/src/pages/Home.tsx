@@ -7,12 +7,15 @@ import { Link } from "wouter";
 import { Phone, Shield, Award, Clock } from "lucide-react";
 
 const heroImage = "/images/dachdecker-bochum-steildach-hero.webp";
+const heroImageFallback = "/images/dachdecker-bochum-steildach-hero.jpg";
 const dachwartungImage = "/images/dachdecker-inspektion-dachwartung-bochum.webp";
 
 const steildachImage = "/images/dach-hintergrund-rex-bedachung.webp";
 const flachdachImage = "/images/flachdach-sanierung-bochum-rex-bedachung.webp";
+const flachdachImageFallback = "/images/flachdach-sanierung-bochum-rex-bedachung.jpg";
 const bauklempnereiImage = "/images/kamin-sanierung-bochum-dachdecker.webp";
 const dachfensterImage = "/images/velux-dachfenster-einbau-bochum-fachbetrieb.webp";
+const dachfensterImageFallback = "/images/velux-dachfenster-einbau-bochum-fachbetrieb.jpg";
 const reparaturenImage = "/images/dachreparatur-bochum-rex-bedachung.webp";
 
 export default function Home() {
@@ -74,6 +77,7 @@ export default function Home() {
       title: "Flachdach",
       description: "Mit modernen Abdichtungssystemen wie Bitumen, PVC oder Flüssigkunststoff sorgen wir für ein langlebiges, dichtes Flachdach – kostenlos aufgemessen und auf Wunsch mit BAFA/KfW-Förderung.",
       imageUrl: flachdachImage,
+      imageUrlFallback: flachdachImageFallback,
       imageAlt: "Flachdach Sanierung Bochum – Rex Bedachungs GmbH Fachbetrieb",
       href: "/flachdach-bochum",
       benefits: [
@@ -100,6 +104,7 @@ export default function Home() {
       title: "Dachfenster – VELUX & Roto Fachbetrieb",
       description: "Als VELUX-Fachbetrieb und Roto-Spezialist übernehmen wir Neueinbau, Austausch und Reparatur von Dachfenstern – schnell, sauber und auf Wunsch mit BAFA/KfW-Förderung.",
       imageUrl: dachfensterImage,
+      imageUrlFallback: dachfensterImageFallback,
       imageAlt: "VELUX Dachfenster Bochum – Rex Bedachungs GmbH",
       href: "/dachfenster-bochum",
       benefits: [
@@ -233,6 +238,7 @@ export default function Home() {
         subtitle="Rex Bedachungs GmbH"
         description="Rex Bedachungs GmbH ist Ihr Dachdecker-Meisterbetrieb in Bochum – VELUX-Fachbetrieb, spezialisiert auf energetische Dachsanierung nach GEG, BAFA/KfW-Förderung bis 20% möglich, Flachdachabdichtung, Steildach, Reparaturen und Bauklempnerei."
         imageUrl={heroImage}
+        imageFallbackUrl={heroImageFallback}
         imageAlt="Dachdecker Bochum – Rex Bedachungs GmbH Steildach"
         showCTAs={true}
       />

@@ -23,13 +23,15 @@ import {
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import Picture from "@/components/Picture";
 
 const heroImage = "/images/flachdach-sanierung-bochum-rex-bedachung.webp";
+const heroImageFallback = "/images/flachdach-sanierung-bochum-rex-bedachung.jpg";
 
 const galleryImages = [
-  { src: "/images/flachdach-sanierung-bochum-rex-bedachung.webp", alt: "Flachdach Sanierung Bochum – Rex Bedachungs GmbH" },
-  { src: "/images/flachdach-metallverkleidung-bochum-rex-bedachung.webp", alt: "Flachdach Metallverkleidung Bochum – Rex Bedachungs GmbH" },
-  { src: "/images/gruendach-bochum-dachbegruenung-experten.webp", alt: "Gründach Bochum – Dachbegrünung Experten Rex Bedachungs GmbH" },
+  { src: "/images/flachdach-sanierung-bochum-rex-bedachung.webp", fallback: "/images/flachdach-sanierung-bochum-rex-bedachung.jpg", alt: "Flachdach Sanierung Bochum – Rex Bedachungs GmbH" },
+  { src: "/images/flachdach-metallverkleidung-bochum-rex-bedachung.webp", fallback: "/images/flachdach-metallverkleidung-bochum-rex-bedachung.jpg", alt: "Flachdach Metallverkleidung Bochum – Rex Bedachungs GmbH" },
+  { src: "/images/gruendach-bochum-dachbegruenung-experten.webp", fallback: "/images/gruendach-bochum-dachbegruenung-experten.jpg", alt: "Gründach Bochum – Dachbegrünung Experten Rex Bedachungs GmbH" },
 ];
 
 const services = [
@@ -539,8 +541,9 @@ export default function FlachdachBochum() {
                 className="overflow-hidden rounded-md aspect-video bg-muted"
                 data-testid={`img-galerie-${i}`}
               >
-                <img
+                <Picture
                   src={img.src}
+                  fallback={img.fallback}
                   alt={img.alt}
                   className="w-full h-full object-cover"
                   loading="lazy"

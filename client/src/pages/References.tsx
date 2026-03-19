@@ -2,12 +2,16 @@ import { Helmet } from "react-helmet";
 import Hero from "@/components/Hero";
 import ReferenceCard from "@/components/ReferenceCard";
 const entwaesserung1 = "/images/flachdach-sanierung-bochum-rex-bedachung.webp";
+const entwaesserung1Fallback = "/images/flachdach-sanierung-bochum-rex-bedachung.jpg";
 
 const heroImage = "/images/tondach-hero-dachdeckung-bochum.webp";
 const heroImageFallback = "/images/tondach-hero-dachdeckung-bochum.jpg";
 const ref1Image = "/images/gruendach-intensive-begruenung-bochum.webp";
+const ref1ImageFallback = "/images/gruendach-intensive-begruenung-bochum.jpg";
 const gruendach2 = "/images/gruendach-extensive-begruenung-bochum.webp";
+const gruendach2Fallback = "/images/gruendach-extensive-begruenung-bochum.jpg";
 const gruendach3 = "/images/gruendach-bochum-dachbegruenung-experten.webp";
+const gruendach3Fallback = "/images/gruendach-bochum-dachbegruenung-experten.jpg";
 const tondach1 = "/images/tondach-dachziegel-bochum-typ1.webp";
 const tondach1Fallback = "/images/tondach-dachziegel-bochum-typ1.jpg";
 const tondach2 = "/images/tondach-dachziegel-bochum-typ2.webp";
@@ -42,7 +46,7 @@ export default function References() {
       year: "2022",
       description: "Steil- und Zeltdächer mit Tondachziegeln und hochwertigen Zinkblechen.",
       imageUrls: [tondach4, tondach6, tondach7, entwaesserung1],
-      imageFallbacks: [tondach4Fallback, tondach6Fallback, tondach7Fallback, undefined],
+      imageFallbacks: [tondach4Fallback, tondach6Fallback, tondach7Fallback, entwaesserung1Fallback],
       imageAlt: "Neubaugebiet mit Steildächern und Tondachziegeln",
     },
     {
@@ -52,6 +56,7 @@ export default function References() {
       year: "2021",
       description: "Gründach mit extensiver Dachbegrünung. Aufbau einer neuen Wärmedämmung für bessere Energieeffizienz.",
       imageUrls: [ref1Image, gruendach3],
+      imageFallbacks: [ref1ImageFallback, gruendach3Fallback],
       imageAlt: "Gründach intensive Begrünung Bochum – Rex Bedachungs GmbH",
     },
     {
@@ -61,6 +66,7 @@ export default function References() {
       year: "2020",
       description: "Gründach mit extensiver Dachbegrünung und Photovoltaikmodulen.",
       imageUrl: gruendach2,
+      imageUrlFallback: gruendach2Fallback,
       imageAlt: "Gründach extensive Begrünung Bochum – Rex Bedachungs GmbH",
     },
     {

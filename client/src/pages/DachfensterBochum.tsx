@@ -22,9 +22,10 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 
 const heroImage = "/images/velux-dachfenster-einbau-bochum-fachbetrieb.webp";
+const heroImageFallback = "/images/velux-dachfenster-einbau-bochum-fachbetrieb.jpg";
 const galleryImages = [
   { src: "/images/velux-dachfenster-bochum-typ2.webp", fallback: "/images/velux-dachfenster-bochum-typ2.jpg", alt: "VELUX Dachfenster Typ 2 – Bochum" },
-  { src: "/images/velux-dachfenster-einbau-bochum-fachbetrieb.webp", fallback: undefined, alt: "Dachfenster Einbau Bochum – Rex Bedachungs GmbH Fachbetrieb" },
+  { src: "/images/velux-dachfenster-einbau-bochum-fachbetrieb.webp", fallback: heroImageFallback, alt: "Dachfenster Einbau Bochum – Rex Bedachungs GmbH Fachbetrieb" },
 ];
 
 const services = [

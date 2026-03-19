@@ -26,6 +26,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 
 const heroImage = "/images/velux-dachfenster-einbau-bochum-fachbetrieb.webp";
+const heroImageFallback = "/images/velux-dachfenster-einbau-bochum-fachbetrieb.jpg";
 
 const symptomCards = [
   {

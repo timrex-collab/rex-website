@@ -1,0 +1,82 @@
+AUFGABE: JPEG-Fallbacks für die 6 verbleibenden Bildpaare einbinden (Phase 3)
+
+KONTEXT:
+Ein automatischer Bildvergleich hat die Zuordnung der letzten 6 WebP-Bilder zu ihren JPEG-Quellen bestätigt. Die JPEGs in attached_assets/ sind bereits GPS-getaggt (Task #35). Jetzt müssen sie nach client/public/images/ kopiert und als <picture>-Fallback eingebunden werden — identisch zum Vorgehen aus Phase 1 und 2.
+
+---
+
+SCHRITT 1: JPEGs nach client/public/images/ kopieren und umbenennen
+
+attached_assets/Gruendach3.jpg → client/public/images/gruendach-bochum-dachbegruenung-experten.jpg
+attached_assets/Gründach2.jpg → client/public/images/gruendach-extensive-begruenung-bochum.jpg
+attached_assets/Gründach1.jpg → client/public/images/gruendach-intensive-begruenung-bochum.jpg
+attached_assets/S7300254.jpg → client/public/images/dachdecker-bochum-steildach-hero.jpg
+"attached_assets/Datei 20.10.25, 19 56 47.jpeg" → client/public/images/velux-dachfenster-einbau-bochum-fachbetrieb.jpg
+attached_assets/Entwaesserung1.jpg → client/public/images/flachdach-metallverkleidung-bochum-rex-bedachung.jpg
+
+SCHRITT 2: EXIF-Verifikation
+- Lese die GPS-EXIF-Daten aus einer der kopierten Dateien aus (z.B. gruendach-intensive-begruenung-bochum.jpg)
+- Bestätige, dass 51.46262 / 7.24442 korrekt vorhanden ist
+
+SCHRITT 3: Hero-Seiten aktualisieren
+
+Home.tsx (Hero: dachdecker-bochum-steildach-hero.webp):
+  const heroImageFallback = "/images/dachdecker-bochum-steildach-hero.jpg"
+  → <Hero ... imageFallbackUrl={heroImageFallback} />
+
+DachfensterBochum.tsx (Hero: velux-dachfenster-einbau-bochum-fachbetrieb.webp):
+  const heroImageFallback = "/images/velux-dachfenster-einbau-bochum-fachbetrieb.jpg"
+  → <Hero ... imageFallbackUrl={heroImageFallback} />
+
+VeluxAustausch.tsx (Hero: velux-dachfenster-einbau-bochum-fachbetrieb.webp):
+  const heroImageFallback = "/images/velux-dachfenster-einbau-bochum-fachbetrieb.jpg"
+  → <Hero ... imageFallbackUrl={heroImageFallback} />
+
+VeluxRolllaeden.tsx (Hero: velux-dachfenster-einbau-bochum-fachbetrieb.webp):
+  const heroImageFallback = "/images/velux-dachfenster-einbau-bochum-fachbetrieb.jpg"
+  → <Hero ... imageFallbackUrl={heroImageFallback} />
+
+FlachdachBochum.tsx (Hero: flachdach-sanierung-bochum-rex-bedachung.webp):
+  Prüfe ob das Hero-Bild flachdach-sanierung ist (Phase 1 Mapping, Flachdach1.jpeg) oder flachdach-metallverkleidung. Falls flachdach-sanierung → wurde bereits in Phase 1 behandelt, NICHT nochmal anfassen. Falls noch kein Fallback vorhanden → hinzufügen.
+
+SCHRITT 4: Galerien und Bildkonstanten aktualisieren
+
+FlachdachBochum.tsx — Galerie:
+  flachdach-metallverkleidung-bochum-rex-bedachung.webp → fallback: flachdach-metallverkleidung-bochum-rex-bedachung.jpg
+  gruendach-bochum-dachbegruenung-experten.webp → fallback: gruendach-bochum-dachbegruenung-experten.jpg
+  (Prüfe welche Gründach-WebPs in der Galerie vorkommen und setze die passenden Fallbacks)
+
+DachfensterBochum.tsx — Galerie:
+  velux-dachfenster-einbau-bochum-fachbetrieb.webp → fallback: velux-dachfenster-einbau-bochum-fachbetrieb.jpg
+  (Falls dieses Bild in der Galerie vorkommt)
+
+References.tsx — Bildkonstanten:
+  gruendach-intensive-begruenung-bochum.webp → fallback: gruendach-intensive-begruenung-bochum.jpg
+  gruendach-extensive-begruenung-bochum.webp → fallback: gruendach-extensive-begruenung-bochum.jpg
+  gruendach-bochum-dachbegruenung-experten.webp → fallback: gruendach-bochum-dachbegruenung-experten.jpg
+  (Prüfe ob entwaesserung1/flachdach-metallverkleidung in References vorkommt → falls ja, Fallback setzen)
+
+Home.tsx — Bildkonstanten:
+  flachdachImage (flachdach-sanierung-bochum-rex-bedachung.webp) → prüfe ob bereits Fallback vorhanden. Falls nicht: Diese WebP wurde Flachdach1.jpeg zugeordnet (Phase 1, "Wahrscheinlich"). Falls in Phase 1 kein Fallback gesetzt wurde → jetzt nachholen.
+  dachfensterImage (velux-dachfenster-einbau-bochum-fachbetrieb.webp) → fallback: velux-dachfenster-einbau-bochum-fachbetrieb.jpg
+
+Gründach-Cluster-Seiten (falls vorhanden):
+  Prüfe ob in den Gründach-Cluster-Artikeln (.tsx-Dateien) Gründach-WebP-Bilder eingebunden sind. Falls ja → passende JPEG-Fallbacks setzen.
+
+SCHRITT 5: Build und Verifikation
+- npm run build ausführen
+- TypeScript-Fehler beheben falls vorhanden
+- Prüfe im Browser:
+  a) Alle Bilder laden korrekt
+  b) Neue <picture>-Elemente im DOM sichtbar
+  c) Keine visuellen Veränderungen
+
+---
+
+EINSCHRÄNKUNGEN:
+- Bestehende Styles, Klassen und Layouts NICHT verändern
+- Keine Emojis (Projektkonvention)
+- Lucide React Icons beibehalten
+- Foerderung.tsx NICHT anfassen (Phase 4)
+- Bereits gesetzte Fallbacks aus Phase 1 und 2 NICHT überschreiben oder entfernen
+- Wenn unklar ob ein Bild bereits ein Fallback hat → erst prüfen, dann handeln
