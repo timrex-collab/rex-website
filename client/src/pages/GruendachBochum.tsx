@@ -1,4 +1,5 @@
 import { Helmet } from "react-helmet";
+import OrganizationSchema from "@/components/OrganizationSchema";
 import { Link } from "wouter";
 import { useState } from "react";
 import Breadcrumb from "@/components/Breadcrumb";
@@ -277,12 +278,12 @@ export default function GruendachBochum() {
   },
   "areaServed": {
     "@type": "City",
-    "name": "Bochum",
-    "sameAs": "https://www.wikidata.org/wiki/Q2103"
+    "name": "Bochum"
   },
   "serviceType": "Dachbegrünung"
 }`}</script>
       </Helmet>
+      <OrganizationSchema />
 
       <Breadcrumb items={[
         { label: "Startseite", href: "/" },

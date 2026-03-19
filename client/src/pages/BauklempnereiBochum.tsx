@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Helmet } from "react-helmet";
+import OrganizationSchema from "@/components/OrganizationSchema";
 import { useLocation } from "wouter";
 import Breadcrumb from "@/components/Breadcrumb";
 import {
@@ -193,12 +194,12 @@ export default function BauklempnereiBochum() {
   },
   "areaServed": {
     "@type": "City",
-    "name": "Bochum",
-    "sameAs": "https://www.wikidata.org/wiki/Q2103"
+    "name": "Bochum"
   },
   "serviceType": "Bauklempnerei"
 }`}</script>
       </Helmet>
+      <OrganizationSchema />
 
       <Breadcrumb items={[
         { label: "Startseite", href: "/" },

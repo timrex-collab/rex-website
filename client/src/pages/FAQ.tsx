@@ -1,4 +1,5 @@
 import { Helmet } from "react-helmet";
+import OrganizationSchema from "@/components/OrganizationSchema";
 import Hero from "@/components/Hero";
 import Breadcrumb from "@/components/Breadcrumb";
 import {
@@ -476,6 +477,7 @@ export default function FAQ() {
           ]
         })}</script>
       </Helmet>
+      <OrganizationSchema />
 
       <Breadcrumb items={[
         { label: "Startseite", href: "/" },

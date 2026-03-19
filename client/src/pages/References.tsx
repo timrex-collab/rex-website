@@ -1,4 +1,5 @@
 import { Helmet } from "react-helmet";
+import OrganizationSchema from "@/components/OrganizationSchema";
 import Hero from "@/components/Hero";
 import ReferenceCard from "@/components/ReferenceCard";
 const entwaesserung1 = "/images/flachdach-sanierung-bochum-rex-bedachung.webp";
@@ -107,6 +108,7 @@ export default function References() {
         <meta name="twitter:image" content="https://www.rex-bedachung.de/images/dach-hintergrund-rex-bedachung.webp" />
         <script type="application/ld+json">{`{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Startseite","item":"https://www.rex-bedachung.de/"},{"@type":"ListItem","position":2,"name":"Referenzen","item":"https://www.rex-bedachung.de/referenzen"}]}`}</script>
       </Helmet>
+      <OrganizationSchema />
 
       <Hero
         title="Referenzen"

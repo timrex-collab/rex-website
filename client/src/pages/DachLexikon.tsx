@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Helmet } from "react-helmet";
+import OrganizationSchema from "@/components/OrganizationSchema";
 import { Search, Book, ShieldCheck } from "lucide-react";
 import Hero from "@/components/Hero";
 import Breadcrumb from "@/components/Breadcrumb";
@@ -211,6 +212,7 @@ export default function DachLexikon() {
         <script type="application/ld+json">{`{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Startseite","item":"https://www.rex-bedachung.de/"},{"@type":"ListItem","position":2,"name":"Dachlexikon","item":"https://www.rex-bedachung.de/lexikon"}]}`}</script>
         <script type="application/ld+json">{JSON.stringify(definedTermSetSchema)}</script>
       </Helmet>
+      <OrganizationSchema />
 
       <Breadcrumb items={[
         { label: "Startseite", href: "/" },

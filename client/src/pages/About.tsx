@@ -1,4 +1,5 @@
 import { Helmet } from "react-helmet";
+import OrganizationSchema from "@/components/OrganizationSchema";
 import Hero from "@/components/Hero";
 import { Card } from "@/components/ui/card";
 import { Shield, Users, Award, ThumbsUp } from "lucide-react";
@@ -48,6 +49,7 @@ export default function About() {
         <meta name="twitter:image" content="https://www.rex-bedachung.de/images/dach-hintergrund-rex-bedachung.webp" />
         <script type="application/ld+json">{`{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Startseite","item":"https://www.rex-bedachung.de/"},{"@type":"ListItem","position":2,"name":"Über uns","item":"https://www.rex-bedachung.de/ueber-uns"}]}`}</script>
       </Helmet>
+      <OrganizationSchema />
 
       <Hero
         title="Über uns"

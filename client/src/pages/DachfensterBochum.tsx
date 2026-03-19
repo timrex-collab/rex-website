@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Helmet } from "react-helmet";
+import OrganizationSchema from "@/components/OrganizationSchema";
 import { useLocation } from "wouter";
 import Breadcrumb from "@/components/Breadcrumb";
 import Picture from "@/components/Picture";
@@ -159,8 +160,7 @@ export default function DachfensterBochum() {
   },
   "areaServed": {
     "@type": "City",
-    "name": "Bochum",
-    "sameAs": "https://www.wikidata.org/wiki/Q2103"
+    "name": "Bochum"
   },
   "serviceType": "Dachfenstereinbau"
 }`}</script>
@@ -227,6 +227,7 @@ export default function DachfensterBochum() {
   ]
 }`}</script>
       </Helmet>
+      <OrganizationSchema />
 
       <Breadcrumb items={[
         { label: "Startseite", href: "/" },

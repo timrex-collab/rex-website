@@ -1,5 +1,6 @@
 import { useEffect } from "react";
 import { Helmet } from "react-helmet";
+import OrganizationSchema from "@/components/OrganizationSchema";
 import Hero from "@/components/Hero";
 import ServiceCard from "@/components/ServiceCard";
 import { Button } from "@/components/ui/button";
@@ -160,79 +161,8 @@ export default function Home() {
   <meta name="twitter:title" content="Dachdecker Bochum – Rex Bedachungs GmbH" />
   <meta name="twitter:description" content="Professionelle Dachdeckerarbeiten im Ruhrgebiet. Meisterbetrieb mit 40 Jahren Erfahrung." />
   <meta name="twitter:image" content="https://www.rex-bedachung.de/images/dachdecker-bochum-steildach-hero.webp" />
-  <script type="application/ld+json">
-    {JSON.stringify({
-      "@context": "https://schema.org",
-      "@type": "RoofingContractor",
-      "@id": "https://www.rex-bedachung.de/#organization",
-      "name": "Rex Bedachungs GmbH",
-      "url": "https://www.rex-bedachung.de",
-      "logo": "https://www.rex-bedachung.de/images/logo-rex-bedachungs-gmbh-bochum-2025.webp",
-      "image": "https://www.rex-bedachung.de/images/dachdecker-bochum-steildach-hero.webp",
-      "description": "Rex Bedachungs GmbH ist ein Dachdecker-Meisterbetrieb in Bochum mit über 40 Jahren Erfahrung. Wir bieten Steildach, Flachdach, Bauklempnerei, Dachfenster, Reparaturen und Dachwartung im gesamten Ruhrgebiet.",
-      "foundingYear": "1984",
-      "telephone": "+49-234-583100",
-      "faxNumber": "+49-234-583137",
-      "email": "info@rex-bedachung.de",
-      "address": {
-        "@type": "PostalAddress",
-        "streetAddress": "Paulinenstraße 22",
-        "addressLocality": "Bochum",
-        "postalCode": "44799",
-        "addressRegion": "Nordrhein-Westfalen",
-        "addressCountry": "DE"
-      },
-      "geo": {
-        "@type": "GeoCoordinates",
-        "latitude": 51.46262,
-        "longitude": 7.24442
-      },
-      "areaServed": [
-        { "@type": "City", "name": "Bochum" },
-        { "@type": "City", "name": "Dortmund" },
-        { "@type": "City", "name": "Essen" },
-        { "@type": "City", "name": "Herne" },
-        { "@type": "City", "name": "Witten" },
-        { "@type": "City", "name": "Gelsenkirchen" },
-        { "@type": "City", "name": "Recklinghausen" }
-      ],
-      "openingHoursSpecification": [
-        {
-          "@type": "OpeningHoursSpecification",
-          "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
-          "opens": "07:00",
-          "closes": "17:00"
-        }
-      ],
-      "priceRange": "€€",
-      "currenciesAccepted": "EUR",
-      "paymentAccepted": "Rechnung, Überweisung",
-      "hasOfferCatalog": {
-        "@type": "OfferCatalog",
-        "name": "Dachdeckerleistungen",
-        "itemListElement": [
-          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Steildach", "url": "https://www.rex-bedachung.de/steildach-bochum" }},
-          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Flachdach", "url": "https://www.rex-bedachung.de/flachdach-bochum" }},
-          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Bauklempnerei", "url": "https://www.rex-bedachung.de/bauklempnerei-bochum" }},
-          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Dachfenster", "url": "https://www.rex-bedachung.de/dachfenster-bochum" }},
-          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Reparaturen", "url": "https://www.rex-bedachung.de/dachreparatur-bochum" }},
-          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Dachwartung", "url": "https://www.rex-bedachung.de/dachwartung-bochum" }}
-        ]
-      },
-      "sameAs": [
-        "https://www.google.com/maps?cid=rex-bedachung-bochum",
-        "https://www.gelbeseiten.de/rex-bedachung"
-      ],
-      "aggregateRating": {
-        "@type": "AggregateRating",
-        "ratingValue": "4.5",
-        "reviewCount": "15",
-        "bestRating": "5",
-        "worstRating": "1"
-      }
-    })}
-  </script>
 </Helmet>
+      <OrganizationSchema />
       <Hero
         title="Dachdecker Bochum – Ihr Partner rund um's Dach"
         subtitle="Rex Bedachungs GmbH"

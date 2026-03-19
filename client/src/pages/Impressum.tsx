@@ -1,4 +1,5 @@
 import { Helmet } from "react-helmet";
+import OrganizationSchema from "@/components/OrganizationSchema";
 
 export default function Impressum() {
   return (
@@ -9,6 +10,7 @@ export default function Impressum() {
         <link rel="canonical" href="https://www.rex-bedachung.de/impressum" />
         <meta property="og:site_name" content="Rex Bedachungs GmbH" />
       </Helmet>
+      <OrganizationSchema />
       <div className="py-16 md:py-20 lg:py-24 bg-background">
         <div className="max-w-4xl mx-auto px-4 md:px-6 lg:px-8">
           <h1 className="text-4xl md:text-5xl font-bold mb-12">Impressum</h1>

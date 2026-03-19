@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Helmet } from "react-helmet";
+import OrganizationSchema from "@/components/OrganizationSchema";
 import Breadcrumb from "@/components/Breadcrumb";
 import {
   Sun, Euro, Home, CheckCircle, XCircle, AlertTriangle,
@@ -170,6 +171,7 @@ export default function Solarpflicht() {
           ]
         })}</script>
       </Helmet>
+      <OrganizationSchema />
 
       <Breadcrumb items={[
         { label: "Startseite", href: "/" },

@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Helmet } from "react-helmet";
+import OrganizationSchema from "@/components/OrganizationSchema";
 import Breadcrumb from "@/components/Breadcrumb";
 import {
   Euro, FileCheck, Lightbulb, ShieldCheck, ArrowRight,
@@ -172,6 +173,7 @@ export default function Foerderung() {
           }
         `}</script>
       </Helmet>
+      <OrganizationSchema />
 
       <Breadcrumb items={[
         { label: "Startseite", href: "/" },

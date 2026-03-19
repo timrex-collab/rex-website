@@ -1,0 +1,155 @@
+AUFGABE: Zentrale OrganizationSchema-Komponente erstellen, fehlerhafte sameAs korrigieren, auf allen Seiten einbinden
+
+KONTEXT:
+Das vollständige Unternehmens-Schema (@type: RoofingContractor mit @id) existiert aktuell nur auf Home.tsx. Auf 9 anderen Seiten ist ein fehlerhafter sameAs-Eintrag vorhanden (wikidata.org/wiki/Q2103 = Branche "Roofing", nicht das Unternehmen). KI-Modelle, die über Unterseiten einsteigen, bekommen keinen Unternehmenskontext. Das wird jetzt behoben.
+
+---
+
+SCHRITT 1: Zentrale Komponente erstellen
+
+Erstelle client/src/components/OrganizationSchema.tsx
+
+Die Komponente rendert ein <script type="application/ld+json"> Tag mit folgendem JSON-LD:
+
+{
+  "@context": "https://schema.org",
+  "@type": "RoofingContractor",
+  "@id": "https://www.rex-bedachung.de/#organization",
+  "name": "Rex Bedachungs GmbH",
+  "url": "https://www.rex-bedachung.de",
+  "logo": "https://www.rex-bedachung.de/images/logo-rex-bedachungs-gmbh-bochum-2025.webp",
+  "image": "https://www.rex-bedachung.de/images/dachdecker-bochum-steildach-hero.webp",
+  "description": "Rex Bedachungs GmbH ist ein Dachdecker-Meisterbetrieb in Bochum mit über 40 Jahren Erfahrung. Spezialisiert auf Steildach, Flachdach, Dachfenster (VELUX), Bauklempnerei, Dachreparatur und Dachwartung.",
+  "foundingYear": "1984",
+  "telephone": "+49-234-583100",
+  "faxNumber": "+49-234-583137",
+  "email": "info@rex-bedachung.de",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "Paulinenstraße 22",
+    "addressLocality": "Bochum",
+    "postalCode": "44799",
+    "addressRegion": "Nordrhein-Westfalen",
+    "addressCountry": "DE"
+  },
+  "geo": {
+    "@type": "GeoCoordinates",
+    "latitude": 51.46262,
+    "longitude": 7.24442
+  },
+  "openingHoursSpecification": [
+    {
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+      "opens": "07:00",
+      "closes": "17:00"
+    }
+  ],
+  "priceRange": "€€",
+  "areaServed": {
+    "@type": "GeoCircle",
+    "geoMidpoint": {
+      "@type": "GeoCoordinates",
+      "latitude": 51.46262,
+      "longitude": 7.24442
+    },
+    "geoRadius": "30000"
+  },
+  "hasOfferCatalog": {
+    "@type": "OfferCatalog",
+    "name": "Dachdeckerleistungen",
+    "itemListElement": [
+      { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Steildacharbeiten" } },
+      { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Flachdacharbeiten" } },
+      { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Dachfenster & VELUX" } },
+      { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Bauklempnerei" } },
+      { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Dachreparatur" } },
+      { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Dachwartung" } }
+    ]
+  },
+  "sameAs": [
+    "https://www.google.com/maps/place/Rex+Bedachungs+GmbH/@51.4623584,7.2428438,17z"
+  ]
+}
+
+Die Komponente hat keine Props — sie gibt immer dasselbe Unternehmens-Schema aus.
+Nutze React Helmet (oder den im Projekt verwendeten Head-Manager) NICHT — rendere das Script-Tag direkt im JSX, wie es auch bei den anderen Schema-Blöcken im Projekt gemacht wird.
+
+SCHRITT 2: Home.tsx — vorhandenes Unternehmens-Schema ersetzen
+
+In Home.tsx existiert bereits ein vollständiges RoofingContractor-Schema (Zeilen ~164–233).
+- ENTFERNE diesen gesamten JSON-LD-Block
+- IMPORTIERE stattdessen die neue OrganizationSchema-Komponente
+- FÜGE <OrganizationSchema /> an der Stelle ein, wo das alte Schema stand
+- Alle anderen Schema-Blöcke in Home.tsx (falls vorhanden) NICHT anfassen
+
+SCHRITT 3: Fehlerhafte sameAs-Einträge entfernen
+
+In diesen 9 Dateien existiert ein fehlerhafter sameAs-Eintrag:
+"sameAs": "https://www.wikidata.org/wiki/Q2103"
+
+Entferne die sameAs-Zeile aus den Service-Schema-Blöcken in:
+- BauklempnereiBochum.tsx
+- VeluxAustausch.tsx
+- DachfensterBochum.tsx
+- VeluxRolllaeden.tsx
+- SteildachBochum.tsx
+- DachwartungBochum.tsx
+- Dachreparatur.tsx
+- GruendachBochum.tsx
+- FlachdachBochum.tsx
+
+WICHTIG: Nur die sameAs-Zeile entfernen, den Rest des jeweiligen Schema-Blocks NICHT verändern. Kein Komma-Fehler nach dem Entfernen (prüfe, dass das JSON valide bleibt).
+
+SCHRITT 4: OrganizationSchema auf allen Seiten einbinden
+
+Importiere und platziere <OrganizationSchema /> auf ALLEN folgenden Seiten.
+Platzierung: am Anfang des return-Blocks, vor dem ersten sichtbaren Element (aber innerhalb des äußersten Wrappers/Fragments).
+
+Seiten (alle .tsx in client/src/pages/):
+- Home.tsx (bereits in Schritt 2 erledigt)
+- About.tsx
+- Services.tsx
+- Contact.tsx
+- FAQ.tsx
+- DachLexikon.tsx
+- References.tsx
+- Careers.tsx
+- SteildachBochum.tsx
+- FlachdachBochum.tsx
+- DachfensterBochum.tsx
+- BauklempnereiBochum.tsx
+- Dachreparatur.tsx
+- DachwartungBochum.tsx
+- VeluxAustausch.tsx
+- VeluxRolllaeden.tsx
+- GruendachBochum.tsx
+- AufsparrendaemmungBochum.tsx
+- DachgaubeBochum.tsx
+- SteildachFoerderungBochum.tsx
+- SteildachUndichtBochum.tsx
+- Foerderung.tsx
+- Solarpflicht.tsx
+- Danke.tsx
+- Impressum.tsx
+- Datenschutz.tsx
+
+NICHT einbinden auf Seiten, die nicht existieren. Falls eine Seite aus der Liste nicht gefunden wird → überspringen und melden.
+
+SCHRITT 5: Build und Verifikation
+- npm run build ausführen
+- TypeScript-Fehler beheben falls vorhanden
+- Durchsuche alle .tsx-Dateien nach "wikidata.org/wiki/Q2103" — Ergebnis muss 0 Treffer sein
+- Durchsuche alle Seiten-Dateien nach "OrganizationSchema" — zähle die Imports
+- Bestätige: Anzahl Seiten mit OrganizationSchema = Gesamtzahl Seiten in pages/
+- Prüfe Home.tsx: Das alte inline RoofingContractor-Schema darf NICHT mehr vorhanden sein
+
+---
+
+EINSCHRÄNKUNGEN:
+- Bestehende Schema-Blöcke (FAQPage, Article, Service, BreadcrumbList, HowTo) auf den Seiten NICHT verändern — nur sameAs-Zeilen entfernen
+- Keine Styles, Layouts oder sichtbare Elemente ändern
+- Keine Emojis (Projektkonvention)
+- Die OrganizationSchema-Komponente darf KEINE Props haben — alle Daten sind hardcoded
+- Das sameAs-Array enthält vorerst NUR die eine Google Maps URL — weitere URLs werden später ergänzt
+- Keine neuen Abhängigkeiten installieren

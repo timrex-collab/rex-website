@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Helmet } from "react-helmet";
+import OrganizationSchema from "@/components/OrganizationSchema";
 import { useLocation } from "wouter";
 import Breadcrumb from "@/components/Breadcrumb";
 import {
@@ -174,6 +175,7 @@ export default function DachgaubeBochum() {
         <meta name="twitter:image" content="https://www.rex-bedachung.de/images/tondach-hero-dachdeckung-bochum.webp" />
         <script type="application/ld+json">{JSON.stringify(schemaData)}</script>
       </Helmet>
+      <OrganizationSchema />
 
       {/* Breadcrumb */}
       <Breadcrumb

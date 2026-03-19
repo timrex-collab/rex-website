@@ -1,4 +1,5 @@
 import { Helmet } from "react-helmet";
+import OrganizationSchema from "@/components/OrganizationSchema";
 import { Link } from "wouter";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
@@ -17,6 +18,7 @@ export default function Danke() {
         <meta name="twitter:description" content="Vielen Dank für Ihre Nachricht. Wir melden uns zeitnah bei Ihnen." />
         <meta name="twitter:image" content="https://www.rex-bedachung.de/images/dach-hintergrund-rex-bedachung.webp" />
       </Helmet>
+      <OrganizationSchema />
 
       <section className="py-16 md:py-24 lg:py-32 bg-background">
         <div className="max-w-3xl mx-auto px-4 md:px-6 lg:px-8">

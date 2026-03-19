@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Helmet } from "react-helmet";
+import OrganizationSchema from "@/components/OrganizationSchema";
 import { useLocation } from "wouter";
 import Breadcrumb from "@/components/Breadcrumb";
 import Picture from "@/components/Picture";
@@ -221,8 +222,7 @@ export default function SteildachBochum() {
   },
   "areaServed": {
     "@type": "City",
-    "name": "Bochum",
-    "sameAs": "https://www.wikidata.org/wiki/Q2103"
+    "name": "Bochum"
   },
   "serviceType": "Steildachsanierung"
 }`}</script>
@@ -317,6 +317,7 @@ export default function SteildachBochum() {
   ]
 }`}</script>
       </Helmet>
+      <OrganizationSchema />
       <Breadcrumb items={[
         { label: "Startseite", href: "/" },
         { label: "Steildach" }

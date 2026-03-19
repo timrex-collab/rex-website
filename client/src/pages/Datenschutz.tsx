@@ -1,4 +1,5 @@
 import { Helmet } from "react-helmet";
+import OrganizationSchema from "@/components/OrganizationSchema";
 
 export default function Datenschutz() {
   return (
@@ -13,6 +14,7 @@ export default function Datenschutz() {
         <meta name="twitter:description" content="Datenschutzerklärung der Rex Bedachungs GmbH, Bochum." />
         <meta name="twitter:image" content="https://www.rex-bedachung.de/images/dach-hintergrund-rex-bedachung.webp" />
       </Helmet>
+      <OrganizationSchema />
 
       <div className="py-16 md:py-20 lg:py-24 bg-background">
         <div className="max-w-4xl mx-auto px-4 md:px-6 lg:px-8">
