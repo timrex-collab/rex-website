@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Helmet } from "react-helmet";
 import OrganizationSchema from "@/components/OrganizationSchema";
+import AuthorSchema from "@/components/AuthorSchema";
 import Breadcrumb from "@/components/Breadcrumb";
 import {
   Sun, Euro, Home, CheckCircle, XCircle, AlertTriangle,
@@ -150,8 +151,8 @@ export default function Solarpflicht() {
           "@context": "https://schema.org",
           "@type": "Article",
           "headline": "Solarpflicht NRW 2026 – Was Eigentümer wissen müssen",
-          "author": { "@type": "Organization", "name": "Rex Bedachungs GmbH" },
-          "publisher": { "@type": "Organization", "name": "Rex Bedachungs GmbH", "url": "https://www.rex-bedachung.de" },
+          "author": { "@id": "https://www.rex-bedachung.de/#author" },
+          "publisher": { "@id": "https://www.rex-bedachung.de/#organization" },
           "name": "Solarpflicht NRW 2026",
           "description": "Informationen zur Solardachpflicht in NRW – § 42a BauO NRW, SAN-VO NRW",
           "url": "https://www.rex-bedachung.de/solarpflicht",
@@ -172,6 +173,7 @@ export default function Solarpflicht() {
         })}</script>
       </Helmet>
       <OrganizationSchema />
+      <AuthorSchema />
 
       <Breadcrumb items={[
         { label: "Startseite", href: "/" },

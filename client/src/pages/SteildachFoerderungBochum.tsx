@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Helmet } from "react-helmet";
 import OrganizationSchema from "@/components/OrganizationSchema";
+import AuthorSchema from "@/components/AuthorSchema";
 import { useLocation } from "wouter";
 import Breadcrumb from "@/components/Breadcrumb";
 import {
@@ -113,8 +114,8 @@ export default function SteildachFoerderungBochum() {
       {
         "@type": "Article",
         "headline": "Steildach Förderung Bochum – BAFA, KfW und GEG 2026",
-        "author": { "@type": "Organization", "name": "Rex Bedachungs GmbH" },
-        "publisher": { "@type": "Organization", "name": "Rex Bedachungs GmbH" },
+        "author": { "@id": "https://www.rex-bedachung.de/#author" },
+        "publisher": { "@id": "https://www.rex-bedachung.de/#organization" },
         "datePublished": "2026-03-17",
         "url": "https://www.rex-bedachung.de/steildach-foerderung-bochum",
       },
@@ -163,6 +164,7 @@ export default function SteildachFoerderungBochum() {
         <script type="application/ld+json">{JSON.stringify(schemaData)}</script>
       </Helmet>
       <OrganizationSchema />
+      <AuthorSchema />
 
       {/* Breadcrumb */}
       <Breadcrumb

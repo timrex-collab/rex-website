@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Helmet } from "react-helmet";
 import OrganizationSchema from "@/components/OrganizationSchema";
+import AuthorSchema from "@/components/AuthorSchema";
 import Breadcrumb from "@/components/Breadcrumb";
 import {
   Euro, FileCheck, Lightbulb, ShieldCheck, ArrowRight,
@@ -127,8 +128,8 @@ export default function Foerderung() {
             "@context": "https://schema.org",
             "@type": "Article",
             "headline": "BAFA & KfW Förderung für Dacharbeiten in Bochum",
-            "author": { "@type": "Organization", "name": "Rex Bedachungs GmbH" },
-            "publisher": { "@type": "Organization", "name": "Rex Bedachungs GmbH", "url": "https://www.rex-bedachung.de" },
+            "author": { "@id": "https://www.rex-bedachung.de/#author" },
+            "publisher": { "@id": "https://www.rex-bedachung.de/#organization" },
             "name": "BAFA & KfW Förderung für Dachsanierung Bochum",
             "description": "Staatliche Förderung für Dachsanierung und Velux-Dachfenster bei Rex Bedachungs GmbH Bochum",
             "url": "https://www.rex-bedachung.de/foerderung",
@@ -174,6 +175,7 @@ export default function Foerderung() {
         `}</script>
       </Helmet>
       <OrganizationSchema />
+      <AuthorSchema />
 
       <Breadcrumb items={[
         { label: "Startseite", href: "/" },

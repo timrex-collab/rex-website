@@ -1,5 +1,6 @@
 import { Helmet } from "react-helmet";
 import OrganizationSchema from "@/components/OrganizationSchema";
+import AuthorSchema from "@/components/AuthorSchema";
 import { Link } from "wouter";
 import { useState } from "react";
 import Breadcrumb from "@/components/Breadcrumb";
@@ -166,16 +167,8 @@ export default function GruendachBochum() {
     headline: "Gründach Bochum: Aufbau, Vorteile, Varianten & Förderung – der vollständige Ratgeber",
     description:
       "Alles zum Thema Gründach und Dachbegrünung in Bochum: Extensiv vs. intensiv, 7 Schichten Aufbau, Vorteile, Förderprogramme und Pflegetipps vom Flachdach-Experten Rex Bedachungs GmbH.",
-    author: { "@type": "Organization", name: "Rex Bedachungs GmbH" },
-    publisher: {
-      "@type": "Organization",
-      name: "Rex Bedachungs GmbH",
-      url: "https://rex-bedachung.de",
-      logo: {
-        "@type": "ImageObject",
-        url: "https://rex-bedachung.de/images/logo-rex-bedachungs-gmbh-bochum-2025.webp",
-      },
-    },
+    author: { "@id": "https://www.rex-bedachung.de/#author" },
+    publisher: { "@id": "https://www.rex-bedachung.de/#organization" },
     datePublished: "2026-03-01",
     dateModified: "2026-03-01",
     mainEntityOfPage: "https://rex-bedachung.de/gruendach-dachbegrunung-bochum",
@@ -284,6 +277,7 @@ export default function GruendachBochum() {
 }`}</script>
       </Helmet>
       <OrganizationSchema />
+      <AuthorSchema />
 
       <Breadcrumb items={[
         { label: "Startseite", href: "/" },
