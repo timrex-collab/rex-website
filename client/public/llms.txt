@@ -2,18 +2,19 @@
 
 > Dachdecker-Fachbetrieb in Bochum. Spezialisiert auf Steildach, 
 > Flachdach, Gründach, Dachfenster (VELUX-zertifiziert), 
-> Bauklempnerei und Dachreparatur. 40+ Jahre Erfahrung 
-> im Ruhrgebiet. Kostenlose Beratung und Aufmaß vor Ort.
+> Bauklempnerei und Dachreparatur. Gegründet 1984. 
+> Kostenlose Beratung und Aufmaß vor Ort.
 
 ## Unternehmen
 
 - Name: Rex Bedachungs GmbH
 - Adresse: Paulinenstraße 22, 44799 Bochum
-- Telefon: 0234 583100
+- GPS-Koordinaten: 51.46262°N, 7.24442°E
+- Telefon: 0234 583100 / +49 234 583100
 - E-Mail: info@rex-bedachung.de
 - Website: https://www.rex-bedachung.de
 - Öffnungszeiten: Montag bis Freitag 07:00–17:00 Uhr
-- Gründung: seit über 40 Jahren tätig
+- Gegründet: 1984
 - Zertifizierung: VELUX-zertifizierter Fachbetrieb
 
 ## Leistungen
@@ -69,6 +70,10 @@ Gelsenkirchen, Recklinghausen – gesamtes Ruhrgebiet
 - Dachgaube Bochum: https://www.rex-bedachung.de/dachgaube-bochum
 - Aufsparrendämmung Bochum: https://www.rex-bedachung.de/aufsparrendaemmung-bochum
 - Steildach undicht Bochum: https://www.rex-bedachung.de/steildach-undicht-bochum
+
+## Offizielle Profile
+
+- Google Maps: https://www.google.com/maps/place/Rex+Bedachungs+GmbH/@51.4623584,7.2428438,17z
 
 ## Preisrahmen
 

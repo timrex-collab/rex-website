@@ -1,0 +1,46 @@
+AUFGABE: llms.txt ergänzen — Gründungsjahr, GPS-Koordinaten, Profil-URLs
+
+KONTEXT:
+Die Datei client/public/llms.txt ist die zentrale Informationsquelle für KI-Modelle (Perplexity, ChatGPT, Gemini, Claude). Drei Lücken wurden in der Bestandsaufnahme identifiziert und müssen geschlossen werden.
+
+---
+
+SCHRITT 1: Aktuelle llms.txt anzeigen
+- Zeige den vollständigen Inhalt von client/public/llms.txt
+
+SCHRITT 2: Gründungsjahr korrigieren
+- Suche nach der Stelle, an der "seit über 40 Jahren" oder eine ähnliche ungenaue Angabe steht
+- Ersetze sie durch die exakte Angabe: "Gegründet 1984"
+- Falls "seit über 40 Jahren" zusätzlich an anderer Stelle vorkommt, dort ebenfalls korrigieren
+- WICHTIG: "Gegründet 1984" muss als eigenständiger, KI-extrahierbarer Fakt erkennbar sein — nicht in einem Fließtextsatz versteckt
+
+SCHRITT 3: GPS-Koordinaten einfügen
+- Füge im Abschnitt mit den Firmendaten (Adresse, Telefon etc.) folgende Zeile hinzu:
+  GPS-Koordinaten: 51.46262°N, 7.24442°E
+- Platzierung: direkt nach der Adresszeile oder dem Standort-Abschnitt
+
+SCHRITT 4: Profil-URLs einfügen
+- Füge einen neuen Abschnitt "Offizielle Profile" oder ergänze den bestehenden Kontakt-Abschnitt um:
+  Google Maps: https://www.google.com/maps/place/Rex+Bedachungs+GmbH/@51.4623584,7.2428438,17z
+- Keine weiteren Profil-URLs hinzufügen (weitere werden später ergänzt, wenn verifiziert)
+
+SCHRITT 5: Telefonnummer prüfen
+- Die Bestandsaufnahme hat ergeben, dass die Telefonnummer als "0234 583100" (national) angegeben ist
+- Ergänze zusätzlich das internationale Format: +49 234 583100
+- Falls nur das nationale Format vorhanden ist: beide Formate aufführen
+
+SCHRITT 6: Verifikation
+- Zeige den vollständigen aktualisierten Inhalt von client/public/llms.txt
+- Bestätige:
+  a) "Gegründet 1984" ist als eigenständiger Fakt vorhanden
+  b) GPS-Koordinaten 51.46262°N, 7.24442°E sind vorhanden
+  c) Google Maps URL ist vorhanden
+  d) Telefonnummer enthält internationales Format +49 234 583100
+
+---
+
+EINSCHRÄNKUNGEN:
+- NUR client/public/llms.txt bearbeiten — keine anderen Dateien
+- Bestehende Inhalte NICHT löschen oder umstrukturieren — nur ergänzen und korrigieren
+- Keine Emojis
+- Alle Fakten als eigenständige, KI-extrahierbare Werte formatieren (nicht in Fließtext einbetten)
