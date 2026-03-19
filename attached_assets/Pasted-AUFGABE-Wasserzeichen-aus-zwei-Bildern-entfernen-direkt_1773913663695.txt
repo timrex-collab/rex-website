@@ -1,0 +1,115 @@
+AUFGABE: Wasserzeichen ✦ aus zwei Bildern entfernen — direkt auf dem Server
+
+KONTEXT:
+Zwei Bilder in der Referenzgalerie haben ein sichtbares Gemini-Wasserzeichen ✦
+unten rechts. Beide Dateien liegen auf dem Server und müssen dort bereinigt werden.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+SCHRITT 1 – Betroffene Dateipfade identifizieren
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Öffne client/src/pages/References.tsx.
+Suche nach den Einträgen mit folgenden Titeln und notiere jeweils den src-Pfad:
+
+  1. title: "Dachentwässerung Hattingen"
+  2. title: "Wohnhaus Bochum-Stiepel"
+
+Zeige beide vollständigen Projekteinträge (src, title, description, width, height).
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+SCHRITT 2 – Wasserzeichen entfernen + WebP konvertieren
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Führe folgendes Python-Script aus:
+
+python3 << 'PYEOF'
+from PIL import Image
+import struct, os
+
+LAT, LON = 51.46262, 7.24442
+
+def dms(v):
+    d=int(abs(v)); m=int((abs(v)-d)*60); s=((abs(v)-d)*60-m)*60
+    return d,m,s
+
+def build_exif(lat, lon):
+    lat_d,lat_m,lat_s=dms(lat); lon_d,lon_m,lon_s=dms(lon)
+    TH=b'II'+struct.pack('<H',42)+struct.pack('<I',8)
+    ifd0=struct.pack('<H',1)+struct.pack('<HHI',0x8825,4,1)+struct.pack('<I',26)+struct.pack('<I',0)
+    DATA_OFF=26+2+5*12+4
+    e0=struct.pack('<HHI4s',0x0000,1,4,b'\x02\x03\x00\x00')
+    e1=struct.pack('<HHI4s',0x0001,2,2,b'N\x00\x00\x00')
+    e2=struct.pack('<HHI',0x0002,5,3)+struct.pack('<I',DATA_OFF)
+    e3=struct.pack('<HHI4s',0x0003,2,2,b'E\x00\x00\x00')
+    e4=struct.pack('<HHI',0x0004,5,3)+struct.pack('<I',DATA_OFF+24)
+    gps=struct.pack('<H',5)+e0+e1+e2+e3+e4+struct.pack('<I',0)
+    lat_r=struct.pack('<II',lat_d,1)+struct.pack('<II',lat_m,1)+struct.pack('<II',int(round(lat_s*10000)),10000)
+    lon_r=struct.pack('<II',lon_d,1)+struct.pack('<II',lon_m,1)+struct.pack('<II',int(round(lon_s*10000)),10000)
+    return b'Exif\x00\x00'+TH+ifd0+gps+lat_r+lon_r
+
+exif = build_exif(LAT, LON)
+
+tasks = [
+    {
+        "src": "PFAD_HATTINGEN",   # <-- aus Schritt 1 einsetzen
+        "out": "client/public/images/gruendach-flachdach-dachentwässerung-hattingen.webp",
+        "label": "Dachentwässerung Hattingen",
+    },
+    {
+        "src": "PFAD_STIEPEL",     # <-- aus Schritt 1 einsetzen
+        "out": "client/public/images/steildach-dachgauben-komplettsanierung-bochum-stiepel.webp",
+        "label": "Wohnhaus Bochum-Stiepel",
+    },
+]
+
+for t in tasks:
+    img = Image.open(t["src"]).convert("RGB")
+    w, h = img.size
+    # Wasserzeichen sitzt ~70px von unten rechts
+    cropped = img.crop((0, 0, w-70, h-70))
+    cropped.save(t["out"], "WEBP", quality=82, method=6, exif=exif)
+    print(f"✓ {t['label']}")
+    print(f"  Original: {w}x{h} | {round(os.path.getsize(t['src'])/1024)} KB")
+    print(f"  Neu:      {cropped.size[0]}x{cropped.size[1]} | {round(os.path.getsize(t['out'])/1024)} KB")
+    print(f"  Output:   {t['out']}")
+    print()
+PYEOF
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+SCHRITT 3 – References.tsx aktualisieren
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Ersetze in beiden Projekteinträgen:
+
+  "Dachentwässerung Hattingen":
+    src → "/images/gruendach-flachdach-dachentwässerung-hattingen.webp"
+    width/height → neue Werte (Original minus 70px je Seite)
+
+  "Wohnhaus Bochum-Stiepel":
+    src → "/images/steildach-dachgauben-komplettsanierung-bochum-stiepel.webp"
+    width/height → neue Werte (Original minus 70px je Seite)
+
+Alt-Texte und Beschreibungen bleiben unverändert.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+SCHRITT 4 – Alte Dateien löschen
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  rm [Pfad Hattingen aus Schritt 1]
+  rm [Pfad Stiepel aus Schritt 1]
+
+Falls die Dateien in attached_assets/ liegen, dort ebenfalls löschen.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+SCHRITT 5 – Build-Verifikation
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+npm run build — muss fehlerfrei durchlaufen.
+
+Bestätige:
+- Dachentwässerung Hattingen: Wasserzeichen entfernt ✓
+- Wohnhaus Bochum-Stiepel: Wasserzeichen entfernt ✓
+- GPS 51.46262°N / 7.24442°E eingebettet ✓
+- Neue WebP-Dateien in client/public/images/ ✓
+- Alte Dateien gelöscht ✓
+- Build: fehlerfrei ✓
+
+KONVENTIONEN:
+- Keine anderen Änderungen am Code
+- Pulse-Ring-CTA bleibt erhalten
+- Keine Änderungen an alt-Texten oder Beschreibungen

@@ -76,7 +76,7 @@ const projects = [
       "Steil- und Zeltdächer mit Tondachziegeln und hochwertigen Zinkblechen. Qualitätsdachdeckung für Neubaugebiete im Ruhrgebiet.",
   },
   {
-    src: "/images/flachdach-sanierung-bochum-rex-bedachung.webp",
+    src: "/images/gruendach-flachdach-dachentwässerung-hattingen.webp",
     alt: "Flachdach Sanierung Bochum – Rex Bedachungs GmbH",
     title: "Dachentwässerung Hattingen",
     location: "Hattingen",
@@ -120,7 +120,7 @@ const projects = [
       "Gründach mit extensiver Dachbegrünung und Photovoltaikmodulen.",
   },
   {
-    src: "/images/tondach-dachziegel-bochum-typ2.webp",
+    src: "/images/steildach-dachgauben-komplettsanierung-bochum-stiepel.webp",
     alt: "Tondach Dachziegel Bochum – Steildach Qualität Rex Bedachung",
     title: "Wohnhaus Bochum-Stiepel",
     location: "Bochum",
