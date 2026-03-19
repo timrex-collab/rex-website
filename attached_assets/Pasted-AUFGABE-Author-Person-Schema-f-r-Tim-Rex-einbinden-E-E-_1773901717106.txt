@@ -1,0 +1,99 @@
+AUFGABE: Author/Person Schema für Tim Rex einbinden (E-E-A-T Signal)
+
+KONTEXT:
+Für die Vertrauenswürdigkeit bei Google und KI-Modellen (E-E-A-T: Experience, Expertise, Authoritativeness, Trustworthiness) braucht Rex Bedachungs GmbH ein Person-Schema für den Geschäftsführer. Aktuell wird "author" auf einigen Seiten nur als @type: "Organization" angegeben. Das wird jetzt um ein konkretes Person-Schema ergänzt.
+
+Geschäftsführer:
+- Name: Tim Rex
+- Rolle: Geschäftsführer, Dachdeckermeister
+- Unternehmen: Rex Bedachungs GmbH
+
+---
+
+SCHRITT 1: Zentrale Komponente erstellen
+
+Erstelle client/src/components/AuthorSchema.tsx
+
+Die Komponente rendert ein <script type="application/ld+json"> Tag mit folgendem JSON-LD:
+
+{
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "@id": "https://www.rex-bedachung.de/#author",
+  "name": "Tim Rex",
+  "jobTitle": "Geschäftsführer & Dachdeckermeister",
+  "worksFor": {
+    "@id": "https://www.rex-bedachung.de/#organization"
+  },
+  "url": "https://www.rex-bedachung.de/ueber-uns"
+}
+
+Die Komponente hat keine Props — alle Daten sind hardcoded.
+Kein React Helmet verwenden — Script-Tag direkt im JSX rendern (wie OrganizationSchema.tsx).
+
+SCHRITT 2: Article-Seiten — author von Organization auf Person umstellen
+
+Auf diesen Seiten existiert bereits ein Article-Schema mit "author": { "@type": "Organization", "name": "Rex Bedachungs GmbH" }.
+
+Ersetze in JEDER dieser Dateien den author-Block im Article-Schema durch:
+
+"author": {
+  "@id": "https://www.rex-bedachung.de/#author"
+}
+
+Dateien:
+- GruendachBochum.tsx
+- AufsparrendaemmungBochum.tsx
+- DachgaubeBochum.tsx
+- SteildachFoerderungBochum.tsx
+- SteildachUndichtBochum.tsx
+- Foerderung.tsx
+- Solarpflicht.tsx
+
+WICHTIG: Nur den "author"-Block im Article-Schema ersetzen. Den "publisher"-Block (falls vorhanden) auf @id-Referenz zur Organization umstellen:
+
+"publisher": {
+  "@id": "https://www.rex-bedachung.de/#organization"
+}
+
+Falls "publisher" bereits als Organization mit vollem Objekt angegeben ist → ebenfalls durch die @id-Referenz ersetzen.
+Alle anderen Felder im Article-Schema NICHT verändern.
+
+SCHRITT 3: AuthorSchema auf Article-Seiten einbinden
+
+Importiere und platziere <AuthorSchema /> auf den 7 Seiten aus Schritt 2:
+- GruendachBochum.tsx
+- AufsparrendaemmungBochum.tsx
+- DachgaubeBochum.tsx
+- SteildachFoerderungBochum.tsx
+- SteildachUndichtBochum.tsx
+- Foerderung.tsx
+- Solarpflicht.tsx
+
+Platzierung: direkt nach <OrganizationSchema /> (die in Ticket A eingebunden wurde).
+
+SCHRITT 4: About-Seite ergänzen
+
+In About.tsx (client/src/pages/About.tsx):
+- Importiere und platziere <AuthorSchema /> nach <OrganizationSchema />
+- Prüfe ob auf der About-Seite der Name "Tim Rex" bereits im sichtbaren Content vorkommt
+- Falls NICHT: Melde das als Hinweis (wir ändern den sichtbaren Content in diesem Ticket NICHT)
+
+SCHRITT 5: Build und Verifikation
+- npm run build ausführen
+- TypeScript-Fehler beheben falls vorhanden
+- Durchsuche alle .tsx-Dateien:
+  a) Bestätige: AuthorSchema ist in 8 Dateien importiert (7 Article-Seiten + About)
+  b) Bestätige: Kein Article-Schema enthält mehr "@type": "Organization" als author
+  c) Bestätige: Alle author-Referenzen nutzen @id: "https://www.rex-bedachung.de/#author"
+  d) Bestätige: Alle publisher-Referenzen nutzen @id: "https://www.rex-bedachung.de/#organization"
+
+---
+
+EINSCHRÄNKUNGEN:
+- Bestehende Schema-Blöcke (FAQPage, Service, BreadcrumbList, HowTo) NICHT verändern
+- Sichtbaren Content (Texte, Überschriften, Bilder) NICHT verändern
+- Keine Styles oder Layouts ändern
+- Keine Emojis (Projektkonvention)
+- AuthorSchema NUR auf Seiten mit Article-Schema + About-Seite einbinden — NICHT auf allen Seiten
+- Keine neuen Abhängigkeiten installieren
