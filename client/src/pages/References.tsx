@@ -1,118 +1,184 @@
+import { useState, useEffect } from "react";
 import { Helmet } from "react-helmet";
+import { ZoomIn, X, ChevronLeft, ChevronRight } from "lucide-react";
 import OrganizationSchema from "@/components/OrganizationSchema";
 import Hero from "@/components/Hero";
-import ReferenceCard from "@/components/ReferenceCard";
-const entwaesserung1 = "/images/flachdach-sanierung-bochum-rex-bedachung.webp";
-const entwaesserung1Fallback = "/images/flachdach-sanierung-bochum-rex-bedachung.jpg";
+import { Link } from "wouter";
 
 const heroImage = "/images/tondach-hero-dachdeckung-bochum.webp";
 const heroImageFallback = "/images/tondach-hero-dachdeckung-bochum.jpg";
-const ref1Image = "/images/gruendach-intensive-begruenung-bochum.webp";
-const ref1ImageFallback = "/images/gruendach-intensive-begruenung-bochum.jpg";
-const gruendach2 = "/images/gruendach-extensive-begruenung-bochum.webp";
-const gruendach2Fallback = "/images/gruendach-extensive-begruenung-bochum.jpg";
-const gruendach3 = "/images/gruendach-bochum-dachbegruenung-experten.webp";
-const gruendach3Fallback = "/images/gruendach-bochum-dachbegruenung-experten.jpg";
-const tondach1 = "/images/tondach-dachziegel-bochum-typ1.webp";
-const tondach1Fallback = "/images/tondach-dachziegel-bochum-typ1.jpg";
-const tondach2 = "/images/tondach-dachziegel-bochum-typ2.webp";
-const tondach2Fallback = "/images/tondach-dachziegel-bochum-typ2.jpg";
-const tondach3 = "/images/tondach-ziegel-bochum-steildach-3.webp";
-const tondach3Fallback = "/images/tondach-ziegel-bochum-steildach-3.jpg";
-const tondach4 = "/images/tondach-dachziegel-bochum-typ4.webp";
-const tondach4Fallback = "/images/tondach-dachziegel-bochum-typ4.jpg";
-const tondach6 = "/images/tondach-dachziegel-bochum-typ6.webp";
-const tondach6Fallback = "/images/tondach-dachziegel-bochum-typ6.jpg";
-const tondach7 = "/images/tondach-dachziegel-bochum-typ7.webp";
-const tondach7Fallback = "/images/tondach-dachziegel-bochum-typ7.jpg";
-const velux1 = "/images/velux-dachfenster-einbau-bochum-typ1.webp";
-const velux1Fallback = "/images/velux-dachfenster-einbau-bochum-typ1.jpg";
-const velux3erKombination = "/images/velux-dachfenster-3er-kombination-steildach-bochum.webp";
-const veluxDoppelanlage = "/images/velux-dachfenster-doppelanlage-einbau-tonziegel-bochum.webp";
+
+const projects = [
+  {
+    src: "/images/velux-dachfenster-3er-kombination-steildach-bochum.webp",
+    alt: "VELUX Dachfenster 3er-Kombination auf anthrazitem Steildach – Rex Bedachungs GmbH Bochum",
+    title: "VELUX 3er-Kombination",
+    location: "Bochum",
+    year: "2024",
+    category: "velux",
+    tag: "VELUX",
+    description:
+      "VELUX 3er-Kombination auf Steildach mit anthrazitem Flachziegel. Zwei GGL-Fenster nebeneinander in der oberen Reihe, ein breiteres GGL-Fenster darunter – optimale Belichtung des Dachgeschosses auf zwei Ebenen. Fachgerechter Einbau durch Rex Bedachungs GmbH Bochum, zertifizierter VELUX-Partner.",
+  },
+  {
+    src: "/images/velux-dachfenster-doppelanlage-einbau-tonziegel-bochum.webp",
+    alt: "VELUX Lichtlösung DUO Einbau auf Tonziegel-Steildach – Rex Bedachungs GmbH Bochum",
+    title: "VELUX Lichtlösung DUO",
+    location: "Bochum",
+    year: "2024",
+    category: "velux",
+    tag: "VELUX",
+    description:
+      "VELUX Lichtlösung DUO frisch eingebaut auf grauem Tonziegel-Steildach. Linkes Fenster geöffnet – der sichtbare Holzrahmen und die präzise Abdichtung zeigen handwerkliche Qualität. Warmes Abendlicht, Bochum 2024. Einbau durch Rex Bedachungs GmbH, zertifizierter VELUX-Partner.",
+  },
+  {
+    src: "/images/velux-dachfenster-einbau-bochum-typ1.webp",
+    alt: "VELUX Dachfenster Einbau Bochum – Fachbetrieb Rex",
+    title: "Velux Dachfenster Sanierung",
+    location: "Bochum",
+    year: "2025",
+    category: "velux",
+    tag: "VELUX",
+    description:
+      "Lichtlösung Raum. Mehr Raumgewinn und Kopffreiheit durch Kombi-Aufkeilrahmen. Mit Solar-Rollläden für Hitzeschutz und Verdunkelung.",
+  },
+  {
+    src: "/images/tondach-dachziegel-bochum-typ4.webp",
+    alt: "Neubaugebiet mit Steildächern und Tondachziegeln – Hattingen",
+    title: "Neubaugebiet Hattingen",
+    location: "Hattingen",
+    year: "2022",
+    category: "steildach",
+    tag: "Steildach",
+    description:
+      "Steil- und Zeltdächer mit Tondachziegeln und hochwertigen Zinkblechen.",
+  },
+  {
+    src: "/images/tondach-dachziegel-bochum-typ6.webp",
+    alt: "Steildach Tondachziegel Typ 6 – Neubaugebiet Hattingen",
+    title: "Neubaugebiet Hattingen",
+    location: "Hattingen",
+    year: "2022",
+    category: "steildach",
+    tag: "Steildach",
+    description:
+      "Steil- und Zeltdächer mit Tondachziegeln und hochwertigen Zinkblechen. Professionelle Ausführung durch Rex Bedachungs GmbH.",
+  },
+  {
+    src: "/images/tondach-dachziegel-bochum-typ7.webp",
+    alt: "Steildach Tondachziegel Typ 7 – Neubaugebiet Hattingen",
+    title: "Neubaugebiet Hattingen",
+    location: "Hattingen",
+    year: "2022",
+    category: "steildach",
+    tag: "Steildach",
+    description:
+      "Steil- und Zeltdächer mit Tondachziegeln und hochwertigen Zinkblechen. Qualitätsdachdeckung für Neubaugebiete im Ruhrgebiet.",
+  },
+  {
+    src: "/images/flachdach-sanierung-bochum-rex-bedachung.webp",
+    alt: "Flachdach Sanierung Bochum – Rex Bedachungs GmbH",
+    title: "Dachentwässerung Hattingen",
+    location: "Hattingen",
+    year: "2022",
+    category: "bauklempnerei",
+    tag: "Bauklempnerei",
+    description:
+      "Fachgerechte Dachentwässerung im Neubaugebiet Hattingen. Hochwertige Zinkbleche und zuverlässige Entwässerungssysteme.",
+  },
+  {
+    src: "/images/gruendach-intensive-begruenung-bochum.webp",
+    alt: "Gründach intensive Begrünung Bochum – Rex Bedachungs GmbH",
+    title: "Einfamilienhaus Bochum Weitmar",
+    location: "Bochum",
+    year: "2021",
+    category: "gruendach",
+    tag: "Gründach",
+    description:
+      "Gründach mit extensiver Dachbegrünung. Aufbau einer neuen Wärmedämmung für bessere Energieeffizienz.",
+  },
+  {
+    src: "/images/gruendach-bochum-dachbegruenung-experten.webp",
+    alt: "Gründach Bochum Dachbegrünung Experten – Rex Bedachungs GmbH",
+    title: "Einfamilienhaus Bochum Weitmar",
+    location: "Bochum",
+    year: "2021",
+    category: "gruendach",
+    tag: "Gründach",
+    description:
+      "Gründach mit extensiver Dachbegrünung durch Rex Bedachungs GmbH Bochum. Fachgerechte Wärmedämmung und Begrünung für nachhaltigen Wetterschutz.",
+  },
+  {
+    src: "/images/gruendach-extensive-begruenung-bochum.webp",
+    alt: "Gründach extensive Begrünung Bochum – Rex Bedachungs GmbH",
+    title: "Gründach mit Photovoltaik",
+    location: "Bochum",
+    year: "2020",
+    category: "gruendach",
+    tag: "Gründach",
+    description:
+      "Gründach mit extensiver Dachbegrünung und Photovoltaikmodulen.",
+  },
+  {
+    src: "/images/tondach-dachziegel-bochum-typ2.webp",
+    alt: "Tondach Dachziegel Bochum – Steildach Qualität Rex Bedachung",
+    title: "Wohnhaus Bochum-Stiepel",
+    location: "Bochum",
+    year: "2020",
+    category: "steildach",
+    tag: "Steildach",
+    description:
+      "Komplettsanierung mit Erstellung von zwei großen Dachgauben. Hochwertige Tondachziegel für dauerhaften Wetterschutz.",
+  },
+  {
+    src: "/images/tondach-dachziegel-bochum-typ1.webp",
+    alt: "Tondach Dachziegel Bochum Typ 1 – Rex Bedachungs GmbH",
+    title: "Wohnhaus Bochum-Stiepel",
+    location: "Bochum",
+    year: "2020",
+    category: "steildach",
+    tag: "Steildach",
+    description:
+      "Komplettsanierung Steildach mit hochwertigen Tondachziegeln und Dachgauben. Rex Bedachungs GmbH Bochum.",
+  },
+  {
+    src: "/images/tondach-ziegel-bochum-steildach-3.webp",
+    alt: "Tondach Dachziegel Bochum – Steildach Qualität Rex Bedachung",
+    title: "Einfamilienhaus Bochum Querenburg",
+    location: "Bochum",
+    year: "2019",
+    category: "steildach",
+    tag: "Steildach",
+    description:
+      "Steildach mit hochwertigen Tondachziegeln. Professionelle Ausführung für langlebigen Wetterschutz.",
+  },
+];
+
+const heights = [192, 144, 176, 208, 192, 144, 176, 192, 144];
 
 export default function References() {
-  const references = [
-    {
-      title: "VELUX 3er-Kombination",
-      location: "Bochum",
-      service: "velux",
-      year: "2024",
-      description: "VELUX 3er-Kombination auf anthrazitem Steildach – fachgerecht eingebaut von Rex Bedachungs GmbH.",
-      imageUrl: velux3erKombination,
-      imageUrlFallback: velux3erKombination,
-      imageAlt: "VELUX Dachfenster 3er-Kombination auf anthrazitem Steildach – Rex Bedachungs GmbH Bochum",
-    },
-    {
-      title: "VELUX Doppelanlage Einbau",
-      location: "Bochum",
-      service: "velux",
-      year: "2024",
-      description: "VELUX Doppelanlage auf Tonziegel-Steildach – professioneller Einbau durch Rex Bedachungs GmbH.",
-      imageUrl: veluxDoppelanlage,
-      imageUrlFallback: veluxDoppelanlage,
-      imageAlt: "VELUX Dachfenster Doppelanlage Einbau auf Tonziegel-Steildach – Rex Bedachungs GmbH Bochum",
-    },
-    {
-      title: "Velux Dachfenster Sanierung Bochum",
-      location: "Bochum",
-      service: "Dachfenster",
-      year: "2025",
-      description: "Lichtlösung Raum.  Mehr Raumgewinn und Kopffreiheit durch Kombi-Aufkeilrahmen. Mit Solar-Rollläden für Hitzeschutz und Verdunkelung.",
-      imageUrl: velux1,
-      imageUrlFallback: velux1Fallback,
-      imageAlt: "VELUX Dachfenster Einbau Bochum – Fachbetrieb Rex",
-    },
-    {
-      title: "Neubaugebiet Hattingen",
-      location: "Hattingen",
-      service: "Steildach",
-      year: "2022",
-      description: "Steil- und Zeltdächer mit Tondachziegeln und hochwertigen Zinkblechen.",
-      imageUrls: [tondach4, tondach6, tondach7, entwaesserung1],
-      imageFallbacks: [tondach4Fallback, tondach6Fallback, tondach7Fallback, entwaesserung1Fallback],
-      imageAlt: "Neubaugebiet mit Steildächern und Tondachziegeln",
-    },
-    {
-      title: "Einfamilienhaus Bochum Weitmar",
-      location: "Bochum",
-      service: "Gründach",
-      year: "2021",
-      description: "Gründach mit extensiver Dachbegrünung. Aufbau einer neuen Wärmedämmung für bessere Energieeffizienz.",
-      imageUrls: [ref1Image, gruendach3],
-      imageFallbacks: [ref1ImageFallback, gruendach3Fallback],
-      imageAlt: "Gründach intensive Begrünung Bochum – Rex Bedachungs GmbH",
-    },
-    {
-      title: "Gründach mit Photovoltaik",
-      location: "Bochum",
-      service: "Bauklempnerei",
-      year: "2020",
-      description: "Gründach mit extensiver Dachbegrünung und Photovoltaikmodulen.",
-      imageUrl: gruendach2,
-      imageUrlFallback: gruendach2Fallback,
-      imageAlt: "Gründach extensive Begrünung Bochum – Rex Bedachungs GmbH",
-    },
-    {
-      title: "Wohnhaus Bochum-Stiepel",
-      location: "Bochum",
-      service: "Steildach",
-      year: "2020",
-      description: "Komplettsanierung mit Erstellung von zwei großen Dachgauben",
-      imageUrls: [tondach2, tondach1],
-      imageFallbacks: [tondach2Fallback, tondach1Fallback],
-      imageAlt: "Tondach Dachziegel Bochum – Steildach Qualität Rex Bedachung",
-    },
-    {
-      title: "Einfamilienhaus Bochum Querenburg",
-      location: "Bochum",
-      service: "Steildach",
-      year: "2019",
-      description: "Steildach mit hochwertigen Tondachziegeln. Professionelle Ausführung für langlebigen Wetterschutz.",
-      imageUrl: tondach3,
-      imageUrlFallback: tondach3Fallback,
-      imageAlt: "Tondach Dachziegel Bochum – Steildach Qualität Rex Bedachung",
-    },
-  ];
+  const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
+  const isOpen = lightboxIndex !== null;
+
+  const openLightbox = (index: number) => setLightboxIndex(index);
+  const closeLightbox = () => setLightboxIndex(null);
+  const navigateLightbox = (dir: number) =>
+    setLightboxIndex((prev) =>
+      prev === null ? 0 : (prev + dir + projects.length) % projects.length
+    );
+
+  useEffect(() => {
+    if (!isOpen) return;
+    const handler = (e: KeyboardEvent) => {
+      if (e.key === "ArrowRight") navigateLightbox(1);
+      if (e.key === "ArrowLeft") navigateLightbox(-1);
+      if (e.key === "Escape") closeLightbox();
+    };
+    window.addEventListener("keydown", handler);
+    return () => window.removeEventListener("keydown", handler);
+  }, [isOpen, lightboxIndex]);
+
+  const currentProject = lightboxIndex !== null ? projects[lightboxIndex] : null;
 
   return (
     <>
@@ -144,13 +210,137 @@ export default function References() {
 
       <section className="py-16 md:py-20 lg:py-24 bg-background">
         <div className="max-w-7xl mx-auto px-4 md:px-6 lg:px-8">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {references.map((reference, index) => (
-              <ReferenceCard key={index} {...reference} />
-            ))}
+          <style>{`
+              .masonry-grid { column-count: 1; column-gap: 0.75rem; }
+              @media (min-width: 640px) { .masonry-grid { column-count: 2; } }
+              @media (min-width: 768px) { .masonry-grid { column-count: 3; } }
+            `}</style>
+            <div className="masonry-grid">
+              {projects.map((project, index) => {
+                const h = heights[index % heights.length];
+                return (
+                  <div
+                    key={index}
+                    className="masonry-item relative overflow-hidden rounded-md cursor-pointer mb-3 group"
+                    style={{ breakInside: "avoid" }}
+                    onClick={() => openLightbox(index)}
+                    data-testid={`card-project-${index}`}
+                  >
+                    <img
+                      src={project.src}
+                      alt={project.alt}
+                      loading="lazy"
+                      width={600}
+                      height={h}
+                      className="w-full object-cover transition-transform duration-300 group-hover:scale-105"
+                      style={{ height: `${h}px` }}
+                    />
+                    <div
+                      className="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-3"
+                    >
+                      <div className="absolute top-2 right-2">
+                        <ZoomIn size={16} className="text-white" />
+                      </div>
+                      <p className="font-semibold text-sm text-white leading-tight">{project.title}</p>
+                      <p className="text-xs text-white/70 mt-0.5">{project.location} · {project.year}</p>
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+        </div>
+      </section>
+
+      <section className="py-12 md:py-16 bg-muted/40">
+        <div className="max-w-3xl mx-auto px-4 text-center">
+          <h2 className="text-2xl md:text-3xl font-bold mb-4">Ihr Projekt ist das nächste</h2>
+          <p className="text-muted-foreground mb-8 text-base md:text-lg">
+            Kontaktieren Sie uns für ein kostenloses Beratungsgespräch. Wir freuen uns auf Ihr Projekt.
+          </p>
+          <div className="relative inline-flex items-center justify-center">
+            <span className="absolute inline-flex h-full w-full rounded-md bg-primary opacity-30 animate-ping" />
+            <Link
+              href="/kontakt"
+              className="relative inline-flex items-center justify-center rounded-md bg-primary text-primary-foreground font-semibold px-8 py-3 text-base hover:bg-primary/90 transition-colors"
+              data-testid="link-cta-kontakt"
+            >
+              Jetzt Kontakt aufnehmen
+            </Link>
           </div>
         </div>
       </section>
+
+      {isOpen && currentProject && (
+        <div
+          className="fixed inset-0 z-50 bg-black/95 flex flex-col items-center justify-center p-4"
+          onClick={closeLightbox}
+          data-testid="lightbox-overlay"
+        >
+          <button
+            className="absolute top-3 right-3 text-white/80 hover:text-white cursor-pointer bg-transparent border-0 p-1"
+            onClick={closeLightbox}
+            data-testid="button-lightbox-close"
+            aria-label="Schließen"
+          >
+            <X size={22} />
+          </button>
+
+          <div
+            className="max-w-3xl w-full"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <img
+              src={currentProject.src}
+              alt={currentProject.alt}
+              className="w-full max-h-[60vh] object-contain rounded-md"
+              data-testid="img-lightbox-main"
+            />
+
+            <div className="flex flex-wrap justify-between items-start mt-3 gap-4">
+              <div className="flex-1 min-w-0">
+                <p className="text-white font-semibold text-base">{currentProject.title}</p>
+                <p className="text-white/60 text-sm mt-1">{currentProject.location} · {currentProject.year}</p>
+                <p className="text-white/70 text-sm mt-2 max-w-xl leading-relaxed">{currentProject.description}</p>
+              </div>
+              <div className="flex gap-2 shrink-0">
+                <button
+                  className="border border-white/25 rounded-md px-4 py-2 text-white text-lg hover:bg-white/15 transition-colors cursor-pointer bg-transparent"
+                  onClick={() => navigateLightbox(-1)}
+                  data-testid="button-lightbox-prev"
+                  aria-label="Vorheriges Bild"
+                >
+                  <ChevronLeft size={20} />
+                </button>
+                <button
+                  className="border border-white/25 rounded-md px-4 py-2 text-white text-lg hover:bg-white/15 transition-colors cursor-pointer bg-transparent"
+                  onClick={() => navigateLightbox(1)}
+                  data-testid="button-lightbox-next"
+                  aria-label="Nächstes Bild"
+                >
+                  <ChevronRight size={20} />
+                </button>
+              </div>
+            </div>
+
+            <div className="mt-4 flex gap-2 flex-wrap justify-center">
+              {projects.map((p, i) => (
+                <img
+                  key={i}
+                  src={p.src}
+                  alt={p.alt}
+                  className={`w-14 h-10 rounded object-cover cursor-pointer transition-opacity duration-200 ${
+                    i === lightboxIndex
+                      ? "ring-2 ring-white opacity-100"
+                      : "opacity-40 hover:opacity-70"
+                  }`}
+                  onClick={() => setLightboxIndex(i)}
+                  data-testid={`thumbnail-${i}`}
+                />
+              ))}
+            </div>
+          </div>
+        </div>
+      )}
     </>
   );
 }
