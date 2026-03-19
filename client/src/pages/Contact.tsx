@@ -57,7 +57,7 @@ export default function Contact() {
                     <h3 className="font-semibold mb-1">Telefon</h3>
                     <a 
                       href="tel:+49234583100" 
-                      className="text-lg text-primary hover:underline"
+                      className="pulse-ring cta-pulse text-lg text-primary hover:underline"
                       data-testid="link-contact-phone"
                     >
                       +49 234 583100

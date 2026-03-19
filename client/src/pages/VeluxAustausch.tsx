@@ -301,7 +301,7 @@ export default function VeluxAustausch() {
           <div className="flex flex-wrap gap-3 mb-8">
             <Button
               size="lg"
-              className="cta-pulse"
+              className="pulse-ring cta-pulse"
               onClick={() => setLocation("/kontakt")}
               data-testid="button-hero-beratung"
             >
@@ -678,7 +678,7 @@ export default function VeluxAustausch() {
           <div className="flex flex-wrap justify-center gap-3">
             <Button
               size="lg"
-              className="cta-pulse"
+              className="pulse-ring cta-pulse"
               onClick={() => setLocation("/kontakt")}
               data-testid="button-cta-beratung"
             >

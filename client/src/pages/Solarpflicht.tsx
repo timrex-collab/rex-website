@@ -631,7 +631,7 @@ export default function Solarpflicht() {
         </p>
         <div className="flex flex-col sm:flex-row justify-center gap-4">
           <a href="/kontakt"
-            className="bg-white text-slate-900 px-8 py-4 rounded-full font-bold text-lg hover:bg-blue-50 transition shadow-lg flex items-center justify-center gap-2">
+            className="pulse-ring cta-pulse bg-white text-slate-900 px-8 py-4 rounded-full font-bold text-lg hover:bg-blue-50 transition shadow-lg flex items-center justify-center gap-2">
             Kostenlose Beratung anfragen <ArrowRight className="w-5 h-5" />
           </a>
           <a href="tel:+49234583100"

@@ -132,7 +132,7 @@ export default function Navigation() {
             <Button 
               variant="default" 
               size="sm" 
-              className="pulse-ring"
+              className="pulse-ring cta-pulse"
               onClick={() => setLocation("/kontakt")}
               data-testid="button-quote-desktop"
             >
@@ -214,7 +214,7 @@ export default function Navigation() {
               </Button>
               <Button
                 variant="default"
-                className="w-full pulse-ring"
+                className="w-full pulse-ring cta-pulse"
                 onClick={() => {
                   setMobileMenuOpen(false);
                   setLocation("/kontakt");

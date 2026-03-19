@@ -484,7 +484,7 @@ export default function Foerderung() {
         <div className="flex flex-col sm:flex-row justify-center gap-4">
           <a
             href="/kontakt"
-            className="bg-white text-blue-900 px-8 py-4 rounded-full font-bold text-lg hover:bg-slate-100 transition shadow-lg flex items-center justify-center gap-2"
+            className="pulse-ring cta-pulse bg-white text-blue-900 px-8 py-4 rounded-full font-bold text-lg hover:bg-slate-100 transition shadow-lg flex items-center justify-center gap-2"
           >
             Kostenlose Beratung anfragen
             <ArrowRight className="w-5 h-5" />

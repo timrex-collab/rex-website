@@ -41,7 +41,7 @@ export default function Danke() {
               </p>
               <a 
                 href="tel:+49234583100" 
-                className="inline-flex items-center gap-2 text-lg md:text-xl font-semibold text-primary hover:underline"
+                className="pulse-ring cta-pulse inline-flex items-center gap-2 text-lg md:text-xl font-semibold text-primary hover:underline"
                 data-testid="link-phone"
               >
                 <Phone className="w-5 h-5" />

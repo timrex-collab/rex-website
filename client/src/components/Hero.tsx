@@ -58,7 +58,7 @@ export default function Hero({
                 asChild
                 variant="default"
                 size="lg"
-                className="text-sm sm:text-base w-full sm:w-auto pulse-ring"
+                className="text-sm sm:text-base w-full sm:w-auto pulse-ring cta-pulse"
                 data-testid="button-hero-quote"
               >
                 <Link href="/kontakt">Angebot anfragen</Link>

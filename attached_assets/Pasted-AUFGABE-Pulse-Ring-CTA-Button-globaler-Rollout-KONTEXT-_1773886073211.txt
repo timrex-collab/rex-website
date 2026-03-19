@@ -1,0 +1,97 @@
+AUFGABE: Pulse-Ring CTA-Button globaler Rollout
+
+KONTEXT:
+Der pulsierende CTA-Button-Effekt besteht aus zwei CSS-Klassen, die BEIDE vorhanden sein müssen:
+- pulse-ring (animierter Rahmen-Ring via ::before)
+- cta-pulse (radialer Box-Shadow-Effekt)
+
+Vollständig = className enthält BEIDE: "pulse-ring cta-pulse"
+
+Die CSS-Definitionen existieren bereits in client/src/index.css (Zeilen 305–363) und müssen NICHT verändert werden.
+
+---
+
+GRUPPE 1: Fehlende Klasse ergänzen (7 Dateien)
+
+Diese Dateien haben bereits EINE der beiden Klassen. Ergänze die jeweils fehlende.
+
+cta-pulse ergänzen (haben nur pulse-ring):
+
+Home.tsx (Zeile ~338):
+  Suche den "Angebot anfragen"-Button mit className="...pulse-ring..."
+  Ergänze cta-pulse zur className
+
+Navigation.tsx (Zeilen ~135, ~217):
+  Desktop- und Mobile-"Angebot anfragen"-Buttons
+  Ergänze cta-pulse zur className bei BEIDEN Buttons
+
+Hero.tsx (Zeile ~61):
+  "Angebot anfragen"-Button
+  Ergänze cta-pulse zur className
+
+pulse-ring ergänzen (haben nur cta-pulse):
+
+Dachreparatur.tsx (Zeilen ~221, ~542):
+  "Schaden melden & Beratung anfragen"-Buttons
+  Ergänze pulse-ring zur className bei BEIDEN Buttons
+
+DachwartungBochum.tsx (Zeilen ~232, ~496):
+  Wartungsvertrag-Buttons
+  Ergänze pulse-ring zur className bei BEIDEN Buttons
+
+VeluxRolllaeden.tsx (Zeilen ~230, ~555):
+  "Kostenlose Beratung" / "Beratungsgespräch vereinbaren"-Buttons
+  Ergänze pulse-ring zur className bei BEIDEN Buttons
+
+VeluxAustausch.tsx (Zeilen ~304, ~681):
+  "Beratung anfragen"-Buttons
+  Ergänze pulse-ring zur className bei BEIDEN Buttons
+
+---
+
+GRUPPE 2: Beide Klassen hinzufügen (6 Dateien)
+
+Diese Dateien haben KEINEN Pulse-Effekt. Füge pulse-ring cta-pulse zum primären CTA-Button hinzu.
+
+Solarpflicht.tsx:
+  Suche den "Kostenlose Beratung anfragen"-Button
+  Ergänze pulse-ring cta-pulse zur className
+
+Foerderung.tsx:
+  Suche den "Kostenlose Beratung anfragen"-Button
+  Ergänze pulse-ring cta-pulse zur className
+
+Contact.tsx:
+  Suche den Tel-Link (href="tel:+49234583100")
+  Ergänze pulse-ring cta-pulse zur className
+
+FAQ.tsx:
+  Suche den Tel-Link (href="tel:+49234583100")
+  Ergänze pulse-ring cta-pulse zur className
+
+DachLexikon.tsx:
+  Suche den Tel-Link (href="tel:+49234583100")
+  Ergänze pulse-ring cta-pulse zur className
+
+Danke.tsx:
+  Suche den Tel-Link (href="tel:+49234583100")
+  Ergänze pulse-ring cta-pulse zur className
+
+---
+
+VERIFIKATION:
+- npm run build ausführen
+- TypeScript-Fehler beheben falls vorhanden
+- Durchsuche ALLE .tsx-Dateien nach "pulse-ring" und "cta-pulse"
+- Bestätige: Jede Datei, die eine der beiden Klassen enthält, enthält AUCH die andere
+- Bestätige: Keine Datei hat nur pulse-ring oder nur cta-pulse
+
+---
+
+EINSCHRÄNKUNGEN:
+- NUR className-Attribute ändern — keine anderen Props, Styles oder Strukturen verändern
+- CSS in index.css NICHT verändern
+- Keine neuen Komponenten erstellen
+- Keine Emojis (Projektkonvention)
+- Bestehende Klassen im className NICHT entfernen — nur die fehlende Klasse HINZUFÜGEN
+- Zeilenangaben sind Richtwerte — den Button über den Text/href identifizieren, nicht über die Zeilennummer
