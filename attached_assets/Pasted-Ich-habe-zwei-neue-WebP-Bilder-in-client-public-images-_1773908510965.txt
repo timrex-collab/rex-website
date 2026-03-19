@@ -1,0 +1,57 @@
+Ich habe zwei neue WebP-Bilder in `client/public/images/` hochgeladen:
+
+- velux-dachfenster-3er-kombination-steildach-bochum.webp
+- velux-dachfenster-doppelanlage-einbau-tonziegel-bochum.webp
+
+Führe folgende Schritte durch:
+
+1. Verifiziere, dass beide Dateien in `client/public/images/` vorhanden sind.
+
+2. Öffne `client/src/pages/Dachfenster.tsx` (oder die VELUX-Landingpage, falls anders benannt). Füge die neuen Bilder als Referenz-Galerie-Sektion ein, direkt oberhalb des FAQ-Bereichs oder CTAs:
+```tsx
+   <section className="py-12 bg-slate-50">
+     <div className="max-w-6xl mx-auto px-4">
+       <h2 className="text-2xl font-semibold text-slate-900 mb-8">
+         VELUX Dachfenster – Unsere Referenzen
+       </h2>
+       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+         <figure>
+           <img
+             src="/images/velux-dachfenster-3er-kombination-steildach-bochum.webp"
+             alt="VELUX Dachfenster 3er-Kombination auf anthrazitem Steildach – Rex Bedachungs GmbH Bochum"
+             width="1920"
+             height="1561"
+             loading="lazy"
+             className="w-full rounded-lg object-cover"
+           />
+           <figcaption className="mt-2 text-sm text-slate-500">
+             VELUX 3er-Kombination · Anthrazit-Steildach · Bochum 2024
+           </figcaption>
+         </figure>
+         <figure>
+           <img
+             src="/images/velux-dachfenster-doppelanlage-einbau-tonziegel-bochum.webp"
+             alt="VELUX Dachfenster Doppelanlage Einbau auf Tonziegel-Steildach – Rex Bedachungs GmbH Bochum"
+             width="1920"
+             height="1470"
+             loading="lazy"
+             className="w-full rounded-lg object-cover"
+           />
+           <figcaption className="mt-2 text-sm text-slate-500">
+             VELUX Doppelanlage · Tonziegel · Bochum 2024
+           </figcaption>
+         </figure>
+       </div>
+     </div>
+   </section>
+```
+
+3. Öffne `client/src/pages/References.tsx`. Füge beide Bilder dem Referenz-Array hinzu (nach bestehendem Muster), mit folgenden Werten:
+   - Bild 1: src="/images/velux-dachfenster-3er-kombination-steildach-bochum.webp", Kategorie "velux", Titel "VELUX 3er-Kombination", Ort "Bochum", Jahr 2024
+   - Bild 2: src="/images/velux-dachfenster-doppelanlage-einbau-tonziegel-bochum.webp", Kategorie "velux", Titel "VELUX Doppelanlage Einbau", Ort "Bochum", Jahr 2024
+
+4. Prüfe `public/sitemap.xml` — kein Eintrag nötig (Bilder haben keine eigene URL).
+
+5. Führe `npm run build` aus und bestätige, dass der Build fehlerfrei durchläuft.
+
+Halte alle bestehenden Konventionen ein (keine Emojis, rounded-md/font-semibold für Buttons, Pulse-Ring-CTA bleibt erhalten).
