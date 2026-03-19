@@ -1,0 +1,82 @@
+AUFGABE: Zwei bereinigte Bilder ersetzen — Wasserzeichen entfernt
+
+KONTEXT:
+Die Bilder Flachdach1.jpeg und Reparatur1.png hatten ein Gemini-Wasserzeichen ✦
+in der unteren rechten Ecke. Bereinigte WebP-Versionen wurden erstellt und in
+client/public/images/ hochgeladen:
+
+- gründach-extensiv-sedum-flachdach-bochum.webp  (ersetzt Flachdach1.jpeg)
+- dachreparatur-inspektion-steildach-bochum.webp  (ersetzt Reparatur1.png)
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+SCHRITT 1 – Dateien verifizieren
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Bestätige, dass folgende Dateien in client/public/images/ vorhanden sind:
+- gründach-extensiv-sedum-flachdach-bochum.webp
+- dachreparatur-inspektion-steildach-bochum.webp
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+SCHRITT 2 – References.tsx aktualisieren
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Öffne client/src/pages/References.tsx.
+
+Suche nach allen Vorkommen der alten Dateinamen und ersetze sie:
+
+ALT → NEU (src-Pfade):
+  "/images/Flachdach1.jpeg"
+  → "/images/gründach-extensiv-sedum-flachdach-bochum.webp"
+
+  "Flachdach1.jpeg"
+  → "gründach-extensiv-sedum-flachdach-bochum.webp"
+
+  "/images/Reparatur1.png"
+  → "/images/dachreparatur-inspektion-steildach-bochum.webp"
+
+  "Reparatur1.png"
+  → "dachreparatur-inspektion-steildach-bochum.webp"
+
+Passe gleichzeitig die width/height-Attribute an die neuen Dimensionen an:
+
+Für gründach-extensiv-sedum-flachdach-bochum.webp:
+  width={959} height={959}
+
+Für dachreparatur-inspektion-steildach-bochum.webp:
+  width={1178} height={762}
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+SCHRITT 3 – DachfensterBochum.tsx prüfen
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Prüfe, ob Flachdach1.jpeg oder Reparatur1.png auch in
+client/src/pages/DachfensterBochum.tsx oder anderen TSX-Dateien vorkommen.
+Falls ja, dort ebenfalls ersetzen.
+
+Suche dazu projektweite nach beiden alten Dateinamen:
+  grep -r "Flachdach1" client/src/
+  grep -r "Reparatur1" client/src/
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+SCHRITT 4 – Alte Dateien entfernen
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Lösche die alten Dateien aus client/public/images/:
+  rm client/public/images/Flachdach1.jpeg
+  rm client/public/images/Reparatur1.png
+
+Falls die Dateien dort nicht existieren (weil sie woanders lagen),
+überspringen und im nächsten Schritt fortfahren.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+SCHRITT 5 – Build-Verifikation
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+npm run build — muss fehlerfrei durchlaufen.
+
+Bestätige anschließend:
+- gründach-extensiv-sedum-flachdach-bochum.webp in images/ vorhanden ✓
+- dachreparatur-inspektion-steildach-bochum.webp in images/ vorhanden ✓
+- Alte Dateinamen (Flachdach1.jpeg, Reparatur1.png) komplett ersetzt ✓
+- width/height-Attribute aktualisiert ✓
+- Build: fehlerfrei ✓
+
+KONVENTIONEN:
+- Keine anderen Änderungen am Code
+- Bestehende alt-Texte, Titel und Beschreibungen bleiben unverändert
+- Pulse-Ring-CTA bleibt erhalten
