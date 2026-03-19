@@ -8,6 +8,7 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 const heroImage = "/images/tondach-hero-dachdeckung-bochum.webp";
+const heroImageFallback = "/images/tondach-hero-dachdeckung-bochum.jpg";
 
 export default function FAQ() {
   const faqCategories = [
@@ -486,6 +487,7 @@ export default function FAQ() {
         subtitle="Antworten auf Ihre Fragen"
         description="Finden Sie schnell Antworten auf die wichtigsten Fragen rund um Dacharbeiten, Kosten, Wartung und unsere Leistungen."
         imageUrl={heroImage}
+        imageFallbackUrl={heroImageFallback}
         imageAlt="Tondach Hero – professionelle Dachdeckung Bochum"
         showCTAs={false}
       />

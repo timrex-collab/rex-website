@@ -23,6 +23,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 
 const heroImagePath = "/images/dachdecker-inspektion-dachwartung-bochum.webp";
 const heroImage = heroImagePath;
+const heroImageFallback = "/images/dachdecker-inspektion-dachwartung-bochum.jpg";
 
 const services = [
   {

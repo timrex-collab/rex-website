@@ -4,6 +4,7 @@ import { Card } from "@/components/ui/card";
 import { Shield, Users, Award, ThumbsUp } from "lucide-react";
 import Picture from "@/components/Picture";
 const heroImage = "/images/tondach-hero-dachdeckung-bochum.webp";
+const heroImageFallback = "/images/tondach-hero-dachdeckung-bochum.jpg";
 const teamImage = "/images/rex-bedachung-unternehmen-bochum.webp";
 const teamImageFallback = "/images/rex-bedachung-unternehmen-bochum.jpg";
 
@@ -53,6 +54,7 @@ export default function About() {
         subtitle="Qualität entsteht durch Erfahrung."
         description="Seit über 40 Jahren steht Rex Bedachungs GmbH für Qualität und Zuverlässigkeit im Dachdeckerhandwerk."
         imageUrl={heroImage}
+        imageFallbackUrl={heroImageFallback}
         imageAlt="Tondach Hero – professionelle Dachdeckung Bochum"
         showCTAs={false}
       />

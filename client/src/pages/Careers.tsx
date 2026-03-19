@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Link } from "wouter";
 import { Shirt, GraduationCap, Euro, TrendingUp, Users, Heart } from "lucide-react";
 const heroImage = "/images/tondach-hero-dachdeckung-bochum.webp";
+const heroImageFallback = "/images/tondach-hero-dachdeckung-bochum.jpg";
 
 export default function Careers() {
   const benefits = [
@@ -87,6 +88,7 @@ export default function Careers() {
         subtitle="Werde Teil unseres Teams"
         description="Wir suchen engagierte Fachkräfte und motivierte Auszubildende, die gemeinsam mit uns wachsen wollen."
         imageUrl={heroImage}
+        imageFallbackUrl={heroImageFallback}
         imageAlt="Tondach Hero – professionelle Dachdeckung Bochum"
         showCTAs={false}
       />

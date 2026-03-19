@@ -4,11 +4,14 @@ import ReferenceCard from "@/components/ReferenceCard";
 const entwaesserung1 = "/images/flachdach-sanierung-bochum-rex-bedachung.webp";
 
 const heroImage = "/images/tondach-hero-dachdeckung-bochum.webp";
+const heroImageFallback = "/images/tondach-hero-dachdeckung-bochum.jpg";
 const ref1Image = "/images/gruendach-intensive-begruenung-bochum.webp";
 const gruendach2 = "/images/gruendach-extensive-begruenung-bochum.webp";
 const gruendach3 = "/images/gruendach-bochum-dachbegruenung-experten.webp";
 const tondach1 = "/images/tondach-dachziegel-bochum-typ1.webp";
+const tondach1Fallback = "/images/tondach-dachziegel-bochum-typ1.jpg";
 const tondach2 = "/images/tondach-dachziegel-bochum-typ2.webp";
+const tondach2Fallback = "/images/tondach-dachziegel-bochum-typ2.jpg";
 const tondach3 = "/images/tondach-ziegel-bochum-steildach-3.webp";
 const tondach3Fallback = "/images/tondach-ziegel-bochum-steildach-3.jpg";
 const tondach4 = "/images/tondach-dachziegel-bochum-typ4.webp";
@@ -18,6 +21,7 @@ const tondach6Fallback = "/images/tondach-dachziegel-bochum-typ6.jpg";
 const tondach7 = "/images/tondach-dachziegel-bochum-typ7.webp";
 const tondach7Fallback = "/images/tondach-dachziegel-bochum-typ7.jpg";
 const velux1 = "/images/velux-dachfenster-einbau-bochum-typ1.webp";
+const velux1Fallback = "/images/velux-dachfenster-einbau-bochum-typ1.jpg";
 
 export default function References() {
   const references = [
@@ -28,6 +32,7 @@ export default function References() {
       year: "2025",
       description: "Lichtlösung Raum.  Mehr Raumgewinn und Kopffreiheit durch Kombi-Aufkeilrahmen. Mit Solar-Rollläden für Hitzeschutz und Verdunkelung.",
       imageUrl: velux1,
+      imageUrlFallback: velux1Fallback,
       imageAlt: "VELUX Dachfenster Einbau Bochum – Fachbetrieb Rex",
     },
     {
@@ -65,6 +70,7 @@ export default function References() {
       year: "2020",
       description: "Komplettsanierung mit Erstellung von zwei großen Dachgauben",
       imageUrls: [tondach2, tondach1],
+      imageFallbacks: [tondach2Fallback, tondach1Fallback],
       imageAlt: "Tondach Dachziegel Bochum – Steildach Qualität Rex Bedachung",
     },
     {
@@ -101,6 +107,7 @@ export default function References() {
         subtitle="Unsere Projekte sprechen für sich"
         description="Überzeugen Sie sich von der Qualität unserer Arbeit. Hier finden Sie eine Auswahl erfolgreich abgeschlossener Projekte im Ruhrgebiet."
         imageUrl={heroImage}
+        imageFallbackUrl={heroImageFallback}
         imageAlt="Erfolgreich abgeschlossene Dachprojekte"
         showCTAs={false}
       />

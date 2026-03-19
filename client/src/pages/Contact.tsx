@@ -6,6 +6,7 @@ import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Phone, Mail, MapPin, Clock, MessageCircle, ExternalLink } from "lucide-react";
 const heroImage = "/images/tondach-hero-dachdeckung-bochum.webp";
+const heroImageFallback = "/images/tondach-hero-dachdeckung-bochum.jpg";
 
 export default function Contact() {
   const [mapLoaded, setMapLoaded] = useState(false);
@@ -34,6 +35,7 @@ export default function Contact() {
         subtitle="Wir sind für Sie da"
         description="Haben Sie Fragen oder benötigen ein Angebot? Kontaktieren Sie uns – wir beraten Sie gerne persönlich."
         imageUrl={heroImage}
+        imageFallbackUrl={heroImageFallback}
         imageAlt="Tondach Hero – professionelle Dachdeckung Bochum"
         showCTAs={false}
       />

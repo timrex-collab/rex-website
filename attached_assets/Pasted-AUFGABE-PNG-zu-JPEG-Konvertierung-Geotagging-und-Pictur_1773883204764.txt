@@ -1,0 +1,125 @@
+AUFGABE: PNG-zu-JPEG-Konvertierung, Geotagging und Picture-Fallback-Einbindung (Phase 2)
+
+KONTEXT:
+In Phase 1 wurden 10 JPEG-Fallbacks mit GPS-EXIF-Daten in <picture>-Elemente eingebunden. Jetzt werden 6 weitere Bilder abgedeckt, deren Quelldateien als PNG vorliegen. Diese müssen erst zu JPEG konvertiert, dann getaggt und als Fallback eingebunden werden.
+
+Koordinaten: 51.46262°N / 7.24442°E
+Bestehendes Geotagging-Script: scripts/geotag-images.py
+
+---
+
+SCHRITT 1: PNGs zu JPEG konvertieren
+
+Erstelle ein Script scripts/convert-png-to-jpeg.py das folgende 6 PNGs zu JPEG konvertiert (Qualität 85, RGB-Modus erzwingen falls RGBA):
+
+attached_assets/Tondach1.png → attached_assets/Tondach1.jpg
+attached_assets/Tondach2.png → attached_assets/Tondach2.jpg
+attached_assets/tondach_hero.png → attached_assets/tondach_hero.jpg
+attached_assets/Reparatur1.png → attached_assets/Reparatur1.jpg
+"attached_assets/Velux1_1761088286795.png" → attached_assets/Velux1.jpg
+"attached_assets/Dachdecker bei der Inspektion der Naht_1761081506440.png" → attached_assets/Dachdecker_Inspektion.jpg
+
+Nutze Pillow (PIL). Falls nicht installiert: pip install Pillow.
+Die PNG-Originale NICHT löschen.
+
+SCHRITT 2: Geotagging der neuen JPEGs
+
+Führe das bestehende Script scripts/geotag-images.py aus.
+Es soll die 6 neuen JPEGs automatisch finden und mit GPS-Daten versehen.
+Prüfe in der Ausgabe, dass alle 6 neuen Dateien getaggt wurden.
+
+SCHRITT 3: JPEGs nach client/public/images/ kopieren
+
+attached_assets/Tondach1.jpg → client/public/images/tondach-dachziegel-bochum-typ1.jpg
+attached_assets/Tondach2.jpg → client/public/images/tondach-dachziegel-bochum-typ2.jpg
+attached_assets/tondach_hero.jpg → client/public/images/tondach-hero-dachdeckung-bochum.jpg
+attached_assets/Reparatur1.jpg → client/public/images/dachreparatur-bochum-rex-bedachung.jpg
+attached_assets/Velux1.jpg → client/public/images/velux-dachfenster-einbau-bochum-typ1.jpg
+attached_assets/Dachdecker_Inspektion.jpg → client/public/images/dachdecker-inspektion-dachwartung-bochum.jpg
+
+SCHRITT 4: Hero-Seiten mit tondach-hero Fallback aktualisieren
+
+Das Bild tondach-hero-dachdeckung-bochum.webp wird als Hero auf vielen Seiten verwendet. Füge überall das Fallback-Prop hinzu:
+
+About.tsx:
+  const heroImageFallback = "/images/tondach-hero-dachdeckung-bochum.jpg"
+  → <Hero ... imageFallbackUrl={heroImageFallback} />
+
+Careers.tsx:
+  const heroImageFallback = "/images/tondach-hero-dachdeckung-bochum.jpg"
+  → <Hero ... imageFallbackUrl={heroImageFallback} />
+
+Contact.tsx:
+  const heroImageFallback = "/images/tondach-hero-dachdeckung-bochum.jpg"
+  → <Hero ... imageFallbackUrl={heroImageFallback} />
+
+DachLexikon.tsx:
+  const heroImageFallback = "/images/tondach-hero-dachdeckung-bochum.jpg"
+  → <Hero ... imageFallbackUrl={heroImageFallback} />
+
+FAQ.tsx:
+  const heroImageFallback = "/images/tondach-hero-dachdeckung-bochum.jpg"
+  → <Hero ... imageFallbackUrl={heroImageFallback} />
+
+References.tsx:
+  const heroImageFallback = "/images/tondach-hero-dachdeckung-bochum.jpg"
+  → <Hero ... imageFallbackUrl={heroImageFallback} />
+
+Services.tsx:
+  const heroImageFallback = "/images/tondach-hero-dachdeckung-bochum.jpg"
+  → <Hero ... imageFallbackUrl={heroImageFallback} />
+
+SteildachBochum.tsx:
+  const heroImageFallback = "/images/tondach-hero-dachdeckung-bochum.jpg"
+  → <Hero ... imageFallbackUrl={heroImageFallback} />
+
+SCHRITT 5: Weitere Hero-Seiten aktualisieren
+
+Dachreparatur.tsx (Hero: dachreparatur-bochum-rex-bedachung.webp):
+  const heroImageFallback = "/images/dachreparatur-bochum-rex-bedachung.jpg"
+  → <Hero ... imageFallbackUrl={heroImageFallback} />
+
+DachwartungBochum.tsx (Hero: dachdecker-inspektion-dachwartung-bochum.webp):
+  const heroImageFallback = "/images/dachdecker-inspektion-dachwartung-bochum.jpg"
+  → <Hero ... imageFallbackUrl={heroImageFallback} />
+
+SCHRITT 6: Galerien und Bildkonstanten aktualisieren
+
+SteildachBochum.tsx — Galerie:
+  tondach-dachziegel-bochum-typ1.webp → fallback: tondach-dachziegel-bochum-typ1.jpg
+  tondach-dachziegel-bochum-typ2.webp → fallback: tondach-dachziegel-bochum-typ2.jpg
+
+Home.tsx — Bildkonstanten:
+  dachwartungImage (dachdecker-inspektion-dachwartung-bochum.webp) → fallback setzen
+  reparaturenImage (dachreparatur-bochum-rex-bedachung.webp) → fallback setzen
+  Render-Logik anpassen: Picture-Komponente mit Fallback verwenden
+
+References.tsx — Bildkonstanten:
+  velux1 (velux-dachfenster-einbau-bochum-typ1.webp) → fallback: velux-dachfenster-einbau-bochum-typ1.jpg
+  tondach1 (tondach-dachziegel-bochum-typ1.webp) → fallback: tondach-dachziegel-bochum-typ1.jpg
+  tondach2 (tondach-dachziegel-bochum-typ2.webp) → fallback: tondach-dachziegel-bochum-typ2.jpg
+
+Dachreparatur.tsx — Galerie:
+  dachreparatur-bochum-rex-bedachung.webp → fallback: dachreparatur-bochum-rex-bedachung.jpg
+  (Prüfe ob dachdecker-inspektion in der Galerie vorkommt → falls ja, Fallback setzen)
+
+SCHRITT 7: Build und Verifikation
+- npm run build ausführen
+- TypeScript-Fehler beheben falls vorhanden
+- Prüfe im Browser:
+  a) Alle Bilder laden korrekt
+  b) <picture>-Elemente mit <source type="image/webp"> und <img src="...jpg"> im DOM sichtbar
+  c) Keine visuellen Veränderungen
+- EXIF-Verifikation: Lese GPS-Daten aus einer der neuen JPEGs in client/public/images/ aus und bestätige 51.46262 / 7.24442
+
+---
+
+EINSCHRÄNKUNGEN:
+- Bestehende Styles, Klassen und Layouts NICHT verändern
+- Keine Emojis (Projektkonvention)
+- Lucide React Icons beibehalten
+- Alternating bg-white / bg-slate-50 beibehalten
+- PNG-Originaldateien in attached_assets/ NICHT löschen
+- Foerderung.tsx NICHT anfassen
+- Das Konvertierungsscript scripts/convert-png-to-jpeg.py im Projekt behalten
+- Nur die in diesem Prompt genannten Dateien und Mappings bearbeiten

@@ -21,9 +21,10 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 
 const heroImage = "/images/dachreparatur-bochum-rex-bedachung.webp";
+const heroImageFallback = "/images/dachreparatur-bochum-rex-bedachung.jpg";
 
 const galleryImages = [
-  { src: "/images/dachreparatur-bochum-rex-bedachung.webp", fallback: undefined, alt: "Dachreparatur Bochum – Rex Bedachungs GmbH" },
+  { src: "/images/dachreparatur-bochum-rex-bedachung.webp", fallback: "/images/dachreparatur-bochum-rex-bedachung.jpg", alt: "Dachreparatur Bochum – Rex Bedachungs GmbH" },
   { src: "/images/dach-hintergrund-rex-bedachung.webp", fallback: "/images/dach-hintergrund-rex-bedachung.jpg", alt: "Dach Bochum – Rex Bedachungs GmbH" },
   { src: "/images/kamin-sanierung-bochum-dachdecker.webp", fallback: "/images/kamin-sanierung-bochum-dachdecker.jpg", alt: "Kamin Sanierung Bochum – Dachdecker Rex Bedachung" },
 ];

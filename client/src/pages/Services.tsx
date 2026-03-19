@@ -4,6 +4,7 @@ import ServiceCard from "@/components/ServiceCard";
 const dachwartungImage = "/images/dachdecker-inspektion-dachwartung-bochum.webp";
 
 const heroImage = "/images/tondach-hero-dachdeckung-bochum.webp";
+const heroImageFallback = "/images/tondach-hero-dachdeckung-bochum.jpg";
 const steildachImage = "/images/dach-hintergrund-rex-bedachung.webp";
 const flachdachImage = "/images/flachdach-sanierung-bochum-rex-bedachung.webp";
 const bauklempnereiImage = "/images/kamin-sanierung-bochum-dachdecker.webp";
@@ -108,6 +109,7 @@ export default function Services() {
         subtitle="Kompetenz rund ums Dach"
         description="Von der Neueindeckung über Sanierung bis zur Wartung – wir bieten Ihnen alle Leistungen aus einer Hand."
         imageUrl={heroImage}
+        imageFallbackUrl={heroImageFallback}
         imageAlt="Tondach Hero – professionelle Dachdeckung Bochum"
         showCTAs={false}
       />

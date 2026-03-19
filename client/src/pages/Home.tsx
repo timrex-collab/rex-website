@@ -113,6 +113,7 @@ export default function Home() {
       title: "Reparaturen",
       description: "Sturmschaden, undichte Stellen oder defekte Ziegel? Wir reparieren alle Dachschäden kurzfristig und dauerhaft – inklusive Versicherungsabwicklung und transparenter Kostenaufstellung.",
       imageUrl: reparaturenImage,
+      imageUrlFallback: "/images/dachreparatur-bochum-rex-bedachung.jpg",
       imageAlt: "Dachreparatur Bochum – schnell und zuverlässig, Rex Bedachung",
       href: "/dachreparatur-bochum",
       benefits: [
@@ -126,6 +127,7 @@ export default function Home() {
       title: "Dachwartung",
       description: "Regelmäßige Wartung schützt Ihr Dach vor teuren Folgeschäden – wir inspizieren, reinigen und dokumentieren alles mit Fotos. Wartungsverträge für Privat und Hausverwaltungen verfügbar.",
       imageUrl: dachwartungImage,
+      imageUrlFallback: "/images/dachdecker-inspektion-dachwartung-bochum.jpg",
       imageAlt: "Professionelle Dachwartung und Inspektion",
       href: "/dachwartung-bochum",
       benefits: [
