@@ -1,0 +1,223 @@
+# REPLIT AGENT PROMPT — Diagnose-Audit: Keine Änderungen, nur Analyse
+
+## KONTEXT
+
+Die Website rex-bedachung.de hatte durch 5 technische Probleme Ranking-Verluste. Phase-1-Fixes wurden am 19.03.2026 deployed. Dieses Audit prüft ob alle Probleme gelöst sind und ob weitere SEO/GEO-Schwächen existieren.
+
+WICHTIG: KEINE ÄNDERUNGEN VORNEHMEN. Nur analysieren, berichten, Ergebnis ausgeben.
+
+-----
+
+## CHECK 1 — robots.txt Validität
+
+Datei: client/public/robots.txt
+
+Prüfe:
+a) Zeige den vollständigen Inhalt der Datei
+b) Gibt es aktive (nicht auskommentierte) Zeilen, die NICHT zu diesen gültigen Direktiven gehören: User-agent, Allow, Disallow, Sitemap, Crawl-delay?
+→ grep “^[^#]” client/public/robots.txt | grep -v -E “^(User-agent|Allow|Disallow|Sitemap|Crawl-delay|$)”
+c) Ist die Sitemap-URL korrekt und aktiv (nicht auskommentiert)?
+d) Ist `llms.txt:` auskommentiert?
+e) Sind folgende AI-Crawler explizit mit Allow: / aufgeführt: GPTBot, ClaudeBot, PerplexityBot, Google-Extended, anthropic-ai?
+
+Ergebnis: OK / PROBLEM (mit Beschreibung)
+
+-----
+
+## CHECK 2 — Edge Function og-inject.ts
+
+Datei: netlify/edge-functions/og-inject.ts
+
+Prüfe:
+a) Existiert die Datei?
+b) Zeige die ersten 10 und letzten 10 Zeilen
+c) Enthält sie `export const config = { path: "/*" }`?
+d) Verwendet sie `context.next()` um die Response zu holen?
+e) Enthält sie den Debug-Header `x-og-inject`?
+f) Verwendet sie einen robusten Regex für head-Injection (/<head([^>]*)>/i) statt eines einfachen String-Replace (”<head>”)?
+
+Ergebnis: OK / PROBLEM (mit Beschreibung)
+
+-----
+
+## CHECK 3 — Schema-Duplikate und AggregateRating
+
+### 3a: client/index.html
+
+- Zeige alle <script type="application/ld+json"> Blöcke (den Inhalt, nicht nur die Tags)
+- Enthält index.html ein LocalBusiness-, Roofer- oder RoofingContractor-Schema?
+- Enthält index.html ein aggregateRating?
+
+### 3b: OrganizationSchema.tsx
+
+- grep -c “aggregateRating” client/src/components/OrganizationSchema.tsx
+- Welcher @type wird verwendet?
+
+### 3c: Duplikat-Check über alle Dateien
+
+- grep -rl “aggregateRating” client/src/ client/index.html
+  → Erwartetes Ergebnis: 0 Treffer
+- grep -rl ‘”@type”.*“RoofingContractor”|”@type”.*“Roofer”|”@type”.*“LocalBusiness”’ client/index.html
+  → Erwartetes Ergebnis: 0 Treffer (Schema nur in OrganizationSchema.tsx)
+
+Ergebnis: OK / PROBLEM (mit Beschreibung)
+
+-----
+
+## CHECK 4 — Redirect-System (Single Source of Truth)
+
+### 4a: _redirects
+
+- Zeige den vollständigen Inhalt von client/public/_redirects
+- Wie viele Zeilen hat die Datei?
+- Enthält sie einen SPA-Fallback (/* → /index.html)?
+  → Erwartetes Ergebnis: NEIN
+
+### 4b: netlify.toml Redirects
+
+- Zeige ALLE [[redirects]] Blöcke (kompakt: from → to, status)
+- Ist der SPA-Fallback (/* → /index.html 200) der LETZTE Redirect-Block?
+- Gibt es Duplikate (gleiche from-URL mehrfach)?
+- Steht der firma-Redirect korrekt (force = true)?
+
+### 4c: Redirect-Ziele validieren
+
+- Für jeden 301-Redirect in netlify.toml: Prüfe ob die Ziel-URL als Route in client/src/App.tsx existiert
+  → grep nach dem Ziel-Pfad in App.tsx
+  → Liste alle Redirects deren Ziel-Route NICHT in App.tsx gefunden wird
+
+### 4d: Edge Function Position
+
+- Steht [[edge_functions]] in netlify.toml?
+- Auf welcher Zeile relativ zum letzten [[redirects]] Block?
+
+Ergebnis: OK / PROBLEM (mit Beschreibung)
+
+-----
+
+## CHECK 5 — Sitemap vs. tatsächliche Routen
+
+Datei: client/public/sitemap.xml
+
+Prüfe:
+a) Zeige alle <loc> URLs aus der Sitemap
+b) Für jede URL: Prüfe ob die entsprechende Route in App.tsx existiert
+c) Gibt es Routen in App.tsx die NICHT in der Sitemap stehen (und die indexiert werden sollten — also NICHT danke, impressum, datenschutz, not-found)?
+d) Verwenden alle URLs in der Sitemap https://www.rex-bedachung.de/ (mit www und https)?
+e) Gibt es URLs mit trailing slash / ohne trailing slash Inkonsistenzen?
+
+Ergebnis: OK / PROBLEM (mit Beschreibung)
+
+-----
+
+## CHECK 6 — Meta-Tags und Canonical-Konsistenz
+
+Für JEDE .tsx-Datei in client/src/pages/ (außer not-found.tsx, Danke.tsx):
+
+Prüfe und erstelle eine Tabelle mit:
+
+- Dateiname
+- Hat <title>? (Ja/Nein)
+- Hat meta description? (Ja/Nein)
+- Hat canonical? (Ja/Nein) — und zeigt canonical auf die korrekte URL (www + https)?
+- Hat og:title? (Ja/Nein)
+- Hat og:image? (Ja/Nein) — und ist og:image eine absolute URL mit https://www.?
+- Hat twitter:card? (Ja/Nein)
+- Hat OrganizationSchema Import? (Ja/Nein)
+- Hat BreadcrumbList Schema? (Ja/Nein)
+
+Format als übersichtliche Tabelle.
+
+Ergebnis: OK / PROBLEME (Liste aller Seiten mit fehlenden Elementen)
+
+-----
+
+## CHECK 7 — llms.txt Vollständigkeit
+
+Datei: client/public/llms.txt
+
+Prüfe:
+a) Existiert die Datei?
+b) Enthält sie “Gegründet 1984” (nicht “seit über 40 Jahren”)?
+c) Enthält sie GPS-Koordinaten (51.46262)?
+d) Enthält sie die internationale Telefonnummer (+49 234 583100)?
+e) Enthält sie die Google Maps URL?
+f) Sind alle Haupt-Service-URLs aufgeführt (/steildach-bochum, /flachdach-bochum, /dachfenster-bochum, /bauklempnerei-bochum, /dachreparatur-bochum, /dachwartung-bochum)?
+
+Ergebnis: OK / PROBLEM (mit Beschreibung)
+
+-----
+
+## CHECK 8 — Interne Verlinkung: Broken Links
+
+Durchsuche ALLE .tsx-Dateien in client/src/pages/ und client/src/components/ nach href=”/…”-Attributen.
+
+Für jeden internen Link (href der mit / beginnt und NICHT mit //, http, mailto, tel beginnt):
+
+- Prüfe ob die Ziel-URL als Route in App.tsx existiert
+- Liste ALLE Broken Links: Datei → href → “Route nicht gefunden”
+
+Ergebnis: OK / PROBLEM (Liste aller Broken Links)
+
+-----
+
+## CHECK 9 — Bilder: Fehlende Dateien
+
+Durchsuche ALLE .tsx-Dateien nach Bild-Referenzen:
+
+- src=”/images/…
+- “/images/…
+- url(’/images/…
+- url(”/images/…
+
+Für jeden referenzierten Bildpfad:
+
+- Prüfe ob die Datei in client/public/images/ existiert
+- Liste ALLE fehlenden Bilder: Datei → Referenzierter Pfad → “Datei nicht gefunden”
+
+Ergebnis: OK / PROBLEM (Liste aller fehlenden Bilder)
+
+-----
+
+## CHECK 10 — sameAs und externe Verlinkungen im Schema
+
+Durchsuche alle .tsx-Dateien nach “sameAs”:
+
+- Zeige alle sameAs-URLs die im Code vorkommen
+- Prüfe: Enthält irgendeine Datei noch “wikidata.org/wiki/Q2103”?
+  → Erwartetes Ergebnis: 0 Treffer
+- Prüfe: Enthält irgendeine Datei Platzhalter-URLs (maps?cid=rex-bedachung, gelbeseiten.de/rex-bedachung)?
+  → Erwartetes Ergebnis: 0 Treffer
+
+Ergebnis: OK / PROBLEM (mit Beschreibung)
+
+-----
+
+## ZUSAMMENFASSUNG
+
+Erstelle eine Abschlusstabelle:
+
+|Check|Thema             |Ergebnis    |
+|-----|------------------|------------|
+|1    |robots.txt        |OK / PROBLEM|
+|2    |Edge Function     |OK / PROBLEM|
+|3    |Schema-Duplikate  |OK / PROBLEM|
+|4    |Redirect-System   |OK / PROBLEM|
+|5    |Sitemap vs. Routen|OK / PROBLEM|
+|6    |Meta-Tags         |OK / PROBLEM|
+|7    |llms.txt          |OK / PROBLEM|
+|8    |Broken Links      |OK / PROBLEM|
+|9    |Fehlende Bilder   |OK / PROBLEM|
+|10   |sameAs/Schema     |OK / PROBLEM|
+
+Bei jedem PROBLEM: Kurze Beschreibung was genau fehlt oder falsch ist.
+
+-----
+
+## EINSCHRÄNKUNGEN
+
+- KEINE DATEIEN ÄNDERN
+- KEINE DATEIEN ERSTELLEN
+- KEINE DATEIEN LÖSCHEN
+- KEINEN BUILD AUSFÜHREN
+- NUR LESEN UND BERICHTEN
