@@ -153,6 +153,28 @@ export default function Footer() {
                   ⭐ Google Bewertung schreiben
                 </a>
               </div>
+              <div className="flex items-center gap-4 pt-3">
+                <a
+                  href="https://www.facebook.com/rexbedachung"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-sm text-muted-foreground hover:text-primary transition-colors"
+                  aria-label="Rex Bedachung auf Facebook"
+                  data-testid="link-footer-facebook"
+                >
+                  Facebook
+                </a>
+                <a
+                  href="https://www.instagram.com/rexbedachung"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-sm text-muted-foreground hover:text-primary transition-colors"
+                  aria-label="Rex Bedachung auf Instagram"
+                  data-testid="link-footer-instagram"
+                >
+                  Instagram
+                </a>
+              </div>
             </div>
           </div>
         </div>

@@ -120,6 +120,30 @@ export default function Contact() {
                     </p>
                   </div>
                 </div>
+
+                <div className="pt-4 border-t border-border">
+                  <h3 className="font-semibold mb-3">Folgen Sie uns</h3>
+                  <div className="flex items-center gap-4">
+                    <a
+                      href="https://www.facebook.com/rexbedachung"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-muted-foreground hover:text-primary transition-colors text-sm font-medium"
+                      data-testid="link-contact-facebook"
+                    >
+                      Facebook
+                    </a>
+                    <a
+                      href="https://www.instagram.com/rexbedachung"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-muted-foreground hover:text-primary transition-colors text-sm font-medium"
+                      data-testid="link-contact-instagram"
+                    >
+                      Instagram
+                    </a>
+                  </div>
+                </div>
               </div>
 
               <div className="mt-8 p-6 bg-muted rounded-xl border border-border text-center">

@@ -56,7 +56,9 @@ export default function OrganizationSchema() {
       ]
     },
     "sameAs": [
-      "https://www.google.com/maps/place/Rex+Bedachungs+GmbH/@51.4623584,7.2428438,17z"
+      "https://www.google.com/maps/place/Rex+Bedachungs+GmbH/@51.4623584,7.2428438,17z",
+      "https://www.facebook.com/rexbedachung",
+      "https://www.instagram.com/rexbedachung"
     ]
   };
 
