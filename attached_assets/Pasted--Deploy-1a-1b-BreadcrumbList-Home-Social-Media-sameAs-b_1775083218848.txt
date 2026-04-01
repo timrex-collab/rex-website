@@ -1,0 +1,190 @@
+# Deploy 1a+1b — BreadcrumbList Home + Social Media + sameAs
+
+## Übersicht
+4 Dateien werden geändert. Keine neuen Dateien, keine neuen Abhängigkeiten.
+
+---
+
+## Datei 1: client/src/pages/Home.tsx
+
+**Aufgabe:** BreadcrumbList-Schema im Helmet-Block ergänzen.
+
+**Suche diesen Block:**
+```
+  <meta name="twitter:image" content="https://www.rex-bedachung.de/images/dachdecker-bochum-steildach-hero.webp" />
+</Helmet>
+```
+
+**Ersetze durch:**
+```
+  <meta name="twitter:image" content="https://www.rex-bedachung.de/images/dachdecker-bochum-steildach-hero.webp" />
+  <script type="application/ld+json">{JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Startseite", "item": "https://www.rex-bedachung.de/" }
+    ]
+  })}</script>
+</Helmet>
+```
+
+**Hinweis:** Die Startseite ist die Wurzel, daher nur ein einziger ListItem-Eintrag.
+
+---
+
+## Datei 2: client/src/components/OrganizationSchema.tsx
+
+**Aufgabe:** Facebook- und Instagram-URLs zum sameAs-Array hinzufügen.
+
+**Suche diesen Block:**
+```
+    "sameAs": [
+      "https://www.google.com/maps/place/Rex+Bedachungs+GmbH/@51.4623584,7.2428438,17z"
+    ]
+```
+
+**Ersetze durch:**
+```
+    "sameAs": [
+      "https://www.google.com/maps/place/Rex+Bedachungs+GmbH/@51.4623584,7.2428438,17z",
+      "https://www.facebook.com/rexbedachung",
+      "https://www.instagram.com/rexbedachung"
+    ]
+```
+
+---
+
+## Datei 3: client/src/components/Footer.tsx
+
+**Aufgabe:** Social-Media-Links (Facebook + Instagram) im Footer ergänzen.
+
+**Suche diesen Block:**
+```
+              <div className="pt-3">
+                <a
+                  href="https://www.google.com/maps/place/Rex+Bedachungs+GmbH/@51.4623584,7.2428438,519m/data=!3m2!1e3!4b1!4m6!3m5!1s0x47b8e00fdd91a96d:0xb0e424e0f275f1b6!8m2!3d51.4623584!4d7.2428438!16s%2Fg%2F1tfqkgvg"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-primary transition-colors"
+                  aria-label="Rex Bedachung auf Google bewerten"
+                  data-testid="link-footer-google-review"
+                >
+                  ⭐ Google Bewertung schreiben
+                </a>
+              </div>
+```
+
+**Ersetze durch:**
+```
+              <div className="pt-3">
+                <a
+                  href="https://www.google.com/maps/place/Rex+Bedachungs+GmbH/@51.4623584,7.2428438,519m/data=!3m2!1e3!4b1!4m6!3m5!1s0x47b8e00fdd91a96d:0xb0e424e0f275f1b6!8m2!3d51.4623584!4d7.2428438!16s%2Fg%2F1tfqkgvg"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-primary transition-colors"
+                  aria-label="Rex Bedachung auf Google bewerten"
+                  data-testid="link-footer-google-review"
+                >
+                  ⭐ Google Bewertung schreiben
+                </a>
+              </div>
+              <div className="flex items-center gap-4 pt-3">
+                <a
+                  href="https://www.facebook.com/rexbedachung"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-sm text-muted-foreground hover:text-primary transition-colors"
+                  aria-label="Rex Bedachung auf Facebook"
+                  data-testid="link-footer-facebook"
+                >
+                  Facebook
+                </a>
+                <a
+                  href="https://www.instagram.com/rexbedachung"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-sm text-muted-foreground hover:text-primary transition-colors"
+                  aria-label="Rex Bedachung auf Instagram"
+                  data-testid="link-footer-instagram"
+                >
+                  Instagram
+                </a>
+              </div>
+```
+
+---
+
+## Datei 4: client/src/pages/Contact.tsx
+
+**Aufgabe:** Social-Media-Hinweis im Kontaktbereich ergänzen (nach dem WhatsApp-Block).
+
+**Suche diesen Block:**
+```
+                <div className="flex items-start gap-4">
+                  <div className="flex-shrink-0 w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center">
+                    <MessageCircle className="w-6 h-6 text-primary" />
+                  </div>
+                  <div>
+                    <h3 className="font-semibold mb-1">WhatsApp</h3>
+                    <p className="text-lg">0234-583126</p>
+                    <p className="text-sm text-muted-foreground mt-1">
+                      Kontaktieren Sie uns auch gerne per WhatsApp oder Sprachnachricht
+                    </p>
+                  </div>
+                </div>
+              </div>
+```
+
+**Ersetze durch:**
+```
+                <div className="flex items-start gap-4">
+                  <div className="flex-shrink-0 w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center">
+                    <MessageCircle className="w-6 h-6 text-primary" />
+                  </div>
+                  <div>
+                    <h3 className="font-semibold mb-1">WhatsApp</h3>
+                    <p className="text-lg">0234-583126</p>
+                    <p className="text-sm text-muted-foreground mt-1">
+                      Kontaktieren Sie uns auch gerne per WhatsApp oder Sprachnachricht
+                    </p>
+                  </div>
+                </div>
+
+                <div className="pt-4 border-t border-border">
+                  <h3 className="font-semibold mb-3">Folgen Sie uns</h3>
+                  <div className="flex items-center gap-4">
+                    <a
+                      href="https://www.facebook.com/rexbedachung"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-muted-foreground hover:text-primary transition-colors text-sm font-medium"
+                      data-testid="link-contact-facebook"
+                    >
+                      Facebook
+                    </a>
+                    <a
+                      href="https://www.instagram.com/rexbedachung"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-muted-foreground hover:text-primary transition-colors text-sm font-medium"
+                      data-testid="link-contact-instagram"
+                    >
+                      Instagram
+                    </a>
+                  </div>
+                </div>
+              </div>
+```
+
+---
+
+## Abschluss: Build prüfen
+
+Nach allen 4 Änderungen:
+
+```bash
+npm run build
+```
+
+Wenn der Build erfolgreich ist, committen und deployen.
+Wenn der Build fehlschlägt, die Fehlermeldung ausgeben und NICHT deployen.
