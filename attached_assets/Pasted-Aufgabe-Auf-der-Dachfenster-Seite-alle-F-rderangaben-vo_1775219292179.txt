@@ -1,0 +1,68 @@
+Aufgabe: Auf der Dachfenster-Seite alle Förderangaben von 15% auf 20% korrigieren (BEG EM Grundförderung 15% + iSFP-Bonus 5% = 20%).
+
+Datei: client/src/pages/DachfensterBochum.tsx
+
+Es gibt 5 Stellen, die geändert werden müssen. Bitte alle 5 ändern:
+
+
+Stelle 1 – Förderungs-Box Überschrift:
+
+Suche:
+            Bis zu 15% Förderung durch BAFA &amp; KfW
+
+Ersetze durch:
+            Bis zu 20 % Förderung durch BAFA &amp; KfW
+
+
+Stelle 2 – Förderungs-Box Fließtext:
+
+Suche:
+              Der Austausch alter Dachfenster gegen moderne, energieeffiziente Modelle wird staatlich gefördert. Über
+              BAFA oder KfW können Sie bis zu 15% der Kosten zurückbekommen. Wir beraten Sie kostenlos zu allen
+              Fördermöglichkeiten und übernehmen auf Wunsch die komplette Antragstellung.
+
+Ersetze durch:
+              Der Austausch alter Dachfenster gegen moderne, energieeffiziente Modelle wird staatlich gefördert. Über
+              BAFA können Sie bis zu 20 % der Kosten als Zuschuss erhalten (15 % Grundförderung + 5 % iSFP-Bonus). Wir beraten Sie kostenlos zu allen
+              Fördermöglichkeiten und übernehmen auf Wunsch die komplette Antragstellung.
+
+
+Stelle 3 – FAQ-Antwort Nr. 3 (im faqItems-Array, Frage "Kann ich Förderung für neue Dachfenster bekommen?"):
+
+Suche:
+      "Ja! Beim Austausch gegen energieeffiziente Modelle können Sie über BAFA oder KfW bis zu 15% der Kosten fördern lassen. Wir beraten Sie kostenlos dazu.",
+
+Ersetze durch:
+      "Ja! Beim Austausch gegen energieeffiziente Modelle können Sie über BAFA bis zu 20 % der Kosten als Zuschuss erhalten (15 % Grundförderung + 5 % iSFP-Bonus). Wir beraten Sie kostenlos dazu.",
+
+
+Stelle 4 – FAQ-Antwort Nr. 6 (im faqItems-Array, Frage "Gibt es Förderung für den Einbau von Dachfenstern?"):
+
+Suche:
+      "Ja – wenn im Zuge des Dachfenstereinbaus eine GEG-konforme Dämmung am Eindeckrahmen oder der Laibung ausgeführt wird, kann die Maßnahme über BAFA (BEG Einzelmaßnahme) mit bis zu 15 % gefördert werden. Zusätzlich ist ein KfW-Kredit möglich. Wir beraten Sie kostenlos zu allen aktuellen Fördermöglichkeiten.",
+
+Ersetze durch:
+      "Ja – wenn im Zuge des Dachfenstereinbaus eine GEG-konforme Dämmung am Eindeckrahmen oder der Laibung ausgeführt wird, kann die Maßnahme über BAFA (BEG Einzelmaßnahme) mit bis zu 20 % gefördert werden (15 % Grundförderung + 5 % iSFP-Bonus). Zusätzlich ist ein KfW-Ergänzungskredit möglich. Wir beraten Sie kostenlos zu allen aktuellen Fördermöglichkeiten.",
+
+
+Stelle 5 – FAQPage-Schema (im JSON-LD Block), Frage "Kann ich Förderung für neue Dachfenster bekommen?":
+
+Suche:
+        "text": "Ja! Beim Austausch gegen energieeffiziente Modelle können Sie über BAFA oder KfW bis zu 15% der Kosten fördern lassen. Wir beraten Sie kostenlos dazu."
+
+Ersetze durch:
+        "text": "Ja! Beim Austausch gegen energieeffiziente Modelle können Sie über BAFA bis zu 20 % der Kosten als Zuschuss erhalten (15 % Grundförderung + 5 % iSFP-Bonus). Wir beraten Sie kostenlos dazu."
+
+
+Stelle 6 – FAQPage-Schema (im JSON-LD Block), Frage "Gibt es Förderung für den Einbau von Dachfenstern?":
+
+Suche:
+        "text": "Ja – wenn im Zuge des Dachfenstereinbaus eine GEG-konforme Dämmung am Eindeckrahmen oder der Laibung ausgeführt wird, kann die Maßnahme über BAFA (BEG Einzelmaßnahme) mit bis zu 15 % gefördert werden. Zusätzlich ist ein KfW-Kredit möglich. Wir beraten Sie kostenlos zu allen aktuellen Fördermöglichkeiten."
+
+Ersetze durch:
+        "text": "Ja – wenn im Zuge des Dachfenstereinbaus eine GEG-konforme Dämmung am Eindeckrahmen oder der Laibung ausgeführt wird, kann die Maßnahme über BAFA (BEG Einzelmaßnahme) mit bis zu 20 % gefördert werden (15 % Grundförderung + 5 % iSFP-Bonus). Zusätzlich ist ein KfW-Ergänzungskredit möglich. Wir beraten Sie kostenlos zu allen aktuellen Fördermöglichkeiten."
+
+
+Keine weiteren Dateien ändern.
+
+Nach der Änderung: npm run build ausführen und sicherstellen, dass keine Fehler auftreten. Auf /dachfenster-bochum prüfen: Förderungs-Box zeigt "20 %", beide Förder-FAQs zeigen "20 %" mit dem Hinweis auf Grundförderung + iSFP-Bonus.
