@@ -71,7 +71,7 @@ const faqItems = [
   {
     question: "Kann ich Förderung für neue Dachfenster bekommen?",
     answer:
-      "Ja! Beim Austausch gegen energieeffiziente Modelle können Sie über BAFA oder KfW bis zu 15% der Kosten fördern lassen. Wir beraten Sie kostenlos dazu.",
+      "Ja! Beim Austausch gegen energieeffiziente Modelle können Sie über BAFA bis zu 20 % der Kosten als Zuschuss erhalten (15 % Grundförderung + 5 % iSFP-Bonus). Wir beraten Sie kostenlos dazu.",
   },
   {
     question: "Welche Dachfenster-Marken verbauen Sie?",
@@ -86,7 +86,7 @@ const faqItems = [
   {
     question: "Gibt es Förderung für den Einbau von Dachfenstern?",
     answer:
-      "Ja – wenn im Zuge des Dachfenstereinbaus eine GEG-konforme Dämmung am Eindeckrahmen oder der Laibung ausgeführt wird, kann die Maßnahme über BAFA (BEG Einzelmaßnahme) mit bis zu 15 % gefördert werden. Zusätzlich ist ein KfW-Kredit möglich. Wir beraten Sie kostenlos zu allen aktuellen Fördermöglichkeiten.",
+      "Ja – wenn im Zuge des Dachfenstereinbaus eine GEG-konforme Dämmung am Eindeckrahmen oder der Laibung ausgeführt wird, kann die Maßnahme über BAFA (BEG Einzelmaßnahme) mit bis zu 20 % gefördert werden (15 % Grundförderung + 5 % iSFP-Bonus). Zusätzlich ist ein KfW-Ergänzungskredit möglich. Wir beraten Sie kostenlos zu allen aktuellen Fördermöglichkeiten.",
   },
   {
     question: "Kann ein altes VELUX-Fenster 1:1 ersetzt werden?",
@@ -189,7 +189,7 @@ export default function DachfensterBochum() {
       "name": "Kann ich Förderung für neue Dachfenster bekommen?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Ja! Beim Austausch gegen energieeffiziente Modelle können Sie über BAFA oder KfW bis zu 15% der Kosten fördern lassen. Wir beraten Sie kostenlos dazu."
+        "text": "Ja! Beim Austausch gegen energieeffiziente Modelle können Sie über BAFA bis zu 20 % der Kosten als Zuschuss erhalten (15 % Grundförderung + 5 % iSFP-Bonus). Wir beraten Sie kostenlos dazu."
       }
     },
     {
@@ -213,7 +213,7 @@ export default function DachfensterBochum() {
       "name": "Gibt es Förderung für den Einbau von Dachfenstern?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Ja – wenn im Zuge des Dachfenstereinbaus eine GEG-konforme Dämmung am Eindeckrahmen oder der Laibung ausgeführt wird, kann die Maßnahme über BAFA (BEG Einzelmaßnahme) mit bis zu 15 % gefördert werden. Zusätzlich ist ein KfW-Kredit möglich. Wir beraten Sie kostenlos zu allen aktuellen Fördermöglichkeiten."
+        "text": "Ja – wenn im Zuge des Dachfenstereinbaus eine GEG-konforme Dämmung am Eindeckrahmen oder der Laibung ausgeführt wird, kann die Maßnahme über BAFA (BEG Einzelmaßnahme) mit bis zu 20 % gefördert werden (15 % Grundförderung + 5 % iSFP-Bonus). Zusätzlich ist ein KfW-Ergänzungskredit möglich. Wir beraten Sie kostenlos zu allen aktuellen Fördermöglichkeiten."
       }
     },
     {
@@ -327,11 +327,11 @@ export default function DachfensterBochum() {
           >
             <AlertTriangle className="w-10 h-10 text-blue-300 mx-auto mb-4" aria-hidden="true" />
             <h2 className="text-2xl md:text-3xl font-bold text-white mb-4" data-testid="heading-foerderung">
-              Bis zu 15% Förderung durch BAFA &amp; KfW
+              Bis zu 20 % Förderung durch BAFA &amp; KfW
             </h2>
             <p className="text-slate-300 leading-relaxed mb-8 max-w-2xl mx-auto" data-testid="text-foerderung">
               Der Austausch alter Dachfenster gegen moderne, energieeffiziente Modelle wird staatlich gefördert. Über
-              BAFA oder KfW können Sie bis zu 15% der Kosten zurückbekommen. Wir beraten Sie kostenlos zu allen
+              BAFA können Sie bis zu 20 % der Kosten als Zuschuss erhalten (15 % Grundförderung + 5 % iSFP-Bonus). Wir beraten Sie kostenlos zu allen
               Fördermöglichkeiten und übernehmen auf Wunsch die komplette Antragstellung.
             </p>
             <Button
