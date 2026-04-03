@@ -1,0 +1,794 @@
+# Deploy 2 — 6 Service-Seiten Rex-Standard Upgrade + DachfensterBochum Link-Fix
+
+## Übersicht
+
+7 Dateien werden geändert. Keine neuen Dateien, keine neuen Abhängigkeiten (AuthorSchema-Komponente existiert bereits).
+
+**Wichtig:** Dieses Prompt enthält 4 Aufgabentypen. Arbeite sie pro Datei nacheinander ab:
+
+1. setLocation()-Fix (alle 7 Dateien)
+1. Schema-Ergänzung (4 Dateien: Steildach, Bauklempnerei, Dachreparatur, Dachwartung)
+1. Preisfaktoren-Modul einfügen (6 Dateien)
+1. Mini-Fallstudie einfügen (6 Dateien)
+
+-----
+
+## AUFGABE 1: setLocation()-Fix (alle 7 Dateien)
+
+### Globales Muster — auf JEDER der 7 Dateien anwenden:
+
+**Schritt A:** Suche in den Imports nach `useLocation`:
+
+```
+import { useLocation } from "wouter";
+```
+
+Ersetze durch:
+
+```
+import { Link as WouterLink } from "wouter";
+```
+
+Falls `useLocation` zusammen mit anderen Imports steht (z.B. `import { useLocation } from "wouter";` als einzelne Zeile), nur diese Zeile ersetzen. Falls `Link` bereits importiert wird, füge `useLocation` einfach aus dem Import entfernen.
+
+**Schritt B:** Suche nach der Deklaration:
+
+```
+  const [, setLocation] = useLocation();
+```
+
+Lösche diese Zeile komplett.
+
+**Schritt C:** Suche ALLE Stellen mit diesem Muster:
+
+```
+            <Button
+              size="lg"
+              className="pulse-ring cta-pulse"
+              onClick={() => setLocation("/kontakt")}
+```
+
+Ersetze jeweils durch:
+
+```
+            <Button
+              asChild
+              size="lg"
+              className="pulse-ring cta-pulse"
+```
+
+Und den zugehörigen Button-Text (z.B. `>Angebot anfragen</Button>`) ersetze durch:
+
+```
+            >
+              <a href="/kontakt">Angebot anfragen</a>
+            </Button>
+```
+
+**Beachte:** Der Button-Text variiert pro Seite und pro CTA-Position. Hier die korrekten Texte:
+
+- SteildachBochum: “Vor-Ort-Termin vereinbaren” (Hero) — suche auch nach weiteren setLocation-CTAs weiter unten
+- BauklempnereiBochum: “Angebot anfragen” (Hero)
+- Dachreparatur: “Reparatur anfragen” (Hero)
+- DachwartungBochum: “Wartungsvertrag anfragen” (Hero) — prüfe ob “Wartungstermin anfragen” irgendwo steht
+- AufsparrendaemmungBochum: “Beratung anfragen” (Hero)
+- DachgaubeBochum: “Angebot anfragen” (Hero)
+- DachfensterBochum: Alle setLocation-Stellen nach gleichem Muster fixen
+
+**Durchsuche JEDE Datei komplett** — es gibt oft einen zweiten CTA am Seitenende mit dem gleichen setLocation-Pattern. Alle müssen gefixt werden.
+
+### Dateien für Aufgabe 1:
+
+1. `client/src/pages/SteildachBochum.tsx`
+1. `client/src/pages/BauklempnereiBochum.tsx`
+1. `client/src/pages/Dachreparatur.tsx`
+1. `client/src/pages/DachwartungBochum.tsx`
+1. `client/src/pages/AufsparrendaemmungBochum.tsx`
+1. `client/src/pages/DachgaubeBochum.tsx`
+1. `client/src/pages/DachfensterBochum.tsx`
+
+-----
+
+## AUFGABE 2: Schema-Ergänzung (4 Dateien)
+
+### Datei: SteildachBochum.tsx
+
+FAQPage-Schema ist bereits vorhanden. Article-Schema und AuthorSchema fehlen.
+
+**Schritt A:** Füge den AuthorSchema-Import hinzu. Suche:
+
+```
+import OrganizationSchema from "@/components/OrganizationSchema";
+```
+
+Ersetze durch:
+
+```
+import OrganizationSchema from "@/components/OrganizationSchema";
+import AuthorSchema from "@/components/AuthorSchema";
+```
+
+**Schritt B:** Füge AuthorSchema-Komponente ein. Suche:
+
+```
+      <OrganizationSchema />
+```
+
+(Die Stelle direkt nach dem </Helmet>-Tag)
+Ersetze durch:
+
+```
+      <OrganizationSchema />
+      <AuthorSchema />
+```
+
+**Schritt C:** Füge Article-Schema im Helmet-Block hinzu. Suche das Ende der bestehenden Schemas (nach dem FAQPage-Schema-Block, vor `</Helmet>`). Füge direkt vor `</Helmet>` ein:
+
+```
+        <script type="application/ld+json">{`{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Steildach Bochum – Sanierung, Dämmung & Neueindeckung",
+  "author": { "@id": "https://www.rex-bedachung.de/#author" },
+  "publisher": { "@id": "https://www.rex-bedachung.de/#organization" },
+  "url": "https://www.rex-bedachung.de/steildach-bochum"
+}`}</script>
+```
+
+-----
+
+### Datei: BauklempnereiBochum.tsx
+
+FAQPage-Schema, Article-Schema und AuthorSchema fehlen alle.
+
+**Schritt A:** Import hinzufügen. Suche:
+
+```
+import OrganizationSchema from "@/components/OrganizationSchema";
+```
+
+Ersetze durch:
+
+```
+import OrganizationSchema from "@/components/OrganizationSchema";
+import AuthorSchema from "@/components/AuthorSchema";
+```
+
+**Schritt B:** Komponente einfügen. Suche:
+
+```
+      <OrganizationSchema />
+
+      <Breadcrumb items={[
+        { label: "Startseite", href: "/" },
+        { label: "Bauklempnerei" }
+      ]} />
+```
+
+Ersetze durch:
+
+```
+      <OrganizationSchema />
+      <AuthorSchema />
+
+      <Breadcrumb items={[
+        { label: "Startseite", href: "/" },
+        { label: "Bauklempnerei" }
+      ]} />
+```
+
+**Schritt C:** FAQPage-Schema + Article-Schema im Helmet einfügen. Suche das letzte Schema-Script im Helmet (den zweiten Service-Schema-Block mit `"serviceType": "Bauklempnerei"`). Füge DANACH ein (vor `</Helmet>`):
+
+```
+        <script type="application/ld+json">{`{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Was kostet eine neue Dachrinne in Bochum?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Aluminium-Dachrinnen beginnen ab ca. 30–60 €/m inkl. Montage, Zinkrinnen ab ca. 50–90 €/m. Wir erstellen Ihnen kostenlos ein genaues Angebot nach Aufmaß vor Ort."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Welches Material ist für Dachrinnen am besten?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Titanzink ist die langlebigste Wahl mit bis zu 80 Jahren Lebensdauer. Aluminium ist die wirtschaftliche Alternative. Kupfer hält am längsten mit bis zu 30 Jahren."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Fertigen Sie auch Sondermaße?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Ja – alle Bauteile werden in unserer eigenen Werkstatt in Bochum maßgenau gefertigt."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Reparieren Sie auch bestehende Blecharbeiten?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Ja, wir reparieren und erneuern bestehende Dachrinnen, Fallrohre, Kehlen und Wandbekleidungen – auch partiell."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Übernehmen Sie auch Arbeiten an Altbauten?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Ja – wir restaurieren und erneuern Blecharbeiten nach Originalvorbild und arbeiten eng mit Denkmalbehörden zusammen."
+      }
+    }
+  ]
+}`}</script>
+        <script type="application/ld+json">{`{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Bauklempnerei Bochum – Dachrinnen, Blecharbeiten & Fassadenverkleidung",
+  "author": { "@id": "https://www.rex-bedachung.de/#author" },
+  "publisher": { "@id": "https://www.rex-bedachung.de/#organization" },
+  "url": "https://www.rex-bedachung.de/bauklempnerei-bochum"
+}`}</script>
+```
+
+-----
+
+### Datei: Dachreparatur.tsx
+
+FAQPage-Schema, Article-Schema und AuthorSchema fehlen alle.
+
+**Schritt A:** Import. Suche:
+
+```
+import OrganizationSchema from "@/components/OrganizationSchema";
+```
+
+Ersetze durch:
+
+```
+import OrganizationSchema from "@/components/OrganizationSchema";
+import AuthorSchema from "@/components/AuthorSchema";
+```
+
+**Schritt B:** Komponente. Suche:
+
+```
+      <OrganizationSchema />
+
+      <Breadcrumb items={[
+        { label: "Startseite", href: "/" },
+        { label: "Dachreparatur" }
+      ]} />
+```
+
+Ersetze durch:
+
+```
+      <OrganizationSchema />
+      <AuthorSchema />
+
+      <Breadcrumb items={[
+        { label: "Startseite", href: "/" },
+        { label: "Dachreparatur" }
+      ]} />
+```
+
+**Schritt C:** FAQPage-Schema + Article-Schema im Helmet. Füge nach dem letzten Schema-Script-Block (dem zweiten Service-Schema mit `"serviceType": "Dachreparatur"`) ein:
+
+```
+        <script type="application/ld+json">{`{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Was kostet eine Dachreparatur in Bochum?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Die Kosten hängen von Art und Umfang des Schadens ab. Wir erstellen kostenlos ein transparentes Angebot nach Vor-Ort-Diagnose."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Wie schnell können Sie einen Sturmschaden reparieren?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Bei dringenden Schäden reagieren wir kurzfristig. Bei akuter Gefahr sichern wir Ihr Dach provisorisch ab und führen die dauerhafte Reparatur schnellstmöglich durch."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Übernimmt die Versicherung die Kosten?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Bei Sturmschäden zahlt in der Regel die Gebäudeversicherung. Wir dokumentieren den Schaden professionell und helfen bei der Abwicklung."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Reparieren Sie alle Dacharten?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Ja – Steildächer, Flachdächer, Dachfenster, Kaminanschlüsse, Dachrinnen und Fallrohre. Für alle gängigen Hersteller und Modelle."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Bieten Sie auch Wartungsverträge an?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Ja! Mit einem Wartungsvertrag prüfen wir Ihr Dach regelmäßig und beheben kleine Mängel bevor sie zu teuren Schäden werden."
+      }
+    }
+  ]
+}`}</script>
+        <script type="application/ld+json">{`{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Dachreparatur Bochum – Schnelle Hilfe bei undichtem Dach",
+  "author": { "@id": "https://www.rex-bedachung.de/#author" },
+  "publisher": { "@id": "https://www.rex-bedachung.de/#organization" },
+  "url": "https://www.rex-bedachung.de/dachreparatur-bochum"
+}`}</script>
+```
+
+-----
+
+### Datei: DachwartungBochum.tsx
+
+FAQPage-Schema, Article-Schema und AuthorSchema fehlen alle.
+
+**Schritt A:** Import. Suche:
+
+```
+import OrganizationSchema from "@/components/OrganizationSchema";
+```
+
+Ersetze durch:
+
+```
+import OrganizationSchema from "@/components/OrganizationSchema";
+import AuthorSchema from "@/components/AuthorSchema";
+```
+
+**Schritt B:** Komponente. Suche:
+
+```
+      <OrganizationSchema />
+
+      <Breadcrumb items={[
+        { label: "Startseite", href: "/" },
+        { label: "Dachwartung" }
+      ]} />
+```
+
+Ersetze durch:
+
+```
+      <OrganizationSchema />
+      <AuthorSchema />
+
+      <Breadcrumb items={[
+        { label: "Startseite", href: "/" },
+        { label: "Dachwartung" }
+      ]} />
+```
+
+**Schritt C:** FAQPage-Schema + Article-Schema im Helmet. Nach dem letzten Schema-Script-Block einfügen:
+
+```
+        <script type="application/ld+json">{`{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Wie oft sollte ein Dach gewartet werden?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Experten empfehlen mindestens einmal jährlich – idealerweise im Herbst vor der Regenzeit. Bei älteren Dächern oder nach Sturm ist eine zusätzliche Kontrolle sinnvoll."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Was kostet ein Wartungsvertrag?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Die Kosten hängen von Dachgröße und Leistungsumfang ab. Wir erstellen ein individuelles Angebot nach Aufmaß."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Beheben Sie Mängel direkt bei der Wartung?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Ja – kleine Mängel wie lose Ziegel oder verstopfte Abläufe beheben wir direkt vor Ort, ohne extra Termin."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Ist Dachwartung für Vermieter Pflicht?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Eigentümer sind zur Verkehrssicherungspflicht verpflichtet – das schließt die Instandhaltung des Daches ein. Bei Schäden durch unterlassene Wartung kann die Versicherung Leistungen kürzen."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Bieten Sie Wartungsverträge für Hausverwaltungen an?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Ja – wir betreuen mehrere Hausverwaltungen im Ruhrgebiet mit individuellen Rahmenverträgen, festen Ansprechpartnern und vergünstigten Konditionen."
+      }
+    }
+  ]
+}`}</script>
+        <script type="application/ld+json">{`{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Dachwartung Bochum – Dachinspektion & Wartungsvertrag vom Meisterbetrieb",
+  "author": { "@id": "https://www.rex-bedachung.de/#author" },
+  "publisher": { "@id": "https://www.rex-bedachung.de/#organization" },
+  "url": "https://www.rex-bedachung.de/dachwartung-bochum"
+}`}</script>
+```
+
+-----
+
+## AUFGABE 3: Preisfaktoren-Modul (6 Dateien)
+
+Füge auf jeder der 6 Service-Seiten einen Preisfaktoren-Block ein. Position: VOR dem FAQ-Bereich, NACH dem Leistungs-/Vorgehen-Bereich. Suche jeweils nach der Überschrift des FAQ-Bereichs und füge den Block DAVOR ein.
+
+### SteildachBochum.tsx — Modell B (Faktoren)
+
+Suche den FAQ-Abschnitt (die Stelle mit `faqItems.map`). Füge DIREKT VOR dieser FAQ-Section folgende Section ein:
+
+```jsx
+      {/* Preisfaktoren */}
+      <section className="py-14 px-4 bg-muted/40" data-testid="section-preisfaktoren">
+        <div className="max-w-4xl mx-auto">
+          <h2 className="text-2xl md:text-3xl font-bold mb-4">Was beeinflusst die Kosten einer Steildach-Sanierung?</h2>
+          <p className="text-muted-foreground mb-6 text-base leading-relaxed">
+            Jedes Steildach ist anders – pauschale Preise wären unseriös. Diese Faktoren bestimmen die Investition:
+          </p>
+          <div className="grid sm:grid-cols-2 gap-4 mb-6">
+            {[
+              "Dachfläche und Dachform (Sattel-, Walm-, Pultdach)",
+              "Gewähltes Eindeckungsmaterial (Ton, Beton, Schiefer)",
+              "Art und Stärke der Dämmung (Aufsparren vs. Zwischen)",
+              "Zustand von Dachstuhl und Lattung",
+              "Gerüstkosten (Höhe, Zugänglichkeit)",
+              "Dachanschlüsse, Gauben und Durchdringungen",
+            ].map((faktor, idx) => (
+              <div key={idx} className="flex items-start gap-3 bg-card p-4 rounded-md border border-border">
+                <CheckCircle className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
+                <span className="text-sm">{faktor}</span>
+              </div>
+            ))}
+          </div>
+          <p className="text-sm text-slate-600">
+            Wir erstellen nach einer kostenlosen Vor-Ort-Besichtigung eine realistische Einschätzung – statt pauschaler Lockpreise.
+          </p>
+        </div>
+      </section>
+```
+
+### BauklempnereiBochum.tsx — Modell A (“ab ca.”)
+
+Gleiche Position (VOR FAQ). Einfügen:
+
+```jsx
+      {/* Preisfaktoren */}
+      <section className="py-14 px-4 bg-muted/40" data-testid="section-preisfaktoren">
+        <div className="max-w-4xl mx-auto">
+          <h2 className="text-2xl md:text-3xl font-bold mb-4">Was kosten Klempnerarbeiten am Dach?</h2>
+          <p className="text-muted-foreground mb-6 text-base leading-relaxed">
+            Richtwerte für typische Bauklempnerei-Leistungen in Bochum – exakter Preis immer nach kostenlosem Aufmaß:
+          </p>
+          <div className="grid sm:grid-cols-2 gap-4 mb-6">
+            {[
+              "Zink-Dachrinne ab ca. 50–90 €/m inkl. Montage",
+              "Aluminium-Dachrinne ab ca. 30–60 €/m inkl. Montage",
+              "Fallrohr-Erneuerung ab ca. 40–70 €/m",
+              "Kehle / Kamineinfassung: Preis nach Aufmaß",
+              "Attika-Abdeckung: Material + Länge entscheidend",
+              "Wandbekleidung / Fassade: Preis nach Aufmaß",
+            ].map((faktor, idx) => (
+              <div key={idx} className="flex items-start gap-3 bg-card p-4 rounded-md border border-border">
+                <CheckCircle className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
+                <span className="text-sm">{faktor}</span>
+              </div>
+            ))}
+          </div>
+          <p className="text-sm text-slate-600">
+            Alle Bauteile aus eigener Werkstatt – maßgenau, ohne Zwischenhändler.
+          </p>
+        </div>
+      </section>
+```
+
+### Dachreparatur.tsx — Modell A (“ab ca.”)
+
+```jsx
+      {/* Preisfaktoren */}
+      <section className="py-14 px-4 bg-muted/40" data-testid="section-preisfaktoren">
+        <div className="max-w-4xl mx-auto">
+          <h2 className="text-2xl md:text-3xl font-bold mb-4">Was kostet eine Dachreparatur?</h2>
+          <p className="text-muted-foreground mb-6 text-base leading-relaxed">
+            Die Kosten richten sich nach Art und Umfang des Schadens. Richtwerte für häufige Reparaturen:
+          </p>
+          <div className="grid sm:grid-cols-2 gap-4 mb-6">
+            {[
+              "Einzelne Ziegel austauschen: ab niedrigem dreistelligem Bereich",
+              "Dachrinne partiell reparieren: ab ca. 150–300 €",
+              "Kaminanschluss erneuern: Preis nach Schadensumfang",
+              "Sturmschaden-Reparatur: Preis nach Befund",
+              "Flachdach-Abdichtung (Einzelstelle): ab ca. 200–500 €",
+              "Notsicherung bei akutem Schaden: Aufwand nach Einsatz",
+            ].map((faktor, idx) => (
+              <div key={idx} className="flex items-start gap-3 bg-card p-4 rounded-md border border-border">
+                <CheckCircle className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
+                <span className="text-sm">{faktor}</span>
+              </div>
+            ))}
+          </div>
+          <p className="text-sm text-slate-600">
+            Transparentes Angebot vor Beginn der Arbeiten – keine versteckten Kosten, keine Notdienstpauschalen.
+          </p>
+        </div>
+      </section>
+```
+
+### DachwartungBochum.tsx — Modell A
+
+```jsx
+      {/* Preisfaktoren */}
+      <section className="py-14 px-4 bg-muted/40" data-testid="section-preisfaktoren">
+        <div className="max-w-4xl mx-auto">
+          <h2 className="text-2xl md:text-3xl font-bold mb-4">Was kostet eine Dachwartung?</h2>
+          <p className="text-muted-foreground mb-6 text-base leading-relaxed">
+            Die Kosten hängen von Dachgröße, Dachtyp und Leistungsumfang ab:
+          </p>
+          <div className="grid sm:grid-cols-2 gap-4 mb-6">
+            {[
+              "Einfamilienhaus: Preis nach Dachgröße und Zustand",
+              "Mehrfamilienhaus: Rahmenvertrag mit vergünstigten Konditionen",
+              "Dachrinnenreinigung: im Wartungspaket enthalten",
+              "Kleine Sofortreparaturen: im Wartungsumfang inklusive",
+              "Fotodokumentation: immer inklusive",
+              "Wartungsvertrag: vergünstigter Jahrespreis",
+            ].map((faktor, idx) => (
+              <div key={idx} className="flex items-start gap-3 bg-card p-4 rounded-md border border-border">
+                <CheckCircle className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
+                <span className="text-sm">{faktor}</span>
+              </div>
+            ))}
+          </div>
+          <p className="text-sm text-slate-600">
+            Regelmäßige Wartung kostet einen Bruchteil der Folgeschäden, die durch unterlassene Inspektion entstehen.
+          </p>
+        </div>
+      </section>
+```
+
+### AufsparrendaemmungBochum.tsx — Modell B (Faktoren)
+
+```jsx
+      {/* Preisfaktoren */}
+      <section className="py-14 px-4 bg-muted/40" data-testid="section-preisfaktoren">
+        <div className="max-w-4xl mx-auto">
+          <h2 className="text-2xl md:text-3xl font-bold mb-4">Was beeinflusst die Kosten einer Aufsparrendämmung?</h2>
+          <p className="text-muted-foreground mb-6 text-base leading-relaxed">
+            Die Aufsparrendämmung ist eine Investition, die sich durch Energieeinsparung und Förderung schnell amortisiert. Diese Faktoren bestimmen den Preis:
+          </p>
+          <div className="grid sm:grid-cols-2 gap-4 mb-6">
+            {[
+              "Dachfläche in m² (entscheidender Kostentreiber)",
+              "Dämmstärke und Dämmmaterial (PUR/PIR, Holzfaser)",
+              "Sparrenquerschnitt und Dachkonstruktion",
+              "Gewählte Neueindeckung (Ton, Beton, Schiefer)",
+              "Gerüstkosten (Höhe und Zugänglichkeit)",
+              "Anzahl und Art der Dachdurchdringungen",
+            ].map((faktor, idx) => (
+              <div key={idx} className="flex items-start gap-3 bg-card p-4 rounded-md border border-border">
+                <CheckCircle className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
+                <span className="text-sm">{faktor}</span>
+              </div>
+            ))}
+          </div>
+          <p className="text-sm text-slate-600">
+            Mit iSFP-Bonus sind bis zu 60.000 € förderfähig bei 20 % Zuschuss – wir beraten kostenlos zur optimalen Förderstrategie.
+          </p>
+        </div>
+      </section>
+```
+
+### DachgaubeBochum.tsx — Modell C (nur Faktoren + Vor-Ort)
+
+```jsx
+      {/* Preisfaktoren */}
+      <section className="py-14 px-4 bg-muted/40" data-testid="section-preisfaktoren">
+        <div className="max-w-4xl mx-auto">
+          <h2 className="text-2xl md:text-3xl font-bold mb-4">Was beeinflusst die Kosten einer Dachgaube?</h2>
+          <p className="text-muted-foreground mb-6 text-base leading-relaxed">
+            Dachgauben sind individuelle Bauprojekte – eine seriöse Preisaussage ist nur nach Vor-Ort-Besichtigung möglich. Diese Faktoren spielen eine Rolle:
+          </p>
+          <div className="grid sm:grid-cols-2 gap-4 mb-6">
+            {[
+              "Gaubentyp (Schlepp-, Spitz-, Fledermaul-, Kastengaube)",
+              "Größe und Breite der Gaube",
+              "Dachform und Dachneigung des Bestandsdachs",
+              "Statische Anforderungen (Verstärkung Dachstuhl)",
+              "Baugenehmigung und Planungsaufwand",
+              "Dämmung, Eindeckung und Innenausbau",
+            ].map((faktor, idx) => (
+              <div key={idx} className="flex items-start gap-3 bg-card p-4 rounded-md border border-border">
+                <CheckCircle className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
+                <span className="text-sm">{faktor}</span>
+              </div>
+            ))}
+          </div>
+          <p className="text-sm text-slate-600">
+            Rex Bedachung erstellt nach kostenlosem Aufmaß ein verbindliches Angebot – inklusive Koordination von Statik und Baugenehmigung.
+          </p>
+        </div>
+      </section>
+```
+
+-----
+
+## AUFGABE 4: Mini-Fallstudie (6 Dateien)
+
+Füge auf jeder der 6 Service-Seiten einen Fallstudien-Block ein. Position: NACH dem Preisfaktoren-Modul (Aufgabe 3), VOR dem FAQ-Bereich.
+
+### SteildachBochum.tsx
+
+```jsx
+      {/* Fallstudie */}
+      <section className="py-14 px-4 bg-background" data-testid="section-fallstudie">
+        <div className="max-w-4xl mx-auto">
+          <div className="border-l-[3px] border-primary bg-card p-6 rounded-r-md">
+            <span className="inline-block text-[11px] font-medium uppercase tracking-widest text-primary bg-primary/10 px-3 py-0.5 rounded mb-3">Projekt aus Bochum</span>
+            <p className="font-semibold text-foreground mb-3">Steildach-Sanierung in Bochum-Weitmar</p>
+            <div className="grid grid-cols-[auto_1fr] gap-x-4 gap-y-1 text-sm">
+              <span className="text-muted-foreground font-medium">Ausgangslage</span>
+              <span>EFH Bj. 1972, Betondachsteine brüchig, Lattung morsch, keine Dämmung</span>
+              <span className="text-muted-foreground font-medium">Lösung</span>
+              <span>Komplette Neueindeckung mit Tondachziegeln, Aufsparrendämmung 16 cm PUR, neue Dachrinnen</span>
+              <span className="text-muted-foreground font-medium">Ergebnis</span>
+              <span>GEG-konformes Dach, BAFA-Zuschuss 15 % gesichert</span>
+            </div>
+          </div>
+        </div>
+      </section>
+```
+
+### BauklempnereiBochum.tsx
+
+```jsx
+      {/* Fallstudie */}
+      <section className="py-14 px-4 bg-background" data-testid="section-fallstudie">
+        <div className="max-w-4xl mx-auto">
+          <div className="border-l-[3px] border-primary bg-card p-6 rounded-r-md">
+            <span className="inline-block text-[11px] font-medium uppercase tracking-widest text-primary bg-primary/10 px-3 py-0.5 rounded mb-3">Projekt aus Bochum</span>
+            <p className="font-semibold text-foreground mb-3">Attika-Sanierung in Bochum-Altenbochum</p>
+            <div className="grid grid-cols-[auto_1fr] gap-x-4 gap-y-1 text-sm">
+              <span className="text-muted-foreground font-medium">Ausgangslage</span>
+              <span>Gewerbegebäude, Attika-Abdeckungen aus Kunststoff nach 12 Jahren spröde und undicht</span>
+              <span className="text-muted-foreground font-medium">Lösung</span>
+              <span>Neue Attika-Abdeckungen Aluminium pulverbeschichtet RAL 7016, Wandanschlüsse erneuert</span>
+              <span className="text-muted-foreground font-medium">Ergebnis</span>
+              <span>Wartungsfreie Lösung, 25+ Jahre Lebensdauer</span>
+            </div>
+          </div>
+        </div>
+      </section>
+```
+
+### Dachreparatur.tsx
+
+```jsx
+      {/* Fallstudie */}
+      <section className="py-14 px-4 bg-background" data-testid="section-fallstudie">
+        <div className="max-w-4xl mx-auto">
+          <div className="border-l-[3px] border-primary bg-card p-6 rounded-r-md">
+            <span className="inline-block text-[11px] font-medium uppercase tracking-widest text-primary bg-primary/10 px-3 py-0.5 rounded mb-3">Projekt aus Bochum</span>
+            <p className="font-semibold text-foreground mb-3">Kaminanschluss-Reparatur in Bochum-Steinkuhl</p>
+            <div className="grid grid-cols-[auto_1fr] gap-x-4 gap-y-1 text-sm">
+              <span className="text-muted-foreground font-medium">Ausgangslage</span>
+              <span>MFH, chronisch undichter Kaminanschluss, wiederkehrende Wasserflecken im Obergeschoss</span>
+              <span className="text-muted-foreground font-medium">Lösung</span>
+              <span>Kaminanschluss komplett erneuert mit Titanzink-Einfassung, Unterspannbahn im Anschlussbereich repariert</span>
+              <span className="text-muted-foreground font-medium">Ergebnis</span>
+              <span>Seit 2 Jahren kein Wassereintritt mehr</span>
+            </div>
+          </div>
+        </div>
+      </section>
+```
+
+### DachwartungBochum.tsx
+
+```jsx
+      {/* Fallstudie */}
+      <section className="py-14 px-4 bg-background" data-testid="section-fallstudie">
+        <div className="max-w-4xl mx-auto">
+          <div className="border-l-[3px] border-primary bg-card p-6 rounded-r-md">
+            <span className="inline-block text-[11px] font-medium uppercase tracking-widest text-primary bg-primary/10 px-3 py-0.5 rounded mb-3">Projekt aus Bochum</span>
+            <p className="font-semibold text-foreground mb-3">Wartungseinsatz in Bochum-Stiepel</p>
+            <div className="grid grid-cols-[auto_1fr] gap-x-4 gap-y-1 text-sm">
+              <span className="text-muted-foreground font-medium">Ausgangslage</span>
+              <span>EFH mit Flachdachgarage, Dachrinne am Haupthaus komplett mit Laub und Moos zugesetzt, Fallrohr verstopft</span>
+              <span className="text-muted-foreground font-medium">Lösung</span>
+              <span>Komplettreinigung Rinne und Fallrohr, 2 undichte Rinnenstöße nachgedichtet, Laubschutzgitter empfohlen</span>
+              <span className="text-muted-foreground font-medium">Ergebnis</span>
+              <span>Entwässerung funktioniert wieder einwandfrei</span>
+            </div>
+          </div>
+        </div>
+      </section>
+```
+
+### AufsparrendaemmungBochum.tsx
+
+```jsx
+      {/* Fallstudie */}
+      <section className="py-14 px-4 bg-background" data-testid="section-fallstudie">
+        <div className="max-w-4xl mx-auto">
+          <div className="border-l-[3px] border-primary bg-card p-6 rounded-r-md">
+            <span className="inline-block text-[11px] font-medium uppercase tracking-widest text-primary bg-primary/10 px-3 py-0.5 rounded mb-3">Projekt aus Bochum</span>
+            <p className="font-semibold text-foreground mb-3">Aufsparrendämmung in Bochum-Wiemelhausen</p>
+            <div className="grid grid-cols-[auto_1fr] gap-x-4 gap-y-1 text-sm">
+              <span className="text-muted-foreground font-medium">Ausgangslage</span>
+              <span>EFH Bj. 1975, ungedämmtes Satteldach, Dachgeschoss im Sommer unerträglich heiß, im Winter eiskalt</span>
+              <span className="text-muted-foreground font-medium">Lösung</span>
+              <span>18 cm PUR/PIR Aufsparrendämmung, neue Tondachziegel, BAFA-Antrag mit iSFP</span>
+              <span className="text-muted-foreground font-medium">Ergebnis</span>
+              <span>U-Wert 0,13 W/(m²·K), Zuschuss 7.600 €, Heizkosten um ca. 25 % reduziert</span>
+            </div>
+          </div>
+        </div>
+      </section>
+```
+
+### DachgaubeBochum.tsx
+
+```jsx
+      {/* Fallstudie */}
+      <section className="py-14 px-4 bg-background" data-testid="section-fallstudie">
+        <div className="max-w-4xl mx-auto">
+          <div className="border-l-[3px] border-primary bg-card p-6 rounded-r-md">
+            <span className="inline-block text-[11px] font-medium uppercase tracking-widest text-primary bg-primary/10 px-3 py-0.5 rounded mb-3">Projekt aus Bochum</span>
+            <p className="font-semibold text-foreground mb-3">Schleppgaube in Bochum-Stiepel</p>
+            <div className="grid grid-cols-[auto_1fr] gap-x-4 gap-y-1 text-sm">
+              <span className="text-muted-foreground font-medium">Ausgangslage</span>
+              <span>EFH mit ausgebautem Dachgeschoss, zu wenig Stehhöhe und Tageslicht im Kinderzimmer</span>
+              <span className="text-muted-foreground font-medium">Lösung</span>
+              <span>Schleppgaube 3,5 m Breite, Eindeckung passend zum Bestandsdach, Innendämmung nach GEG, Baugenehmigung koordiniert</span>
+              <span className="text-muted-foreground font-medium">Ergebnis</span>
+              <span>8 m² zusätzliche Nutzfläche mit voller Stehhöhe</span>
+            </div>
+          </div>
+        </div>
+      </section>
+```
+
+-----
+
+## Abschluss: Build prüfen
+
+Nach allen Änderungen an allen 7 Dateien:
+
+```bash
+npm run build
+```
+
+Wenn der Build erfolgreich ist, committen und deployen.
+Wenn der Build fehlschlägt, die Fehlermeldung ausgeben und NICHT deployen.
+
+**Hinweis:** Falls der Agent bei Datei 5, 6 oder 7 abbricht — die bisherigen Änderungen committen und den Rest als Folgeprompt ausführen. Die Änderungen sind pro Datei unabhängig voneinander.
