@@ -1,0 +1,122 @@
+Aufgabe: Auf der Dachfenster-Seite den doppelten Velux-Austausch-Link bereinigen und die Cluster-Kacheln optisch aufwerten.
+
+Datei: client/src/pages/DachfensterBochum.tsx
+
+Schritt 1: Den kompletten Velux-Austausch-Teaser-Block entfernen.
+
+Suche den gesamten Block von hier:
+
+      {/* ── Velux-Austausch-Teaser ── */}
+      <section className="py-16 px-4 bg-muted/40" data-testid="section-velux-teaser">
+
+bis einschließlich:
+
+      </section>
+
+      <section className="py-16 px-4 bg-muted/40" data-testid="section-cluster">
+
+Ersetze ihn durch:
+
+      <section className="py-16 px-4 bg-muted/40" data-testid="section-cluster">
+
+(Also die gesamte section-velux-teaser entfernen, nur die öffnende Zeile von section-cluster bleibt.)
+
+
+Schritt 2: Die beiden Cluster-Kacheln im blauen Gradient-Design neu gestalten.
+
+Suche den Kachel-Bereich innerhalb von section-cluster:
+
+          <div className="grid md:grid-cols-2 gap-6">
+            <div
+              className="bg-card border border-border rounded-md p-6 cursor-pointer hover:border-primary transition-colors"
+              onClick={() => setLocation("/velux-dachfenster-austausch-bochum")}
+              data-testid="card-cluster-austausch"
+            >
+              <h3 className="font-semibold text-lg text-foreground mb-2">
+                Velux Dachfenster Austausch Bochum
+              </h3>
+              <p className="text-muted-foreground text-sm leading-relaxed mb-4">
+                Altes Velux Fenster austauschen lassen – Modellvergleich GGL, GGU, GPU und Integra, 
+                Preise ab 1.000 €, 7-Schritte-Ablauf und kostenlose Beratung vor Ort.
+              </p>
+              <span className="text-primary text-sm font-medium">
+                Zum Austausch-Guide &rarr;
+              </span>
+            </div>
+            <div
+              className="bg-card border border-border rounded-md p-6 cursor-pointer hover:border-primary transition-colors"
+              onClick={() => setLocation("/velux-dachfenster-rolllaeden-bochum")}
+              data-testid="card-cluster-rolllaeden"
+            >
+              <h3 className="font-semibold text-lg text-foreground mb-2">
+                Velux Außenrollladen Bochum – SSL Solar nachrüsten
+              </h3>
+              <p className="text-muted-foreground text-sm leading-relaxed mb-4">
+                Bis zu 94% Hitzeschutz durch Außenrollladen – SSL Solar kabellos nachrüsten, 
+                Vergleich SSL vs. SML, Montage von innen ab ca. 700 €.
+              </p>
+              <span className="text-primary text-sm font-medium">
+                Zum Rollladen-Guide &rarr;
+              </span>
+            </div>
+          </div>
+
+Ersetze durch:
+
+          <div className="grid md:grid-cols-2 gap-6">
+            <div
+              className="rounded-md p-6 md:p-8 cursor-pointer hover:opacity-90 transition-opacity"
+              style={{ background: "linear-gradient(135deg, #0f172a 0%, #1e3a8a 100%)" }}
+              onClick={() => setLocation("/velux-dachfenster-austausch-bochum")}
+              data-testid="card-cluster-austausch"
+            >
+              <div className="flex items-center gap-2 mb-3">
+                <RefreshCw className="w-5 h-5 text-blue-300" aria-hidden="true" />
+                <h3 className="font-semibold text-lg text-white">
+                  Velux Dachfenster Austausch Bochum
+                </h3>
+              </div>
+              <p className="text-slate-300 text-sm leading-relaxed mb-4">
+                Altes Velux Fenster austauschen lassen – Modellvergleich GGL, GGU, GPU und Integra, 
+                Preise ab 1.000 €, 7-Schritte-Ablauf und kostenlose Beratung vor Ort.
+              </p>
+              <div className="flex flex-wrap gap-3 text-xs text-blue-300 mb-4">
+                <span className="flex items-center gap-1"><BarChart3 className="w-3.5 h-3.5" aria-hidden="true" />Preisvergleich</span>
+                <span className="flex items-center gap-1"><ListChecks className="w-3.5 h-3.5" aria-hidden="true" />Schritt-für-Schritt</span>
+                <span className="flex items-center gap-1"><RefreshCw className="w-3.5 h-3.5" aria-hidden="true" />Modellvergleich</span>
+              </div>
+              <span className="text-blue-300 text-sm font-medium flex items-center gap-1">
+                Zum Austausch-Guide <ArrowRight className="w-4 h-4" aria-hidden="true" />
+              </span>
+            </div>
+            <div
+              className="rounded-md p-6 md:p-8 cursor-pointer hover:opacity-90 transition-opacity"
+              style={{ background: "linear-gradient(135deg, #0f172a 0%, #1e3a8a 100%)" }}
+              onClick={() => setLocation("/velux-dachfenster-rolllaeden-bochum")}
+              data-testid="card-cluster-rolllaeden"
+            >
+              <div className="flex items-center gap-2 mb-3">
+                <Award className="w-5 h-5 text-blue-300" aria-hidden="true" />
+                <h3 className="font-semibold text-lg text-white">
+                  Velux Außenrollladen Bochum – SSL Solar nachrüsten
+                </h3>
+              </div>
+              <p className="text-slate-300 text-sm leading-relaxed mb-4">
+                Bis zu 94% Hitzeschutz durch Außenrollladen – SSL Solar kabellos nachrüsten, 
+                Vergleich SSL vs. SML, Montage von innen ab ca. 700 €.
+              </p>
+              <div className="flex flex-wrap gap-3 text-xs text-blue-300 mb-4">
+                <span className="flex items-center gap-1"><BarChart3 className="w-3.5 h-3.5" aria-hidden="true" />Preisvergleich</span>
+                <span className="flex items-center gap-1"><Award className="w-3.5 h-3.5" aria-hidden="true" />SSL vs. SML</span>
+                <span className="flex items-center gap-1"><Wrench className="w-3.5 h-3.5" aria-hidden="true" />Montage von innen</span>
+              </div>
+              <span className="text-blue-300 text-sm font-medium flex items-center gap-1">
+                Zum Rollladen-Guide <ArrowRight className="w-4 h-4" aria-hidden="true" />
+              </span>
+            </div>
+          </div>
+
+
+Keine weiteren Dateien ändern. Keine neuen Imports nötig – BarChart3, ListChecks, RefreshCw, Award, Wrench und ArrowRight sind bereits importiert.
+
+Nach der Änderung: npm run build ausführen und sicherstellen, dass keine Fehler auftreten. Auf der Seite /dachfenster-bochum prüfen: Der alte große blaue Teaser-Block ist weg. Stattdessen zeigt die Cluster-Sektion zwei gleichwertige blaue Gradient-Kacheln nebeneinander (Austausch links, Rollläden rechts).

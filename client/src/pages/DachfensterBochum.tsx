@@ -470,43 +470,6 @@ export default function DachfensterBochum() {
         </div>
       </section>
 
-      {/* ── Velux-Austausch-Teaser ── */}
-      <section className="py-16 px-4 bg-muted/40" data-testid="section-velux-teaser">
-        <div className="max-w-3xl mx-auto">
-          <div
-            className="rounded-md p-8 md:p-10 text-center"
-            style={{ background: "linear-gradient(135deg, #0f172a 0%, #1e3a8a 100%)" }}
-            data-testid="box-velux-teaser"
-          >
-            <div className="flex justify-center mb-5">
-              <div className="w-14 h-14 rounded-full bg-blue-900/50 flex items-center justify-center">
-                <BookOpen className="w-7 h-7 text-blue-300" aria-hidden="true" />
-              </div>
-            </div>
-            <h3 className="text-xl md:text-2xl font-bold text-white mb-3" data-testid="heading-velux-teaser">
-              Velux Fenster austauschen?
-            </h3>
-            <p className="text-slate-300 leading-relaxed text-base md:text-lg mb-4" data-testid="text-velux-teaser">
-              Speziell für den Austausch alter Velux Fenster haben wir eine eigene Seite mit Modellvergleich, Preisrahmen und Schritt-für-Schritt-Ablauf.
-            </p>
-            <div className="flex flex-wrap justify-center gap-4 text-sm text-blue-300 mb-6">
-              <span className="flex items-center gap-1.5"><BarChart3 className="w-4 h-4" aria-hidden="true" />Preisvergleich</span>
-              <span className="flex items-center gap-1.5"><ListChecks className="w-4 h-4" aria-hidden="true" />Schritt-für-Schritt</span>
-              <span className="flex items-center gap-1.5"><RefreshCw className="w-4 h-4" aria-hidden="true" />Modellvergleich</span>
-            </div>
-            <Button
-              size="lg"
-              className="bg-blue-400 text-white border-blue-400"
-              onClick={() => setLocation("/velux-dachfenster-austausch-bochum")}
-              data-testid="button-velux-teaser"
-            >
-              Zum Velux Austausch-Guide
-              <ArrowRight className="w-4 h-4 ml-2" aria-hidden="true" />
-            </Button>
-          </div>
-        </div>
-      </section>
-
       <section className="py-16 px-4 bg-muted/40" data-testid="section-cluster">
         <div className="max-w-4xl mx-auto">
           <h2 className="text-2xl md:text-3xl font-bold text-center mb-4 text-foreground" data-testid="heading-cluster">
@@ -517,35 +480,53 @@ export default function DachfensterBochum() {
           </p>
           <div className="grid md:grid-cols-2 gap-6">
             <div
-              className="bg-card border border-border rounded-md p-6 cursor-pointer hover:border-primary transition-colors"
+              className="rounded-md p-6 md:p-8 cursor-pointer hover:opacity-90 transition-opacity"
+              style={{ background: "linear-gradient(135deg, #0f172a 0%, #1e3a8a 100%)" }}
               onClick={() => setLocation("/velux-dachfenster-austausch-bochum")}
               data-testid="card-cluster-austausch"
             >
-              <h3 className="font-semibold text-lg text-foreground mb-2">
-                Velux Dachfenster Austausch Bochum
-              </h3>
-              <p className="text-muted-foreground text-sm leading-relaxed mb-4">
+              <div className="flex items-center gap-2 mb-3">
+                <RefreshCw className="w-5 h-5 text-blue-300" aria-hidden="true" />
+                <h3 className="font-semibold text-lg text-white">
+                  Velux Dachfenster Austausch Bochum
+                </h3>
+              </div>
+              <p className="text-slate-300 text-sm leading-relaxed mb-4">
                 Altes Velux Fenster austauschen lassen – Modellvergleich GGL, GGU, GPU und Integra, 
                 Preise ab 1.000 €, 7-Schritte-Ablauf und kostenlose Beratung vor Ort.
               </p>
-              <span className="text-primary text-sm font-medium">
-                Zum Austausch-Guide &rarr;
+              <div className="flex flex-wrap gap-3 text-xs text-blue-300 mb-4">
+                <span className="flex items-center gap-1"><BarChart3 className="w-3.5 h-3.5" aria-hidden="true" />Preisvergleich</span>
+                <span className="flex items-center gap-1"><ListChecks className="w-3.5 h-3.5" aria-hidden="true" />Schritt-für-Schritt</span>
+                <span className="flex items-center gap-1"><RefreshCw className="w-3.5 h-3.5" aria-hidden="true" />Modellvergleich</span>
+              </div>
+              <span className="text-blue-300 text-sm font-medium flex items-center gap-1">
+                Zum Austausch-Guide <ArrowRight className="w-4 h-4" aria-hidden="true" />
               </span>
             </div>
             <div
-              className="bg-card border border-border rounded-md p-6 cursor-pointer hover:border-primary transition-colors"
+              className="rounded-md p-6 md:p-8 cursor-pointer hover:opacity-90 transition-opacity"
+              style={{ background: "linear-gradient(135deg, #0f172a 0%, #1e3a8a 100%)" }}
               onClick={() => setLocation("/velux-dachfenster-rolllaeden-bochum")}
               data-testid="card-cluster-rolllaeden"
             >
-              <h3 className="font-semibold text-lg text-foreground mb-2">
-                Velux Außenrollladen Bochum – SSL Solar nachrüsten
-              </h3>
-              <p className="text-muted-foreground text-sm leading-relaxed mb-4">
+              <div className="flex items-center gap-2 mb-3">
+                <Award className="w-5 h-5 text-blue-300" aria-hidden="true" />
+                <h3 className="font-semibold text-lg text-white">
+                  Velux Außenrollladen Bochum – SSL Solar nachrüsten
+                </h3>
+              </div>
+              <p className="text-slate-300 text-sm leading-relaxed mb-4">
                 Bis zu 94% Hitzeschutz durch Außenrollladen – SSL Solar kabellos nachrüsten, 
                 Vergleich SSL vs. SML, Montage von innen ab ca. 700 €.
               </p>
-              <span className="text-primary text-sm font-medium">
-                Zum Rollladen-Guide &rarr;
+              <div className="flex flex-wrap gap-3 text-xs text-blue-300 mb-4">
+                <span className="flex items-center gap-1"><BarChart3 className="w-3.5 h-3.5" aria-hidden="true" />Preisvergleich</span>
+                <span className="flex items-center gap-1"><Award className="w-3.5 h-3.5" aria-hidden="true" />SSL vs. SML</span>
+                <span className="flex items-center gap-1"><Wrench className="w-3.5 h-3.5" aria-hidden="true" />Montage von innen</span>
+              </div>
+              <span className="text-blue-300 text-sm font-medium flex items-center gap-1">
+                Zum Rollladen-Guide <ArrowRight className="w-4 h-4" aria-hidden="true" />
               </span>
             </div>
           </div>
