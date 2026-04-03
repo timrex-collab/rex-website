@@ -2,7 +2,6 @@ import { useState } from "react";
 import { Helmet } from "react-helmet";
 import OrganizationSchema from "@/components/OrganizationSchema";
 import AuthorSchema from "@/components/AuthorSchema";
-import { useLocation } from "wouter";
 import Breadcrumb from "@/components/Breadcrumb";
 import {
   CheckCircle,
@@ -112,7 +111,6 @@ const ablaufSchritte = [
 ];
 
 export default function AufsparrendaemmungBochum() {
-  const [, setLocation] = useLocation();
   const [openFaq, setOpenFaq] = useState<number | null>(null);
 
   const schemaData = {
@@ -207,12 +205,12 @@ export default function AufsparrendaemmungBochum() {
           </p>
           <div className="flex flex-wrap justify-center gap-4">
             <Button
+              asChild
               size="lg"
               className="pulse-ring cta-pulse font-semibold rounded-md"
-              onClick={() => setLocation("/kontakt")}
               data-testid="button-hero-beratung"
             >
-              Beratung anfragen
+              <a href="/kontakt">Beratung anfragen</a>
             </Button>
             <Button
               asChild
@@ -345,6 +343,52 @@ export default function AufsparrendaemmungBochum() {
         </div>
       </section>
 
+      {/* Preisfaktoren */}
+      <section className="py-14 px-4 bg-muted/40" data-testid="section-preisfaktoren">
+        <div className="max-w-4xl mx-auto">
+          <h2 className="text-2xl md:text-3xl font-bold mb-4">Was beeinflusst die Kosten einer Aufsparrendämmung?</h2>
+          <p className="text-muted-foreground mb-6 text-base leading-relaxed">
+            Die Aufsparrendämmung ist eine Investition, die sich durch Energieeinsparung und Förderung schnell amortisiert. Diese Faktoren bestimmen den Preis:
+          </p>
+          <div className="grid sm:grid-cols-2 gap-4 mb-6">
+            {[
+              "Dachfläche in m² (entscheidender Kostentreiber)",
+              "Dämmstärke und Dämmmaterial (PUR/PIR, Holzfaser)",
+              "Sparrenquerschnitt und Dachkonstruktion",
+              "Gewählte Neueindeckung (Ton, Beton, Schiefer)",
+              "Gerüstkosten (Höhe und Zugänglichkeit)",
+              "Anzahl und Art der Dachdurchdringungen",
+            ].map((faktor, idx) => (
+              <div key={idx} className="flex items-start gap-3 bg-card p-4 rounded-md border border-border">
+                <CheckCircle className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
+                <span className="text-sm">{faktor}</span>
+              </div>
+            ))}
+          </div>
+          <p className="text-sm text-slate-600">
+            Mit iSFP-Bonus sind bis zu 60.000 € förderfähig bei 20 % Zuschuss – wir beraten kostenlos zur optimalen Förderstrategie.
+          </p>
+        </div>
+      </section>
+
+      {/* Fallstudie */}
+      <section className="py-14 px-4 bg-background" data-testid="section-fallstudie">
+        <div className="max-w-4xl mx-auto">
+          <div className="border-l-[3px] border-primary bg-card p-6 rounded-r-md">
+            <span className="inline-block text-[11px] font-medium uppercase tracking-widest text-primary bg-primary/10 px-3 py-0.5 rounded mb-3">Projekt aus Bochum</span>
+            <p className="font-semibold text-foreground mb-3">Aufsparrendämmung in Bochum-Wiemelhausen</p>
+            <div className="grid grid-cols-[auto_1fr] gap-x-4 gap-y-1 text-sm">
+              <span className="text-muted-foreground font-medium">Ausgangslage</span>
+              <span>EFH Bj. 1975, ungedämmtes Satteldach, Dachgeschoss im Sommer unerträglich heiß, im Winter eiskalt</span>
+              <span className="text-muted-foreground font-medium">Lösung</span>
+              <span>18 cm PUR/PIR Aufsparrendämmung, neue Tondachziegel, BAFA-Antrag mit iSFP</span>
+              <span className="text-muted-foreground font-medium">Ergebnis</span>
+              <span>U-Wert 0,13 W/(m²·K), Zuschuss 7.600 €, Heizkosten um ca. 25 % reduziert</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* 7. FAQ */}
       <section className="py-14 px-4 bg-muted/40" data-testid="section-faq">
         <div className="max-w-3xl mx-auto">
@@ -394,12 +438,12 @@ export default function AufsparrendaemmungBochum() {
           </p>
           <div className="flex flex-wrap justify-center gap-3">
             <Button
+              asChild
               size="lg"
               className="pulse-ring cta-pulse font-semibold rounded-md"
-              onClick={() => setLocation("/kontakt")}
               data-testid="button-cta-beratung"
             >
-              Beratung anfragen
+              <a href="/kontakt">Beratung anfragen</a>
             </Button>
             <Button
               asChild

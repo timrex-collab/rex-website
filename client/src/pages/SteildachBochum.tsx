@@ -1,7 +1,8 @@
 import { useState } from "react";
 import { Helmet } from "react-helmet";
 import OrganizationSchema from "@/components/OrganizationSchema";
-import { useLocation } from "wouter";
+import AuthorSchema from "@/components/AuthorSchema";
+
 import Breadcrumb from "@/components/Breadcrumb";
 import Picture from "@/components/Picture";
 import {
@@ -177,7 +178,6 @@ const schemaJson = JSON.stringify({
 });
 
 export default function SteildachBochum() {
-  const [, setLocation] = useLocation();
   const [openFaq, setOpenFaq] = useState<number | null>(null);
 
   return (
@@ -316,8 +316,17 @@ export default function SteildachBochum() {
     }
   ]
 }`}</script>
+        <script type="application/ld+json">{`{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Steildach Bochum – Sanierung, Dämmung & Neueindeckung",
+  "author": { "@id": "https://www.rex-bedachung.de/#author" },
+  "publisher": { "@id": "https://www.rex-bedachung.de/#organization" },
+  "url": "https://www.rex-bedachung.de/steildach-bochum"
+}`}</script>
       </Helmet>
       <OrganizationSchema />
+      <AuthorSchema />
       <Breadcrumb items={[
         { label: "Startseite", href: "/" },
         { label: "Steildach" }
@@ -344,12 +353,12 @@ export default function SteildachBochum() {
           </p>
           <div className="flex flex-wrap gap-3 mb-8">
             <Button
+              asChild
               size="lg"
               className="pulse-ring cta-pulse"
-              onClick={() => setLocation("/kontakt")}
               data-testid="button-hero-angebot"
             >
-              Angebot anfragen
+              <a href="/kontakt">Angebot anfragen</a>
             </Button>
             <Button
               asChild
@@ -498,12 +507,12 @@ export default function SteildachBochum() {
               </p>
             </div>
             <Button
+              asChild
               size="lg"
               className="bg-blue-400 text-white border-blue-400 shrink-0"
-              onClick={() => setLocation("/kontakt")}
               data-testid="button-tipp-beratung"
             >
-              Kostenloses Beratungsgespräch anfragen
+              <a href="/kontakt">Kostenloses Beratungsgespräch anfragen</a>
             </Button>
           </div>
         </div>
@@ -591,12 +600,12 @@ export default function SteildachBochum() {
               Wir beraten Sie kostenlos welche Förderung für Ihr Projekt in Frage kommt – und helfen bei der Antragstellung.
             </p>
             <Button
+              asChild
               size="lg"
               className="bg-blue-400 text-white border-blue-400"
-              onClick={() => setLocation("/kontakt")}
               data-testid="button-foerderung-anfragen"
             >
-              Förderung anfragen
+              <a href="/kontakt">Förderung anfragen</a>
             </Button>
           </div>
         </div>
@@ -626,6 +635,52 @@ export default function SteildachBochum() {
           </div>
         </div>
       </section>
+      {/* Preisfaktoren */}
+      <section className="py-14 px-4 bg-muted/40" data-testid="section-preisfaktoren">
+        <div className="max-w-4xl mx-auto">
+          <h2 className="text-2xl md:text-3xl font-bold mb-4">Was beeinflusst die Kosten einer Steildach-Sanierung?</h2>
+          <p className="text-muted-foreground mb-6 text-base leading-relaxed">
+            Jedes Steildach ist anders – pauschale Preise wären unseriös. Diese Faktoren bestimmen die Investition:
+          </p>
+          <div className="grid sm:grid-cols-2 gap-4 mb-6">
+            {[
+              "Dachfläche und Dachform (Sattel-, Walm-, Pultdach)",
+              "Gewähltes Eindeckungsmaterial (Ton, Beton, Schiefer)",
+              "Art und Stärke der Dämmung (Aufsparren vs. Zwischen)",
+              "Zustand von Dachstuhl und Lattung",
+              "Gerüstkosten (Höhe, Zugänglichkeit)",
+              "Dachanschlüsse, Gauben und Durchdringungen",
+            ].map((faktor, idx) => (
+              <div key={idx} className="flex items-start gap-3 bg-card p-4 rounded-md border border-border">
+                <CheckCircle className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
+                <span className="text-sm">{faktor}</span>
+              </div>
+            ))}
+          </div>
+          <p className="text-sm text-slate-600">
+            Wir erstellen nach einer kostenlosen Vor-Ort-Besichtigung eine realistische Einschätzung – statt pauschaler Lockpreise.
+          </p>
+        </div>
+      </section>
+
+      {/* Fallstudie */}
+      <section className="py-14 px-4 bg-background" data-testid="section-fallstudie">
+        <div className="max-w-4xl mx-auto">
+          <div className="border-l-[3px] border-primary bg-card p-6 rounded-r-md">
+            <span className="inline-block text-[11px] font-medium uppercase tracking-widest text-primary bg-primary/10 px-3 py-0.5 rounded mb-3">Projekt aus Bochum</span>
+            <p className="font-semibold text-foreground mb-3">Steildach-Sanierung in Bochum-Weitmar</p>
+            <div className="grid grid-cols-[auto_1fr] gap-x-4 gap-y-1 text-sm">
+              <span className="text-muted-foreground font-medium">Ausgangslage</span>
+              <span>EFH Bj. 1972, Betondachsteine brüchig, Lattung morsch, keine Dämmung</span>
+              <span className="text-muted-foreground font-medium">Lösung</span>
+              <span>Komplette Neueindeckung mit Tondachziegeln, Aufsparrendämmung 16 cm PUR, neue Dachrinnen</span>
+              <span className="text-muted-foreground font-medium">Ergebnis</span>
+              <span>GEG-konformes Dach, BAFA-Zuschuss 15 % gesichert</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* FAQ */}
       <section className="py-16 px-4 bg-muted/40" data-testid="section-faq">
         <div className="max-w-3xl mx-auto">
@@ -721,12 +776,12 @@ export default function SteildachBochum() {
           </p>
           <div className="flex flex-wrap justify-center gap-3">
             <Button
+              asChild
               size="lg"
               className="pulse-ring cta-pulse"
-              onClick={() => setLocation("/kontakt")}
               data-testid="button-cta-angebot"
             >
-              Angebot anfragen
+              <a href="/kontakt">Angebot anfragen</a>
             </Button>
             <Button
               asChild

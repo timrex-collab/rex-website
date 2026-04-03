@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Helmet } from "react-helmet";
 import OrganizationSchema from "@/components/OrganizationSchema";
-import { useLocation } from "wouter";
+import AuthorSchema from "@/components/AuthorSchema";
 import Breadcrumb from "@/components/Breadcrumb";
 import {
   CheckCircle,
@@ -154,7 +154,6 @@ const schemaJson = JSON.stringify({
 });
 
 export default function DachwartungBochum() {
-  const [, setLocation] = useLocation();
   const [openFaq, setOpenFaq] = useState<number | null>(null);
 
   return (
@@ -201,8 +200,63 @@ export default function DachwartungBochum() {
   },
   "serviceType": "Dachwartung"
 }`}</script>
+        <script type="application/ld+json">{`{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Wie oft sollte ein Dach gewartet werden?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Experten empfehlen mindestens einmal jährlich – idealerweise im Herbst vor der Regenzeit. Bei älteren Dächern oder nach Sturm ist eine zusätzliche Kontrolle sinnvoll."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Was kostet ein Wartungsvertrag?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Die Kosten hängen von Dachgröße und Leistungsumfang ab. Wir erstellen ein individuelles Angebot nach Aufmaß."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Beheben Sie Mängel direkt bei der Wartung?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Ja – kleine Mängel wie lose Ziegel oder verstopfte Abläufe beheben wir direkt vor Ort, ohne extra Termin."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Ist Dachwartung für Vermieter Pflicht?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Eigentümer sind zur Verkehrssicherungspflicht verpflichtet – das schließt die Instandhaltung des Daches ein. Bei Schäden durch unterlassene Wartung kann die Versicherung Leistungen kürzen."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Bieten Sie Wartungsverträge für Hausverwaltungen an?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Ja – wir betreuen mehrere Hausverwaltungen im Ruhrgebiet mit individuellen Rahmenverträgen, festen Ansprechpartnern und vergünstigten Konditionen."
+      }
+    }
+  ]
+}`}</script>
+        <script type="application/ld+json">{`{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Dachwartung Bochum – Dachinspektion & Wartungsvertrag vom Meisterbetrieb",
+  "author": { "@id": "https://www.rex-bedachung.de/#author" },
+  "publisher": { "@id": "https://www.rex-bedachung.de/#organization" },
+  "url": "https://www.rex-bedachung.de/dachwartung-bochum"
+}`}</script>
       </Helmet>
       <OrganizationSchema />
+      <AuthorSchema />
 
       <Breadcrumb items={[
         { label: "Startseite", href: "/" },
@@ -229,12 +283,12 @@ export default function DachwartungBochum() {
           </p>
           <div className="flex flex-wrap gap-3 mb-8">
             <Button
+              asChild
               size="lg"
               className="pulse-ring cta-pulse"
-              onClick={() => setLocation("/kontakt")}
               data-testid="button-hero-wartungsvertrag"
             >
-              Wartungsvertrag anfragen
+              <a href="/kontakt">Wartungsvertrag anfragen</a>
             </Button>
             <Button
               asChild
@@ -390,12 +444,12 @@ export default function DachwartungBochum() {
               Mit einem Wartungsvertrag bei Rex Bedachungs GmbH haben Sie immer einen festen Ansprechpartner für Ihr Dach. Wir planen die Termine im Voraus, erinnern Sie rechtzeitig und reagieren bei akuten Schäden bevorzugt. Besonders geeignet für Hausverwaltungen, Wohnungseigentümergemeinschaften und Eigentümer mehrerer Objekte.
             </p>
             <Button
+              asChild
               size="lg"
               className="bg-blue-400 text-white border-blue-400"
-              onClick={() => setLocation("/kontakt")}
               data-testid="button-wartungsvertrag-anfragen"
             >
-              Wartungsvertrag anfragen
+              <a href="/kontakt">Wartungsvertrag anfragen</a>
             </Button>
           </div>
         </div>
@@ -422,6 +476,52 @@ export default function DachwartungBochum() {
                 </CardContent>
               </Card>
             ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Preisfaktoren */}
+      <section className="py-14 px-4 bg-muted/40" data-testid="section-preisfaktoren">
+        <div className="max-w-4xl mx-auto">
+          <h2 className="text-2xl md:text-3xl font-bold mb-4">Was kostet eine Dachwartung?</h2>
+          <p className="text-muted-foreground mb-6 text-base leading-relaxed">
+            Die Kosten hängen von Dachgröße, Dachtyp und Leistungsumfang ab:
+          </p>
+          <div className="grid sm:grid-cols-2 gap-4 mb-6">
+            {[
+              "Einfamilienhaus: Preis nach Dachgröße und Zustand",
+              "Mehrfamilienhaus: Rahmenvertrag mit vergünstigten Konditionen",
+              "Dachrinnenreinigung: im Wartungspaket enthalten",
+              "Kleine Sofortreparaturen: im Wartungsumfang inklusive",
+              "Fotodokumentation: immer inklusive",
+              "Wartungsvertrag: vergünstigter Jahrespreis",
+            ].map((faktor, idx) => (
+              <div key={idx} className="flex items-start gap-3 bg-card p-4 rounded-md border border-border">
+                <CheckCircle className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
+                <span className="text-sm">{faktor}</span>
+              </div>
+            ))}
+          </div>
+          <p className="text-sm text-slate-600">
+            Regelmäßige Wartung kostet einen Bruchteil der Folgeschäden, die durch unterlassene Inspektion entstehen.
+          </p>
+        </div>
+      </section>
+
+      {/* Fallstudie */}
+      <section className="py-14 px-4 bg-background" data-testid="section-fallstudie">
+        <div className="max-w-4xl mx-auto">
+          <div className="border-l-[3px] border-primary bg-card p-6 rounded-r-md">
+            <span className="inline-block text-[11px] font-medium uppercase tracking-widest text-primary bg-primary/10 px-3 py-0.5 rounded mb-3">Projekt aus Bochum</span>
+            <p className="font-semibold text-foreground mb-3">Wartungseinsatz in Bochum-Stiepel</p>
+            <div className="grid grid-cols-[auto_1fr] gap-x-4 gap-y-1 text-sm">
+              <span className="text-muted-foreground font-medium">Ausgangslage</span>
+              <span>EFH mit Flachdachgarage, Dachrinne am Haupthaus komplett mit Laub und Moos zugesetzt, Fallrohr verstopft</span>
+              <span className="text-muted-foreground font-medium">Lösung</span>
+              <span>Komplettreinigung Rinne und Fallrohr, 2 undichte Rinnenstöße nachgedichtet, Laubschutzgitter empfohlen</span>
+              <span className="text-muted-foreground font-medium">Ergebnis</span>
+              <span>Entwässerung funktioniert wieder einwandfrei</span>
+            </div>
           </div>
         </div>
       </section>
@@ -493,12 +593,12 @@ export default function DachwartungBochum() {
           </p>
           <div className="flex flex-wrap justify-center gap-3">
             <Button
+              asChild
               size="lg"
               className="pulse-ring cta-pulse"
-              onClick={() => setLocation("/kontakt")}
               data-testid="button-cta-wartungsvertrag"
             >
-              Wartungsvertrag anfragen
+              <a href="/kontakt">Wartungsvertrag anfragen</a>
             </Button>
             <Button
               asChild

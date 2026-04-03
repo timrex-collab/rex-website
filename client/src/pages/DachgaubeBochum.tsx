@@ -2,7 +2,6 @@ import { useState } from "react";
 import { Helmet } from "react-helmet";
 import OrganizationSchema from "@/components/OrganizationSchema";
 import AuthorSchema from "@/components/AuthorSchema";
-import { useLocation } from "wouter";
 import Breadcrumb from "@/components/Breadcrumb";
 import {
   CheckCircle,
@@ -110,7 +109,6 @@ const ablaufSchritte = [
 ];
 
 export default function DachgaubeBochum() {
-  const [, setLocation] = useLocation();
   const [openFaq, setOpenFaq] = useState<number | null>(null);
 
   const schemaData = {
@@ -206,12 +204,12 @@ export default function DachgaubeBochum() {
           </p>
           <div className="flex flex-wrap justify-center gap-4">
             <Button
+              asChild
               size="lg"
               className="pulse-ring cta-pulse font-semibold rounded-md"
-              onClick={() => setLocation("/kontakt")}
               data-testid="button-hero-angebot"
             >
-              Angebot anfragen
+              <a href="/kontakt">Angebot anfragen</a>
             </Button>
             <Button
               asChild
@@ -353,13 +351,59 @@ export default function DachgaubeBochum() {
             Aufmaß ein transparentes Angebot.
           </p>
           <Button
+            asChild
             size="lg"
             className="pulse-ring cta-pulse font-semibold rounded-md"
-            onClick={() => setLocation("/kontakt")}
             data-testid="button-angebot-aufmas"
           >
-            Kostenloses Aufmaß anfragen
+            <a href="/kontakt">Kostenloses Aufmaß anfragen</a>
           </Button>
+        </div>
+      </section>
+
+      {/* Preisfaktoren */}
+      <section className="py-14 px-4 bg-muted/40" data-testid="section-preisfaktoren">
+        <div className="max-w-4xl mx-auto">
+          <h2 className="text-2xl md:text-3xl font-bold mb-4">Was beeinflusst die Kosten einer Dachgaube?</h2>
+          <p className="text-muted-foreground mb-6 text-base leading-relaxed">
+            Dachgauben sind individuelle Bauprojekte – eine seriöse Preisaussage ist nur nach Vor-Ort-Besichtigung möglich. Diese Faktoren spielen eine Rolle:
+          </p>
+          <div className="grid sm:grid-cols-2 gap-4 mb-6">
+            {[
+              "Gaubentyp (Schlepp-, Spitz-, Fledermaul-, Kastengaube)",
+              "Größe und Breite der Gaube",
+              "Dachform und Dachneigung des Bestandsdachs",
+              "Statische Anforderungen (Verstärkung Dachstuhl)",
+              "Baugenehmigung und Planungsaufwand",
+              "Dämmung, Eindeckung und Innenausbau",
+            ].map((faktor, idx) => (
+              <div key={idx} className="flex items-start gap-3 bg-card p-4 rounded-md border border-border">
+                <CheckCircle className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
+                <span className="text-sm">{faktor}</span>
+              </div>
+            ))}
+          </div>
+          <p className="text-sm text-slate-600">
+            Rex Bedachung erstellt nach kostenlosem Aufmaß ein verbindliches Angebot – inklusive Koordination von Statik und Baugenehmigung.
+          </p>
+        </div>
+      </section>
+
+      {/* Fallstudie */}
+      <section className="py-14 px-4 bg-background" data-testid="section-fallstudie">
+        <div className="max-w-4xl mx-auto">
+          <div className="border-l-[3px] border-primary bg-card p-6 rounded-r-md">
+            <span className="inline-block text-[11px] font-medium uppercase tracking-widest text-primary bg-primary/10 px-3 py-0.5 rounded mb-3">Projekt aus Bochum</span>
+            <p className="font-semibold text-foreground mb-3">Schleppgaube in Bochum-Stiepel</p>
+            <div className="grid grid-cols-[auto_1fr] gap-x-4 gap-y-1 text-sm">
+              <span className="text-muted-foreground font-medium">Ausgangslage</span>
+              <span>EFH mit ausgebautem Dachgeschoss, zu wenig Stehhöhe und Tageslicht im Kinderzimmer</span>
+              <span className="text-muted-foreground font-medium">Lösung</span>
+              <span>Schleppgaube 3,5 m Breite, Eindeckung passend zum Bestandsdach, Innendämmung nach GEG, Baugenehmigung koordiniert</span>
+              <span className="text-muted-foreground font-medium">Ergebnis</span>
+              <span>8 m² zusätzliche Nutzfläche mit voller Stehhöhe</span>
+            </div>
+          </div>
         </div>
       </section>
 
@@ -411,12 +455,12 @@ export default function DachgaubeBochum() {
           </p>
           <div className="flex flex-wrap justify-center gap-3">
             <Button
+              asChild
               size="lg"
               className="pulse-ring cta-pulse font-semibold rounded-md"
-              onClick={() => setLocation("/kontakt")}
               data-testid="button-cta-aufmas"
             >
-              Aufmaß anfragen
+              <a href="/kontakt">Aufmaß anfragen</a>
             </Button>
             <Button
               asChild

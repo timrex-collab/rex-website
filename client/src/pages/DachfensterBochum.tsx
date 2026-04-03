@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Helmet } from "react-helmet";
 import OrganizationSchema from "@/components/OrganizationSchema";
-import { useLocation } from "wouter";
+
 import Breadcrumb from "@/components/Breadcrumb";
 import Picture from "@/components/Picture";
 import {
@@ -117,7 +117,6 @@ const schemaJson = JSON.stringify({
 });
 
 export default function DachfensterBochum() {
-  const [, setLocation] = useLocation();
   const [openFaq, setOpenFaq] = useState<number | null>(null);
 
   return (
@@ -255,12 +254,12 @@ export default function DachfensterBochum() {
           </p>
           <div className="flex flex-wrap gap-3 mb-8">
             <Button
+              asChild
               size="lg"
               className="pulse-ring cta-pulse"
-              onClick={() => setLocation("/kontakt")}
               data-testid="button-hero-angebot"
             >
-              Jetzt Angebot anfragen
+              <a href="/kontakt">Jetzt Angebot anfragen</a>
             </Button>
             <Button
               asChild
@@ -335,12 +334,12 @@ export default function DachfensterBochum() {
               Fördermöglichkeiten und übernehmen auf Wunsch die komplette Antragstellung.
             </p>
             <Button
+              asChild
               size="lg"
               className="bg-blue-400 text-white border-blue-400"
-              onClick={() => setLocation("/kontakt")}
               data-testid="button-foerderung-anfragen"
             >
-              Jetzt Förderung anfragen
+              <a href="/kontakt">Jetzt Förderung anfragen</a>
             </Button>
           </div>
         </div>
@@ -479,10 +478,10 @@ export default function DachfensterBochum() {
             Alles was Sie zu Velux Dachfenstern in Bochum wissen müssen – von Austausch bis Sonnenschutz.
           </p>
           <div className="grid md:grid-cols-2 gap-6">
-            <div
-              className="rounded-md p-6 md:p-8 cursor-pointer hover:opacity-90 transition-opacity"
+            <a
+              href="/velux-dachfenster-austausch-bochum"
+              className="rounded-md p-6 md:p-8 block hover:opacity-90 transition-opacity"
               style={{ background: "linear-gradient(135deg, #0f172a 0%, #1e3a8a 100%)" }}
-              onClick={() => setLocation("/velux-dachfenster-austausch-bochum")}
               data-testid="card-cluster-austausch"
             >
               <div className="flex items-center gap-2 mb-3">
@@ -503,11 +502,11 @@ export default function DachfensterBochum() {
               <span className="text-blue-300 text-sm font-medium flex items-center gap-1">
                 Zum Austausch-Guide <ArrowRight className="w-4 h-4" aria-hidden="true" />
               </span>
-            </div>
-            <div
-              className="rounded-md p-6 md:p-8 cursor-pointer hover:opacity-90 transition-opacity"
+            </a>
+            <a
+              href="/velux-dachfenster-rolllaeden-bochum"
+              className="rounded-md p-6 md:p-8 block hover:opacity-90 transition-opacity"
               style={{ background: "linear-gradient(135deg, #0f172a 0%, #1e3a8a 100%)" }}
-              onClick={() => setLocation("/velux-dachfenster-rolllaeden-bochum")}
               data-testid="card-cluster-rolllaeden"
             >
               <div className="flex items-center gap-2 mb-3">
@@ -528,7 +527,7 @@ export default function DachfensterBochum() {
               <span className="text-blue-300 text-sm font-medium flex items-center gap-1">
                 Zum Rollladen-Guide <ArrowRight className="w-4 h-4" aria-hidden="true" />
               </span>
-            </div>
+            </a>
           </div>
         </div>
       </section>
@@ -563,12 +562,12 @@ export default function DachfensterBochum() {
           </p>
           <div className="flex flex-wrap justify-center gap-3">
             <Button
+              asChild
               size="lg"
               className="pulse-ring cta-pulse"
-              onClick={() => setLocation("/kontakt")}
               data-testid="button-cta-angebot"
             >
-              Angebot anfragen
+              <a href="/kontakt">Angebot anfragen</a>
             </Button>
             <Button
               asChild

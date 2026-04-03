@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Helmet } from "react-helmet";
 import OrganizationSchema from "@/components/OrganizationSchema";
-import { useLocation } from "wouter";
+import AuthorSchema from "@/components/AuthorSchema";
 import Breadcrumb from "@/components/Breadcrumb";
 import {
   CheckCircle,
@@ -151,7 +151,6 @@ const schemaJson = JSON.stringify({
 });
 
 export default function BauklempnereiBochum() {
-  const [, setLocation] = useLocation();
   const [openFaq, setOpenFaq] = useState<number | null>(null);
 
   return (
@@ -198,8 +197,63 @@ export default function BauklempnereiBochum() {
   },
   "serviceType": "Bauklempnerei"
 }`}</script>
+        <script type="application/ld+json">{`{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Was kostet eine neue Dachrinne in Bochum?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Aluminium-Dachrinnen beginnen ab ca. 30–60 €/m inkl. Montage, Zinkrinnen ab ca. 50–90 €/m. Wir erstellen Ihnen kostenlos ein genaues Angebot nach Aufmaß vor Ort."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Welches Material ist für Dachrinnen am besten?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Titanzink ist die langlebigste Wahl mit bis zu 80 Jahren Lebensdauer. Aluminium ist die wirtschaftliche Alternative. Kupfer hält am längsten mit bis zu 30 Jahren."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Fertigen Sie auch Sondermaße?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Ja – alle Bauteile werden in unserer eigenen Werkstatt in Bochum maßgenau gefertigt."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Reparieren Sie auch bestehende Blecharbeiten?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Ja, wir reparieren und erneuern bestehende Dachrinnen, Fallrohre, Kehlen und Wandbekleidungen – auch partiell."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Übernehmen Sie auch Arbeiten an Altbauten?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Ja – wir restaurieren und erneuern Blecharbeiten nach Originalvorbild und arbeiten eng mit Denkmalbehörden zusammen."
+      }
+    }
+  ]
+}`}</script>
+        <script type="application/ld+json">{`{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Bauklempnerei Bochum – Dachrinnen, Blecharbeiten & Fassadenverkleidung",
+  "author": { "@id": "https://www.rex-bedachung.de/#author" },
+  "publisher": { "@id": "https://www.rex-bedachung.de/#organization" },
+  "url": "https://www.rex-bedachung.de/bauklempnerei-bochum"
+}`}</script>
       </Helmet>
       <OrganizationSchema />
+      <AuthorSchema />
 
       <Breadcrumb items={[
         { label: "Startseite", href: "/" },
@@ -226,12 +280,12 @@ export default function BauklempnereiBochum() {
           </p>
           <div className="flex flex-wrap gap-3 mb-8">
             <Button
+              asChild
               size="lg"
               className="pulse-ring cta-pulse"
-              onClick={() => setLocation("/kontakt")}
               data-testid="button-hero-angebot"
             >
-              Angebot anfragen
+              <a href="/kontakt">Angebot anfragen</a>
             </Button>
             <Button
               asChild
@@ -362,13 +416,59 @@ export default function BauklempnereiBochum() {
               </p>
             </div>
             <Button
+              asChild
               size="lg"
               className="bg-blue-400 text-white border-blue-400 shrink-0"
-              onClick={() => setLocation("/kontakt")}
               data-testid="button-werkstatt-anfragen"
             >
-              Jetzt Aufmaß anfragen
+              <a href="/kontakt">Jetzt Aufmaß anfragen</a>
             </Button>
+          </div>
+        </div>
+      </section>
+
+      {/* Preisfaktoren */}
+      <section className="py-14 px-4 bg-muted/40" data-testid="section-preisfaktoren">
+        <div className="max-w-4xl mx-auto">
+          <h2 className="text-2xl md:text-3xl font-bold mb-4">Was kosten Klempnerarbeiten am Dach?</h2>
+          <p className="text-muted-foreground mb-6 text-base leading-relaxed">
+            Richtwerte für typische Bauklempnerei-Leistungen in Bochum – exakter Preis immer nach kostenlosem Aufmaß:
+          </p>
+          <div className="grid sm:grid-cols-2 gap-4 mb-6">
+            {[
+              "Zink-Dachrinne ab ca. 50–90 €/m inkl. Montage",
+              "Aluminium-Dachrinne ab ca. 30–60 €/m inkl. Montage",
+              "Fallrohr-Erneuerung ab ca. 40–70 €/m",
+              "Kehle / Kamineinfassung: Preis nach Aufmaß",
+              "Attika-Abdeckung: Material + Länge entscheidend",
+              "Wandbekleidung / Fassade: Preis nach Aufmaß",
+            ].map((faktor, idx) => (
+              <div key={idx} className="flex items-start gap-3 bg-card p-4 rounded-md border border-border">
+                <CheckCircle className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
+                <span className="text-sm">{faktor}</span>
+              </div>
+            ))}
+          </div>
+          <p className="text-sm text-slate-600">
+            Alle Bauteile aus eigener Werkstatt – maßgenau, ohne Zwischenhändler.
+          </p>
+        </div>
+      </section>
+
+      {/* Fallstudie */}
+      <section className="py-14 px-4 bg-background" data-testid="section-fallstudie">
+        <div className="max-w-4xl mx-auto">
+          <div className="border-l-[3px] border-primary bg-card p-6 rounded-r-md">
+            <span className="inline-block text-[11px] font-medium uppercase tracking-widest text-primary bg-primary/10 px-3 py-0.5 rounded mb-3">Projekt aus Bochum</span>
+            <p className="font-semibold text-foreground mb-3">Attika-Sanierung in Bochum-Altenbochum</p>
+            <div className="grid grid-cols-[auto_1fr] gap-x-4 gap-y-1 text-sm">
+              <span className="text-muted-foreground font-medium">Ausgangslage</span>
+              <span>Gewerbegebäude, Attika-Abdeckungen aus Kunststoff nach 12 Jahren spröde und undicht</span>
+              <span className="text-muted-foreground font-medium">Lösung</span>
+              <span>Neue Attika-Abdeckungen Aluminium pulverbeschichtet RAL 7016, Wandanschlüsse erneuert</span>
+              <span className="text-muted-foreground font-medium">Ergebnis</span>
+              <span>Wartungsfreie Lösung, 25+ Jahre Lebensdauer</span>
+            </div>
           </div>
         </div>
       </section>
@@ -437,12 +537,12 @@ export default function BauklempnereiBochum() {
           </p>
           <div className="flex flex-wrap justify-center gap-3">
             <Button
+              asChild
               size="lg"
               className="pulse-ring cta-pulse"
-              onClick={() => setLocation("/kontakt")}
               data-testid="button-cta-angebot"
             >
-              Angebot anfragen
+              <a href="/kontakt">Angebot anfragen</a>
             </Button>
             <Button
               asChild

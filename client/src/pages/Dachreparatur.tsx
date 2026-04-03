@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Helmet } from "react-helmet";
 import OrganizationSchema from "@/components/OrganizationSchema";
-import { useLocation } from "wouter";
+import AuthorSchema from "@/components/AuthorSchema";
 import Breadcrumb from "@/components/Breadcrumb";
 import Picture from "@/components/Picture";
 import {
@@ -143,7 +143,6 @@ const schemaJson = JSON.stringify({
 });
 
 export default function Dachreparatur() {
-  const [, setLocation] = useLocation();
   const [openFaq, setOpenFaq] = useState<number | null>(null);
 
   return (
@@ -190,8 +189,63 @@ export default function Dachreparatur() {
   },
   "serviceType": "Dachreparatur"
 }`}</script>
+        <script type="application/ld+json">{`{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Was kostet eine Dachreparatur in Bochum?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Die Kosten hängen von Art und Umfang des Schadens ab. Wir erstellen kostenlos ein transparentes Angebot nach Vor-Ort-Diagnose."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Wie schnell können Sie einen Sturmschaden reparieren?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Bei dringenden Schäden reagieren wir kurzfristig. Bei akuter Gefahr sichern wir Ihr Dach provisorisch ab und führen die dauerhafte Reparatur schnellstmöglich durch."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Übernimmt die Versicherung die Kosten?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Bei Sturmschäden zahlt in der Regel die Gebäudeversicherung. Wir dokumentieren den Schaden professionell und helfen bei der Abwicklung."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Reparieren Sie alle Dacharten?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Ja – Steildächer, Flachdächer, Dachfenster, Kaminanschlüsse, Dachrinnen und Fallrohre. Für alle gängigen Hersteller und Modelle."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Bieten Sie auch Wartungsverträge an?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Ja! Mit einem Wartungsvertrag prüfen wir Ihr Dach regelmäßig und beheben kleine Mängel bevor sie zu teuren Schäden werden."
+      }
+    }
+  ]
+}`}</script>
+        <script type="application/ld+json">{`{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Dachreparatur Bochum – Schnelle Hilfe bei undichtem Dach",
+  "author": { "@id": "https://www.rex-bedachung.de/#author" },
+  "publisher": { "@id": "https://www.rex-bedachung.de/#organization" },
+  "url": "https://www.rex-bedachung.de/dachreparatur-bochum"
+}`}</script>
       </Helmet>
       <OrganizationSchema />
+      <AuthorSchema />
 
       <Breadcrumb items={[
         { label: "Startseite", href: "/" },
@@ -218,12 +272,12 @@ export default function Dachreparatur() {
           </p>
           <div className="flex flex-wrap gap-3 mb-8">
             <Button
+              asChild
               size="lg"
               className="pulse-ring cta-pulse"
-              onClick={() => setLocation("/kontakt")}
               data-testid="button-hero-anfragen"
             >
-              Reparatur anfragen
+              <a href="/kontakt">Reparatur anfragen</a>
             </Button>
             <Button
               asChild
@@ -388,12 +442,12 @@ export default function Dachreparatur() {
               mit Ihrer Versicherung – damit Sie schnell zu Ihrem Recht kommen.
             </p>
             <Button
+              asChild
               size="lg"
               className="bg-blue-400 text-white border-blue-400"
-              onClick={() => setLocation("/kontakt")}
               data-testid="button-versicherung-anfragen"
             >
-              Schaden melden &amp; Beratung anfragen
+              <a href="/kontakt">Schaden melden &amp; Beratung anfragen</a>
             </Button>
           </div>
         </div>
@@ -442,6 +496,52 @@ export default function Dachreparatur() {
                 />
               </div>
             ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Preisfaktoren */}
+      <section className="py-14 px-4 bg-muted/40" data-testid="section-preisfaktoren">
+        <div className="max-w-4xl mx-auto">
+          <h2 className="text-2xl md:text-3xl font-bold mb-4">Was kostet eine Dachreparatur?</h2>
+          <p className="text-muted-foreground mb-6 text-base leading-relaxed">
+            Die Kosten richten sich nach Art und Umfang des Schadens. Richtwerte für häufige Reparaturen:
+          </p>
+          <div className="grid sm:grid-cols-2 gap-4 mb-6">
+            {[
+              "Einzelne Ziegel austauschen: ab niedrigem dreistelligem Bereich",
+              "Dachrinne partiell reparieren: ab ca. 150–300 €",
+              "Kaminanschluss erneuern: Preis nach Schadensumfang",
+              "Sturmschaden-Reparatur: Preis nach Befund",
+              "Flachdach-Abdichtung (Einzelstelle): ab ca. 200–500 €",
+              "Notsicherung bei akutem Schaden: Aufwand nach Einsatz",
+            ].map((faktor, idx) => (
+              <div key={idx} className="flex items-start gap-3 bg-card p-4 rounded-md border border-border">
+                <CheckCircle className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
+                <span className="text-sm">{faktor}</span>
+              </div>
+            ))}
+          </div>
+          <p className="text-sm text-slate-600">
+            Transparentes Angebot vor Beginn der Arbeiten – keine versteckten Kosten, keine Notdienstpauschalen.
+          </p>
+        </div>
+      </section>
+
+      {/* Fallstudie */}
+      <section className="py-14 px-4 bg-background" data-testid="section-fallstudie">
+        <div className="max-w-4xl mx-auto">
+          <div className="border-l-[3px] border-primary bg-card p-6 rounded-r-md">
+            <span className="inline-block text-[11px] font-medium uppercase tracking-widest text-primary bg-primary/10 px-3 py-0.5 rounded mb-3">Projekt aus Bochum</span>
+            <p className="font-semibold text-foreground mb-3">Kaminanschluss-Reparatur in Bochum-Steinkuhl</p>
+            <div className="grid grid-cols-[auto_1fr] gap-x-4 gap-y-1 text-sm">
+              <span className="text-muted-foreground font-medium">Ausgangslage</span>
+              <span>MFH, chronisch undichter Kaminanschluss, wiederkehrende Wasserflecken im Obergeschoss</span>
+              <span className="text-muted-foreground font-medium">Lösung</span>
+              <span>Kaminanschluss komplett erneuert mit Titanzink-Einfassung, Unterspannbahn im Anschlussbereich repariert</span>
+              <span className="text-muted-foreground font-medium">Ergebnis</span>
+              <span>Seit 2 Jahren kein Wassereintritt mehr</span>
+            </div>
           </div>
         </div>
       </section>
@@ -539,12 +639,12 @@ export default function Dachreparatur() {
           </p>
           <div className="flex flex-wrap justify-center gap-3">
             <Button
+              asChild
               size="lg"
               className="pulse-ring cta-pulse"
-              onClick={() => setLocation("/kontakt")}
               data-testid="button-cta-anfragen"
             >
-              Reparatur anfragen
+              <a href="/kontakt">Reparatur anfragen</a>
             </Button>
             <Button
               asChild
