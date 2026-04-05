@@ -6,7 +6,7 @@ import Breadcrumb from "@/components/Breadcrumb";
 import {
   Euro, FileCheck, Lightbulb, ShieldCheck, ArrowRight,
   CheckCircle, CheckCircle2, Info, ChevronDown, ChevronUp,
-  AlertTriangle, Phone, Mail, Play, ThermometerSun, Home,
+  AlertTriangle, Phone, Mail, ThermometerSun, Home,
 } from "lucide-react";
 import { PieChart, Pie, Cell, ResponsiveContainer, Tooltip, Legend } from "recharts";
 
@@ -26,12 +26,12 @@ const grants = [
     tags: ["Dämmung", "Fenster", "iSFP-Bonus"],
   },
   {
-    provider: "KfW (Kredit 261)",
-    title: "Wohngebäude Kredit",
-    description: "Für umfassende Sanierungen zum Effizienzhaus-Standard.",
-    amount: "Bis zu 150.000 €",
-    benefit: "Zinsgünstig mit hohen Tilgungszuschüssen.",
-    tags: ["Komplettsanierung", "Effizienzhaus"],
+    provider: "KFW-ERGÄNZUNGSKREDIT 358/359",
+    title: "Nach BAFA-Zusage",
+    description: "Zinsgünstiges Darlehen nach BAFA-Förderzusage. Bei Haushaltseinkommen ≤ 90.000 € (KfW 358 Plus) besonders günstige Konditionen. Kombinierbar mit BAFA-Zuschuss.",
+    amount: "Bis zu 120.000 € pro Wohneinheit",
+    benefit: "Zinsgünstiges Darlehen nach BAFA-Förderzusage.",
+    tags: ["Einzelmaßnahmen", "Zinsgünstig"],
   },
   {
     provider: "Finanzamt (§ 35c EStG)",
@@ -40,6 +40,14 @@ const grants = [
     amount: "20% der Kosten",
     benefit: "Über 3 Jahre direkt von der Steuerschuld abziehbar.",
     tags: ["Ohne Energieberater", "Eigennutzung"],
+  },
+  {
+    provider: "NRW.BANK",
+    title: "NRW.BANK.Gebäudesanierung",
+    description: "Zinsgünstiges Annuitätendarlehen für energetische Sanierung inkl. Dachdämmung und Dachfenster. Zinsbindung über gesamte Laufzeit. Antragstellung über Ihre Hausbank, zwingend vor Maßnahmenbeginn.",
+    amount: "2.500 – 150.000 €",
+    benefit: "Landesdarlehen NRW mit günstigen Zinsen.",
+    tags: ["Kombinierbar mit BEG EM", "NRW"],
   },
 ];
 
@@ -203,19 +211,12 @@ export default function Foerderung() {
           <p className="text-xl text-slate-300 max-w-2xl mx-auto leading-relaxed mb-8">
             Sparen Sie bis zu 20% der Sanierungskosten durch BAFA und KfW. Wir begleiten Sie als Meisterbetrieb durch den Förderdschungel.
           </p>
-          <a
-            href="#video"
-            className="inline-flex items-center gap-2 text-white border border-white/30 bg-white/10 hover:bg-white/20 px-8 py-4 rounded-full transition font-bold"
-          >
-            <Play className="w-5 h-5 fill-current" />
-            Video ansehen
-          </a>
         </div>
       </header>
 
       {/* ── Grant Cards – überlappen den Hero (Gemini-Stil) ── */}
       <div className="max-w-6xl mx-auto px-4 -mt-10 relative z-20 mb-16">
-        <div className="grid md:grid-cols-3 gap-6">
+        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
           {grants.map((g, i) => (
             <div key={i} className="bg-card rounded-md shadow-xl p-8 border border-border hover:border-blue-300 transition group">
               <div className="text-sm font-bold text-blue-600 mb-2 uppercase tracking-widest">{g.provider}</div>
@@ -237,28 +238,11 @@ export default function Foerderung() {
             </div>
           ))}
         </div>
+        <p className="text-sm text-muted-foreground text-center mt-6 max-w-3xl mx-auto">
+          Für Komplettsanierungen zum Effizienzhaus gibt es den KfW-Kredit 261 (bis 150.000 €) — das ist ein separates Programm und nicht mit BEG-Einzelmaßnahmen kombinierbar.
+        </p>
       </div>
 
-      {/* ── Video (nur meine Version hat das) ── */}
-      <section id="video" className="max-w-5xl mx-auto px-4 mb-20">
-        <div className="bg-black rounded-2xl shadow-2xl overflow-hidden aspect-video border-4 border-border">
-          <video
-            className="w-full h-full object-cover"
-            controls
-            playsInline
-            controlsList="nodownload"
-            poster="/images/foerderung-hero.webp"
-            src="/videos/foerderung-dachsanierung-bochum.mp4"
-          >
-            Ihr Browser unterstützt dieses Video nicht.
-          </video>
-        </div>
-        <div className="bg-card p-5 rounded-b-xl shadow mx-4 -mt-2 text-center border-t border-border">
-          <p className="text-muted-foreground italic text-sm">
-            „In diesem Video erfahren Sie in wenigen Minuten alles über Voraussetzungen, Ablauf und Förderhöhen."
-          </p>
-        </div>
-      </section>
 
       {/* ── Benefits (nur meine Version hat das) ── */}
       <section className="py-16 bg-muted">
@@ -314,7 +298,28 @@ export default function Foerderung() {
                   <span className="text-4xl font-bold text-blue-900">+5%</span>
                   <span className="font-semibold text-xl">iSFP Bonus</span>
                 </div>
-                <p className="text-sm text-muted-foreground">Mit individuellem Sanierungsfahrplan (iSFP) erhöht sich die Förderung auf insgesamt <strong>20%</strong>.</p>
+                <p className="text-sm text-muted-foreground">Der individuelle Sanierungsfahrplan (iSFP) ist der größte einzelne Hebel bei der Förderung: Er verdoppelt den Förderhöchstbetrag von 30.000 auf 60.000 € pro Wohneinheit und erhöht gleichzeitig den Fördersatz von 15 auf 20%. Ein iSFP wird über das Programm „Energieberatung für Wohngebäude" (EBW) mit 80% gefördert – Ihr Eigenanteil beträgt ca. 400–500 €. Typischer Mehrvorteil durch den iSFP: 3.000–8.000 € zusätzliche Förderung.</p>
+              </div>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-8">
+                <div className="bg-white rounded-xl p-6 border-2 border-gray-200 text-center">
+                  <p className="text-sm font-semibold text-gray-500 uppercase tracking-wide mb-2">Ohne iSFP</p>
+                  <p className="text-3xl font-bold text-gray-900">30.000 €</p>
+                  <p className="text-sm text-gray-500 mt-1">max. förderfähig pro WE/Jahr</p>
+                  <div className="mt-3 pt-3 border-t border-gray-100">
+                    <p className="text-lg font-bold text-blue-900">→ max. 4.500 € Zuschuss</p>
+                    <p className="text-xs text-gray-400">(15% von 30.000 €)</p>
+                  </div>
+                </div>
+                <div className="bg-white rounded-xl p-6 border-2 border-blue-500 text-center relative">
+                  <span className="absolute -top-3 left-1/2 -translate-x-1/2 bg-blue-600 text-white text-xs font-bold px-3 py-1 rounded-full">EMPFOHLEN</span>
+                  <p className="text-sm font-semibold text-blue-600 uppercase tracking-wide mb-2">Mit iSFP</p>
+                  <p className="text-3xl font-bold text-gray-900">60.000 €</p>
+                  <p className="text-sm text-gray-500 mt-1">max. förderfähig pro WE/Jahr</p>
+                  <div className="mt-3 pt-3 border-t border-blue-100">
+                    <p className="text-lg font-bold text-blue-900">→ max. 12.000 € Zuschuss</p>
+                    <p className="text-xs text-gray-400">(20% von 60.000 €)</p>
+                  </div>
+                </div>
               </div>
             </div>
             <div className="lg:w-1/2 p-8 lg:p-12 flex flex-col">
@@ -353,6 +358,39 @@ export default function Foerderung() {
                 ))}
               </ul>
             </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ── Rechenbeispiel ── */}
+      <section className="py-16 bg-background">
+        <div className="max-w-5xl mx-auto px-4 md:px-6 lg:px-8">
+          <div className="bg-gradient-to-br from-blue-50 to-white rounded-2xl p-6 md:p-8 border border-blue-100 mt-8">
+            <h3 className="text-xl font-bold text-gray-900 mb-4">Konkretes Beispiel: 4 Dachfenster austauschen</h3>
+            <p className="text-gray-600 mb-6">EFH Baujahr 1985, 4 alte Dachfenster (Uw ~2,5) → Austausch gegen VELUX Klapp-Schwingfenster mit Dreifachverglasung (Uw = 1,0) + Elektro-Außenrollläden.</p>
+            <div className="space-y-3">
+              <div className="flex justify-between items-center py-2 border-b border-blue-100">
+                <span className="text-gray-700">Gesamtkosten (Fenster + Einbau + Zubehör)</span>
+                <span className="font-bold text-gray-900">ca. 15.300 €</span>
+              </div>
+              <div className="flex justify-between items-center py-2 border-b border-blue-100">
+                <span className="text-gray-700">BAFA-Zuschuss mit iSFP (20%)</span>
+                <span className="font-bold text-green-700">− 3.060 €</span>
+              </div>
+              <div className="flex justify-between items-center py-2 border-b border-blue-100">
+                <span className="text-gray-700">EEE-Zuschuss (50% von ca. 1.200 €)</span>
+                <span className="font-bold text-green-700">− 600 €</span>
+              </div>
+              <div className="flex justify-between items-center py-2 border-b border-blue-100">
+                <span className="text-gray-700">iSFP-Eigenanteil</span>
+                <span className="font-bold text-red-600">+ 500 €</span>
+              </div>
+              <div className="flex justify-between items-center py-3 bg-blue-900 text-white rounded-lg px-4 mt-2">
+                <span className="font-semibold">Tatsächliche Investition</span>
+                <span className="text-xl font-bold">ca. 12.140 €</span>
+              </div>
+            </div>
+            <p className="text-sm text-gray-500 mt-4">Ohne iSFP: 15.300 € − 2.298 € BAFA = ca. 13.000 €. Der iSFP spart hier ca. 860 € zusätzlich bei nur 500 € Eigenanteil.</p>
           </div>
         </div>
       </section>
@@ -408,8 +446,11 @@ export default function Foerderung() {
             </div>
             <div className="bg-blue-50 border border-blue-100 rounded-md p-8">
               <h3 className="text-2xl font-bold mb-4 text-blue-900">Steuervorteil nach § 35c EStG</h3>
-              <p className="text-blue-800/70 mb-6 leading-relaxed">
+              <p className="text-blue-800/70 mb-4 leading-relaxed">
                 Für Selbstnutzer gibt es eine attraktive Alternative zur BAFA-Förderung: Wer keinen Energieberater einbinden möchte, kann 20% der Sanierungskosten (bis zu 40.000 € pro Objekt) direkt über 3 Jahre von der Steuerschuld abziehen.
+              </p>
+              <p className="text-blue-800/70 mb-6 leading-relaxed text-sm">
+                §35c ist besonders vorteilhaft wenn: die Gesamtkosten 60.000 € pro Wohneinheit übersteigen, kein Energieberater gewünscht ist, die BAFA-Antragsfrist verpasst wurde oder eine hohe Steuerlast vorliegt. Maximal 40.000 € Steuerermäßigung auf bis zu 200.000 € Kosten pro Objekt. Voraussetzung: Gebäude mindestens 10 Jahre alt (bei BEG EM genügen 5 Jahre).
               </p>
               <div className="p-4 bg-white rounded-md border border-blue-200">
                 <h4 className="font-bold text-blue-900 mb-2 flex items-center gap-2">

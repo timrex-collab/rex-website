@@ -326,12 +326,13 @@ export default function DachfensterBochum() {
           >
             <AlertTriangle className="w-10 h-10 text-blue-300 mx-auto mb-4" aria-hidden="true" />
             <h2 className="text-2xl md:text-3xl font-bold text-white mb-4" data-testid="heading-foerderung">
-              Bis zu 20 % Förderung durch BAFA &amp; KfW
+              Bis zu 20% Förderung durch BAFA (BEG EM)
             </h2>
-            <p className="text-slate-300 leading-relaxed mb-8 max-w-2xl mx-auto" data-testid="text-foerderung">
-              Der Austausch alter Dachfenster gegen moderne, energieeffiziente Modelle wird staatlich gefördert. Über
-              BAFA können Sie bis zu 20 % der Kosten als Zuschuss erhalten (15 % Grundförderung + 5 % iSFP-Bonus). Wir beraten Sie kostenlos zu allen
-              Fördermöglichkeiten und übernehmen auf Wunsch die komplette Antragstellung.
+            <p className="text-slate-300 leading-relaxed mb-4 max-w-2xl mx-auto" data-testid="text-foerderung">
+              Über BAFA (BEG EM) erhalten Sie 15–20% Zuschuss auf alle förderfähigen Kosten – Material und Einbau. Mit individuellem Sanierungsfahrplan (iSFP) steigt der Zuschuss von 15% auf 20% bei gleichzeitiger Verdopplung des Förderhöchstbetrags auf 60.000 € pro Wohneinheit.
+            </p>
+            <p className="text-slate-400 leading-relaxed mb-8 max-w-2xl mx-auto text-sm">
+              Zusätzlich kann nach BAFA-Zusage ein KfW-Ergänzungskredit (358/359) bis 120.000 € beantragt werden.
             </p>
             <Button
               asChild
