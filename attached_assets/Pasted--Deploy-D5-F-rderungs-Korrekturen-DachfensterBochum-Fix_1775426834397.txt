@@ -1,0 +1,291 @@
+# Deploy D5 — Förderungs-Korrekturen + DachfensterBochum Fix + Pulse-Ring global
+
+Du arbeitest im Projekt RoofingPros (TypeScript/React/Vite).
+
+## Übersicht
+
+9 Dateien werden geändert. Keine neuen Dateien, keine neuen Abhängigkeiten. Reine Text- und CSS-Klassen-Änderungen.
+
+Arbeite die 3 Teile nacheinander ab:
+
+- **Teil 1:** Foerderung.tsx — 7 inhaltliche Korrekturen
+- **Teil 2:** DachfensterBochum.tsx — Förder-Angabe aktualisieren
+- **Teil 3:** Pulse-Ring CTA-Klassen auf ~7 Dateien ergänzen
+
+**Wichtig:** Vor jeder Änderung die betroffene Stelle im Code suchen und den exakten Text identifizieren. Nur Text, JSX und className ändern — keine Imports entfernen (außer F7c), keine Komponenten-Struktur ändern, keine Styles entfernen.
+
+-----
+
+## TEIL 1: Foerderung.tsx — 7 Korrekturen
+
+Öffne `client/src/pages/Foerderung.tsx`.
+
+### F1 — KfW-Programm korrigieren (KRITISCH — inhaltlich falsch)
+
+Suche den Abschnitt/die Kachel, die “KfW” als Förderprogramm darstellt. Dort steht sinngemäß:
+
+- Titel: “KFW (KREDIT 261)” oder “Wohngebäude Kredit”
+- Text: “Bis zu 150.000 €”
+- Beschreibung: “Für umfassende Sanierungen zum Effizienzhaus-Standard”
+- Tags/Labels: “KOMPLETTSANIERUNG”, “EFFIZIENZHAUS”
+
+**Ersetze den gesamten KfW-Block durch zwei separate Informationen:**
+
+**Block A — KfW-Ergänzungskredit (Hauptblock, gleiches Kachel-Layout):**
+
+- Titel: “KFW-ERGÄNZUNGSKREDIT 358/359”
+- Untertitel: “Nach BAFA-Zusage”
+- Förderhöhe: “Bis zu 120.000 € pro Wohneinheit”
+- Beschreibung: “Zinsgünstiges Darlehen nach BAFA-Förderzusage. Bei Haushaltseinkommen ≤ 90.000 € (KfW 358 Plus) besonders günstige Konditionen. Kombinierbar mit BAFA-Zuschuss.”
+- Tags: “EINZELMASSNAHMEN”, “ZINSGÜNSTIG”
+
+**Block B — KfW 261 (kleiner Hinweistext UNTER der Kachel, kein eigener Block):**
+
+- Text: “Für Komplettsanierungen zum Effizienzhaus gibt es den KfW-Kredit 261 (bis 150.000 €) — das ist ein separates Programm und nicht mit BEG-Einzelmaßnahmen kombinierbar.”
+
+### F2 — Förderhöchstgrenzen prominent anzeigen
+
+Suche den Abschnitt “Wie viel gibt es konkret?” (dort stehen die 15% und +5% iSFP-Angaben).
+
+**Nach der bestehenden 15% / +5% Darstellung diesen neuen Block einfügen:**
+
+```jsx
+<div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-8">
+  <div className="bg-white rounded-xl p-6 border-2 border-gray-200 text-center">
+    <p className="text-sm font-semibold text-gray-500 uppercase tracking-wide mb-2">Ohne iSFP</p>
+    <p className="text-3xl font-bold text-gray-900">30.000 €</p>
+    <p className="text-sm text-gray-500 mt-1">max. förderfähig pro WE/Jahr</p>
+    <div className="mt-3 pt-3 border-t border-gray-100">
+      <p className="text-lg font-bold text-blue-900">→ max. 4.500 € Zuschuss</p>
+      <p className="text-xs text-gray-400">(15% von 30.000 €)</p>
+    </div>
+  </div>
+  <div className="bg-white rounded-xl p-6 border-2 border-blue-500 text-center relative">
+    <span className="absolute -top-3 left-1/2 -translate-x-1/2 bg-blue-600 text-white text-xs font-bold px-3 py-1 rounded-full">EMPFOHLEN</span>
+    <p className="text-sm font-semibold text-blue-600 uppercase tracking-wide mb-2">Mit iSFP</p>
+    <p className="text-3xl font-bold text-gray-900">60.000 €</p>
+    <p className="text-sm text-gray-500 mt-1">max. förderfähig pro WE/Jahr</p>
+    <div className="mt-3 pt-3 border-t border-blue-100">
+      <p className="text-lg font-bold text-blue-900">→ max. 12.000 € Zuschuss</p>
+      <p className="text-xs text-gray-400">(20% von 60.000 €)</p>
+    </div>
+  </div>
+</div>
+```
+
+### F3 — NRW.BANK.Gebäudesanierung ergänzen
+
+Suche die Stelle, an der die Förderprogramme (BAFA, KfW, Finanzamt/§35c) als Kacheln oder Cards dargestellt werden.
+
+**Füge NACH dem §35c-Block eine vierte Kachel im selben Layout ein:**
+
+- Label/Tag: “NRW.BANK”
+- Titel: “NRW.BANK.Gebäudesanierung”
+- Untertitel: “Landesdarlehen NRW”
+- Förderhöhe: “2.500 – 150.000 €”
+- Beschreibung: “Zinsgünstiges Annuitätendarlehen für energetische Sanierung inkl. Dachdämmung und Dachfenster. Zinsbindung über gesamte Laufzeit. Antragstellung über Ihre Hausbank, zwingend vor Maßnahmenbeginn.”
+- Tags: “KOMBINIERBAR MIT BEG EM”, “NRW”
+
+Gleicher Kachel-Stil wie BAFA und §35c.
+
+### F4 — iSFP-Erklärung erweitern
+
+Suche den Text zum iSFP-Bonus (”+5%”, “individueller Sanierungsfahrplan”).
+
+**Ersetze den bestehenden iSFP-Beschreibungstext durch:**
+
+“Der individuelle Sanierungsfahrplan (iSFP) ist der größte einzelne Hebel bei der Förderung: Er verdoppelt den Förderhöchstbetrag von 30.000 auf 60.000 € pro Wohneinheit und erhöht gleichzeitig den Fördersatz von 15 auf 20%. Ein iSFP wird über das Programm „Energieberatung für Wohngebäude” (EBW) mit 80% gefördert – Ihr Eigenanteil beträgt ca. 400–500 €. Typischer Mehrvorteil durch den iSFP: 3.000–8.000 € zusätzliche Förderung.”
+
+Titel bleibt: “+5% iSFP Bonus”
+
+### F5 — §35c EStG erweitern
+
+Suche den §35c-Block (Steuerbonus).
+
+**Füge nach der bestehenden Beschreibung folgenden Absatz hinzu:**
+
+“§35c ist besonders vorteilhaft wenn: die Gesamtkosten 60.000 € pro Wohneinheit übersteigen, kein Energieberater gewünscht ist, die BAFA-Antragsfrist verpasst wurde oder eine hohe Steuerlast vorliegt. Maximal 40.000 € Steuerermäßigung auf bis zu 200.000 € Kosten pro Objekt. Voraussetzung: Gebäude mindestens 10 Jahre alt (bei BEG EM genügen 5 Jahre).”
+
+### F6 — Rechenbeispiel einfügen
+
+Suche den Bereich nach dem Tortendiagramm (Kostenverteilung Staatliche Förderung / Eigenanteil) oder nach dem Block “Was wird konkret gefördert?”.
+
+**Füge DAVOR oder DANACH diesen neuen Abschnitt ein:**
+
+```jsx
+<div className="bg-gradient-to-br from-blue-50 to-white rounded-2xl p-6 md:p-8 border border-blue-100 mt-8">
+  <h3 className="text-xl font-bold text-gray-900 mb-4">Konkretes Beispiel: 4 Dachfenster austauschen</h3>
+  <p className="text-gray-600 mb-6">EFH Baujahr 1985, 4 alte Dachfenster (Uw ~2,5) → Austausch gegen VELUX Klapp-Schwingfenster mit Dreifachverglasung (Uw = 1,0) + Elektro-Außenrollläden.</p>
+  <div className="space-y-3">
+    <div className="flex justify-between items-center py-2 border-b border-blue-100">
+      <span className="text-gray-700">Gesamtkosten (Fenster + Einbau + Zubehör)</span>
+      <span className="font-bold text-gray-900">ca. 15.300 €</span>
+    </div>
+    <div className="flex justify-between items-center py-2 border-b border-blue-100">
+      <span className="text-gray-700">BAFA-Zuschuss mit iSFP (20%)</span>
+      <span className="font-bold text-green-700">− 3.060 €</span>
+    </div>
+    <div className="flex justify-between items-center py-2 border-b border-blue-100">
+      <span className="text-gray-700">EEE-Zuschuss (50% von ca. 1.200 €)</span>
+      <span className="font-bold text-green-700">− 600 €</span>
+    </div>
+    <div className="flex justify-between items-center py-2 border-b border-blue-100">
+      <span className="text-gray-700">iSFP-Eigenanteil</span>
+      <span className="font-bold text-red-600">+ 500 €</span>
+    </div>
+    <div className="flex justify-between items-center py-3 bg-blue-900 text-white rounded-lg px-4 mt-2">
+      <span className="font-semibold">Tatsächliche Investition</span>
+      <span className="text-xl font-bold">ca. 12.140 €</span>
+    </div>
+  </div>
+  <p className="text-sm text-gray-500 mt-4">Ohne iSFP: 15.300 € − 2.298 € BAFA = ca. 13.000 €. Der iSFP spart hier ca. 860 € zusätzlich bei nur 500 € Eigenanteil.</p>
+</div>
+```
+
+### F7 — Video-Buttons und Video-Sektion entfernen
+
+Suche und entferne ALLE folgenden Elemente:
+
+**a) “Video ansehen”-Button im Hero:**
+Suche nach einem Button oder Link mit dem Text “Video ansehen” im Hero-Bereich. Lösche den gesamten Button/Link inkl. Icon (wahrscheinlich `<Play />` von lucide-react).
+
+**b) Video-Sektion:**
+Suche nach dem `<video>` Tag oder einem Container mit Video-Referenz. Der zugehörige Text enthält sinngemäß: “In diesem Video erfahren Sie in wenigen Minuten alles über Voraussetzungen, Ablauf und Förderhöhen.” Lösche die gesamte Sektion (Container + Überschrift + Text + Video-Element).
+
+**c) Play-Icon Import bereinigen:**
+Falls `Play` aus lucide-react importiert wird und nach dem Entfernen nicht mehr verwendet wird → aus dem Import-Statement entfernen. Prüfe vorher, ob `Play` noch anderswo in der Datei genutzt wird.
+
+**d) Poster-Image Referenz:**
+Falls eine Referenz auf `/images/foerderung-hero.webp` oder ähnliche Video-Poster existiert, die nur für das Video genutzt wurde → ebenfalls entfernen.
+
+**Wichtig:** Nur Video-bezogene Elemente entfernen. Restliche Seitenstruktur (Hero-Text, BAFA-Kacheln, FAQ, Footer-CTA) NICHT verändern.
+
+-----
+
+## TEIL 2: DachfensterBochum.tsx — Förder-Angabe aktualisieren
+
+Öffne `client/src/pages/DachfensterBochum.tsx`.
+
+### Fix 1 — Hauptüberschrift
+
+Suche nach:
+
+```
+Bis zu 15% Förderung durch BAFA & KfW
+```
+
+Ersetze durch:
+
+```
+Bis zu 20% Förderung durch BAFA (BEG EM)
+```
+
+### Fix 2 — Beschreibungstext
+
+Suche nach:
+
+```
+Über BAFA oder KfW können Sie bis zu 15% der Kosten zurückbekommen
+```
+
+Ersetze durch:
+
+```
+Über BAFA (BEG EM) erhalten Sie 15–20% Zuschuss auf alle förderfähigen Kosten – Material und Einbau. Mit individuellem Sanierungsfahrplan (iSFP) steigt der Zuschuss von 15% auf 20% bei gleichzeitiger Verdopplung des Förderhöchstbetrags auf 60.000 € pro Wohneinheit
+```
+
+### Fix 3 — KfW-Klarstellung
+
+Suche nach weiteren Erwähnungen von “KfW” im Förder-Abschnitt dieser Seite. Falls KfW dort als eigenständiges Einzelmaßnahmen-Programm dargestellt wird, ergänze:
+
+“Zusätzlich kann nach BAFA-Zusage ein KfW-Ergänzungskredit (358/359) bis 120.000 € beantragt werden.”
+
+-----
+
+## TEIL 3: Pulse-Ring CTA-Klassen global ausrollen
+
+Der pulsierende CTA-Button-Effekt besteht aus **zwei CSS-Klassen**, die BEIDE vorhanden sein müssen:
+
+- `pulse-ring` → animierter Rahmen-Ring via ::before
+- `cta-pulse` → radialer Box-Shadow-Effekt
+
+**Vollständig = className enthält BEIDE:** `pulse-ring cta-pulse`
+
+Die CSS-Definitionen in `client/src/index.css` existieren bereits und dürfen **NICHT verändert** werden.
+
+### Schritt 1: Bestandsaufnahme (NUR LESEN)
+
+Durchsuche ALLE `.tsx`-Dateien in `client/src/pages/` und `client/src/components/` nach Vorkommen von `pulse-ring` und `cta-pulse`.
+
+Erstelle eine Tabelle: Dateiname | Hat pulse-ring | Hat cta-pulse | Vollständig (ja/nein)
+
+Zeige die Tabelle an, bevor du mit Schritt 2 weitermachst.
+
+### Schritt 2: Fehlende Klasse ergänzen
+
+Für Dateien, die nur EINE der beiden Klassen haben:
+
+**Dateien mit nur `pulse-ring` (fehlt `cta-pulse`):**
+Betrifft voraussichtlich: Home.tsx, Navigation.tsx, Hero.tsx
+
+Bei jedem Button mit `pulse-ring` aber OHNE `cta-pulse`:
+→ Füge `cta-pulse` zur className hinzu
+
+**Dateien mit nur `cta-pulse` (fehlt `pulse-ring`):**
+Betrifft voraussichtlich: Dachreparatur.tsx, DachwartungBochum.tsx, VeluxRolllaeden.tsx, VeluxAustausch.tsx
+
+Bei jedem Button mit `cta-pulse` aber OHNE `pulse-ring`:
+→ Füge `pulse-ring` zur className hinzu
+
+**Hinweis:** Zeilennummern haben sich durch frühere Deploys verschoben — suche nach Klassennamen, nicht nach Zeilennummern.
+
+### Schritt 3: Beide Klassen hinzufügen
+
+Für Dateien OHNE Pulse-Effekt, die aber einen primären CTA-Button haben. Betrifft voraussichtlich:
+
+- Foerderung.tsx (gerade in Teil 1 bearbeitet — CTA-Buttons dort auch ergänzen)
+- Solarpflicht.tsx
+- FAQ.tsx
+- DachLexikon.tsx
+- About.tsx
+- Services.tsx
+- Contact.tsx (Achtung: der tel:-Link hat bereits pulse-ring cta-pulse — prüfe ob weitere CTAs fehlen)
+- Careers.tsx
+- References.tsx
+
+Pro Datei:
+
+1. Suche den **primären CTA-Button** (“Angebot anfragen”, “Jetzt anrufen”, “Beratung anfragen”, “Kostenlose Beratung anfragen”, “Förderung anfragen” etc.)
+1. Es gibt meist **zwei CTA-Buttons** pro Seite (Hero + Seitenende). **Beide** bekommen die Klassen.
+1. Füge `pulse-ring cta-pulse` zur className hinzu. Bestehende Klassen NICHT entfernen.
+
+Beispiel:
+
+```
+ALT:  className="bg-blue-600 text-white px-6 py-3 rounded-lg font-semibold"
+NEU:  className="pulse-ring cta-pulse bg-blue-600 text-white px-6 py-3 rounded-lg font-semibold"
+```
+
+### Ausnahmen — NICHT anfassen:
+
+- Sekundäre Links (“Mehr erfahren”, Navigationslinks)
+- Footer-Links
+- Telefon-Links im Fließtext (nur prominente tel:-Buttons)
+- Buttons, die bereits BEIDE Klassen haben
+
+-----
+
+## ABSCHLUSS
+
+Nach ALLEN Änderungen (Teil 1 + Teil 2 + Teil 3):
+
+1. `npm run build` ausführen
+1. Prüfen ob der Build fehlerfrei durchläuft
+1. Zusammenfassung ausgeben:
+- Foerderung.tsx: Welche der 7 Fixes (F1–F7) wurden umgesetzt?
+- DachfensterBochum.tsx: Welche Textstellen geändert?
+- Pulse-Ring: Tabelle mit Dateiname | Anzahl Buttons geändert | Vorher | Nachher
+
+Wenn der Build fehlschlägt, die Fehlermeldung ausgeben und NICHT deployen.
+
+**Falls der Agent bei Teil 3 abbricht:** Die bisherigen Änderungen (Teil 1 + 2) committen. Teil 3 kann als separater Folgeprompt ausgeführt werden — die Änderungen sind unabhängig voneinander.
