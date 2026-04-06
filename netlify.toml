@@ -120,6 +120,37 @@
   to = "/dachreparatur-bochum"
   status = 301
 
+# Alte CMS-URLs → Neue Seiten (NAP-Bereinigung April 2026)
+[[redirects]]
+  from = "/steildach"
+  to = "/steildach-bochum"
+  status = 301
+
+[[redirects]]
+  from = "/steildach/"
+  to = "/steildach-bochum"
+  status = 301
+
+[[redirects]]
+  from = "/dachrinnen"
+  to = "/bauklempnerei-bochum"
+  status = 301
+
+[[redirects]]
+  from = "/dachrinnen/"
+  to = "/bauklempnerei-bochum"
+  status = 301
+
+[[redirects]]
+  from = "/braas-foto-plus"
+  to = "/referenzen"
+  status = 301
+
+[[redirects]]
+  from = "/braas-foto-plus/"
+  to = "/referenzen"
+  status = 301
+
 # SPA Fallback — MUSS IMMER ZULETZT STEHEN
 [[redirects]]
   from = "/*"
