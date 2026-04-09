@@ -42,6 +42,29 @@ export default function Contact() {
         showCTAs={false}
       />
 
+      <section className="bg-primary text-primary-foreground py-6">
+        <div className="max-w-7xl mx-auto px-4 md:px-6 lg:px-8">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
+            <div>
+              <div className="text-3xl font-bold">1984</div>
+              <div className="text-sm opacity-80 mt-1">Gegründet</div>
+            </div>
+            <div>
+              <div className="text-3xl font-bold">40+</div>
+              <div className="text-sm opacity-80 mt-1">Jahre Erfahrung</div>
+            </div>
+            <div>
+              <div className="text-3xl font-bold">VELUX</div>
+              <div className="text-sm opacity-80 mt-1">Autorisierter Partner</div>
+            </div>
+            <div>
+              <div className="text-3xl font-bold">Meister</div>
+              <div className="text-sm opacity-80 mt-1">Dachdecker-Meisterbetrieb</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       <section className="py-16 md:py-20 lg:py-24 bg-background">
         <div className="max-w-7xl mx-auto px-4 md:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16">
@@ -114,7 +137,15 @@ export default function Contact() {
                   </div>
                   <div>
                     <h3 className="font-semibold mb-1">WhatsApp</h3>
-                    <p className="text-lg">0234-583126</p>
+                    <a
+                      href="https://wa.me/49234583126"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-lg text-primary hover:underline"
+                      data-testid="link-contact-whatsapp"
+                    >
+                      0234-583126
+                    </a>
                     <p className="text-sm text-muted-foreground mt-1">
                       Kontaktieren Sie uns auch gerne per WhatsApp oder Sprachnachricht
                     </p>
@@ -142,6 +173,44 @@ export default function Contact() {
                     >
                       Instagram
                     </a>
+                  </div>
+                </div>
+              </div>
+
+              <div className="mt-8 mb-8">
+                <h3 className="font-semibold mb-4">Das sagen unsere Kunden</h3>
+                <div className="space-y-4">
+                  <div className="p-4 bg-muted rounded-xl border border-border">
+                    <div className="flex items-center gap-2 mb-2">
+                      <span className="text-yellow-500 text-sm">★★★★★</span>
+                      <span className="text-sm font-medium">Anke</span>
+                    </div>
+                    <p className="text-sm text-muted-foreground">
+                      „Die Fa. Rex ist nicht das erste Mal für uns tätig gewesen;
+                      diesmal war das gesamte Dach eines Altbaus zu erneuern und
+                      das Gründach für einen Anbau zu erstellen. Auch diesmal waren
+                      wir mit den Arbeiten rundum zufrieden. Nette, kompetente
+                      Mitarbeiter, pünktliche Ausführung. Daher: Empfehlung!"
+                    </p>
+                  </div>
+                  <div className="p-4 bg-muted rounded-xl border border-border">
+                    <div className="flex items-center gap-2 mb-2">
+                      <span className="text-yellow-500 text-sm">★★★★★</span>
+                      <span className="text-sm font-medium">Michael</span>
+                    </div>
+                    <p className="text-sm text-muted-foreground">
+                      „Absolut pünktlich, zuverlässig und fachlich einwandfrei!"
+                    </p>
+                  </div>
+                  <div className="p-4 bg-muted rounded-xl border border-border">
+                    <div className="flex items-center gap-2 mb-2">
+                      <span className="text-yellow-500 text-sm">★★★★★</span>
+                      <span className="text-sm font-medium">Marcel</span>
+                    </div>
+                    <p className="text-sm text-muted-foreground">
+                      „Einfach ein Top Betrieb! Zuverlässig und kompetent.
+                      Ich empfehle die Firma Rex gerne weiter!"
+                    </p>
                   </div>
                 </div>
               </div>
@@ -220,6 +289,29 @@ export default function Contact() {
           </div>
         </div>
       </section>
+      {/* Sticky Mobile CTA */}
+      <div className="fixed bottom-0 left-0 right-0 z-50 md:hidden bg-background border-t border-border shadow-lg">
+        <div className="grid grid-cols-2 divide-x divide-border">
+          <a
+            href="tel:+49234583100"
+            className="flex items-center justify-center gap-2 py-4 text-sm font-semibold text-primary hover:bg-muted transition-colors"
+            data-testid="sticky-cta-call"
+          >
+            <Phone className="w-4 h-4" />
+            Jetzt anrufen
+          </a>
+          <a
+            href="https://wa.me/49234583126"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex items-center justify-center gap-2 py-4 text-sm font-semibold text-primary hover:bg-muted transition-colors"
+            data-testid="sticky-cta-whatsapp"
+          >
+            <MessageCircle className="w-4 h-4" />
+            WhatsApp
+          </a>
+        </div>
+      </div>
     </>
   );
 }

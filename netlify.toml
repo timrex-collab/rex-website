@@ -125,31 +125,37 @@
   from = "/steildach"
   to = "/steildach-bochum"
   status = 301
+  force = true
 
 [[redirects]]
   from = "/steildach/"
   to = "/steildach-bochum"
   status = 301
+  force = true
 
 [[redirects]]
   from = "/dachrinnen"
   to = "/bauklempnerei-bochum"
   status = 301
+  force = true
 
 [[redirects]]
   from = "/dachrinnen/"
   to = "/bauklempnerei-bochum"
   status = 301
+  force = true
 
 [[redirects]]
   from = "/braas-foto-plus"
   to = "/referenzen"
   status = 301
+  force = true
 
 [[redirects]]
   from = "/braas-foto-plus/"
   to = "/referenzen"
   status = 301
+  force = true
 
 # SPA Fallback — MUSS IMMER ZULETZT STEHEN
 [[redirects]]
