@@ -6,6 +6,7 @@ import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
+import StickyMobileCTA from "@/components/StickyMobileCTA";
 import ScrollToTop from "@/components/ScrollToTop";
 import Home from "@/pages/Home";
 
@@ -84,6 +85,7 @@ function App() {
           </main>
           <Footer />
         </div>
+        <StickyMobileCTA />
         <Toaster />
       </TooltipProvider>
     </QueryClientProvider>

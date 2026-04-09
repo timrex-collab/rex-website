@@ -362,3 +362,9 @@
     }
   }
 }
+
+@media (max-width: 767px) {
+  body {
+    padding-bottom: 72px;
+  }
+}

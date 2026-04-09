@@ -180,6 +180,30 @@ export default function Home() {
         showCTAs={true}
       />
 
+      {/* Kennzahlen-Banner */}
+      <section className="bg-primary text-primary-foreground py-6">
+        <div className="max-w-7xl mx-auto px-4 md:px-6 lg:px-8">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
+            <div>
+              <p className="text-2xl md:text-3xl font-bold">Seit 1984</p>
+              <p className="text-sm opacity-80 mt-1">Meisterbetrieb in Bochum</p>
+            </div>
+            <div>
+              <p className="text-2xl md:text-3xl font-bold">40+ Jahre</p>
+              <p className="text-sm opacity-80 mt-1">Erfahrung im Ruhrgebiet</p>
+            </div>
+            <div>
+              <p className="text-2xl md:text-3xl font-bold">VELUX</p>
+              <p className="text-sm opacity-80 mt-1">Autorisierter Fachbetrieb</p>
+            </div>
+            <div>
+              <p className="text-2xl md:text-3xl font-bold">4,48 ★</p>
+              <p className="text-sm opacity-80 mt-1">ProvenExpert Bewertung</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
       <section className="py-16 md:py-20 lg:py-24 bg-background">
         <div className="max-w-7xl mx-auto px-4 md:px-6 lg:px-8">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 md:gap-12">
@@ -255,6 +279,70 @@ export default function Home() {
             </a>
           </noscript>
           <div id="proSealWidget"></div>
+        </div>
+      </section>
+
+      {/* Bewertungen */}
+      <section className="py-16 md:py-20 bg-slate-50">
+        <div className="max-w-7xl mx-auto px-4 md:px-6 lg:px-8">
+          <h2 className="text-3xl md:text-4xl font-bold text-center mb-4">
+            Was unsere Kunden sagen
+          </h2>
+          <p className="text-center text-muted-foreground mb-12 max-w-2xl mx-auto">
+            Echte Bewertungen von Hausbesitzern aus Bochum und dem Ruhrgebiet
+          </p>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+
+            <div className="bg-white rounded-xl p-6 border border-gray-200 shadow-sm">
+              <div className="flex gap-1 mb-3">
+                {"★★★★★".split("").map((s, i) => (
+                  <span key={i} className="text-amber-400 text-lg">{s}</span>
+                ))}
+              </div>
+              <p className="text-gray-700 mb-4 leading-relaxed">
+                „Die Fa. Rex ist nicht das erste Mal für uns tätig gewesen; diesmal war das gesamte Dach eines Altbaus zu erneuern und das Gründach für einen Anbau zu erstellen. Auch diesmal waren wir mit den Arbeiten rundum zufrieden. Nette, kompetente Mitarbeiter, pünktliche Ausführung. Soweit doch etwas nachzuarbeiten war, ist das umgehend erledigt worden. Daher: Empfehlung!"
+              </p>
+              <p className="font-semibold text-sm text-gray-900">Anke</p>
+              <p className="text-xs text-gray-500">Google-Bewertung</p>
+            </div>
+
+            <div className="bg-white rounded-xl p-6 border border-gray-200 shadow-sm">
+              <div className="flex gap-1 mb-3">
+                {"★★★★★".split("").map((s, i) => (
+                  <span key={i} className="text-amber-400 text-lg">{s}</span>
+                ))}
+              </div>
+              <p className="text-gray-700 mb-4 leading-relaxed">
+                „Absolut pünktlich, zuverlässig und fachlich einwandfrei!"
+              </p>
+              <p className="font-semibold text-sm text-gray-900">Michael</p>
+              <p className="text-xs text-gray-500">Google-Bewertung</p>
+            </div>
+
+            <div className="bg-white rounded-xl p-6 border border-gray-200 shadow-sm">
+              <div className="flex gap-1 mb-3">
+                {"★★★★★".split("").map((s, i) => (
+                  <span key={i} className="text-amber-400 text-lg">{s}</span>
+                ))}
+              </div>
+              <p className="text-gray-700 mb-4 leading-relaxed">
+                „Einfach ein Top Betrieb! Zuverlässig und kompetent. Ich empfehle die Firma Rex gerne weiter!"
+              </p>
+              <p className="font-semibold text-sm text-gray-900">Marcel</p>
+              <p className="text-xs text-gray-500">Google-Bewertung</p>
+            </div>
+
+          </div>
+          <div className="text-center mt-8">
+            <a
+              href="https://www.google.com/maps/place/Rex+Bedachungs+GmbH/@51.4623584,7.2428438,519m/data=!3m2!1e3!4b1!4m6!3m5!1s0x47b8e00fdd91a96d:0xb0e424e0f275f1b6!8m2!3d51.4623584!4d7.2428438!16s%2Fg%2F1tfqkgvg"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 text-primary font-medium hover:underline"
+            >
+              Alle Bewertungen auf Google ansehen →
+            </a>
+          </div>
         </div>
       </section>
 

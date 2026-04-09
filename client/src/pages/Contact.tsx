@@ -289,29 +289,6 @@ export default function Contact() {
           </div>
         </div>
       </section>
-      {/* Sticky Mobile CTA */}
-      <div className="fixed bottom-0 left-0 right-0 z-50 md:hidden bg-background border-t border-border shadow-lg">
-        <div className="grid grid-cols-2 divide-x divide-border">
-          <a
-            href="tel:+49234583100"
-            className="flex items-center justify-center gap-2 py-4 text-sm font-semibold text-primary hover:bg-muted transition-colors"
-            data-testid="sticky-cta-call"
-          >
-            <Phone className="w-4 h-4" />
-            Jetzt anrufen
-          </a>
-          <a
-            href="https://wa.me/49234583126"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="flex items-center justify-center gap-2 py-4 text-sm font-semibold text-primary hover:bg-muted transition-colors"
-            data-testid="sticky-cta-whatsapp"
-          >
-            <MessageCircle className="w-4 h-4" />
-            WhatsApp
-          </a>
-        </div>
-      </div>
     </>
   );
 }

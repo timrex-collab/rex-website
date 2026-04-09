@@ -1,0 +1,199 @@
+# Deploy D6 — Folge-Prompt: Home.tsx + Sticky CTA global
+
+Du arbeitest im Projekt RoofingPros (TypeScript/React/Vite).
+
+Die Kennzahlen-Banner, Bewertungs-Cards und Sticky CTA wurden versehentlich nur auf Contact.tsx eingebaut. Die Änderungen dort bleiben bestehen. Jetzt müssen sie zusätzlich an die richtigen Stellen.
+
+3 Aufgaben, 2–3 Dateien.
+
+---
+
+## AUFGABE 1: Kennzahlen-Banner auf Home.tsx
+
+Öffne `client/src/pages/Home.tsx`.
+
+Suche das Ende der Hero-Komponente oder des Hero-Bereichs (das schließende `</section>` oder `/>` der Hero-Komponente).
+
+Füge DIREKT DANACH folgenden Abschnitt ein:
+
+```jsx
+{/* Kennzahlen-Banner */}
+<section className="bg-primary text-primary-foreground py-6">
+  <div className="max-w-7xl mx-auto px-4 md:px-6 lg:px-8">
+    <div className="grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
+      <div>
+        <p className="text-2xl md:text-3xl font-bold">Seit 1984</p>
+        <p className="text-sm opacity-80 mt-1">Meisterbetrieb in Bochum</p>
+      </div>
+      <div>
+        <p className="text-2xl md:text-3xl font-bold">40+ Jahre</p>
+        <p className="text-sm opacity-80 mt-1">Erfahrung im Ruhrgebiet</p>
+      </div>
+      <div>
+        <p className="text-2xl md:text-3xl font-bold">VELUX</p>
+        <p className="text-sm opacity-80 mt-1">Autorisierter Fachbetrieb</p>
+      </div>
+      <div>
+        <p className="text-2xl md:text-3xl font-bold">4,48 ★</p>
+        <p className="text-sm opacity-80 mt-1">ProvenExpert Bewertung</p>
+      </div>
+    </div>
+  </div>
+</section>
+```
+
+---
+
+## AUFGABE 2: Bewertungs-Cards auf Home.tsx
+
+In derselben Datei `client/src/pages/Home.tsx`.
+
+Suche den letzten großen CTA-Bereich am Seitenende (typischerweise ein "Jetzt Angebot anfragen" oder "Kontakt"-Abschnitt ganz unten).
+
+Füge DAVOR folgenden Abschnitt ein:
+
+```jsx
+{/* Bewertungen */}
+<section className="py-16 md:py-20 bg-slate-50">
+  <div className="max-w-7xl mx-auto px-4 md:px-6 lg:px-8">
+    <h2 className="text-3xl md:text-4xl font-bold text-center mb-4">
+      Was unsere Kunden sagen
+    </h2>
+    <p className="text-center text-muted-foreground mb-12 max-w-2xl mx-auto">
+      Echte Bewertungen von Hausbesitzern aus Bochum und dem Ruhrgebiet
+    </p>
+    <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+
+      <div className="bg-white rounded-xl p-6 border border-gray-200 shadow-sm">
+        <div className="flex gap-1 mb-3">
+          {"★★★★★".split("").map((s, i) => (
+            <span key={i} className="text-amber-400 text-lg">{s}</span>
+          ))}
+        </div>
+        <p className="text-gray-700 mb-4 leading-relaxed">
+          „Die Fa. Rex ist nicht das erste Mal für uns tätig gewesen; diesmal war das gesamte Dach eines Altbaus zu erneuern und das Gründach für einen Anbau zu erstellen. Auch diesmal waren wir mit den Arbeiten rundum zufrieden. Nette, kompetente Mitarbeiter, pünktliche Ausführung. Soweit doch etwas nachzuarbeiten war, ist das umgehend erledigt worden. Daher: Empfehlung!"
+        </p>
+        <p className="font-semibold text-sm text-gray-900">Anke</p>
+        <p className="text-xs text-gray-500">Google-Bewertung</p>
+      </div>
+
+      <div className="bg-white rounded-xl p-6 border border-gray-200 shadow-sm">
+        <div className="flex gap-1 mb-3">
+          {"★★★★★".split("").map((s, i) => (
+            <span key={i} className="text-amber-400 text-lg">{s}</span>
+          ))}
+        </div>
+        <p className="text-gray-700 mb-4 leading-relaxed">
+          „Absolut pünktlich, zuverlässig und fachlich einwandfrei!"
+        </p>
+        <p className="font-semibold text-sm text-gray-900">Michael</p>
+        <p className="text-xs text-gray-500">Google-Bewertung</p>
+      </div>
+
+      <div className="bg-white rounded-xl p-6 border border-gray-200 shadow-sm">
+        <div className="flex gap-1 mb-3">
+          {"★★★★★".split("").map((s, i) => (
+            <span key={i} className="text-amber-400 text-lg">{s}</span>
+          ))}
+        </div>
+        <p className="text-gray-700 mb-4 leading-relaxed">
+          „Einfach ein Top Betrieb! Zuverlässig und kompetent. Ich empfehle die Firma Rex gerne weiter!"
+        </p>
+        <p className="font-semibold text-sm text-gray-900">Marcel</p>
+        <p className="text-xs text-gray-500">Google-Bewertung</p>
+      </div>
+
+    </div>
+    <div className="text-center mt-8">
+      <a
+        href="https://www.google.com/maps/place/Rex+Bedachungs+GmbH/@51.4623584,7.2428438,519m/data=!3m2!1e3!4b1!4m6!3m5!1s0x47b8e00fdd91a96d:0xb0e424e0f275f1b6!8m2!3d51.4623584!4d7.2428438!16s%2Fg%2F1tfqkgvg"
+        target="_blank"
+        rel="noopener noreferrer"
+        className="inline-flex items-center gap-2 text-primary font-medium hover:underline"
+      >
+        Alle Bewertungen auf Google ansehen →
+      </a>
+    </div>
+  </div>
+</section>
+```
+
+---
+
+## AUFGABE 3: Sticky Mobile CTA global machen
+
+Die Sticky CTA-Bar ist aktuell nur in Contact.tsx eingebaut. Sie muss auf ALLEN Seiten sichtbar sein.
+
+### Schritt A: Neue Komponente erstellen
+
+Erstelle die Datei `client/src/components/StickyMobileCTA.tsx`:
+
+```tsx
+export default function StickyMobileCTA() {
+  return (
+    <div className="fixed bottom-0 left-0 right-0 z-50 md:hidden bg-white border-t border-gray-200 shadow-[0_-4px_12px_rgba(0,0,0,0.1)] px-4 py-3 flex gap-3">
+      <a
+        href="tel:+49234583100"
+        className="flex-1 flex items-center justify-center gap-2 bg-primary text-primary-foreground font-semibold py-3 rounded-lg text-sm"
+      >
+        <svg xmlns="http://www.w3.org/2000/svg" className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+        Jetzt anrufen
+      </a>
+      <a
+        href="https://wa.me/49234583126"
+        target="_blank"
+        rel="noopener noreferrer"
+        className="flex-1 flex items-center justify-center gap-2 bg-white text-primary border-2 border-primary font-semibold py-3 rounded-lg text-sm"
+      >
+        <svg xmlns="http://www.w3.org/2000/svg" className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+        WhatsApp
+      </a>
+    </div>
+  );
+}
+```
+
+### Schritt B: Global einbinden
+
+Öffne die Datei, die das Haupt-Layout definiert. Das ist wahrscheinlich `client/src/App.tsx` oder eine Layout-Wrapper-Komponente.
+
+1. Importiere die Komponente:
+```tsx
+import StickyMobileCTA from "@/components/StickyMobileCTA";
+```
+
+2. Platziere `<StickyMobileCTA />` NACH dem `<Footer />` (oder nach dem letzten sichtbaren Element), aber VOR dem schließenden Fragment `</>` oder Container-`</div>`.
+
+### Schritt C: Sticky CTA aus Contact.tsx entfernen
+
+Da die CTA-Bar jetzt global ist, entferne die lokale Version aus Contact.tsx:
+- Suche die Sticky-Bar-JSX in Contact.tsx (das fixed-bottom-Element)
+- Lösche den gesamten Block
+- Entferne ggf. nicht mehr genutzte Imports
+
+### Schritt D: Body Padding für Mobilgeräte
+
+Öffne `client/src/index.css`.
+
+Füge am Ende der Datei hinzu (NICHT in bestehende Regeln einbauen):
+
+```css
+@media (max-width: 767px) {
+  body {
+    padding-bottom: 72px;
+  }
+}
+```
+
+Das verhindert, dass der Sticky-Bar den unteren Seiteninhalt überlappt.
+
+---
+
+## ABSCHLUSS
+
+Nach allen Änderungen:
+1. `npm run build` ausführen
+2. Prüfen ob der Build fehlerfrei durchläuft
+3. Zusammenfassung: Welche Dateien geändert/erstellt? Sind Kennzahlen + Bewertungen auf Home.tsx? Ist StickyMobileCTA global?
+
+Wenn der Build fehlschlägt, Fehlermeldung ausgeben und NICHT deployen.
