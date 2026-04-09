@@ -1,0 +1,179 @@
+Bitte führe folgende Änderungen durch. Es gibt zwei Teile:
+TEIL 1 betrifft netlify.toml, TEIL 2 betrifft Contact.tsx.
+
+════════════════════════════════════
+TEIL 1 — netlify.toml: Slash-Fixes
+════════════════════════════════════
+
+Öffne netlify.toml und suche die bestehenden [[redirects]]-
+Einträge für /braas-foto-plus, /dachrinnen und /steildach.
+
+Für jeden dieser drei Einträge: Füge direkt darunter einen
+zweiten identischen Eintrag MIT abschließendem Slash hinzu.
+
+Beispiel-Muster (Zielseiten aus bestehenden Einträgen
+übernehmen, nicht erfinden):
+
+[[redirects]]
+  from = "/braas-foto-plus"
+  to = "[bestehendes Ziel]"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/braas-foto-plus/"
+  to = "[bestehendes Ziel]"
+  status = 301
+  force = true
+
+Gleiches Muster für /dachrinnen/ und /steildach/.
+Keine anderen Einträge in netlify.toml anfassen.
+
+════════════════════════════════════
+TEIL 2 — client/src/pages/Contact.tsx
+════════════════════════════════════
+
+SCHRITT 0 — Imports prüfen und ergänzen:
+
+Prüfe den bestehenden Import-Block von "lucide-react".
+Stelle sicher, dass Phone und MessageCircle enthalten sind.
+Falls nicht, ergänze sie im bestehenden Import. Beispiel:
+
+import { Phone, MessageCircle, Mail, MapPin, Clock } from "lucide-react";
+
+(Die bestehenden Icons beibehalten, nur Phone und
+MessageCircle hinzufügen falls fehlend.)
+
+────────────────────────────────────
+ÄNDERUNG A — WhatsApp-Link aktivieren:
+
+Suche:
+<p className="text-lg">0234-583126</p>
+
+Ersetze durch:
+<a
+  href="https://wa.me/49234583126"
+  target="_blank"
+  rel="noopener noreferrer"
+  className="text-lg text-primary hover:underline"
+  data-testid="link-contact-whatsapp"
+>
+  0234-583126
+</a>
+
+────────────────────────────────────
+ÄNDERUNG B — Kennzahlen-Banner einfügen:
+
+Suche direkt nach dem schließenden </Hero>-Tag und
+füge diesen Block darunter ein:
+
+<section className="bg-primary text-primary-foreground py-6">
+  <div className="max-w-7xl mx-auto px-4 md:px-6 lg:px-8">
+    <div className="grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
+      <div>
+        <div className="text-3xl font-bold">1984</div>
+        <div className="text-sm opacity-80 mt-1">Gegründet</div>
+      </div>
+      <div>
+        <div className="text-3xl font-bold">40+</div>
+        <div className="text-sm opacity-80 mt-1">Jahre Erfahrung</div>
+      </div>
+      <div>
+        <div className="text-3xl font-bold">VELUX</div>
+        <div className="text-sm opacity-80 mt-1">Autorisierter Partner</div>
+      </div>
+      <div>
+        <div className="text-3xl font-bold">Meister</div>
+        <div className="text-sm opacity-80 mt-1">Dachdecker-Meisterbetrieb</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+────────────────────────────────────
+ÄNDERUNG C — Bewertungs-Cards einfügen:
+
+Suche den Block:
+<div className="mt-8 p-6 bg-muted rounded-xl border border-border text-center">
+
+Füge direkt DAVOR diesen Block ein:
+
+<div className="mt-8 mb-8">
+  <h3 className="font-semibold mb-4">Das sagen unsere Kunden</h3>
+  <div className="space-y-4">
+    <div className="p-4 bg-muted rounded-xl border border-border">
+      <div className="flex items-center gap-2 mb-2">
+        <span className="text-yellow-500 text-sm">★★★★★</span>
+        <span className="text-sm font-medium">Anke</span>
+      </div>
+      <p className="text-sm text-muted-foreground">
+        „Die Fa. Rex ist nicht das erste Mal für uns tätig gewesen;
+        diesmal war das gesamte Dach eines Altbaus zu erneuern und
+        das Gründach für einen Anbau zu erstellen. Auch diesmal waren
+        wir mit den Arbeiten rundum zufrieden. Nette, kompetente
+        Mitarbeiter, pünktliche Ausführung. Daher: Empfehlung!"
+      </p>
+    </div>
+    <div className="p-4 bg-muted rounded-xl border border-border">
+      <div className="flex items-center gap-2 mb-2">
+        <span className="text-yellow-500 text-sm">★★★★★</span>
+        <span className="text-sm font-medium">Michael</span>
+      </div>
+      <p className="text-sm text-muted-foreground">
+        „Absolut pünktlich, zuverlässig und fachlich einwandfrei!"
+      </p>
+    </div>
+    <div className="p-4 bg-muted rounded-xl border border-border">
+      <div className="flex items-center gap-2 mb-2">
+        <span className="text-yellow-500 text-sm">★★★★★</span>
+        <span className="text-sm font-medium">Marcel</span>
+      </div>
+      <p className="text-sm text-muted-foreground">
+        „Einfach ein Top Betrieb! Zuverlässig und kompetent.
+        Ich empfehle die Firma Rex gerne weiter!"
+      </p>
+    </div>
+  </div>
+</div>
+
+────────────────────────────────────
+ÄNDERUNG D — Sticky Mobile CTA Bar:
+
+Füge direkt vor dem schließenden </> am Ende der
+return-Anweisung ein:
+
+{/* Sticky Mobile CTA */}
+<div className="fixed bottom-0 left-0 right-0 z-50 md:hidden bg-background border-t border-border shadow-lg">
+  <div className="grid grid-cols-2 divide-x divide-border">
+    <a
+      href="tel:+49234583100"
+      className="flex items-center justify-center gap-2 py-4 text-sm font-semibold text-primary hover:bg-muted transition-colors"
+      data-testid="sticky-cta-call"
+    >
+      <Phone className="w-4 h-4" />
+      Jetzt anrufen
+    </a>
+    <a
+      href="https://wa.me/49234583126"
+      target="_blank"
+      rel="noopener noreferrer"
+      className="flex items-center justify-center gap-2 py-4 text-sm font-semibold text-primary hover:bg-muted transition-colors"
+      data-testid="sticky-cta-whatsapp"
+    >
+      <MessageCircle className="w-4 h-4" />
+      WhatsApp
+    </a>
+  </div>
+</div>
+
+════════════════════════════════════
+KONTROLLE nach allen Änderungen:
+════════════════════════════════════
+
+1. Zeige die drei neuen Slash-Eintragspaare aus netlify.toml
+2. Zeige den WhatsApp-Link in Contact.tsx
+3. Zeige den Lucide-Import-Block aus Contact.tsx
+4. Führe einen Build aus (npm run build) und zeige das Ergebnis
+5. Bestätige, dass alle 5 Blöcke (0 + A–D) eingefügt wurden
+
+Keine weiteren Dateien anfassen.
