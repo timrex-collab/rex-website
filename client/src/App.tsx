@@ -36,6 +36,7 @@ const SteildachFoerderungBochum = lazy(() => import("@/pages/SteildachFoerderung
 const DachgaubeBochum = lazy(() => import("@/pages/DachgaubeBochum"));
 const AufsparrendaemmungBochum = lazy(() => import("@/pages/AufsparrendaemmungBochum"));
 const SteildachUndichtBochum = lazy(() => import("@/pages/SteildachUndichtBochum"));
+const DachsanierungBochum = lazy(() => import("@/pages/DachsanierungBochum"));
 
 function Router() {
   return (
@@ -66,6 +67,7 @@ function Router() {
       <Route path="/dachgaube-bochum" component={DachgaubeBochum} />
       <Route path="/aufsparrendaemmung-bochum" component={AufsparrendaemmungBochum} />
       <Route path="/steildach-undicht-bochum" component={SteildachUndichtBochum} />
+      <Route path="/dachsanierung-bochum" component={DachsanierungBochum} />
       <Route component={NotFound} />
     </Switch>
   );
