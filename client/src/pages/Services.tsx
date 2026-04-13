@@ -2,6 +2,11 @@ import { Helmet } from "react-helmet";
 import OrganizationSchema from "@/components/OrganizationSchema";
 import Hero from "@/components/Hero";
 import ServiceCard from "@/components/ServiceCard";
+import { Button } from "@/components/ui/button";
+import { Badge } from "@/components/ui/badge";
+import { Card, CardContent } from "@/components/ui/card";
+import { Link } from "wouter";
+import { ArrowRight } from "lucide-react";
 const dachwartungImage = "/images/dachdecker-inspektion-dachwartung-bochum.webp";
 
 const heroImage = "/images/tondach-hero-dachdeckung-bochum.webp";
@@ -118,6 +123,29 @@ export default function Services() {
 
       <section className="py-16 md:py-20 lg:py-24 bg-background">
         <div className="max-w-7xl mx-auto px-4 md:px-6 lg:px-8">
+          <Card className="border-primary/30 mb-12" data-testid="card-services-dachsanierung-hub">
+            <CardContent className="p-6 md:p-8">
+              <div className="flex flex-col md:flex-row md:items-center gap-4 md:gap-8">
+                <div className="flex-1">
+                  <div className="flex items-center gap-3 mb-2 flex-wrap">
+                    <h2 className="text-2xl font-bold">Dachsanierung</h2>
+                    <Badge variant="secondary" className="text-xs">Komplettsanierung</Badge>
+                  </div>
+                  <p className="text-muted-foreground leading-relaxed">
+                    Komplettsanierung aus einer Hand: Steildach, Flachdach, Dämmung, Dachfenster und mehr – inklusive Beratung zu BAFA/KfW-Förderung bis 20%.
+                  </p>
+                </div>
+                <Button asChild variant="default" size="lg" data-testid="button-services-dachsanierung-hub">
+                  <Link href="/dachsanierung-bochum" className="flex items-center gap-2">
+                    Zur Dachsanierung-Übersicht
+                    <ArrowRight className="w-4 h-4" />
+                  </Link>
+                </Button>
+              </div>
+            </CardContent>
+          </Card>
+
+          <h2 className="text-2xl font-bold mb-8">Einzelleistungen</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
             {services.map((service) => (
               <ServiceCard key={service.title} {...service} />

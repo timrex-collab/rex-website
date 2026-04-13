@@ -5,7 +5,9 @@ import Hero from "@/components/Hero";
 import ServiceCard from "@/components/ServiceCard";
 import { Button } from "@/components/ui/button";
 import { Link } from "wouter";
-import { Phone, Shield, Award, Clock } from "lucide-react";
+import { Phone, Shield, Award, Clock, ArrowRight } from "lucide-react";
+import { Badge } from "@/components/ui/badge";
+import { Card, CardContent } from "@/components/ui/card";
 
 const heroImage = "/images/dachdecker-bochum-steildach-hero.webp";
 const heroImageFallback = "/images/dachdecker-bochum-steildach-hero.jpg";
@@ -253,6 +255,25 @@ export default function Home() {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 mb-12">
+            <Card className="border-primary/30 md:col-span-2 lg:col-span-3" data-testid="card-dachsanierung-hub">
+              <CardContent className="p-6 flex flex-col md:flex-row md:items-center gap-4 md:gap-6">
+                <div className="flex-1">
+                  <div className="flex items-center gap-3 mb-2 flex-wrap">
+                    <h3 className="text-xl font-bold">Dachsanierung</h3>
+                    <Badge variant="secondary" className="text-xs">Komplettsanierung</Badge>
+                  </div>
+                  <p className="text-sm text-muted-foreground leading-relaxed">
+                    Steildach, Flachdach, Dämmung, Dachfenster – alles aus einer Hand. Bis zu 20% BAFA-Förderung.
+                  </p>
+                </div>
+                <Button asChild variant="default" data-testid="button-dachsanierung-hub">
+                  <Link href="/dachsanierung-bochum" className="flex items-center gap-2">
+                    Zur Dachsanierung
+                    <ArrowRight className="w-4 h-4" />
+                  </Link>
+                </Button>
+              </CardContent>
+            </Card>
             {services.map((service) => (
               <ServiceCard key={service.title} {...service} />
             ))}

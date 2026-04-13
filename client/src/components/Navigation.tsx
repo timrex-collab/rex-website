@@ -12,6 +12,12 @@ export default function Navigation() {
   const [servicesOpen, setServicesOpen] = useState(false);
   const closeTimeoutRef = useRef<number | null>(null);
 
+  const serviceHub = {
+    name: "Dachsanierung",
+    subtitle: "Komplettsanierung",
+    path: "/dachsanierung-bochum"
+  };
+
   const services = [
     { name: "Steildach", path: "/steildach-bochum" },
     { name: "Flachdach", path: "/flachdach-bochum" },
@@ -85,7 +91,16 @@ export default function Navigation() {
                       <ChevronDown className="w-4 h-4" />
                     </button>
                     {servicesOpen && (
-                      <div className="absolute top-full left-0 mt-0 w-48 bg-card border border-card-border rounded-md shadow-lg py-2">
+                      <div className="absolute top-full left-0 mt-0 w-56 bg-card border border-card-border rounded-md shadow-lg py-2">
+                        <Link
+                          href={serviceHub.path}
+                          className="block px-4 py-3 text-sm font-semibold text-primary hover:bg-accent transition-colors"
+                          data-testid="link-dachsanierung-hub"
+                        >
+                          <div>{serviceHub.name}</div>
+                          <div className="text-xs text-muted-foreground font-normal">{serviceHub.subtitle}</div>
+                        </Link>
+                        <div className="border-t border-card-border my-1"></div>
                         {services.map((service) => (
                           <Link
                             key={service.path}
@@ -169,6 +184,15 @@ export default function Navigation() {
                     </button>
                     {servicesOpen && (
                       <div className="ml-4 mt-1 space-y-1">
+                        <Link
+                          href={serviceHub.path}
+                          onClick={() => setMobileMenuOpen(false)}
+                          className="flex items-center px-3 min-h-[44px] rounded-md text-sm font-semibold text-primary hover:bg-accent"
+                          data-testid="link-mobile-dachsanierung-hub"
+                        >
+                          Dachsanierung (Komplettsanierung)
+                        </Link>
+                        <div className="border-t border-card-border my-2 ml-4"></div>
                         {services.map((service) => (
                           <Link
                             key={service.path}

@@ -24,6 +24,11 @@ export default function Footer() {
             <h3 className="font-semibold mb-2">Leistungen</h3>
             <ul className="text-sm">
               <li>
+                <Link href="/dachsanierung-bochum" className="flex items-center min-h-[44px] text-muted-foreground hover:text-primary transition-colors" data-testid="link-footer-dachsanierung">
+                  Dachsanierung
+                </Link>
+              </li>
+              <li>
                 <Link href="/steildach-bochum" className="flex items-center min-h-[44px] text-muted-foreground hover:text-primary transition-colors" data-testid="link-footer-steildach">
                   Steildach
                 </Link>

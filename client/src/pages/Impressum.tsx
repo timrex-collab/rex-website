@@ -6,7 +6,6 @@ export default function Impressum() {
     <>
       <Helmet>
         <title>Impressum - Rex Bedachungs GmbH</title>
-        <meta name="robots" content="noindex, nofollow" />
         <link rel="canonical" href="https://www.rex-bedachung.de/impressum" />
         <meta property="og:site_name" content="Rex Bedachungs GmbH" />
       </Helmet>
