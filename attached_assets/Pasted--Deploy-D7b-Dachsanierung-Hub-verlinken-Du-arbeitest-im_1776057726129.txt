@@ -1,0 +1,180 @@
+# Deploy D7b — Dachsanierung-Hub verlinken
+
+Du arbeitest im Projekt RoofingPros (TypeScript/React/Vite).
+
+Die neue Pillar-Seite `/dachsanierung-bochum` wurde in D7 erstellt, ist aber noch nicht von Navigation, Footer oder anderen Seiten verlinkt. Das holen wir jetzt nach.
+
+**Stufe A** — reine Link-Ergänzungen + ein Meta-Tag-Fix, keine Schema-Änderungen, keine neuen Routen. 4–5 Dateien.
+
+---
+
+## AUFGABE 1: Navigation.tsx — Dachsanierung im Leistungen-Dropdown hervorheben
+
+Öffne `client/src/components/Navigation.tsx`.
+
+Der Services-Dropdown hat aktuell 7 Einträge (Steildach, Flachdach, Gründach, Dachfenster, Bauklempnerei, Dachreparatur, Dachwartung).
+
+**Ziel:** Dachsanierung als hervorgehobener Eintrag GANZ OBEN im Dropdown, visuell abgesetzt durch eine Trennlinie, darunter die 7 bestehenden Gewerke unverändert.
+
+### Schritt 1: Services-Array erweitern
+
+Suche das `services`-Array (Zeile ~15). Es sieht aktuell so aus:
+
+```tsx
+const services = [
+  { name: "Steildach", path: "/steildach-bochum" },
+  { name: "Flachdach", path: "/flachdach-bochum" },
+  ...
+];
+```
+
+Füge DARÜBER eine separate Konstante für den Hub-Eintrag ein:
+
+```tsx
+const serviceHub = {
+  name: "Dachsanierung",
+  subtitle: "Komplettsanierung",
+  path: "/dachsanierung-bochum"
+};
+```
+
+Das `services`-Array bleibt unverändert.
+
+### Schritt 2: Desktop-Dropdown erweitern
+
+Suche die Stelle, wo der Desktop-Dropdown gerendert wird (innerhalb `{servicesOpen && (...)}`), in dem Block mit `className="absolute top-full left-0 mt-0 w-48 ..."`.
+
+**Änderungen:**
+- Breite von `w-48` auf `w-56` erhöhen (mehr Platz für Untertitel)
+- VOR dem `{services.map(...)}`-Block den Hub-Eintrag einfügen:
+
+```tsx
+<Link
+  href={serviceHub.path}
+  className="block px-4 py-3 text-sm font-semibold text-primary hover:bg-accent transition-colors"
+  data-testid="link-dachsanierung-hub"
+>
+  <div>{serviceHub.name}</div>
+  <div className="text-xs text-muted-foreground font-normal">{serviceHub.subtitle}</div>
+</Link>
+<div className="border-t border-card-border my-1"></div>
+```
+
+Der `{services.map(...)}`-Block bleibt unverändert.
+
+### Schritt 3: Mobile-Menü erweitern
+
+Suche im Mobile-Menü den entsprechenden Block (innerhalb `{mobileMenuOpen && ...}`), wo die Services gerendert werden.
+
+Füge VOR dem `{services.map(...)}` im Mobile-Block ebenfalls ein:
+
+```tsx
+<Link
+  href={serviceHub.path}
+  onClick={() => setMobileMenuOpen(false)}
+  className="flex items-center px-3 min-h-[44px] rounded-md text-sm font-semibold text-primary hover:bg-accent"
+  data-testid="link-mobile-dachsanierung-hub"
+>
+  Dachsanierung (Komplettsanierung)
+</Link>
+<div className="border-t border-card-border my-2 ml-4"></div>
+```
+
+---
+
+## AUFGABE 2: Footer.tsx — Link im Leistungs-Block
+
+Öffne `client/src/components/Footer.tsx`.
+
+Suche den Bereich, wo die Leistungen verlinkt sind (vermutlich als Liste unter einer Überschrift wie "Leistungen" oder "Unsere Leistungen").
+
+Füge als ERSTEN Eintrag in dieser Liste einen Link zu `/dachsanierung-bochum` mit dem Text **"Dachsanierung"** hinzu. Stil analog zu den bestehenden Einträgen.
+
+Falls der Footer aktuell nur die 7 Gewerke auflistet: Dachsanierung als ersten Eintrag ergänzen, sodass der Leistungsblock 8 Einträge hat — erster Eintrag: Dachsanierung.
+
+---
+
+## AUFGABE 3: Home.tsx — Hub in der Leistungsübersicht
+
+Öffne `client/src/pages/Home.tsx`.
+
+Suche den Abschnitt, wo die Leistungen/Services als Cards dargestellt werden (vermutlich ein Grid mit 6–9 Karten für Steildach, Flachdach, Dachfenster etc.).
+
+**Ziel:** Füge eine prominente Dachsanierung-Card als ERSTE Karte in diesem Grid ein. Die Card soll sich visuell leicht von den anderen abheben (z.B. durch einen Border-Accent oder einen Badge "Komplettsanierung").
+
+**Card-Inhalt:**
+- Titel: "Dachsanierung"
+- Untertitel/Badge: "Komplettsanierung"
+- Kurzbeschreibung: "Steildach, Flachdach, Dämmung, Dachfenster – alles aus einer Hand. Bis zu 20% BAFA-Förderung."
+- Link: `/dachsanierung-bochum`
+
+Stil-Anpassung analog zu den bestehenden Service-Cards. Falls die Cards aus einem Array gerendert werden, füge einen neuen Eintrag an erster Stelle ein. Falls sie hardcoded sind, füge die neue Card als erstes Element in das Grid ein.
+
+---
+
+## AUFGABE 4: Services.tsx (Leistungen-Seite) — Dachsanierung als Hauptkategorie
+
+Öffne `client/src/pages/Services.tsx`.
+
+Suche den Bereich, wo die Leistungen der Firma aufgelistet sind.
+
+**Ziel:** Dachsanierung als erster, prominent hervorgehobener Hauptblock über den einzelnen Gewerken einfügen. Struktur:
+
+1. **Dachsanierung (Hub)** — Komplettsanierung aus einer Hand, Link zu `/dachsanierung-bochum`
+2. Darunter die bestehenden Gewerke als "Einzelleistungen"
+
+Falls die Seite eine klare Überschriften-Hierarchie hat: Füge eine H2 "Dachsanierung" ein mit Kurzbeschreibung und einem prominenten Link/Button "Zur Dachsanierung-Übersicht →" (`/dachsanierung-bochum`).
+
+Der bestehende Content der Seite bleibt unverändert — der Dachsanierung-Block wird NUR hinzugefügt.
+
+---
+
+## AUFGABE 5: Impressum.tsx — noindex Meta-Tag entfernen
+
+Öffne `client/src/pages/Impressum.tsx` (falls der Dateiname anders ist, suche die Komponente, die `/impressum` rendert — vermutlich `Impressum.tsx` oder `Imprint.tsx`).
+
+**Hintergrund:** Die Search Console meldet für /impressum: _"Indexierung zulässig? Nein: 'noindex' im Meta-Tag 'robots' erkannt"_. Das heißt, im Helmet-Block steht noch ein expliziter noindex-Tag, der die Indexierung blockiert — auch nachdem wir `Disallow: /impressum` aus robots.txt entfernt haben.
+
+**Vorgehen:**
+
+1. Suche im Helmet-Block (innerhalb `<Helmet>...</Helmet>`) nach einer Zeile, die so aussieht:
+
+```tsx
+<meta name="robots" content="noindex" />
+```
+
+oder
+
+```tsx
+<meta name="robots" content="noindex, nofollow" />
+```
+
+oder ähnliche Varianten.
+
+2. **Entferne diese Zeile komplett.** Nicht auskommentieren, nicht ändern — ganz löschen.
+
+3. Alle anderen Meta-Tags im Helmet (title, description, canonical, og:*, twitter:*) bleiben unverändert.
+
+4. Falls zusätzlich ein `<meta name="googlebot" content="noindex" />` existiert: auch diesen entfernen.
+
+**Ziel:** Nach dem Deploy muss die Impressum-Seite für Google indexierbar sein, damit die korrekte Paulinenstraße-Adresse endlich in den Google-Cache gelangt und die alte Friederikastraße verschwindet.
+
+---
+
+## ABSCHLUSS
+
+Nach allen Änderungen:
+
+1. `npm run build` ausführen
+2. Build muss fehlerfrei durchlaufen
+3. Zusammenfassung:
+   - Navigation.tsx: Dachsanierung im Dropdown hervorgehoben (Desktop + Mobile)?
+   - Footer.tsx: Link ergänzt?
+   - Home.tsx: Hub-Card in Leistungsübersicht?
+   - Services.tsx: Hub als erster Block?
+   - Impressum.tsx: noindex Meta-Tag entfernt?
+4. Bestätigen: Keine bestehenden Links/Strukturen entfernt oder verändert — nur Ergänzungen (außer dem noindex-Tag in Aufgabe 5, der explizit entfernt wurde).
+
+Wenn der Build fehlschlägt, Fehlermeldung ausgeben und NICHT deployen.
+
+**Hinweis zu Aufgaben 2–5:** Falls du bei Footer, Home, Services oder Impressum unsicher bist, wo genau der relevante Abschnitt steht, gib mir kurz den Code-Ausschnitt aus, bevor du änderst. Bei Aufgabe 1 (Navigation) ist der Pfad klar — dort einfach wie beschrieben umsetzen.
