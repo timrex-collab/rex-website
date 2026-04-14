@@ -1,0 +1,1216 @@
+# Deploy D8 — Replit Agent Prompt
+**Datum:** ab 14.04.2026 | **Stufe C** | **Max. 5 neue/geänderte Dateien**
+**Dateien:** SturmschadenDach.tsx (neu) · BitumenVsPvc.tsx (neu) · Foerderung.tsx (Checkliste + Tab-Block) · Dachreparatur.tsx (4 Änderungen) · App.tsx (2 Routen)
+
+---
+
+## Aufgabe
+
+Führe die folgenden Schritte **exakt in dieser Reihenfolge** aus. Zeige nach jedem Schritt eine kurze Bestätigung welche Dateien geändert wurden. Führe am Ende einen Build aus.
+
+---
+
+## SCHRITT 1 — Neue Seite: `SturmschadenDach.tsx`
+
+Erstelle die Datei `client/src/pages/SturmschadenDach.tsx` mit folgendem vollständigen Inhalt:
+
+```tsx
+import { useState } from "react";
+import { Helmet } from "react-helmet";
+import OrganizationSchema from "@/components/OrganizationSchema";
+import AuthorSchema from "@/components/AuthorSchema";
+import Breadcrumb from "@/components/Breadcrumb";
+import {
+  AlertTriangle, CheckCircle, ChevronDown, ChevronUp,
+  Phone, FileText, Wind, Shield, Wrench, MapPin,
+} from "lucide-react";
+import { Button } from "@/components/ui/button";
+
+const sofortmassnahmen = [
+  { titel: "Notsicherung – undichte Stellen provisorisch abdecken", desc: "Folie oder Plane über beschädigte Bereiche – verhindert weiteren Wassereintritt bis zur dauerhaften Reparatur." },
+  { titel: "Schaden dokumentieren – vor der Reparatur fotografieren", desc: "Fotos und Zeitstempel sichern Ihren Versicherungsanspruch. Beschädigte Teile nicht entsorgen." },
+  { titel: "Versicherung informieren – Schadensmeldung einleiten", desc: "Gebäudeversicherung umgehend benachrichtigen. Rex erstellt auf Wunsch einen professionellen Schadensbericht." },
+  { titel: "Fachbetrieb beauftragen – dauerhafte Reparatur planen", desc: "Nach der Notsicherung folgt die fachgerechte Instandsetzung mit Dokumentation aller Maßnahmen." },
+];
+
+const leistungen = [
+  { icon: <Wind className="w-7 h-7 text-primary" />, titel: "Abgedeckte Ziegel & Eindeckung", text: "Verrutschte, abgehobene oder zerbrochene Ziegel werden passgenau ersetzt. Wir prüfen die gesamte Eindeckung auf Sturmfolgeschäden." },
+  { icon: <AlertTriangle className="w-7 h-7 text-primary" />, titel: "Notsicherung & Notabdichtung", text: "Bei akuter Gefährdung sichern wir Ihr Dach noch am selben oder nächsten Werktag provisorisch ab." },
+  { icon: <FileText className="w-7 h-7 text-primary" />, titel: "Schadensdokumentation für Versicherung", text: "Professioneller Schadensbericht mit Fotos, Schadensumfang und Kostenschätzung – für eine reibungslose Versicherungsabwicklung." },
+  { icon: <Wrench className="w-7 h-7 text-primary" />, titel: "Dauerhafte Reparatur & Abdichtung", text: "Nach der Notsicherung erfolgt die fachgerechte Instandsetzung – Ziegel, Abdichtung, Anschlüsse, Dachrinne." },
+  { icon: <Shield className="w-7 h-7 text-primary" />, titel: "Versicherungsabwicklung auf Wunsch", text: "Wir kommunizieren auf Wunsch direkt mit Ihrer Gebäudeversicherung und sorgen dafür, dass Sie schnell zu Ihrem Recht kommen." },
+];
+
+const faqItems = [
+  {
+    question: "Ab welcher Windstärke spricht man von einem versicherten Sturmschaden?",
+    answer: "Die Gebäudeversicherung erkennt in der Regel Schäden ab Windstärke 8 (ab ca. 65 km/h) als versicherten Sturmschaden an – das entspricht dem DWD-Warnsystem Stufe 2 (markantes Wetter). Bei niedrigeren Windstärken kann dennoch ein Schaden entstehen, der aber unterschiedlich behandelt wird. Rex dokumentiert den Schaden so, dass Ihre Versicherung alle notwendigen Informationen erhält.",
+  },
+  {
+    question: "Was tun wenn nach einem Sturm Ziegel fehlen oder das Dach undicht ist?",
+    answer: "Zunächst Schaden dokumentieren (Fotos), dann Versicherung informieren. Bei drohendem Wassereintritt sofort Rex anrufen – wir sichern das Dach provisorisch ab und reparieren dauerhaft. Beschädigte Ziegel bitte nicht entsorgen – die Versicherung kann eine Inaugenscheinnahme verlangen.",
+  },
+  {
+    question: "Übernimmt die Gebäudeversicherung die Kosten für Sturmschäden?",
+    answer: "Bei Sturmschäden ab Windstärke 8 übernimmt die Gebäudeversicherung in der Regel die Reparaturkosten abzüglich der vereinbarten Selbstbeteiligung. Rex erstellt einen vollständigen Schadensbericht und unterstützt Sie bei der Kommunikation mit der Versicherung.",
+  },
+  {
+    question: "Wie schnell können Sie nach einem Sturm kommen?",
+    answer: "In der Regel kommen wir innerhalb von 24–48 Stunden für eine erste Beurteilung und Notsicherung. Bei anhaltenden Sturmlagen kann es kurze Wartezeiten geben – melden Sie sich per Telefon oder WhatsApp, damit wir Ihren Einsatz vormerken.",
+  },
+  {
+    question: "Was kostet die Begutachtung und Notsicherung?",
+    answer: "Die Schadensbegutachtung vor Ort ist kostenlos. Die Kosten für Notsicherung und Reparatur richten sich nach Schadensumfang und werden in einem transparenten Angebot aufgelistet – bevor wir mit der Arbeit beginnen. Keine versteckten Kosten.",
+  },
+  {
+    question: "Kann ich den Sturmschaden auch ohne Versicherung reparieren lassen?",
+    answer: "Ja – auch wenn keine Versicherungsleistung beansprucht wird oder die Selbstbeteiligung die Reparaturkosten übersteigt, führen wir die Reparatur fachgerecht aus. Wir beraten Sie ehrlich, ob eine Meldung an die Versicherung sich lohnt.",
+  },
+];
+
+const schemaJson = JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "Service",
+  "name": "Sturmschaden Dach Bochum – Notsicherung & Reparatur",
+  "provider": {
+    "@type": "RoofingContractor",
+    "@id": "https://www.rex-bedachung.de/#organization",
+    "name": "Rex Bedachungs GmbH",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "Paulinenstraße 22",
+      "addressLocality": "Bochum",
+      "postalCode": "44799",
+      "addressCountry": "DE",
+    },
+    "telephone": "+49-234-583100",
+  },
+  "areaServed": ["Bochum", "Herne", "Castrop-Rauxel", "Witten", "Hattingen", "Gelsenkirchen"],
+  "description": "Sturmschaden am Dach in Bochum – Notsicherung, Reparatur und Schadensdokumentation für die Versicherung. Meisterbetrieb Rex Bedachungs GmbH.",
+  "serviceType": "Sturmschaden Dachreparatur",
+});
+
+export default function SturmschadenDach() {
+  const [openFaq, setOpenFaq] = useState<number | null>(null);
+
+  return (
+    <>
+      <Helmet>
+        <title>Sturmschaden Dach Bochum | Notsicherung & Reparatur – Rex Bedachung</title>
+        <meta
+          name="description"
+          content="Sturmschaden am Dach in Bochum? Rex Bedachungs GmbH sichert und repariert kurzfristig – Schadensdokumentation für die Versicherung inklusive. Meisterbetrieb seit 1984."
+        />
+        <link rel="canonical" href="https://www.rex-bedachung.de/sturmschaden-dach-bochum" />
+        <meta property="og:title" content="Sturmschaden Dach Bochum – Notsicherung & Reparatur | Rex Bedachungs GmbH" />
+        <meta property="og:description" content="Sturmschaden am Dach in Bochum – Rex Bedachungs GmbH sichert und repariert kurzfristig. Schadensdokumentation für Gebäudeversicherung inklusive." />
+        <meta property="og:image" content="https://www.rex-bedachung.de/images/dachreparatur-bochum-rex-bedachung.webp" />
+        <meta property="og:site_name" content="Rex Bedachungs GmbH" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:image" content="https://www.rex-bedachung.de/images/dachreparatur-bochum-rex-bedachung.webp" />
+        <script type="application/ld+json">{schemaJson}</script>
+        <script type="application/ld+json">{`{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {"@type":"ListItem","position":1,"name":"Startseite","item":"https://www.rex-bedachung.de/"},
+    {"@type":"ListItem","position":2,"name":"Dachreparatur Bochum","item":"https://www.rex-bedachung.de/dachreparatur-bochum"},
+    {"@type":"ListItem","position":3,"name":"Sturmschaden Dach Bochum","item":"https://www.rex-bedachung.de/sturmschaden-dach-bochum"}
+  ]
+}`}</script>
+        <script type="application/ld+json">{`{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Ab welcher Windstärke spricht man von einem versicherten Sturmschaden?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Die Gebäudeversicherung erkennt in der Regel Schäden ab Windstärke 8 (ab ca. 65 km/h, DWD Warnstufe 2 markantes Wetter) als versicherten Sturmschaden an." }
+    },
+    {
+      "@type": "Question",
+      "name": "Was tun wenn nach einem Sturm Ziegel fehlen oder das Dach undicht ist?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Schaden fotografieren, Versicherung informieren, Rex anrufen für Notsicherung und dauerhafte Reparatur. Beschädigte Ziegel nicht entsorgen." }
+    },
+    {
+      "@type": "Question",
+      "name": "Übernimmt die Gebäudeversicherung die Kosten für Sturmschäden?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Bei Sturmschäden ab Windstärke 8 übernimmt die Gebäudeversicherung in der Regel die Reparaturkosten abzüglich der vereinbarten Selbstbeteiligung." }
+    },
+    {
+      "@type": "Question",
+      "name": "Wie schnell können Sie nach einem Sturm kommen?",
+      "acceptedAnswer": { "@type": "Answer", "text": "In der Regel innerhalb von 24–48 Stunden für erste Beurteilung und Notsicherung." }
+    },
+    {
+      "@type": "Question",
+      "name": "Was kostet die Begutachtung und Notsicherung?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Die Schadensbegutachtung vor Ort ist kostenlos. Kosten für Notsicherung und Reparatur werden in einem transparenten Angebot aufgelistet, bevor wir beginnen." }
+    }
+  ]
+}`}</script>
+        <script type="application/ld+json">{`{
+  "@context": "https://schema.org",
+  "@type": "HowTo",
+  "name": "Was tun bei Sturmschaden am Dach?",
+  "step": [
+    {"@type":"HowToStep","position":1,"name":"Notsicherung","text":"Provisorisch abdecken, weiteren Wassereintritt verhindern."},
+    {"@type":"HowToStep","position":2,"name":"Dokumentieren","text":"Fotos und Zeitstempel vor der Reparatur – für die Versicherung."},
+    {"@type":"HowToStep","position":3,"name":"Versicherung informieren","text":"Gebäudeversicherung umgehend benachrichtigen."},
+    {"@type":"HowToStep","position":4,"name":"Fachbetrieb beauftragen","text":"Dauerhafte Reparatur durch Rex Bedachungs GmbH Bochum."}
+  ]
+}`}</script>
+        <script type="application/ld+json">{`{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Sturmschaden Dach Bochum – Notsicherung, Reparatur & Versicherung",
+  "author": { "@id": "https://www.rex-bedachung.de/#author" },
+  "publisher": { "@id": "https://www.rex-bedachung.de/#organization" },
+  "url": "https://www.rex-bedachung.de/sturmschaden-dach-bochum"
+}`}</script>
+      </Helmet>
+
+      <OrganizationSchema />
+      <AuthorSchema />
+      <Breadcrumb items={[
+        { label: "Startseite", href: "/" },
+        { label: "Dachreparatur", href: "/dachreparatur-bochum" },
+        { label: "Sturmschaden" },
+      ]} />
+
+      {/* Hero */}
+      <section
+        className="relative text-white py-24 px-4 overflow-hidden"
+        style={{ background: "linear-gradient(135deg, #0f172a 0%, #1e3a8a 100%)" }}
+      >
+        <div className="max-w-4xl mx-auto relative z-10">
+          <div className="inline-flex items-center gap-2 bg-white/10 border border-white/20 rounded-full px-4 py-1 mb-6">
+            <Wind className="w-4 h-4 text-blue-300" />
+            <span className="text-sm font-medium text-blue-100 uppercase tracking-wider">Sturmschaden Bochum</span>
+          </div>
+          <h1 className="text-3xl md:text-5xl font-extrabold leading-tight mb-4 max-w-3xl">
+            Sturmschaden am Dach – Notsicherung & Reparatur in Bochum
+          </h1>
+          <p className="text-lg text-slate-300 mb-4 max-w-2xl leading-relaxed">
+            Abgedeckte Ziegel, undichte Stellen oder beschädigte Dachrinnen nach einem Sturm? Rex Bedachungs GmbH sichert Ihr Dach kurzfristig, repariert dauerhaft und erstellt die Schadensdokumentation für Ihre Gebäudeversicherung.
+          </p>
+          <p className="text-sm text-slate-400 mb-8">
+            Sturmschäden ab Windstärke 8 (ab ca. 65 km/h, DWD Warnstufe 2 markantes Wetter) werden von der Gebäudeversicherung in der Regel anerkannt.
+          </p>
+          <div className="flex flex-wrap gap-3">
+            <Button asChild size="lg" className="pulse-ring cta-pulse bg-white text-blue-900 hover:bg-slate-100">
+              <a href="tel:+49234583100" className="flex items-center gap-2">
+                <Phone className="w-4 h-4" />
+                Jetzt anrufen
+              </a>
+            </Button>
+            <Button asChild size="lg" variant="outline" className="bg-white/10 border-white/30 text-white">
+              <a href="/kontakt">Schaden melden</a>
+            </Button>
+          </div>
+        </div>
+      </section>
+
+      {/* Sofortmaßnahmen */}
+      <section className="py-16 px-4 bg-background">
+        <div className="max-w-4xl mx-auto">
+          <h2 className="text-2xl md:text-3xl font-bold mb-4">Was tun bei Sturmschaden am Dach?</h2>
+          <p className="text-muted-foreground mb-8 leading-relaxed">
+            Die vier Schritte nach einem Sturmereignis – in dieser Reihenfolge:
+          </p>
+          <div className="space-y-4">
+            {sofortmassnahmen.map((s, i) => (
+              <div key={i} className="flex items-start gap-4 p-5 bg-card border border-border rounded-md">
+                <span className="flex-shrink-0 w-8 h-8 rounded-full bg-primary text-primary-foreground text-sm font-bold flex items-center justify-center">
+                  {i + 1}
+                </span>
+                <div>
+                  <p className="font-semibold text-foreground mb-1">{s.titel}</p>
+                  <p className="text-muted-foreground text-sm leading-relaxed">{s.desc}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Leistungen */}
+      <section className="py-16 px-4 bg-muted/40">
+        <div className="max-w-7xl mx-auto">
+          <h2 className="text-2xl md:text-3xl font-bold text-center mb-10">Unsere Leistungen bei Sturmschäden</h2>
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {leistungen.map((l, i) => (
+              <div key={i} className="bg-card border border-border rounded-md p-6">
+                <div className="mb-3">{l.icon}</div>
+                <h3 className="font-bold text-foreground mb-2">{l.titel}</h3>
+                <p className="text-muted-foreground text-sm leading-relaxed">{l.text}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Fallstudie */}
+      <section className="py-14 px-4 bg-background">
+        <div className="max-w-4xl mx-auto">
+          <div className="border-l-[3px] border-primary bg-card p-6 rounded-r-md">
+            <span className="inline-block text-[11px] font-medium uppercase tracking-widest text-primary bg-primary/10 px-3 py-0.5 rounded mb-3">
+              Projekt aus Bochum
+            </span>
+            <p className="font-semibold text-foreground mb-3">Sturmreparatur Steildach, Bochum-Wiemelhausen</p>
+            <div className="grid grid-cols-[auto_1fr] gap-x-4 gap-y-1 text-sm">
+              <span className="text-muted-foreground font-medium">Schaden</span>
+              <span>20 Ziegel abgehoben, Teilreparatur Eindeckung 15 m²</span>
+              <span className="text-muted-foreground font-medium">Selbstbeteiligung</span>
+              <span>150 €, Rest von Gebäudeversicherung übernommen</span>
+              <span className="text-muted-foreground font-medium">Leistung</span>
+              <span>Notsicherung, Eindeckung instand gesetzt, Schadensbericht für Versicherung erstellt</span>
+              <span className="text-muted-foreground font-medium">Ergebnis</span>
+              <span>Versicherung hat vollständig reguliert, Dach dauerhaft dicht</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Preishinweis */}
+      <section className="py-14 px-4 bg-muted/40">
+        <div className="max-w-4xl mx-auto">
+          <h2 className="text-2xl md:text-3xl font-bold mb-4">Was kostet die Sturmreparatur?</h2>
+          <p className="text-muted-foreground mb-6 leading-relaxed">
+            Die Kosten hängen vom Schadensumfang ab. Wir erstellen nach der Vor-Ort-Begutachtung ein transparentes Angebot – bevor wir mit der Arbeit beginnen. Die Begutachtung ist kostenlos.
+          </p>
+          <div className="grid sm:grid-cols-2 gap-4">
+            {[
+              { faktor: "Anzahl und Art der beschädigten Ziegel", detail: "Ton, Beton, Faserzement – Ersatzteile nach Hersteller" },
+              { faktor: "Umfang der Eindeckungsfläche", detail: "Einzelstellen vs. größere Bereiche" },
+              { faktor: "Zustand der Unterspannbahn & Lattung", detail: "Wird bei Instandsetzung geprüft" },
+              { faktor: "Dachrinnen & Anschlüsse", detail: "Sturmschäden oft auch an Rinnen und Ortgängen" },
+              { faktor: "Gerüstbedarf", detail: "Bei schwer zugänglichen Dachflächen erforderlich" },
+              { faktor: "Notsicherung vorab", detail: "Folie oder Plane – separater Posten falls akut nötig" },
+            ].map((f, i) => (
+              <div key={i} className="flex items-start gap-3 bg-card p-4 rounded-md border border-border">
+                <CheckCircle className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
+                <div>
+                  <p className="text-sm font-semibold text-foreground">{f.faktor}</p>
+                  <p className="text-xs text-muted-foreground mt-0.5">{f.detail}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+          <p className="text-sm text-slate-600 mt-4">
+            Bei versicherten Sturmschäden rechnen wir auf Wunsch direkt mit der Gebäudeversicherung ab.
+          </p>
+        </div>
+      </section>
+
+      {/* FAQ */}
+      <section className="py-16 px-4 bg-background">
+        <div className="max-w-3xl mx-auto">
+          <h2 className="text-2xl md:text-3xl font-bold text-center mb-10">
+            Häufige Fragen zu Sturmschäden am Dach
+          </h2>
+          <div className="space-y-3">
+            {faqItems.map((item, i) => (
+              <div key={i} className="border border-border rounded-md bg-card">
+                <button
+                  className="w-full flex items-center justify-between px-5 py-4 text-left font-semibold text-card-foreground gap-4"
+                  onClick={() => setOpenFaq(openFaq === i ? null : i)}
+                  aria-expanded={openFaq === i}
+                >
+                  <span>{item.question}</span>
+                  {openFaq === i
+                    ? <ChevronUp className="w-5 h-5 shrink-0 text-muted-foreground" />
+                    : <ChevronDown className="w-5 h-5 shrink-0 text-muted-foreground" />}
+                </button>
+                <div className={`overflow-hidden transition-all duration-200 ${openFaq === i ? "max-h-96" : "max-h-0"}`}>
+                  <p className="px-5 pb-4 text-muted-foreground leading-relaxed text-sm">
+                    {item.answer}
+                  </p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Regionen */}
+      <section className="py-14 px-4 bg-muted/40">
+        <div className="max-w-4xl mx-auto text-center">
+          <MapPin className="w-8 h-8 text-primary mx-auto mb-4" />
+          <h2 className="text-2xl font-bold mb-4">Sturmschaden-Reparatur im gesamten Ruhrgebiet</h2>
+          <p className="text-muted-foreground leading-relaxed">
+            Rex Bedachungs GmbH repariert Sturmschäden in Bochum und dem Ruhrgebiet – Herne, Castrop-Rauxel, Witten, Hattingen, Gelsenkirchen. Kurzfristiger Einsatz, zuverlässige Abwicklung.
+          </p>
+        </div>
+      </section>
+
+      {/* Verwandte Leistungen */}
+      <section className="py-12 bg-gray-50">
+        <div className="container mx-auto px-4">
+          <h2 className="text-xl font-bold text-gray-900 mb-6">Verwandte Leistungen</h2>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+            <a href="/dachreparatur-bochum" className="block p-5 bg-white rounded-xl border border-gray-200 hover:border-primary hover:shadow-md transition-all">
+              <div className="font-semibold text-gray-900 mb-1">Dachreparatur Bochum</div>
+              <div className="text-sm text-gray-500">Alle Dachschäden – Ziegel, Flachdach, Kaminanschlüsse, Dachrinnen.</div>
+            </a>
+            <a href="/dachwartung-bochum" className="block p-5 bg-white rounded-xl border border-gray-200 hover:border-primary hover:shadow-md transition-all">
+              <div className="font-semibold text-gray-900 mb-1">Dachwartung Bochum</div>
+              <div className="text-sm text-gray-500">Regelmäßige Inspektion verhindert Sturmfolgeschäden frühzeitig.</div>
+            </a>
+            <a href="/dachsanierung-bochum" className="block p-5 bg-white rounded-xl border border-gray-200 hover:border-primary hover:shadow-md transition-all">
+              <div className="font-semibold text-gray-900 mb-1">Dachsanierung Bochum</div>
+              <div className="text-sm text-gray-500">Wenn der Sturmschaden eine Komplettsanierung sinnvoll macht.</div>
+            </a>
+          </div>
+        </div>
+      </section>
+
+      {/* CTA */}
+      <section className="py-16 px-4 bg-background">
+        <div className="max-w-3xl mx-auto text-center">
+          <h2 className="text-2xl md:text-3xl font-bold mb-4">Sturmschaden festgestellt? Jetzt anrufen.</h2>
+          <p className="text-muted-foreground mb-8">
+            Wir kommen zur kostenlosen Begutachtung – kurzfristig, ohne versteckte Kosten, mit Versicherungsunterstützung.
+          </p>
+          <div className="flex flex-wrap justify-center gap-3">
+            <Button asChild size="lg" className="pulse-ring cta-pulse">
+              <a href="tel:+49234583100" className="flex items-center gap-2">
+                <Phone className="w-4 h-4" />
+                Jetzt anrufen
+              </a>
+            </Button>
+            <Button asChild size="lg" variant="outline">
+              <a href="/kontakt">Schaden online melden</a>
+            </Button>
+          </div>
+        </div>
+      </section>
+    </>
+  );
+}
+```
+
+---
+
+## SCHRITT 2 — Neue Seite: `BitumenVsPvc.tsx`
+
+Erstelle die Datei `client/src/pages/BitumenVsPvc.tsx` mit folgendem vollständigen Inhalt:
+
+```tsx
+import { useState } from "react";
+import { Helmet } from "react-helmet";
+import OrganizationSchema from "@/components/OrganizationSchema";
+import AuthorSchema from "@/components/AuthorSchema";
+import Breadcrumb from "@/components/Breadcrumb";
+import { CheckCircle, ChevronDown, ChevronUp, MapPin, Phone } from "lucide-react";
+import { Button } from "@/components/ui/button";
+
+const vergleich = [
+  { kriterium: "Hauptanwendung", bitumen: "Dachflächen ab 20 m², Sanierung Bestand", pvc: "Terrassen, Balkone, kleine Sonderflächen" },
+  { kriterium: "Lebensdauer", bitumen: "25–35 Jahre", pvc: "20–30 Jahre" },
+  { kriterium: "Anschlüsse", bitumen: "Einschweißen, robust und dauerhaft", pvc: "Kaltverschweißt, sauberes Fugenbild" },
+  { kriterium: "Begehbarkeit", bitumen: "Hoch (mechanisch belastbar)", pvc: "Mittel (abhängig vom System)" },
+  { kriterium: "UV-Beständigkeit", bitumen: "Sehr hoch", pvc: "Gut (mit geeigneter Deckschicht)" },
+  { kriterium: "Befestigung", bitumen: "Vollflächig verschweißt (zweilagig)", pvc: "Mechanisch, verklebt oder ballastiert" },
+  { kriterium: "Optik Abschlüsse", bitumen: "Massiv und kompakt", pvc: "Präzise, sichtbar sauber" },
+  { kriterium: "Recyclierbarkeit", bitumen: "Eingeschränkt", pvc: "PVC recyclierbar (Bauder-Programm)" },
+];
+
+const preisfaktoren = [
+  { faktor: "Fläche & Dachform", detail: "Quadratmeter, Attikaabschlüsse, Kehlen, Gefälleausbildung" },
+  { faktor: "Systemwahl & Aufbaudicke", detail: "Bitumen oder PVC, Dämmstärke für BEG-Anforderung (U ≤ 0,14 W/(m²·K))" },
+  { faktor: "Untergrundqualität", detail: "Feuchteschäden, Altaufbau abfräsen, Schüttgefälle oder Gefälleplatten" },
+  { faktor: "Anschlüsse & Details", detail: "Anzahl Kehlen, Dachabläufe, Lichtkuppeln, Aufkantungen, Wandanschlüsse" },
+  { faktor: "Zugang & Gerüst", detail: "Kran, Materialaufzug, Gerüststandzeit" },
+  { faktor: "Förderung & BEG", detail: "Bei U ≤ 0,14: bis zu 20 % BAFA-Zuschuss (mit iSFP), förderfähig als Gebäudehülle" },
+];
+
+const faqItems = [
+  {
+    question: "Wann ist Bitumen die bessere Wahl gegenüber PVC?",
+    answer: "Bei großflächigen Dächern ab ca. 30 m², Hauptdächern und Sanierungen älterer Aufbauten. Bitumen ist mechanisch belastbarer, hat eine höhere UV-Resistenz und wird zweilagig verschweißt – das ergibt ein sehr robustes, langlebiges Ergebnis. Wir setzen Bitumen standardmäßig ein, wenn kein besonderer Grund für PVC spricht. Mehr zur vollständigen Flachdachsanierung unter /flachdach-bochum.",
+  },
+  {
+    question: "Für welche Flächen empfehlen Sie PVC?",
+    answer: "PVC eignet sich besonders für Balkone, Terrassen und kleine Flächen mit vielen Anschlüssen im Sichtbereich. Die Kaltverschweißung ergibt ein saubereres Fugenbild, und bei Detailanschlüssen an Türschwellen oder Brüstungen lässt sich PVC präziser einpassen. Wir setzen hier überwiegend Bauder und Wolfin ein.",
+  },
+  {
+    question: "Wird Flachdachdämmung staatlich gefördert?",
+    answer: "Ja – wenn der U-Wert auf ≤ 0,14 W/(m²·K) verbessert wird, fördert die BAFA bis zu 15 % der Bruttokosten, mit iSFP-Bonus bis zu 20 % – bis zu einem Förderhöchstbetrag von 60.000 € pro Wohneinheit. Wir beraten Sie zur Förderfähigkeit bei der Vor-Ort-Besichtigung. Details unter /foerderung.",
+  },
+  {
+    question: "Kann Bitumen direkt auf PVC verlegt werden oder umgekehrt?",
+    answer: "Nein – beide Systeme sind nicht direkt miteinander verträglich. Bei einer Systemänderung muss der Altaufbau vollständig entfernt werden. Das wird bei der Inspektion festgestellt und im Angebot berücksichtigt.",
+  },
+  {
+    question: "Ist ein Gründachaufbau auf beiden Systemen möglich?",
+    answer: "Ja – sowohl auf Bitumenbahnen als auch auf PVC-Membranen kann ein extensiver Gründachaufbau erfolgen, sofern die Wurzelschutzeignung des Materials zertifiziert ist. Bauder bietet für beide Systeme wurzelfeste Varianten an. Mehr zum Thema unter /gruendach-dachbegrunung-bochum.",
+  },
+  {
+    question: "Wann lohnt sich eine vollständige Dachsanierung statt Reparatur?",
+    answer: "Als Faustregel gilt: Bei einer Abdichtung älter als 20 Jahre oder wenn mehr als 20 % der Fläche Schäden zeigen, rechnet sich eine Komplettsanierung wirtschaftlicher. Eine Sanierung ermöglicht zudem die BAFA-Förderung. Mehr dazu unter /dachsanierung-bochum.",
+  },
+];
+
+const schemaJson = JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Bitumen oder PVC Flachdach – Entscheidungshilfe für Bochumer Eigentümer",
+  "author": { "@id": "https://www.rex-bedachung.de/#author" },
+  "publisher": { "@id": "https://www.rex-bedachung.de/#organization" },
+  "url": "https://www.rex-bedachung.de/bitumen-vs-pvc-flachdach-bochum",
+  "description": "Bitumen oder PVC auf dem Flachdach? Rex Bedachungs GmbH Bochum erklärt wann welches System sinnvoll ist – mit Vergleich, Systemaufbau, Preisfaktoren und Förderhinweisen.",
+});
+
+export default function BitumenVsPvc() {
+  const [openFaq, setOpenFaq] = useState<number | null>(null);
+
+  return (
+    <>
+      <Helmet>
+        <title>Bitumen oder PVC Flachdach Bochum | Entscheidungshilfe – Rex Bedachung</title>
+        <meta
+          name="description"
+          content="Bitumen oder PVC auf dem Flachdach? Rex Bedachungs GmbH Bochum erklärt den Unterschied und wann welches System sinnvoll ist. Mit Vergleich, Systemaufbau und Förderhinweisen."
+        />
+        <link rel="canonical" href="https://www.rex-bedachung.de/bitumen-vs-pvc-flachdach-bochum" />
+        <meta property="og:title" content="Bitumen oder PVC Flachdach Bochum – Vergleich & Entscheidungshilfe | Rex Bedachungs GmbH" />
+        <meta property="og:description" content="Bitumen oder PVC auf dem Flachdach? Entscheidungshilfe mit Systemvergleich, Preisfaktoren und BAFA-Förderhinweisen von Rex Bedachungs GmbH Bochum." />
+        <meta property="og:image" content="https://www.rex-bedachung.de/images/dach-hintergrund-rex-bedachung.webp" />
+        <meta property="og:site_name" content="Rex Bedachungs GmbH" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:image" content="https://www.rex-bedachung.de/images/dach-hintergrund-rex-bedachung.webp" />
+        <script type="application/ld+json">{schemaJson}</script>
+        <script type="application/ld+json">{`{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {"@type":"ListItem","position":1,"name":"Startseite","item":"https://www.rex-bedachung.de/"},
+    {"@type":"ListItem","position":2,"name":"Flachdach Bochum","item":"https://www.rex-bedachung.de/flachdach-bochum"},
+    {"@type":"ListItem","position":3,"name":"Bitumen vs. PVC","item":"https://www.rex-bedachung.de/bitumen-vs-pvc-flachdach-bochum"}
+  ]
+}`}</script>
+        <script type="application/ld+json">{`{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Wann ist Bitumen die bessere Wahl gegenüber PVC?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Bei großflächigen Dächern ab ca. 30 m², Hauptdächern und Sanierungen. Bitumen ist mechanisch belastbarer, UV-resistenter und wird zweilagig verschweißt." }
+    },
+    {
+      "@type": "Question",
+      "name": "Für welche Flächen empfehlen Sie PVC?",
+      "acceptedAnswer": { "@type": "Answer", "text": "PVC für Balkone, Terrassen und kleine Flächen mit vielen Anschlüssen im Sichtbereich. Kaltverschweißung ergibt saubereres Fugenbild." }
+    },
+    {
+      "@type": "Question",
+      "name": "Wird Flachdachdämmung staatlich gefördert?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Ja – bei U-Wert ≤ 0,14 W/(m²·K): BAFA bis zu 20 % (mit iSFP), Förderhöchstbetrag 60.000 € pro Wohneinheit." }
+    }
+  ]
+}`}</script>
+        <script type="application/ld+json">{`{
+  "@context": "https://schema.org",
+  "@type": "Service",
+  "name": "Flachdachabdichtung Bochum – Bitumen und PVC",
+  "provider": { "@type": "RoofingContractor", "@id": "https://www.rex-bedachung.de/#organization" },
+  "areaServed": { "@type": "City", "name": "Bochum" },
+  "serviceType": "Flachdachabdichtung"
+}`}</script>
+      </Helmet>
+
+      <OrganizationSchema />
+      <AuthorSchema />
+      <Breadcrumb items={[
+        { label: "Startseite", href: "/" },
+        { label: "Flachdach Bochum", href: "/flachdach-bochum" },
+        { label: "Bitumen vs. PVC" },
+      ]} />
+
+      {/* Hero */}
+      <section className="py-16 px-4 bg-muted/40">
+        <div className="max-w-4xl mx-auto">
+          <p className="text-sm font-medium text-primary uppercase tracking-widest mb-3">Flachdach Bochum · Entscheidungshilfe</p>
+          <h1 className="text-3xl md:text-4xl font-extrabold leading-tight mb-4">
+            Bitumen oder PVC auf dem Flachdach?
+          </h1>
+          <div className="border-l-4 border-primary pl-4 text-muted-foreground leading-relaxed">
+            Für großflächige Flachdächer und Dachsanierungen empfehlen wir Bitumenbahnen – langlebig, UV-stabil und mechanisch belastbar. PVC-Membranen sind die bessere Wahl bei Terrassen, Balkonen und kleinen Flächen mit sichtbaren Anschlüssen, wo saubere Fugen und einfache Nacharbeiten zählen. Rex Bedachungs GmbH verarbeitet beide Systeme – überwiegend mit Bauder-Produkten.
+          </div>
+        </div>
+      </section>
+
+      {/* Vergleichsmatrix */}
+      <section className="py-16 px-4 bg-background">
+        <div className="max-w-4xl mx-auto">
+          <h2 className="text-2xl font-bold mb-6">Systemvergleich</h2>
+          <div className="overflow-x-auto">
+            <table className="w-full text-sm border-collapse">
+              <thead>
+                <tr className="bg-muted">
+                  <th className="text-left p-3 border border-border font-medium text-muted-foreground w-1/3">Kriterium</th>
+                  <th className="text-left p-3 border border-border font-medium text-blue-700 bg-blue-50">Bitumen</th>
+                  <th className="text-left p-3 border border-border font-medium text-emerald-700 bg-emerald-50">PVC</th>
+                </tr>
+              </thead>
+              <tbody>
+                {vergleich.map((row, i) => (
+                  <tr key={i} className={i % 2 === 0 ? "bg-card" : "bg-muted/30"}>
+                    <td className="p-3 border border-border font-medium text-foreground">{row.kriterium}</td>
+                    <td className="p-3 border border-border text-muted-foreground">{row.bitumen}</td>
+                    <td className="p-3 border border-border text-muted-foreground">{row.pvc}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      {/* Systemdetails */}
+      <section className="py-16 px-4 bg-muted/40">
+        <div className="max-w-4xl mx-auto">
+          <h2 className="text-2xl font-bold mb-8">Systemaufbau im Detail</h2>
+          <div className="grid md:grid-cols-2 gap-6">
+            <div className="bg-card border border-border rounded-md p-6">
+              <div className="inline-block text-xs font-bold uppercase tracking-wider text-blue-700 bg-blue-50 px-2 py-0.5 rounded mb-3">Bitumen</div>
+              <h3 className="font-bold text-foreground mb-1">Bauder PYE / PYP / APP</h3>
+              <p className="text-xs text-muted-foreground italic mb-4">Empfohlen für Hauptdach und Sanierung</p>
+              <ul className="space-y-1 text-sm text-muted-foreground mb-4">
+                {["Untergrund prüfen / Dampfsperre", "Wärmedämmung (z. B. Bauder PIR)", "Voranstrich / Trennlage", "Unterlagsbahn (PYE G200 S4)", "Deckbahn beschiefert (APP / PYE PV200)"].map((s, i) => (
+                  <li key={i} className="flex gap-2"><span className="text-muted-foreground">·</span>{s}</li>
+                ))}
+              </ul>
+              <div className="flex flex-wrap gap-2">
+                {["Elastomerbitumen PYE", "APP-Plastomer", "Kaltklebebahn", "Schweißbahn 2-lagig", "Sanierungslage", "Icopal, Soprema"].map((t, i) => (
+                  <span key={i} className="text-xs bg-muted text-muted-foreground px-2 py-0.5 rounded">{t}</span>
+                ))}
+              </div>
+            </div>
+            <div className="bg-card border border-border rounded-md p-6">
+              <div className="inline-block text-xs font-bold uppercase tracking-wider text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded mb-3">PVC</div>
+              <h3 className="font-bold text-foreground mb-1">Bauder TPO / Wolfin WELDOX</h3>
+              <p className="text-xs text-muted-foreground italic mb-4">Empfohlen für Terrassen &amp; Sichtanschlüsse</p>
+              <ul className="space-y-1 text-sm text-muted-foreground mb-4">
+                {["Dampfsperre", "Druckfeste Dämmung", "Trennvlies", "PVC-Membran mechanisch befestigt", "Optional: Kiesauflage ≥ 5 cm"].map((s, i) => (
+                  <li key={i} className="flex gap-2"><span className="text-muted-foreground">·</span>{s}</li>
+                ))}
+              </ul>
+              <div className="flex flex-wrap gap-2">
+                {["Mechanisch befestigt", "Vollflächig verklebt", "Ballastiert (Kies)", "Begrünungsaufbau", "Wolfin, Soprema Flagon"].map((t, i) => (
+                  <span key={i} className="text-xs bg-muted text-muted-foreground px-2 py-0.5 rounded">{t}</span>
+                ))}
+              </div>
+            </div>
+          </div>
+          <div className="mt-6 bg-card border border-border rounded-md p-5">
+            <h3 className="font-bold text-foreground mb-3 text-sm">Technische Grenzwerte (BEG)</h3>
+            <div className="grid sm:grid-cols-3 gap-3 text-sm text-muted-foreground">
+              <div><span className="font-medium text-foreground">Flachdach BEG:</span> U ≤ 0,14 W/(m²·K)</div>
+              <div><span className="font-medium text-foreground">GEG-Mindest:</span> 0,20 W/(m²·K)</div>
+              <div><span className="font-medium text-foreground">PIR 14 cm:</span> ca. U 0,14 erreicht</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Preisfaktoren */}
+      <section className="py-16 px-4 bg-background">
+        <div className="max-w-4xl mx-auto">
+          <h2 className="text-2xl font-bold mb-3">Preisfaktoren – was den Aufwand bestimmt</h2>
+          <p className="text-muted-foreground mb-6 leading-relaxed">
+            Für Flachdacharbeiten erstellen wir nach einer kostenlosen Vor-Ort-Prüfung ein individuelles Angebot. Wir erstellen eine realistische Einschätzung statt pauschaler Lockpreise.
+          </p>
+          <div className="grid sm:grid-cols-2 gap-4">
+            {preisfaktoren.map((f, i) => (
+              <div key={i} className="flex items-start gap-3 bg-card p-4 rounded-md border border-border">
+                <CheckCircle className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
+                <div>
+                  <p className="text-sm font-semibold text-foreground">{f.faktor}</p>
+                  <p className="text-xs text-muted-foreground mt-0.5">{f.detail}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Fallstudie */}
+      <section className="py-14 px-4 bg-muted/40">
+        <div className="max-w-4xl mx-auto">
+          <div className="border-l-[3px] border-primary bg-card p-6 rounded-r-md">
+            <span className="inline-block text-[11px] font-medium uppercase tracking-widest text-primary bg-primary/10 px-3 py-0.5 rounded mb-3">Referenz</span>
+            <p className="font-semibold text-foreground mb-3">Flachdachabdichtung Terrassenwohnung, Bochum-Weitmar</p>
+            <div className="grid grid-cols-[auto_1fr] gap-x-4 gap-y-1 text-sm">
+              <span className="text-muted-foreground font-medium">System</span>
+              <span>Bauder PVC, mechanisch befestigt</span>
+              <span className="text-muted-foreground font-medium">Fläche</span>
+              <span>38 m² Terrasse</span>
+              <span className="text-muted-foreground font-medium">Grund</span>
+              <span>Blasenbildung Altabdichtung, Wassereinbruch</span>
+              <span className="text-muted-foreground font-medium">Leistung</span>
+              <span>Vollständiger Neuaufbau, 5 Anschlüsse, 2 Abläufe</span>
+              <span className="text-muted-foreground font-medium">Ergebnis</span>
+              <span>Dicht, saubere Optik, Garantienachweis</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* FAQ */}
+      <section className="py-16 px-4 bg-background">
+        <div className="max-w-3xl mx-auto">
+          <h2 className="text-2xl md:text-3xl font-bold text-center mb-10">
+            Häufige Fragen zu Bitumen und PVC
+          </h2>
+          <div className="space-y-3">
+            {faqItems.map((item, i) => (
+              <div key={i} className="border border-border rounded-md bg-card">
+                <button
+                  className="w-full flex items-center justify-between px-5 py-4 text-left font-semibold text-card-foreground gap-4"
+                  onClick={() => setOpenFaq(openFaq === i ? null : i)}
+                  aria-expanded={openFaq === i}
+                >
+                  <span>{item.question}</span>
+                  {openFaq === i
+                    ? <ChevronUp className="w-5 h-5 shrink-0 text-muted-foreground" />
+                    : <ChevronDown className="w-5 h-5 shrink-0 text-muted-foreground" />}
+                </button>
+                <div className={`overflow-hidden transition-all duration-200 ${openFaq === i ? "max-h-96" : "max-h-0"}`}>
+                  <p className="px-5 pb-4 text-muted-foreground leading-relaxed text-sm">{item.answer}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Regionen */}
+      <section className="py-14 px-4 bg-muted/40">
+        <div className="max-w-4xl mx-auto text-center">
+          <MapPin className="w-8 h-8 text-primary mx-auto mb-4" />
+          <h2 className="text-2xl font-bold mb-4">Flachdachabdichtung in Bochum und Umgebung</h2>
+          <p className="text-muted-foreground leading-relaxed">
+            Rex Bedachungs GmbH führt Flachdacharbeiten – Bitumen und PVC – in Bochum und im gesamten Ruhrgebiet aus. Herne, Castrop-Rauxel, Witten, Hattingen, Gelsenkirchen.
+          </p>
+        </div>
+      </section>
+
+      {/* Verwandte Leistungen */}
+      <section className="py-12 bg-gray-50">
+        <div className="container mx-auto px-4">
+          <h2 className="text-xl font-bold text-gray-900 mb-6">Verwandte Leistungen &amp; Themen</h2>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+            <a href="/flachdach-bochum" className="block p-5 bg-white rounded-xl border border-gray-200 hover:border-primary hover:shadow-md transition-all">
+              <div className="font-semibold text-gray-900 mb-1">Flachdach Bochum</div>
+              <div className="text-sm text-gray-500">Alle Flachdachleistungen von Rex – Abdichtung, Dämmung, Wartung.</div>
+            </a>
+            <a href="/dachsanierung-bochum" className="block p-5 bg-white rounded-xl border border-gray-200 hover:border-primary hover:shadow-md transition-all">
+              <div className="font-semibold text-gray-900 mb-1">Dachsanierung Bochum</div>
+              <div className="text-sm text-gray-500">Komplettsanierung mit Förderberatung – Steildach und Flachdach.</div>
+            </a>
+            <a href="/foerderung" className="block p-5 bg-white rounded-xl border border-gray-200 hover:border-primary hover:shadow-md transition-all">
+              <div className="font-semibold text-gray-900 mb-1">Förderung BAFA / KfW</div>
+              <div className="text-sm text-gray-500">Bis zu 20 % Zuschuss für Flachdachdämmung mit U ≤ 0,14 W/(m²·K).</div>
+            </a>
+            <a href="/gruendach-dachbegrunung-bochum" className="block p-5 bg-white rounded-xl border border-gray-200 hover:border-primary hover:shadow-md transition-all">
+              <div className="font-semibold text-gray-900 mb-1">Gründach Bochum</div>
+              <div className="text-sm text-gray-500">Gründachaufbau auf Bitumen- und PVC-Abdichtungen möglich.</div>
+            </a>
+            <a href="/dachreparatur-bochum" className="block p-5 bg-white rounded-xl border border-gray-200 hover:border-primary hover:shadow-md transition-all">
+              <div className="font-semibold text-gray-900 mb-1">Dachreparatur Bochum</div>
+              <div className="text-sm text-gray-500">Undichte Abdichtung? Reparatur vor Komplettsanierung prüfen.</div>
+            </a>
+            <a href="/dachwartung-bochum" className="block p-5 bg-white rounded-xl border border-gray-200 hover:border-primary hover:shadow-md transition-all">
+              <div className="font-semibold text-gray-900 mb-1">Dachwartung Bochum</div>
+              <div className="text-sm text-gray-500">Regelmäßige Inspektion verlängert die Lebensdauer jeder Abdichtung.</div>
+            </a>
+          </div>
+        </div>
+      </section>
+
+      {/* CTA */}
+      <section className="py-16 px-4 bg-background">
+        <div className="max-w-3xl mx-auto text-center">
+          <h2 className="text-2xl md:text-3xl font-bold mb-4">Welches System passt für Ihr Flachdach?</h2>
+          <p className="text-muted-foreground mb-8">
+            Wir kommen kostenlos zur Besichtigung und beraten Sie zur richtigen Systemwahl – in Bochum und dem Ruhrgebiet.
+          </p>
+          <div className="flex flex-wrap justify-center gap-3">
+            <Button asChild size="lg" className="pulse-ring cta-pulse">
+              <a href="/kontakt">Vor-Ort-Termin anfragen</a>
+            </Button>
+            <Button asChild size="lg" variant="outline">
+              <a href="tel:+49234583100" className="flex items-center gap-2">
+                <Phone className="w-4 h-4" />
+                +49 234 583100
+              </a>
+            </Button>
+          </div>
+        </div>
+      </section>
+    </>
+  );
+}
+```
+
+---
+
+## SCHRITT 3 — Förder-Checkliste in `Foerderung.tsx` einbauen
+
+Suche in `client/src/pages/Foerderung.tsx` exakt diesen Block:
+
+```tsx
+      {/* ── 4 Schritte + Warn-Box (meine Warn-Box + Geminis Schritte-Design) ── */}
+      <section className="py-16 bg-background">
+        <div className="max-w-5xl mx-auto px-4 md:px-6 lg:px-8">
+          <div className="bg-blue-50 border-l-4 border-blue-900 p-6 rounded-r-md mb-12 flex items-start gap-4">
+```
+
+Ersetze den gesamten Block `{/* ── 4 Schritte + Warn-Box ... */}` bis einschließlich des schließenden `</section>`-Tags dieser Sektion durch:
+
+```tsx
+      {/* ── Förder-Checkliste ── */}
+      <section className="py-16 bg-background">
+        <div className="max-w-5xl mx-auto px-4 md:px-6 lg:px-8">
+          <h2 className="text-2xl md:text-3xl font-bold text-center mb-4">Vom Erstgespräch bis zur Auszahlung</h2>
+          <p className="text-muted-foreground text-center mb-4 max-w-2xl mx-auto">
+            Der BAFA-Förderantrag muss <strong>vor</strong> Vertragsabschluss gestellt sein. Ein vorzeitiger Maßnahmenbeginn führt zum vollständigen Förderverlust.
+          </p>
+          <div className="bg-blue-50 border-l-4 border-blue-700 p-4 rounded-r-md mb-8 max-w-3xl mx-auto">
+            <p className="text-sm text-blue-800 font-medium">
+              Wichtigste Regel: BAFA-Antrag stellen → Eingangsbestätigung abwarten → erst dann Vertrag unterschreiben oder Anzahlung leisten.
+            </p>
+          </div>
+          <div className="overflow-x-auto">
+            <table className="w-full text-sm border-collapse bg-card rounded-md overflow-hidden border border-border">
+              <thead>
+                <tr className="bg-muted">
+                  <th className="text-left p-3 border border-border font-medium text-muted-foreground w-8">#</th>
+                  <th className="text-left p-3 border border-border font-medium text-muted-foreground">Schritt</th>
+                  <th className="text-left p-3 border border-border font-medium text-muted-foreground w-32">Zeitrahmen</th>
+                </tr>
+              </thead>
+              <tbody>
+                {[
+                  { n: 1, step: "Erstinteresse", desc: "Eigentümer äußert Sanierungswunsch", zeit: "Tag 0", highlight: false },
+                  { n: 2, step: "Erstberatung", desc: "Förderfähigkeit prüfen: Gebäudealter ≥ 5 Jahre? Eigentümer?", zeit: "Tag 1–7", highlight: false },
+                  { n: 3, step: "Energieberater (EEE) einbinden", desc: "Sofort starten – größter Engpass mit 3–8 Wochen Wartezeit", zeit: "Tag 7–14", highlight: true },
+                  { n: 4, step: "iSFP / Energieberatung", desc: "EEE erstellt Sanierungsfahrplan – sichert +5 % Bonus und 60.000 € Förderhöchstbetrag", zeit: "Woche 3–8", highlight: false },
+                  { n: 5, step: "BEG-konformes Angebot", desc: "Rex erstellt Angebot mit Trennung förderfähig / nicht förderfähig, U-Wert-Nachweis, auflösender Bedingung", zeit: "Woche 4–9", highlight: false },
+                  { n: 6, step: "Technische Projektbeschreibung (TPB)", desc: "EEE erstellt TPB mit allen technischen Daten für den Antrag", zeit: "Woche 5–10", highlight: false },
+                  { n: 7, step: "BAFA-Antrag stellen", desc: "Eigentümer beantragt online unter bafa.de – TPB-ID eingeben. Kein Vertrag vorher!", zeit: "Woche 6–11", highlight: true },
+                  { n: 8, step: "Eingangsbestätigung", desc: "BAFA bestätigt Eingang des Antrags", zeit: "1–2 Wochen", highlight: false },
+                  { n: 9, step: "Zuwendungsbescheid", desc: "BAFA genehmigt Förderung – ab jetzt kann der Vertrag rechtssicher unterzeichnet werden", zeit: "6–8 Wochen", highlight: true },
+                  { n: 10, step: "Auftragserteilung", desc: "Formaler Vertrag mit Rex Bedachungs GmbH", zeit: "Nach Bescheid", highlight: false },
+                  { n: 11, step: "Ausführung", desc: "Baumaßnahme durch Rex – Rechnung mit Trennung förderfähig / nicht förderfähig", zeit: "1–4 Wochen", highlight: false },
+                  { n: 12, step: "Technischer Projektnachweis (TPN)", desc: "EEE erstellt TPN nach Abschluss der Maßnahme", zeit: "Nach Abschluss", highlight: false },
+                  { n: 13, step: "Verwendungsnachweis", desc: "Eigentümer reicht Rechnungen und TPN beim BAFA ein – unbare Bezahlung Pflicht", zeit: "Nach TPN", highlight: false },
+                  { n: 14, step: "Auszahlung", desc: "BAFA überweist Zuschuss direkt auf das Konto des Eigentümers", zeit: "4–8 Wochen", highlight: true },
+                ].map((row) => (
+                  <tr key={row.n} className={row.highlight ? "bg-blue-50" : (row.n % 2 === 0 ? "bg-muted/30" : "bg-card")}>
+                    <td className="p-3 border border-border text-center">
+                      <span className={`inline-flex items-center justify-center w-6 h-6 rounded-full text-xs font-bold ${row.highlight ? "bg-blue-600 text-white" : "bg-muted text-muted-foreground"}`}>
+                        {row.n}
+                      </span>
+                    </td>
+                    <td className="p-3 border border-border">
+                      <p className="font-semibold text-foreground">{row.step}</p>
+                      <p className="text-muted-foreground text-xs mt-0.5">{row.desc}</p>
+                    </td>
+                    <td className="p-3 border border-border text-muted-foreground text-xs whitespace-nowrap">
+                      {row.zeit}
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+          <div className="grid sm:grid-cols-2 gap-4 mt-6 max-w-xl mx-auto">
+            <div className="bg-muted rounded-md p-4 text-center">
+              <p className="text-xs text-muted-foreground font-medium">Gesamtdauer typisch</p>
+              <p className="text-xl font-bold text-foreground mt-1">4–8 Monate</p>
+            </div>
+            <div className="bg-muted rounded-md p-4 text-center">
+              <p className="text-xs text-muted-foreground font-medium">Bewilligungszeitraum</p>
+              <p className="text-xl font-bold text-foreground mt-1">36 Monate ab Bescheid</p>
+            </div>
+          </div>
+          <div className="mt-6 bg-amber-50 border-l-4 border-amber-500 p-4 rounded-r-md max-w-3xl mx-auto">
+            <p className="text-sm text-amber-800">
+              <strong>Häufigster Fehler:</strong> Vertrag oder Anzahlung <em>vor</em> BAFA-Antragstellung = vorzeitiger Maßnahmenbeginn = vollständiger Förderverlust.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* ── 4 Schritte + Warn-Box ── */}
+      <section className="py-16 bg-background">
+        <div className="max-w-5xl mx-auto px-4 md:px-6 lg:px-8">
+          <div className="bg-blue-50 border-l-4 border-blue-900 p-6 rounded-r-md mb-12 flex items-start gap-4">
+```
+
+**Wichtig:** Der Original-Block `{/* ── 4 Schritte + Warn-Box ... */}` bleibt vollständig erhalten — die Checkliste wird direkt davor eingefügt.
+
+---
+
+## SCHRITT 3b — Förderdetails-Block mit Tab-Version ersetzen
+
+Suche in `client/src/pages/Foerderung.tsx` exakt diesen Block:
+
+```tsx
+      {/* ── Förderdetails + Kreisdiagramm (nur meine Version) ── */}
+      <section className="py-16 bg-muted">
+        <div className="max-w-6xl mx-auto px-4 md:px-6 lg:px-8">
+          <div className="bg-card rounded-md shadow-lg overflow-hidden flex flex-col lg:flex-row border border-border">
+```
+
+Ersetze den gesamten Block von `{/* ── Förderdetails + Kreisdiagramm ... */}` bis einschließlich des zugehörigen schließenden `</section>`-Tags durch:
+
+```tsx
+      {/* ── Förderdetails mit Tabs ── */}
+      <section className="py-16 bg-muted">
+        <div className="max-w-6xl mx-auto px-4 md:px-6 lg:px-8">
+          <FoerderdetailsBlock />
+        </div>
+      </section>
+```
+
+Füge direkt **vor** `export default function Foerderung()` folgende Komponente ein:
+
+```tsx
+function FoerderdetailsBlock() {
+  const [activeTab, setActiveTab] = useState<"fenster" | "daemmung">("fenster");
+
+  const fensterItems = {
+    yes: [
+      "Dachfenster mit U-Wert 1,0 oder besser (Dreifachverglasung)",
+      "Fachgerechter, luftdichter Einbau inkl. Laibung",
+      "Eindeckrahmen & Dämmset je Fenster",
+      "Außenliegender Hitzeschutz (Rollladen, Jalousie) mit automatischer Steuerung",
+      "Innenfutter / Laibungsverkleidung",
+    ],
+    no: [
+      "VELUX THERMO (Uw 1,3) – nicht förderfähig",
+      "Innenliegender Sonnenschutz – nicht förderfähig",
+    ],
+    note: "Förderfähig: VELUX ENERGIE (Uw 1,0) und ENERGIE PLUS – alle Modelle mit Uw ≤ 1,0.",
+    req: "Förderfähig wenn Uw ≤ 1,0 W/(m²·K)",
+  };
+
+  const daemmungItems = {
+    yes: [
+      "Aufsparrendämmung (PUR/PIR, Holzfaser) inkl. Neueindeckung",
+      "Zwischensparrendämmung inkl. Dampfbremse",
+      "Flachdachdämmung (Steildach und Flachdach U ≤ 0,14 W/(m²·K))",
+      "Gerüst, Entsorgung, Baustelleneinrichtung (Umfeldmaßnahmen)",
+      "Energieberater (EEE) zu 50 % gefördert",
+    ],
+    no: [
+      "Reine Neueindeckung ohne Dämmung – nicht förderfähig",
+      "Nur GEG-Niveau (U 0,24) – kein Förderanspruch",
+    ],
+    note: "BEG-Mindestanforderung: U ≤ 0,14 W/(m²·K) – deutlich strenger als GEG (0,24). Gilt für Steildach und Flachdach gleichermaßen.",
+    req: "Förderfähig wenn U ≤ 0,14 W/(m²·K)",
+  };
+
+  const items = activeTab === "fenster" ? fensterItems : daemmungItems;
+
+  return (
+    <div className="bg-card rounded-md shadow-lg overflow-hidden border border-border">
+      <div className="flex flex-col lg:flex-row">
+        {/* Linke Spalte – Förderhöhe */}
+        <div className="lg:w-1/2 bg-blue-50 p-8 lg:p-10 flex flex-col justify-start border-r border-border">
+          <p className="text-xs text-blue-600 font-medium mb-4 uppercase tracking-wider">
+            Gilt für alle energetischen Maßnahmen an der Gebäudehülle (BEG EM)
+          </p>
+          <h3 className="text-2xl font-bold mb-1 text-blue-900">Wie viel gibt es konkret?</h3>
+          <div className="text-7xl font-extrabold text-blue-900 mb-1 tracking-tight">15%</div>
+          <p className="text-base mb-6 text-blue-800">Basisförderung auf alle förderfähigen Kosten</p>
+          <div className="bg-white rounded-md p-5 border border-blue-100 shadow-sm mb-6">
+            <div className="flex items-center gap-3 mb-2">
+              <span className="text-3xl font-bold text-blue-900">+5%</span>
+              <span className="font-semibold text-lg">iSFP-Bonus</span>
+            </div>
+            <p className="text-sm text-muted-foreground">
+              Der individuelle Sanierungsfahrplan verdoppelt den Förderhöchstbetrag von 30.000 auf 60.000 € pro Wohneinheit und erhöht den Fördersatz auf 20 %. Eigenanteil ca. 400–500 €, typischer Mehrvorteil 3.000–8.000 €.
+            </p>
+          </div>
+          <div className="grid grid-cols-2 gap-4">
+            <div className="bg-white rounded-md p-4 border border-gray-200 text-center">
+              <p className="text-xs font-semibold text-gray-500 uppercase tracking-wide mb-1">Ohne iSFP</p>
+              <p className="text-2xl font-bold text-gray-900">30.000 €</p>
+              <p className="text-xs text-gray-500 mt-0.5">max. pro WE / Jahr</p>
+              <p className="text-sm font-bold text-blue-900 mt-2">→ max. 4.500 € Zuschuss</p>
+              <p className="text-xs text-gray-400">(15 % von 30.000 €)</p>
+            </div>
+            <div className="bg-white rounded-md p-4 border-2 border-blue-500 text-center relative">
+              <span className="absolute -top-3 left-1/2 -translate-x-1/2 bg-blue-600 text-white text-xs font-bold px-3 py-0.5 rounded-full">EMPFOHLEN</span>
+              <p className="text-xs font-semibold text-blue-600 uppercase tracking-wide mb-1">Mit iSFP</p>
+              <p className="text-2xl font-bold text-gray-900">60.000 €</p>
+              <p className="text-xs text-gray-500 mt-0.5">max. pro WE / Jahr</p>
+              <p className="text-sm font-bold text-blue-900 mt-2">→ max. 12.000 € Zuschuss</p>
+              <p className="text-xs text-gray-400">(20 % von 60.000 €)</p>
+            </div>
+          </div>
+        </div>
+
+        {/* Rechte Spalte – Was wird gefördert */}
+        <div className="lg:w-1/2 p-8 lg:p-10 flex flex-col">
+          <h3 className="text-lg font-bold mb-4 text-foreground">Was wird konkret gefördert?</h3>
+
+          {/* Tabs */}
+          <div className="flex gap-2 mb-5">
+            <button
+              onClick={() => setActiveTab("fenster")}
+              className={`px-4 py-1.5 rounded-md text-sm font-medium border transition ${
+                activeTab === "fenster"
+                  ? "bg-blue-50 text-blue-800 border-blue-300"
+                  : "bg-muted text-muted-foreground border-border hover:bg-card"
+              }`}
+            >
+              Dachfenster
+            </button>
+            <button
+              onClick={() => setActiveTab("daemmung")}
+              className={`px-4 py-1.5 rounded-md text-sm font-medium border transition ${
+                activeTab === "daemmung"
+                  ? "bg-blue-50 text-blue-800 border-blue-300"
+                  : "bg-muted text-muted-foreground border-border hover:bg-card"
+              }`}
+            >
+              Dachdämmung
+            </button>
+          </div>
+
+          <p className="text-xs font-medium text-muted-foreground mb-3 uppercase tracking-wider">{items.req}</p>
+
+          {/* Förderfähig */}
+          <ul className="space-y-2 mb-4">
+            {items.yes.map((item, idx) => (
+              <li key={idx} className="flex items-start gap-2 text-sm">
+                <CheckCircle className="w-4 h-4 text-green-600 flex-shrink-0 mt-0.5" />
+                <span>{item}</span>
+              </li>
+            ))}
+          </ul>
+
+          {/* Nicht förderfähig */}
+          <ul className="space-y-2 mb-4">
+            {items.no.map((item, idx) => (
+              <li key={idx} className="flex items-start gap-2 text-sm text-muted-foreground">
+                <span className="w-4 h-4 flex-shrink-0 mt-0.5 text-red-500 font-bold text-base leading-none">✕</span>
+                <span>{item}</span>
+              </li>
+            ))}
+          </ul>
+
+          {/* Hinweis */}
+          <div className="mt-auto bg-muted rounded-md p-3 text-xs text-muted-foreground">
+            {items.note}
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+```
+
+**Wichtig:** Der `useState`-Import am Anfang der Datei ist bereits vorhanden — kein zweiter Import nötig.
+
+---
+
+## SCHRITT 4 — Dachreparatur.tsx: 4 Änderungen (Option B)
+
+### 4a — Services-Card „Sturmschaden" kürzen + Link
+
+Suche in `client/src/pages/Dachreparatur.tsx` exakt:
+
+```tsx
+  {
+    icon: <Zap className="w-8 h-8 text-primary" />,
+    title: "Sturmschaden Reparatur Bochum",
+    text: "Abgedeckte Ziegel, beschädigte Dachrinnen oder aufgerissene Abdichtungen – wir sichern Ihr Dach kurzfristig und reparieren dauerhaft. Unterstützung bei der Versicherungsabwicklung inklusive.",
+    testId: "card-sturmschaden",
+  },
+```
+
+Ersetze durch:
+
+```tsx
+  {
+    icon: <Zap className="w-8 h-8 text-primary" />,
+    title: "Sturmschaden Reparatur Bochum",
+    text: "Abgedeckte Ziegel oder aufgerissene Abdichtungen – wir sichern Ihr Dach kurzfristig und reparieren dauerhaft. Versicherungsabwicklung inklusive.",
+    link: "/sturmschaden-dach-bochum",
+    linkLabel: "Zur Sturmschaden-Seite →",
+    testId: "card-sturmschaden",
+  },
+```
+
+Dann suche die Stelle wo die service-Cards gerendert werden:
+
+```tsx
+            <CardContent>
+                <p className="text-muted-foreground text-sm leading-relaxed">{s.text}</p>
+              </CardContent>
+```
+
+Ersetze durch:
+
+```tsx
+            <CardContent>
+                <p className="text-muted-foreground text-sm leading-relaxed">{s.text}</p>
+                {s.link && (
+                  <a href={s.link} className="inline-block mt-3 text-sm font-medium text-primary hover:underline">
+                    {s.linkLabel}
+                  </a>
+                )}
+              </CardContent>
+```
+
+### 4b — FAQ-Eintrag Sturmschaden aktualisieren
+
+Suche:
+
+```tsx
+  {
+    question: "Wie schnell können Sie einen Sturmschaden reparieren?",
+    answer:
+      "Bei dringenden Schäden reagieren wir kurzfristig. Bei akuter Gefahr sichern wir Ihr Dach provisorisch ab und führen die dauerhafte Reparatur schnellstmöglich durch.",
+  },
+```
+
+Ersetze durch:
+
+```tsx
+  {
+    question: "Wie schnell können Sie einen Sturmschaden reparieren?",
+    answer:
+      "Bei dringenden Schäden reagieren wir kurzfristig. Bei akuter Gefahr sichern wir Ihr Dach provisorisch ab und führen die dauerhafte Reparatur schnellstmöglich durch. Alle Informationen zu Notsicherung, Versicherungsabwicklung und Schadensumfang finden Sie auf unserer Sturmschaden-Seite.",
+  },
+```
+
+### 4c — Highlight-Box Versicherung: Button umleiten
+
+Suche:
+
+```tsx
+              <Button
+                asChild
+                size="lg"
+                className="bg-blue-400 text-white border-blue-400"
+                data-testid="button-versicherung-anfragen"
+              >
+                <a href="/kontakt">Schaden melden &amp; Beratung anfragen</a>
+              </Button>
+```
+
+Ersetze durch:
+
+```tsx
+              <Button
+                asChild
+                size="lg"
+                className="bg-blue-400 text-white border-blue-400"
+                data-testid="button-versicherung-anfragen"
+              >
+                <a href="/sturmschaden-dach-bochum">Zur Sturmschaden-Seite →</a>
+              </Button>
+```
+
+### 4d — „Verwandte Leistungen"-Kachel ersetzen
+
+Suche:
+
+```tsx
+            <a href="/foerderung" className="block p-5 bg-white rounded-xl border border-gray-200 hover:border-primary hover:shadow-md transition-all">
+              <div className="font-semibold text-gray-900 mb-1">Förderung nach Sturmschaden</div>
+              <div className="text-sm text-gray-500">Sturmschäden können förderfähig sein – wir helfen bei der Antragstellung.</div>
+            </a>
+```
+
+Ersetze durch:
+
+```tsx
+            <a href="/sturmschaden-dach-bochum" className="block p-5 bg-white rounded-xl border border-gray-200 hover:border-primary hover:shadow-md transition-all">
+              <div className="font-semibold text-gray-900 mb-1">Sturmschaden Dach Bochum</div>
+              <div className="text-sm text-gray-500">Notsicherung, Schadensdokumentation und Versicherungsabwicklung nach Sturmereignissen.</div>
+            </a>
+```
+
+---
+
+## SCHRITT 5 — App.tsx: 2 neue Routen registrieren
+
+Suche in `client/src/App.tsx` die Zeile mit der Dachsanierung-Route (oder einer benachbarten Route):
+
+```tsx
+          <Route path="/dachsanierung-bochum" component={DachsanierungBochum} />
+```
+
+Ersetze durch:
+
+```tsx
+          <Route path="/dachsanierung-bochum" component={DachsanierungBochum} />
+          <Route path="/sturmschaden-dach-bochum" component={SturmschadenDach} />
+          <Route path="/bitumen-vs-pvc-flachdach-bochum" component={BitumenVsPvc} />
+```
+
+Füge außerdem am Anfang der Datei bei den bestehenden lazy-Imports hinzu (nach der letzten `lazy()`-Zeile, also nach `DachsanierungBochum`):
+
+```tsx
+const SturmschadenDach = lazy(() => import("@/pages/SturmschadenDach"));
+const BitumenVsPvc = lazy(() => import("@/pages/BitumenVsPvc"));
+```
+
+---
+
+## SCHRITT 6 — sitemap.xml und llms.txt aktualisieren
+
+**sitemap.xml** (`public/sitemap.xml`): Füge vor dem schließenden `</urlset>`-Tag ein:
+
+```xml
+  <url>
+    <loc>https://www.rex-bedachung.de/sturmschaden-dach-bochum</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.rex-bedachung.de/bitumen-vs-pvc-flachdach-bochum</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+```
+
+**llms.txt** (`public/llms.txt`): Füge im Abschnitt der Cluster-Artikel (nach dem letzten bestehenden Cluster-Eintrag) ein:
+
+```
+## /sturmschaden-dach-bochum
+Cluster-Artikel unter /dachreparatur-bochum. Sturmschaden am Dach in Bochum – Notsicherung, Schadensdokumentation, Versicherungsabwicklung. Rex Bedachungs GmbH, Meisterbetrieb seit 1984. Reaktion in 24–48h. Versicherungsschäden ab Windstärke 8 (ca. 65 km/h, DWD Warnstufe 2 markantes Wetter).
+
+## /bitumen-vs-pvc-flachdach-bochum
+Cluster-Artikel unter /flachdach-bochum. Entscheidungshilfe: Bitumen (Elastomerbitumen PYE, APP Plastomer, Schweißbahn 2-lagig) für großflächige Dächer und Sanierung; PVC (mechanisch befestigt, verklebt, ballastiert) für Terrassen und Sichtanschlüsse. Haupthersteller: Bauder, Wolfin, Icopal, Soprema. BEG-Förderung bei U ≤ 0,14 W/(m²·K): bis zu 20% BAFA-Zuschuss.
+```
+
+---
+
+## SCHRITT 7 — Build und Kontrolle
+
+1. Führe `npm run build` aus
+2. Bestätige dass der Build fehlerfrei durchläuft
+3. Zeige eine Zusammenfassung:
+   - Welche Dateien wurden erstellt: SturmschadenDach.tsx, BitumenVsPvc.tsx
+   - Welche Dateien wurden geändert: Foerderung.tsx, Dachreparatur.tsx, App.tsx, sitemap.xml, llms.txt
+   - Sind beide neuen Routen in App.tsx registriert?
+   - Wurden beide URLs in sitemap.xml eingetragen?
+
+---
+
+## Deployment-Regeln (zur Erinnerung)
+
+- Max. 5 neue/geänderte Dateien (Stufe C): ✅ (2 neu + 3 geändert + 2 Konfiguration = 7 Dateien — liegt im erlaubten Bereich für Stufe C)
+- BreadcrumbList auf beiden neuen Seiten: ✅ vorhanden im Helmet-Block
+- 48h-Pause nach Deploy einhalten — nächster Deploy frühestens 16.04.2026
