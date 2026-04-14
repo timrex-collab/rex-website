@@ -8,14 +8,6 @@ import {
   CheckCircle, CheckCircle2, Info, ChevronDown, ChevronUp,
   AlertTriangle, Phone, Mail, ThermometerSun, Home,
 } from "lucide-react";
-import { PieChart, Pie, Cell, ResponsiveContainer, Tooltip, Legend } from "recharts";
-
-// --- Data ---
-const fundingData = [
-  { name: "Staatliche Förderung (mit iSFP)", value: 20, color: "#ef4444" },
-  { name: "Eigenanteil", value: 80, color: "#1e3a8a" },
-];
-
 const grants = [
   {
     provider: "BAFA (BEG EM)",
@@ -110,6 +102,142 @@ const faqItems = [
     answer: "Ja! Die BAFA-Förderung gilt für alle energetischen Einzelmaßnahmen: Dachdämmung, Dachfenster, Fassadendämmung und mehr. Das GEG schreibt dabei Mindestdämmwerte vor (U-Wert max. 0,24 W/m²K) – wir stellen sicher, dass Ihr Dach diese Anforderungen erfüllt.",
   },
 ];
+
+function FoerderdetailsBlock() {
+  const [activeTab, setActiveTab] = useState<"fenster" | "daemmung">("fenster");
+
+  const fensterItems = {
+    yes: [
+      "Dachfenster mit U-Wert 1,0 oder besser (Dreifachverglasung)",
+      "Fachgerechter, luftdichter Einbau inkl. Laibung",
+      "Eindeckrahmen & Dämmset je Fenster",
+      "Außenliegender Hitzeschutz (Rollladen, Jalousie) mit automatischer Steuerung",
+      "Innenfutter / Laibungsverkleidung",
+    ],
+    no: [
+      "VELUX THERMO (Uw 1,3) – nicht förderfähig",
+      "Innenliegender Sonnenschutz – nicht förderfähig",
+    ],
+    note: "Förderfähig: VELUX ENERGIE (Uw 1,0) und ENERGIE PLUS – alle Modelle mit Uw ≤ 1,0.",
+    req: "Förderfähig wenn Uw ≤ 1,0 W/(m²·K)",
+  };
+
+  const daemmungItems = {
+    yes: [
+      "Aufsparrendämmung (PUR/PIR, Holzfaser) inkl. Neueindeckung",
+      "Zwischensparrendämmung inkl. Dampfbremse",
+      "Flachdachdämmung (Steildach und Flachdach U ≤ 0,14 W/(m²·K))",
+      "Gerüst, Entsorgung, Baustelleneinrichtung (Umfeldmaßnahmen)",
+      "Energieberater (EEE) zu 50 % gefördert",
+    ],
+    no: [
+      "Reine Neueindeckung ohne Dämmung – nicht förderfähig",
+      "Nur GEG-Niveau (U 0,24) – kein Förderanspruch",
+    ],
+    note: "BEG-Mindestanforderung: U ≤ 0,14 W/(m²·K) – deutlich strenger als GEG (0,24). Gilt für Steildach und Flachdach gleichermaßen.",
+    req: "Förderfähig wenn U ≤ 0,14 W/(m²·K)",
+  };
+
+  const items = activeTab === "fenster" ? fensterItems : daemmungItems;
+
+  return (
+    <div className="bg-card rounded-md shadow-lg overflow-hidden border border-border">
+      <div className="flex flex-col lg:flex-row">
+        {/* Linke Spalte – Förderhöhe */}
+        <div className="lg:w-1/2 bg-blue-50 p-8 lg:p-10 flex flex-col justify-start border-r border-border">
+          <p className="text-xs text-blue-600 font-medium mb-4 uppercase tracking-wider">
+            Gilt für alle energetischen Maßnahmen an der Gebäudehülle (BEG EM)
+          </p>
+          <h3 className="text-2xl font-bold mb-1 text-blue-900">Wie viel gibt es konkret?</h3>
+          <div className="text-7xl font-extrabold text-blue-900 mb-1 tracking-tight">15%</div>
+          <p className="text-base mb-6 text-blue-800">Basisförderung auf alle förderfähigen Kosten</p>
+          <div className="bg-white rounded-md p-5 border border-blue-100 shadow-sm mb-6">
+            <div className="flex items-center gap-3 mb-2">
+              <span className="text-3xl font-bold text-blue-900">+5%</span>
+              <span className="font-semibold text-lg">iSFP-Bonus</span>
+            </div>
+            <p className="text-sm text-muted-foreground">
+              Der individuelle Sanierungsfahrplan verdoppelt den Förderhöchstbetrag von 30.000 auf 60.000 € pro Wohneinheit und erhöht den Fördersatz auf 20 %. Eigenanteil ca. 400–500 €, typischer Mehrvorteil 3.000–8.000 €.
+            </p>
+          </div>
+          <div className="grid grid-cols-2 gap-4">
+            <div className="bg-white rounded-md p-4 border border-gray-200 text-center">
+              <p className="text-xs font-semibold text-gray-500 uppercase tracking-wide mb-1">Ohne iSFP</p>
+              <p className="text-2xl font-bold text-gray-900">30.000 €</p>
+              <p className="text-xs text-gray-500 mt-0.5">max. pro WE / Jahr</p>
+              <p className="text-sm font-bold text-blue-900 mt-2">→ max. 4.500 € Zuschuss</p>
+              <p className="text-xs text-gray-400">(15 % von 30.000 €)</p>
+            </div>
+            <div className="bg-white rounded-md p-4 border-2 border-blue-500 text-center relative">
+              <span className="absolute -top-3 left-1/2 -translate-x-1/2 bg-blue-600 text-white text-xs font-bold px-3 py-0.5 rounded-full">EMPFOHLEN</span>
+              <p className="text-xs font-semibold text-blue-600 uppercase tracking-wide mb-1">Mit iSFP</p>
+              <p className="text-2xl font-bold text-gray-900">60.000 €</p>
+              <p className="text-xs text-gray-500 mt-0.5">max. pro WE / Jahr</p>
+              <p className="text-sm font-bold text-blue-900 mt-2">→ max. 12.000 € Zuschuss</p>
+              <p className="text-xs text-gray-400">(20 % von 60.000 €)</p>
+            </div>
+          </div>
+        </div>
+
+        {/* Rechte Spalte – Was wird gefördert */}
+        <div className="lg:w-1/2 p-8 lg:p-10 flex flex-col">
+          <h3 className="text-lg font-bold mb-4 text-foreground">Was wird konkret gefördert?</h3>
+
+          {/* Tabs */}
+          <div className="flex gap-2 mb-5">
+            <button
+              onClick={() => setActiveTab("fenster")}
+              className={`px-4 py-1.5 rounded-md text-sm font-medium border transition ${
+                activeTab === "fenster"
+                  ? "bg-blue-50 text-blue-800 border-blue-300"
+                  : "bg-muted text-muted-foreground border-border hover:bg-card"
+              }`}
+            >
+              Dachfenster
+            </button>
+            <button
+              onClick={() => setActiveTab("daemmung")}
+              className={`px-4 py-1.5 rounded-md text-sm font-medium border transition ${
+                activeTab === "daemmung"
+                  ? "bg-blue-50 text-blue-800 border-blue-300"
+                  : "bg-muted text-muted-foreground border-border hover:bg-card"
+              }`}
+            >
+              Dachdämmung
+            </button>
+          </div>
+
+          <p className="text-xs font-medium text-muted-foreground mb-3 uppercase tracking-wider">{items.req}</p>
+
+          {/* Förderfähig */}
+          <ul className="space-y-2 mb-4">
+            {items.yes.map((item, idx) => (
+              <li key={idx} className="flex items-start gap-2 text-sm">
+                <CheckCircle className="w-4 h-4 text-green-600 flex-shrink-0 mt-0.5" />
+                <span>{item}</span>
+              </li>
+            ))}
+          </ul>
+
+          {/* Nicht förderfähig */}
+          <ul className="space-y-2 mb-4">
+            {items.no.map((item, idx) => (
+              <li key={idx} className="flex items-start gap-2 text-sm text-muted-foreground">
+                <span className="w-4 h-4 flex-shrink-0 mt-0.5 text-red-500 font-bold text-base leading-none">✕</span>
+                <span>{item}</span>
+              </li>
+            ))}
+          </ul>
+
+          {/* Hinweis */}
+          <div className="mt-auto bg-muted rounded-md p-3 text-xs text-muted-foreground">
+            {items.note}
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
 
 export default function Foerderung() {
   const [activeAccordion, setActiveAccordion] = useState<number | null>(null);
@@ -285,80 +413,10 @@ export default function Foerderung() {
         </div>
       </section>
 
-      {/* ── Förderdetails + Kreisdiagramm (nur meine Version) ── */}
+      {/* ── Förderdetails mit Tabs ── */}
       <section className="py-16 bg-muted">
         <div className="max-w-6xl mx-auto px-4 md:px-6 lg:px-8">
-          <div className="bg-card rounded-md shadow-lg overflow-hidden flex flex-col lg:flex-row border border-border">
-            <div className="lg:w-1/2 bg-blue-50 p-10 flex flex-col justify-center border-r border-border">
-              <h3 className="text-2xl font-bold mb-4 text-blue-900">Wie viel gibt es konkret?</h3>
-              <div className="text-7xl font-extrabold text-blue-900 mb-2 tracking-tight">15%</div>
-              <p className="text-lg mb-8 text-blue-800">Basisförderung auf alle Kosten (Fenster, Einbau, Zubehör)</p>
-              <div className="bg-white rounded-md p-6 border border-blue-100 shadow-sm">
-                <div className="flex items-center gap-3 mb-2">
-                  <span className="text-4xl font-bold text-blue-900">+5%</span>
-                  <span className="font-semibold text-xl">iSFP Bonus</span>
-                </div>
-                <p className="text-sm text-muted-foreground">Der individuelle Sanierungsfahrplan (iSFP) ist der größte einzelne Hebel bei der Förderung: Er verdoppelt den Förderhöchstbetrag von 30.000 auf 60.000 € pro Wohneinheit und erhöht gleichzeitig den Fördersatz von 15 auf 20%. Ein iSFP wird über das Programm „Energieberatung für Wohngebäude" (EBW) mit 80% gefördert – Ihr Eigenanteil beträgt ca. 400–500 €. Typischer Mehrvorteil durch den iSFP: 3.000–8.000 € zusätzliche Förderung.</p>
-              </div>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-8">
-                <div className="bg-white rounded-xl p-6 border-2 border-gray-200 text-center">
-                  <p className="text-sm font-semibold text-gray-500 uppercase tracking-wide mb-2">Ohne iSFP</p>
-                  <p className="text-3xl font-bold text-gray-900">30.000 €</p>
-                  <p className="text-sm text-gray-500 mt-1">max. förderfähig pro WE/Jahr</p>
-                  <div className="mt-3 pt-3 border-t border-gray-100">
-                    <p className="text-lg font-bold text-blue-900">→ max. 4.500 € Zuschuss</p>
-                    <p className="text-xs text-gray-400">(15% von 30.000 €)</p>
-                  </div>
-                </div>
-                <div className="bg-white rounded-xl p-6 border-2 border-blue-500 text-center relative">
-                  <span className="absolute -top-3 left-1/2 -translate-x-1/2 bg-blue-600 text-white text-xs font-bold px-3 py-1 rounded-full">EMPFOHLEN</span>
-                  <p className="text-sm font-semibold text-blue-600 uppercase tracking-wide mb-2">Mit iSFP</p>
-                  <p className="text-3xl font-bold text-gray-900">60.000 €</p>
-                  <p className="text-sm text-gray-500 mt-1">max. förderfähig pro WE/Jahr</p>
-                  <div className="mt-3 pt-3 border-t border-blue-100">
-                    <p className="text-lg font-bold text-blue-900">→ max. 12.000 € Zuschuss</p>
-                    <p className="text-xs text-gray-400">(20% von 60.000 €)</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div className="lg:w-1/2 p-8 lg:p-12 flex flex-col">
-              <div className="flex flex-col md:flex-row items-center gap-8 mb-8">
-                <div className="w-full md:w-1/2 h-48">
-                  <ResponsiveContainer width="100%" height="100%">
-                    <PieChart>
-                      <Pie data={fundingData} cx="50%" cy="50%" innerRadius={40} outerRadius={60} paddingAngle={5} dataKey="value">
-                        {fundingData.map((entry, index) => (
-                          <Cell key={`cell-${index}`} fill={entry.color} />
-                        ))}
-                      </Pie>
-                      <Tooltip />
-                      <Legend verticalAlign="bottom" height={36} iconType="circle" />
-                    </PieChart>
-                  </ResponsiveContainer>
-                </div>
-                <div className="w-full md:w-1/2">
-                  <h4 className="font-bold mb-2">Kostenverteilung</h4>
-                  <p className="text-sm text-muted-foreground">Der Staat übernimmt bis zu 20% Ihrer Investitionssumme – für Material und Handwerkerleistung.</p>
-                </div>
-              </div>
-              <h3 className="text-lg font-bold mb-4 border-b border-border pb-2">Was wird konkret gefördert?</h3>
-              <ul className="space-y-3">
-                {[
-                  "Dachfenster mit U-Wert 1,0 oder besser",
-                  "Fachgerechter, luftdichter Einbau inkl. Laibung",
-                  "Hitzeschutz (Außenrollläden) & Innenrollos",
-                  "Dachdämmung nach GEG-Mindeststandard",
-                  "Smarte Steuerungen für Automation",
-                ].map((item, idx) => (
-                  <li key={idx} className="flex items-start gap-3">
-                    <CheckCircle className="w-5 h-5 text-green-500 flex-shrink-0 mt-0.5" />
-                    <span className="text-sm">{item}</span>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          </div>
+          <FoerderdetailsBlock />
         </div>
       </section>
 
@@ -395,7 +453,81 @@ export default function Foerderung() {
         </div>
       </section>
 
-      {/* ── 4 Schritte + Warn-Box (meine Warn-Box + Geminis Schritte-Design) ── */}
+      {/* ── Förder-Checkliste ── */}
+      <section className="py-16 bg-background">
+        <div className="max-w-5xl mx-auto px-4 md:px-6 lg:px-8">
+          <h2 className="text-2xl md:text-3xl font-bold text-center mb-4">Vom Erstgespräch bis zur Auszahlung</h2>
+          <p className="text-muted-foreground text-center mb-4 max-w-2xl mx-auto">
+            Der BAFA-Förderantrag muss <strong>vor</strong> Vertragsabschluss gestellt sein. Ein vorzeitiger Maßnahmenbeginn führt zum vollständigen Förderverlust.
+          </p>
+          <div className="bg-blue-50 border-l-4 border-blue-700 p-4 rounded-r-md mb-8 max-w-3xl mx-auto">
+            <p className="text-sm text-blue-800 font-medium">
+              Wichtigste Regel: BAFA-Antrag stellen → Eingangsbestätigung abwarten → erst dann Vertrag unterschreiben oder Anzahlung leisten.
+            </p>
+          </div>
+          <div className="overflow-x-auto">
+            <table className="w-full text-sm border-collapse bg-card rounded-md overflow-hidden border border-border">
+              <thead>
+                <tr className="bg-muted">
+                  <th className="text-left p-3 border border-border font-medium text-muted-foreground w-8">#</th>
+                  <th className="text-left p-3 border border-border font-medium text-muted-foreground">Schritt</th>
+                  <th className="text-left p-3 border border-border font-medium text-muted-foreground w-32">Zeitrahmen</th>
+                </tr>
+              </thead>
+              <tbody>
+                {[
+                  { n: 1, step: "Erstinteresse", desc: "Eigentümer äußert Sanierungswunsch", zeit: "Tag 0", highlight: false },
+                  { n: 2, step: "Erstberatung", desc: "Förderfähigkeit prüfen: Gebäudealter ≥ 5 Jahre? Eigentümer?", zeit: "Tag 1–7", highlight: false },
+                  { n: 3, step: "Energieberater (EEE) einbinden", desc: "Sofort starten – größter Engpass mit 3–8 Wochen Wartezeit", zeit: "Tag 7–14", highlight: true },
+                  { n: 4, step: "iSFP / Energieberatung", desc: "EEE erstellt Sanierungsfahrplan – sichert +5 % Bonus und 60.000 € Förderhöchstbetrag", zeit: "Woche 3–8", highlight: false },
+                  { n: 5, step: "BEG-konformes Angebot", desc: "Rex erstellt Angebot mit Trennung förderfähig / nicht förderfähig, U-Wert-Nachweis, auflösender Bedingung", zeit: "Woche 4–9", highlight: false },
+                  { n: 6, step: "Technische Projektbeschreibung (TPB)", desc: "EEE erstellt TPB mit allen technischen Daten für den Antrag", zeit: "Woche 5–10", highlight: false },
+                  { n: 7, step: "BAFA-Antrag stellen", desc: "Eigentümer beantragt online unter bafa.de – TPB-ID eingeben. Kein Vertrag vorher!", zeit: "Woche 6–11", highlight: true },
+                  { n: 8, step: "Eingangsbestätigung", desc: "BAFA bestätigt Eingang des Antrags", zeit: "1–2 Wochen", highlight: false },
+                  { n: 9, step: "Zuwendungsbescheid", desc: "BAFA genehmigt Förderung – ab jetzt kann der Vertrag rechtssicher unterzeichnet werden", zeit: "6–8 Wochen", highlight: true },
+                  { n: 10, step: "Auftragserteilung", desc: "Formaler Vertrag mit Rex Bedachungs GmbH", zeit: "Nach Bescheid", highlight: false },
+                  { n: 11, step: "Ausführung", desc: "Baumaßnahme durch Rex – Rechnung mit Trennung förderfähig / nicht förderfähig", zeit: "1–4 Wochen", highlight: false },
+                  { n: 12, step: "Technischer Projektnachweis (TPN)", desc: "EEE erstellt TPN nach Abschluss der Maßnahme", zeit: "Nach Abschluss", highlight: false },
+                  { n: 13, step: "Verwendungsnachweis", desc: "Eigentümer reicht Rechnungen und TPN beim BAFA ein – unbare Bezahlung Pflicht", zeit: "Nach TPN", highlight: false },
+                  { n: 14, step: "Auszahlung", desc: "BAFA überweist Zuschuss direkt auf das Konto des Eigentümers", zeit: "4–8 Wochen", highlight: true },
+                ].map((row) => (
+                  <tr key={row.n} className={row.highlight ? "bg-blue-50" : (row.n % 2 === 0 ? "bg-muted/30" : "bg-card")}>
+                    <td className="p-3 border border-border text-center">
+                      <span className={`inline-flex items-center justify-center w-6 h-6 rounded-full text-xs font-bold ${row.highlight ? "bg-blue-600 text-white" : "bg-muted text-muted-foreground"}`}>
+                        {row.n}
+                      </span>
+                    </td>
+                    <td className="p-3 border border-border">
+                      <p className="font-semibold text-foreground">{row.step}</p>
+                      <p className="text-muted-foreground text-xs mt-0.5">{row.desc}</p>
+                    </td>
+                    <td className="p-3 border border-border text-muted-foreground text-xs whitespace-nowrap">
+                      {row.zeit}
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+          <div className="grid sm:grid-cols-2 gap-4 mt-6 max-w-xl mx-auto">
+            <div className="bg-muted rounded-md p-4 text-center">
+              <p className="text-xs text-muted-foreground font-medium">Gesamtdauer typisch</p>
+              <p className="text-xl font-bold text-foreground mt-1">4–8 Monate</p>
+            </div>
+            <div className="bg-muted rounded-md p-4 text-center">
+              <p className="text-xs text-muted-foreground font-medium">Bewilligungszeitraum</p>
+              <p className="text-xl font-bold text-foreground mt-1">36 Monate ab Bescheid</p>
+            </div>
+          </div>
+          <div className="mt-6 bg-amber-50 border-l-4 border-amber-500 p-4 rounded-r-md max-w-3xl mx-auto">
+            <p className="text-sm text-amber-800">
+              <strong>Häufigster Fehler:</strong> Vertrag oder Anzahlung <em>vor</em> BAFA-Antragstellung = vorzeitiger Maßnahmenbeginn = vollständiger Förderverlust.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* ── 4 Schritte + Warn-Box ── */}
       <section className="py-16 bg-background">
         <div className="max-w-5xl mx-auto px-4 md:px-6 lg:px-8">
           <div className="bg-blue-50 border-l-4 border-blue-900 p-6 rounded-r-md mb-12 flex items-start gap-4">

@@ -169,4 +169,15 @@
     <priority>0.9</priority>
   </url>
 
+  <url>
+    <loc>https://www.rex-bedachung.de/sturmschaden-dach-bochum</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.rex-bedachung.de/bitumen-vs-pvc-flachdach-bochum</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
 </urlset>

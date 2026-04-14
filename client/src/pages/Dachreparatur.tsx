@@ -34,7 +34,9 @@ const services = [
   {
     icon: <Zap className="w-8 h-8 text-primary" />,
     title: "Sturmschaden Reparatur Bochum",
-    text: "Abgedeckte Ziegel, beschädigte Dachrinnen oder aufgerissene Abdichtungen – wir sichern Ihr Dach kurzfristig und reparieren dauerhaft. Unterstützung bei der Versicherungsabwicklung inklusive.",
+    text: "Abgedeckte Ziegel oder aufgerissene Abdichtungen – wir sichern Ihr Dach kurzfristig und reparieren dauerhaft. Versicherungsabwicklung inklusive.",
+    link: "/sturmschaden-dach-bochum",
+    linkLabel: "Zur Sturmschaden-Seite →",
     testId: "card-sturmschaden",
   },
   {
@@ -98,7 +100,7 @@ const faqItems = [
   {
     question: "Wie schnell können Sie einen Sturmschaden reparieren?",
     answer:
-      "Bei dringenden Schäden reagieren wir kurzfristig. Bei akuter Gefahr sichern wir Ihr Dach provisorisch ab und führen die dauerhafte Reparatur schnellstmöglich durch.",
+      "Bei dringenden Schäden reagieren wir kurzfristig. Bei akuter Gefahr sichern wir Ihr Dach provisorisch ab und führen die dauerhafte Reparatur schnellstmöglich durch. Alle Informationen zu Notsicherung, Versicherungsabwicklung und Schadensumfang finden Sie auf unserer Sturmschaden-Seite.",
   },
   {
     question: "Übernimmt die Versicherung die Kosten?",
@@ -381,6 +383,11 @@ export default function Dachreparatur() {
                 </CardHeader>
                 <CardContent>
                   <p className="text-muted-foreground text-sm leading-relaxed">{s.text}</p>
+                  {s.link && (
+                    <a href={s.link} className="inline-block mt-3 text-sm font-medium text-primary hover:underline">
+                      {s.linkLabel}
+                    </a>
+                  )}
                 </CardContent>
               </Card>
             ))}
@@ -447,7 +454,7 @@ export default function Dachreparatur() {
               className="bg-blue-400 text-white border-blue-400"
               data-testid="button-versicherung-anfragen"
             >
-              <a href="/kontakt">Schaden melden &amp; Beratung anfragen</a>
+              <a href="/sturmschaden-dach-bochum">Zur Sturmschaden-Seite →</a>
             </Button>
           </div>
         </div>
@@ -611,9 +618,9 @@ export default function Dachreparatur() {
             Das könnte Sie auch interessieren
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-            <a href="/foerderung" className="block p-5 bg-white rounded-xl border border-gray-200 hover:border-primary hover:shadow-md transition-all">
-              <div className="font-semibold text-gray-900 mb-1">Förderung nach Sturmschaden</div>
-              <div className="text-sm text-gray-500">Sturmschäden können förderfähig sein – wir helfen bei der Antragstellung.</div>
+            <a href="/sturmschaden-dach-bochum" className="block p-5 bg-white rounded-xl border border-gray-200 hover:border-primary hover:shadow-md transition-all">
+              <div className="font-semibold text-gray-900 mb-1">Sturmschaden Dach Bochum</div>
+              <div className="text-sm text-gray-500">Notsicherung, Schadensdokumentation und Versicherungsabwicklung nach Sturmereignissen.</div>
             </a>
             <a href="/steildach-bochum" className="block p-5 bg-white rounded-xl border border-gray-200 hover:border-primary hover:shadow-md transition-all">
               <div className="font-semibold text-gray-900 mb-1">Steildach Sanierung</div>
