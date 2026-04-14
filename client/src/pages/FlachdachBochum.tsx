@@ -421,16 +421,16 @@ export default function FlachdachBochum() {
             <h2 className="text-2xl md:text-3xl font-bold text-white mb-4" data-testid="heading-gruendach">
               Gründach Bochum – Dachbegrünung vom Fachbetrieb
             </h2>
-            <p className="text-emerald-100 leading-relaxed mb-4 max-w-2xl mx-auto" data-testid="text-gruendach-intro">
+            <p className="text-emerald-100 leading-relaxed mb-6 max-w-2xl mx-auto" data-testid="text-gruendach-intro">
               Ein Gründach ist mehr als Optik – es ist eine Investition in Energieeffizienz, Langlebigkeit und
               Nachhaltigkeit. Rex Bedachungs GmbH realisiert Gründächer in Bochum und dem gesamten Ruhrgebiet –
-              fachgerecht, termingerecht und mit vollständiger Förderberatung.{" "}
-              <Link href="/gruendach-dachbegrunung-bochum">
-                <a className="text-emerald-100 hover:text-emerald-50 underline font-medium" data-testid="link-gruendach-ratgeber">
-                  Gründach &amp; Dachbegrünung – der vollständige Ratgeber
-                </a>
-              </Link>
+              fachgerecht, termingerecht und mit vollständiger Förderberatung.
             </p>
+            <Button asChild size="lg" className="bg-emerald-400 text-white border-emerald-400">
+              <Link href="/gruendach-dachbegrunung-bochum">
+                Gründach &amp; Dachbegrünung – der vollständige Ratgeber
+              </Link>
+            </Button>
           </div>
           <div className="grid md:grid-cols-2 gap-6 mb-10">
             <Card data-testid="card-gruendach-extensiv">
