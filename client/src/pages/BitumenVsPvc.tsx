@@ -180,7 +180,7 @@ export default function BitumenVsPvc() {
               <h3 className="font-bold text-foreground mb-1">Bauder PYE / PYP / APP</h3>
               <p className="text-xs text-muted-foreground italic mb-4">Empfohlen für Hauptdach und Sanierung</p>
               <ul className="space-y-1 text-sm text-muted-foreground mb-4">
-                {["Untergrund prüfen / Dampfsperre", "Wärmedämmung (z. B. Bauder PIR)", "Voranstrich / Trennlage", "Unterlagsbahn (PYE G200 S4)", "Deckbahn beschiefert (APP / PYE PV200)"].map((s, i) => (
+                {["Untergrund prüfen", "Voranstrich", "Dampfsperre", "Wärmedämmung (z. B. Bauder PIR oder EPS)", "1. Abdichtungslage (z.B. Bauder TEC KSA DUO)", "Oberlage beschiefert (z. B. PYE PV200)"].map((s, i) => (
                   <li key={i} className="flex gap-2"><span className="text-muted-foreground">·</span>{s}</li>
                 ))}
               </ul>
@@ -192,7 +192,7 @@ export default function BitumenVsPvc() {
             </div>
             <div className="bg-card border border-border rounded-md p-6">
               <div className="inline-block text-xs font-bold uppercase tracking-wider text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded mb-3">PVC</div>
-              <h3 className="font-bold text-foreground mb-1">Bauder TPO / Wolfin WELDOX</h3>
+              <h3 className="font-bold text-foreground mb-1">Bauder PVC / Wolfin IB</h3>
               <p className="text-xs text-muted-foreground italic mb-4">Empfohlen für Terrassen &amp; Sichtanschlüsse</p>
               <ul className="space-y-1 text-sm text-muted-foreground mb-4">
                 {["Dampfsperre", "Druckfeste Dämmung", "Trennvlies", "PVC-Membran mechanisch befestigt", "Optional: Kiesauflage ≥ 5 cm"].map((s, i) => (

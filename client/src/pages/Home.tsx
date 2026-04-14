@@ -244,14 +244,14 @@ export default function Home() {
       <section className="py-16 md:py-20 lg:py-24 bg-card">
         <div className="max-w-7xl mx-auto px-4 md:px-6 lg:px-8">
           <div className="max-w-3xl mb-12">
-            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4">
+            <h2 className="text-4xl md:text-5xl lg:text-6xl font-extrabold mb-6">
               Unsere Leistungen
             </h2>
-            <p className="text-lg md:text-xl text-muted-foreground leading-relaxed">
+            <p className="text-xl md:text-2xl text-muted-foreground leading-relaxed mb-4">
               Von der fachgerechten Dacheindeckung bis zur professionellen Wartung – 
               wir bieten Ihnen das komplette Leistungsspektrum rund um Ihr Dach.
             </p>
-            <p className="text-sm text-slate-600">Als Dachdecker-Meisterbetrieb aus Bochum führt die Rex Bedachungs GmbH seit 1984 Dacharbeiten im gesamten Ruhrgebiet durch – von der Steildachsanierung über Flachdachabdichtung bis zum VELUX-Fenstereinbau.</p>
+            <p className="text-base text-slate-600 leading-relaxed">Als Dachdecker-Meisterbetrieb aus Bochum führt die Rex Bedachungs GmbH seit 1984 Dacharbeiten im gesamten Ruhrgebiet durch – von der Steildachsanierung über Flachdachabdichtung bis zum VELUX-Fenstereinbau.</p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 mb-12">

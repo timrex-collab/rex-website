@@ -412,19 +412,26 @@ export default function FlachdachBochum() {
       {/* ── Gründach Bochum Sektion ── */}
       <section className="py-16 px-4 bg-background" data-testid="section-gruendach">
         <div className="max-w-7xl mx-auto">
-          <h2 className="text-2xl md:text-3xl font-bold text-center mb-4 text-foreground" data-testid="heading-gruendach">
-            Gründach Bochum – Dachbegrünung vom Fachbetrieb
-          </h2>
-          <p className="text-muted-foreground text-center mb-10 max-w-2xl mx-auto" data-testid="text-gruendach-intro">
-            Ein Gründach ist mehr als Optik – es ist eine Investition in Energieeffizienz, Langlebigkeit und
-            Nachhaltigkeit. Rex Bedachungs GmbH realisiert Gründächer in Bochum und dem gesamten Ruhrgebiet –
-            fachgerecht, termingerecht und mit vollständiger Förderberatung.{" "}
-            <Link href="/gruendach-dachbegrunung-bochum">
-              <a className="text-green-700 hover:text-green-600 underline font-medium" data-testid="link-gruendach-ratgeber">
-                Gründach &amp; Dachbegrünung – der vollständige Ratgeber
-              </a>
-            </Link>
-          </p>
+          <div
+            className="rounded-md p-8 md:p-12 text-center"
+            style={{ background: "linear-gradient(135deg, #064e3b 0%, #059669 100%)" }}
+            data-testid="box-gruendach"
+          >
+            <Leaf className="w-10 h-10 text-emerald-200 mx-auto mb-4" aria-hidden="true" />
+            <h2 className="text-2xl md:text-3xl font-bold text-white mb-4" data-testid="heading-gruendach">
+              Gründach Bochum – Dachbegrünung vom Fachbetrieb
+            </h2>
+            <p className="text-emerald-100 leading-relaxed mb-4 max-w-2xl mx-auto" data-testid="text-gruendach-intro">
+              Ein Gründach ist mehr als Optik – es ist eine Investition in Energieeffizienz, Langlebigkeit und
+              Nachhaltigkeit. Rex Bedachungs GmbH realisiert Gründächer in Bochum und dem gesamten Ruhrgebiet –
+              fachgerecht, termingerecht und mit vollständiger Förderberatung.{" "}
+              <Link href="/gruendach-dachbegrunung-bochum">
+                <a className="text-emerald-100 hover:text-emerald-50 underline font-medium" data-testid="link-gruendach-ratgeber">
+                  Gründach &amp; Dachbegrünung – der vollständige Ratgeber
+                </a>
+              </Link>
+            </p>
+          </div>
           <div className="grid md:grid-cols-2 gap-6 mb-10">
             <Card data-testid="card-gruendach-extensiv">
               <CardHeader className="pb-2">

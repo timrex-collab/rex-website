@@ -35,7 +35,7 @@ const grants = [
   },
   {
     provider: "NRW.BANK",
-    title: "NRW.BANK.Gebäudesanierung",
+    title: <>NRW.BANK.<br />Gebäudesanierung</>,
     description: "Zinsgünstiges Annuitätendarlehen für energetische Sanierung inkl. Dachdämmung und Dachfenster. Zinsbindung über gesamte Laufzeit. Antragstellung über Ihre Hausbank, zwingend vor Maßnahmenbeginn.",
     amount: "2.500 – 150.000 €",
     benefit: "Landesdarlehen NRW mit günstigen Zinsen.",
@@ -325,7 +325,7 @@ export default function Foerderung() {
       >
         <div
           className="absolute inset-0 opacity-20 bg-cover bg-center"
-          style={{ backgroundImage: "url('/images/foerderung-hero.webp')" }}
+          style={{ backgroundImage: "url('/images/dachsanierung-bochum.png')" }}
         />
         <div className="max-w-5xl mx-auto text-center relative z-10">
           <div className="inline-flex items-center gap-2 bg-blue-500/20 border border-blue-400/30 rounded-full px-4 py-1 mb-6">
@@ -348,7 +348,7 @@ export default function Foerderung() {
           {grants.map((g, i) => (
             <div key={i} className="bg-card rounded-md shadow-xl p-8 border border-border hover:border-blue-300 transition group">
               <div className="text-sm font-bold text-blue-600 mb-2 uppercase tracking-widest">{g.provider}</div>
-              <h2 className="text-2xl font-bold mb-4 group-hover:text-blue-700 transition-colors">{g.title}</h2>
+              <h2 className="text-2xl font-bold mb-4 group-hover:text-blue-700 transition-colors break-words">{g.title}</h2>
               <p className="text-muted-foreground mb-6 text-sm leading-relaxed">{g.description}</p>
               <div className="bg-blue-50 rounded-md p-4 mb-6">
                 <div className="text-xs text-blue-500 font-semibold mb-1 uppercase">Förderhöhe</div>
