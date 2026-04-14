@@ -1,0 +1,155 @@
+REPLIT AGENT PROMPT - D9 PRE-DEPLOY ÄNDERUNGEN
+Status: 5 Code-Fixes in 4 Dateien | Risikostufe A
+
+====================================================
+ÄNDERUNG 1: BitumenVsPvc.tsx - PVC-Titel
+====================================================
+
+Datei: client/src/pages/BitumenVsPvc.tsx
+
+SUCHEN:
+              <h3 className="font-bold text-foreground mb-1">Bauder TPO / Wolfin WELDOX</h3>
+
+ERSETZEN MIT:
+              <h3 className="font-bold text-foreground mb-1">Bauder PVC / Wolfin IB</h3>
+
+====================================================
+ÄNDERUNG 2: BitumenVsPvc.tsx - Bitumen-Aufbau
+====================================================
+
+Datei: client/src/pages/BitumenVsPvc.tsx
+
+SUCHEN:
+              <ul className="space-y-1 text-sm text-muted-foreground mb-4">
+                {["Untergrund prüfen / Dampfsperre", "Wärmedämmung (z. B. Bauder PIR)", "Voranstrich / Trennlage", "Unterlagsbahn (PYE G200 S4)", "Deckbahn beschiefert (APP / PYE PV200)"].map((s, i) => (
+
+ERSETZEN MIT:
+              <ul className="space-y-1 text-sm text-muted-foreground mb-4">
+                {["Untergrund prüfen", "Voranstrich", "Dampfsperre", "Wärmedämmung (z. B. Bauder PIR oder EPS)", "1. Abdichtungslage (z.B. Bauder TEC KSA DUO)", "Oberlage beschiefert (z. B. PYE PV200)"].map((s, i) => (
+
+====================================================
+ÄNDERUNG 3: FlachdachBochum.tsx - Gründach-Box
+====================================================
+
+Datei: client/src/pages/FlachdachBochum.tsx
+
+SUCHEN:
+      {/* ── Gründach Bochum Sektion ── */}
+      <section className="py-16 px-4 bg-background" data-testid="section-gruendach">
+        <div className="max-w-7xl mx-auto">
+          <h2 className="text-2xl md:text-3xl font-bold text-center mb-4 text-foreground" data-testid="heading-gruendach">
+            Gründach Bochum – Dachbegrünung vom Fachbetrieb
+          </h2>
+          <p className="text-muted-foreground text-center mb-10 max-w-2xl mx-auto" data-testid="text-gruendach-intro">
+            Ein Gründach ist mehr als Optik – es ist eine Investition in Energieeffizienz, Langlebigkeit und
+            Nachhaltigkeit. Rex Bedachungs GmbH realisiert Gründächer in Bochum und dem gesamten Ruhrgebiet –
+            fachgerecht, termingerecht und mit vollständiger Förderberatung.{" "}
+            <Link href="/gruendach-dachbegrunung-bochum">
+              <a className="text-green-700 hover:text-green-600 underline font-medium" data-testid="link-gruendach-ratgeber">
+                Gründach &amp; Dachbegrünung – der vollständige Ratgeber
+              </a>
+            </Link>
+          </p>
+
+ERSETZEN MIT:
+      {/* ── Gründach Bochum Sektion ── */}
+      <section className="py-16 px-4 bg-background" data-testid="section-gruendach">
+        <div className="max-w-7xl mx-auto">
+          <div
+            className="rounded-md p-8 md:p-12 text-center"
+            style={{ background: "linear-gradient(135deg, #064e3b 0%, #059669 100%)" }}
+            data-testid="box-gruendach"
+          >
+            <Leaf className="w-10 h-10 text-emerald-200 mx-auto mb-4" aria-hidden="true" />
+            <h2 className="text-2xl md:text-3xl font-bold text-white mb-4" data-testid="heading-gruendach">
+              Gründach Bochum – Dachbegrünung vom Fachbetrieb
+            </h2>
+            <p className="text-emerald-100 leading-relaxed mb-4 max-w-2xl mx-auto" data-testid="text-gruendach-intro">
+              Ein Gründach ist mehr als Optik – es ist eine Investition in Energieeffizienz, Langlebigkeit und
+              Nachhaltigkeit. Rex Bedachungs GmbH realisiert Gründächer in Bochum und dem gesamten Ruhrgebiet –
+              fachgerecht, termingerecht und mit vollständiger Förderberatung.{" "}
+              <Link href="/gruendach-dachbegrunung-bochum">
+                <a className="text-emerald-100 hover:text-emerald-50 underline font-medium" data-testid="link-gruendach-ratgeber">
+                  Gründach &amp; Dachbegrünung – der vollständige Ratgeber
+                </a>
+              </Link>
+            </p>
+          </div>
+
+====================================================
+ÄNDERUNG 4: Foerderung.tsx - NRW.BANK Titel
+====================================================
+
+Datei: client/src/pages/Foerderung.tsx
+
+SUCHEN:
+              <h2 className="text-2xl font-bold mb-4 group-hover:text-blue-700 transition-colors">NRW.BANK.Gebäudesanierung</h2>
+
+ERSETZEN MIT:
+              <h2 className="text-2xl font-bold mb-4 group-hover:text-blue-700 transition-colors break-words">NRW.BANK.<br />Gebäudesanierung</h2>
+
+====================================================
+ÄNDERUNG 5: Foerderung.tsx - Header-Bild
+====================================================
+
+Datei: client/src/pages/Foerderung.tsx
+
+SUCHEN:
+        style={{ background: "linear-gradient(to right, #0f172a, #1e3a8a)" }}
+      >
+        <div
+          className="absolute inset-0 opacity-20 bg-cover bg-center"
+          style={{ backgroundImage: "url('/images/foerderung-hero.webp')" }}
+        />
+
+ERSETZEN MIT:
+        style={{ background: "linear-gradient(to right, #0f172a, #1e3a8a)" }}
+      >
+        <div
+          className="absolute inset-0 opacity-20 bg-cover bg-center"
+          style={{ backgroundImage: "url('/images/dachsanierung-bochum.png')" }}
+        />
+
+====================================================
+ÄNDERUNG 6: Home.tsx - Schriftgrößen
+====================================================
+
+Datei: client/src/pages/Home.tsx
+
+SUCHEN:
+          <div className="max-w-3xl mb-12">
+            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4">
+              Unsere Leistungen
+            </h2>
+            <p className="text-lg md:text-xl text-muted-foreground leading-relaxed">
+              Von der fachgerechten Dacheindeckung bis zur professionellen Wartung – 
+              wir bieten Ihnen das komplette Leistungsspektrum rund um Ihr Dach.
+            </p>
+            <p className="text-sm text-slate-600">Als Dachdecker-Meisterbetrieb aus Bochum führt die Rex Bedachungs GmbH seit 1984 Dacharbeiten im gesamten Ruhrgebiet durch – von der Steildachsanierung über Flachdachabdichtung bis zum VELUX-Fenstereinbau.</p>
+
+ERSETZEN MIT:
+          <div className="max-w-3xl mb-12">
+            <h2 className="text-4xl md:text-5xl lg:text-6xl font-extrabold mb-6">
+              Unsere Leistungen
+            </h2>
+            <p className="text-xl md:text-2xl text-muted-foreground leading-relaxed mb-4">
+              Von der fachgerechten Dacheindeckung bis zur professionellen Wartung – 
+              wir bieten Ihnen das komplette Leistungsspektrum rund um Ihr Dach.
+            </p>
+            <p className="text-base text-slate-600 leading-relaxed">Als Dachdecker-Meisterbetrieb aus Bochum führt die Rex Bedachungs GmbH seit 1984 Dacharbeiten im gesamten Ruhrgebiet durch – von der Steildachsanierung über Flachdachabdichtung bis zum VELUX-Fenstereinbau.</p>
+
+====================================================
+NACH ABSCHLUSS:
+====================================================
+
+1. Alle 6 Search/Replace-Blöcke ausführen
+2. npm run build (ohne Fehler?)
+3. npm run preview im Browser testen:
+   - BitumenVsPvc: "Bauder PVC / Wolfin IB" + neue Bitumen-Liste
+   - FlachdachBochum: Gründach-Box grün (nicht blau)
+   - Foerderung: NRW.BANK auf 2 Zeilen + neues Header-Bild
+   - Home: "Unsere Leistungen" größer (text-4xl/5xl/6xl)
+4. Commit: "D9 Pre-Deploy: 5 Code-Fixes"
+5. Screenshot oder "Build OK" an Claude
+
+====================================================
