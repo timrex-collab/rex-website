@@ -10,6 +10,50 @@ const heroImageFallback = "/images/tondach-hero-dachdeckung-bochum.jpg";
 
 const projects = [
   {
+    src: "/images/dachsanierung-schieferoptik-velux-dachfenster-photovoltaik-bochum.webp",
+    alt: "Dachsanierung mit Schieferoptik und VELUX Dachfenstern – Bochum-Querenburg",
+    title: "Dachsanierung mit Schieferoptik und VELUX",
+    location: "Bochum",
+    year: "2025",
+    category: "velux",
+    tag: "VELUX",
+    description:
+      "Modernisierung mit anthrazitfarbenen Schiefer-Dachziegeln und VELUX-Fensteranlage für optimale Belichtung.",
+  },
+  {
+    src: "/images/fensterbank-zinkblech-dachfenster-anschluss-steildach-bochum.webp",
+    alt: "Fensterbank-Detailarbeit mit Zinkblech und Dachfenster-Anschluss – Bochum-Weidmar",
+    title: "Fensterbank-Detailarbeit mit Zinkblech",
+    location: "Bochum",
+    year: "2024",
+    category: "bauklempnerei",
+    tag: "Bauklempnerei",
+    description:
+      "Fachgerechte Zinkblech-Fensterbank mit hochwertiger Abdichtung und Verarbeitung.",
+  },
+  {
+    src: "/images/gruendach-extensiv-sedum-neubau-mehrfamilienhaus-bochum.webp",
+    alt: "Neubaugebiet mit extensiver Dachbegrünung und Sedum – Bochum-Wiemelhausen",
+    title: "Neubaugebiet mit extensiver Dachbegrünung",
+    location: "Bochum",
+    year: "2024",
+    category: "gruendach",
+    tag: "Gründach",
+    description:
+      "Großflächige extensive Dachbegrünung mit Sedum-Bepflanzung auf modernem Mehrfamilienhaus-Neubau.",
+  },
+  {
+    src: "/images/dacheindeckung-tonziegel-velux-dachfenster-bungalow-bochum.webp",
+    alt: "Bungalow-Dacheindeckung mit Tonziegeln und VELUX – Bochum-Querenburg",
+    title: "Bungalow-Dacheindeckung mit Tonziegeln und VELUX",
+    location: "Bochum",
+    year: "2025",
+    category: "velux",
+    tag: "VELUX",
+    description:
+      "Hochwertige Neueindeckung mit modernen Tondachziegeln und VELUX-Fensteranlage.",
+  },
+  {
     src: "/images/velux-dachfenster-3er-kombination-steildach-bochum.webp",
     alt: "VELUX Dachfenster 3er-Kombination auf anthrazitem Steildach – Rex Bedachungs GmbH Bochum",
     title: "VELUX 3er-Kombination",
@@ -151,50 +195,6 @@ const projects = [
     tag: "Steildach",
     description:
       "Steildach mit hochwertigen Tondachziegeln. Professionelle Ausführung für langlebigen Wetterschutz.",
-  },
-  {
-    src: "/images/dachsanierung-schieferoptik-velux-dachfenster-photovoltaik-bochum.webp",
-    alt: "Dachsanierung mit Schieferoptik und VELUX Dachfenstern – Bochum-Querenburg",
-    title: "Dachsanierung mit Schieferoptik und VELUX",
-    location: "Bochum",
-    year: "2025",
-    category: "velux",
-    tag: "VELUX",
-    description:
-      "Modernisierung mit anthrazitfarbenen Schiefer-Dachziegeln und VELUX-Fensteranlage für optimale Belichtung.",
-  },
-  {
-    src: "/images/fensterbank-zinkblech-dachfenster-anschluss-steildach-bochum.webp",
-    alt: "Fensterbank-Detailarbeit mit Zinkblech und Dachfenster-Anschluss – Bochum-Weidmar",
-    title: "Fensterbank-Detailarbeit mit Zinkblech",
-    location: "Bochum",
-    year: "2024",
-    category: "bauklempnerei",
-    tag: "Bauklempnerei",
-    description:
-      "Fachgerechte Zinkblech-Fensterbank mit hochwertiger Abdichtung und Verarbeitung.",
-  },
-  {
-    src: "/images/gruendach-extensiv-sedum-neubau-mehrfamilienhaus-bochum.webp",
-    alt: "Neubaugebiet mit extensiver Dachbegrünung und Sedum – Bochum-Wiemelhausen",
-    title: "Neubaugebiet mit extensiver Dachbegrünung",
-    location: "Bochum",
-    year: "2024",
-    category: "gruendach",
-    tag: "Gründach",
-    description:
-      "Großflächige extensive Dachbegrünung mit Sedum-Bepflanzung auf modernem Mehrfamilienhaus-Neubau.",
-  },
-  {
-    src: "/images/dacheindeckung-tonziegel-velux-dachfenster-bungalow-bochum.webp",
-    alt: "Bungalow-Dacheindeckung mit Tonziegeln und VELUX – Bochum-Querenburg",
-    title: "Bungalow-Dacheindeckung mit Tonziegeln und VELUX",
-    location: "Bochum",
-    year: "2025",
-    category: "velux",
-    tag: "VELUX",
-    description:
-      "Hochwertige Neueindeckung mit modernen Tondachziegeln und VELUX-Fensteranlage.",
   },
 ];
 
