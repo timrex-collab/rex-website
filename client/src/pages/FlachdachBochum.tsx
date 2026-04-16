@@ -626,9 +626,9 @@ export default function FlachdachBochum() {
               <div className="font-semibold text-gray-900 mb-1">Gründach & Dachbegrünung</div>
               <div className="text-sm text-gray-500">Ihr Flachdach als Grünfläche – extensive und intensive Begrünung in Bochum.</div>
             </a>
-            <a href="/bauklempnerei-bochum" className="block p-5 bg-white rounded-xl border border-gray-200 hover:border-primary hover:shadow-md transition-all">
-              <div className="font-semibold text-gray-900 mb-1">Bauklempnerei & Abdichtung</div>
-              <div className="text-sm text-gray-500">Professionelle Blecharbeiten und Abdichtungen für Ihr Flachdach.</div>
+            <a href="/bitumen-vs-pvc-flachdach-bochum" className="block p-5 bg-white rounded-xl border border-gray-200 hover:border-primary hover:shadow-md transition-all">
+              <div className="font-semibold text-gray-900 mb-1">Bitumen oder PVC?</div>
+              <div className="text-sm text-gray-500">Welches Abdichtungssystem für Ihr Flachdach passt – Entscheidungshilfe mit Systemvergleich.</div>
             </a>
             <a href="/foerderung" className="block p-5 bg-white rounded-xl border border-gray-200 hover:border-primary hover:shadow-md transition-all">
               <div className="font-semibold text-gray-900 mb-1">Förderung für Flachdach</div>

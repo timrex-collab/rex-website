@@ -29,6 +29,8 @@ const services = [
     icon: <Droplets className="w-8 h-8 text-primary" />,
     title: "Dachrinnen & Fallrohre Bochum",
     text: "Verstopfte, undichte oder veraltete Dachrinnen und Fallrohre erneuern wir komplett – maßgefertigt aus Zink, Aluminium oder Kupfer. Inklusive Laubschutzgitter auf Wunsch. Saubere Entwässerung schützt Fassade und Fundament.",
+    link: "/dachrinne-bochum",
+    linkLabel: "Zur Dachrinnen-Seite →",
     testId: "card-dachrinnen",
   },
   {
@@ -330,6 +332,11 @@ export default function BauklempnereiBochum() {
                 </CardHeader>
                 <CardContent>
                   <p className="text-muted-foreground text-sm leading-relaxed">{s.text}</p>
+                  {s.link && (
+                    <a href={s.link} className="inline-block mt-3 text-sm font-medium text-primary hover:underline">
+                      {s.linkLabel}
+                    </a>
+                  )}
                 </CardContent>
               </Card>
             ))}
@@ -523,6 +530,27 @@ export default function BauklempnereiBochum() {
           <p className="text-muted-foreground leading-relaxed text-base" data-testid="text-regionen">
             Rex Bedachungs GmbH übernimmt Klempnerarbeiten in Bochum, Herne, Castrop-Rauxel, Witten, Hattingen, Wattenscheid, Gelsenkirchen und dem gesamten Ruhrgebiet – termingerecht, sauber und zu fairen Preisen.
           </p>
+        </div>
+      </section>
+
+      {/* Dachrinne Highlight-Box */}
+      <section className="py-16 px-4 bg-muted/40" data-testid="section-dachrinne-highlight">
+        <div className="max-w-7xl mx-auto">
+          <div
+            className="rounded-md p-8 md:p-12 text-center"
+            style={{ background: "linear-gradient(135deg, #0f172a 0%, #1e3a8a 100%)" }}
+          >
+            <Droplets className="w-10 h-10 text-blue-300 mx-auto mb-4" aria-hidden="true" />
+            <h2 className="text-2xl md:text-3xl font-bold text-white mb-4">
+              Dachrinne reinigen, reparieren oder erneuern?
+            </h2>
+            <p className="text-slate-300 leading-relaxed mb-8 max-w-2xl mx-auto">
+              Verstopfte Dachrinnen leiten Regenwasser unkontrolliert ab und schädigen Fassade und Fundament – oft unbemerkt über Jahre. Wir reinigen, reparieren und erneuern alle Rinnensysteme in Bochum: Zink, Aluminium, Kupfer, alle Fallrohre, Laubschutz auf Wunsch.
+            </p>
+            <Button asChild size="lg" className="bg-blue-400 text-white border-blue-400 pulse-ring cta-pulse">
+              <a href="/dachrinne-bochum">Zur Dachrinnen-Seite →</a>
+            </Button>
+          </div>
         </div>
       </section>
 
