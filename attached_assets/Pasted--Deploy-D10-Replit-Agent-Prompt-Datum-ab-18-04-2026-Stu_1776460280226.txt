@@ -1,0 +1,620 @@
+# Deploy D10 — Replit Agent Prompt
+**Datum:** ab 18.04.2026 | **Stufe B** | **Max. 8 Dateien**
+**Dateien:** vite.config.ts · AuthorSchema.tsx · ExpertenBlock.tsx (neu) · DachsanierungBochum.tsx · FlachdachBochum.tsx · SteildachBochum.tsx · DachfensterBochum.tsx · Foerderung.tsx
+
+---
+
+## Aufgabe
+
+Führe die folgenden Schritte **exakt in dieser Reihenfolge** aus. Zeige nach jedem Schritt eine kurze Bestätigung. Führe am Ende einen Build aus.
+
+---
+
+## SCHRITT 1 — vite.config.ts: Build-Datum injizieren
+
+Suche in `vite.config.ts` exakt:
+
+```ts
+export default defineConfig({
+  plugins: [
+```
+
+Ersetze durch:
+
+```ts
+export default defineConfig({
+  define: {
+    __BUILD_DATE__: JSON.stringify(
+      new Date().toLocaleDateString("de-DE", { month: "long", year: "numeric" })
+    ),
+  },
+  plugins: [
+```
+
+---
+
+## SCHRITT 2 — AuthorSchema.tsx: Tim Rex + Peter Rex als vollständige Person-Entitäten
+
+Ersetze den gesamten Inhalt von `client/src/components/AuthorSchema.tsx` mit:
+
+```tsx
+export default function AuthorSchema() {
+  const schema = {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Person",
+        "@id": "https://www.rex-bedachung.de/#author",
+        "name": "Tim Rex",
+        "jobTitle": "Geschäftsführer & Dachdeckermeister",
+        "hasCredential": {
+          "@type": "EducationalOccupationalCredential",
+          "name": "Dachdeckermeister",
+          "credentialCategory": "Meistertitel",
+          "recognizedBy": {
+            "@type": "Organization",
+            "name": "Handwerkskammer Dortmund"
+          }
+        },
+        "knowsAbout": [
+          "Dachsanierung",
+          "Flachdachabdichtung",
+          "Steildacheindeckung",
+          "Dachfenster VELUX",
+          "Aufsparrendämmung",
+          "BEG EM BAFA-Förderung",
+          "GEG 2024",
+          "ZVDH-Regelwerk",
+          "DIN 18531",
+          "FLL-Richtlinien Dachbegrünung"
+        ],
+        "worksFor": {
+          "@id": "https://www.rex-bedachung.de/#organization"
+        },
+        "url": "https://www.rex-bedachung.de/ueber-uns"
+      },
+      {
+        "@type": "Person",
+        "@id": "https://www.rex-bedachung.de/#author-peter",
+        "name": "Peter Rex",
+        "jobTitle": "Geschäftsführer",
+        "worksFor": {
+          "@id": "https://www.rex-bedachung.de/#organization"
+        },
+        "url": "https://www.rex-bedachung.de/ueber-uns"
+      }
+    ]
+  };
+
+  return (
+    <script
+      type="application/ld+json"
+      dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
+    />
+  );
+}
+```
+
+---
+
+## SCHRITT 3 — ExpertenBlock.tsx: Neue Komponente erstellen
+
+Erstelle die Datei `client/src/components/ExpertenBlock.tsx` mit folgendem vollständigen Inhalt:
+
+```tsx
+import { CheckCircle } from "lucide-react";
+
+declare const __BUILD_DATE__: string;
+
+interface ExpertenBlockProps {
+  normen?: string[];
+}
+
+const DEFAULT_NORMEN = ["GEG 2024", "ZVDH-Regelwerk", "BAFA BEG EM"];
+
+export default function ExpertenBlock({ normen = DEFAULT_NORMEN }: ExpertenBlockProps) {
+  const reviewDate = typeof __BUILD_DATE__ !== "undefined" ? __BUILD_DATE__ : "2026";
+
+  return (
+    <div
+      className="max-w-4xl mx-auto px-4 mb-2"
+      data-testid="experten-block"
+    >
+      <div className="bg-card border border-border rounded-md px-5 py-4 flex items-start gap-4">
+        <div className="w-11 h-11 rounded-full bg-blue-50 flex items-center justify-center text-sm font-semibold text-blue-800 flex-shrink-0 select-none">
+          TR
+        </div>
+        <div className="flex-1 min-w-0">
+          <p className="text-sm font-semibold text-foreground leading-snug">Tim Rex</p>
+          <p className="text-xs text-muted-foreground mt-0.5">Geschäftsführer · Dachdeckermeister</p>
+          <div className="flex flex-wrap gap-1.5 mt-2">
+            <span className="inline-flex items-center gap-1 text-xs font-medium bg-green-50 text-green-800 px-2 py-0.5 rounded">
+              <CheckCircle className="w-3 h-3" />
+              Meisterbetrieb seit 1984
+            </span>
+            {normen.map((n) => (
+              <span key={n} className="text-xs bg-muted text-muted-foreground px-2 py-0.5 rounded">
+                {n}
+              </span>
+            ))}
+            <span className="text-xs bg-muted text-muted-foreground px-2 py-0.5 rounded">
+              Geprüft: {reviewDate}
+            </span>
+          </div>
+          <p className="text-xs text-muted-foreground mt-2 leading-relaxed">
+            Alle Inhalte dieser Seite werden von unserem Fachbetrieb auf Aktualität und Normkonformität geprüft.
+          </p>
+        </div>
+      </div>
+    </div>
+  );
+}
+```
+
+---
+
+## SCHRITT 4 — DachsanierungBochum.tsx: ExpertenBlock + AuthorSchema-Import
+
+### 4a — Import ergänzen
+
+Suche in `client/src/pages/DachsanierungBochum.tsx`:
+
+```tsx
+import AuthorSchema from "@/components/AuthorSchema";
+```
+
+Ersetze durch:
+
+```tsx
+import AuthorSchema from "@/components/AuthorSchema";
+import ExpertenBlock from "@/components/ExpertenBlock";
+```
+
+### 4b — ExpertenBlock einsetzen
+
+Suche in `client/src/pages/DachsanierungBochum.tsx` (direkt nach dem Breadcrumb, vor dem Hero-Kommentar):
+
+```tsx
+      {/* Hero */}
+      <section className="relative text-white
+```
+
+Füge **direkt davor** ein:
+
+```tsx
+      <ExpertenBlock normen={["GEG 2024", "BAFA BEG EM", "KfW 358/359", "ZVDH-Regelwerk"]} />
+
+```
+
+---
+
+## SCHRITT 5 — FlachdachBochum.tsx: AuthorSchema-Import + ExpertenBlock
+
+### 5a — Imports ergänzen
+
+Suche in `client/src/pages/FlachdachBochum.tsx`:
+
+```tsx
+import OrganizationSchema from "@/components/OrganizationSchema";
+```
+
+Ersetze durch:
+
+```tsx
+import OrganizationSchema from "@/components/OrganizationSchema";
+import AuthorSchema from "@/components/AuthorSchema";
+import ExpertenBlock from "@/components/ExpertenBlock";
+```
+
+### 5b — AuthorSchema in JSX einbinden
+
+Suche in `client/src/pages/FlachdachBochum.tsx`:
+
+```tsx
+      <OrganizationSchema />
+
+      <Breadcrumb items={[
+```
+
+Ersetze durch:
+
+```tsx
+      <OrganizationSchema />
+      <AuthorSchema />
+
+      <Breadcrumb items={[
+```
+
+### 5c — ExpertenBlock einsetzen
+
+Suche in `client/src/pages/FlachdachBochum.tsx`:
+
+```tsx
+      {/* ── Einleitung ── */}
+      <section className="py-16 px-4 bg-background" data-testid="section-einleitung">
+```
+
+Füge **direkt davor** ein:
+
+```tsx
+      <ExpertenBlock normen={["DIN 18531", "BAFA BEG EM", "FLL-Richtlinien"]} />
+
+```
+
+---
+
+## SCHRITT 6 — SteildachBochum.tsx: ExpertenBlock einsetzen
+
+### 6a — Import ergänzen
+
+Suche in `client/src/pages/SteildachBochum.tsx`:
+
+```tsx
+import AuthorSchema from "@/components/AuthorSchema";
+```
+
+Ersetze durch:
+
+```tsx
+import AuthorSchema from "@/components/AuthorSchema";
+import ExpertenBlock from "@/components/ExpertenBlock";
+```
+
+### 6b — ExpertenBlock einsetzen
+
+Suche in `client/src/pages/SteildachBochum.tsx` (nach dem Breadcrumb, vor dem Hero):
+
+```tsx
+      {/* Hero */}
+      <section
+        className="relative text-white py-
+```
+
+Füge **direkt davor** ein:
+
+```tsx
+      <ExpertenBlock normen={["GEG 2024", "ZVDH-Regelwerk", "BAFA BEG EM"]} />
+
+```
+
+---
+
+## SCHRITT 7 — DachfensterBochum.tsx: AuthorSchema + ExpertenBlock + Fehlerkorrekturen
+
+**Dieser Schritt enthält 9 Teilschritte.** Alle werden in derselben Datei ausgeführt: `client/src/pages/DachfensterBochum.tsx`
+
+---
+
+### 7a — Imports ergänzen
+
+Suche:
+
+```tsx
+import OrganizationSchema from "@/components/OrganizationSchema";
+```
+
+Ersetze durch:
+
+```tsx
+import OrganizationSchema from "@/components/OrganizationSchema";
+import AuthorSchema from "@/components/AuthorSchema";
+import ExpertenBlock from "@/components/ExpertenBlock";
+```
+
+---
+
+### 7b — AuthorSchema in JSX einbinden
+
+Suche:
+
+```tsx
+      <OrganizationSchema />
+
+      <Breadcrumb
+```
+
+Ersetze durch:
+
+```tsx
+      <OrganizationSchema />
+      <AuthorSchema />
+
+      <Breadcrumb
+```
+
+---
+
+### 7c — ExpertenBlock einsetzen
+
+Suche:
+
+```tsx
+      {/* ── Leistungs-Sektion ── */}
+      <section className="py-16 px-4 bg-background" data-testid="section-leistungen">
+```
+
+Füge **direkt davor** ein:
+
+```tsx
+      <ExpertenBlock normen={["VELUX-Partner", "BEG EM Uw ≤ 1,0", "GEG 2024"]} />
+
+```
+
+---
+
+### 7d — Meta-Description: Fakro → Roto + Verbesserung
+
+Suche:
+
+```tsx
+        <meta
+          name="description"
+          content="Dachfenster in Bochum einbauen oder ersetzen? Rex Bedachung montiert Velux & Fakro – inkl. Dämmung und Anschlussabdichtung. Angebot anfragen."
+        />
+```
+
+Ersetze durch:
+
+```tsx
+        <meta
+          name="description"
+          content="Dachfenster in Bochum einbauen oder austauschen? Rex Bedachungs GmbH montiert VELUX & Roto – inkl. Dämmung, Anschlussabdichtung und bis zu 20 % BAFA-Förderung. Autorisierter VELUX-Partner seit 1984."
+        />
+```
+
+---
+
+### 7e — FAQ-Array: Förderquoten korrigieren (2 Stellen)
+
+**7e-1:** Suche im `faqItems`-Array:
+
+```tsx
+  {
+    question: "Kann ich Förderung für neue Dachfenster bekommen?",
+    answer:
+      "Ja! Beim Austausch gegen energieeffiziente Modelle können Sie über BAFA oder KfW bis zu 15% der Kosten fördern lassen. Wir beraten Sie kostenlos dazu.",
+  },
+```
+
+Ersetze durch:
+
+```tsx
+  {
+    question: "Kann ich Förderung für neue Dachfenster bekommen?",
+    answer:
+      "Ja. Über BAFA (BEG Einzelmaßnahme) werden Dachfenster mit Uw ≤ 1,0 W/m²K mit 15 % Grundförderung bezuschusst — mit iSFP steigt der Satz auf 20 %. Nur VELUX ENERGIE und ENERGIE PLUS sind förderfähig, THERMO (Uw 1,3) nicht. Rex Bedachungs GmbH berät kostenlos zur Antragstellung.",
+  },
+```
+
+**7e-2:** Suche im `faqItems`-Array:
+
+```tsx
+  {
+    question: "Gibt es Förderung für den Einbau von Dachfenstern?",
+    answer:
+      "Ja – wenn im Zuge des Dachfenstereinbaus eine GEG-konforme Dämmung am Eindeckrahmen oder der Laibung ausgeführt wird, kann die Maßnahme über BAFA (BEG Einzelmaßnahme) mit bis zu 15 % gefördert werden. Zusätzlich ist ein KfW-Kredit möglich. Wir beraten Sie kostenlos zu allen aktuellen Fördermöglichkeiten.",
+  },
+```
+
+Ersetze durch:
+
+```tsx
+  {
+    question: "Gibt es Förderung für den Einbau von Dachfenstern?",
+    answer:
+      "Ja — Dachfenster mit Uw ≤ 1,0 W/m²K werden über BAFA (BEG Einzelmaßnahme) mit 15 % Grundförderung bezuschusst. Mit einem individuellen Sanierungsfahrplan (iSFP) steigt der Satz auf 20 % und der Förderhöchstbetrag auf 60.000 € pro Wohneinheit. Zusätzlich ist der KfW-Ergänzungskredit 358/359 kombinierbar. Rex Bedachungs GmbH berät kostenlos zu allen aktuellen Fördermöglichkeiten.",
+  },
+```
+
+---
+
+### 7f — Förderungs-Section: H2 + Text korrigieren
+
+Suche:
+
+```tsx
+            <h2 className="text-2xl md:text-3xl font-bold text-white mb-4" data-testid="heading-foerderung">
+              Bis zu 15% Förderung durch BAFA &amp; KfW
+            </h2>
+            <p className="text-slate-300 leading-relaxed mb-8 max-w-2xl mx-auto" data-testid="text-foerderung">
+              Der Austausch alter Dachfenster gegen moderne, energieeffiziente Modelle wird staatlich gefördert. Über
+              BAFA oder KfW können Sie bis zu 15% der Kosten zurückbekommen. Wir beraten Sie kostenlos zu allen
+              Fördermöglichkeiten und übernehmen auf Wunsch die komplette Antragstellung.
+            </p>
+```
+
+Ersetze durch:
+
+```tsx
+            <h2 className="text-2xl md:text-3xl font-bold text-white mb-4" data-testid="heading-foerderung">
+              Bis zu 20 % Förderung durch BAFA &amp; KfW
+            </h2>
+            <p className="text-slate-300 leading-relaxed mb-8 max-w-2xl mx-auto" data-testid="text-foerderung">
+              Der Austausch alter Dachfenster gegen energieeffiziente Modelle mit Uw ≤ 1,0 W/m²K wird über BAFA (BEG Einzelmaßnahme) mit 15 % Grundförderung bezuschusst — mit iSFP steigt der Satz auf 20 %. Zusätzlich ist der KfW-Ergänzungskredit kombinierbar. Wir beraten kostenlos und übernehmen auf Wunsch die Antragstellung.
+            </p>
+```
+
+---
+
+### 7g — FAQPage-Schema: Förderquoten korrigieren (2 Stellen)
+
+**7g-1:** Suche im FAQPage-Schema (innerhalb des Helmet-Blocks):
+
+```
+      "name": "Kann ich Förderung für neue Dachfenster bekommen?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Ja! Beim Austausch gegen energieeffiziente Modelle können Sie über BAFA oder KfW bis zu 15% der Kosten fördern lassen. Wir beraten Sie kostenlos dazu."
+      }
+```
+
+Ersetze durch:
+
+```
+      "name": "Kann ich Förderung für neue Dachfenster bekommen?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Ja. Über BAFA (BEG Einzelmaßnahme) werden Dachfenster mit Uw ≤ 1,0 W/m²K mit 15 % Grundförderung bezuschusst — mit iSFP steigt der Satz auf 20 %. Nur VELUX ENERGIE und ENERGIE PLUS sind förderfähig, THERMO (Uw 1,3) nicht. Rex Bedachungs GmbH berät kostenlos zur Antragstellung."
+      }
+```
+
+**7g-2:** Suche im FAQPage-Schema:
+
+```
+      "name": "Gibt es Förderung für den Einbau von Dachfenstern?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Ja – wenn im Zuge des Dachfenstereinbaus eine GEG-konforme Dämmung am Eindeckrahmen oder der Laibung ausgeführt wird, kann die Maßnahme über BAFA (BEG Einzelmaßnahme) mit bis zu 15 % gefördert werden. Zusätzlich ist ein KfW-Kredit möglich. Wir beraten Sie kostenlos zu allen aktuellen Fördermöglichkeiten."
+      }
+```
+
+Ersetze durch:
+
+```
+      "name": "Gibt es Förderung für den Einbau von Dachfenstern?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Ja — Dachfenster mit Uw ≤ 1,0 W/m²K werden über BAFA (BEG Einzelmaßnahme) mit 15 % Grundförderung bezuschusst. Mit iSFP steigt der Satz auf 20 % und der Förderhöchstbetrag auf 60.000 € pro Wohneinheit. Zusätzlich ist der KfW-Ergänzungskredit 358/359 kombinierbar."
+      }
+```
+
+---
+
+### 7h — Article-Schema ergänzen
+
+Suche das Ende des FAQPage-Schemas im Helmet-Block. Es endet mit:
+
+```tsx
+  ]
+}`}</script>
+      </Helmet>
+```
+
+Ersetze durch:
+
+```tsx
+  ]
+}`}</script>
+        <script type="application/ld+json">{`{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Dachfenster Bochum – Einbau & Austausch vom Meisterbetrieb",
+  "description": "VELUX und Roto Dachfenster in Bochum: Neueinbau, Austausch und Reparatur. Autorisierter VELUX-Partner seit 1984. Bis zu 20 % BAFA-Förderung bei Uw ≤ 1,0.",
+  "author": {
+    "@type": "Person",
+    "@id": "https://www.rex-bedachung.de/#author",
+    "name": "Tim Rex"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "@id": "https://www.rex-bedachung.de/#organization"
+  },
+  "datePublished": "2025-06-01",
+  "dateModified": "2026-04-18",
+  "mainEntityOfPage": "https://www.rex-bedachung.de/dachfenster-bochum"
+}`}</script>
+      </Helmet>
+```
+
+---
+
+### 7i — Marken-Section: „autorisierter VELUX-Partner"
+
+Suche:
+
+```tsx
+          <p className="text-muted-foreground leading-relaxed text-base md:text-lg" data-testid="text-marken">
+            Als VELUX-Fachbetrieb verfügen wir über umfassendes Fachwissen und direkten Zugang zu
+            Originalteilen und Zubehör. Natürlich verbauen wir auch Roto Dachfenster in allen gängigen Ausführungen –
+            vom einfachen Klappfenster bis zum elektrischen Dachflächenfenster mit Fernbedienung.
+          </p>
+```
+
+Ersetze durch:
+
+```tsx
+          <p className="text-muted-foreground leading-relaxed text-base md:text-lg" data-testid="text-marken">
+            Als autorisierter VELUX-Partner verfügen wir über umfassendes Fachwissen und direkten Zugang zu
+            Originalteilen und Zubehör. Natürlich verbauen wir auch Roto Dachfenster in allen gängigen Ausführungen –
+            vom einfachen Klappfenster bis zum elektrischen Dachflächenfenster mit Fernbedienung.
+          </p>
+```
+
+---
+
+## SCHRITT 8 — Foerderung.tsx: ExpertenBlock einsetzen
+
+### 8a — Import ergänzen
+
+Suche in `client/src/pages/Foerderung.tsx`:
+
+```tsx
+import AuthorSchema from "@/components/AuthorSchema";
+```
+
+Ersetze durch:
+
+```tsx
+import AuthorSchema from "@/components/AuthorSchema";
+import ExpertenBlock from "@/components/ExpertenBlock";
+```
+
+### 8b — ExpertenBlock einsetzen
+
+Suche in `client/src/pages/Foerderung.tsx`:
+
+```tsx
+      {/* ── Grant Cards – überlappen den Hero (Gemini-Stil) ── */}
+```
+
+Füge **direkt davor** ein:
+
+```tsx
+      <ExpertenBlock normen={["BAFA BEG EM", "KfW 358/359", "§35c EStG", "NRW.BANK"]} />
+
+```
+
+---
+
+## SCHRITT 9 — Build und Kontrolle
+
+1. Führe `npm run build` aus
+2. Bestätige fehlerfreien Build
+3. Prüfe folgende Punkte:
+
+**Neue Dateien / Strukturen:**
+- [ ] `__BUILD_DATE__` korrekt in vite.config.ts definiert?
+- [ ] `ExpertenBlock.tsx` erstellt und fehlerfrei?
+- [ ] `AuthorSchema.tsx` enthält `@graph` mit Tim Rex + Peter Rex?
+
+**ExpertenBlock auf 5 Seiten:**
+- [ ] DachsanierungBochum.tsx — ExpertenBlock sichtbar?
+- [ ] FlachdachBochum.tsx — ExpertenBlock sichtbar?
+- [ ] SteildachBochum.tsx — ExpertenBlock sichtbar?
+- [ ] DachfensterBochum.tsx — ExpertenBlock sichtbar?
+- [ ] Foerderung.tsx — ExpertenBlock sichtbar?
+
+**AuthorSchema-Nachträge:**
+- [ ] FlachdachBochum.tsx hat jetzt `<AuthorSchema />`?
+- [ ] DachfensterBochum.tsx hat jetzt `<AuthorSchema />`?
+
+**DachfensterBochum.tsx — Fehlerkorrekturen:**
+- [ ] Meta-Description enthält „VELUX & Roto" (nicht mehr Fakro)?
+- [ ] Meta-Description enthält „20 % BAFA-Förderung"?
+- [ ] Förderungs-Section H2 zeigt „20 %" (nicht 15%)?
+- [ ] Förderungs-Section Text zeigt „20 %" mit iSFP?
+- [ ] FAQ „Kann ich Förderung..." zeigt 15 %/20 % + Uw-Werte?
+- [ ] FAQ „Gibt es Förderung..." zeigt 15 %/20 % + 60.000 €?
+- [ ] FAQPage-Schema Q3 zeigt korrigierte Werte?
+- [ ] FAQPage-Schema Q6 zeigt korrigierte Werte?
+- [ ] Article-Schema ist vorhanden (dateModified: 2026-04-18)?
+- [ ] Marken-Section: „autorisierter VELUX-Partner" (nicht Fachbetrieb)?
+
+---
+
+## Deployment-Regeln
+
+- Stufe B, max. 8 Dateien: ✅ (8 Dateien exakt)
+- Keine neuen Routen — kein App.tsx-Update nötig
+- Keine Sitemap-Änderung nötig
+- 48h-Pause nach Deploy — nächster Deploy (D11 VeluxPreisrechner) frühestens 20.04.2026
