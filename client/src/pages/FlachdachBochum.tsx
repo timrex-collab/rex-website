@@ -1,6 +1,8 @@
 import { useState } from "react";
 import { Helmet } from "react-helmet";
 import OrganizationSchema from "@/components/OrganizationSchema";
+import AuthorSchema from "@/components/AuthorSchema";
+import ExpertenBlock from "@/components/ExpertenBlock";
 import { useLocation, Link } from "wouter";
 import Breadcrumb from "@/components/Breadcrumb";
 import {
@@ -249,6 +251,7 @@ export default function FlachdachBochum() {
 }`}</script>
       </Helmet>
       <OrganizationSchema />
+      <AuthorSchema />
 
       <Breadcrumb items={[
         { label: "Startseite", href: "/" },
@@ -300,6 +303,8 @@ export default function FlachdachBochum() {
           </p>
         </div>
       </section>
+
+      <ExpertenBlock normen={["DIN 18531", "BAFA BEG EM", "FLL-Richtlinien"]} />
 
       {/* ── Einleitung ── */}
       <section className="py-16 px-4 bg-background" data-testid="section-einleitung">

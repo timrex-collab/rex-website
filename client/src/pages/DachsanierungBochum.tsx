@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Helmet } from "react-helmet";
 import OrganizationSchema from "@/components/OrganizationSchema";
 import AuthorSchema from "@/components/AuthorSchema";
+import ExpertenBlock from "@/components/ExpertenBlock";
 import Breadcrumb from "@/components/Breadcrumb";
 import Picture from "@/components/Picture";
 import {
@@ -349,6 +350,8 @@ export default function DachsanierungBochum() {
         { label: "Startseite", href: "/" },
         { label: "Dachsanierung Bochum" }
       ]} />
+
+      <ExpertenBlock normen={["GEG 2024", "BAFA BEG EM", "KfW 358/359", "ZVDH-Regelwerk"]} />
 
       {/* Hero */}
       <section className="relative text-white py-24 px-4 overflow-hidden" data-testid="section-hero">

@@ -1,6 +1,8 @@
 import { useState } from "react";
 import { Helmet } from "react-helmet";
 import OrganizationSchema from "@/components/OrganizationSchema";
+import AuthorSchema from "@/components/AuthorSchema";
+import ExpertenBlock from "@/components/ExpertenBlock";
 
 import Breadcrumb from "@/components/Breadcrumb";
 import Picture from "@/components/Picture";
@@ -71,7 +73,7 @@ const faqItems = [
   {
     question: "Kann ich Förderung für neue Dachfenster bekommen?",
     answer:
-      "Ja! Beim Austausch gegen energieeffiziente Modelle können Sie über BAFA bis zu 20 % der Kosten als Zuschuss erhalten (15 % Grundförderung + 5 % iSFP-Bonus). Wir beraten Sie kostenlos dazu.",
+      "Ja. Über BAFA (BEG Einzelmaßnahme) werden Dachfenster mit Uw ≤ 1,0 W/m²K mit 15 % Grundförderung bezuschusst — mit iSFP steigt der Satz auf 20 %. Nur VELUX ENERGIE und ENERGIE PLUS sind förderfähig, THERMO (Uw 1,3) nicht. Rex Bedachungs GmbH berät kostenlos zur Antragstellung.",
   },
   {
     question: "Welche Dachfenster-Marken verbauen Sie?",
@@ -86,7 +88,7 @@ const faqItems = [
   {
     question: "Gibt es Förderung für den Einbau von Dachfenstern?",
     answer:
-      "Ja – wenn im Zuge des Dachfenstereinbaus eine GEG-konforme Dämmung am Eindeckrahmen oder der Laibung ausgeführt wird, kann die Maßnahme über BAFA (BEG Einzelmaßnahme) mit bis zu 20 % gefördert werden (15 % Grundförderung + 5 % iSFP-Bonus). Zusätzlich ist ein KfW-Ergänzungskredit möglich. Wir beraten Sie kostenlos zu allen aktuellen Fördermöglichkeiten.",
+      "Ja — Dachfenster mit Uw ≤ 1,0 W/m²K werden über BAFA (BEG Einzelmaßnahme) mit 15 % Grundförderung bezuschusst. Mit einem individuellen Sanierungsfahrplan (iSFP) steigt der Satz auf 20 % und der Förderhöchstbetrag auf 60.000 € pro Wohneinheit. Zusätzlich ist der KfW-Ergänzungskredit 358/359 kombinierbar. Rex Bedachungs GmbH berät kostenlos zu allen aktuellen Fördermöglichkeiten.",
   },
   {
     question: "Kann ein altes VELUX-Fenster 1:1 ersetzt werden?",
@@ -125,7 +127,7 @@ export default function DachfensterBochum() {
         <title>Dachfenster Bochum – Einbau & Austausch | Rex Bedachung</title>
         <meta
           name="description"
-          content="Dachfenster in Bochum einbauen oder ersetzen? Rex Bedachung montiert Velux & Fakro – inkl. Dämmung und Anschlussabdichtung. Angebot anfragen."
+          content="Dachfenster in Bochum einbauen oder austauschen? Rex Bedachungs GmbH montiert VELUX & Roto – inkl. Dämmung, Anschlussabdichtung und bis zu 20 % BAFA-Förderung. Autorisierter VELUX-Partner seit 1984."
         />
         <meta property="og:title" content="Dachfenster Bochum – VELUX & Roto Einbau | Rex Bedachungs GmbH" />
         <meta
@@ -188,7 +190,7 @@ export default function DachfensterBochum() {
       "name": "Kann ich Förderung für neue Dachfenster bekommen?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Ja! Beim Austausch gegen energieeffiziente Modelle können Sie über BAFA bis zu 20 % der Kosten als Zuschuss erhalten (15 % Grundförderung + 5 % iSFP-Bonus). Wir beraten Sie kostenlos dazu."
+        "text": "Ja. Über BAFA (BEG Einzelmaßnahme) werden Dachfenster mit Uw ≤ 1,0 W/m²K mit 15 % Grundförderung bezuschusst — mit iSFP steigt der Satz auf 20 %. Nur VELUX ENERGIE und ENERGIE PLUS sind förderfähig, THERMO (Uw 1,3) nicht. Rex Bedachungs GmbH berät kostenlos zur Antragstellung."
       }
     },
     {
@@ -212,7 +214,7 @@ export default function DachfensterBochum() {
       "name": "Gibt es Förderung für den Einbau von Dachfenstern?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Ja – wenn im Zuge des Dachfenstereinbaus eine GEG-konforme Dämmung am Eindeckrahmen oder der Laibung ausgeführt wird, kann die Maßnahme über BAFA (BEG Einzelmaßnahme) mit bis zu 20 % gefördert werden (15 % Grundförderung + 5 % iSFP-Bonus). Zusätzlich ist ein KfW-Ergänzungskredit möglich. Wir beraten Sie kostenlos zu allen aktuellen Fördermöglichkeiten."
+        "text": "Ja — Dachfenster mit Uw ≤ 1,0 W/m²K werden über BAFA (BEG Einzelmaßnahme) mit 15 % Grundförderung bezuschusst. Mit iSFP steigt der Satz auf 20 % und der Förderhöchstbetrag auf 60.000 € pro Wohneinheit. Zusätzlich ist der KfW-Ergänzungskredit 358/359 kombinierbar."
       }
     },
     {
@@ -225,8 +227,27 @@ export default function DachfensterBochum() {
     }
   ]
 }`}</script>
+        <script type="application/ld+json">{`{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Dachfenster Bochum – Einbau & Austausch vom Meisterbetrieb",
+  "description": "VELUX und Roto Dachfenster in Bochum: Neueinbau, Austausch und Reparatur. Autorisierter VELUX-Partner seit 1984. Bis zu 20 % BAFA-Förderung bei Uw ≤ 1,0.",
+  "author": {
+    "@type": "Person",
+    "@id": "https://www.rex-bedachung.de/#author",
+    "name": "Tim Rex"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "@id": "https://www.rex-bedachung.de/#organization"
+  },
+  "datePublished": "2025-06-01",
+  "dateModified": "2026-04-18",
+  "mainEntityOfPage": "https://www.rex-bedachung.de/dachfenster-bochum"
+}`}</script>
       </Helmet>
       <OrganizationSchema />
+      <AuthorSchema />
 
       <Breadcrumb items={[
         { label: "Startseite", href: "/" },
@@ -280,6 +301,8 @@ export default function DachfensterBochum() {
         </div>
       </section>
 
+      <ExpertenBlock normen={["VELUX-Partner", "BEG EM Uw ≤ 1,0", "GEG 2024"]} />
+
       {/* ── Leistungs-Sektion ── */}
       <section className="py-16 px-4 bg-background" data-testid="section-leistungen">
         <div className="max-w-7xl mx-auto">
@@ -309,7 +332,7 @@ export default function DachfensterBochum() {
             Ihr VELUX &amp; Roto Fachbetrieb in Bochum
           </h2>
           <p className="text-muted-foreground leading-relaxed text-base md:text-lg" data-testid="text-marken">
-            Als VELUX-Fachbetrieb verfügen wir über umfassendes Fachwissen und direkten Zugang zu
+            Als autorisierter VELUX-Partner verfügen wir über umfassendes Fachwissen und direkten Zugang zu
             Originalteilen und Zubehör. Natürlich verbauen wir auch Roto Dachfenster in allen gängigen Ausführungen –
             vom einfachen Klappfenster bis zum elektrischen Dachflächenfenster mit Fernbedienung.
           </p>
@@ -326,10 +349,10 @@ export default function DachfensterBochum() {
           >
             <AlertTriangle className="w-10 h-10 text-blue-300 mx-auto mb-4" aria-hidden="true" />
             <h2 className="text-2xl md:text-3xl font-bold text-white mb-4" data-testid="heading-foerderung">
-              Bis zu 20% Förderung durch BAFA (BEG EM)
+              Bis zu 20 % Förderung durch BAFA &amp; KfW
             </h2>
-            <p className="text-slate-300 leading-relaxed mb-4 max-w-2xl mx-auto" data-testid="text-foerderung">
-              Über BAFA (BEG EM) erhalten Sie 15–20% Zuschuss auf alle förderfähigen Kosten – Material und Einbau. Mit individuellem Sanierungsfahrplan (iSFP) steigt der Zuschuss von 15% auf 20% bei gleichzeitiger Verdopplung des Förderhöchstbetrags auf 60.000 € pro Wohneinheit.
+            <p className="text-slate-300 leading-relaxed mb-8 max-w-2xl mx-auto" data-testid="text-foerderung">
+              Der Austausch alter Dachfenster gegen energieeffiziente Modelle mit Uw ≤ 1,0 W/m²K wird über BAFA (BEG Einzelmaßnahme) mit 15 % Grundförderung bezuschusst — mit iSFP steigt der Satz auf 20 %. Zusätzlich ist der KfW-Ergänzungskredit kombinierbar. Wir beraten kostenlos und übernehmen auf Wunsch die Antragstellung.
             </p>
             <p className="text-slate-400 leading-relaxed mb-8 max-w-2xl mx-auto text-sm">
               Zusätzlich kann nach BAFA-Zusage ein KfW-Ergänzungskredit (358/359) bis 120.000 € beantragt werden.

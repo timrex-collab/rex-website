@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Helmet } from "react-helmet";
 import OrganizationSchema from "@/components/OrganizationSchema";
 import AuthorSchema from "@/components/AuthorSchema";
+import ExpertenBlock from "@/components/ExpertenBlock";
 import Breadcrumb from "@/components/Breadcrumb";
 import {
   Euro, FileCheck, Lightbulb, ShieldCheck, ArrowRight,
@@ -341,6 +342,8 @@ export default function Foerderung() {
           </p>
         </div>
       </header>
+
+      <ExpertenBlock normen={["BAFA BEG EM", "KfW 358/359", "§35c EStG", "NRW.BANK"]} />
 
       {/* ── Grant Cards – überlappen den Hero (Gemini-Stil) ── */}
       <div className="max-w-6xl mx-auto px-4 -mt-10 relative z-20 mb-16">
