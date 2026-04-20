@@ -40,6 +40,7 @@ const DachsanierungBochum = lazy(() => import("@/pages/DachsanierungBochum"));
 const DachrinnenBochum = lazy(() => import("@/pages/DachrinnenBochum"));
 const SturmschadenDach = lazy(() => import("@/pages/SturmschadenDach"));
 const BitumenVsPvc = lazy(() => import("@/pages/BitumenVsPvc"));
+const VeluxPreisrechnerBochum = lazy(() => import("@/pages/VeluxPreisrechnerBochum"));
 
 function Router() {
   return (
@@ -74,6 +75,7 @@ function Router() {
           <Route path="/dachrinne-bochum" component={DachrinnenBochum} />
           <Route path="/sturmschaden-dach-bochum" component={SturmschadenDach} />
           <Route path="/bitumen-vs-pvc-flachdach-bochum" component={BitumenVsPvc} />
+      <Route path="/velux-preisrechner-bochum" component={VeluxPreisrechnerBochum} />
       <Route component={NotFound} />
     </Switch>
   );

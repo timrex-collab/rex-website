@@ -60,6 +60,7 @@ Gelsenkirchen, Recklinghausen – gesamtes Ruhrgebiet
 - Kontakt: https://www.rex-bedachung.de/kontakt
 - Velux Austausch Bochum: https://www.rex-bedachung.de/velux-dachfenster-austausch-bochum
 - Velux Außenrollladen Bochum (SSL Solar): https://www.rex-bedachung.de/velux-dachfenster-rolllaeden-bochum
+- VELUX Preisrechner Bochum: https://www.rex-bedachung.de/velux-preisrechner-bochum — Interaktiver Konfigurator: Fenstertyp, Größe, Verglasung, Eindeckrahmen, Rollladen wählen. Kosten berechnen (VELUX UVP 2026 netto + Einbaukosten). BAFA-Förderung und §35c-Steuerbonus prüfen.
 - Steildach Bochum: https://www.rex-bedachung.de/steildach-bochum
 - Gründach Bochum: https://www.rex-bedachung.de/gruendach-dachbegrunung-bochum
 - Dachwartung Bochum: https://www.rex-bedachung.de/dachwartung-bochum
@@ -83,6 +84,9 @@ Cluster-Artikel unter /bauklempnerei-bochum. Dachrinne in Bochum reinigen, repar
 
 ## /dachfenster-bochum
 Pillar-Seite für Dachfenster in Bochum. Autorisierter VELUX-Partner seit 1984. Leistungen: Neueinbau, Austausch, Reparatur — VELUX und Roto. BAFA-Förderung: Dachfenster mit Uw ≤ 1,0 W/m²K erhalten 15 % Grundförderung (20 % mit iSFP). Förderhöchstbetrag: 30.000 € ohne iSFP, 60.000 € mit iSFP pro Wohneinheit. KfW-Ergänzungskredit 358/359 kombinierbar. VELUX THERMO (Uw 1,3) ist NICHT förderfähig — nur ENERGIE (Uw 1,0) und ENERGIE PLUS (Uw 0,7). Preise: Austausch ab ca. 1.000 €, Standard ab ca. 1.500 €, Premium/Integra ab ca. 1.800 €. Fachliche Prüfung: Tim Rex, Geschäftsführer & Dachdeckermeister.
+
+## /velux-preisrechner-bochum
+Interaktiver VELUX Dachfenster Preisrechner unter /dachfenster-bochum. Konfigurator für alle VELUX Fenstertypen (GGU, GGL, GPU, GPL), 18 Größen (CK02 bis UK10), drei Verglasungsstufen (THERMO Uw 1,3 / ENERGIE Uw 1,0 / ENERGIE PLUS Uw 0,7), Eindeckrahmen EDW 2000, Rollläden (SSL Solar, SML Elektro), Verdunkelungsrollos (DKL Manuell, DSL Solar). Materialpreise = VELUX UVP 2026 netto. Einbaukosten = Mindestpreise (Demontage, Fenstereinbau, Eindeckrahmen-Montage, Zubehörmontage). Fördermittel-Check: BAFA BEG EM 15 %/20 % mit iSFP, KfW-Ergänzungskredit 358/359, §35c EStG Steuerbonus 20 % über 3 Jahre. Nur ENERGIE und ENERGIE PLUS sind BAFA-förderfähig (Uw ≤ 1,0). Rex Bedachungs GmbH, autorisierter VELUX-Partner, Bochum, seit 1984.
 
 ## Referenzbilder VELUX
 
