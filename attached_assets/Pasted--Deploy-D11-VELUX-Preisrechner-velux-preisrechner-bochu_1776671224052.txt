@@ -1,0 +1,546 @@
+# Deploy D11 — VELUX Preisrechner /velux-preisrechner-bochum
+**Datum:** ab 20.04.2026 | **Stufe C** | **Max. 5 Dateien**
+**Dateien:** VeluxPreisrechner.tsx (neu) · VeluxPreisrechnerBochum.tsx (neu) · App.tsx · sitemap.xml · llms.txt
+
+---
+
+## Aufgabe
+
+Führe die folgenden Schritte **exakt in dieser Reihenfolge** aus. Zeige nach jedem Schritt eine kurze Bestätigung. Führe am Ende einen Build aus.
+
+---
+
+## SCHRITT 1 — VeluxPreisrechner.tsx: Komponente erstellen + 3 Änderungen
+
+**Datei:** `client/src/components/VeluxPreisrechner.tsx` — **NEU erstellen.**
+
+Nimm den kompletten Inhalt der bereits vorbereiteten Datei `VeluxPreisrechner.jsx` (624 Zeilen, mit WINDOWS, EDW, SHUTTERS, BLINDS, LABOR, GL, DIMS, PosCard, Step1, Step2, Step3) und speichere ihn als `VeluxPreisrechner.tsx`.
+
+Dann führe **drei gezielte Änderungen** durch:
+
+---
+
+### Änderung 1.1 — Neue State-Variablen in Step3
+
+Suche in der `Step3`-Funktion die Zeile:
+
+```
+const [pdfGenerated, setPdfGenerated] = useState(false);
+```
+
+Ersetze durch:
+
+```
+const [pdfGenerated, setPdfGenerated] = useState(false);
+const [submitting, setSubmitting] = useState(false);
+const [submitSuccess, setSubmitSuccess] = useState(false);
+const [submitError, setSubmitError] = useState(false);
+```
+
+---
+
+### Änderung 1.2 — Neue Submit-Funktionen in Step3
+
+Suche die bestehende `handlePdfAndMail`-Funktion in Step3. Sie beginnt mit:
+
+```
+const handlePdfAndMail = () => {
+```
+
+**Lösche die gesamte `handlePdfAndMail`-Funktion** und ersetze sie durch diese zwei Funktionen:
+
+```tsx
+  const buildKonfigText = () => {
+    return details.map((d, i) =>
+      `Pos ${i+1}: ${d.qty}× ${d.model} ${d.size} (${DIMS[d.size]} cm) ${GL[d.glazing].l}` +
+      (d.shutterQty > 0 ? ` + ${d.shutterQty}× ${SHUTTERS[d.shutter].short}` : "") +
+      (d.blindQty > 0 ? ` + ${d.blindQty}× ${BLINDS[d.blind].short}` : "") +
+      ` → ab ${fmt(d.matPos + d.labPos)} € netto`
+    ).join("\n") +
+    `\n\nGesamt netto: ab ${fmt(totalNetto)} €` +
+    `\nGesamt brutto: ab ${fmt(totalBrutto)} €` +
+    (bafaFoerder > 0 ? `\nBAFA-Zuschuss: −${fmt(bafaFoerder)} € (${hasIsfp ? "20%" : "15%"})` : "") +
+    (bafaFoerder > 0 ? `\nInvestition nach Förderung: ab ${fmt(investitionBrutto)} €` : "") +
+    `\nFörder-Check: Altbau=${foerderung.altbau}, Sanierung=${foerderung.sanierung}, iSFP=${foerderung.isfp}`;
+  };
+
+  const handleSubmitAndPdf = async () => {
+    setSubmitting(true);
+    setSubmitError(false);
+
+    const formData = new URLSearchParams();
+    formData.append("form-name", "velux-preisrechner");
+    formData.append("bot-field", "");
+    formData.append("name", kunde.name);
+    formData.append("email", kunde.email);
+    formData.append("telefon", kunde.telefon);
+    formData.append("strasse", kunde.strasse);
+    formData.append("plz", kunde.plz);
+    formData.append("ort", kunde.ort);
+    formData.append("nachricht", kunde.nachricht);
+    formData.append("konfiguration", buildKonfigText());
+
+    try {
+      const res = await fetch("/", {
+        method: "POST",
+        headers: { "Content-Type": "application/x-www-form-urlencoded" },
+        body: formData.toString(),
+      });
+      if (res.ok) {
+        setSubmitSuccess(true);
+        handlePdf();
+      } else {
+        throw new Error("Submit failed");
+      }
+    } catch {
+      setSubmitError(true);
+      const subject = encodeURIComponent("VELUX Preisrechner – Anfrage von " + kunde.name);
+      const body = encodeURIComponent(
+        `Name: ${kunde.name}\nE-Mail: ${kunde.email}\nTelefon: ${kunde.telefon}\n` +
+        `Adresse: ${kunde.strasse}, ${kunde.plz} ${kunde.ort}\n\n` +
+        `Konfiguration:\n${buildKonfigText()}\n\nNachricht: ${kunde.nachricht}`
+      );
+      window.location.href = `mailto:info@rex-bedachung.de?subject=${subject}&body=${body}`;
+    } finally {
+      setSubmitting(false);
+    }
+  };
+```
+
+---
+
+### Änderung 1.3 — CTA-Block in Step3 ersetzen
+
+Suche den Kommentar `{/* CTAs */}` und den darauf folgenden `<div>`-Block in Step3 (enthält `handlePdfAndMail`, die Buttons und den pdfGenerated-Hinweis). Ersetze den gesamten CTA-Block (von `{/* CTAs */}` bis zum schließenden `</div>` dieser Section) durch:
+
+```tsx
+      {/* CTAs */}
+      <div className="bg-white border-2 border-slate-200 rounded-2xl p-6 space-y-4">
+        <div className="text-center">
+          <div className="text-lg font-bold text-slate-900 mb-1">Angebot anfragen</div>
+          <p className="text-sm text-slate-500 mb-5">Wir erhalten Ihre Konfiguration und melden uns mit einem individuellen Angebot.</p>
+        </div>
+        <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
+          {kundeValid ? (<>
+            <button onClick={handleSubmitAndPdf} disabled={submitting}
+              className="inline-flex items-center gap-2 bg-slate-800 text-white px-7 py-3.5 rounded-xl font-semibold text-sm hover:bg-slate-700 transition-all shadow-lg hover:shadow-xl group disabled:opacity-50 disabled:cursor-wait">
+              <Mail className="w-5 h-5"/>
+              {submitting ? "Wird gesendet..." : "Anfrage senden & PDF erstellen"}
+              {!submitting && <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform"/>}
+            </button>
+            <button onClick={handlePdf}
+              className="inline-flex items-center gap-2 bg-white text-slate-700 border-2 border-slate-300 px-6 py-3.5 rounded-xl font-semibold text-sm hover:bg-slate-50 hover:border-slate-400 transition-all">
+              <FileDown className="w-4 h-4"/>Nur PDF erstellen
+            </button>
+          </>) : (
+            <div className="inline-flex items-center gap-2 bg-slate-200 text-slate-400 px-8 py-3.5 rounded-xl font-semibold text-sm cursor-not-allowed">
+              <Mail className="w-5 h-5"/>Bitte zuerst Kontaktdaten ausfüllen
+            </div>
+          )}
+        </div>
+        {submitSuccess && (
+          <div className="text-center animate-fadeIn">
+            <p className="text-xs text-emerald-700 bg-emerald-50 inline-block px-4 py-2 rounded-lg">
+              <Check className="w-3.5 h-3.5 inline mr-1"/>Anfrage erfolgreich gesendet! Wir melden uns in Kürze.
+            </p>
+          </div>
+        )}
+        {submitError && (
+          <div className="text-center animate-fadeIn">
+            <p className="text-xs text-red-700 bg-red-50 inline-block px-4 py-2 rounded-lg">
+              Senden fehlgeschlagen. Bitte rufen Sie uns direkt an: 0234 / 58 31 00
+            </p>
+          </div>
+        )}
+        {pdfGenerated && !submitSuccess && (
+          <div className="text-center animate-fadeIn">
+            <p className="text-xs text-emerald-700 bg-emerald-50 inline-block px-4 py-2 rounded-lg">
+              <Check className="w-3.5 h-3.5 inline mr-1"/>PDF wurde erstellt — bitte im Druckdialog als PDF speichern.
+            </p>
+          </div>
+        )}
+        <div className="text-center pt-2">
+          <div className="flex items-center justify-center gap-2 text-sm text-slate-500">
+            <Phone className="w-4 h-4"/><span>Oder direkt anrufen:</span>
+            <a href="tel:+49234583100" className="font-semibold text-slate-800 hover:underline">0234 / 58 31 00</a>
+          </div>
+        </div>
+      </div>
+```
+
+---
+
+## SCHRITT 2 — VeluxPreisrechnerBochum.tsx: Page-Wrapper erstellen
+
+**Datei:** `client/src/pages/VeluxPreisrechnerBochum.tsx` — **NEU erstellen.**
+
+Kompletter Inhalt:
+
+```tsx
+import { Helmet } from "react-helmet";
+import OrganizationSchema from "@/components/OrganizationSchema";
+import AuthorSchema from "@/components/AuthorSchema";
+import Breadcrumb from "@/components/Breadcrumb";
+import VeluxPreisrechner from "@/components/VeluxPreisrechner";
+import { Phone, ArrowRight } from "lucide-react";
+
+const faqData = [
+  {
+    q: "Was kostet ein VELUX Dachfenster mit Einbau in Bochum?",
+    a: "Die Gesamtkosten hängen von Fenstertyp, Größe, Verglasung und Zubehör ab. Ein Kunststoff-Schwingfenster (GGU) in Standardgröße MK08 mit ENERGIE-Verglasung, Eindeckrahmen und Einbau beginnt ab ca. 1.800 € netto. Klapp-Schwingfenster (GPU/GPL) liegen höher. Nutzen Sie unseren Preisrechner oben für eine individuelle Kostenschätzung."
+  },
+  {
+    q: "Welche VELUX Verglasung ist förderfähig über die BAFA?",
+    a: "Nur Verglasungen mit einem Uw-Wert von maximal 1,0 W/m²K sind über die BAFA (BEG Einzelmaßnahme) förderfähig. Bei VELUX erfüllen das die Verglasungsstufen ENERGIE (Uw 1,0) und ENERGIE PLUS (Uw 0,7). Die Standardverglasung THERMO (Uw 1,3) ist nicht förderfähig."
+  },
+  {
+    q: "Wie hoch ist die BAFA-Förderung für neue Dachfenster?",
+    a: "Der Grundfördersatz beträgt 15 % der förderfähigen Bruttokosten. Mit einem individuellen Sanierungsfahrplan (iSFP) steigt der Satz auf 20 % und der Förderhöchstbetrag verdoppelt sich von 30.000 € auf 60.000 € pro Wohneinheit und Jahr. Zusätzlich sind 50 % der Kosten für den Energieeffizienz-Experten als separater Zuschuss erhältlich."
+  },
+  {
+    q: "Was ist der Unterschied zwischen BAFA-Zuschuss und Steuerbonus §35c?",
+    a: "Der BAFA-Zuschuss (15–20 %) wird direkt ausgezahlt, erfordert aber einen Energieeffizienz-Experten und einen Antrag vor Baubeginn. Der Steuerbonus nach §35c EStG bietet 20 % Steuerermäßigung über drei Jahre (7 %/7 %/6 %), braucht keinen Energieberater, gilt aber nur für selbstgenutztes Wohneigentum ab 10 Jahren Gebäudealter. Beide Wege sind nicht für dieselbe Maßnahme kombinierbar."
+  },
+  {
+    q: "Was ist im Einbaupreis für ein VELUX Dachfenster enthalten?",
+    a: "Unsere Einbaukalkulation umfasst: Demontage des Altfensters bzw. Erstellung der Dachöffnung, Fenstereinbau mit Abdichtung und Dampfbremse, Eindeckrahmen-Montage sowie optional Rollladen- und Rollo-Montage. Die angegebenen Preise sind Mindestpreise — der tatsächliche Aufwand hängt vom Dachaufbau, der Eindeckung und dem Bestandszustand ab."
+  },
+  {
+    q: "Welchen Eindeckrahmen brauche ich für mein VELUX Dachfenster?",
+    a: "Für Dachziegel und Dachsteine bis 120 mm Profilhöhe verwenden wir standardmäßig den EDW 2000 (Ziegel hoch/Welle). Bei Flachdacheindeckungen, Schiefer oder Biberschwanz kommen andere Eindeckrahmen-Typen zum Einsatz. Den passenden Rahmen klären wir bei der Vor-Ort-Begehung — er ist in unserer Kostenschätzung bereits berücksichtigt."
+  },
+  {
+    q: "Kann ich den KfW-Ergänzungskredit mit der BAFA-Förderung kombinieren?",
+    a: "Ja. Nach der BAFA-Förderzusage können Sie zusätzlich den KfW-Ergänzungskredit (Programm 358/359) über bis zu 120.000 € pro Wohneinheit beantragen. Bei einem Haushaltseinkommen bis 90.000 € gelten besonders günstige Zinskonditionen über KfW 358 Plus."
+  },
+  {
+    q: "Wie läuft ein Dachfenster-Austausch bei Rex Bedachungs GmbH ab?",
+    a: "Nach Ihrer Anfrage vereinbaren wir einen Vor-Ort-Termin in Bochum und Umgebung, prüfen den Dachaufbau und erstellen ein verbindliches Festangebot. Bei Förderwunsch koordinieren wir den Energieeffizienz-Experten und den BAFA-Antrag. Die Montage dauert je nach Umfang 1–3 Tage. Als autorisierter VELUX-Partner verbauen wir ausschließlich Original-VELUX-Produkte."
+  }
+];
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: faqData.map(f => ({
+    "@type": "Question",
+    name: f.q,
+    acceptedAnswer: { "@type": "Answer", text: f.a }
+  }))
+};
+
+const serviceSchema = {
+  "@context": "https://schema.org",
+  "@type": "Service",
+  name: "VELUX Dachfenster Einbau & Austausch",
+  description: "Einbau, Austausch und Beratung für VELUX Dachfenster in Bochum — inkl. Eindeckrahmen, Rollläden, Förderberatung (BAFA/KfW) und Vor-Ort-Aufmaß.",
+  provider: {
+    "@type": "RoofingContractor",
+    "@id": "https://www.rex-bedachung.de/#organization"
+  },
+  areaServed: { "@type": "City", name: "Bochum" },
+  serviceType: "Dachfenster-Einbau"
+};
+
+const breadcrumbSchema = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  itemListElement: [
+    { "@type": "ListItem", position: 1, name: "Startseite", item: "https://www.rex-bedachung.de/" },
+    { "@type": "ListItem", position: 2, name: "Dachfenster", item: "https://www.rex-bedachung.de/dachfenster-bochum" },
+    { "@type": "ListItem", position: 3, name: "VELUX Preisrechner", item: "https://www.rex-bedachung.de/velux-preisrechner-bochum" }
+  ]
+};
+
+const articleSchema = {
+  "@context": "https://schema.org",
+  "@type": "Article",
+  headline: "VELUX Dachfenster Preisrechner – Kosten und Förderung berechnen",
+  description: "Berechnen Sie die Kosten für VELUX Dachfenster inkl. Eindeckrahmen, Einbau und BAFA-Förderung. Preisrechner vom autorisierten VELUX-Partner in Bochum.",
+  author: {
+    "@type": "Person",
+    "@id": "https://www.rex-bedachung.de/#author",
+    "name": "Tim Rex"
+  },
+  publisher: {
+    "@type": "Organization",
+    "@id": "https://www.rex-bedachung.de/#organization"
+  },
+  datePublished: "2026-04-20",
+  dateModified: "2026-04-20",
+  mainEntityOfPage: "https://www.rex-bedachung.de/velux-preisrechner-bochum"
+};
+
+export default function VeluxPreisrechnerBochum() {
+  return (
+    <>
+      <Helmet>
+        <title>VELUX Dachfenster Preisrechner Bochum – Kosten & Förderung | Rex Bedachungs GmbH</title>
+        <meta name="description" content="VELUX Dachfenster-Kosten online berechnen: Fenstertyp, Größe, Verglasung und Einbau konfigurieren. BAFA-Förderung und Steuerbonus prüfen. Autorisierter VELUX-Partner in Bochum seit 1984." />
+        <link rel="canonical" href="https://www.rex-bedachung.de/velux-preisrechner-bochum" />
+        <meta property="og:title" content="VELUX Dachfenster Preisrechner – Kosten & Förderung berechnen" />
+        <meta property="og:description" content="Konfigurieren Sie Ihr VELUX Dachfenster und berechnen Sie Kosten inkl. Einbau und Fördermöglichkeiten. Rex Bedachungs GmbH, Bochum." />
+        <meta property="og:url" content="https://www.rex-bedachung.de/velux-preisrechner-bochum" />
+        <meta property="og:type" content="website" />
+        <meta name="twitter:card" content="summary" />
+        <script type="application/ld+json">{JSON.stringify(faqSchema)}</script>
+        <script type="application/ld+json">{JSON.stringify(serviceSchema)}</script>
+        <script type="application/ld+json">{JSON.stringify(breadcrumbSchema)}</script>
+        <script type="application/ld+json">{JSON.stringify(articleSchema)}</script>
+      </Helmet>
+      <OrganizationSchema />
+      <AuthorSchema />
+
+      <Breadcrumb items={[
+        { label: "Startseite", href: "/" },
+        { label: "Dachfenster", href: "/dachfenster-bochum" },
+        { label: "VELUX Preisrechner" }
+      ]} />
+
+      {/* Hidden form for Netlify detection at build time */}
+      <form name="velux-preisrechner" data-netlify="true" netlify-honeypot="bot-field" hidden>
+        <input name="bot-field" />
+        <input name="name" />
+        <input name="email" />
+        <input name="telefon" />
+        <input name="strasse" />
+        <input name="plz" />
+        <input name="ort" />
+        <input name="nachricht" />
+        <input name="konfiguration" />
+      </form>
+
+      {/* Rechner-Komponente */}
+      <VeluxPreisrechner />
+
+      {/* Statischer SEO-Content-Block */}
+      <div className="bg-white">
+        <div className="max-w-3xl mx-auto px-4 py-12 space-y-12">
+
+          {/* Direktantwort */}
+          <section>
+            <h2 className="text-xl font-bold text-slate-900 mb-4">Was kostet ein VELUX Dachfenster mit Einbau?</h2>
+            <p className="text-slate-700 leading-relaxed">
+              Die Gesamtkosten für ein VELUX Dachfenster setzen sich aus dem Fensterpreis, Eindeckrahmen, optionalem Zubehör (Rollladen, Verdunkelungsrollo) und den Einbaukosten zusammen. In Bochum beginnen die Kosten für ein Kunststoff-Schwingfenster mit ENERGIE-Verglasung, Eindeckrahmen und fachgerechtem Einbau ab ca. 1.800 € netto. Klapp-Schwingfenster, größere Formate oder die hochdämmende ENERGIE-PLUS-Verglasung liegen entsprechend höher. Mit unserem Preisrechner berechnen Sie Ihre individuelle Kostenschätzung — inkl. Prüfung der BAFA-Förderung und des Steuerbonus nach §35c EStG. Als autorisierter VELUX-Partner in Bochum erstellen wir nach der Kostenschätzung ein verbindliches Festangebot nach Vor-Ort-Begehung.
+            </p>
+          </section>
+
+          {/* Preiszusammensetzung */}
+          <section>
+            <h2 className="text-xl font-bold text-slate-900 mb-4">Woraus setzt sich der Preis zusammen?</h2>
+            <p className="text-slate-700 leading-relaxed mb-3">
+              Jede Position in der Kostenschätzung enthält vier Bausteine: das Fenster selbst (VELUX UVP 2026 netto), den passenden Eindeckrahmen (EDW 2000 für Ziegeldächer), optionales Zubehör und die Einbaukosten. Die Materialpreise basieren auf der unverbindlichen Preisempfehlung von VELUX für 2026 — Ihr tatsächliches Angebot kann je nach Einkaufskonditionen abweichen.
+            </p>
+            <p className="text-slate-700 leading-relaxed">
+              Die Einbaukosten umfassen Demontage des Altfensters oder Erstellung der Dachöffnung, den fachgerechten Fenstereinbau mit Abdichtung und Dampfbremsenanschluss, die Eindeckrahmen-Montage sowie bei Bedarf die Rollladen- und Rollo-Installation. Die angegebenen Einbaupreise sind Mindestpreise — der tatsächliche Aufwand hängt vom Dachaufbau, der vorhandenen Eindeckung und dem Bestandszustand ab.
+            </p>
+          </section>
+
+          {/* Verglasung und Förderung */}
+          <section>
+            <h2 className="text-xl font-bold text-slate-900 mb-4">Welche Verglasung ist förderfähig?</h2>
+            <p className="text-slate-700 leading-relaxed mb-3">
+              VELUX bietet drei Verglasungsstufen an: THERMO (Uw 1,3 W/m²K), ENERGIE (Uw 1,0 W/m²K) und ENERGIE PLUS (Uw 0,7 W/m²K). Für die BAFA-Förderung im Rahmen der BEG Einzelmaßnahme ist ein Uw-Wert von maximal 1,0 W/m²K vorgeschrieben — das bedeutet: nur ENERGIE und ENERGIE PLUS sind förderfähig. Die THERMO-Verglasung erfüllt zwar die GEG-Mindestanforderung, nicht aber die strengere BEG-Vorgabe.
+            </p>
+            <p className="text-slate-700 leading-relaxed">
+              Unser Preisrechner zeigt Ihnen automatisch, welche Positionen förderfähig sind und berechnet den geschätzten Zuschuss. Für Eigentümer ohne individuellen Sanierungsfahrplan (iSFP) prüft der Rechner zusätzlich, ob der Steuerbonus nach §35c EStG mit 20 % Steuerermäßigung die bessere Option ist.
+            </p>
+          </section>
+
+          {/* Förderoptionen */}
+          <section>
+            <h2 className="text-xl font-bold text-slate-900 mb-4">BAFA, iSFP oder Steuerbonus — welche Förderung passt?</h2>
+            <p className="text-slate-700 leading-relaxed mb-3">
+              Drei Förderwege stehen zur Verfügung: Der BAFA-Zuschuss (15 % Grundförderung, 20 % mit iSFP) wird direkt ausgezahlt und kann mit dem KfW-Ergänzungskredit (Programm 358/359, bis 120.000 € pro Wohneinheit) kombiniert werden. Der Steuerbonus nach §35c EStG bietet 20 % Steuerermäßigung über drei Jahre ohne Energieberater, erfordert aber selbstgenutztes Wohneigentum und ein Gebäudealter ab 10 Jahren. Beide Wege sind nicht für dieselbe Maßnahme kombinierbar.
+            </p>
+            <p className="text-slate-700 leading-relaxed">
+              Unsere <a href="/foerderung" className="text-slate-900 font-semibold underline decoration-slate-300 hover:decoration-slate-800 transition-colors">vollständige Förder-Checkliste</a> führt Sie in 14 Schritten durch den Antragsprozess — von der Erstprüfung bis zur Auszahlung.
+            </p>
+          </section>
+
+          {/* FAQ */}
+          <section>
+            <h2 className="text-xl font-bold text-slate-900 mb-6">Häufige Fragen zum VELUX Dachfenster-Preis</h2>
+            <div className="space-y-6">
+              {faqData.map((f, i) => (
+                <div key={i}>
+                  <h3 className="text-base font-semibold text-slate-800 mb-2">{f.q}</h3>
+                  <p className="text-slate-600 leading-relaxed text-sm">{f.a}</p>
+                </div>
+              ))}
+            </div>
+          </section>
+
+          {/* Interne Links */}
+          <section className="border-t border-slate-200 pt-8">
+            <h2 className="text-lg font-bold text-slate-900 mb-4">Weiterführende Informationen</h2>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+              {[
+                { label: "Dachfenster-Leistungen in Bochum", href: "/dachfenster-bochum" },
+                { label: "VELUX Dachfenster austauschen", href: "/velux-dachfenster-austausch-bochum" },
+                { label: "VELUX Rollläden & Sonnenschutz", href: "/velux-dachfenster-rolllaeden-bochum" },
+                { label: "Förder-Checkliste (BAFA/KfW)", href: "/foerderung" }
+              ].map(link => (
+                <a key={link.href} href={link.href} className="flex items-center justify-between p-3 rounded-lg border border-slate-200 hover:border-slate-400 hover:bg-slate-50 transition-all group">
+                  <span className="text-sm text-slate-700 group-hover:text-slate-900">{link.label}</span>
+                  <ArrowRight className="w-4 h-4 text-slate-400 group-hover:text-slate-700 shrink-0" />
+                </a>
+              ))}
+            </div>
+          </section>
+
+          {/* CTA */}
+          <section className="bg-slate-50 rounded-2xl p-6 text-center">
+            <p className="text-lg font-bold text-slate-900 mb-2">Individuelle Beratung in Bochum</p>
+            <p className="text-sm text-slate-600 mb-4">Sie möchten ein persönliches Angebot? Wir prüfen Ihr Dach vor Ort und erstellen eine verbindliche Kostenschätzung — kostenlos und unverbindlich.</p>
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
+              <a href="tel:+49234583100" className="inline-flex items-center gap-2 bg-slate-800 text-white px-6 py-3 rounded-xl font-semibold text-sm hover:bg-slate-700 transition-all">
+                <Phone className="w-4 h-4" />0234 / 58 31 00
+              </a>
+              <a href="/kontakt" className="inline-flex items-center gap-2 border-2 border-slate-300 text-slate-700 px-6 py-3 rounded-xl font-semibold text-sm hover:border-slate-400 hover:bg-white transition-all">
+                Kontaktformular
+              </a>
+            </div>
+          </section>
+
+        </div>
+      </div>
+    </>
+  );
+}
+```
+
+---
+
+## SCHRITT 3 — App.tsx: Route hinzufügen
+
+**Datei:** `client/src/App.tsx` — ÄNDERUNG (2 Stellen)
+
+**WICHTIG:** Die App.tsx enthält möglicherweise D8/D9-Routen (Dachsanierung, Sturmschaden, BitumenVsPvc, Dachrinne) oder nicht. Die folgenden Anweisungen funktionieren in beiden Fällen.
+
+### 3a — Lazy Import hinzufügen
+
+Suche die **letzte** `lazy(() => import(...))`-Zeile in der Datei. Füge **direkt danach** hinzu:
+
+```tsx
+const VeluxPreisrechnerBochum = lazy(() => import("@/pages/VeluxPreisrechnerBochum"));
+```
+
+### 3b — Route hinzufügen
+
+Suche die Zeile:
+```tsx
+      <Route component={NotFound} />
+```
+
+Füge **direkt davor** ein:
+```tsx
+      <Route path="/velux-preisrechner-bochum" component={VeluxPreisrechnerBochum} />
+```
+
+---
+
+## SCHRITT 4 — sitemap.xml: URL hinzufügen
+
+**Datei:** `client/public/sitemap.xml` — ÄNDERUNG
+
+Suche:
+```xml
+</urlset>
+```
+
+Füge **direkt davor** ein:
+```xml
+  <url>
+    <loc>https://www.rex-bedachung.de/velux-preisrechner-bochum</loc>
+    <lastmod>2026-04-20</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+```
+
+---
+
+## SCHRITT 5 — llms.txt: Preisrechner-Abschnitt + Link hinzufügen
+
+**Datei:** `client/public/llms.txt` — ÄNDERUNG (2 Stellen)
+
+### 5a — Link in "Wichtige Seiten" einfügen
+
+Suche:
+```
+- Velux Außenrollladen Bochum (SSL Solar): https://www.rex-bedachung.de/velux-dachfenster-rolllaeden-bochum
+```
+
+Ersetze durch:
+```
+- Velux Außenrollladen Bochum (SSL Solar): https://www.rex-bedachung.de/velux-dachfenster-rolllaeden-bochum
+- VELUX Preisrechner Bochum: https://www.rex-bedachung.de/velux-preisrechner-bochum — Interaktiver Konfigurator: Fenstertyp, Größe, Verglasung, Eindeckrahmen, Rollladen wählen. Kosten berechnen (VELUX UVP 2026 netto + Einbaukosten). BAFA-Förderung und §35c-Steuerbonus prüfen.
+```
+
+### 5b — Neuer Abschnitt nach /dachfenster-bochum
+
+Suche den Block, der mit `## /dachfenster-bochum` beginnt (endet mit `Fachliche Prüfung: Tim Rex, Geschäftsführer & Dachdeckermeister.`). Füge **direkt danach** folgenden neuen Block ein:
+
+```
+
+## /velux-preisrechner-bochum
+Interaktiver VELUX Dachfenster Preisrechner unter /dachfenster-bochum. Konfigurator für alle VELUX Fenstertypen (GGU, GGL, GPU, GPL), 18 Größen (CK02 bis UK10), drei Verglasungsstufen (THERMO Uw 1,3 / ENERGIE Uw 1,0 / ENERGIE PLUS Uw 0,7), Eindeckrahmen EDW 2000, Rollläden (SSL Solar, SML Elektro), Verdunkelungsrollos (DKL Manuell, DSL Solar). Materialpreise = VELUX UVP 2026 netto. Einbaukosten = Mindestpreise (Demontage, Fenstereinbau, Eindeckrahmen-Montage, Zubehörmontage). Fördermittel-Check: BAFA BEG EM 15 %/20 % mit iSFP, KfW-Ergänzungskredit 358/359, §35c EStG Steuerbonus 20 % über 3 Jahre. Nur ENERGIE und ENERGIE PLUS sind BAFA-förderfähig (Uw ≤ 1,0). Rex Bedachungs GmbH, autorisierter VELUX-Partner, Bochum, seit 1984.
+```
+
+---
+
+## SCHRITT 6 — Build und Kontrolle
+
+1. Führe `npm run build` aus
+2. Bestätige fehlerfreien Build
+3. Prüfe folgende Punkte:
+
+**Neue Dateien:**
+- [ ] `VeluxPreisrechner.tsx` erstellt und fehlerfrei?
+- [ ] `VeluxPreisrechnerBochum.tsx` erstellt und fehlerfrei?
+
+**Route + Navigation:**
+- [ ] Route `/velux-preisrechner-bochum` lädt korrekt in der Vorschau?
+- [ ] Breadcrumb zeigt: Startseite > Dachfenster > VELUX Preisrechner?
+- [ ] Keine doppelte H1 (nur die H1 im Rechner-Header)?
+
+**Rechner-Funktionalität:**
+- [ ] 3-Stufen-Flow: Konfiguration → Förderung → Ergebnis?
+- [ ] "Anfrage senden & PDF erstellen" — Button sichtbar wenn Kontaktdaten ausgefüllt?
+- [ ] "Nur PDF erstellen" — PDF öffnet korrekt im Druckdialog?
+- [ ] Disabled-State wenn keine Kontaktdaten?
+
+**Schema + SEO:**
+- [ ] 4 JSON-LD-Blöcke im Page-Source (FAQPage, Service, Article, BreadcrumbList)?
+- [ ] Article-Schema datePublished = 2026-04-20?
+- [ ] OrganizationSchema vorhanden?
+- [ ] AuthorSchema vorhanden?
+
+**Content:**
+- [ ] FAQ-Abschnitt unterhalb des Rechners (8 Fragen)?
+- [ ] Interne Links funktionieren (/dachfenster-bochum, /foerderung etc.)?
+- [ ] Mobile Ansicht geprüft?
+
+**Metadaten:**
+- [ ] sitemap.xml enthält `/velux-preisrechner-bochum`?
+- [ ] llms.txt enthält Link + Abschnitt?
+
+---
+
+## Deployment-Regeln
+
+- Stufe C, max. 5 Dateien: ✅ (5 Dateien exakt)
+- Neue Route → App.tsx-Update nötig: ✅
+- 48h-Pause nach Deploy — nächster Deploy (D12) frühestens 22.04.2026
+
+---
+
+## Nicht in diesem Deploy (bewusst zurückgestellt)
+
+- Links VON bestehenden Seiten ZUM Rechner (DachfensterBochum.tsx, VeluxAustausch.tsx) → D12
+- Deep Links / URL-Parameter für Rechnerzustände → nach Launch-Auswertung
+- WhatsApp-Button in Step 3 → Optimierung nach Datenauswertung
+- Event-Tracking → nach stabilem Live-Betrieb
+- og:image → erst wenn Bild vorhanden
+- ExpertenBlock → kann in D12 zusammen mit DachfensterBochum-Links nachgerüstet werden
