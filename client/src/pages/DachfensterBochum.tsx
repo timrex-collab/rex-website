@@ -366,6 +366,20 @@ export default function DachfensterBochum() {
               <a href="/kontakt">Jetzt Förderung anfragen</a>
             </Button>
           </div>
+
+          {/* Preisrechner-Teaser */}
+          <div className="my-8 rounded-xl bg-gradient-to-r from-red-700 to-red-500 p-6 text-white shadow-lg">
+            <h3 className="mb-2 text-xl font-bold">VELUX Preisrechner Bochum</h3>
+            <p className="mb-4 text-sm leading-relaxed">
+              Kosten für Ihr VELUX Dachfenster in 3 Schritten berechnen – Fenstertyp, Größe und Eindeckrahmen auswählen, sofort Preisindikation erhalten.
+            </p>
+            <a
+              href="/velux-preisrechner-bochum"
+              className="inline-block rounded-lg bg-white px-5 py-2 font-semibold text-red-700 hover:bg-gray-100 transition-colors"
+            >
+              Jetzt Preis berechnen →
+            </a>
+          </div>
         </div>
       </section>
 
