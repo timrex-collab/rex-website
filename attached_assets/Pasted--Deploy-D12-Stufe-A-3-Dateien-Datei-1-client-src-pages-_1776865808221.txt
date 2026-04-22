@@ -1,0 +1,72 @@
+# Deploy D12 — Stufe A | 3 Dateien
+
+## Datei 1: client/src/pages/DachfensterBochum.tsx
+
+Öffne die Datei. Suche den Abschnitt, der die VELUX-Preise oder die Förderung behandelt (z. B. den Bereich mit den Preistabellen oder dem Förderbaustein). Füge dort – als eigenständigen Block direkt nach diesem Abschnitt – folgenden JSX-Code ein:
+
+```jsx
+{/* Preisrechner-Teaser */}
+<div className="my-8 rounded-xl bg-gradient-to-r from-red-700 to-red-500 p-6 text-white shadow-lg">
+  <h3 className="mb-2 text-xl font-bold">VELUX Preisrechner Bochum</h3>
+  <p className="mb-4 text-sm leading-relaxed">
+    Kosten für Ihr VELUX Dachfenster in 3 Schritten berechnen – Fenstertyp, Größe und Eindeckrahmen auswählen, sofort Preisindikation erhalten.
+  </p>
+  
+    href="/velux-preisrechner-bochum"
+    className="inline-block rounded-lg bg-white px-5 py-2 font-semibold text-red-700 hover:bg-gray-100 transition-colors"
+  >
+    Jetzt Preis berechnen →
+  </a>
+</div>
+```
+
+Sonst keine weiteren Änderungen an dieser Datei.
+
+---
+
+## Datei 2: client/src/pages/VeluxAustausch.tsx
+
+Öffne die Datei. Suche den Bereich, der Preise oder Kosten für den VELUX-Austausch behandelt. Füge dort – als eigenständigen Block direkt nach diesem Abschnitt – denselben JSX-Code wie oben ein:
+
+```jsx
+{/* Preisrechner-Teaser */}
+<div className="my-8 rounded-xl bg-gradient-to-r from-red-700 to-red-500 p-6 text-white shadow-lg">
+  <h3 className="mb-2 text-xl font-bold">VELUX Preisrechner Bochum</h3>
+  <p className="mb-4 text-sm leading-relaxed">
+    Kosten für Ihr VELUX Dachfenster in 3 Schritten berechnen – Fenstertyp, Größe und Eindeckrahmen auswählen, sofort Preisindikation erhalten.
+  </p>
+  
+    href="/velux-preisrechner-bochum"
+    className="inline-block rounded-lg bg-white px-5 py-2 font-semibold text-red-700 hover:bg-gray-100 transition-colors"
+  >
+    Jetzt Preis berechnen →
+  </a>
+</div>
+```
+
+Sonst keine weiteren Änderungen an dieser Datei.
+
+---
+
+## Datei 3: client/src/pages/FlachdachBochum.tsx
+
+Öffne die Datei. Suche im Helmet-Block diese exakte Zeile:
+
+        <meta property="og:image" content="https://www.rex-bedachung.de/images/flachdach-sanierung-bochum-rex-bedachung.webp" />
+
+Füge direkt DAVOR diese Zeile ein:
+
+        <meta property="og:url" content="https://www.rex-bedachung.de/flachdach-bochum" />
+
+Sonst keine weiteren Änderungen an dieser Datei.
+
+---
+
+## Abschluss
+
+Bestätige nach allen drei Änderungen:
+1. Den vollständigen Helmet-Block von FlachdachBochum.tsx (og:url korrekt gesetzt?)
+2. Den eingefügten Teaser-Block in DachfensterBochum.tsx (Platzierung + Code)
+3. Den eingefügten Teaser-Block in VeluxAustausch.tsx (Platzierung + Code)
+
+Keine weiteren Dateien anfassen. Keine Abhängigkeiten installieren. Kein Refactoring.
