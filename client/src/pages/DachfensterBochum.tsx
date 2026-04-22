@@ -332,7 +332,7 @@ export default function DachfensterBochum() {
             Ihr VELUX &amp; Roto Fachbetrieb in Bochum
           </h2>
           <p className="text-muted-foreground leading-relaxed text-base md:text-lg" data-testid="text-marken">
-            Als autorisierter VELUX-Partner verfügen wir über umfassendes Fachwissen und direkten Zugang zu
+            Als VELUX-Partner verfügen wir über umfassendes Fachwissen und direkten Zugang zu
             Originalteilen und Zubehör. Natürlich verbauen wir auch Roto Dachfenster in allen gängigen Ausführungen –
             vom einfachen Klappfenster bis zum elektrischen Dachflächenfenster mit Fernbedienung.
           </p>
@@ -342,42 +342,47 @@ export default function DachfensterBochum() {
       {/* ── Förderungs-Sektion ── */}
       <section className="py-16 px-4 bg-background" data-testid="section-foerderung">
         <div className="max-w-7xl mx-auto">
+          {/* Preisrechner – groß, oben */}
           <div
             className="rounded-md p-8 md:p-12 text-center"
             style={{ background: "linear-gradient(135deg, #0f172a 0%, #1e3a8a 100%)" }}
-            data-testid="box-foerderung"
+            data-testid="box-preisrechner"
           >
-            <AlertTriangle className="w-10 h-10 text-blue-300 mx-auto mb-4" aria-hidden="true" />
-            <h2 className="text-2xl md:text-3xl font-bold text-white mb-4" data-testid="heading-foerderung">
-              Bis zu 20 % Förderung durch BAFA &amp; KfW
+            <BarChart3 className="w-10 h-10 text-blue-300 mx-auto mb-4" aria-hidden="true" />
+            <h2 className="text-2xl md:text-3xl font-bold text-white mb-4" data-testid="heading-preisrechner">
+              VELUX Preisrechner Bochum
             </h2>
-            <p className="text-slate-300 leading-relaxed mb-8 max-w-2xl mx-auto" data-testid="text-foerderung">
-              Der Austausch alter Dachfenster gegen energieeffiziente Modelle mit Uw ≤ 1,0 W/m²K wird über BAFA (BEG Einzelmaßnahme) mit 15 % Grundförderung bezuschusst — mit iSFP steigt der Satz auf 20 %. Zusätzlich ist der KfW-Ergänzungskredit kombinierbar. Wir beraten kostenlos und übernehmen auf Wunsch die Antragstellung.
-            </p>
-            <p className="text-slate-400 leading-relaxed mb-8 max-w-2xl mx-auto text-sm">
-              Zusätzlich kann nach BAFA-Zusage ein KfW-Ergänzungskredit (358/359) bis 120.000 € beantragt werden.
+            <p className="text-slate-300 leading-relaxed mb-8 max-w-2xl mx-auto" data-testid="text-preisrechner">
+              Kosten für Ihr VELUX Dachfenster in 3 Schritten berechnen – Fenstertyp, Größe und Eindeckrahmen auswählen, sofort Preisindikation erhalten.
             </p>
             <Button
               asChild
               size="lg"
               className="bg-blue-400 text-white border-blue-400"
-              data-testid="button-foerderung-anfragen"
+              data-testid="button-preisrechner"
             >
-              <a href="/kontakt">Jetzt Förderung anfragen</a>
+              <a href="/velux-preisrechner-bochum">Jetzt Preis berechnen →</a>
             </Button>
           </div>
 
-          {/* Preisrechner-Teaser */}
-          <div className="my-8 rounded-xl bg-gradient-to-r from-red-700 to-red-500 p-6 text-white shadow-lg">
-            <h3 className="mb-2 text-xl font-bold">VELUX Preisrechner Bochum</h3>
-            <p className="mb-4 text-sm leading-relaxed">
-              Kosten für Ihr VELUX Dachfenster in 3 Schritten berechnen – Fenstertyp, Größe und Eindeckrahmen auswählen, sofort Preisindikation erhalten.
+          {/* Förderung – klein, unten */}
+          <div
+            className="mt-8 rounded-xl p-6 text-white shadow-lg"
+            style={{ background: "linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%)" }}
+            data-testid="box-foerderung"
+          >
+            <h3 className="mb-2 text-xl font-bold" data-testid="heading-foerderung">
+              Bis zu 20 % Förderung durch BAFA &amp; KfW
+            </h3>
+            <p className="mb-4 text-sm leading-relaxed" data-testid="text-foerderung">
+              Der Austausch alter Dachfenster gegen energieeffiziente Modelle mit Uw ≤ 1,0 W/m²K wird über BAFA (BEG Einzelmaßnahme) mit 15 % Grundförderung bezuschusst — mit iSFP steigt der Satz auf 20 %. Zusätzlich ist der KfW-Ergänzungskredit (358/359) bis 120.000 € kombinierbar.
             </p>
             <a
-              href="/velux-preisrechner-bochum"
-              className="inline-block rounded-lg bg-white px-5 py-2 font-semibold text-red-700 hover:bg-gray-100 transition-colors"
+              href="/kontakt"
+              className="inline-block rounded-lg bg-white px-5 py-2 font-semibold text-blue-900 hover:bg-gray-100 transition-colors"
+              data-testid="button-foerderung-anfragen"
             >
-              Jetzt Preis berechnen →
+              Jetzt Förderung anfragen
             </a>
           </div>
         </div>
