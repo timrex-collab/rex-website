@@ -156,7 +156,8 @@ const breadcrumbSchema = JSON.stringify({
   "@type": "BreadcrumbList",
   "itemListElement": [
     { "@type": "ListItem", "position": 1, "name": "Startseite", "item": "https://www.rex-bedachung.de/" },
-    { "@type": "ListItem", "position": 2, "name": "Velux Außenrollladen Bochum", "item": "https://www.rex-bedachung.de/velux-dachfenster-rolllaeden-bochum" }
+    { "@type": "ListItem", "position": 2, "name": "Dachfenster Bochum", "item": "https://www.rex-bedachung.de/dachfenster-bochum" },
+    { "@type": "ListItem", "position": 3, "name": "Velux Außenrollladen Bochum", "item": "https://www.rex-bedachung.de/velux-dachfenster-rolllaeden-bochum" }
   ]
 });
 
@@ -172,12 +173,13 @@ export default function VeluxRolllaeden() {
           name="description"
           content="Velux Außenrollladen Bochum ✓ SSL Solar kabellos nachrüsten ✓ Bis zu 94% Hitzeschutz ✓ Ab ca. 700 € ✓ VELUX-Fachbetrieb – Rex Bedachungs GmbH."
         />
-        <meta property="og:title" content="Velux Außenrollladen Bochum – SSL Solar nachrüsten | Rex Bedachung" />
+        <meta property="og:title" content="Velux Außenrollladen Bochum – SSL Solar nachrüsten | Rex Bedachungs GmbH" />
         <meta property="og:description" content="Velux Außenrollladen Bochum ✓ SSL Solar kabellos nachrüsten ✓ Bis zu 94% Hitzeschutz ✓ Ab ca. 700 € ✓ VELUX-Fachbetrieb – Rex Bedachungs GmbH." />
         <meta property="og:image" content="https://www.rex-bedachung.de/images/velux-dachfenster-einbau-bochum-fachbetrieb.webp" />
         <meta property="og:site_name" content="Rex Bedachungs GmbH" />
+        <meta property="og:url" content="https://www.rex-bedachung.de/velux-dachfenster-rolllaeden-bochum" />
         <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content="Velux Außenrollladen Bochum – SSL Solar nachrüsten | Rex Bedachung" />
+        <meta name="twitter:title" content="Velux Außenrollladen Bochum – SSL Solar nachrüsten | Rex Bedachungs GmbH" />
         <meta name="twitter:description" content="Velux Außenrollladen Bochum ✓ SSL Solar kabellos nachrüsten ✓ Bis zu 94% Hitzeschutz ✓ Ab ca. 700 € ✓ VELUX-Fachbetrieb – Rex Bedachungs GmbH." />
         <meta name="twitter:image" content="https://www.rex-bedachung.de/images/velux-dachfenster-einbau-bochum-fachbetrieb.webp" />
         <link rel="canonical" href="https://www.rex-bedachung.de/velux-dachfenster-rolllaeden-bochum" />
@@ -204,6 +206,7 @@ export default function VeluxRolllaeden() {
 
       <Breadcrumb items={[
         { label: "Startseite", href: "/" },
+        { label: "Dachfenster Bochum", href: "/dachfenster-bochum" },
         { label: "Velux Rollläden" }
       ]} />
 

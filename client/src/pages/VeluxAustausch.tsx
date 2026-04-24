@@ -240,10 +240,13 @@ export default function VeluxAustausch() {
           name="description"
           content="Velux Dachfenster austauschen in Bochum: Modellvergleich, Festpreise ab 1.800 € & Komplettmontage vom Meisterbetrieb. Jetzt Termin anfragen."
         />
+        <meta property="og:title" content="Velux Dachfenster Austausch Bochum | Rex Bedachungs GmbH" />
+        <meta property="og:description" content="Velux Dachfenster austauschen in Bochum: GGL, GGU, GPU & Integra. Ab 1.000 € inkl. Einbau, kostenloser Aufmaß-Service. VELUX-Fachbetrieb – Rex Bedachungs GmbH." />
+        <meta property="og:url" content="https://www.rex-bedachung.de/velux-dachfenster-austausch-bochum" />
         <meta property="og:image" content="https://www.rex-bedachung.de/images/velux-dachfenster-einbau-bochum-fachbetrieb.webp" />
         <meta property="og:site_name" content="Rex Bedachungs GmbH" />
         <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content="Velux Dachfenster Austausch Bochum | Rex Bedachung" />
+        <meta name="twitter:title" content="Velux Dachfenster Austausch Bochum | Rex Bedachungs GmbH" />
         <meta name="twitter:description" content="Velux Dachfenster Austausch Bochum ✓ GGL, GGU, GPU & Integra ✓ Ab 1.000 € ✓ VELUX-Fachbetrieb – Rex Bedachungs GmbH." />
         <meta name="twitter:image" content="https://www.rex-bedachung.de/images/velux-dachfenster-einbau-bochum-fachbetrieb.webp" />
         <link rel="canonical" href="https://www.rex-bedachung.de/velux-dachfenster-austausch-bochum" />
@@ -255,7 +258,8 @@ export default function VeluxAustausch() {
   "@type": "BreadcrumbList",
   "itemListElement": [
     {"@type":"ListItem","position":1,"name":"Startseite","item":"https://www.rex-bedachung.de/"},
-    {"@type":"ListItem","position":2,"name":"Velux Dachfenster Austausch Bochum","item":"https://www.rex-bedachung.de/velux-dachfenster-austausch-bochum"}
+    {"@type":"ListItem","position":2,"name":"Dachfenster Bochum","item":"https://www.rex-bedachung.de/dachfenster-bochum"},
+    {"@type":"ListItem","position":3,"name":"Velux Dachfenster Austausch Bochum","item":"https://www.rex-bedachung.de/velux-dachfenster-austausch-bochum"}
   ]
 }`}</script>
         <script type="application/ld+json">{`{
@@ -278,6 +282,7 @@ export default function VeluxAustausch() {
 
       <Breadcrumb items={[
         { label: "Startseite", href: "/" },
+        { label: "Dachfenster Bochum", href: "/dachfenster-bochum" },
         { label: "Velux Dachfenster Austausch" }
       ]} />
 

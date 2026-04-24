@@ -12,7 +12,7 @@ export default function Footer() {
           <div>
             <div className="flex items-center space-x-2 mb-4">
               <div>
-                <div className="font-bold text-lg">Rex Bedachung</div>
+                <div className="font-bold text-lg">Rex Bedachungs GmbH</div>
               </div>
             </div>
             <p className="text-sm text-muted-foreground leading-relaxed">
@@ -61,6 +61,31 @@ export default function Footer() {
               <li>
                 <Link href="/gruendach-dachbegrunung-bochum" className="flex items-center min-h-[44px] text-muted-foreground hover:text-primary transition-colors" data-testid="link-footer-gruendach">
                   Gründach
+                </Link>
+              </li>
+              <li>
+                <Link href="/dachgaube-bochum" className="flex items-center min-h-[44px] text-muted-foreground hover:text-primary transition-colors" data-testid="link-footer-dachgaube">
+                  Dachgaube
+                </Link>
+              </li>
+              <li>
+                <Link href="/aufsparrendaemmung-bochum" className="flex items-center min-h-[44px] text-muted-foreground hover:text-primary transition-colors" data-testid="link-footer-aufsparren">
+                  Aufsparrendämmung
+                </Link>
+              </li>
+              <li>
+                <Link href="/sturmschaden-dach-bochum" className="flex items-center min-h-[44px] text-muted-foreground hover:text-primary transition-colors" data-testid="link-footer-sturmschaden">
+                  Sturmschaden
+                </Link>
+              </li>
+              <li>
+                <Link href="/dachrinne-bochum" className="flex items-center min-h-[44px] text-muted-foreground hover:text-primary transition-colors" data-testid="link-footer-dachrinne">
+                  Dachrinne
+                </Link>
+              </li>
+              <li>
+                <Link href="/velux-preisrechner-bochum" className="flex items-center min-h-[44px] text-muted-foreground hover:text-primary transition-colors" data-testid="link-footer-preisrechner">
+                  VELUX Preisrechner
                 </Link>
               </li>
             </ul>
@@ -128,7 +153,7 @@ export default function Footer() {
                 <span className="text-muted-foreground">Mo–Fr 7–17 Uhr</span>
               </div>
               <div className="text-muted-foreground pt-2">
-                Paulinenstr. 22<br />
+                Paulinenstraße 22<br />
                 44799 Bochum
               </div>
               <a

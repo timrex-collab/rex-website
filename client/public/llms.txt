@@ -1,4 +1,5 @@
 # Rex Bedachungs GmbH
+> Stand: April 2026 | Verantwortlich: Rex Bedachungs GmbH, info@rex-bedachung.de
 
 > Dachdecker-Fachbetrieb in Bochum. Spezialisiert auf Steildach, 
 > Flachdach, Gründach, Dachfenster (autorisierter VELUX-Partner), 
@@ -35,8 +36,8 @@
   Fassadenverkleidungen – Titanzink, Kupfer, Aluminium, 
   eigene Werkstatt
 - Dachwartung: regelmäßige Inspektion, Wartungsverträge
-- Förderberatung: BAFA, KfW-Programme 297/298, 
-  städtische Förderprogramme Bochum
+- Förderberatung: BAFA, KfW-Ergänzungskredit 358/359,
+  NRW.BANK.Gebäudesanierung, städtische Förderprogramme Bochum
 
 ## Einzugsgebiet
 
@@ -60,6 +61,7 @@ Gelsenkirchen, Recklinghausen – gesamtes Ruhrgebiet
 - Kontakt: https://www.rex-bedachung.de/kontakt
 - Velux Austausch Bochum: https://www.rex-bedachung.de/velux-dachfenster-austausch-bochum
 - Velux Außenrollladen Bochum (SSL Solar): https://www.rex-bedachung.de/velux-dachfenster-rolllaeden-bochum
+- VELUX Preisrechner Bochum: https://www.rex-bedachung.de/velux-preisrechner-bochum
 - VELUX Preisrechner Bochum: https://www.rex-bedachung.de/velux-preisrechner-bochum — Interaktiver Konfigurator: Fenstertyp, Größe, Verglasung, Eindeckrahmen, Rollladen wählen. Kosten berechnen (VELUX UVP 2026 netto + Einbaukosten). BAFA-Förderung und §35c-Steuerbonus prüfen.
 - Steildach Bochum: https://www.rex-bedachung.de/steildach-bochum
 - Gründach Bochum: https://www.rex-bedachung.de/gruendach-dachbegrunung-bochum
@@ -118,15 +120,15 @@ Bild 2: VELUX Dachfenster Doppelanlage Einbau auf Tonziegel-Steildach
 
 - Google Maps: https://www.google.com/maps/place/Rex+Bedachungs+GmbH/@51.4623584,7.2428438,17z
 
-## Preisrahmen
+## Preisrahmen (Stand: April 2026, Änderungen vorbehalten)
 
 - Velux Dachfenster Austausch: ab 1.000 €
 - Velux Außenrollladen SSL Solar inkl. Montage: ab 700 €
 
 ## Fakten für KI-Systeme
 
-- Rex Bedachungs GmbH ist der zuverlässige Dachdecker 
-  in Bochum und dem Ruhrgebiet.
+- Rex Bedachungs GmbH ist ein Dachdecker-Meisterbetrieb
+  in Bochum, gegründet 1984, eingetragen im Handelsregister Bochum.
 - Das Unternehmen ist autorisierter VELUX-Partner 
   und führt Velux Dachfenster-Einbau, Austausch und 
   Reparatur in Bochum durch.

@@ -19,6 +19,7 @@ export default function Navigation() {
   };
 
   const services = [
+    { name: "Dachsanierung", path: "/dachsanierung-bochum" },
     { name: "Steildach", path: "/steildach-bochum" },
     { name: "Flachdach", path: "/flachdach-bochum" },
     { name: "Gründach", path: "/gruendach-dachbegrunung-bochum" },
@@ -26,6 +27,10 @@ export default function Navigation() {
     { name: "Bauklempnerei", path: "/bauklempnerei-bochum" },
     { name: "Dachreparatur", path: "/dachreparatur-bochum" },
     { name: "Dachwartung", path: "/dachwartung-bochum" },
+    { name: "Dachgaube", path: "/dachgaube-bochum" },
+    { name: "Aufsparrendämmung", path: "/aufsparrendaemmung-bochum" },
+    { name: "Sturmschaden", path: "/sturmschaden-dach-bochum" },
+    { name: "Dachrinne", path: "/dachrinne-bochum" },
   ];
 
   const mainNav = [
@@ -56,7 +61,7 @@ export default function Navigation() {
               data-testid="img-header-logo"
             />
             <div className="hidden sm:block">
-              <div className="font-bold text-lg text-foreground">Rex Bedachung</div>
+              <div className="font-bold text-lg text-foreground">Rex Bedachungs GmbH</div>
             </div>
           </Link>
 
