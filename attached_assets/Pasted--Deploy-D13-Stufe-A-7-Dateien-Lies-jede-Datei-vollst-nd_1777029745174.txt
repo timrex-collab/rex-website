@@ -1,0 +1,441 @@
+# Deploy D13 — Stufe A | 7 Dateien
+
+Lies jede Datei vollständig, bevor du Änderungen vornimmst.
+Führe ausschließlich die beschriebenen Such/Ersetzen-Operationen durch.
+Kein Refactoring. Keine weiteren Dateien anfassen.
+
+---
+
+## DATEI 1: client/src/components/Footer.tsx
+
+### Änderung 1.1 — Brand-Name normalisieren
+SUCHE (exakt):
+              <div className="font-bold text-lg">Rex Bedachung</div>
+
+ERSETZE DURCH:
+              <div className="font-bold text-lg">Rex Bedachungs GmbH</div>
+
+---
+
+### Änderung 1.2 — Adresse normalisieren
+SUCHE (exakt):
+              <div className="text-muted-foreground pt-2">
+                Paulinenstr. 22<br />
+                44799 Bochum
+              </div>
+
+ERSETZE DURCH:
+              <div className="text-muted-foreground pt-2">
+                Paulinenstraße 22<br />
+                44799 Bochum
+              </div>
+
+---
+
+### Änderung 1.3 — Cluster-Links in Leistungen-Spalte ergänzen
+SUCHE (exakt):
+              <li>
+                <Link href="/gruendach-dachbegrunung-bochum" className="flex items-center min-h-[44px] text-muted-foreground hover:text-primary transition-colors" data-testid="link-footer-gruendach">
+                  Gründach
+                </Link>
+              </li>
+            </ul>
+          </div>
+
+          <div>
+            <h3 className="font-semibold mb-2">Unternehmen</h3>
+
+ERSETZE DURCH:
+              <li>
+                <Link href="/gruendach-dachbegrunung-bochum" className="flex items-center min-h-[44px] text-muted-foreground hover:text-primary transition-colors" data-testid="link-footer-gruendach">
+                  Gründach
+                </Link>
+              </li>
+              <li>
+                <Link href="/dachgaube-bochum" className="flex items-center min-h-[44px] text-muted-foreground hover:text-primary transition-colors" data-testid="link-footer-dachgaube">
+                  Dachgaube
+                </Link>
+              </li>
+              <li>
+                <Link href="/aufsparrendaemmung-bochum" className="flex items-center min-h-[44px] text-muted-foreground hover:text-primary transition-colors" data-testid="link-footer-aufsparren">
+                  Aufsparrendämmung
+                </Link>
+              </li>
+              <li>
+                <Link href="/sturmschaden-dach-bochum" className="flex items-center min-h-[44px] text-muted-foreground hover:text-primary transition-colors" data-testid="link-footer-sturmschaden">
+                  Sturmschaden
+                </Link>
+              </li>
+              <li>
+                <Link href="/dachrinne-bochum" className="flex items-center min-h-[44px] text-muted-foreground hover:text-primary transition-colors" data-testid="link-footer-dachrinne">
+                  Dachrinne
+                </Link>
+              </li>
+              <li>
+                <Link href="/velux-preisrechner-bochum" className="flex items-center min-h-[44px] text-muted-foreground hover:text-primary transition-colors" data-testid="link-footer-preisrechner">
+                  VELUX Preisrechner
+                </Link>
+              </li>
+            </ul>
+          </div>
+
+          <div>
+            <h3 className="font-semibold mb-2">Unternehmen</h3>
+
+---
+
+## DATEI 2: client/src/components/Navigation.tsx
+
+### Änderung 2.1 — Brand-Name normalisieren
+SUCHE (exakt):
+              <div className="font-bold text-lg text-foreground">Rex Bedachung</div>
+
+ERSETZE DURCH:
+              <div className="font-bold text-lg text-foreground">Rex Bedachungs GmbH</div>
+
+---
+
+### Änderung 2.2 — Services-Array erweitern
+SUCHE (exakt):
+  const services = [
+    { name: "Steildach", path: "/steildach-bochum" },
+    { name: "Flachdach", path: "/flachdach-bochum" },
+    { name: "Gründach", path: "/gruendach-dachbegrunung-bochum" },
+    { name: "Dachfenster", path: "/dachfenster-bochum" },
+    { name: "Bauklempnerei", path: "/bauklempnerei-bochum" },
+    { name: "Dachreparatur", path: "/dachreparatur-bochum" },
+    { name: "Dachwartung", path: "/dachwartung-bochum" },
+  ];
+
+ERSETZE DURCH:
+  const services = [
+    { name: "Dachsanierung", path: "/dachsanierung-bochum" },
+    { name: "Steildach", path: "/steildach-bochum" },
+    { name: "Flachdach", path: "/flachdach-bochum" },
+    { name: "Gründach", path: "/gruendach-dachbegrunung-bochum" },
+    { name: "Dachfenster", path: "/dachfenster-bochum" },
+    { name: "Bauklempnerei", path: "/bauklempnerei-bochum" },
+    { name: "Dachreparatur", path: "/dachreparatur-bochum" },
+    { name: "Dachwartung", path: "/dachwartung-bochum" },
+    { name: "Dachgaube", path: "/dachgaube-bochum" },
+    { name: "Aufsparrendämmung", path: "/aufsparrendaemmung-bochum" },
+    { name: "Sturmschaden", path: "/sturmschaden-dach-bochum" },
+    { name: "Dachrinne", path: "/dachrinne-bochum" },
+  ];
+
+---
+
+## DATEI 3: client/public/llms.txt
+
+### Änderung 3.1 — Stand-Datum am Anfang einfügen
+SUCHE (exakt):
+# Rex Bedachungs GmbH
+
+> Dachdecker-Fachbetrieb in Bochum.
+
+ERSETZE DURCH:
+# Rex Bedachungs GmbH
+> Stand: April 2026 | Verantwortlich: Rex Bedachungs GmbH, info@rex-bedachung.de
+
+> Dachdecker-Fachbetrieb in Bochum.
+
+---
+
+### Änderung 3.2 — KfW-Programm-Nummern korrigieren
+SUCHE (exakt):
+- Förderberatung: BAFA, KfW-Programme 297/298, 
+  städtische Förderprogramme Bochum
+
+ERSETZE DURCH:
+- Förderberatung: BAFA, KfW-Ergänzungskredit 358/359,
+  NRW.BANK.Gebäudesanierung, städtische Förderprogramme Bochum
+
+---
+
+### Änderung 3.3 — /velux-preisrechner-bochum in Wichtige Seiten einfügen
+SUCHE (exakt):
+- Velux Außenrollladen Bochum (SSL Solar): https://www.rex-bedachung.de/velux-dachfenster-rolllaeden-bochum
+
+ERSETZE DURCH:
+- Velux Außenrollladen Bochum (SSL Solar): https://www.rex-bedachung.de/velux-dachfenster-rolllaeden-bochum
+- VELUX Preisrechner Bochum: https://www.rex-bedachung.de/velux-preisrechner-bochum
+
+---
+
+### Änderung 3.4 — Subjektive Aussage durch Fakt ersetzen
+SUCHE (exakt):
+- Rex Bedachungs GmbH ist der zuverlässige Dachdecker 
+  in Bochum und dem Ruhrgebiet.
+
+ERSETZE DURCH:
+- Rex Bedachungs GmbH ist ein Dachdecker-Meisterbetrieb
+  in Bochum, gegründet 1984, eingetragen im Handelsregister Bochum.
+
+---
+
+### Änderung 3.5 — Preisrahmen mit Stand-Datum versehen
+SUCHE (exakt):
+## Preisrahmen
+
+ERSETZE DURCH:
+## Preisrahmen (Stand: April 2026, Änderungen vorbehalten)
+
+---
+
+## DATEI 4: client/public/sitemap.xml
+
+### Änderung 4.1 — /flachdach-bochum lastmod aktualisieren (D12)
+SUCHE (exakt):
+    <loc>https://www.rex-bedachung.de/flachdach-bochum</loc>
+    <lastmod>2026-03-14</lastmod>
+
+ERSETZE DURCH:
+    <loc>https://www.rex-bedachung.de/flachdach-bochum</loc>
+    <lastmod>2026-04-22</lastmod>
+
+---
+
+### Änderung 4.2 — /velux-dachfenster-austausch-bochum lastmod aktualisieren (D13)
+SUCHE (exakt):
+    <loc>https://www.rex-bedachung.de/velux-dachfenster-austausch-bochum</loc>
+    <lastmod>2026-03-15</lastmod>
+
+ERSETZE DURCH:
+    <loc>https://www.rex-bedachung.de/velux-dachfenster-austausch-bochum</loc>
+    <lastmod>2026-04-24</lastmod>
+
+---
+
+### Änderung 4.3 — /velux-dachfenster-rolllaeden-bochum lastmod aktualisieren (D13)
+SUCHE (exakt):
+    <loc>https://www.rex-bedachung.de/velux-dachfenster-rolllaeden-bochum</loc>
+    <lastmod>2026-03-15</lastmod>
+
+ERSETZE DURCH:
+    <loc>https://www.rex-bedachung.de/velux-dachfenster-rolllaeden-bochum</loc>
+    <lastmod>2026-04-24</lastmod>
+
+---
+
+### Änderung 4.4 — lastmod für sturmschaden, bitumen-vs-pvc, dachrinne ergänzen
+SUCHE (exakt):
+  <url>
+    <loc>https://www.rex-bedachung.de/sturmschaden-dach-bochum</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.rex-bedachung.de/bitumen-vs-pvc-flachdach-bochum</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://www.rex-bedachung.de/dachrinne-bochum</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+ERSETZE DURCH:
+  <url>
+    <loc>https://www.rex-bedachung.de/sturmschaden-dach-bochum</loc>
+    <lastmod>2026-03-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.rex-bedachung.de/bitumen-vs-pvc-flachdach-bochum</loc>
+    <lastmod>2026-03-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://www.rex-bedachung.de/dachrinne-bochum</loc>
+    <lastmod>2026-04-02</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+---
+
+### Änderung 4.5 — /velux-preisrechner-bochum als neuen Eintrag vor </urlset> einfügen
+SUCHE (exakt):
+</urlset>
+
+ERSETZE DURCH:
+  <url>
+    <loc>https://www.rex-bedachung.de/velux-preisrechner-bochum</loc>
+    <lastmod>2026-04-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+</urlset>
+
+---
+
+## DATEI 5: netlify.toml
+
+### Änderung 5.1 — X-Robots-Tag für /danke einfügen
+SUCHE (exakt):
+[build]
+  command = "npm run build"
+  publish = "dist/public"
+
+ERSETZE DURCH:
+[build]
+  command = "npm run build"
+  publish = "dist/public"
+
+[[headers]]
+  for = "/danke"
+  [headers.values]
+    X-Robots-Tag = "noindex, nofollow"
+
+---
+
+## DATEI 6: client/src/pages/VeluxAustausch.tsx
+
+### Änderung 6.1 — Fehlende OG-Tags einfügen
+SUCHE (exakt):
+        <meta property="og:image" content="https://www.rex-bedachung.de/images/velux-dachfenster-einbau-bochum-fachbetrieb.webp" />
+        <meta property="og:site_name" content="Rex Bedachungs GmbH" />
+
+ERSETZE DURCH:
+        <meta property="og:title" content="Velux Dachfenster Austausch Bochum | Rex Bedachungs GmbH" />
+        <meta property="og:description" content="Velux Dachfenster austauschen in Bochum: GGL, GGU, GPU & Integra. Ab 1.000 € inkl. Einbau, kostenloser Aufmaß-Service. VELUX-Fachbetrieb – Rex Bedachungs GmbH." />
+        <meta property="og:url" content="https://www.rex-bedachung.de/velux-dachfenster-austausch-bochum" />
+        <meta property="og:image" content="https://www.rex-bedachung.de/images/velux-dachfenster-einbau-bochum-fachbetrieb.webp" />
+        <meta property="og:site_name" content="Rex Bedachungs GmbH" />
+
+---
+
+### Änderung 6.2 — twitter:title Brand normalisieren
+SUCHE (exakt):
+        <meta name="twitter:title" content="Velux Dachfenster Austausch Bochum | Rex Bedachung" />
+
+ERSETZE DURCH:
+        <meta name="twitter:title" content="Velux Dachfenster Austausch Bochum | Rex Bedachungs GmbH" />
+
+---
+
+### Änderung 6.3 — BreadcrumbList-Schema auf 3 Ebenen erweitern
+SUCHE (exakt):
+        <script type="application/ld+json">{`{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {"@type":"ListItem","position":1,"name":"Startseite","item":"https://www.rex-bedachung.de/"},
+    {"@type":"ListItem","position":2,"name":"Velux Dachfenster Austausch Bochum","item":"https://www.rex-bedachung.de/velux-dachfenster-austausch-bochum"}
+  ]
+}`}</script>
+
+ERSETZE DURCH:
+        <script type="application/ld+json">{`{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {"@type":"ListItem","position":1,"name":"Startseite","item":"https://www.rex-bedachung.de/"},
+    {"@type":"ListItem","position":2,"name":"Dachfenster Bochum","item":"https://www.rex-bedachung.de/dachfenster-bochum"},
+    {"@type":"ListItem","position":3,"name":"Velux Dachfenster Austausch Bochum","item":"https://www.rex-bedachung.de/velux-dachfenster-austausch-bochum"}
+  ]
+}`}</script>
+
+---
+
+### Änderung 6.4 — Breadcrumb-Komponente auf 3 Ebenen erweitern
+SUCHE (exakt):
+      <Breadcrumb items={[
+        { label: "Startseite", href: "/" },
+        { label: "Velux Dachfenster Austausch" }
+      ]} />
+
+ERSETZE DURCH:
+      <Breadcrumb items={[
+        { label: "Startseite", href: "/" },
+        { label: "Dachfenster Bochum", href: "/dachfenster-bochum" },
+        { label: "Velux Dachfenster Austausch" }
+      ]} />
+
+---
+
+## DATEI 7: client/src/pages/VeluxRolllaeden.tsx
+
+### Änderung 7.1 — og:url einfügen
+SUCHE (exakt):
+        <meta property="og:site_name" content="Rex Bedachungs GmbH" />
+        <meta name="twitter:card" content="summary_large_image" />
+
+ERSETZE DURCH:
+        <meta property="og:site_name" content="Rex Bedachungs GmbH" />
+        <meta property="og:url" content="https://www.rex-bedachung.de/velux-dachfenster-rolllaeden-bochum" />
+        <meta name="twitter:card" content="summary_large_image" />
+
+---
+
+### Änderung 7.2 — og:title + twitter:title Brand normalisieren
+SUCHE (exakt):
+        <meta property="og:title" content="Velux Außenrollladen Bochum – SSL Solar nachrüsten | Rex Bedachung" />
+
+ERSETZE DURCH:
+        <meta property="og:title" content="Velux Außenrollladen Bochum – SSL Solar nachrüsten | Rex Bedachungs GmbH" />
+
+SUCHE (exakt):
+        <meta name="twitter:title" content="Velux Außenrollladen Bochum – SSL Solar nachrüsten | Rex Bedachung" />
+
+ERSETZE DURCH:
+        <meta name="twitter:title" content="Velux Außenrollladen Bochum – SSL Solar nachrüsten | Rex Bedachungs GmbH" />
+
+---
+
+### Änderung 7.3 — BreadcrumbList-Schema auf 3 Ebenen erweitern
+SUCHE (exakt):
+const breadcrumbSchema = JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Startseite", "item": "https://www.rex-bedachung.de/" },
+    { "@type": "ListItem", "position": 2, "name": "Velux Außenrollladen Bochum", "item": "https://www.rex-bedachung.de/velux-dachfenster-rolllaeden-bochum" }
+  ]
+});
+
+ERSETZE DURCH:
+const breadcrumbSchema = JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Startseite", "item": "https://www.rex-bedachung.de/" },
+    { "@type": "ListItem", "position": 2, "name": "Dachfenster Bochum", "item": "https://www.rex-bedachung.de/dachfenster-bochum" },
+    { "@type": "ListItem", "position": 3, "name": "Velux Außenrollladen Bochum", "item": "https://www.rex-bedachung.de/velux-dachfenster-rolllaeden-bochum" }
+  ]
+});
+
+---
+
+### Änderung 7.4 — Breadcrumb-Komponente auf 3 Ebenen erweitern
+SUCHE (exakt):
+      <Breadcrumb items={[
+        { label: "Startseite", href: "/" },
+        { label: "Velux Rollläden" }
+      ]} />
+
+ERSETZE DURCH:
+      <Breadcrumb items={[
+        { label: "Startseite", href: "/" },
+        { label: "Dachfenster Bochum", href: "/dachfenster-bochum" },
+        { label: "Velux Rollläden" }
+      ]} />
+
+---
+
+## Abschluss-Bestätigung
+
+Bestätige nach allen Änderungen für jede Datei:
+1. Footer.tsx — Brand-Text, Adresse, Anzahl Leistungs-Links gesamt
+2. Navigation.tsx — Brand-Text, Anzahl Einträge im services-Array
+3. llms.txt — Stand-Zeile vorhanden, KfW-Nummern, /velux-preisrechner-bochum in Wichtige Seiten
+4. sitemap.xml — Anzahl URL-Einträge gesamt, ob /velux-preisrechner-bochum vorhanden
+5. netlify.toml — [[headers]]-Block für /danke vorhanden
+6. VeluxAustausch.tsx — og:title, og:url, BreadcrumbList 3-stufig, Breadcrumb-Komponente 3-stufig
+7. VeluxRolllaeden.tsx — og:url, BreadcrumbList 3-stufig, Breadcrumb-Komponente 3-stufig
+
+Keine weiteren Dateien anfassen. Kein Refactoring. Keine Pakete installieren.
