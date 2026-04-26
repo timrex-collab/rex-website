@@ -1,0 +1,324 @@
+# Deploy D14 v3 — Replit Agent Prompt (Final)
+**Stufe B | 5 Dateien | 7 Änderungen | 48h Pause nach Deploy obligatorisch**
+
+> **Versionshinweis:** v3 basiert auf dem verifizierten Stand von Commit `307e29b` auf main.
+> v1 und v2 nutzten gecachte ältere Daten — alle Slots, deren Inhalte zwischenzeitlich
+> bereits live sind, wurden entfernt. Dieser Prompt enthält nur noch echte Lücken.
+
+---
+
+## Vorab
+
+- **Build-Strategie:** Nach netlify.toml keine Build, nach allen 4 TSX-Dateien einmal `npm run build`, dann `npm run preview`.
+- **Exakte Strings:** Alle Search/Replace-Blöcke sind byte-genau vom Live-Code.
+- **Bei Build-Fehler:** Datei der letzten Änderung prüfen.
+
+---
+
+## DATEI 1 von 5: `netlify.toml`
+
+### 1 — `/waermedaemmung` und `/waermedaemmung/` korrigieren
+
+**Suchen (exakt, beide Blöcke nacheinander):**
+
+Block A:
+```toml
+[[redirects]]
+  from = "/waermedaemmung"
+  to = "/dachwartung-bochum"
+  status = 301
+```
+
+**Ersetzen durch:**
+```toml
+[[redirects]]
+  from = "/waermedaemmung"
+  to = "/aufsparrendaemmung-bochum"
+  status = 301
+```
+
+Block B:
+```toml
+[[redirects]]
+  from = "/waermedaemmung/"
+  to = "/dachwartung-bochum"
+  status = 301
+```
+
+**Ersetzen durch:**
+```toml
+[[redirects]]
+  from = "/waermedaemmung/"
+  to = "/aufsparrendaemmung-bochum"
+  status = 301
+```
+
+**Nach Datei 1:** TOML-Sichtprüfung (keine offenen Blöcke). Kein Build nötig.
+
+---
+
+## DATEI 2 von 5: `client/src/pages/FlachdachBochum.tsx`
+
+### 2 — Hero: Background-Div → Picture
+
+**Suchen (exakt):**
+```tsx
+        <div
+          className="absolute inset-0 bg-cover bg-center"
+          style={{ backgroundImage: `url('${heroImage}')` }}
+          aria-hidden="true"
+        />
+```
+
+**Ersetzen durch:**
+```tsx
+        <Picture
+          src={heroImage}
+          fallback={heroImageFallback}
+          alt="Saniertes Flachdach in Bochum mit neuer Abdichtung und sauber ausgeführten Anschlüssen"
+          className="absolute inset-0 w-full h-full object-cover"
+          fetchpriority="high"
+        />
+```
+
+`Picture` und `heroImageFallback` sind bereits importiert/definiert.
+
+---
+
+## DATEI 3 von 5: `client/src/pages/DachfensterBochum.tsx`
+
+### 3 — Hero: Background-Div → Picture
+
+**Suchen (exakt):**
+```tsx
+        <div
+          className="absolute inset-0 bg-cover bg-center"
+          style={{ backgroundImage: `url('${heroImage}')` }}
+          aria-hidden="true"
+        />
+```
+
+**Ersetzen durch:**
+```tsx
+        <Picture
+          src={heroImage}
+          fallback={heroImageFallback}
+          alt="Einbau eines VELUX Dachfensters in ein Steildach in Bochum"
+          className="absolute inset-0 w-full h-full object-cover"
+          fetchpriority="high"
+        />
+```
+
+`Picture` und `heroImageFallback` sind bereits importiert/definiert.
+
+---
+
+## DATEI 4 von 5: `client/src/pages/SteildachBochum.tsx`
+
+### 4a — services-Card: EnEV/GEG → GEG
+
+**Suchen (exakt):**
+```tsx
+    text: "Fachgerechte Zwischensparren-, Aufsparren- und Untersparrendämmung nach aktueller EnEV/GEG. Senkt Heizkosten dauerhaft und steigert den Wohnkomfort im Dachgeschoss spürbar.",
+```
+
+**Ersetzen durch:**
+```tsx
+    text: "Fachgerechte Zwischensparren-, Aufsparren- und Untersparrendämmung nach aktuellem GEG. Senkt Heizkosten dauerhaft und steigert den Wohnkomfort im Dachgeschoss spürbar.",
+```
+
+### 4b — Förderungs-Sektion: KfW 261 → KfW-Ergänzungskredit (358/359)
+
+**Suchen (exakt):**
+```tsx
+            <p className="text-slate-300 leading-relaxed mb-4 max-w-2xl mx-auto" data-testid="text-foerderung-kfw">
+              KfW-Programm 261 – günstige Kredite für energieeffiziente Sanierungen.
+            </p>
+```
+
+**Ersetzen durch:**
+```tsx
+            <p className="text-slate-300 leading-relaxed mb-4 max-w-2xl mx-auto" data-testid="text-foerderung-kfw">
+              KfW-Ergänzungskredit (358/359) nach BAFA-Zusage – zinsgünstiger Kredit bis 120.000 € pro Wohneinheit, kombinierbar mit dem BAFA-Zuschuss.
+            </p>
+```
+
+**Hintergrund:** KfW 261 gilt für Effizienzhaus-Komplettsanierungen, nicht für Einzelmaßnahmen. Für Einzelmaßnahmen nach BAFA-Bewilligung ist KfW 358/359 (Ergänzungskredit) korrekt.
+
+---
+
+## DATEI 5 von 5: `client/src/pages/VeluxPreisrechnerBochum.tsx`
+
+### 5a — og:image + erweiterte Twitter-Tags
+
+**Bildpfad bestätigt:** `client/public/images/velux-dachfenster-preisrechner-bochum.webp` ist im Repo verifiziert (122 KB, 1200×630 px, OG-Format).
+
+**Suchen (exakt):**
+```tsx
+        <meta property="og:url" content="https://www.rex-bedachung.de/velux-preisrechner-bochum" />
+        <meta property="og:type" content="website" />
+        <meta name="twitter:card" content="summary" />
+```
+
+**Ersetzen durch:**
+```tsx
+        <meta property="og:url" content="https://www.rex-bedachung.de/velux-preisrechner-bochum" />
+        <meta property="og:type" content="website" />
+        <meta property="og:image" content="https://www.rex-bedachung.de/images/velux-dachfenster-preisrechner-bochum.webp" />
+        <meta property="og:image:width" content="1200" />
+        <meta property="og:image:height" content="630" />
+        <meta property="og:site_name" content="Rex Bedachungs GmbH" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="VELUX Dachfenster Preisrechner Bochum – Rex Bedachungs GmbH" />
+        <meta name="twitter:description" content="Konfigurieren Sie Ihr VELUX Dachfenster und berechnen Sie Kosten inkl. Einbau und Fördermöglichkeiten." />
+        <meta name="twitter:image" content="https://www.rex-bedachung.de/images/velux-dachfenster-preisrechner-bochum.webp" />
+```
+
+### 5b — WebApplication-Schema einfügen (in Konstanten)
+
+**Suchen (exakt):**
+```tsx
+const articleSchema = {
+  "@context": "https://schema.org",
+  "@type": "Article",
+  headline: "VELUX Dachfenster Preisrechner – Kosten und Förderung berechnen",
+  description: "Berechnen Sie die Kosten für VELUX Dachfenster inkl. Eindeckrahmen, Einbau und BAFA-Förderung. Preisrechner vom autorisierten VELUX-Partner in Bochum.",
+  author: {
+    "@type": "Person",
+    "@id": "https://www.rex-bedachung.de/#author",
+    "name": "Tim Rex"
+  },
+  publisher: {
+    "@type": "Organization",
+    "@id": "https://www.rex-bedachung.de/#organization"
+  },
+  datePublished: "2026-04-20",
+  dateModified: "2026-04-20",
+  mainEntityOfPage: "https://www.rex-bedachung.de/velux-preisrechner-bochum"
+};
+```
+
+**Ersetzen durch:**
+```tsx
+const articleSchema = {
+  "@context": "https://schema.org",
+  "@type": "Article",
+  headline: "VELUX Dachfenster Preisrechner – Kosten und Förderung berechnen",
+  description: "Berechnen Sie die Kosten für VELUX Dachfenster inkl. Eindeckrahmen, Einbau und BAFA-Förderung. Preisrechner vom autorisierten VELUX-Partner in Bochum.",
+  author: {
+    "@type": "Person",
+    "@id": "https://www.rex-bedachung.de/#author",
+    "name": "Tim Rex"
+  },
+  publisher: {
+    "@type": "Organization",
+    "@id": "https://www.rex-bedachung.de/#organization"
+  },
+  datePublished: "2026-04-20",
+  dateModified: "2026-04-26",
+  mainEntityOfPage: "https://www.rex-bedachung.de/velux-preisrechner-bochum"
+};
+
+const webApplicationSchema = {
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  name: "VELUX Dachfenster Preisrechner Bochum",
+  url: "https://www.rex-bedachung.de/velux-preisrechner-bochum",
+  applicationCategory: "UtilityApplication",
+  description: "Interaktiver Preisrechner für VELUX-Dachfenster in Bochum. Modell, Größe und Einbau konfigurieren – sofortige Preisindikation inkl. BAFA-Förderberechnung und §35c-Prüfung.",
+  provider: {
+    "@type": "RoofingContractor",
+    "@id": "https://www.rex-bedachung.de/#organization"
+  },
+  offers: {
+    "@type": "Offer",
+    availability: "https://schema.org/InStock"
+  }
+};
+```
+
+### 5c — WebApplication-Schema in Helmet einbinden
+
+**Suchen (exakt):**
+```tsx
+        <script type="application/ld+json">{JSON.stringify(articleSchema)}</script>
+      </Helmet>
+```
+
+**Ersetzen durch:**
+```tsx
+        <script type="application/ld+json">{JSON.stringify(articleSchema)}</script>
+        <script type="application/ld+json">{JSON.stringify(webApplicationSchema)}</script>
+      </Helmet>
+```
+
+---
+
+## Strategischer Build-Check
+
+Nach allen 4 TSX-Dateien einmal:
+```bash
+npm run build
+```
+Muss fehlerfrei durchlaufen.
+
+```bash
+npm run preview
+```
+
+**Konkrete Abnahmekriterien pro Seite:**
+
+- `/flachdach-bochum`: Hero-Bild sichtbar, keine Layout-Verschiebung beim Laden
+- `/dachfenster-bochum`: Hero-Bild sichtbar, keine Layout-Verschiebung beim Laden
+- `/steildach-bochum`: In der services-Card "Steildach Dämmung & Wärmeschutz" steht "aktuelles GEG" (nicht mehr EnEV/GEG); in der Förderungs-Sektion steht "KfW-Ergänzungskredit (358/359) nach BAFA-Zusage..." (nicht mehr KfW-Programm 261)
+- `/velux-preisrechner-bochum`: Seite lädt, VeluxPreisrechner-Komponente rendert, keine Console-Fehler. Bonus-Check via View-Source: `og:image` und `webApplicationSchema` als JSON-LD im Head sichtbar.
+
+---
+
+## Abschluss-Checkliste vor Commit
+
+```
+[ ] netlify.toml: /waermedaemmung UND /waermedaemmung/ → /aufsparrendaemmung-bochum
+[ ] FlachdachBochum.tsx: Hero nutzt <Picture> mit beschreibendem Alt-Text
+[ ] DachfensterBochum.tsx: Hero nutzt <Picture> mit beschreibendem Alt-Text
+[ ] SteildachBochum.tsx: "EnEV/GEG" → "GEG" (services-Card)
+[ ] SteildachBochum.tsx: "KfW-Programm 261" → "KfW-Ergänzungskredit (358/359) nach BAFA-Zusage..."
+[ ] VeluxPreisrechnerBochum.tsx: og:image + erweiterte Twitter-Tags + og:site_name
+[ ] VeluxPreisrechnerBochum.tsx: WebApplication-Schema in Konstanten + Helmet
+[ ] npm run build: fehlerfrei ✓
+[ ] npm run preview: 4 Seiten ohne JS-Fehler ✓
+[ ] Commit-Message: "D14: Hero→Picture (Flachdach/Dachfenster), SteildachBochum GEG+KfW358/359, VeluxPreisrechner og:image+Twitter+WebApplication-Schema, netlify.toml /waermedaemmung beide Varianten"
+[ ] Push → Netlify Deploy
+```
+
+---
+
+## Was bewusst NICHT in D14 ist
+
+- Keine neuen Routen oder Seiten (D15)
+- `robots.txt` wird nicht angefasst
+- `llms.txt` wird nicht angefasst
+- Keine Änderungen an `OrganizationSchema.tsx`
+- Keine Änderungen an `_redirects`
+
+**Was bereits live ist und daher nicht mehr in D14 gehört:**
+- Article-Schema in DachfensterBochum, SteildachBochum, VeluxPreisrechner
+- Förderquote 20% mit iSFP in DachfensterBochum (alle 6 Stellen)
+- Meta Fakro → Roto in DachfensterBochum
+- Preisrechner-Teaser-Card in DachfensterBochum
+- og:url in FlachdachBochum
+- og-inject Edge Function (nie in netlify.toml gewesen)
+- /steildach + /dachrinnen Duplikate (gibt es nicht)
+
+---
+
+## Nach dem Deploy
+
+**48h Pause obligatorisch** — frühestmöglicher D15-Deploy: **28.04.2026**
+
+**Search Console Submissions** (einmal nach ca. 24h):
+- `/dachreparatur-bochum`
+- `/dachwartung-bochum`
+- `/dachgaube-bochum`
+- `/bauklempnerei-bochum`
+- `/velux-preisrechner-bochum`
