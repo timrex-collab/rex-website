@@ -57,12 +57,12 @@
 
 [[redirects]]
   from = "/waermedaemmung"
-  to = "/dachwartung-bochum"
+  to = "/aufsparrendaemmung-bochum"
   status = 301
 
 [[redirects]]
   from = "/waermedaemmung/"
-  to = "/dachwartung-bochum"
+  to = "/aufsparrendaemmung-bochum"
   status = 301
 
 [[redirects]]

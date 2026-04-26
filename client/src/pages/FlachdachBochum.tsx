@@ -264,10 +264,12 @@ export default function FlachdachBochum() {
         className="relative text-white py-24 px-4 overflow-hidden"
         data-testid="section-hero"
       >
-        <div
-          className="absolute inset-0 bg-cover bg-center"
-          style={{ backgroundImage: `url('${heroImage}')` }}
-          aria-hidden="true"
+        <Picture
+          src={heroImage}
+          fallback={heroImageFallback}
+          alt="Saniertes Flachdach in Bochum mit neuer Abdichtung und sauber ausgeführten Anschlüssen"
+          className="absolute inset-0 w-full h-full object-cover"
+          fetchpriority="high"
         />
         <div className="absolute inset-0 bg-gradient-to-r from-black/75 via-black/55 to-black/30" aria-hidden="true" />
         <div className="relative z-10 max-w-7xl mx-auto">

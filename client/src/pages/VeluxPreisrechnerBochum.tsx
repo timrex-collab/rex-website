@@ -88,8 +88,25 @@ const articleSchema = {
     "@id": "https://www.rex-bedachung.de/#organization"
   },
   datePublished: "2026-04-20",
-  dateModified: "2026-04-20",
+  dateModified: "2026-04-26",
   mainEntityOfPage: "https://www.rex-bedachung.de/velux-preisrechner-bochum"
+};
+
+const webApplicationSchema = {
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  name: "VELUX Dachfenster Preisrechner Bochum",
+  url: "https://www.rex-bedachung.de/velux-preisrechner-bochum",
+  applicationCategory: "UtilityApplication",
+  description: "Interaktiver Preisrechner für VELUX-Dachfenster in Bochum. Modell, Größe und Einbau konfigurieren – sofortige Preisindikation inkl. BAFA-Förderberechnung und §35c-Prüfung.",
+  provider: {
+    "@type": "RoofingContractor",
+    "@id": "https://www.rex-bedachung.de/#organization"
+  },
+  offers: {
+    "@type": "Offer",
+    availability: "https://schema.org/InStock"
+  }
 };
 
 export default function VeluxPreisrechnerBochum() {
@@ -103,11 +120,19 @@ export default function VeluxPreisrechnerBochum() {
         <meta property="og:description" content="Konfigurieren Sie Ihr VELUX Dachfenster und berechnen Sie Kosten inkl. Einbau und Fördermöglichkeiten. Rex Bedachungs GmbH, Bochum." />
         <meta property="og:url" content="https://www.rex-bedachung.de/velux-preisrechner-bochum" />
         <meta property="og:type" content="website" />
-        <meta name="twitter:card" content="summary" />
+        <meta property="og:image" content="https://www.rex-bedachung.de/images/velux-dachfenster-preisrechner-bochum.webp" />
+        <meta property="og:image:width" content="1200" />
+        <meta property="og:image:height" content="630" />
+        <meta property="og:site_name" content="Rex Bedachungs GmbH" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="VELUX Dachfenster Preisrechner Bochum – Rex Bedachungs GmbH" />
+        <meta name="twitter:description" content="Konfigurieren Sie Ihr VELUX Dachfenster und berechnen Sie Kosten inkl. Einbau und Fördermöglichkeiten." />
+        <meta name="twitter:image" content="https://www.rex-bedachung.de/images/velux-dachfenster-preisrechner-bochum.webp" />
         <script type="application/ld+json">{JSON.stringify(faqSchema)}</script>
         <script type="application/ld+json">{JSON.stringify(serviceSchema)}</script>
         <script type="application/ld+json">{JSON.stringify(breadcrumbSchema)}</script>
         <script type="application/ld+json">{JSON.stringify(articleSchema)}</script>
+        <script type="application/ld+json">{JSON.stringify(webApplicationSchema)}</script>
       </Helmet>
       <OrganizationSchema />
       <AuthorSchema />

@@ -260,10 +260,12 @@ export default function DachfensterBochum() {
         className="relative text-white py-24 px-4 overflow-hidden"
         data-testid="section-hero"
       >
-        <div
-          className="absolute inset-0 bg-cover bg-center"
-          style={{ backgroundImage: `url('${heroImage}')` }}
-          aria-hidden="true"
+        <Picture
+          src={heroImage}
+          fallback={heroImageFallback}
+          alt="Einbau eines VELUX Dachfensters in ein Steildach in Bochum"
+          className="absolute inset-0 w-full h-full object-cover"
+          fetchpriority="high"
         />
         <div className="absolute inset-0 bg-gradient-to-r from-black/75 via-black/55 to-black/30" aria-hidden="true" />
         <div className="relative z-10 max-w-7xl mx-auto">

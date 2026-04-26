@@ -50,7 +50,7 @@ const services = [
   {
     icon: <Thermometer className="w-8 h-8 text-primary" />,
     title: "Steildach Dämmung & Wärmeschutz",
-    text: "Fachgerechte Zwischensparren-, Aufsparren- und Untersparrendämmung nach aktueller EnEV/GEG. Senkt Heizkosten dauerhaft und steigert den Wohnkomfort im Dachgeschoss spürbar.",
+    text: "Fachgerechte Zwischensparren-, Aufsparren- und Untersparrendämmung nach aktuellem GEG. Senkt Heizkosten dauerhaft und steigert den Wohnkomfort im Dachgeschoss spürbar.",
     testId: "card-daemmung",
   },
   {
@@ -597,7 +597,7 @@ export default function SteildachBochum() {
               BAFA-Bundesförderung BEG – bis zu 20% der Investitionskosten bei Dämmung nach GEG-Standard.
             </p>
             <p className="text-slate-300 leading-relaxed mb-4 max-w-2xl mx-auto" data-testid="text-foerderung-kfw">
-              KfW-Programm 261 – günstige Kredite für energieeffiziente Sanierungen.
+              KfW-Ergänzungskredit (358/359) nach BAFA-Zusage – zinsgünstiger Kredit bis 120.000 € pro Wohneinheit, kombinierbar mit dem BAFA-Zuschuss.
             </p>
             <p className="text-slate-300 leading-relaxed mb-8 max-w-2xl mx-auto" data-testid="text-foerderung-beratung">
               Wir beraten Sie kostenlos welche Förderung für Ihr Projekt in Frage kommt – und helfen bei der Antragstellung.
