@@ -698,7 +698,7 @@ export default function VeluxPreisrechner(){
     <div className="min-h-screen bg-gradient-to-b from-slate-50 to-white">
       <style>{`@keyframes fadeIn{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:translateY(0)}}.animate-fadeIn{animation:fadeIn .25s ease-out}`}</style>
       <div className="bg-slate-900 text-white"><div className="max-w-3xl mx-auto px-4 py-8 sm:py-10 text-center">
-        <div className="inline-flex items-center gap-2 bg-white/10 rounded-full px-4 py-1.5 text-xs font-medium mb-3"><Shield className="w-3.5 h-3.5"/>VELUX Fachpartner in Bochum</div>
+        <div className="inline-flex items-center gap-2 bg-white/10 rounded-full px-4 py-1.5 text-xs font-medium mb-3"><Shield className="w-3.5 h-3.5"/>Autorisierter VELUX-Partner in Bochum</div>
         <h1 className="text-2xl sm:text-3xl font-bold tracking-tight">VELUX Dachfenster Preisrechner</h1>
         <p className="text-slate-300 mt-2 text-sm">Kosten, Eindeckrahmen und Fördermöglichkeiten berechnen</p>
       </div></div>
