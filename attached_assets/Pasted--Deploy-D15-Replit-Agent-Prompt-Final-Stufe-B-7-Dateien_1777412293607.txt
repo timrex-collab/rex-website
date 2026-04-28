@@ -1,0 +1,549 @@
+# Deploy D15 — Replit Agent Prompt (Final)
+**Stufe B | 7 Dateien (davon 1 Komponente) | keine neuen Routen | 48h Pause nach Deploy**
+**Frühestens: 28.04.2026 ab 20:08 CEST**
+
+> **Verifiziert gegen Commit `bdf3905` auf main (Post-D14-Stand).**
+> Alle Search/Replace-Blöcke sind byte-genau vom Live-Code.
+
+---
+
+## Vorab
+
+1. **Pre-Flight-Check:**
+```bash
+git status
+git log --oneline -1
+```
+Erwartung: Working tree clean, HEAD = `bdf3905` oder bestätigter aktueller Post-D14-Commit. Falls nicht: **STOP** — erst klären, bevor Änderungen beginnen.
+
+2. **Pro Datei:** Erst komplett lesen, dann alle Änderungen anwenden. **Generische Ersetzungen wie `VELUX-Fachbetrieb` nur in der angegebenen Datei und in der angegebenen Reihenfolge ausführen — nicht global über das Projekt laufen lassen.**
+3. **Build-Strategie:** Nach allen 7 Dateien einmal `npm run build`, dann `npm run preview`.
+4. **Kein Scope-Creep:** Nur die hier beschriebenen Änderungen. Keine neuen Routen, keine robots.txt, keine netlify.toml.
+
+---
+
+## DATEI 1 von 7: `client/src/components/VeluxPreisrechner.tsx`
+
+> **Wichtigste Datei in D15.** Änderungen hier wirken auf UI, Preisberechnung, Förderlogik und PDF-Ausgabe.
+
+### 1a — GL-Konstante: Uw-Werte und Bezeichnungen korrigieren
+
+**Suchen (exakt):**
+```tsx
+const GL = { T:{l:"THERMO",uw:"1,3"},E:{l:"ENERGIE",uw:"1,0"},P:{l:"ENERGIE PLUS",uw:"0,7"} };
+```
+
+**Ersetzen durch:**
+```tsx
+const GL = { T:{l:"THERMO",code:"-70",uw:"1,3"},E:{l:"ENERGIE PLUS",code:"-66",uw:"1,0"},P:{l:"WÄRMEDÄMMUNG",code:"-67",uw:"0,88"} };
+```
+
+**Hintergrund:** "ENERGIE PLUS (Uw 0,7)" existiert im aktuellen VELUX-Datenblatt nicht. Option A: 3 Tiers behalten, P wird WÄRMEDÄMMUNG -67 (Uw 0,88) als Premium-Tier. Die bestehenden P-Preise werden als Premium-/Hochdämm-Tier weiterverwendet.
+
+### 1b — Förder-Kommentar aktualisieren
+
+**Suchen (exakt):**
+```tsx
+  // Nur Fenster mit Uw ≤ 1,0 W/(m²·K) sind förderfähig → ENERGIE + EN.PLUS, NICHT THERMO
+```
+
+**Ersetzen durch:**
+```tsx
+  // Nur Fenster mit Uw ≤ 1,0 W/(m²·K) sind förderrelevant → ENERGIE PLUS + WÄRMEDÄMMUNG, NICHT THERMO
+```
+
+### 1c — THERMO-Warnhinweis (amber box) in Step3
+
+**Suchen (exakt):**
+```tsx
+                    <span className="font-semibold">Nicht förderfähig:</span> {ineligibleDetails.length} Position(en) mit THERMO-Verglasung (Uw 1,3 W/m²K). Die BAFA-Förderung erfordert Uw ≤ 1,0 W/m²K — nur ENERGIE und ENERGIE PLUS Verglasungen sind förderfähig.
+```
+
+**Ersetzen durch:**
+```tsx
+                    <span className="font-semibold">Nicht förderrelevant:</span> {ineligibleDetails.length} Position(en) mit THERMO-Verglasung (Uw 1,3 W/m²K). Die BEG-Förderung erfordert Uw ≤ 1,0 W/m²K — nur ENERGIE PLUS und WÄRMEDÄMMUNG Verglasungen sind förderrelevant.
+```
+
+### 1d — Fallback-Text "Keine förderfähigen Positionen" (in Step3 Ergebnis)
+
+**Suchen (exakt):**
+```tsx
+                  Keine förderfähigen Positionen vorhanden. Für die BAFA-Förderung ist eine Verglasung mit Uw ≤ 1,0 W/m²K erforderlich (ENERGIE oder ENERGIE PLUS).
+```
+
+**Ersetzen durch:**
+```tsx
+                  Keine förderrelevanten Positionen vorhanden. Für die BEG-Förderung ist eine Verglasung mit Uw ≤ 1,0 W/m²K erforderlich (ENERGIE PLUS oder WÄRMEDÄMMUNG).
+```
+
+### 1e — Gleicher Fallback-Text im PDF (buildPdfHtml)
+
+**Suchen (exakt):**
+```tsx
+      <p style="font-size:10px;color:#475569">Keine förderfähigen Positionen vorhanden. Für die BAFA-Förderung (BEG EM) ist ein Uw-Wert von maximal 1,0 W/m²K erforderlich (ENERGIE oder ENERGIE PLUS).</p>
+```
+
+**Ersetzen durch:**
+```tsx
+      <p style="font-size:10px;color:#475569">Keine förderrelevanten Positionen vorhanden. Für die BEG-Förderung (BEG EM) ist ein Uw-Wert von maximal 1,0 W/m²K erforderlich (ENERGIE PLUS oder WÄRMEDÄMMUNG).</p>
+```
+
+### 1f — THERMO-Hinweis im PDF (buildPdfHtml)
+
+**Suchen (exakt):**
+```tsx
+      ${totals.hasIneligible?`<p class="small" style="color:#92400e"><strong>Hinweis:</strong> Positionen mit THERMO-Verglasung (Uw 1,3) sind nicht förderfähig. Die BAFA erfordert Uw ≤ 1,0 W/m²K.</p>`:""}
+```
+
+**Ersetzen durch:**
+```tsx
+      ${totals.hasIneligible?`<p class="small" style="color:#92400e"><strong>Hinweis:</strong> Positionen mit THERMO-Verglasung (Uw 1,3) sind nicht förderrelevant. Die BEG-Förderung erfordert Uw ≤ 1,0 W/m²K.</p>`:""}
+```
+
+### 1g — PDF-Header: VELUX Fachpartner → autorisierter VELUX-Partner
+
+**Suchen (exakt):**
+```tsx
+    <div class="header-left"><h1>Rex Bedachungs GmbH</h1><p>Dachdecker-Meisterbetrieb · VELUX Fachpartner · Seit 1984</p></div>
+```
+
+**Ersetzen durch:**
+```tsx
+    <div class="header-left"><h1>Rex Bedachungs GmbH</h1><p>Dachdecker-Meisterbetrieb · autorisierter VELUX-Partner · Seit 1984</p></div>
+```
+
+---
+
+## DATEI 2 von 7: `client/src/pages/VeluxPreisrechnerBochum.tsx`
+
+### 2a — FAQ #2: Uw-Werte korrigieren
+
+**Suchen (exakt):**
+```tsx
+    a: "Nur Verglasungen mit einem Uw-Wert von maximal 1,0 W/m²K sind über die BAFA (BEG Einzelmaßnahme) förderfähig. Bei VELUX erfüllen das die Verglasungsstufen ENERGIE (Uw 1,0) und ENERGIE PLUS (Uw 0,7). Die Standardverglasung THERMO (Uw 1,3) ist nicht förderfähig."
+```
+
+**Ersetzen durch:**
+```tsx
+    a: "Nur Verglasungen mit einem Uw-Wert von maximal 1,0 W/m²K sind über die BAFA (BEG Einzelmaßnahme) förderrelevant. Bei VELUX erfüllen das die Verglasungsstufen ENERGIE PLUS -66 (Uw 1,0), SCHALLSCHUTZ -62 (Uw 0,96) und WÄRMEDÄMMUNG -67 (Uw 0,88). Die Standardverglasung THERMO -70 (Uw 1,3) ist nicht förderrelevant."
+```
+
+### 2b — SEO-Content "Welche Verglasung ist förderfähig?" korrigieren
+
+**Suchen (exakt):**
+```tsx
+            <p className="text-slate-700 leading-relaxed mb-3">
+              VELUX bietet drei Verglasungsstufen an: THERMO (Uw 1,3 W/m²K), ENERGIE (Uw 1,0 W/m²K) und ENERGIE PLUS (Uw 0,7 W/m²K). Für die BAFA-Förderung im Rahmen der BEG Einzelmaßnahme ist ein Uw-Wert von maximal 1,0 W/m²K vorgeschrieben — das bedeutet: nur ENERGIE und ENERGIE PLUS sind förderfähig. Die THERMO-Verglasung erfüllt zwar die GEG-Mindestanforderung, nicht aber die strengere BEG-Vorgabe.
+            </p>
+```
+
+**Ersetzen durch:**
+```tsx
+            <p className="text-slate-700 leading-relaxed mb-3">
+              VELUX bietet mehrere Verglasungsstufen an: THERMO -70 (Uw 1,3 W/m²K), ENERGIE PLUS -66 (Uw 1,0 W/m²K), SCHALLSCHUTZ -62 (Uw 0,96 W/m²K) und WÄRMEDÄMMUNG -67 (Uw 0,88 W/m²K). Für die BEG-Förderung ist ein Uw-Wert von maximal 1,0 W/m²K vorgeschrieben — das bedeutet: nur ENERGIE PLUS, SCHALLSCHUTZ und WÄRMEDÄMMUNG sind förderrelevant. Die THERMO-Verglasung erfüllt zwar die GEG-Mindestanforderung, nicht aber die strengere BEG-Vorgabe.
+            </p>
+```
+
+### 2c — SEO-Content zweiter Absatz: "ENERGIE-PLUS-Verglasung" korrigieren
+
+**Suchen (exakt):**
+```tsx
+              Unser Preisrechner zeigt Ihnen automatisch, welche Positionen förderfähig sind und berechnet den geschätzten Zuschuss. Für Eigentümer ohne individuellen Sanierungsfahrplan (iSFP) prüft der Rechner zusätzlich, ob der Steuerbonus nach §35c EStG mit 20 % Steuerermäßigung die bessere Option ist.
+```
+
+**Ersetzen durch:**
+```tsx
+              Unser Preisrechner zeigt Ihnen automatisch, welche Positionen förderrelevant sind und berechnet den geschätzten Zuschuss. Für Eigentümer ohne individuellen Sanierungsfahrplan (iSFP) prüft der Rechner zusätzlich, ob der Steuerbonus nach §35c EStG mit 20 % Steuerermäßigung die bessere Option ist.
+```
+
+### 2d — Sichtbares Hero-Bild + VELUX-Modellblock einfügen
+
+**Suchen (exakt):**
+```tsx
+      {/* Rechner-Komponente */}
+      <VeluxPreisrechner />
+```
+
+**Ersetzen durch:**
+```tsx
+      {/* Hero-Bild */}
+      <div className="bg-white">
+        <div className="max-w-3xl mx-auto px-4 pt-8">
+          <img
+            src="/images/velux-dachfenster-preisrechner-bochum.webp"
+            alt="VELUX Dachfenster Preisrechner – Modell, Größe und Einbau konfigurieren"
+            width="1200"
+            height="630"
+            className="w-full rounded-xl shadow-sm"
+            loading="eager"
+          />
+        </div>
+      </div>
+
+      {/* VELUX-Modellblock: Verglasungen mit Uw-Werten */}
+      <div className="bg-white">
+        <div className="max-w-3xl mx-auto px-4 py-8">
+          <h2 className="text-xl font-bold text-slate-900 mb-4">VELUX Verglasungen im Überblick</h2>
+          <p className="text-slate-600 text-sm mb-6">Nicht jede VELUX-Verglasung ist förderrelevant. Die BEG-Förderung erfordert Uw ≤ 1,0 W/(m²K).</p>
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
+            <div className="border border-slate-200 rounded-xl p-4 opacity-70">
+              <span className="inline-block text-[10px] font-medium px-2 py-0.5 rounded bg-red-50 text-red-700 mb-2">Nicht förderrelevant</span>
+              <p className="font-semibold text-sm text-slate-900">THERMO</p>
+              <p className="text-xs text-slate-500">Verglasung -70</p>
+              <p className="text-2xl font-bold text-slate-900 mt-1">1,3 <span className="text-xs font-normal text-slate-500">W/(m²K)</span></p>
+              <p className="text-xs text-slate-500 mt-1">Standard-Doppelverglasung. Erfüllt nicht die BEG-Anforderung Uw ≤ 1,0.</p>
+            </div>
+            <div className="border border-slate-200 rounded-xl p-4">
+              <span className="inline-block text-[10px] font-medium px-2 py-0.5 rounded bg-emerald-50 text-emerald-700 mb-2">Förderrelevant</span>
+              <p className="font-semibold text-sm text-slate-900">ENERGIE PLUS</p>
+              <p className="text-xs text-slate-500">Verglasung -66</p>
+              <p className="text-2xl font-bold text-slate-900 mt-1">1,0 <span className="text-xs font-normal text-slate-500">W/(m²K)</span></p>
+              <p className="text-xs text-slate-500 mt-1">Dreifachverglasung. Erreicht den Grenzwert Uw ≤ 1,0 — geeigneter Einstieg für energetische Maßnahmen.</p>
+            </div>
+            <div className="border border-slate-200 rounded-xl p-4">
+              <span className="inline-block text-[10px] font-medium px-2 py-0.5 rounded bg-emerald-50 text-emerald-700 mb-2">Förderrelevant</span>
+              <p className="font-semibold text-sm text-slate-900">SCHALLSCHUTZ</p>
+              <p className="text-xs text-slate-500">Verglasung -62</p>
+              <p className="text-2xl font-bold text-slate-900 mt-1">0,96 <span className="text-xs font-normal text-slate-500">W/(m²K)</span></p>
+              <p className="text-xs text-slate-500 mt-1">Dreifachverglasung mit erhöhtem Schallschutz. Sinnvoll an Straßen oder bei Einflugschneisen.</p>
+            </div>
+            <div className="border-2 border-emerald-500 rounded-xl p-4">
+              <span className="inline-block text-[10px] font-medium px-2 py-0.5 rounded bg-emerald-50 text-emerald-700 mb-2">Beste Dämmung</span>
+              <p className="font-semibold text-sm text-slate-900">WÄRMEDÄMMUNG</p>
+              <p className="text-xs text-slate-500">Verglasung -67</p>
+              <p className="text-2xl font-bold text-slate-900 mt-1">0,88 <span className="text-xs font-normal text-slate-500">W/(m²K)</span></p>
+              <p className="text-xs text-slate-500 mt-1">Bester Uw-Wert im Vergleich. Maximale Wärmedämmung für energetisch anspruchsvolle Sanierungen.</p>
+            </div>
+          </div>
+          <p className="text-xs text-slate-400 mt-4">Quelle: VELUX Technische Werte, CE-Kennzeichnung gem. EN 14351-1. Der Preisrechner unten kalkuliert mit drei Verglasungsstufen (THERMO / ENERGIE PLUS / WÄRMEDÄMMUNG). Preisindikation auf Basis der hinterlegten Verglasung — verbindliche Modell- und Preisprüfung erfolgt beim Vor-Ort-Termin.</p>
+        </div>
+      </div>
+
+      {/* Rechner-Komponente */}
+      <VeluxPreisrechner />
+```
+
+### 2e — dateModified im Article-Schema aktualisieren
+
+**Suchen (exakt):**
+```tsx
+  dateModified: "2026-04-26",
+```
+
+**Ersetzen durch:**
+```tsx
+  dateModified: "2026-04-28",
+```
+
+> Falls der Deploy nicht am 28.04.2026 stattfindet, das tatsächliche Datum einsetzen.
+
+---
+
+## DATEIEN 3–7: „VELUX-Fachbetrieb" → Terminologie-Bereinigung
+
+> **Regel:** „VELUX-Fachbetrieb" wird zu „autorisierter VELUX-Partner" oder „VELUX-Partner".
+> **Ausnahme:** In Kontexten wo „VELUX-Fachbetrieb" als Kompositum natürlich klingt (z. B. „Ihr VELUX-Fachbetrieb"), wird zu „Ihr VELUX-Partner" oder „autorisierter VELUX-Partner" geändert.
+
+**Agent-Anweisung:** Öffne jede der folgenden 5 Dateien einzeln. Suche mit `Strg+H` (Replace All) nach den exakten Strings in der angegebenen Reihenfolge. Die Reihenfolge ist wichtig, damit längere Strings zuerst ersetzt werden und kürzere danach nicht in bereits korrigierte Stellen eingreifen.
+
+---
+
+### DATEI 3: `client/src/pages/DachfensterBochum.tsx`
+
+**3-pre: Direktantwort-Block nach H1 einfügen**
+
+**Suchen (exakt):**
+```tsx
+          <h1 className="text-3xl md:text-5xl font-extrabold leading-tight mb-4 max-w-3xl" data-testid="heading-hero">
+            Dachfenster Bochum – Einbau &amp; Austausch vom Meisterbetrieb
+          </h1>
+          <p className="text-lg md:text-xl text-slate-200 mb-8 max-w-xl" data-testid="text-hero-subtitle">
+            Neueinbau, Austausch und Reparatur – schnell, sauber, mit Förderung
+          </p>
+```
+
+**Ersetzen durch:**
+```tsx
+          <h1 className="text-3xl md:text-5xl font-extrabold leading-tight mb-4 max-w-3xl" data-testid="heading-hero">
+            Dachfenster Bochum – Einbau &amp; Austausch vom Meisterbetrieb
+          </h1>
+          <p className="text-base md:text-lg text-slate-100 mb-4 max-w-2xl leading-relaxed" data-testid="text-direktantwort">
+            Rex Bedachungs GmbH baut, tauscht und repariert Dachfenster in Bochum und Umgebung. Als autorisierter VELUX-Partner prüfen wir Modell, Dämmwert, Abdichtung und Förderfähigkeit direkt am Dach. So erhalten Sie eine technisch passende Lösung für mehr Licht, bessere Wärmedämmung und dauerhaft dichte Anschlüsse.
+          </p>
+          <p className="text-lg md:text-xl text-slate-200 mb-8 max-w-xl" data-testid="text-hero-subtitle">
+            Neueinbau, Austausch und Reparatur – schnell, sauber, mit Förderung
+          </p>
+```
+
+> 58 Wörter — unter dem 120-Wort-Limit des Rex-Standards.
+
+**3-mod: VELUX-Modellblock mit Uw-Werten einfügen**
+
+Suche die Marken-Sektion und füge den Modellblock **direkt davor** ein:
+
+**Suchen (exakt):**
+```tsx
+      {/* ── Marken-Sektion ── */}
+      <section className="py-16 px-4 bg-muted/40" data-testid="section-marken">
+```
+
+**Ersetzen durch:**
+```tsx
+      {/* ── VELUX-Modellblock ── */}
+      <section className="py-12 px-4 bg-background" data-testid="section-velux-modelle">
+        <div className="max-w-6xl mx-auto">
+          <h2 className="text-2xl md:text-3xl font-bold text-center mb-4 text-foreground">VELUX Verglasungen im Überblick</h2>
+          <p className="text-muted-foreground text-center mb-8 max-w-2xl mx-auto text-sm">Nicht jede VELUX-Verglasung ist förderrelevant. Die BEG-Förderung erfordert Uw ≤ 1,0 W/(m²K).</p>
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
+            <div className="border border-border rounded-xl p-4 opacity-70">
+              <span className="inline-block text-[10px] font-medium px-2 py-0.5 rounded bg-red-50 text-red-700 mb-2">Nicht förderrelevant</span>
+              <p className="font-semibold text-sm text-foreground">THERMO</p>
+              <p className="text-xs text-muted-foreground">Verglasung -70</p>
+              <p className="text-2xl font-bold text-foreground mt-1">1,3 <span className="text-xs font-normal text-muted-foreground">W/(m²K)</span></p>
+              <p className="text-xs text-muted-foreground mt-1">Standard-Doppelverglasung. Erfüllt nicht die BEG-Anforderung Uw ≤ 1,0.</p>
+            </div>
+            <div className="border border-border rounded-xl p-4">
+              <span className="inline-block text-[10px] font-medium px-2 py-0.5 rounded bg-emerald-50 text-emerald-700 mb-2">Förderrelevant</span>
+              <p className="font-semibold text-sm text-foreground">ENERGIE PLUS</p>
+              <p className="text-xs text-muted-foreground">Verglasung -66</p>
+              <p className="text-2xl font-bold text-foreground mt-1">1,0 <span className="text-xs font-normal text-muted-foreground">W/(m²K)</span></p>
+              <p className="text-xs text-muted-foreground mt-1">Dreifachverglasung. Erreicht den Grenzwert Uw ≤ 1,0 — geeigneter Einstieg für energetische Maßnahmen.</p>
+            </div>
+            <div className="border border-border rounded-xl p-4">
+              <span className="inline-block text-[10px] font-medium px-2 py-0.5 rounded bg-emerald-50 text-emerald-700 mb-2">Förderrelevant</span>
+              <p className="font-semibold text-sm text-foreground">SCHALLSCHUTZ</p>
+              <p className="text-xs text-muted-foreground">Verglasung -62</p>
+              <p className="text-2xl font-bold text-foreground mt-1">0,96 <span className="text-xs font-normal text-muted-foreground">W/(m²K)</span></p>
+              <p className="text-xs text-muted-foreground mt-1">Dreifachverglasung mit erhöhtem Schallschutz. Sinnvoll an Straßen oder bei Einflugschneisen.</p>
+            </div>
+            <div className="border-2 border-emerald-500 rounded-xl p-4">
+              <span className="inline-block text-[10px] font-medium px-2 py-0.5 rounded bg-emerald-50 text-emerald-700 mb-2">Beste Dämmung</span>
+              <p className="font-semibold text-sm text-foreground">WÄRMEDÄMMUNG</p>
+              <p className="text-xs text-muted-foreground">Verglasung -67</p>
+              <p className="text-2xl font-bold text-foreground mt-1">0,88 <span className="text-xs font-normal text-muted-foreground">W/(m²K)</span></p>
+              <p className="text-xs text-muted-foreground mt-1">Bester Uw-Wert im Vergleich. Maximale Wärmedämmung für energetisch anspruchsvolle Sanierungen.</p>
+            </div>
+          </div>
+          <p className="text-xs text-muted-foreground mt-4 text-center">Quelle: VELUX Technische Werte, CE-Kennzeichnung gem. EN 14351-1.</p>
+        </div>
+      </section>
+
+      {/* ── Marken-Sektion ── */}
+      <section className="py-16 px-4 bg-muted/40" data-testid="section-marken">
+```
+
+Führe dann folgende Terminologie-Ersetzungen in exakt dieser Reihenfolge durch:
+
+| # | Suchen (exakt) | Ersetzen durch |
+|---|---|---|
+| 3a | `"VELUX-Fachbetrieb"` (im reasons-Array, als alleinstehender String) | `"Autorisierter VELUX-Partner"` |
+| 3b | `VELUX-Fachbetrieb &bull; 40+ Jahre Erfahrung &bull; Ruhrgebiet` | `VELUX-Partner &bull; 40+ Jahre Erfahrung &bull; Ruhrgebiet` |
+| 3c | `VELUX-Fachbetrieb für Dachfenster in Bochum` (og:description) | `Autorisierter VELUX-Partner für Dachfenster in Bochum` |
+| 3d | `Dachfenster Bochum ✓ VELUX-Fachbetrieb` (twitter:description) | `Dachfenster Bochum ✓ VELUX-Partner` |
+| 3e | `Wir sind VELUX-Fachbetrieb und verbauen zusätzlich Roto` (faqItems[3] + FAQ Schema #4 — kommt 2× vor, beide ersetzen) | `Wir sind autorisierter VELUX-Partner und verbauen zusätzlich Roto` |
+| 3f | `Als anerkannter VELUX-Fachbetrieb findet Rex Bedachungs GmbH` (faqItems[6] + FAQ Schema #7 — kommt 2× vor, beide ersetzen) | `Als autorisierter VELUX-Partner findet Rex Bedachungs GmbH` |
+
+**Zusätzlich in DachfensterBochum — dateModified aktualisieren:**
+
+| # | Suchen | Ersetzen |
+|---|---|---|
+| 3g | `"dateModified": "2026-04-18"` | `"dateModified": "2026-04-28"` |
+
+---
+
+### DATEI 4: `client/src/pages/VeluxAustausch.tsx`
+
+> **Reihenfolge ist kritisch.** Längere Strings zuerst, damit kürzere Replace-Ops nicht in bereits korrigierte Stellen eingreifen.
+
+| # | Suchen (exakt) | Ersetzen durch |
+|---|---|---|
+| 4a | `VELUX-Fachbetrieb – Rex Bedachungs GmbH` (og:description + twitter:description — Replace All, kommt **2×**) | `Autorisierter VELUX-Partner – Rex Bedachungs GmbH` |
+| 4b | `VELUX-Fachbetrieb, kostenlose Beratung` (serviceSchema description) | `autorisierter VELUX-Partner, kostenlose Beratung` |
+| 4c | `Rex Bedachungs GmbH ist VELUX-Fachbetrieb in Bochum und tauscht` (Einleitung) | `Rex Bedachungs GmbH ist autorisierter VELUX-Partner in Bochum und tauscht` |
+| 4d | `Rex Bedachungs GmbH ist VELUX-Fachbetrieb – mit direktem Zugriff` (USP text) | `Rex Bedachungs GmbH ist autorisierter VELUX-Partner – mit direktem Zugriff` |
+| 4e | `VELUX-Fachbetrieb &bull; Bochum &amp; Ruhrgebiet` (Trust-Badge) | `VELUX-Partner &bull; Bochum &amp; Ruhrgebiet` |
+| 4f | `VELUX-Fachbetrieb` (USP title item-usp-0 — **nach** allen längeren Strings!) | `Autorisierter VELUX-Partner` |
+| 4g | `Warum Rex Bedachungs GmbH als Velux-Fachbetrieb in Bochum` (H2 heading) | `Warum Rex Bedachungs GmbH als VELUX-Partner in Bochum` |
+
+---
+
+### DATEI 5: `client/src/pages/VeluxRolllaeden.tsx`
+
+> **Reihenfolge ist kritisch.** Längere/spezifischere Strings zuerst.
+
+| # | Suchen (exakt) | Ersetzen durch |
+|---|---|---|
+| 5a | `VELUX-Fachbetrieb – Rex Bedachungs GmbH` (meta description + og:description + twitter:description — Replace All, kommt **3×**) | `VELUX-Partner – Rex Bedachungs GmbH` |
+
+**5b — serviceSchema description (vollständiger Satz, nicht generisch):**
+
+**Suchen (exakt):**
+```tsx
+  "description": "Montage und Nachrüstung von Velux Außenrollläden in Bochum – SSL Solar, SML Elektro, von innen montierbar, VELUX-Fachbetrieb.",
+```
+
+**Ersetzen durch:**
+```tsx
+  "description": "Montage und Nachrüstung von Velux Außenrollläden in Bochum – SSL Solar, SML Elektro, von innen montierbar, autorisierter VELUX-Partner.",
+```
+
+Weiter mit Tabelle:
+
+| # | Suchen (exakt) | Ersetzen durch |
+|---|---|---|
+| 5c | `Ihr VELUX-Fachbetrieb in Bochum` (Hero subtitle) | `Ihr VELUX-Partner in Bochum` |
+| 5d | `VELUX-Fachbetrieb &bull; Kostenloser` (Trust-Badge) | `VELUX-Partner &bull; Kostenloser` |
+| 5e | `Rex Bedachungs GmbH ist VELUX-Fachbetrieb in Bochum und rüstet` (Einleitung) | `Rex Bedachungs GmbH ist autorisierter VELUX-Partner in Bochum und rüstet` |
+| 5f | `Warum Rex Bedachungs GmbH als Velux-Fachbetrieb in Bochum` (H2 heading) | `Warum Rex Bedachungs GmbH als VELUX-Partner in Bochum` |
+| 5g | `Rex Bedachungs GmbH ist VELUX-Fachbetrieb – mit direktem Zugriff` (USP text — **vor** 5h ausführen!) | `Rex Bedachungs GmbH ist autorisierter VELUX-Partner – mit direktem Zugriff` |
+| 5h | `VELUX-Fachbetrieb` (USP title item-usp-0 — jetzt nur noch der Title-String) | `Autorisierter VELUX-Partner` |
+
+---
+
+### DATEI 6: `client/src/pages/Foerderung.tsx`
+
+> **Hinweis:** 6a entfällt. Der komplette FAQ-Eintrag wird über 6b ersetzt — das deckt die Terminologie-Änderung automatisch mit ab.
+
+### 6b — FAQ #3 komplett ersetzen
+
+**Suchen (exakt):**
+```tsx
+    answer: "Alle Velux-Fenster mit einem U-Wert von 1,0 oder besser werden gefördert. Moderne Velux-Modelle erfüllen diese Anforderung problemlos. Als VELUX-Fachbetrieb beraten wir Sie gerne zu den passenden Modellen.",
+```
+
+**Ersetzen durch:**
+```tsx
+    answer: "Förderrelevant sind VELUX-Dachfenster mit Uw ≤ 1,0. THERMO -70 (Uw 1,3) erfüllt diese Anforderung nicht; ENERGIE PLUS -66 (Uw 1,0), SCHALLSCHUTZ -62 (Uw 0,96) und WÄRMEDÄMMUNG -67 (Uw 0,88) sind energetisch deutlich besser geeignet. Als autorisierter VELUX-Partner beraten wir Sie gerne zu den passenden Modellen.",
+```
+
+### 6c — THERMO-Ausschluss in fensterItems.no
+
+**Suchen (exakt):**
+```tsx
+      "VELUX THERMO (Uw 1,3) – nicht förderfähig",
+```
+
+**Ersetzen durch:**
+```tsx
+      "VELUX THERMO -70 (Uw 1,3) – nicht förderrelevant",
+```
+
+### 6d — fensterItems.note
+
+**Suchen (exakt):**
+```tsx
+    note: "Förderfähig: VELUX ENERGIE (Uw 1,0) und ENERGIE PLUS – alle Modelle mit Uw ≤ 1,0.",
+```
+
+**Ersetzen durch:**
+```tsx
+    note: "Förderrelevant: VELUX ENERGIE PLUS -66 (Uw 1,0), SCHALLSCHUTZ -62 (Uw 0,96) und WÄRMEDÄMMUNG -67 (Uw 0,88). THERMO -70 (Uw 1,3) erfüllt die BEG-Anforderung nicht.",
+```
+
+### 6e — fensterItems.req Wording
+
+**Suchen (exakt):**
+```tsx
+    req: "Förderfähig wenn Uw ≤ 1,0 W/(m²·K)",
+```
+
+**Ersetzen durch:**
+```tsx
+    req: "Förderrelevant bei Uw ≤ 1,0 W/(m²K)",
+```
+
+---
+
+### DATEI 7: `client/src/pages/Home.tsx`
+
+| # | Suchen (exakt) | Ersetzen durch |
+|---|---|---|
+| 7a | `VELUX-Fachbetrieb, spezialisiert auf energetische Dachsanierung` (Hero description) | `autorisierter VELUX-Partner, spezialisiert auf energetische Dachsanierung` |
+| 7b | `Als VELUX-Fachbetrieb und Roto-Spezialist` (Dachfenster ServiceCard description) | `Als autorisierter VELUX-Partner und Roto-Spezialist` |
+| 7c | `Autorisierter Fachbetrieb` (Kennzahlen-Banner, unter "VELUX") | `Autorisierter VELUX-Partner` |
+
+---
+
+## Build-Check
+
+```bash
+npm run build
+```
+Muss fehlerfrei durchlaufen.
+
+```bash
+npm run preview
+```
+
+**Abnahmekriterien:**
+
+- `/velux-preisrechner-bochum`: Hero-Bild sichtbar, 4-Card-Modellblock darunter, Rechner lädt. Verglasung-Auswahl zeigt "THERMO" / "ENERGIE PLUS" / "WÄRMEDÄMMUNG" (nicht mehr "ENERGIE" oder "ENERGIE PLUS 0,7").
+- `/dachfenster-bochum`: Trust-Badge zeigt "VELUX-Partner", nicht "VELUX-Fachbetrieb". FAQ #4 sagt "autorisierter VELUX-Partner".
+- `/velux-dachfenster-austausch-bochum`: Trust-Badge zeigt "VELUX-Partner". Einleitungstext sagt "autorisierter VELUX-Partner".
+- `/velux-dachfenster-rolllaeden-bochum`: Hero-Subtitle + Trust-Badge zeigen "VELUX-Partner".
+- `/foerderung`: FAQ #3 sagt "autorisierter VELUX-Partner".
+- `/`: Hero-Beschreibung + Dachfenster-ServiceCard sagen "autorisierter VELUX-Partner".
+- **Keine Console-Fehler** auf allen 6 Seiten.
+- **Grep-Check:** `grep -rn "VELUX-Fachbetrieb\|Velux-Fachbetrieb\|VELUX Fachpartner\|Uw 0,7\|ENERGIE PLUS (Uw 0,7" client/src/` — Erwartung: **keine Treffer**.
+- **PDF-Check:** Im Preisrechner eine Konfiguration mit WÄRMEDÄMMUNG-Verglasung erstellen, PDF generieren. Prüfen: Verglasung heißt "WÄRMEDÄMMUNG" (nicht "ENERGIE PLUS"), Förderhinweise sagen "förderrelevant" (nicht "förderfähig"), kein Verweis auf "Uw 0,7".
+
+---
+
+## Pre-Commit-Check
+
+```bash
+git diff --stat
+```
+Erwartung: **7 Dateien geändert**, keine robots.txt, keine netlify.toml, keine neuen Routen/Dateien.
+
+## Abschluss-Checkliste vor Commit
+
+```
+[ ] VeluxPreisrechner.tsx: GL-Konstante aktualisiert (T=1,3 / E=1,0 / P=0,88)
+[ ] VeluxPreisrechner.tsx: Alle Förder-Texte "ENERGIE oder ENERGIE PLUS" → "ENERGIE PLUS oder WÄRMEDÄMMUNG"
+[ ] VeluxPreisrechner.tsx: "förderfähig" → "förderrelevant" an den korrigierten Stellen
+[ ] VeluxPreisrechner.tsx: PDF-Header "VELUX Fachpartner" → "autorisierter VELUX-Partner"
+[ ] VeluxPreisrechnerBochum.tsx: FAQ #2 Uw-Werte korrigiert
+[ ] VeluxPreisrechnerBochum.tsx: SEO-Content Verglasungs-Absatz korrigiert
+[ ] VeluxPreisrechnerBochum.tsx: Hero-Bild + 4-Card-Modellblock eingefügt
+[ ] DachfensterBochum.tsx: Direktantwort-Block nach H1 eingefügt (≤120 Wörter)
+[ ] DachfensterBochum.tsx: 4-Card-Modellblock vor Marken-Sektion eingefügt
+[ ] DachfensterBochum.tsx: 6× "VELUX-Fachbetrieb" ersetzt + dateModified
+[ ] VeluxAustausch.tsx: "VELUX-Fachbetrieb" ersetzt (Reihenfolge: längere Strings zuerst)
+[ ] VeluxRolllaeden.tsx: "VELUX-Fachbetrieb" ersetzt (serviceSchema als vollständiger Satz)
+[ ] Foerderung.tsx: FAQ #3 komplett ersetzt + fensterItems.no + note + req korrigiert
+[ ] Home.tsx: 2× "VELUX-Fachbetrieb" + Kennzahlen-Banner ersetzt
+[ ] Grep-Check: Keine Treffer für "VELUX-Fachbetrieb", "VELUX Fachpartner", "Uw 0,7"
+[ ] PDF-Check: Verglasung + Förderhinweise korrekt im generierten PDF
+[ ] npm run build: fehlerfrei ✓
+[ ] npm run preview: 6 Seiten geprüft ✓
+[ ] Commit-Message: "D15: VELUX-Partner-Terminologie (5 Seiten), Uw-Korrektur Rechner+Fördertexte, Direktantwort+Modellblock DachfensterBochum, Preisrechner-Hero+Modellblock"
+[ ] Push → Netlify Deploy
+```
+
+---
+
+## Was bewusst NICHT in D15 ist
+
+- Keine neuen Routen oder Seiten
+- `robots.txt` nicht angefasst
+- `netlify.toml` nicht angefasst
+- Keine Änderungen an Steildach, Flachdach oder Aufsparrendämmung
+- Keine zentrale `veluxModels.ts` Datenstruktur (wäre Refactor → eigener Deploy)
+- Keine @graph-Konsolidierung der Schemas
+- Keine 4-Tier-Erweiterung des Rechners (bleibt bei 3 Tiers)
+- Keine neuen Dachfenster-Clusterartikel
+
+---
+
+## Nach dem Deploy
+
+**48h Pause obligatorisch.**
+
+**Search Console:** Keine neuen URLs — alle Seiten sind bereits indexiert. Aber nach D15 die geänderten Seiten einzeln zur Neuindexierung einreichen:
+- `/`
+- `/dachfenster-bochum`
+- `/velux-preisrechner-bochum`
+- `/velux-dachfenster-austausch-bochum`
+- `/velux-dachfenster-rolllaeden-bochum`
+- `/foerderung`
