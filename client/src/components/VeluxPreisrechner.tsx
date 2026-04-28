@@ -28,7 +28,7 @@ const BLINDS = {
 };
 
 const LABOR = { demontage:100, einbau:300, eindeckrahmen:150, rollladen:120, rollo:50 };
-const GL = { T:{l:"THERMO",uw:"1,3"},E:{l:"ENERGIE",uw:"1,0"},P:{l:"ENERGIE PLUS",uw:"0,7"} };
+const GL = { T:{l:"THERMO",code:"-70",uw:"1,3"},E:{l:"ENERGIE PLUS",code:"-66",uw:"1,0"},P:{l:"WÄRMEDÄMMUNG",code:"-67",uw:"0,88"} };
 const fmt = (n) => new Intl.NumberFormat("de-DE").format(n);
 let _id = 0;
 const uid = () => ++_id;
@@ -80,7 +80,7 @@ function buildPdfHtml(details, totals, foerderung, kunde) {
       <p class="small" style="margin-top:8px"><strong>KfW Ergänzungskredit 358/359:</strong> Nach BAFA-Zusage ist zusätzlich ein zinsvergünstigter Kredit bis 120.000 € pro WE möglich.</p>
       <p class="small"><strong>Fachplanung:</strong> 50% Zuschuss für den Energieeffizienz-Experten (bis 5.000 € bei EFH) — separater Fördertopf.</p>
       ${!totals.hasIsfp?`<p class="small"><strong>Tipp:</strong> Mit einem iSFP (Eigenanteil ca. 400–500 €) steigt der Fördersatz auf 20% und der Höchstbetrag auf 60.000 €.</p>`:""}
-      ${totals.hasIneligible?`<p class="small" style="color:#92400e"><strong>Hinweis:</strong> Positionen mit THERMO-Verglasung (Uw 1,3) sind nicht förderfähig. Die BAFA erfordert Uw ≤ 1,0 W/m²K.</p>`:""}
+      ${totals.hasIneligible?`<p class="small" style="color:#92400e"><strong>Hinweis:</strong> Positionen mit THERMO-Verglasung (Uw 1,3) sind nicht förderrelevant. Die BEG-Förderung erfordert Uw ≤ 1,0 W/m²K.</p>`:""}
       <table class="total-table" style="margin-top:10px;border-top:1px solid #a7f3d0;padding-top:8px">
         <tr><td>Gesamtkosten brutto (inkl. MwSt.)</td><td class="r">${fmt(totals.totalBrutto)} €</td></tr>
         <tr><td>BAFA-Zuschuss</td><td class="r"><strong>− ${fmt(totals.bafaFoerder)} €</strong></td></tr>
@@ -99,7 +99,7 @@ function buildPdfHtml(details, totals, foerderung, kunde) {
       <p class="small" style="margin-top:6px;color:#1e40af"><strong>Voraussetzungen:</strong> Selbstgenutztes Wohneigentum, Gebäude ≥ 10 Jahre alt, Fachunternehmen. Nicht kombinierbar mit BAFA für dieselbe Maßnahme.</p>
     </div>`:""}` : totals.eligible ? `
     <div class="foerder-box" style="background:#f8fafc;border-color:#e2e8f0">
-      <p style="font-size:10px;color:#475569">Keine förderfähigen Positionen vorhanden. Für die BAFA-Förderung (BEG EM) ist eine Verglasung mit Uw ≤ 1,0 W/m²K erforderlich (ENERGIE oder ENERGIE PLUS).</p>
+      <p style="font-size:10px;color:#475569">Keine förderrelevanten Positionen vorhanden. Für die BEG-Förderung (BEG EM) ist eine Verglasung mit Uw ≤ 1,0 W/m²K erforderlich (ENERGIE PLUS oder WÄRMEDÄMMUNG).</p>
     </div>` : "";
 
   const kundeSection = kunde.name ? `
@@ -149,7 +149,7 @@ function buildPdfHtml(details, totals, foerderung, kunde) {
     Klicken Sie auf <strong>"Als PDF speichern"</strong> im Druckdialog, um das Dokument herunterzuladen.
   </div>
   <div class="header">
-    <div class="header-left"><h1>Rex Bedachungs GmbH</h1><p>Dachdecker-Meisterbetrieb · VELUX Fachpartner · Seit 1984</p></div>
+    <div class="header-left"><h1>Rex Bedachungs GmbH</h1><p>Dachdecker-Meisterbetrieb · autorisierter VELUX-Partner · Seit 1984</p></div>
     <div class="header-right"><strong>Rex Bedachungs GmbH</strong><br>Paulinenstraße 22<br>44799 Bochum<br>Tel: 0234 / 58 31 00<br>info@rex-bedachung.de</div>
   </div>
   <div class="doc-title">VELUX Dachfenster — Unverbindliche Kostenschätzung</div>
@@ -372,7 +372,7 @@ function Step3({positions,foerderung}){
   const totalFenster=details.reduce((s,d)=>s+d.qty,0);
 
   // ─── Förderung nach BEG EM (BAFA Einzelmaßnahme) ─────────────────
-  // Nur Fenster mit Uw ≤ 1,0 W/(m²·K) sind förderfähig → ENERGIE + EN.PLUS, NICHT THERMO
+  // Nur Fenster mit Uw ≤ 1,0 W/(m²·K) sind förderrelevant → ENERGIE PLUS + WÄRMEDÄMMUNG, NICHT THERMO
   const eligible=foerderung.altbau==="ja"&&foerderung.sanierung==="ja";
   const hasIsfp=foerderung.isfp==="ja";
   const bafaRate=eligible?(hasIsfp?0.20:0.15):0;
@@ -535,7 +535,7 @@ function Step3({positions,foerderung}){
                 <div className="bg-amber-50 border border-amber-200 rounded-lg p-3 flex gap-2">
                   <Info className="w-4 h-4 text-amber-600 shrink-0 mt-0.5"/>
                   <div className="text-xs text-amber-800">
-                    <span className="font-semibold">Nicht förderfähig:</span> {ineligibleDetails.length} Position(en) mit THERMO-Verglasung (Uw 1,3 W/m²K). Die BAFA-Förderung erfordert Uw ≤ 1,0 W/m²K — nur ENERGIE und ENERGIE PLUS Verglasungen sind förderfähig.
+                    <span className="font-semibold">Nicht förderrelevant:</span> {ineligibleDetails.length} Position(en) mit THERMO-Verglasung (Uw 1,3 W/m²K). Die BEG-Förderung erfordert Uw ≤ 1,0 W/m²K — nur ENERGIE PLUS und WÄRMEDÄMMUNG Verglasungen sind förderrelevant.
                   </div>
                 </div>
               )}
@@ -592,7 +592,7 @@ function Step3({positions,foerderung}){
                 </div>
               ):(
                 <div className="bg-slate-50 border border-slate-200 rounded-lg p-3 text-xs text-slate-600">
-                  Keine förderfähigen Positionen vorhanden. Für die BAFA-Förderung ist eine Verglasung mit Uw ≤ 1,0 W/m²K erforderlich (ENERGIE oder ENERGIE PLUS).
+                  Keine förderrelevanten Positionen vorhanden. Für die BEG-Förderung ist eine Verglasung mit Uw ≤ 1,0 W/m²K erforderlich (ENERGIE PLUS oder WÄRMEDÄMMUNG).
                 </div>
               )}
             </div>

@@ -142,7 +142,7 @@ const serviceSchema = JSON.stringify({
     "telephone": "+49-234-583100",
   },
   "areaServed": ["Bochum", "Herne", "Castrop-Rauxel", "Witten", "Hattingen", "Ruhrgebiet"],
-  "description": "Montage und Nachrüstung von Velux Außenrollläden in Bochum – SSL Solar, SML Elektro, von innen montierbar, VELUX-Fachbetrieb.",
+  "description": "Montage und Nachrüstung von Velux Außenrollläden in Bochum – SSL Solar, SML Elektro, von innen montierbar, autorisierter VELUX-Partner.",
   "offers": {
     "@type": "Offer",
     "priceCurrency": "EUR",
@@ -171,16 +171,16 @@ export default function VeluxRolllaeden() {
         <title>Velux Außenrollladen Bochum – SSL Solar nachrüsten | Rex Bedachung</title>
         <meta
           name="description"
-          content="Velux Außenrollladen Bochum ✓ SSL Solar kabellos nachrüsten ✓ Bis zu 94% Hitzeschutz ✓ Ab ca. 700 € ✓ VELUX-Fachbetrieb – Rex Bedachungs GmbH."
+          content="Velux Außenrollladen Bochum ✓ SSL Solar kabellos nachrüsten ✓ Bis zu 94% Hitzeschutz ✓ Ab ca. 700 € ✓ VELUX-Partner – Rex Bedachungs GmbH."
         />
         <meta property="og:title" content="Velux Außenrollladen Bochum – SSL Solar nachrüsten | Rex Bedachungs GmbH" />
-        <meta property="og:description" content="Velux Außenrollladen Bochum ✓ SSL Solar kabellos nachrüsten ✓ Bis zu 94% Hitzeschutz ✓ Ab ca. 700 € ✓ VELUX-Fachbetrieb – Rex Bedachungs GmbH." />
+        <meta property="og:description" content="Velux Außenrollladen Bochum ✓ SSL Solar kabellos nachrüsten ✓ Bis zu 94% Hitzeschutz ✓ Ab ca. 700 € ✓ VELUX-Partner – Rex Bedachungs GmbH." />
         <meta property="og:image" content="https://www.rex-bedachung.de/images/velux-dachfenster-einbau-bochum-fachbetrieb.webp" />
         <meta property="og:site_name" content="Rex Bedachungs GmbH" />
         <meta property="og:url" content="https://www.rex-bedachung.de/velux-dachfenster-rolllaeden-bochum" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="Velux Außenrollladen Bochum – SSL Solar nachrüsten | Rex Bedachungs GmbH" />
-        <meta name="twitter:description" content="Velux Außenrollladen Bochum ✓ SSL Solar kabellos nachrüsten ✓ Bis zu 94% Hitzeschutz ✓ Ab ca. 700 € ✓ VELUX-Fachbetrieb – Rex Bedachungs GmbH." />
+        <meta name="twitter:description" content="Velux Außenrollladen Bochum ✓ SSL Solar kabellos nachrüsten ✓ Bis zu 94% Hitzeschutz ✓ Ab ca. 700 € ✓ VELUX-Partner – Rex Bedachungs GmbH." />
         <meta name="twitter:image" content="https://www.rex-bedachung.de/images/velux-dachfenster-einbau-bochum-fachbetrieb.webp" />
         <link rel="canonical" href="https://www.rex-bedachung.de/velux-dachfenster-rolllaeden-bochum" />
         <script type="application/ld+json">{faqSchema}</script>
@@ -226,7 +226,7 @@ export default function VeluxRolllaeden() {
             Velux Au&szlig;enrollladen Bochum – SSL Solar nachr&uuml;sten
           </h1>
           <p className="text-lg md:text-xl text-slate-200 mb-8 max-w-xl" data-testid="text-hero-subtitle">
-            Bis zu 94 % Hitzeschutz, kabellos solar betrieben, von innen in ca. 2 Std. montierbar – Ihr VELUX-Fachbetrieb in Bochum
+            Bis zu 94 % Hitzeschutz, kabellos solar betrieben, von innen in ca. 2 Std. montierbar – Ihr VELUX-Partner in Bochum
           </p>
           <div className="flex flex-wrap gap-3 mb-8">
             <Button
@@ -251,7 +251,7 @@ export default function VeluxRolllaeden() {
             </Button>
           </div>
           <p className="text-sm text-slate-300 font-medium" data-testid="text-trust-badge">
-            VELUX-Fachbetrieb &bull; Kostenloser Aufma&szlig;-Service &bull; Montage ab ca. 700 &euro;
+            VELUX-Partner &bull; Kostenloser Aufma&szlig;-Service &bull; Montage ab ca. 700 &euro;
           </p>
         </div>
       </section>
@@ -260,7 +260,7 @@ export default function VeluxRolllaeden() {
       <section className="py-16 px-4 bg-muted/40" data-testid="section-einleitung">
         <div className="max-w-4xl mx-auto text-center">
           <p className="text-muted-foreground leading-relaxed text-base md:text-lg" data-testid="text-einleitung">
-            Im Sommer wird es unter dem Dach schnell unerträglich heiß – ein innenliegendes Rollo reicht oft nicht aus. Der Velux SSL Solar-Außenrollladen stoppt die Hitze bereits vor dem Glas und erreicht bis zu 94 % Hitzeschutz. Rex Bedachungs GmbH ist VELUX-Fachbetrieb in Bochum und rüstet den SSL kabellos nach – komplett von innen montiert, in ca. 2 Stunden pro Fenster, ab ca. 700 &euro; inkl. Einbau.
+            Im Sommer wird es unter dem Dach schnell unerträglich heiß – ein innenliegendes Rollo reicht oft nicht aus. Der Velux SSL Solar-Außenrollladen stoppt die Hitze bereits vor dem Glas und erreicht bis zu 94 % Hitzeschutz. Rex Bedachungs GmbH ist autorisierter VELUX-Partner in Bochum und rüstet den SSL kabellos nach – komplett von innen montiert, in ca. 2 Stunden pro Fenster, ab ca. 700 &euro; inkl. Einbau.
           </p>
         </div>
       </section>
@@ -458,14 +458,14 @@ export default function VeluxRolllaeden() {
       <section className="py-16 px-4 bg-background" data-testid="section-warum-rex">
         <div className="max-w-5xl mx-auto">
           <h2 className="text-2xl md:text-3xl font-bold text-center mb-10 text-foreground" data-testid="heading-warum-rex">
-            Warum Rex Bedachungs GmbH als Velux-Fachbetrieb in Bochum
+            Warum Rex Bedachungs GmbH als VELUX-Partner in Bochum
           </h2>
           <div className="grid sm:grid-cols-2 gap-8">
             <div className="flex items-start gap-3" data-testid="item-usp-0">
               <CheckCircle className="w-5 h-5 text-primary shrink-0 mt-0.5" aria-hidden="true" />
               <div>
-                <p className="font-semibold text-foreground mb-1">VELUX-Fachbetrieb</p>
-                <p className="text-sm text-muted-foreground leading-relaxed">Rex Bedachungs GmbH ist VELUX-Fachbetrieb – mit direktem Zugriff auf alle aktuellen Modelle, Zubehör und Ersatzteile.</p>
+                <p className="font-semibold text-foreground mb-1">Autorisierter VELUX-Partner</p>
+                <p className="text-sm text-muted-foreground leading-relaxed">Rex Bedachungs GmbH ist autorisierter VELUX-Partner – mit direktem Zugriff auf alle aktuellen Modelle, Zubehör und Ersatzteile.</p>
               </div>
             </div>
             <div className="flex items-start gap-3" data-testid="item-usp-1">

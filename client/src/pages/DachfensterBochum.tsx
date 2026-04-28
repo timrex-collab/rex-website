@@ -53,7 +53,7 @@ const services = [
 ];
 
 const reasons = [
-  "VELUX-Fachbetrieb",
+  "Autorisierter VELUX-Partner",
   "40+ Jahre Erfahrung im Ruhrgebiet",
   "Schnelle Reaktionszeit – kurzfristige Hilfe",
   "Kostenlose Beratung & Förderantrag",
@@ -78,7 +78,7 @@ const faqItems = [
   {
     question: "Welche Dachfenster-Marken verbauen Sie?",
     answer:
-      "Wir sind VELUX-Fachbetrieb und verbauen zusätzlich Roto Dachfenster in allen Ausführungen.",
+      "Wir sind autorisierter VELUX-Partner und verbauen zusätzlich Roto Dachfenster in allen Ausführungen.",
   },
   {
     question: "Brauche ich für ein Dachfenster eine Baugenehmigung?",
@@ -93,7 +93,7 @@ const faqItems = [
   {
     question: "Kann ein altes VELUX-Fenster 1:1 ersetzt werden?",
     answer:
-      "In der Regel ja – VELUX bietet für ältere Modelle passende Austauschfenster an, die ohne großen Eingriff in die Dachkonstruktion eingebaut werden können. Der Austausch ist meist in einem halben bis ganzen Arbeitstag erledigt. Als anerkannter VELUX-Fachbetrieb findet Rex Bedachungs GmbH die passende Lösung für Ihr Fenster.",
+      "In der Regel ja – VELUX bietet für ältere Modelle passende Austauschfenster an, die ohne großen Eingriff in die Dachkonstruktion eingebaut werden können. Der Austausch ist meist in einem halben bis ganzen Arbeitstag erledigt. Als autorisierter VELUX-Partner findet Rex Bedachungs GmbH die passende Lösung für Ihr Fenster.",
   },
 ];
 
@@ -132,13 +132,13 @@ export default function DachfensterBochum() {
         <meta property="og:title" content="Dachfenster Bochum – VELUX & Roto Einbau | Rex Bedachungs GmbH" />
         <meta
           property="og:description"
-          content="VELUX-Fachbetrieb für Dachfenster in Bochum. Neueinbau, Austausch & Reparatur – mit Förderberatung."
+          content="Autorisierter VELUX-Partner für Dachfenster in Bochum. Neueinbau, Austausch & Reparatur – mit Förderberatung."
         />
         <meta property="og:image" content="https://www.rex-bedachung.de/images/velux-dachfenster-einbau-bochum-fachbetrieb.webp" />
         <meta property="og:site_name" content="Rex Bedachungs GmbH" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="Dachfenster Bochum – VELUX Einbau | Rex Bedachung" />
-        <meta name="twitter:description" content="Dachfenster Bochum ✓ VELUX-Fachbetrieb ✓ Neueinbau & Austausch ✓ Kurzfristige Hilfe ✓ BAFA/KfW-Förderung – Rex Bedachungs GmbH." />
+        <meta name="twitter:description" content="Dachfenster Bochum ✓ VELUX-Partner ✓ Neueinbau & Austausch ✓ Kurzfristige Hilfe ✓ BAFA/KfW-Förderung – Rex Bedachungs GmbH." />
         <meta name="twitter:image" content="https://www.rex-bedachung.de/images/velux-dachfenster-einbau-bochum-fachbetrieb.webp" />
         <link rel="canonical" href="https://www.rex-bedachung.de/dachfenster-bochum" />
         <script type="application/ld+json">{schemaJson}</script>
@@ -198,7 +198,7 @@ export default function DachfensterBochum() {
       "name": "Welche Dachfenster-Marken verbauen Sie?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Wir sind VELUX-Fachbetrieb und verbauen zusätzlich Roto Dachfenster in allen Ausführungen."
+        "text": "Wir sind autorisierter VELUX-Partner und verbauen zusätzlich Roto Dachfenster in allen Ausführungen."
       }
     },
     {
@@ -222,7 +222,7 @@ export default function DachfensterBochum() {
       "name": "Kann ein altes VELUX-Fenster 1:1 ersetzt werden?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "In der Regel ja – VELUX bietet für ältere Modelle passende Austauschfenster an, die ohne großen Eingriff in die Dachkonstruktion eingebaut werden können. Der Austausch ist meist in einem halben bis ganzen Arbeitstag erledigt. Als anerkannter VELUX-Fachbetrieb findet Rex Bedachungs GmbH die passende Lösung für Ihr Fenster."
+        "text": "In der Regel ja – VELUX bietet für ältere Modelle passende Austauschfenster an, die ohne großen Eingriff in die Dachkonstruktion eingebaut werden können. Der Austausch ist meist in einem halben bis ganzen Arbeitstag erledigt. Als autorisierter VELUX-Partner findet Rex Bedachungs GmbH die passende Lösung für Ihr Fenster."
       }
     }
   ]
@@ -242,7 +242,7 @@ export default function DachfensterBochum() {
     "@id": "https://www.rex-bedachung.de/#organization"
   },
   "datePublished": "2025-06-01",
-  "dateModified": "2026-04-18",
+  "dateModified": "2026-04-28",
   "mainEntityOfPage": "https://www.rex-bedachung.de/dachfenster-bochum"
 }`}</script>
       </Helmet>
@@ -272,6 +272,9 @@ export default function DachfensterBochum() {
           <h1 className="text-3xl md:text-5xl font-extrabold leading-tight mb-4 max-w-3xl" data-testid="heading-hero">
             Dachfenster Bochum – Einbau &amp; Austausch vom Meisterbetrieb
           </h1>
+          <p className="text-base md:text-lg text-slate-100 mb-4 max-w-2xl leading-relaxed" data-testid="text-direktantwort">
+            Rex Bedachungs GmbH baut, tauscht und repariert Dachfenster in Bochum und Umgebung. Als autorisierter VELUX-Partner prüfen wir Modell, Dämmwert, Abdichtung und Förderfähigkeit direkt am Dach. So erhalten Sie eine technisch passende Lösung für mehr Licht, bessere Wärmedämmung und dauerhaft dichte Anschlüsse.
+          </p>
           <p className="text-lg md:text-xl text-slate-200 mb-8 max-w-xl" data-testid="text-hero-subtitle">
             Neueinbau, Austausch und Reparatur – schnell, sauber, mit Förderung
           </p>
@@ -298,7 +301,7 @@ export default function DachfensterBochum() {
             </Button>
           </div>
           <p className="text-sm text-slate-300 font-medium" data-testid="text-trust-badge">
-            VELUX-Fachbetrieb &bull; 40+ Jahre Erfahrung &bull; Ruhrgebiet
+            VELUX-Partner &bull; 40+ Jahre Erfahrung &bull; Ruhrgebiet
           </p>
         </div>
       </section>
@@ -324,6 +327,45 @@ export default function DachfensterBochum() {
               </Card>
             ))}
           </div>
+        </div>
+      </section>
+
+      {/* ── VELUX-Modellblock ── */}
+      <section className="py-12 px-4 bg-background" data-testid="section-velux-modelle">
+        <div className="max-w-6xl mx-auto">
+          <h2 className="text-2xl md:text-3xl font-bold text-center mb-4 text-foreground">VELUX Verglasungen im Überblick</h2>
+          <p className="text-muted-foreground text-center mb-8 max-w-2xl mx-auto text-sm">Nicht jede VELUX-Verglasung ist förderrelevant. Die BEG-Förderung erfordert Uw ≤ 1,0 W/(m²K).</p>
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
+            <div className="border border-border rounded-xl p-4 opacity-70">
+              <span className="inline-block text-[10px] font-medium px-2 py-0.5 rounded bg-red-50 text-red-700 mb-2">Nicht förderrelevant</span>
+              <p className="font-semibold text-sm text-foreground">THERMO</p>
+              <p className="text-xs text-muted-foreground">Verglasung -70</p>
+              <p className="text-2xl font-bold text-foreground mt-1">1,3 <span className="text-xs font-normal text-muted-foreground">W/(m²K)</span></p>
+              <p className="text-xs text-muted-foreground mt-1">Standard-Doppelverglasung. Erfüllt nicht die BEG-Anforderung Uw ≤ 1,0.</p>
+            </div>
+            <div className="border border-border rounded-xl p-4">
+              <span className="inline-block text-[10px] font-medium px-2 py-0.5 rounded bg-emerald-50 text-emerald-700 mb-2">Förderrelevant</span>
+              <p className="font-semibold text-sm text-foreground">ENERGIE PLUS</p>
+              <p className="text-xs text-muted-foreground">Verglasung -66</p>
+              <p className="text-2xl font-bold text-foreground mt-1">1,0 <span className="text-xs font-normal text-muted-foreground">W/(m²K)</span></p>
+              <p className="text-xs text-muted-foreground mt-1">Dreifachverglasung. Erreicht den Grenzwert Uw ≤ 1,0 — geeigneter Einstieg für energetische Maßnahmen.</p>
+            </div>
+            <div className="border border-border rounded-xl p-4">
+              <span className="inline-block text-[10px] font-medium px-2 py-0.5 rounded bg-emerald-50 text-emerald-700 mb-2">Förderrelevant</span>
+              <p className="font-semibold text-sm text-foreground">SCHALLSCHUTZ</p>
+              <p className="text-xs text-muted-foreground">Verglasung -62</p>
+              <p className="text-2xl font-bold text-foreground mt-1">0,96 <span className="text-xs font-normal text-muted-foreground">W/(m²K)</span></p>
+              <p className="text-xs text-muted-foreground mt-1">Dreifachverglasung mit erhöhtem Schallschutz. Sinnvoll an Straßen oder bei Einflugschneisen.</p>
+            </div>
+            <div className="border-2 border-emerald-500 rounded-xl p-4">
+              <span className="inline-block text-[10px] font-medium px-2 py-0.5 rounded bg-emerald-50 text-emerald-700 mb-2">Beste Dämmung</span>
+              <p className="font-semibold text-sm text-foreground">WÄRMEDÄMMUNG</p>
+              <p className="text-xs text-muted-foreground">Verglasung -67</p>
+              <p className="text-2xl font-bold text-foreground mt-1">0,88 <span className="text-xs font-normal text-muted-foreground">W/(m²K)</span></p>
+              <p className="text-xs text-muted-foreground mt-1">Bester Uw-Wert im Vergleich. Maximale Wärmedämmung für energetisch anspruchsvolle Sanierungen.</p>
+            </div>
+          </div>
+          <p className="text-xs text-muted-foreground mt-4 text-center">Quelle: VELUX Technische Werte, CE-Kennzeichnung gem. EN 14351-1.</p>
         </div>
       </section>
 

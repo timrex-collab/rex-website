@@ -92,7 +92,7 @@ const faqItems = [
   },
   {
     question: "Welche Velux-Fenster werden gefördert?",
-    answer: "Alle Velux-Fenster mit einem U-Wert von 1,0 oder besser werden gefördert. Moderne Velux-Modelle erfüllen diese Anforderung problemlos. Als VELUX-Fachbetrieb beraten wir Sie gerne zu den passenden Modellen.",
+    answer: "Förderrelevant sind VELUX-Dachfenster mit Uw ≤ 1,0. THERMO -70 (Uw 1,3) erfüllt diese Anforderung nicht; ENERGIE PLUS -66 (Uw 1,0), SCHALLSCHUTZ -62 (Uw 0,96) und WÄRMEDÄMMUNG -67 (Uw 0,88) sind energetisch deutlich besser geeignet. Als autorisierter VELUX-Partner beraten wir Sie gerne zu den passenden Modellen.",
   },
   {
     question: "Wie hoch ist die maximale Fördersumme?",
@@ -116,11 +116,11 @@ function FoerderdetailsBlock() {
       "Innenfutter / Laibungsverkleidung",
     ],
     no: [
-      "VELUX THERMO (Uw 1,3) – nicht förderfähig",
+      "VELUX THERMO -70 (Uw 1,3) – nicht förderrelevant",
       "Innenliegender Sonnenschutz – nicht förderfähig",
     ],
-    note: "Förderfähig: VELUX ENERGIE (Uw 1,0) und ENERGIE PLUS – alle Modelle mit Uw ≤ 1,0.",
-    req: "Förderfähig wenn Uw ≤ 1,0 W/(m²·K)",
+    note: "Förderrelevant: VELUX ENERGIE PLUS -66 (Uw 1,0), SCHALLSCHUTZ -62 (Uw 0,96) und WÄRMEDÄMMUNG -67 (Uw 0,88). THERMO -70 (Uw 1,3) erfüllt die BEG-Anforderung nicht.",
+    req: "Förderrelevant bei Uw ≤ 1,0 W/(m²K)",
   };
 
   const daemmungItems = {

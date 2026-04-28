@@ -105,7 +105,7 @@ export default function Home() {
     },
     {
       title: "Dachfenster – VELUX & Roto Fachbetrieb",
-      description: "Als VELUX-Fachbetrieb und Roto-Spezialist übernehmen wir Neueinbau, Austausch und Reparatur von Dachfenstern – schnell, sauber und auf Wunsch mit BAFA/KfW-Förderung.",
+      description: "Als autorisierter VELUX-Partner und Roto-Spezialist übernehmen wir Neueinbau, Austausch und Reparatur von Dachfenstern – schnell, sauber und auf Wunsch mit BAFA/KfW-Förderung.",
       imageUrl: dachfensterImage,
       imageUrlFallback: dachfensterImageFallback,
       imageAlt: "VELUX Dachfenster Bochum – Rex Bedachungs GmbH",
@@ -175,7 +175,7 @@ export default function Home() {
       <Hero
         title="Dachdecker Bochum – Ihr Partner rund um's Dach"
         subtitle="Rex Bedachungs GmbH"
-        description="Rex Bedachungs GmbH ist Ihr Dachdecker-Meisterbetrieb in Bochum – VELUX-Fachbetrieb, spezialisiert auf energetische Dachsanierung nach GEG, BAFA/KfW-Förderung bis 20% möglich, Flachdachabdichtung, Steildach, Reparaturen und Bauklempnerei."
+        description="Rex Bedachungs GmbH ist Ihr Dachdecker-Meisterbetrieb in Bochum – autorisierter VELUX-Partner, spezialisiert auf energetische Dachsanierung nach GEG, BAFA/KfW-Förderung bis 20% möglich, Flachdachabdichtung, Steildach, Reparaturen und Bauklempnerei."
         imageUrl={heroImage}
         imageFallbackUrl={heroImageFallback}
         imageAlt="Dachdecker Bochum – Rex Bedachungs GmbH Steildach"
@@ -196,7 +196,7 @@ export default function Home() {
             </div>
             <div>
               <p className="text-2xl md:text-3xl font-bold">VELUX</p>
-              <p className="text-sm opacity-80 mt-1">Autorisierter Fachbetrieb</p>
+              <p className="text-sm opacity-80 mt-1">Autorisierter VELUX-Partner</p>
             </div>
             <div>
               <p className="text-2xl md:text-3xl font-bold">4,48 ★</p>
