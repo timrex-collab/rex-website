@@ -1,0 +1,363 @@
+# Deploy D16 v7 — llms.txt kuratieren + Wärmedämmung-Redirect härten
+
+**Stufe A | maximal 2 Dateien | Ziel: 2 Dateien | keine Schema-Arbeit | keine neuen Seiten | keine robots.txt-Änderung | 48h Pause nach Deploy obligatorisch**
+
+---
+
+## Phase 0: Preflight-Sync (PFLICHT vor jeder Änderung)
+
+Bevor du irgendetwas änderst, führe diese Schritte aus und gib das Ergebnis aus:
+
+```bash
+git branch --show-current
+git rev-parse HEAD
+git status -sb
+git fetch origin
+git log --oneline HEAD..origin/main
+git log --oneline origin/main..HEAD
+git diff --stat origin/main
+```
+
+**Erwartung:**
+- Aktiver Branch ist `main` oder ein sauberer Arbeitsbranch
+- `git log --oneline HEAD..origin/main` zeigt keine ungezogenen Commits (sonst: lokal hinter origin/main → erst pullen)
+- `git log --oneline origin/main..HEAD` zeigt keine ungepushten Commits, die nicht zu D16 gehören
+- `git diff --stat origin/main` zeigt keine relevanten Abweichungen
+- `git status -sb` zeigt keine lokalen Änderungen, ungestagten Änderungen oder ungetrackten Änderungen in `client/public/llms.txt` oder `netlify.toml`
+
+**Stoppe und melde, wenn:**
+- lokale Änderungen, ungestagte Änderungen oder ungetrackte Änderungen in `client/public/llms.txt` oder `netlify.toml` vorliegen
+- der lokale Stand mehrere Commits hinter `origin/main` liegt
+- Branch-Divergenz besteht (sowohl lokale als auch Remote-Commits unbekannt)
+- du auf einem unklaren Branch bist
+
+Ohne sauberen Sync keine Änderungen ausführen.
+
+---
+
+## Ziel
+
+D16 optimiert die bestehende `llms.txt` für KI-Crawler und LLM-Systeme und härtet den Redirect von `/waermedaemmung` und `/waermedaemmung/`.
+
+---
+
+## Harte Grenzen — maximal 2 Dateien
+
+Es dürfen ausschließlich diese maximal 2 Dateien geändert werden:
+
+1. `client/public/llms.txt`
+2. `netlify.toml`
+
+Falls `netlify.toml` im Arbeitsstand bereits vollständig korrekt ist, wird nur 1 Datei geändert. Das ist erlaubt und im Abschlussbericht zu begründen.
+
+**Nicht ändern:**
+- `client/src/App.tsx`
+- `client/src/pages/*`
+- `client/src/components/*`
+- `client/public/robots.txt`
+- `client/public/sitemap.xml`
+- Schema-Komponenten
+- Bilddateien
+- Routen
+- Schema-Strukturen
+- Person-Entitäten / `knowsAbout` / `OrganizationSchema` / `AuthorSchema`
+
+---
+
+## Datei 1 von max. 2: `netlify.toml`
+
+### Aufgabe — drei konditionale Prüfungen
+
+Lies den aktuellen Inhalt von `netlify.toml`. Führe drei unabhängige Prüfungen durch und reagiere konditional:
+
+#### Prüfung A: Redirect-Ziel `/waermedaemmung`
+
+Suche nach den Blöcken für `/waermedaemmung` und `/waermedaemmung/`.
+
+| Vorgefundener Stand | Aktion |
+|---|---|
+| `to = "/dachwartung-bochum"` | Korrigieren auf `/aufsparrendaemmung-bochum` UND `force = true` ergänzen |
+| `to = "/aufsparrendaemmung-bochum"` ohne `force = true` | Nur `force = true` ergänzen |
+| `to = "/aufsparrendaemmung-bochum"` mit `force = true` | Keine Änderung |
+| Kein Eintrag vorhanden | Beide Blöcke neu anlegen (siehe Sollzustand unten) |
+
+**Sollzustand nach D16:**
+
+```toml
+[[redirects]]
+  from = "/waermedaemmung"
+  to = "/aufsparrendaemmung-bochum"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/waermedaemmung/"
+  to = "/aufsparrendaemmung-bochum"
+  status = 301
+  force = true
+```
+
+Wichtig: Beide Blöcke müssen **vor** dem SPA-Fallback-Eintrag (`from = "/*"` → `/index.html`) stehen. Die Reihenfolge der übrigen Redirects nicht ändern.
+
+#### Prüfung B: Verwaister `[[edge_functions]]`-Block
+
+Suche nach einem Block dieser Form:
+
+```toml
+[[edge_functions]]
+  path = "/*"
+  function = "og-inject"
+```
+
+| Vorgefundener Stand | Aktion |
+|---|---|
+| Block vorhanden | Block ersatzlos entfernen (og-inject ist laut Memory inaktiv, der Eintrag ist verwaist) |
+| Block nicht vorhanden | Keine Änderung |
+| Block mit anderem Funktionsnamen vorhanden | Stoppen, melden, nicht löschen |
+
+#### Prüfung C: Keine anderen Redirects ändern
+
+Alle übrigen Redirects, der `[build]`-Block und der SPA-Fallback bleiben unverändert.
+
+---
+
+## Datei 2 von max. 2: `client/public/llms.txt`
+
+### Inhaltliche Pflichtregeln
+
+**Entfernen oder umformulieren:**
+
+| Aktuell | Aktion |
+|---|---|
+| `> Kostenlose Beratung und Aufmaß vor Ort.` (im Blockquote) | Satz entfernen |
+| `Zertifizierung: autorisierter VELUX-Partner` | Schlüssel ändern in `VELUX-Status: autorisierter VELUX-Partner` |
+| `## Preisrahmen` mit Euro-Beträgen | Sektion komplett entfernen |
+| `ab 700 €` in Leistungen-Block | Euro-Angabe entfernen, Modellliste behalten |
+| `ab 1.000 €` in Leistungen-Block oder Fakten-Sektion | Euro-Angabe entfernen |
+| `150–350 €/m²` oder andere `€/m²`-Angaben | Komplett entfernen |
+| `1.500 €`, `1.800 €` oder ähnliche pauschale Euro-Beträge außerhalb des Förderkontexts | Entfernen |
+| `Kostenlose Besichtigung und Aufmaß vor Ort` (in Fakten-Sektion) | Komplette Bullet-Zeile entfernen |
+| `KfW-Programme 297/298` (falls vorhanden) | Ersetzen durch `KfW-Ergänzungskredit 358/359` |
+| `Dachdecker-Fachbetrieb` im Kurzprofil | Ersetzen durch `Dachdecker-Meisterbetrieb` |
+| Lange Stadtteil-Aufzählung mit `(alle Stadtteile: …)` und Komma-Liste der Nachbarstädte | Komplette Sektion ersetzen durch den Sollzustand-Block (siehe unten) |
+| Formulierungen `zertifiziert`, `VELUX-Fachbetrieb`, `VELUX Fachpartner`, `Velux-Fachbetrieb` | Falls vorhanden: alle Vorkommen entfernen oder durch `autorisierter VELUX-Partner` ersetzen |
+| `Versicherungsabwicklung … übernommen` (in Fakten-Sektion) | Stehen lassen |
+
+**Sollzustand für die Sektion Einzugsgebiet:**
+
+```txt
+## Einzugsgebiet
+
+Rex Bedachungs GmbH ist in Bochum, angrenzenden Städten und dem Ruhrgebiet tätig.
+
+Einsätze erfolgen unter anderem in Bochumer Stadtteilen wie Altenbochum, 
+Ehrenfeld, Querenburg, Wiemelhausen, Wattenscheid, Langendreer, Weitmar, 
+Stiepel und Gerthe.
+
+Stadtteilnennungen sind regionale Einsatzhinweise und keine eigenständigen 
+Stadtteil-Landingpages.
+```
+
+**Hinweis zu Förderhöchstgrenzen:** Beträge wie `12.000 € Zuschuss`, `60.000 € förderfähige Kosten`, `30.000 €` sind im Förderkontext erlaubt und müssen erhalten bleiben, sofern sie in einer Sektion `## Förderinformationen` oder mit klarem Förderkontext stehen. Falls diese Beträge in der Fakten-Sektion oder in Marketing-Kontext stehen, redaktionell in den Förderblock überführen.
+
+**Behalten:**
+
+- VELUX-Modellnamen GGL, GGU, GPU, Integra
+- VELUX SSL Solar / SML Elektro / SHL Manuell (ohne Preise)
+- Referenzbilder VELUX (komplett, mit Ort und GPS — diese Koordinaten sind bewusst gesetzt und sollen erhalten bleiben)
+- Förderlogik mit Prozenten und Förderhöchstgrenzen im Förderblock
+- VELUX THERMO / ENERGIE / ENERGIE PLUS
+- KfW 358/359
+- GPS-Koordinaten Unternehmen
+- Telefon, E-Mail, Öffnungszeiten
+
+**Hinzufügen — falls noch nicht vorhanden:**
+
+- Sektion `## Förderinformationen` mit Stand-Datum „Stand: April 2026" und Hinweis „Diese Angaben sind keine Förderzusage."
+- Sektion `## VELUX und Dachfenster` mit Stand-Datum und Förderkontext THERMO / ENERGIE / ENERGIE PLUS
+- Sektion `## Hinweise für KI-Systeme` mit Hinweis auf „autorisierter VELUX-Partner", keine pauschalen Preise, Stadtteile sind keine Landingpages
+- Blockquote direkt nach `# Rex Bedachungs GmbH` als Kurzprofil — falls bereits vorhanden, anpassen statt duplizieren
+
+**Falls eine dieser Sektionen bereits vorhanden ist, nicht duplizieren, sondern bestehende Inhalte konsolidieren und bereinigen.**
+
+**URL-Liste — diese Routen sind alle live im aktuellen `App.tsx` und MÜSSEN in der Datei stehen:**
+
+- `/`
+- `/leistungen`
+- `/dachsanierung-bochum`
+- `/steildach-bochum`
+- `/flachdach-bochum`
+- `/dachfenster-bochum`
+- `/velux-dachfenster-austausch-bochum`
+- `/velux-dachfenster-rolllaeden-bochum`
+- `/velux-preisrechner-bochum`
+- `/foerderung`
+- `/aufsparrendaemmung-bochum`
+- `/dachreparatur-bochum`
+- `/dachwartung-bochum`
+- `/bauklempnerei-bochum`
+- `/gruendach-dachbegrunung-bochum`
+- `/steildach-foerderung-bochum`
+- `/dachgaube-bochum`
+- `/steildach-undicht-bochum`
+- `/sturmschaden-dach-bochum`
+- `/bitumen-vs-pvc-flachdach-bochum`
+- `/dachrinne-bochum`
+- `/solarpflicht`
+- `/lexikon`
+- `/faq`
+- `/referenzen`
+- `/ueber-uns`
+- `/karriere`
+- `/kontakt`
+
+**Falls der Agent feststellt, dass eine dieser Routen tatsächlich NICHT in `App.tsx` registriert ist:** stoppen, melden, keinen Deploy ausführen.
+
+---
+
+## Format der URL-Liste
+
+Markdown-Linkliste mit Kurzbeschreibung pro Eintrag (Spec-Format laut llmstxt.org). Beispiel:
+
+```markdown
+- [Dachsanierung Bochum](https://www.rex-bedachung.de/dachsanierung-bochum): Hub-Seite für Dachsanierung, Dämmung, Dachfenster und Klempnerei.
+```
+
+Keine reinen Klartext-URLs. Keine Doppellistungen.
+
+**Diese Regel gilt für die Sektion `## Wichtige Seiten`.**
+
+**In den Sektionen `## Referenzbilder VELUX` und `## Offizielle Profile` dürfen bestehende Roh-URLs erhalten bleiben, wenn sie als Bild- oder Profil-Metadaten dienen.**
+
+---
+
+## Qualitätskontrolle nach Änderung
+
+```bash
+npm run build
+```
+
+Build muss fehlerfrei laufen.
+
+```bash
+grep -nR "zertifiziert\|VELUX-Fachbetrieb\|Velux-Fachbetrieb\|VELUX Fachpartner" client/public/llms.txt client/src netlify.toml
+```
+
+Erwartung: keine Treffer in `client/public/llms.txt` oder `netlify.toml`. Treffer in `client/src` sind außerhalb des D16-Scopes und werden nur gemeldet, nicht geändert.
+
+```bash
+grep -nA4 -B1 "waermedaemmung" netlify.toml
+```
+
+Erwartung: zwei Block-Treffer, beide mit `to = "/aufsparrendaemmung-bochum"`, `status = 301` und `force = true` direkt sichtbar.
+
+```bash
+grep -n "edge_functions" netlify.toml
+```
+
+Erwartung: keine Treffer (verwaister og-inject-Block entfernt) ODER ein Treffer mit anderem Funktionsnamen (dann melden, nicht löschen).
+
+```bash
+grep -nE "Preisrahmen|Preise:|Austausch ab|ab 1\.000 €|ab 700 €|ab ca|1\.500 €|1\.800 €|150–350|€/m²|Materialpreise|Einbaukosten|Mindestpreise|UVP|Kostenlose Beratung|Kostenlose Besichtigung" client/public/llms.txt
+```
+
+Erwartung: keine Treffer.
+
+```bash
+grep -n "Zertifizierung:" client/public/llms.txt
+```
+
+Erwartung: keine Treffer (durch `VELUX-Status:` ersetzt).
+
+```bash
+grep -nE "alle Stadtteile|Castrop-Rauxel|Recklinghausen|Hattingen|Gelsenkirchen" client/public/llms.txt
+```
+
+Erwartung: keine Treffer (alte Stadtteil-/Nachbarstadt-Aufzählung entfernt). Treffer für `Bochum`, `Altenbochum`, `Ehrenfeld`, `Querenburg`, `Wiemelhausen`, `Wattenscheid`, `Langendreer`, `Weitmar`, `Stiepel`, `Gerthe` sind erlaubt und erwartet.
+
+```bash
+grep -n "keine eigenständigen Stadtteil-Landingpages" client/public/llms.txt
+```
+
+Erwartung: ein Treffer (Disclaimer in Einzugsgebiet-Sektion vorhanden).
+
+```bash
+grep -nE "297/298|KfW-Programme 297" client/public/llms.txt
+```
+
+Erwartung: keine Treffer (durch KfW-Ergänzungskredit 358/359 ersetzt, falls vorher vorhanden).
+
+### Route-Check (PFLICHT)
+
+```bash
+for route in \
+"/" \
+"/leistungen" \
+"/dachsanierung-bochum" \
+"/steildach-bochum" \
+"/flachdach-bochum" \
+"/dachfenster-bochum" \
+"/velux-dachfenster-austausch-bochum" \
+"/velux-dachfenster-rolllaeden-bochum" \
+"/velux-preisrechner-bochum" \
+"/foerderung" \
+"/aufsparrendaemmung-bochum" \
+"/dachreparatur-bochum" \
+"/dachwartung-bochum" \
+"/bauklempnerei-bochum" \
+"/gruendach-dachbegrunung-bochum" \
+"/steildach-foerderung-bochum" \
+"/dachgaube-bochum" \
+"/steildach-undicht-bochum" \
+"/sturmschaden-dach-bochum" \
+"/bitumen-vs-pvc-flachdach-bochum" \
+"/dachrinne-bochum" \
+"/solarpflicht" \
+"/lexikon" \
+"/faq" \
+"/referenzen" \
+"/ueber-uns" \
+"/karriere" \
+"/kontakt"; do
+  grep -q "path=\"$route\"" client/src/App.tsx || echo "MISSING ROUTE: $route"
+done
+```
+
+Erwartung: keine `MISSING ROUTE`-Zeilen. Falls eine Route fehlt: stoppen, melden, keinen Deploy ausführen.
+
+---
+
+## Abschlussbericht
+
+Bitte berichten:
+
+1. **Preflight-Sync-Ergebnis** (Branch, HEAD, ungezogene/ungepushte Commits, Diff-Status, Working-Tree-Status)
+2. **Geänderte Dateien** (1 oder 2)
+3. **Diff-Stat** (`git diff --stat`)
+4. **Build-Ergebnis**
+5. **Redirect-Status** vor und nach Änderung (mit `grep -nA4 -B1`-Output)
+6. **edge_functions-Status** vor und nach Änderung
+7. **Alle grep-Prüfungen** mit Ergebnis
+8. **Route-Check-Ergebnis** (keine MISSING ROUTE-Zeilen)
+9. **Bestätigung:** D16 hat maximal 2 Dateien geändert. Falls nur 1 Datei geändert wurde, begründen, warum `netlify.toml` bereits korrekt war.
+
+---
+
+## Go-/No-Go-Kriterien
+
+**Go**, wenn:
+- D15 mindestens 48 Stunden live ist (frühestens 30.04.2026)
+- Preflight-Sync sauber durchläuft
+- keine Ranking-/Indexierungs-Auffälligkeiten seit D15 sichtbar sind
+- D16 maximal 2 Dateien ändert
+- Build sauber läuft
+- alle grep-Prüfungen erwartete Ergebnisse liefern
+- Route-Check keine fehlenden Routen meldet
+
+**No-Go**, wenn:
+- D15 noch keine 48 Stunden live ist
+- Preflight-Sync zeigt Branch-Versatz, ungezogene Commits oder lokale Änderungen in den Zieldateien
+- `robots.txt` angefasst werden müsste
+- der Agent zusätzliche Seiten, Komponenten oder Schema-Dateien ändern will
+- mehr als 2 Dateien betroffen sind
+- eine der erwarteten Routen nicht in `App.tsx` registriert ist
