@@ -59,11 +59,13 @@
   from = "/waermedaemmung"
   to = "/aufsparrendaemmung-bochum"
   status = 301
+  force = true
 
 [[redirects]]
   from = "/waermedaemmung/"
   to = "/aufsparrendaemmung-bochum"
   status = 301
+  force = true
 
 [[redirects]]
   from = "/velux-fenster"
