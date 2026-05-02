@@ -1,0 +1,239 @@
+Führe exakt die folgenden Änderungen in 9 Dateien durch. Keine weiteren Änderungen.
+
+─────────────────────────────────────────
+DATEI 1: client/src/components/Navigation.tsx
+─────────────────────────────────────────
+
+Änderung 1 — Logo: rounded-full und feste Breite entfernen:
+Suche:
+  className="h-12 w-12 object-contain rounded-full"
+
+Ersetze mit:
+  className="h-12 w-auto object-contain"
+
+Änderung 2 — Firmenname: Zeilenumbruch verhindern, Schriftgröße anpassen:
+Suche:
+  <div className="hidden sm:block">
+              <div className="font-bold text-lg text-foreground">Rex Bedachungs GmbH</div>
+            </div>
+
+Ersetze mit:
+  <div className="hidden sm:block">
+              <div className="font-bold text-base text-foreground whitespace-nowrap">Rex Bedachungs GmbH</div>
+            </div>
+
+─────────────────────────────────────────
+DATEI 2: client/src/pages/GruendachBochum.tsx
+─────────────────────────────────────────
+
+Suche:
+  <section className="bg-gradient-to-br from-slate-900 to-green-950 py-20 px-4" data-testid="section-hero">
+        <div className="max-w-4xl mx-auto text-center">
+
+Ersetze mit:
+  <section className="relative text-white py-20 px-4 overflow-hidden" data-testid="section-hero">
+        <div
+          className="absolute inset-0 bg-cover bg-center"
+          style={{ backgroundImage: "url('/images/gruendach-extensiv-sedum-neubau-mehrfamilienhaus-bochum.webp')" }}
+          aria-hidden="true"
+        />
+        <div className="absolute inset-0 bg-gradient-to-br from-slate-900/90 to-green-950/80" aria-hidden="true" />
+        <div className="max-w-4xl mx-auto text-center relative z-10">
+
+─────────────────────────────────────────
+DATEI 3: client/src/pages/DachgaubeBochum.tsx
+─────────────────────────────────────────
+
+Änderung 1 — Hero:
+Suche:
+  <section
+        className="py-20 px-4 bg-gradient-to-br from-slate-900 to-slate-700 text-white"
+        data-testid="section-hero"
+      >
+        <div className="max-w-4xl mx-auto text-center">
+
+Ersetze mit:
+  <section
+        className="relative py-20 px-4 text-white overflow-hidden"
+        data-testid="section-hero"
+      >
+        <div
+          className="absolute inset-0 bg-cover bg-center"
+          style={{ backgroundImage: "url('/images/dachgaube-bochum-stiepel.webp')" }}
+          aria-hidden="true"
+        />
+        <div className="absolute inset-0 bg-gradient-to-br from-slate-900/85 to-slate-700/75" aria-hidden="true" />
+        <div className="max-w-4xl mx-auto text-center relative z-10">
+
+Änderung 2 — og:image:
+Suche:
+  <meta property="og:image" content="https://www.rex-bedachung.de/images/tondach-hero-dachdeckung-bochum.webp" />
+
+Ersetze mit:
+  <meta property="og:image" content="https://www.rex-bedachung.de/images/dachgaube-bochum-stiepel.webp" />
+
+Änderung 3 — twitter:image:
+Suche:
+  <meta name="twitter:image" content="https://www.rex-bedachung.de/images/tondach-hero-dachdeckung-bochum.webp" />
+
+Ersetze mit:
+  <meta name="twitter:image" content="https://www.rex-bedachung.de/images/dachgaube-bochum-stiepel.webp" />
+
+─────────────────────────────────────────
+DATEI 4: client/src/pages/AufsparrendaemmungBochum.tsx
+─────────────────────────────────────────
+
+Änderung 1 — Hero:
+Suche:
+  <section
+        className="py-20 px-4 bg-gradient-to-br from-slate-900 to-slate-800 text-white"
+        data-testid="section-hero"
+      >
+        <div className="max-w-4xl mx-auto text-center">
+
+Ersetze mit:
+  <section
+        className="relative py-20 px-4 text-white overflow-hidden"
+        data-testid="section-hero"
+      >
+        <div
+          className="absolute inset-0 bg-cover bg-center"
+          style={{ backgroundImage: "url('/images/dachsanierung-bochum-stiepel-Aufsparrendaemmung.webp')" }}
+          aria-hidden="true"
+        />
+        <div className="absolute inset-0 bg-gradient-to-br from-slate-900/85 to-slate-800/75" aria-hidden="true" />
+        <div className="max-w-4xl mx-auto text-center relative z-10">
+
+Änderung 2 — og:image:
+Suche:
+  <meta property="og:image" content="https://www.rex-bedachung.de/images/tondach-hero-dachdeckung-bochum.webp" />
+
+Ersetze mit:
+  <meta property="og:image" content="https://www.rex-bedachung.de/images/dachsanierung-bochum-stiepel-Aufsparrendaemmung.webp" />
+
+Änderung 3 — twitter:image:
+Suche:
+  <meta name="twitter:image" content="https://www.rex-bedachung.de/images/tondach-hero-dachdeckung-bochum.webp" />
+
+Ersetze mit:
+  <meta name="twitter:image" content="https://www.rex-bedachung.de/images/dachsanierung-bochum-stiepel-Aufsparrendaemmung.webp" />
+
+─────────────────────────────────────────
+DATEI 5: client/src/pages/DachrinnenBochum.tsx
+─────────────────────────────────────────
+
+Änderung 1 — Hero-Hintergrundbild:
+Suche:
+  style={{ backgroundImage: "url('/images/kamin-sanierung-bochum-dachdecker.webp')" }}
+
+Ersetze mit:
+  style={{ backgroundImage: "url('/images/dachrinne-fallrohr-bochum.webp')" }}
+
+Änderung 2 — og:image:
+Suche:
+  <meta property="og:image" content="https://www.rex-bedachung.de/images/kamin-sanierung-bochum-dachdecker.webp" />
+
+Ersetze mit:
+  <meta property="og:image" content="https://www.rex-bedachung.de/images/dachrinne-fallrohr-bochum.webp" />
+
+Änderung 3 — twitter:image:
+Suche:
+  <meta name="twitter:image" content="https://www.rex-bedachung.de/images/kamin-sanierung-bochum-dachdecker.webp" />
+
+Ersetze mit:
+  <meta name="twitter:image" content="https://www.rex-bedachung.de/images/dachrinne-fallrohr-bochum.webp" />
+
+─────────────────────────────────────────
+DATEI 6: client/src/pages/SturmschadenDach.tsx
+─────────────────────────────────────────
+
+Änderung 1 — Hero: Inline-Gradient durch Bild + Overlay ersetzen:
+Suche:
+  <section
+        className="relative text-white py-24 px-4 overflow-hidden"
+        style={{ background: "linear-gradient(135deg, #0f172a 0%, #1e3a8a 100%)" }}
+      >
+        <div className="max-w-4xl mx-auto relative z-10">
+
+Ersetze mit:
+  <section
+        className="relative text-white py-24 px-4 overflow-hidden"
+      >
+        <div
+          className="absolute inset-0 bg-cover bg-center"
+          style={{ backgroundImage: "url('/images/sturmschaden-dach-bochum.webp')" }}
+          aria-hidden="true"
+        />
+        <div className="absolute inset-0" style={{ background: "linear-gradient(135deg, #0f172a 0%, #1e3a8a 100%)", opacity: 0.82 }} aria-hidden="true" />
+        <div className="max-w-4xl mx-auto relative z-10">
+
+Änderung 2 — og:image:
+Suche:
+  <meta property="og:image" content="https://www.rex-bedachung.de/images/dachreparatur-bochum-rex-bedachung.webp" />
+
+Ersetze mit:
+  <meta property="og:image" content="https://www.rex-bedachung.de/images/sturmschaden-dach-bochum.webp" />
+
+Änderung 3 — twitter:image:
+Suche:
+  <meta name="twitter:image" content="https://www.rex-bedachung.de/images/dachreparatur-bochum-rex-bedachung.webp" />
+
+Ersetze mit:
+  <meta name="twitter:image" content="https://www.rex-bedachung.de/images/sturmschaden-dach-bochum.webp" />
+
+─────────────────────────────────────────
+DATEI 7: client/src/pages/BitumenVsPvc.tsx
+─────────────────────────────────────────
+
+Suche alle Vorkommen von "zertifizierter VELUX-Partner" → ersetze mit "autorisierter VELUX-Partner".
+Suche alle weiteren Vorkommen von "zertifiziert" im VELUX-Kontext → ersetze mit "autorisiert".
+
+─────────────────────────────────────────
+DATEI 8: client/src/pages/References.tsx
+─────────────────────────────────────────
+
+Suche alle Vorkommen von "zertifizierter VELUX-Partner" → ersetze mit "autorisierter VELUX-Partner".
+Suche alle weiteren Vorkommen von "zertifiziert" im VELUX-Kontext → ersetze mit "autorisiert".
+
+─────────────────────────────────────────
+DATEI 9: client/src/pages/Foerderung.tsx
+─────────────────────────────────────────
+
+Suche alle Vorkommen von "zertifizierter VELUX-Partner" → ersetze mit "autorisierter VELUX-Partner".
+Suche alle weiteren Vorkommen von "zertifiziert" im VELUX-Kontext → ersetze mit "autorisiert".
+
+─────────────────────────────────────────
+VERIFIKATION NACH DEN ÄNDERUNGEN:
+─────────────────────────────────────────
+
+1) grep -n "zertifiziert" client/src/pages/BitumenVsPvc.tsx client/src/pages/References.tsx client/src/pages/Foerderung.tsx
+   Erwartung: keine Treffer.
+
+2) grep -n "rounded-full\|w-12" client/src/components/Navigation.tsx
+   Erwartung: weder "rounded-full" noch "w-12" im Logo-img vorhanden.
+
+3) grep -n "whitespace-nowrap" client/src/components/Navigation.tsx
+   Erwartung: mindestens 1 Treffer.
+
+4) grep -n "gruendach-extensiv-sedum" client/src/pages/GruendachBochum.tsx
+   Erwartung: mindestens 1 Treffer.
+
+5) grep -n "dachgaube-bochum-stiepel" client/src/pages/DachgaubeBochum.tsx
+   Erwartung: mindestens 3 Treffer (Hero, og:image, twitter:image).
+
+6) grep -n "Aufsparrendaemmung" client/src/pages/AufsparrendaemmungBochum.tsx
+   Erwartung: mindestens 3 Treffer (Hero, og:image, twitter:image).
+
+7) grep -n "dachrinne-fallrohr-bochum" client/src/pages/DachrinnenBochum.tsx
+   Erwartung: mindestens 3 Treffer (Hero, og:image, twitter:image).
+
+8) grep -n "sturmschaden-dach-bochum.webp" client/src/pages/SturmschadenDach.tsx
+   Erwartung: mindestens 3 Treffer (Hero, og:image, twitter:image).
+
+9) npm run build
+   Erwartung: fehlerfrei.
+
+Melde abschließend:
+- Welche "zertifiziert"-Treffer pro Datei gefunden und ersetzt wurden (Zeilennummern)
+- Build-Status
+- Exakt diese 9 Dateien geändert, keine weiteren.
