@@ -62,7 +62,7 @@ const projects = [
     category: "velux",
     tag: "VELUX",
     description:
-      "VELUX 3er-Kombination auf Steildach mit anthrazitem Flachziegel. Zwei GGL-Fenster nebeneinander in der oberen Reihe, ein breiteres GGL-Fenster darunter – optimale Belichtung des Dachgeschosses auf zwei Ebenen. Fachgerechter Einbau durch Rex Bedachungs GmbH Bochum, zertifizierter VELUX-Partner.",
+      "VELUX 3er-Kombination auf Steildach mit anthrazitem Flachziegel. Zwei GGL-Fenster nebeneinander in der oberen Reihe, ein breiteres GGL-Fenster darunter – optimale Belichtung des Dachgeschosses auf zwei Ebenen. Fachgerechter Einbau durch Rex Bedachungs GmbH Bochum, autorisierter VELUX-Partner.",
   },
   {
     src: "/images/velux-dachfenster-doppelanlage-einbau-tonziegel-bochum.webp",
@@ -73,7 +73,7 @@ const projects = [
     category: "velux",
     tag: "VELUX",
     description:
-      "VELUX Lichtlösung DUO frisch eingebaut auf grauem Tonziegel-Steildach. Linkes Fenster geöffnet – der sichtbare Holzrahmen und die präzise Abdichtung zeigen handwerkliche Qualität. Warmes Abendlicht, Bochum 2024. Einbau durch Rex Bedachungs GmbH, zertifizierter VELUX-Partner.",
+      "VELUX Lichtlösung DUO frisch eingebaut auf grauem Tonziegel-Steildach. Linkes Fenster geöffnet – der sichtbare Holzrahmen und die präzise Abdichtung zeigen handwerkliche Qualität. Warmes Abendlicht, Bochum 2024. Einbau durch Rex Bedachungs GmbH, autorisierter VELUX-Partner.",
   },
   {
     src: "/images/velux-dachfenster-einbau-bochum-typ1.webp",

@@ -87,10 +87,10 @@ export default function SturmschadenDach() {
         <link rel="canonical" href="https://www.rex-bedachung.de/sturmschaden-dach-bochum" />
         <meta property="og:title" content="Sturmschaden Dach Bochum – Notsicherung & Reparatur | Rex Bedachungs GmbH" />
         <meta property="og:description" content="Sturmschaden am Dach in Bochum – Rex Bedachungs GmbH sichert und repariert kurzfristig. Schadensdokumentation für Gebäudeversicherung inklusive." />
-        <meta property="og:image" content="https://www.rex-bedachung.de/images/dachreparatur-bochum-rex-bedachung.webp" />
+        <meta property="og:image" content="https://www.rex-bedachung.de/images/sturmschaden-dach-bochum.webp" />
         <meta property="og:site_name" content="Rex Bedachungs GmbH" />
         <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:image" content="https://www.rex-bedachung.de/images/dachreparatur-bochum-rex-bedachung.webp" />
+        <meta name="twitter:image" content="https://www.rex-bedachung.de/images/sturmschaden-dach-bochum.webp" />
         <script type="application/ld+json">{schemaJson}</script>
         <script type="application/ld+json">{`{
   "@context": "https://schema.org",
@@ -164,8 +164,13 @@ export default function SturmschadenDach() {
       {/* Hero */}
       <section
         className="relative text-white py-24 px-4 overflow-hidden"
-        style={{ background: "linear-gradient(135deg, #0f172a 0%, #1e3a8a 100%)" }}
       >
+        <div
+          className="absolute inset-0 bg-cover bg-center"
+          style={{ backgroundImage: "url('/images/sturmschaden-dach-bochum.webp')" }}
+          aria-hidden="true"
+        />
+        <div className="absolute inset-0" style={{ background: "linear-gradient(135deg, #0f172a 0%, #1e3a8a 100%)", opacity: 0.82 }} aria-hidden="true" />
         <div className="max-w-4xl mx-auto relative z-10">
           <div className="inline-flex items-center gap-2 bg-white/10 border border-white/20 rounded-full px-4 py-1 mb-6">
             <Wind className="w-4 h-4 text-blue-300" />

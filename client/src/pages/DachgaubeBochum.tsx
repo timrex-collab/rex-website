@@ -163,7 +163,7 @@ export default function DachgaubeBochum() {
           property="og:description"
           content="Dachgaube einbauen oder sanieren in Bochum: Schleppgaube, Spitzgaube, Fledermausgaube, Kastengaube. Meisterbetrieb seit 1984. Angebot nach kostenlosem Aufmaß."
         />
-        <meta property="og:image" content="https://www.rex-bedachung.de/images/tondach-hero-dachdeckung-bochum.webp" />
+        <meta property="og:image" content="https://www.rex-bedachung.de/images/dachgaube-bochum-stiepel.webp" />
         <meta property="og:url" content="https://www.rex-bedachung.de/dachgaube-bochum" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="Dachgaube Bochum – Einbau & Sanierung | Rex Bedachungs GmbH" />
@@ -171,7 +171,7 @@ export default function DachgaubeBochum() {
           name="twitter:description"
           content="Dachgaube einbauen oder sanieren in Bochum: Schleppgaube, Spitzgaube, Fledermausgaube, Kastengaube. Meisterbetrieb seit 1984. Angebot nach kostenlosem Aufmaß."
         />
-        <meta name="twitter:image" content="https://www.rex-bedachung.de/images/tondach-hero-dachdeckung-bochum.webp" />
+        <meta name="twitter:image" content="https://www.rex-bedachung.de/images/dachgaube-bochum-stiepel.webp" />
         <script type="application/ld+json">{JSON.stringify(schemaData)}</script>
       </Helmet>
       <OrganizationSchema />
@@ -188,10 +188,16 @@ export default function DachgaubeBochum() {
 
       {/* 1. Hero */}
       <section
-        className="py-20 px-4 bg-gradient-to-br from-slate-900 to-slate-700 text-white"
+        className="relative py-20 px-4 text-white overflow-hidden"
         data-testid="section-hero"
       >
-        <div className="max-w-4xl mx-auto text-center">
+        <div
+          className="absolute inset-0 bg-cover bg-center"
+          style={{ backgroundImage: "url('/images/dachgaube-bochum-stiepel.webp')" }}
+          aria-hidden="true"
+        />
+        <div className="absolute inset-0 bg-gradient-to-br from-slate-900/85 to-slate-700/75" aria-hidden="true" />
+        <div className="max-w-4xl mx-auto text-center relative z-10">
           <h1 className="text-3xl md:text-5xl font-bold mb-6 leading-tight" data-testid="heading-hero">
             Dachgaube Bochum – Einbau &amp; Sanierung vom Meisterbetrieb
           </h1>

@@ -284,8 +284,14 @@ export default function GruendachBochum() {
         { label: "Gründach & Dachbegrünung" }
       ]} />
 
-      <section className="bg-gradient-to-br from-slate-900 to-green-950 py-20 px-4" data-testid="section-hero">
-        <div className="max-w-4xl mx-auto text-center">
+      <section className="relative text-white py-20 px-4 overflow-hidden" data-testid="section-hero">
+        <div
+          className="absolute inset-0 bg-cover bg-center"
+          style={{ backgroundImage: "url('/images/gruendach-extensiv-sedum-neubau-mehrfamilienhaus-bochum.webp')" }}
+          aria-hidden="true"
+        />
+        <div className="absolute inset-0 bg-gradient-to-br from-slate-900/90 to-green-950/80" aria-hidden="true" />
+        <div className="max-w-4xl mx-auto text-center relative z-10">
           <div className="inline-flex items-center gap-2 bg-green-700/30 text-green-300 text-sm font-medium px-4 py-2 rounded-full mb-6">
             <Leaf className="w-4 h-4" />
             Gründach &amp; Dachbegrünung – Rex Bedachungs GmbH, Bochum

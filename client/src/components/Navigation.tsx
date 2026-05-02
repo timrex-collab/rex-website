@@ -55,13 +55,13 @@ export default function Navigation() {
               src={logoPath}
               fallback={logoFallback}
               alt="Logo Rex Bedachungs GmbH Bochum"
-              className="h-12 w-12 object-contain rounded-full"
+              className="h-12 w-auto object-contain"
               width={200}
               height={114}
               data-testid="img-header-logo"
             />
             <div className="hidden sm:block">
-              <div className="font-bold text-lg text-foreground">Rex Bedachungs GmbH</div>
+              <div className="font-bold text-base text-foreground whitespace-nowrap">Rex Bedachungs GmbH</div>
             </div>
           </Link>
 

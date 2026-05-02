@@ -165,7 +165,7 @@ export default function AufsparrendaemmungBochum() {
           property="og:description"
           content="Aufsparrendämmung in Bochum: Die effektivste Dämmvariante für Steildächer. GEG-konform, BAFA-förderfähig. Rex Bedachungs GmbH – Meisterbetrieb seit 1984."
         />
-        <meta property="og:image" content="https://www.rex-bedachung.de/images/tondach-hero-dachdeckung-bochum.webp" />
+        <meta property="og:image" content="https://www.rex-bedachung.de/images/dachsanierung-bochum-stiepel-Aufsparrendaemmung.webp" />
         <meta property="og:url" content="https://www.rex-bedachung.de/aufsparrendaemmung-bochum" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="Aufsparrendämmung Bochum – Kosten, Ablauf & Förderung | Rex Bedachung" />
@@ -173,7 +173,7 @@ export default function AufsparrendaemmungBochum() {
           name="twitter:description"
           content="Aufsparrendämmung in Bochum: Die effektivste Dämmvariante für Steildächer. GEG-konform, BAFA-förderfähig. Rex Bedachungs GmbH – Meisterbetrieb seit 1984."
         />
-        <meta name="twitter:image" content="https://www.rex-bedachung.de/images/tondach-hero-dachdeckung-bochum.webp" />
+        <meta name="twitter:image" content="https://www.rex-bedachung.de/images/dachsanierung-bochum-stiepel-Aufsparrendaemmung.webp" />
         <script type="application/ld+json">{JSON.stringify(schemaData)}</script>
       </Helmet>
       <OrganizationSchema />
@@ -189,10 +189,16 @@ export default function AufsparrendaemmungBochum() {
 
       {/* 1. Hero */}
       <section
-        className="py-20 px-4 bg-gradient-to-br from-slate-900 to-slate-800 text-white"
+        className="relative py-20 px-4 text-white overflow-hidden"
         data-testid="section-hero"
       >
-        <div className="max-w-4xl mx-auto text-center">
+        <div
+          className="absolute inset-0 bg-cover bg-center"
+          style={{ backgroundImage: "url('/images/dachsanierung-bochum-stiepel-Aufsparrendaemmung.webp')" }}
+          aria-hidden="true"
+        />
+        <div className="absolute inset-0 bg-gradient-to-br from-slate-900/85 to-slate-800/75" aria-hidden="true" />
+        <div className="max-w-4xl mx-auto text-center relative z-10">
           <h1 className="text-3xl md:text-5xl font-bold mb-6 leading-tight" data-testid="heading-hero">
             Aufsparrendämmung Bochum – die effektivste Dämmung für Ihr Steildach
           </h1>

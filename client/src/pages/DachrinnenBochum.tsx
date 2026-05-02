@@ -121,10 +121,10 @@ export default function DachrinnenBochum() {
         <link rel="canonical" href="https://www.rex-bedachung.de/dachrinne-bochum" />
         <meta property="og:title" content="Dachrinne Bochum – Reinigung, Reparatur & Erneuerung | Rex Bedachungs GmbH" />
         <meta property="og:description" content="Dachrinne in Bochum reinigen, reparieren oder erneuern lassen – alle Materialien, Laubschutz, Sturmschadenreparatur. Meisterbetrieb Rex Bedachungs GmbH." />
-        <meta property="og:image" content="https://www.rex-bedachung.de/images/kamin-sanierung-bochum-dachdecker.webp" />
+        <meta property="og:image" content="https://www.rex-bedachung.de/images/dachrinne-fallrohr-bochum.webp" />
         <meta property="og:site_name" content="Rex Bedachungs GmbH" />
         <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:image" content="https://www.rex-bedachung.de/images/kamin-sanierung-bochum-dachdecker.webp" />
+        <meta name="twitter:image" content="https://www.rex-bedachung.de/images/dachrinne-fallrohr-bochum.webp" />
         <script type="application/ld+json">{schemaJson}</script>
         <script type="application/ld+json">{`{
   "@context": "https://schema.org",
@@ -188,7 +188,7 @@ export default function DachrinnenBochum() {
       <section className="relative text-white py-24 px-4 overflow-hidden" data-testid="section-hero">
         <div
           className="absolute inset-0 bg-cover bg-center"
-          style={{ backgroundImage: "url('/images/kamin-sanierung-bochum-dachdecker.webp')" }}
+          style={{ backgroundImage: "url('/images/dachrinne-fallrohr-bochum.webp')" }}
           aria-hidden="true"
         />
         <div className="absolute inset-0 bg-gradient-to-r from-black/75 via-black/55 to-black/30" aria-hidden="true" />
