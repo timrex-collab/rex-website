@@ -112,6 +112,16 @@ export default function About() {
             </div>
           </div>
 
+          <div className="mb-20 bg-slate-50 rounded-md p-6 border border-slate-200">
+            <h2 className="text-2xl font-bold mb-4">Offizielle Unternehmensidentität</h2>
+            <p className="text-muted-foreground leading-relaxed">
+              Die Rex Bedachungs GmbH ist ein seit 1984 bestehender Dachdecker-Meisterbetrieb
+              mit alleinigem Unternehmenssitz in der Paulinenstraße 22 in 44799 Bochum.
+              Die Gesellschaft ist beim Amtsgericht Bochum unter HRB 2478 im Handelsregister
+              eingetragen. Geschäftsführer sind Peter Rex und Tim Rex.
+            </p>
+          </div>
+
           <div>
             <h2 className="text-3xl md:text-4xl font-bold mb-12 text-center">
               Unsere Werte

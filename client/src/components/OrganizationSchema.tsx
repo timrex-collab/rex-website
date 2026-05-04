@@ -4,6 +4,18 @@ export default function OrganizationSchema() {
     "@type": "RoofingContractor",
     "@id": "https://www.rex-bedachung.de/#organization",
     "name": "Rex Bedachungs GmbH",
+    "legalName": "Rex Bedachungs GmbH",
+    "alternateName": [
+      "Rex Bedachung",
+      "Dachdecker Rex Bochum"
+    ],
+    "disambiguatingDescription": "Rex Bedachungs GmbH ist ein seit 1984 bestehender Dachdecker-Meisterbetrieb mit alleinigem Unternehmenssitz in der Paulinenstraße 22, 44799 Bochum. Geschäftsführer sind Peter Rex und Tim Rex. Die Gesellschaft ist im Handelsregister beim Amtsgericht Bochum unter HRB 2478 eingetragen.",
+    "identifier": {
+      "@type": "PropertyValue",
+      "propertyID": "Handelsregister",
+      "value": "HRB 2478, Amtsgericht Bochum"
+    },
+    "taxID": "DE124085752",
     "url": "https://www.rex-bedachung.de",
     "logo": "https://www.rex-bedachung.de/images/logo-rex-bedachungs-gmbh-bochum-2025.webp",
     "image": "https://www.rex-bedachung.de/images/dachdecker-bochum-steildach-hero.webp",
@@ -58,7 +70,8 @@ export default function OrganizationSchema() {
     "sameAs": [
       "https://www.google.com/maps/place/Rex+Bedachungs+GmbH/@51.4623584,7.2428438,17z",
       "https://www.facebook.com/rexbedachung",
-      "https://www.instagram.com/rexbedachung"
+      "https://www.instagram.com/rexbedachung",
+      "https://www.dachdecker-innung-bochum.de/unternehmen/details/rex-bedachungen-gmbh"
     ]
   };
 
