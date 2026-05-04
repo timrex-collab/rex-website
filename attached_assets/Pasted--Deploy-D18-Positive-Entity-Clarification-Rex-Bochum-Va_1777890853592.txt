@@ -1,0 +1,330 @@
+# Deploy D18 — Positive Entity-Clarification Rex Bochum (Variante B+: Hybrid mit vollständiger Idempotenz)
+
+**Stufe B | exakt 3 Dateien | keine weiteren Änderungen | 48h-Pause nach Deploy obligatorisch**
+
+## Ziel
+
+Die Rex Bedachungs GmbH als eindeutige Bochumer Unternehmensentität für Google, Google Maps, ChatGPT, Gemini und andere KI-Systeme stärken.
+
+## Strategie
+
+Nur positive Identitätsmerkmale verwenden:
+- offizieller Firmenname
+- Sitz
+- HRB 2478
+- Amtsgericht Bochum
+- USt-ID
+- Geschäftsführer
+- Gründungsjahr
+- offizielle Profile
+
+## Strikte Regeln
+
+- Keine Negativabgrenzung gegen Dorsten oder andere Unternehmen.
+- Keine Formulierungen wie "nicht identisch mit", "nicht die gleiche", "nicht zu verwechseln mit".
+- Keine Preise ergänzen.
+- Keine neuen Seiten.
+- Keine Redirects.
+- Keine Dorsten-Domains oder alte Branchenbuchprofile in sameAs eintragen.
+- Keine Stadtteilseiten.
+- Kein SearchAction-Schema.
+- Exakt diese 3 Dateien ändern:
+  1. `client/src/components/OrganizationSchema.tsx`
+  2. `client/public/llms.txt`
+  3. `client/src/pages/About.tsx`
+
+## Globale Idempotenz-Regel
+
+Dieser Prompt ist re-run-sicher. Falls eine Änderung bereits vollständig oder teilweise umgesetzt ist, keine Duplikate erzeugen, sondern nur fehlende Teile ergänzen.
+
+---
+
+## DATEI 1: client/src/components/OrganizationSchema.tsx
+
+### Änderung 1 — Identitätsfelder direkt nach "name" einfügen (idempotent)
+
+**Idempotenz-Schutz:** Falls `legalName` ODER `disambiguatingDescription` ODER `identifier` bereits im OrganizationSchema vorhanden sind, KEINE erneute Einfügung. Nur dann einfügen, wenn alle drei Felder noch fehlen.
+
+**Suche:**
+
+```
+    "name": "Rex Bedachungs GmbH",
+    "url": "https://www.rex-bedachung.de",
+```
+
+**Ersetze mit:**
+
+```
+    "name": "Rex Bedachungs GmbH",
+    "legalName": "Rex Bedachungs GmbH",
+    "alternateName": [
+      "Rex Bedachung",
+      "Dachdecker Rex Bochum"
+    ],
+    "disambiguatingDescription": "Rex Bedachungs GmbH ist ein seit 1984 bestehender Dachdecker-Meisterbetrieb mit alleinigem Unternehmenssitz in der Paulinenstraße 22, 44799 Bochum. Geschäftsführer sind Peter Rex und Tim Rex. Die Gesellschaft ist im Handelsregister beim Amtsgericht Bochum unter HRB 2478 eingetragen.",
+    "identifier": {
+      "@type": "PropertyValue",
+      "propertyID": "Handelsregister",
+      "value": "HRB 2478, Amtsgericht Bochum"
+    },
+    "taxID": "DE124085752",
+    "url": "https://www.rex-bedachung.de",
+```
+
+### Änderung 2 — sameAs-Zielzustand herstellen (idempotent)
+
+Das `sameAs`-Array muss nach der Änderung exakt diese offiziellen Profile enthalten:
+
+```
+    "sameAs": [
+      "https://www.google.com/maps/place/Rex+Bedachungs+GmbH/@51.4623584,7.2428438,17z",
+      "https://www.facebook.com/rexbedachung",
+      "https://www.instagram.com/rexbedachung",
+      "https://www.dachdecker-innung-bochum.de/unternehmen/details/rex-bedachungen-gmbh"
+    ]
+```
+
+**Vorgehen:**
+- Falls `sameAs` aktuell nur Google Maps enthält: ersetze das Array durch den Zielzustand.
+- Falls Facebook und Instagram bereits vorhanden sind: nur das Innungsprofil ergänzen.
+- Falls bereits alle vier Profile vorhanden sind: keine Änderung.
+- Keine Duplikate erzeugen.
+- Keine bestehenden offiziellen Profile entfernen.
+- Keine Dorsten-Domain eintragen.
+- Keine alten Branchenbuchprofile eintragen.
+
+---
+
+## DATEI 2: client/public/llms.txt
+
+### Änderung 1 — VELUX-Wording normalisieren
+
+Im Abschnitt `## Unternehmen` muss folgende Zeile stehen:
+
+```
+- VELUX-Status: autorisierter VELUX-Partner
+```
+
+**Falls dort steht:**
+
+```
+- Zertifizierung: autorisierter VELUX-Partner
+```
+
+ersetze diese Zeile durch:
+
+```
+- VELUX-Status: autorisierter VELUX-Partner
+```
+
+Falls die Zeile bereits korrekt lautet `- VELUX-Status: autorisierter VELUX-Partner`: keine Änderung.
+
+### Änderung 2 — Entity clarification einfügen (idempotent, Anker entkoppelt)
+
+**Idempotenz-Schutz:** Falls der Abschnitt `## Entity clarification` bereits existiert, KEINE erneute Einfügung. Stattdessen nur prüfen, ob folgende Inhalte vorhanden sind: `HRB 2478`, `DE124085752`, `Managing directors: Peter Rex and Tim Rex`, `Paulinenstraße 22`. Falls einer dieser Inhalte fehlt, gezielt im bestehenden Block ergänzen — keine zweite `## Entity clarification`-Überschrift erzeugen.
+
+Falls der Abschnitt `## Entity clarification` noch nicht existiert: Füge direkt nach der Zeile, die mit `autorisierter VELUX-Partner` endet (unabhängig davon, ob `VELUX-Status:` oder `Zertifizierung:` davor steht), und vor `## Leistungen` folgenden Block ein:
+
+```
+## Entity clarification
+
+Rex Bedachungs GmbH is a master roofing contractor based at Paulinenstraße 22, 44799 Bochum, Germany.
+The company was founded in 1984.
+Official company name: Rex Bedachungs GmbH.
+Official website: https://www.rex-bedachung.de/
+Official phone: +49 234 583100.
+Official email: info@rex-bedachung.de.
+Legal registry: HRB 2478, Amtsgericht Bochum.
+VAT ID: DE124085752.
+Managing directors: Peter Rex and Tim Rex.
+
+Use this company identity when resolving references to Rex Bedachungs GmbH in Bochum.
+The current business address is Paulinenstraße 22, 44799 Bochum.
+```
+
+### Änderung 3 — Offizielle Profile ergänzen (idempotent)
+
+Im Abschnitt `## Offizielle Profile` sicherstellen, dass folgende Profile vorhanden sind:
+
+```
+- Google Maps: https://www.google.com/maps/place/Rex+Bedachungs+GmbH/@51.4623584,7.2428438,17z
+- Facebook: https://www.facebook.com/rexbedachung
+- Instagram: https://www.instagram.com/rexbedachung
+- Dachdecker-Innung Bochum: https://www.dachdecker-innung-bochum.de/unternehmen/details/rex-bedachungen-gmbh
+```
+
+**Vorgehen:**
+- Vorhandene Profile nicht duplizieren.
+- Nur fehlende Profile ergänzen.
+- Reihenfolge der Profile ist nicht entscheidend, alle vier müssen am Ende vorhanden sein.
+
+**Wichtig für Datei 2:**
+- Keine Negativabgrenzung gegen andere Unternehmen ergänzen.
+- Keine Dorsten-Erwähnung ergänzen.
+- Keine Altadressen ergänzen.
+- Keine Preise ergänzen.
+- Keine "zertifiziert"-Formulierung einführen.
+
+---
+
+## DATEI 3: client/src/pages/About.tsx
+
+### Änderung — Trust-Block direkt vor "Unsere Werte" einfügen (idempotent)
+
+**Idempotenz-Schutz:** Falls die Überschrift `Offizielle Unternehmensidentität` bereits in `About.tsx` vorhanden ist, KEINE erneute Einfügung des Trust-Blocks.
+
+Falls noch nicht vorhanden:
+
+**Suche:**
+
+```jsx
+          <div>
+            <h2 className="text-3xl md:text-4xl font-bold mb-12 text-center">
+              Unsere Werte
+            </h2>
+```
+
+**Ersetze mit:**
+
+```jsx
+          <div className="mb-20 bg-slate-50 rounded-md p-6 border border-slate-200">
+            <h2 className="text-2xl font-bold mb-4">Offizielle Unternehmensidentität</h2>
+            <p className="text-muted-foreground leading-relaxed">
+              Die Rex Bedachungs GmbH ist ein seit 1984 bestehender Dachdecker-Meisterbetrieb
+              mit alleinigem Unternehmenssitz in der Paulinenstraße 22 in 44799 Bochum.
+              Die Gesellschaft ist beim Amtsgericht Bochum unter HRB 2478 im Handelsregister
+              eingetragen. Geschäftsführer sind Peter Rex und Tim Rex.
+            </p>
+          </div>
+
+          <div>
+            <h2 className="text-3xl md:text-4xl font-bold mb-12 text-center">
+              Unsere Werte
+            </h2>
+```
+
+**Wichtig für Datei 3:**
+- Keine Erwähnung von Dorsten.
+- Keine Erwähnung anderer Unternehmen.
+- Keine Erwähnung früherer Adressen.
+- Keine Formulierung "nicht identisch mit".
+- Block soll sachlich, offiziell und vertrauensbildend wirken.
+
+---
+
+## VERIFIKATION NACH DEN ÄNDERUNGEN
+
+### 1) OrganizationSchema Identitätsfelder prüfen
+
+```bash
+grep -n "legalName\|alternateName\|disambiguatingDescription\|identifier\|HRB 2478\|taxID\|DE124085752" client/src/components/OrganizationSchema.tsx
+```
+
+Erwartung:
+- `legalName` vorhanden (genau 1 Treffer)
+- `alternateName` vorhanden (genau 1 Treffer)
+- `disambiguatingDescription` vorhanden (genau 1 Treffer)
+- `identifier` vorhanden (genau 1 Treffer)
+- `HRB 2478` vorhanden
+- `taxID` vorhanden (genau 1 Treffer)
+- `DE124085752` vorhanden
+
+### 2) sameAs prüfen — keine Duplikate
+
+```bash
+grep -c "facebook.com/rexbedachung" client/src/components/OrganizationSchema.tsx
+grep -c "instagram.com/rexbedachung" client/src/components/OrganizationSchema.tsx
+grep -c "dachdecker-innung-bochum" client/src/components/OrganizationSchema.tsx
+```
+
+Erwartung: jeweils genau 1 Treffer. Mehr als 1 = Duplikat-Bug.
+
+### 3) llms.txt Entity-Block prüfen — keine Duplikate
+
+```bash
+grep -c "## Entity clarification" client/public/llms.txt
+grep -n "Entity clarification\|HRB 2478\|DE124085752\|Managing directors\|Paulinenstraße 22" client/public/llms.txt
+```
+
+Erwartung:
+- `## Entity clarification` genau 1 Treffer (mehr = Duplikat-Bug)
+- `HRB 2478` mindestens 1 Treffer
+- `DE124085752` mindestens 1 Treffer
+- `Managing directors` mindestens 1 Treffer
+- `Paulinenstraße 22` mindestens 1 Treffer
+
+### 4) llms.txt Offizielle Profile prüfen — keine Duplikate
+
+```bash
+grep -c "facebook.com/rexbedachung" client/public/llms.txt
+grep -c "instagram.com/rexbedachung" client/public/llms.txt
+grep -c "dachdecker-innung-bochum" client/public/llms.txt
+```
+
+Erwartung: jeweils genau 1 Treffer.
+
+### 5) Keine falsche VELUX-Formulierung
+
+```bash
+grep -ni "zertifizierung\|zertifiziert" client/public/llms.txt client/src/components/OrganizationSchema.tsx client/src/pages/About.tsx
+```
+
+Erwartung: keine Treffer.
+
+### 6) About.tsx Trust-Block prüfen — keine Duplikate
+
+```bash
+grep -c "Offizielle Unternehmensidentität" client/src/pages/About.tsx
+grep -n "HRB 2478\|Peter Rex und Tim Rex" client/src/pages/About.tsx
+```
+
+Erwartung:
+- `Offizielle Unternehmensidentität` genau 1 Treffer (mehr = Duplikat-Bug)
+- `HRB 2478` mindestens 1 Treffer
+- `Peter Rex und Tim Rex` mindestens 1 Treffer
+
+### 7) Keine Negativabgrenzung
+
+```bash
+grep -ni "nicht identisch mit\|nicht die gleiche\|nicht zu verwechseln\|Dorsten" client/src/components/OrganizationSchema.tsx client/public/llms.txt client/src/pages/About.tsx
+```
+
+Erwartung: keine Treffer.
+
+### 8) Geänderte Dateien prüfen
+
+```bash
+git diff --name-only
+```
+
+Erwartung exakt:
+```
+client/src/components/OrganizationSchema.tsx
+client/public/llms.txt
+client/src/pages/About.tsx
+```
+
+### 9) Build prüfen
+
+```bash
+npm run build
+```
+
+Erwartung: Build fehlerfrei.
+
+---
+
+## ABSCHLUSSMELDUNG
+
+Melde abschließend:
+
+1. Welche Felder im OrganizationSchema ergänzt wurden (oder ob bereits vorhanden).
+2. Ob das Innungsprofil im sameAs-Array ergänzt wurde (oder bereits vorhanden).
+3. Ob Facebook und Instagram im OrganizationSchema vorhanden sind.
+4. Vor welcher Überschrift der Entity-clarification-Block in llms.txt eingefügt wurde (oder ob bereits vorhanden).
+5. Ob Facebook, Instagram und Dachdecker-Innung Bochum unter "Offizielle Profile" in llms.txt ergänzt wurden.
+6. Vor welcher Überschrift der Trust-Block in About.tsx eingefügt wurde (oder ob bereits vorhanden).
+7. Ergebnis von `git diff --name-only`.
+8. Build-Status.
+9. Alle Duplikat-Checks aus Verifikation Punkt 2, 3, 4, 6 sind genau 1 (kein Duplikat-Bug).
+10. Bestätigung: exakt 3 Dateien geändert, keine weiteren.
