@@ -7,6 +7,7 @@ export default function AuthorSchema() {
         "@id": "https://www.rex-bedachung.de/#author",
         "name": "Tim Rex",
         "jobTitle": "Geschäftsführer & Dachdeckermeister",
+        "image": "https://www.rex-bedachung.de/images/Tim_Rex_Dachdeckermeister_Bochum.webp",
         "hasCredential": {
           "@type": "EducationalOccupationalCredential",
           "name": "Dachdeckermeister",

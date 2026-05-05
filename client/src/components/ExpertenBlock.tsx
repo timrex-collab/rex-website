@@ -17,9 +17,16 @@ export default function ExpertenBlock({ normen = DEFAULT_NORMEN }: ExpertenBlock
       data-testid="experten-block"
     >
       <div className="bg-card border border-border rounded-md px-5 py-4 flex items-start gap-4">
-        <div className="w-11 h-11 rounded-full bg-blue-50 flex items-center justify-center text-sm font-semibold text-blue-800 flex-shrink-0 select-none">
-          TR
-        </div>
+        <img
+          src="/images/Tim_Rex_Dachdeckermeister_Bochum.webp"
+          alt="Tim Rex, Geschäftsführer und Dachdeckermeister der Rex Bedachungs GmbH in Bochum"
+          width={44}
+          height={44}
+          loading="lazy"
+          decoding="async"
+          className="w-11 h-11 rounded-full object-cover flex-shrink-0"
+          data-testid="img-tim-rex-avatar"
+        />
         <div className="flex-1 min-w-0">
           <p className="text-sm font-semibold text-foreground leading-snug">Tim Rex</p>
           <p className="text-xs text-muted-foreground mt-0.5">Geschäftsführer · Dachdeckermeister</p>
