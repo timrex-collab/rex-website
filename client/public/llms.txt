@@ -95,6 +95,8 @@ Stadtteil-Landingpages.
 - [Karriere](https://www.rex-bedachung.de/karriere): Stellenangebote und Ausbildungsplätze.
 - [Kontakt](https://www.rex-bedachung.de/kontakt): Kontaktformular, Telefon, Adresse, Öffnungszeiten.
 
+- Wann lohnt sich Dachsanierung?: https://www.rex-bedachung.de/wann-lohnt-sich-dachsanierung
+
 ## /sturmschaden-dach-bochum
 Cluster-Artikel unter /dachreparatur-bochum. Sturmschaden am Dach in Bochum – Notsicherung, Schadensdokumentation, Versicherungsabwicklung. Rex Bedachungs GmbH, Meisterbetrieb seit 1984. Reaktion in 24–48h. Versicherungsschäden ab Windstärke 8 (ca. 65 km/h, DWD Warnstufe 2 markantes Wetter).
 
@@ -146,6 +148,9 @@ Stand: April 2026. Diese Angaben sind keine Förderzusage.
 Rex Bedachungs GmbH berät zur BAFA-Antragstellung und zu BEG-konformen
 Angeboten, übernimmt aber keine Gewähr für Förderzusagen oder
 Förderhöchstbeträge im Einzelfall.
+
+## /wann-lohnt-sich-dachsanierung
+Ratgeber-Artikel: Entscheidungshilfe Dachsanierung. 5 Faktoren (Alter, Schäden, Dämmstandard, Optik, Feuchtigkeit am Dachstuhl), Entscheidungsmatrix Reparatur vs. Sanierung, BEG-Förderhebel 2026 (15 % + 5 % iSFP, max. 60.000 € pro WE mit iSFP), GEG-Nachrüstpflichten bei Eigentümerwechsel (2-Jahres-Frist), NRW-Solardachpflicht seit 01.01.2026 (≥ 50 m², 30 % PV-Belegung, Ausnahmen). Author: Tim Rex (Dachdeckermeister & Geschäftsführer).
 
 ## Referenzbilder VELUX
 

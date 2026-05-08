@@ -36,6 +36,7 @@ const SteildachFoerderungBochum = lazy(() => import("@/pages/SteildachFoerderung
 const DachgaubeBochum = lazy(() => import("@/pages/DachgaubeBochum"));
 const AufsparrendaemmungBochum = lazy(() => import("@/pages/AufsparrendaemmungBochum"));
 const SteildachUndichtBochum = lazy(() => import("@/pages/SteildachUndichtBochum"));
+const WannLohntSichDachsanierung = lazy(() => import("@/pages/WannLohntSichDachsanierung"));
 const DachsanierungBochum = lazy(() => import("@/pages/DachsanierungBochum"));
 const DachrinnenBochum = lazy(() => import("@/pages/DachrinnenBochum"));
 const SturmschadenDach = lazy(() => import("@/pages/SturmschadenDach"));
@@ -76,6 +77,7 @@ function Router() {
           <Route path="/sturmschaden-dach-bochum" component={SturmschadenDach} />
           <Route path="/bitumen-vs-pvc-flachdach-bochum" component={BitumenVsPvc} />
       <Route path="/velux-preisrechner-bochum" component={VeluxPreisrechnerBochum} />
+      <Route path="/wann-lohnt-sich-dachsanierung" component={WannLohntSichDachsanierung} />
       <Route component={NotFound} />
     </Switch>
   );

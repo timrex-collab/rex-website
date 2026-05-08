@@ -122,6 +122,52 @@ export default function About() {
             </p>
           </div>
 
+          {/* Geschäftsführer */}
+          <div className="mb-20">
+            <h2 className="text-3xl md:text-4xl font-bold mb-12 text-center">
+              Geschäftsführer
+            </h2>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12">
+              {/* Tim Rex mit Foto */}
+              <div className="bg-card border border-card-border rounded-lg overflow-hidden shadow-sm" data-testid="card-tim-rex">
+                <Picture
+                  src="/images/Tim_Rex_Dachdeckermeister_Bochum.webp"
+                  fallback="/images/Tim_Rex_Dachdeckermeister_Bochum.webp"
+                  alt="Tim Rex – Dachdeckermeister und Geschäftsführer der Rex Bedachungs GmbH Bochum"
+                  className="w-full h-72 md:h-80 object-cover"
+                  width={600}
+                  height={600}
+                  loading="lazy"
+                />
+                <div className="p-6">
+                  <h3 className="text-2xl font-bold mb-1">Tim Rex</h3>
+                  <p className="text-primary font-medium mb-4">Dachdeckermeister & Geschäftsführer</p>
+                  <p className="text-muted-foreground leading-relaxed">
+                    Tim Rex ist Dachdeckermeister und Geschäftsführer der Rex Bedachungs GmbH in Bochum. Sein fachlicher Schwerpunkt
+                    liegt auf energetischer Dachsanierung, Dachbegrünung, BEG-Förderberatung und VELUX-Dachfenstertechnik.
+                  </p>
+                </div>
+              </div>
+
+              {/* Peter Rex mit PR-Monogram */}
+              <div className="bg-card border border-card-border rounded-lg overflow-hidden shadow-sm flex flex-col" data-testid="card-peter-rex">
+                <div className="w-full h-72 md:h-80 bg-slate-100 flex items-center justify-center">
+                  <div className="w-32 h-32 rounded-full bg-primary/10 flex items-center justify-center">
+                    <span className="text-4xl font-bold text-primary">PR</span>
+                  </div>
+                </div>
+                <div className="p-6">
+                  <h3 className="text-2xl font-bold mb-1">Peter Rex</h3>
+                  <p className="text-primary font-medium mb-4">Geschäftsführer & Gründer</p>
+                  <p className="text-muted-foreground leading-relaxed">
+                    Peter Rex hat die Rex Bedachungs GmbH 1984 gegründet. Seine Schwerpunkte sind das klassische Dachdeckerhandwerk
+                    sowie kaufmännische Verwaltung und Abrechnungswesen.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+
           <div>
             <h2 className="text-3xl md:text-4xl font-bold mb-12 text-center">
               Unsere Werte
