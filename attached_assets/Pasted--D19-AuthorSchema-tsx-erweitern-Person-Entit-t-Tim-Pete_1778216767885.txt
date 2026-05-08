@@ -1,0 +1,205 @@
+# D19 — AuthorSchema.tsx erweitern (Person-Entität Tim + Peter Rex)
+
+**Stufe B (Schema-Erweiterung) | 1 Datei | Variante B+ Idempotent**
+
+---
+
+## Auftrag
+
+Erweitere `client/src/components/AuthorSchema.tsx` so, dass die beiden bestehenden Person-Knoten (Tim Rex und Peter Rex) um fehlende Felder ergänzt werden:
+
+**Tim Rex (`@id="#author"`) — neue Felder:**
+- `image`
+- `description`
+
+**Peter Rex (`@id="#author-peter"`) — neue Felder:**
+- `description`
+- `knowsAbout`
+
+Alle bestehenden Felder bleiben erhalten. Die `@id`-Werte werden NICHT geändert. About.tsx wird NICHT angefasst (AuthorSchema ist dort bereits eingebunden).
+
+**Strategie:** Deterministische Vollersetzung der Datei mit dem nachfolgend definierten Ziel-Inhalt. Mehrfache Ausführung produziert identischen Stand (idempotent by design).
+
+---
+
+## Schritt 1 — Datei vollständig ersetzen
+
+Ersetze den gesamten Inhalt von `client/src/components/AuthorSchema.tsx` durch:
+
+export default function AuthorSchema() {
+  const schema = {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Person",
+        "@id": "https://www.rex-bedachung.de/#author",
+        "name": "Tim Rex",
+        "jobTitle": "Geschäftsführer & Dachdeckermeister",
+        "image": "https://www.rex-bedachung.de/images/Tim_Rex_Dachdeckermeister_Bochum.webp",
+        "description": "Tim Rex ist Dachdeckermeister und Geschäftsführer der Rex Bedachungs GmbH in Bochum. Sein fachlicher Schwerpunkt liegt auf energetischer Dachsanierung, Dachbegrünung, BEG-Förderberatung und VELUX-Dachfenstertechnik.",
+        "hasCredential": {
+          "@type": "EducationalOccupationalCredential",
+          "name": "Dachdeckermeister",
+          "credentialCategory": "Meistertitel",
+          "recognizedBy": {
+            "@type": "Organization",
+            "name": "Handwerkskammer Dortmund"
+          }
+        },
+        "knowsAbout": [
+          "Dachsanierung",
+          "Flachdachabdichtung",
+          "Steildacheindeckung",
+          "Dachfenster VELUX",
+          "Aufsparrendämmung",
+          "BEG EM BAFA-Förderung",
+          "GEG 2024",
+          "ZVDH-Regelwerk",
+          "DIN 18531",
+          "FLL-Richtlinien Dachbegrünung",
+          "Dachbegrünung",
+          "NRW-Solardachpflicht"
+        ],
+        "worksFor": {
+          "@id": "https://www.rex-bedachung.de/#organization"
+        },
+        "url": "https://www.rex-bedachung.de/ueber-uns"
+      },
+      {
+        "@type": "Person",
+        "@id": "https://www.rex-bedachung.de/#author-peter",
+        "name": "Peter Rex",
+        "jobTitle": "Geschäftsführer",
+        "description": "Peter Rex hat die Rex Bedachungs GmbH 1984 gegründet. Seine Schwerpunkte sind das klassische Dachdeckerhandwerk sowie kaufmännische Verwaltung und Abrechnungswesen.",
+        "knowsAbout": [
+          "Dachdeckerhandwerk",
+          "Bauklempnerei",
+          "Steildach",
+          "Flachdach",
+          "Unternehmensführung im Handwerk",
+          "Kaufmännische Verwaltung",
+          "Abrechnungswesen"
+        ],
+        "worksFor": {
+          "@id": "https://www.rex-bedachung.de/#organization"
+        },
+        "url": "https://www.rex-bedachung.de/ueber-uns"
+      }
+    ]
+  };
+
+  return (
+    <script
+      type="application/ld+json"
+      dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
+    />
+  );
+}
+
+---
+
+## Schritt 2 — Verifikation (Duplikat-Checks PFLICHT)
+
+Führe folgende Befehle aus und stelle sicher, dass die Ausgabe exakt dem erwarteten Wert entspricht:
+
+ls -la client/src/components/AuthorSchema.tsx
+
+grep -c "#tim-rex" client/src/components/AuthorSchema.tsx
+# Erwartet: 0
+
+grep -c '"@id": "https://www.rex-bedachung.de/#author"' client/src/components/AuthorSchema.tsx
+# Erwartet: 1
+
+grep -c '"@id": "https://www.rex-bedachung.de/#author-peter"' client/src/components/AuthorSchema.tsx
+# Erwartet: 1
+
+grep -c '"name": "Tim Rex"' client/src/components/AuthorSchema.tsx
+# Erwartet: 1
+
+grep -c '"name": "Peter Rex"' client/src/components/AuthorSchema.tsx
+# Erwartet: 1
+
+grep -c '"image":' client/src/components/AuthorSchema.tsx
+# Erwartet: 1
+
+grep -c "Tim_Rex_Dachdeckermeister_Bochum.webp" client/src/components/AuthorSchema.tsx
+# Erwartet: 1
+
+grep -c '"description":' client/src/components/AuthorSchema.tsx
+# Erwartet: 2
+
+grep -c "1984 gegründet" client/src/components/AuthorSchema.tsx
+# Erwartet: 1
+
+grep -c '"knowsAbout":' client/src/components/AuthorSchema.tsx
+# Erwartet: 2
+
+grep -c "Dachbegrünung" client/src/components/AuthorSchema.tsx
+# Erwartet: 3 (FLL-Richtlinien + eigener Eintrag + description)
+
+grep -c "NRW-Solardachpflicht" client/src/components/AuthorSchema.tsx
+# Erwartet: 1
+
+grep -c '"hasCredential":' client/src/components/AuthorSchema.tsx
+# Erwartet: 1
+
+grep -c '"@id": "https://www.rex-bedachung.de/#organization"' client/src/components/AuthorSchema.tsx
+# Erwartet: 2
+
+grep -c "@graph" client/src/components/AuthorSchema.tsx
+# Erwartet: 1
+
+grep -c '"@type": "Person"' client/src/components/AuthorSchema.tsx
+# Erwartet: 2
+
+Wenn auch nur EIN Wert abweicht → STOP, nicht weitermachen, Output melden.
+
+---
+
+## Schritt 3 — Build-Verifikation
+
+npm run build
+
+Erwartet: Build durchläuft ohne TypeScript-Fehler.
+
+---
+
+## Schritt 4 — Diff-Verifikation
+
+git diff --name-only
+# Erwartet: exakt eine Zeile: client/src/components/AuthorSchema.tsx
+
+git diff client/src/components/AuthorSchema.tsx
+# Sichtprüfung: nur Hinzufügungen für image, description (Tim), knowsAbout +2 (Tim), description + knowsAbout (Peter)
+
+---
+
+## Output für Tim
+
+Bitte mit folgenden Punkten antworten:
+1. ls -la Ausgabe
+2. Alle 16 grep-Ergebnisse
+3. Build-Status
+4. git diff --name-only Ausgabe
+5. Sichtprüfung Diff bestätigt nur die 5 erwarteten Hinzufügungen
+6. Exakt 1 Datei geändert
+
+---
+
+## ⚠️ NACH Tims Grünem Licht — MANUELLER Commit, KEIN Replit-Checkpoint
+
+NICHT „Sync Changes" verwenden. Agent führt exakt diese Befehle aus:
+
+git add client/src/components/AuthorSchema.tsx
+
+git log --oneline origin/main..HEAD
+# Erwartet: leere Ausgabe (kein Checkpoint dazwischen)
+
+git commit -m "feat: D19 — AuthorSchema erweitert (image, description, knowsAbout Tim+Peter)"
+
+git show --stat HEAD
+# Erwartet: exakt 1 Datei — client/src/components/AuthorSchema.tsx
+# Falls mehr Dateien erscheinen → STOP, nicht pushen, Tim informieren
+
+# Erst nach Tims Bestätigung des show --stat Outputs:
+git push origin main
