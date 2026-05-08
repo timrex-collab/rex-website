@@ -202,7 +202,7 @@ export default function About() {
                 <h3 className="font-semibold text-lg mb-4">Steildach & Eindeckung</h3>
                 <ul className="space-y-2 text-muted-foreground">
                   <li>Neueindeckung mit Ton- und Betonziegeln</li>
-                  <li>Schieferdeckung und Metalleindeckung</li>
+                  <li>Schieferarbeiten und Metalleindeckung</li>
                   <li>Aufsparrendämmung nach GEG</li>
                   <li>Gaube und Dachaufbau</li>
                   <li>Sanierung und Teilreparatur</li>
