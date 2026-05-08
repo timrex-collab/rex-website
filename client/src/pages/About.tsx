@@ -223,7 +223,7 @@ export default function About() {
                 <ul className="space-y-2 text-muted-foreground">
                   <li>VELUX-Dachfenster (autorisierter Partner)</li>
                   <li>Bauklempnerei und Blecharbeiten</li>
-                  <li>Asbestentsorgung nach TRGS 519</li>
+                  <li>Energetische Sanierungen</li>
                   <li>BAFA & KfW Förderberatung</li>
                   <li>Dachwartung und Wartungsverträge</li>
                 </ul>
