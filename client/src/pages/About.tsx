@@ -211,7 +211,7 @@ export default function About() {
               <div className="bg-slate-50 rounded-md p-6">
                 <h3 className="font-semibold text-lg mb-4">Flachdach & Abdichtung</h3>
                 <ul className="space-y-2 text-muted-foreground">
-                  <li>EPDM-Folienabdichtung</li>
+                  <li>PVC-Folienabdichtung</li>
                   <li>Bitumenbahnen nach DIN 18531</li>
                   <li>Gründach und Dachbegrünung</li>
                   <li>Gefälledämmung und Wärmedämmung</li>
