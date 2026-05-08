@@ -134,7 +134,7 @@ export default function About() {
                   src="/images/Tim_Rex_Dachdeckermeister_Bochum.webp"
                   fallback="/images/Tim_Rex_Dachdeckermeister_Bochum.webp"
                   alt="Tim Rex – Dachdeckermeister und Geschäftsführer der Rex Bedachungs GmbH Bochum"
-                  className="w-full h-72 md:h-80 object-cover"
+                  className="w-full h-96 md:h-[32rem] object-contain bg-slate-100"
                   width={600}
                   height={600}
                   loading="lazy"
@@ -151,7 +151,7 @@ export default function About() {
 
               {/* Peter Rex mit PR-Monogram */}
               <div className="bg-card border border-card-border rounded-lg overflow-hidden shadow-sm flex flex-col" data-testid="card-peter-rex">
-                <div className="w-full h-72 md:h-80 bg-slate-100 flex items-center justify-center">
+                <div className="w-full h-96 md:h-[32rem] bg-slate-100 flex items-center justify-center">
                   <div className="w-32 h-32 rounded-full bg-primary/10 flex items-center justify-center">
                     <span className="text-4xl font-bold text-primary">PR</span>
                   </div>
