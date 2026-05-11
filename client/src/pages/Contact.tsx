@@ -113,7 +113,7 @@ export default function Contact() {
                   <div>
                     <h3 className="font-semibold mb-1">Adresse</h3>
                     <p className="text-lg">
-                      Paulinenstr. 22<br />
+                      Paulinenstraße 22<br />
                       44799 Bochum
                     </p>
                   </div>
@@ -270,7 +270,7 @@ export default function Contact() {
                       allowFullScreen
                       loading="lazy"
                       referrerPolicy="no-referrer-when-downgrade"
-                      title="Standort Rex Bedachungs GmbH - Paulinenstr. 22, 44799 Bochum"
+                      title="Standort Rex Bedachungs GmbH - Paulinenstraße 22, 44799 Bochum"
                       data-testid="map-location"
                     />
                   )}

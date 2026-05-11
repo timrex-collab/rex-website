@@ -5,7 +5,7 @@ export default function ContactForm() {
       method="POST"
       data-netlify="true"
       netlify-honeypot="bot-field"
-      action="/danke.html"
+      action="/danke"
       className="space-y-6"
     >
       {/* SPAM-Honeypot */}

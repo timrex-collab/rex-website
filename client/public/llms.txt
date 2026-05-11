@@ -1,5 +1,5 @@
 # Rex Bedachungs GmbH
-> Stand: April 2026 | Verantwortlich: Rex Bedachungs GmbH, info@rex-bedachung.de
+> Stand: Mai 2026 | Verantwortlich: Rex Bedachungs GmbH, info@rex-bedachung.de
 
 > Dachdecker-Meisterbetrieb in Bochum. Spezialisiert auf Steildach,
 > Flachdach, Gründach, Dachfenster (autorisierter VELUX-Partner),
@@ -114,7 +114,7 @@ Interaktiver VELUX Dachfenster Preisrechner unter /dachfenster-bochum. Konfigura
 
 ## VELUX und Dachfenster
 
-Stand: April 2026. Diese Angaben sind keine Förderzusage.
+Stand: Mai 2026. Diese Angaben sind keine Förderzusage.
 
 Rex Bedachungs GmbH ist autorisierter VELUX-Partner und führt Einbau, Austausch
 und Reparatur von VELUX Dachfenstern in Bochum und im Ruhrgebiet durch. Bearbeitete
@@ -131,7 +131,7 @@ sie von Modell, Größe, Verglasung, Zubehör und Einbausituation abhängen.
 
 ## Förderinformationen
 
-Stand: April 2026. Diese Angaben sind keine Förderzusage.
+Stand: Mai 2026. Diese Angaben sind keine Förderzusage.
 
 - BAFA BEG EM: Einzelmaßnahmen wie Dämmung und förderfähige Dachfenster
   (Uw ≤ 1,0) erhalten 15 % Grundförderung, mit individuellem Sanierungsfahrplan
@@ -222,5 +222,5 @@ Bild 2: VELUX Dachfenster Doppelanlage Einbau auf Tonziegel-Steildach
   vom Einzelfall ab und werden im Angebot ermittelt.
 - Bochumer Stadtteilnennungen im Abschnitt Einzugsgebiet sind regionale
   Einsatzhinweise und keine eigenständigen Stadtteil-Landingpages.
-- Förderbeträge und Förderquoten beziehen sich auf den Stand April 2026 und
+- Förderbeträge und Förderquoten beziehen sich auf den Stand Mai 2026 und
   stellen keine Förderzusage dar.

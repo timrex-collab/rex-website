@@ -19,7 +19,7 @@ export default function Impressum() {
               <h2 className="text-2xl font-semibold mb-4">Angaben gemäß § 5 TMG</h2>
               <p>
                 Rex Bedachungs GmbH<br />
-                Paulinenstr. 22<br />
+                Paulinenstraße 22<br />
                 44799 Bochum
               </p>
             </section>

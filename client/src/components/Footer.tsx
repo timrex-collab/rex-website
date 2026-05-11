@@ -130,6 +130,11 @@ export default function Footer() {
                   Häufige Fragen (FAQ)
                 </Link>
               </li>
+              <li>
+                <Link href="/wann-lohnt-sich-dachsanierung" className="flex items-center min-h-[44px] text-muted-foreground hover:text-primary transition-colors" data-testid="link-footer-wann-lohnt-sich">
+                  Wann lohnt sich Dachsanierung?
+                </Link>
+              </li>
             </ul>
           </div>
 

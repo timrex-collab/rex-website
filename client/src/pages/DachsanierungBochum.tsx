@@ -180,8 +180,8 @@ const faqItems = [
   {
     question: "Wann lohnt sich eine Dachsanierung statt einer Reparatur?",
     answer: "Eine Sanierung lohnt sich, wenn die Eindeckung über 25–30 Jahre alt ist, wiederkehrende Schäden auftreten, mehrere Bauteile betroffen sind oder die Dämmung fehlt. Bei einem lokalen Einzelschaden an einem intakten Dach ist eine Reparatur wirtschaftlicher.",
-    link: "/dachreparatur-bochum",
-    linkText: "Mehr zur Dachreparatur",
+    link: "/wann-lohnt-sich-dachsanierung",
+    linkText: "Ausführliche Entscheidungshilfe",
   },
   {
     question: "Muss die Neueindeckung bei einer geförderten Sanierung selbst bezahlt werden?",

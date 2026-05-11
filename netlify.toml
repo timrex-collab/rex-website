@@ -164,6 +164,12 @@
   status = 301
   force = true
 
+[[redirects]]
+  from = "/danke.html"
+  to = "/danke"
+  status = 301
+  force = true
+
 # SPA Fallback — MUSS IMMER ZULETZT STEHEN
 [[redirects]]
   from = "/*"
