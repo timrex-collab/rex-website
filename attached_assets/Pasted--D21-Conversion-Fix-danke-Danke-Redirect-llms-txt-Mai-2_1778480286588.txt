@@ -1,0 +1,320 @@
+# D21 — Conversion-Fix /danke, Danke-Redirect, llms.txt Mai 2026, interne Verlinkung, Adresskonsistenz
+**Stufe B | 7 Dateien | Keine neuen Routen | Keine Schema-Änderungen**
+
+> Repo-Stand `main` verifiziert. Dieser Prompt enthält ausschließlich Änderungen,
+> die laut aktuellem Repo-Stand noch offen sind.
+
+---
+
+## Vorab-Check
+
+```bash
+grep -E 'path="/danke"|/danke"' client/src/App.tsx
+grep -E '/wann-lohnt-sich-dachsanierung' client/src/App.tsx
+grep -E '/aufsparrendaemmung-bochum' client/src/App.tsx
+```
+
+**Erwartung:** Jeweils mindestens 1 Treffer. Falls eine Route fehlt: **STOP, Tim informieren.**
+
+---
+
+## Datei 1 — `netlify.toml`
+
+Einzige Änderung: `/danke.html`-Redirect ergänzen.
+
+**Nicht anfassen:** waermedaemmung-Redirect (bereits korrekt) und og-inject-Block (bereits entfernt).
+
+SUCHE (exakt):
+
+```toml
+# SPA Fallback — MUSS IMMER ZULETZT STEHEN
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
+```
+
+ERSETZEN MIT:
+
+```toml
+[[redirects]]
+  from = "/danke.html"
+  to = "/danke"
+  status = 301
+  force = true
+
+# SPA Fallback — MUSS IMMER ZULETZT STEHEN
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
+```
+
+---
+
+## Datei 2 — `client/src/components/ContactForm.tsx`
+
+SUCHE (exakt, mit Kontext-Anker):
+
+```tsx
+      data-netlify="true"
+      netlify-honeypot="bot-field"
+      action="/danke.html"
+      className="space-y-6"
+```
+
+ERSETZEN MIT:
+
+```tsx
+      data-netlify="true"
+      netlify-honeypot="bot-field"
+      action="/danke"
+      className="space-y-6"
+```
+
+---
+
+## Datei 3 — `client/public/llms.txt`
+
+Einzige Änderung: Stand-Datum von April auf Mai 2026 aktualisieren.
+
+**Nicht anfassen:** KfW 358/359, VELUX Preisrechner-URL und /wann-lohnt-sich-dachsanierung sind bereits korrekt enthalten.
+
+SUCHE (exakt):
+
+```
+April 2026
+```
+
+ERSETZEN MIT:
+
+```
+Mai 2026
+```
+
+---
+
+## Datei 4 — `client/src/components/Footer.tsx`
+
+Einzige Änderung: Ratgeber-Link ergänzen.
+
+**Nicht anfassen:** Adresse ist bereits korrekt als „Paulinenstraße 22".
+
+SUCHE (exakt):
+
+```tsx
+              <li>
+                <Link href="/faq" className="flex items-center min-h-[44px] text-muted-foreground hover:text-primary transition-colors" data-testid="link-footer-faq">
+                  Häufige Fragen (FAQ)
+                </Link>
+              </li>
+            </ul>
+          </div>
+
+          <div>
+            <h3 className="font-semibold mb-2">Kontakt</h3>
+```
+
+ERSETZEN MIT:
+
+```tsx
+              <li>
+                <Link href="/faq" className="flex items-center min-h-[44px] text-muted-foreground hover:text-primary transition-colors" data-testid="link-footer-faq">
+                  Häufige Fragen (FAQ)
+                </Link>
+              </li>
+              <li>
+                <Link href="/wann-lohnt-sich-dachsanierung" className="flex items-center min-h-[44px] text-muted-foreground hover:text-primary transition-colors" data-testid="link-footer-wann-lohnt-sich">
+                  Wann lohnt sich Dachsanierung?
+                </Link>
+              </li>
+            </ul>
+          </div>
+
+          <div>
+            <h3 className="font-semibold mb-2">Kontakt</h3>
+```
+
+---
+
+## Datei 5 — `client/src/pages/DachsanierungBochum.tsx`
+
+**Architektur-Hinweis:** Die FAQs sind in einem `faqItems`-Array strukturiert. `answer`-Strings werden als reiner Text gerendert — JSX-Tags darin würden nicht klicken. Die korrekte Stelle ist `link`/`linkText`.
+
+Der Cluster-Link auf `/dachreparatur-bochum` bleibt erhalten — er existiert bereits als Button in der Section „Reparatur oder Sanierung?" (`data-testid="link-dachreparatur"`).
+
+SUCHE (exakt):
+
+```tsx
+  {
+    question: "Wann lohnt sich eine Dachsanierung statt einer Reparatur?",
+    answer: "Eine Sanierung lohnt sich, wenn die Eindeckung über 25–30 Jahre alt ist, wiederkehrende Schäden auftreten, mehrere Bauteile betroffen sind oder die Dämmung fehlt. Bei einem lokalen Einzelschaden an einem intakten Dach ist eine Reparatur wirtschaftlicher.",
+    link: "/dachreparatur-bochum",
+    linkText: "Mehr zur Dachreparatur",
+  },
+```
+
+ERSETZEN MIT:
+
+```tsx
+  {
+    question: "Wann lohnt sich eine Dachsanierung statt einer Reparatur?",
+    answer: "Eine Sanierung lohnt sich, wenn die Eindeckung über 25–30 Jahre alt ist, wiederkehrende Schäden auftreten, mehrere Bauteile betroffen sind oder die Dämmung fehlt. Bei einem lokalen Einzelschaden an einem intakten Dach ist eine Reparatur wirtschaftlicher.",
+    link: "/wann-lohnt-sich-dachsanierung",
+    linkText: "Ausführliche Entscheidungshilfe",
+  },
+```
+
+---
+
+## Datei 6 — `client/src/pages/Contact.tsx`
+
+Adresse vereinheitlichen — sichtbarer Adressblock **und** iframe-Title.
+
+### Änderung 6a — Sichtbarer Adressblock
+
+SUCHE (exakt):
+
+```
+Paulinenstr. 22
+```
+
+ERSETZEN MIT:
+
+```
+Paulinenstraße 22
+```
+
+_(Alle Treffer in der Datei ersetzen.)_
+
+### Änderung 6b — iframe-Title (falls vorhanden)
+
+```bash
+grep -n "Paulinenstr" client/src/pages/Contact.tsx
+```
+
+Falls der String in einem `title`-Attribut eines `<iframe>` vorkommt, diesen Treffer ebenfalls ersetzen. Ziel: kein einziger `Paulinenstr\.` in der Datei.
+
+---
+
+## Datei 7 — `client/src/pages/Impressum.tsx`
+
+SUCHE (exakt):
+
+```
+Paulinenstr. 22
+```
+
+ERSETZEN MIT:
+
+```
+Paulinenstraße 22
+```
+
+_(Alle Treffer in der Datei ersetzen.)_
+
+---
+
+## Verifikation
+
+```bash
+# 1. Genau 7 Dateien geändert
+git diff --stat
+# Erwartung: 7 files changed
+
+# 2. /danke-Redirect vorhanden, SPA-Fallback weiterhin letzter Block
+grep -A4 "danke.html" netlify.toml
+tail -6 netlify.toml
+# Erwartung: force = true | letzter Block: from = "/*", status = 200
+
+# 3. waermedaemmung und og-inject unverändert korrekt
+grep -A3 "waermedaemmung" netlify.toml | grep "to ="
+grep -c "og-inject\|edge_functions" netlify.toml
+# Erwartung: to = "/aufsparrendaemmung-bochum" | 0
+
+# 4. ContactForm action korrekt
+grep "action=" client/src/components/ContactForm.tsx
+# Erwartung: action="/danke" (kein .html)
+
+# 5. llms.txt Stand-Datum
+grep "Mai 2026" client/public/llms.txt
+grep -c "April 2026" client/public/llms.txt
+# Erwartung: ≥1 Treffer | 0 Treffer
+
+# 6. Footer-Link vorhanden
+grep -c "wann-lohnt-sich-dachsanierung" client/src/components/Footer.tsx
+# Erwartung: ≥1
+
+# 7. Footer-Adresse weiterhin korrekt (nicht versehentlich geändert)
+grep "Paulinenstr" client/src/components/Footer.tsx
+# Erwartung: Treffer nur auf "Paulinenstraße 22" — kein abgekürztes "Paulinenstr."
+
+# 8. DachsanierungBochum FAQ-Link
+grep -A4 'question: "Wann lohnt sich eine Dachsanierung statt' client/src/pages/DachsanierungBochum.tsx | grep "link:"
+# Erwartung: link: "/wann-lohnt-sich-dachsanierung"
+
+# 9. Globaler Adress-Konsistenz-Check
+grep -rn "Paulinenstr\. 22" client/src/ client/public/ \
+  --include="*.tsx" --include="*.ts" --include="*.txt" \
+  --include="*.json" --include="*.xml" --include="*.html"
+# Erwartung: 0 Treffer (attached_assets/ bewusst ausgeschlossen)
+
+# 10. Build sauber
+npm run build
+
+# 11. Pre-Push: kein Auto-Checkpoint im Paket
+git log --oneline origin/main..HEAD
+git show --stat HEAD
+# Erwartung: exakt 7 Zieldateien, kein attached_assets/Pasted-*.txt
+```
+
+**Bei Auto-Checkpoint:**
+
+```bash
+git reset --soft origin/main
+git restore --staged attached_assets/Pasted-*.txt 2>/dev/null
+git restore attached_assets/Pasted-*.txt 2>/dev/null
+git add netlify.toml \
+        client/src/components/ContactForm.tsx \
+        client/public/llms.txt \
+        client/src/components/Footer.tsx \
+        client/src/pages/DachsanierungBochum.tsx \
+        client/src/pages/Contact.tsx \
+        client/src/pages/Impressum.tsx
+git commit -m "feat: D21 — Conversion-Fix /danke, Danke-Redirect, llms.txt Mai 2026, Ratgeber-Link, Adresskonsistenz"
+```
+
+---
+
+## Risiko-Profil
+
+| Bereich | Bewertung |
+|---|---|
+| Neue Routen | keine |
+| Schema-Änderungen | keine |
+| robots.txt | nicht angefasst |
+| Footer.tsx (global) | mittel — wirkt auf jede Seite |
+| ContactForm.tsx | mittel — conversion-kritisch, daher Post-Deploy-Test Pflicht |
+| netlify.toml | niedrig — SPA-Fallback bleibt letzter Block |
+| Contact.tsx / Impressum.tsx | niedrig — reine Textkorrektur |
+
+**48h-Pause nach Deploy einhalten.**
+
+---
+
+## Post-Deploy-Checks (Tim)
+
+1. **Formular-Test:** `/kontakt` → Test-Submit → Browser landet auf `/danke` (nicht `/danke.html`) → Netlify-Forms-Dashboard: Submission angekommen?
+2. **Redirect-Test:** `https://www.rex-bedachung.de/danke.html` → landet auf `/danke`
+3. **Footer (jede Seite):** „Wissen & Ratgeber" hat 3 Einträge: Lexikon / FAQ / **Wann lohnt sich Dachsanierung?**
+4. **DachsanierungBochum FAQ:** FAQ „Wann lohnt sich…" aufklappen → Link lautet „Ausführliche Entscheidungshilfe →" und zeigt auf `/wann-lohnt-sich-dachsanierung`
+5. **Adresse:** `/kontakt`, `/impressum` und Footer — überall „Paulinenstraße 22" (ausgeschrieben)
+6. **Search Console:** URL-Inspektion `/wann-lohnt-sich-dachsanierung` erneut auslösen
+
+---
+
+## Commit-Message
+
+```
+feat: D21 — Conversion-Fix /danke, Danke-Redirect, llms.txt Mai 2026, Ratgeber-Link, Adresskonsistenz
+```
