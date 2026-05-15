@@ -85,6 +85,8 @@ export default function SturmschadenDach() {
           content="Sturmschaden am Dach in Bochum? Rex Bedachungs GmbH sichert und repariert kurzfristig – Schadensdokumentation für die Versicherung inklusive. Meisterbetrieb seit 1984."
         />
         <link rel="canonical" href="https://www.rex-bedachung.de/sturmschaden-dach-bochum" />
+        <meta property="og:url" content="https://www.rex-bedachung.de/sturmschaden-dach-bochum" />
+        <meta property="og:type" content="article" />
         <meta property="og:title" content="Sturmschaden Dach Bochum – Notsicherung & Reparatur | Rex Bedachungs GmbH" />
         <meta property="og:description" content="Sturmschaden am Dach in Bochum – Rex Bedachungs GmbH sichert und repariert kurzfristig. Schadensdokumentation für Gebäudeversicherung inklusive." />
         <meta property="og:image" content="https://www.rex-bedachung.de/images/sturmschaden-dach-bochum.webp" />
@@ -129,6 +131,11 @@ export default function SturmschadenDach() {
       "@type": "Question",
       "name": "Was kostet die Begutachtung und Notsicherung?",
       "acceptedAnswer": { "@type": "Answer", "text": "Die Schadensbegutachtung vor Ort ist kostenlos. Kosten für Notsicherung und Reparatur werden in einem transparenten Angebot aufgelistet, bevor wir beginnen." }
+    },
+    {
+      "@type": "Question",
+      "name": "Kann ich den Sturmschaden auch ohne Versicherung reparieren lassen?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Ja. Auch ohne Versicherungsleistung oder wenn die Selbstbeteiligung die Reparaturkosten übersteigt, führen wir die Reparatur fachgerecht aus. Wir beraten ehrlich, ob eine Meldung an die Versicherung sich lohnt." }
     }
   ]
 }`}</script>
@@ -348,6 +355,10 @@ export default function SturmschadenDach() {
             <a href="/dachsanierung-bochum" className="block p-5 bg-white rounded-xl border border-gray-200 hover:border-primary hover:shadow-md transition-all">
               <div className="font-semibold text-gray-900 mb-1">Dachsanierung Bochum</div>
               <div className="text-sm text-gray-500">Wenn der Sturmschaden eine Komplettsanierung sinnvoll macht.</div>
+            </a>
+            <a href="/wann-lohnt-sich-dachsanierung" className="block p-5 bg-white rounded-xl border border-gray-200 hover:border-primary hover:shadow-md transition-all">
+              <div className="font-semibold text-gray-900 mb-1">Wann lohnt sich Dachsanierung?</div>
+              <div className="text-sm text-gray-500">Entscheidungshilfe bei größeren Sturmfolgeschäden.</div>
             </a>
           </div>
         </div>

@@ -16,6 +16,7 @@ const flachdachImage = "/images/flachdach-sanierung-bochum-rex-bedachung.webp";
 const bauklempnereiImage = "/images/kamin-sanierung-bochum-dachdecker.webp";
 const dachfensterImage = "/images/velux-dachfenster-einbau-bochum-fachbetrieb.webp";
 const reparaturenImage = "/images/dachreparatur-bochum-rex-bedachung.webp";
+const photovoltaikImage = "/images/braas-pv-premium-turmalin.webp";
 
 export default function Services() {
   const services = [
@@ -89,6 +90,18 @@ export default function Services() {
         "Schadensprävention",
         "Werterhaltung",
         "Regelmäßige Kontrolle",
+      ],
+    },
+    {
+      title: "Dach & Photovoltaik",
+      description: "Dach für Photovoltaik vorbereiten. Braas PV Premium für Turmalin und Tegalit – dachintegrierte Solaranlage oder Aufdach-PV mit Solardachpflicht-Beratung.",
+      imageUrl: photovoltaikImage,
+      imageAlt: "Braas PV Premium dachintegrierte Photovoltaik Bochum",
+      href: "/dach-photovoltaik-bochum",
+      benefits: [
+        "Braas PV Premium (Turmalin/Tegalit)",
+        "NRW-Solardachpflicht 2026",
+        "Kostenloser Dachcheck",
       ],
     },
   ];

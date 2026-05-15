@@ -600,6 +600,28 @@ export default function Solarpflicht() {
         </div>
       </section>
 
+      {/* ── PV-Angebot Rex ── */}
+      <section className="py-16 bg-background">
+        <div className="max-w-4xl mx-auto px-4 md:px-6">
+          <div className="rounded-md p-8 md:p-10 text-white shadow-lg" style={{ background: "linear-gradient(135deg, #1e3a8a, #2c59a8)" }}>
+            <div className="flex flex-col md:flex-row items-start gap-6">
+              <div className="bg-white/10 p-4 rounded-md flex-shrink-0">
+                <Sun className="w-10 h-10 text-yellow-300" />
+              </div>
+              <div className="flex-1">
+                <h2 className="text-2xl md:text-3xl font-bold mb-3">Dach für PV vorbereiten — Rex hilft</h2>
+                <p className="text-blue-100 leading-relaxed mb-6">
+                  Sie sind von der Solarpflicht betroffen? Rex Bedachungs GmbH bereitet Ihr Dach optimal vor — mit Braas PV Premium dachintegriert (Turmalin, Tegalit) oder als Aufdach-Vorbereitung. Kostenloser Dachcheck inklusive Pflicht-Beurteilung.
+                </p>
+                <a href="/dach-photovoltaik-bochum" className="inline-flex items-center gap-2 bg-white text-blue-900 px-6 py-3 rounded-md font-bold hover:bg-blue-50 transition">
+                  Zur PV-Angebotsseite <ArrowRight className="w-4 h-4" />
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* ── FAQ ── */}
       <section className="py-16 bg-background">
         <div className="max-w-3xl mx-auto px-4 md:px-6">

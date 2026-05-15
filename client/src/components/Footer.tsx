@@ -34,6 +34,11 @@ export default function Footer() {
                 </Link>
               </li>
               <li>
+                <Link href="/dach-photovoltaik-bochum" className="flex items-center min-h-[44px] text-muted-foreground hover:text-primary transition-colors" data-testid="link-footer-photovoltaik">
+                  Dach & Photovoltaik
+                </Link>
+              </li>
+              <li>
                 <Link href="/flachdach-bochum" className="flex items-center min-h-[44px] text-muted-foreground hover:text-primary transition-colors" data-testid="link-footer-flachdach">
                   Flachdach
                 </Link>

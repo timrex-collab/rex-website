@@ -28,6 +28,7 @@ import {
   HardHat,
   BadgeCheck,
   MapPin,
+  Sun,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -116,6 +117,13 @@ const leistungen = [
     text: "Dachrinnen, Fallrohre, Blechanschlüsse an Schornstein, Gauben und Wand komplett erneuern.",
     link: "/bauklempnerei-bochum",
     testId: "card-klempner",
+  },
+  {
+    icon: <Sun className="w-8 h-8 text-primary" />,
+    title: "Dach & Photovoltaik",
+    text: "PV-Vorbereitung im Zuge der Dachsanierung: Braas PV Premium dachintegriert (Turmalin, Tegalit) oder Aufdach-PV mit Solardachpflicht-Beurteilung.",
+    link: "/dach-photovoltaik-bochum",
+    testId: "card-photovoltaik",
   },
 ];
 

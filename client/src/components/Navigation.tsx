@@ -31,6 +31,7 @@ export default function Navigation() {
     { name: "Aufsparrendämmung", path: "/aufsparrendaemmung-bochum" },
     { name: "Sturmschaden", path: "/sturmschaden-dach-bochum" },
     { name: "Dachrinne", path: "/dachrinne-bochum" },
+    { name: "Dach & Photovoltaik", path: "/dach-photovoltaik-bochum" },
   ];
 
   const mainNav = [
