@@ -1,0 +1,464 @@
+# D23 — Interne PV-Verlinkung + Sturmschaden-Hygiene
+**Stufe B | 6 Dateien | keine neuen Routen | keine neuen Seiten**
+
+> Alle Search-Blöcke gegen den aktuellen `main`-Branch verifiziert.
+
+---
+
+## Vorab-Check
+
+```bash
+# Ziel-Route existiert
+grep -E '/dach-photovoltaik-bochum' client/src/App.tsx
+# Erwartung: ≥1 Treffer
+
+# Ziel-Bilder existieren
+ls -la client/public/images/braas-pv-premium-turmalin.webp
+# Erwartung: Datei existiert
+```
+
+Falls einer der Checks fehlschlägt: **STOP, Tim informieren.**
+
+---
+
+## Datei 1 — `client/src/components/Footer.tsx`
+
+PV-Link im „Leistungen"-Block ergänzen.
+
+SUCHE (Anker — bestehender Steildach-Link):
+
+```tsx
+<Link href="/steildach-bochum"
+```
+
+Den umschließenden `<li>...</li>`-Block dieses Links identifizieren und **direkt danach** ein neues `<li>` mit identischer Klassen-Struktur einfügen. Beispielmuster — Klassen genau vom bestehenden `/steildach-bochum`-Link übernehmen:
+
+```tsx
+<li>
+  <Link href="/dach-photovoltaik-bochum" className="flex items-center min-h-[44px] text-muted-foreground hover:text-primary transition-colors" data-testid="link-footer-photovoltaik">
+    Dach & Photovoltaik
+  </Link>
+</li>
+```
+
+---
+
+## Datei 2 — `client/src/components/Navigation.tsx`
+
+services-Array um PV-Eintrag erweitern. Das Array wird sowohl Desktop als auch Mobile verwendet — eine Ergänzung reicht.
+
+SUCHE (exakt — aktueller 12-Eintrag-Stand auf main):
+
+```tsx
+  const services = [
+    { name: "Dachsanierung", path: "/dachsanierung-bochum" },
+    { name: "Steildach", path: "/steildach-bochum" },
+    { name: "Flachdach", path: "/flachdach-bochum" },
+    { name: "Gründach", path: "/gruendach-dachbegrunung-bochum" },
+    { name: "Dachfenster", path: "/dachfenster-bochum" },
+    { name: "Bauklempnerei", path: "/bauklempnerei-bochum" },
+    { name: "Dachreparatur", path: "/dachreparatur-bochum" },
+    { name: "Dachwartung", path: "/dachwartung-bochum" },
+    { name: "Dachgaube", path: "/dachgaube-bochum" },
+    { name: "Aufsparrendämmung", path: "/aufsparrendaemmung-bochum" },
+    { name: "Sturmschaden", path: "/sturmschaden-dach-bochum" },
+    { name: "Dachrinne", path: "/dachrinne-bochum" },
+  ];
+```
+
+ERSETZEN MIT:
+
+```tsx
+  const services = [
+    { name: "Dachsanierung", path: "/dachsanierung-bochum" },
+    { name: "Steildach", path: "/steildach-bochum" },
+    { name: "Flachdach", path: "/flachdach-bochum" },
+    { name: "Gründach", path: "/gruendach-dachbegrunung-bochum" },
+    { name: "Dachfenster", path: "/dachfenster-bochum" },
+    { name: "Bauklempnerei", path: "/bauklempnerei-bochum" },
+    { name: "Dachreparatur", path: "/dachreparatur-bochum" },
+    { name: "Dachwartung", path: "/dachwartung-bochum" },
+    { name: "Dachgaube", path: "/dachgaube-bochum" },
+    { name: "Aufsparrendämmung", path: "/aufsparrendaemmung-bochum" },
+    { name: "Sturmschaden", path: "/sturmschaden-dach-bochum" },
+    { name: "Dachrinne", path: "/dachrinne-bochum" },
+    { name: "Dach & Photovoltaik", path: "/dach-photovoltaik-bochum" },
+  ];
+```
+
+**Hinweis:** Auf main fehlt im services-Array noch der VELUX Preisrechner — kein D23-Scope, aber ein Kandidat für einen kleinen Folge-Deploy.
+
+---
+
+## Datei 3 — `client/src/pages/Services.tsx`
+
+PV als zusätzliche Leistungskarte ergänzen. Zwei Änderungen in dieser Datei.
+
+### Änderung 3a — Bildimport ergänzen
+
+SUCHE (exakt):
+
+```tsx
+const reparaturenImage = "/images/dachreparatur-bochum-rex-bedachung.webp";
+```
+
+ERSETZEN MIT:
+
+```tsx
+const reparaturenImage = "/images/dachreparatur-bochum-rex-bedachung.webp";
+const photovoltaikImage = "/images/braas-pv-premium-turmalin.webp";
+```
+
+### Änderung 3b — Neuen services-Eintrag ergänzen
+
+SUCHE (exakt — der letzte Eintrag im services-Array):
+
+```tsx
+    {
+      title: "Dachwartung",
+      description: "Regelmäßige Inspektion und Wartung Ihres Daches zur Vermeidung kostspieliger Schäden und Verlängerung der Lebensdauer.",
+      imageUrl: dachwartungImage,
+      imageAlt: "Professionelle Dachwartung",
+      href: "/dachwartung-bochum",
+      benefits: [
+        "Schadensprävention",
+        "Werterhaltung",
+        "Regelmäßige Kontrolle",
+      ],
+    },
+  ];
+```
+
+ERSETZEN MIT:
+
+```tsx
+    {
+      title: "Dachwartung",
+      description: "Regelmäßige Inspektion und Wartung Ihres Daches zur Vermeidung kostspieliger Schäden und Verlängerung der Lebensdauer.",
+      imageUrl: dachwartungImage,
+      imageAlt: "Professionelle Dachwartung",
+      href: "/dachwartung-bochum",
+      benefits: [
+        "Schadensprävention",
+        "Werterhaltung",
+        "Regelmäßige Kontrolle",
+      ],
+    },
+    {
+      title: "Dach & Photovoltaik",
+      description: "Dach für Photovoltaik vorbereiten. Braas PV Premium für Turmalin und Tegalit – dachintegrierte Solaranlage oder Aufdach-PV mit Solardachpflicht-Beratung.",
+      imageUrl: photovoltaikImage,
+      imageAlt: "Braas PV Premium dachintegrierte Photovoltaik Bochum",
+      href: "/dach-photovoltaik-bochum",
+      benefits: [
+        "Braas PV Premium (Turmalin/Tegalit)",
+        "NRW-Solardachpflicht 2026",
+        "Kostenloser Dachcheck",
+      ],
+    },
+  ];
+```
+
+---
+
+## Datei 4 — `client/src/pages/Solarpflicht.tsx`
+
+Neue Section mit PV-CTA einfügen — direkt nach der „Pflichten für Dachdecker & Förderung"-Section und VOR dem FAQ-Block.
+
+SUCHE (exakt — der FAQ-Section-Header als Anker):
+
+```tsx
+      {/* ── FAQ ── */}
+      <section className="py-16 bg-background">
+        <div className="max-w-3xl mx-auto px-4 md:px-6">
+          <h2 className="text-2xl md:text-3xl font-bold text-center mb-8">Häufige Fragen zur Solarpflicht</h2>
+```
+
+ERSETZEN MIT:
+
+```tsx
+      {/* ── PV-Angebot Rex ── */}
+      <section className="py-16 bg-background">
+        <div className="max-w-4xl mx-auto px-4 md:px-6">
+          <div className="rounded-md p-8 md:p-10 text-white shadow-lg" style={{ background: "linear-gradient(135deg, #1e3a8a, #2c59a8)" }}>
+            <div className="flex flex-col md:flex-row items-start gap-6">
+              <div className="bg-white/10 p-4 rounded-md flex-shrink-0">
+                <Sun className="w-10 h-10 text-yellow-300" />
+              </div>
+              <div className="flex-1">
+                <h2 className="text-2xl md:text-3xl font-bold mb-3">Dach für PV vorbereiten — Rex hilft</h2>
+                <p className="text-blue-100 leading-relaxed mb-6">
+                  Sie sind von der Solarpflicht betroffen? Rex Bedachungs GmbH bereitet Ihr Dach optimal vor — mit Braas PV Premium dachintegriert (Turmalin, Tegalit) oder als Aufdach-Vorbereitung. Kostenloser Dachcheck inklusive Pflicht-Beurteilung.
+                </p>
+                <a href="/dach-photovoltaik-bochum" className="inline-flex items-center gap-2 bg-white text-blue-900 px-6 py-3 rounded-md font-bold hover:bg-blue-50 transition">
+                  Zur PV-Angebotsseite <ArrowRight className="w-4 h-4" />
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ── FAQ ── */}
+      <section className="py-16 bg-background">
+        <div className="max-w-3xl mx-auto px-4 md:px-6">
+          <h2 className="text-2xl md:text-3xl font-bold text-center mb-8">Häufige Fragen zur Solarpflicht</h2>
+```
+
+**Hinweis:** `Sun` und `ArrowRight` sind in der Datei bereits aus `lucide-react` importiert — keine zusätzlichen Imports nötig.
+
+---
+
+## Datei 5 — `client/src/pages/DachsanierungBochum.tsx`
+
+Neue PV-Karte im `leistungen`-Array ergänzen. Zwei Änderungen in dieser Datei.
+
+### Änderung 5a — `Sun`-Icon importieren
+
+SUCHE (exakt):
+
+```tsx
+  BadgeCheck,
+  MapPin,
+} from "lucide-react";
+```
+
+ERSETZEN MIT:
+
+```tsx
+  BadgeCheck,
+  MapPin,
+  Sun,
+} from "lucide-react";
+```
+
+### Änderung 5b — PV-Karte ans Ende des leistungen-Arrays anhängen
+
+SUCHE (exakt — der letzte Eintrag im leistungen-Array):
+
+```tsx
+  {
+    icon: <Wrench className="w-8 h-8 text-primary" />,
+    title: "Klempnerarbeiten",
+    text: "Dachrinnen, Fallrohre, Blechanschlüsse an Schornstein, Gauben und Wand komplett erneuern.",
+    link: "/bauklempnerei-bochum",
+    testId: "card-klempner",
+  },
+];
+```
+
+ERSETZEN MIT:
+
+```tsx
+  {
+    icon: <Wrench className="w-8 h-8 text-primary" />,
+    title: "Klempnerarbeiten",
+    text: "Dachrinnen, Fallrohre, Blechanschlüsse an Schornstein, Gauben und Wand komplett erneuern.",
+    link: "/bauklempnerei-bochum",
+    testId: "card-klempner",
+  },
+  {
+    icon: <Sun className="w-8 h-8 text-primary" />,
+    title: "Dach & Photovoltaik",
+    text: "PV-Vorbereitung im Zuge der Dachsanierung: Braas PV Premium dachintegriert (Turmalin, Tegalit) oder Aufdach-PV mit Solardachpflicht-Beurteilung.",
+    link: "/dach-photovoltaik-bochum",
+    testId: "card-photovoltaik",
+  },
+];
+```
+
+**Hinweis:** Der existierende FAQ-Eintrag „Gilt die Solarpflicht NRW bei einer Dachsanierung?" verlinkt bereits zu `/solarpflicht` und bleibt unverändert — die neue Karte im `leistungen`-Array ist der prominente Hub-Link zur PV-Angebotsseite.
+
+---
+
+## Datei 6 — `client/src/pages/SturmschadenDach.tsx`
+
+Drei punktuelle Fixes — Source-Code vollständig bekannt, exakte Search/Replace-Blöcke.
+
+### Änderung 6a — og:url und og:type ergänzen
+
+SUCHE (exakt):
+
+```tsx
+<link rel="canonical" href="https://www.rex-bedachung.de/sturmschaden-dach-bochum" />
+        <meta property="og:title" content="Sturmschaden Dach Bochum – Notsicherung & Reparatur | Rex Bedachungs GmbH" />
+```
+
+ERSETZEN MIT:
+
+```tsx
+<link rel="canonical" href="https://www.rex-bedachung.de/sturmschaden-dach-bochum" />
+        <meta property="og:url" content="https://www.rex-bedachung.de/sturmschaden-dach-bochum" />
+        <meta property="og:type" content="article" />
+        <meta property="og:title" content="Sturmschaden Dach Bochum – Notsicherung & Reparatur | Rex Bedachungs GmbH" />
+```
+
+### Änderung 6b — 6. FAQ-Eintrag im FAQPage-Schema ergänzen
+
+SUCHE (exakt):
+
+```tsx
+    {
+      "@type": "Question",
+      "name": "Was kostet die Begutachtung und Notsicherung?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Die Schadensbegutachtung vor Ort ist kostenlos. Kosten für Notsicherung und Reparatur werden in einem transparenten Angebot aufgelistet, bevor wir beginnen." }
+    }
+  ]
+}`}</script>
+```
+
+ERSETZEN MIT:
+
+```tsx
+    {
+      "@type": "Question",
+      "name": "Was kostet die Begutachtung und Notsicherung?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Die Schadensbegutachtung vor Ort ist kostenlos. Kosten für Notsicherung und Reparatur werden in einem transparenten Angebot aufgelistet, bevor wir beginnen." }
+    },
+    {
+      "@type": "Question",
+      "name": "Kann ich den Sturmschaden auch ohne Versicherung reparieren lassen?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Ja. Auch ohne Versicherungsleistung oder wenn die Selbstbeteiligung die Reparaturkosten übersteigt, führen wir die Reparatur fachgerecht aus. Wir beraten ehrlich, ob eine Meldung an die Versicherung sich lohnt." }
+    }
+  ]
+}`}</script>
+```
+
+### Änderung 6c — Link zu /wann-lohnt-sich-dachsanierung in „Verwandte Leistungen"
+
+SUCHE (exakt):
+
+```tsx
+            <a href="/dachsanierung-bochum" className="block p-5 bg-white rounded-xl border border-gray-200 hover:border-primary hover:shadow-md transition-all">
+              <div className="font-semibold text-gray-900 mb-1">Dachsanierung Bochum</div>
+              <div className="text-sm text-gray-500">Wenn der Sturmschaden eine Komplettsanierung sinnvoll macht.</div>
+            </a>
+          </div>
+```
+
+ERSETZEN MIT:
+
+```tsx
+            <a href="/dachsanierung-bochum" className="block p-5 bg-white rounded-xl border border-gray-200 hover:border-primary hover:shadow-md transition-all">
+              <div className="font-semibold text-gray-900 mb-1">Dachsanierung Bochum</div>
+              <div className="text-sm text-gray-500">Wenn der Sturmschaden eine Komplettsanierung sinnvoll macht.</div>
+            </a>
+            <a href="/wann-lohnt-sich-dachsanierung" className="block p-5 bg-white rounded-xl border border-gray-200 hover:border-primary hover:shadow-md transition-all">
+              <div className="font-semibold text-gray-900 mb-1">Wann lohnt sich Dachsanierung?</div>
+              <div className="text-sm text-gray-500">Entscheidungshilfe bei größeren Sturmfolgeschäden.</div>
+            </a>
+          </div>
+```
+
+---
+
+## Verifikation
+
+```bash
+# 1. Anzahl geänderter Dateien
+git diff --stat
+# Erwartung: 6 files changed
+
+# 2. Footer: PV-Link
+grep -c "dach-photovoltaik-bochum" client/src/components/Footer.tsx
+# Erwartung: ≥1
+
+# 3. Navigation: PV im services-Array
+grep -A1 "Dachwartung.*dachwartung-bochum" client/src/components/Navigation.tsx | grep "dach-photovoltaik"
+# Erwartung: 1 Treffer
+
+# 4. Services: photovoltaikImage import + Eintrag
+grep -c "photovoltaikImage\|dach-photovoltaik-bochum" client/src/pages/Services.tsx
+# Erwartung: ≥3 (import + imageUrl + href)
+
+# 5. Solarpflicht: PV-CTA-Block
+grep -c "dach-photovoltaik-bochum\|Zur PV-Angebotsseite" client/src/pages/Solarpflicht.tsx
+# Erwartung: ≥2
+
+# 6. DachsanierungBochum: PV-Karte im leistungen-Array
+grep -c "card-photovoltaik\|Dach & Photovoltaik" client/src/pages/DachsanierungBochum.tsx
+# Erwartung: ≥1
+
+# 6b. Sun-Icon importiert
+grep -c "^  Sun," client/src/pages/DachsanierungBochum.tsx
+# Erwartung: 1
+
+# 7. SturmschadenDach: og:url
+grep -c 'property="og:url"' client/src/pages/SturmschadenDach.tsx
+# Erwartung: ≥1
+
+# 8. SturmschadenDach: 6. FAQ im Schema (sichtbar + Schema)
+grep -c "ohne Versicherung" client/src/pages/SturmschadenDach.tsx
+# Erwartung: ≥2
+
+# 9. SturmschadenDach: wann-lohnt-sich-Link
+grep -c "wann-lohnt-sich-dachsanierung" client/src/pages/SturmschadenDach.tsx
+# Erwartung: ≥1
+
+# 10. Build sauber
+npm run build
+
+# 11. Pre-Push
+git log --oneline origin/main..HEAD
+git show --stat HEAD
+# Erwartung: 6 Zieldateien, kein attached_assets/
+```
+
+**Bei Auto-Checkpoint:**
+
+```bash
+git reset --soft origin/main
+git restore --staged attached_assets/Pasted-*.txt 2>/dev/null
+git restore attached_assets/Pasted-*.txt 2>/dev/null
+git add client/src/components/Footer.tsx \
+        client/src/components/Navigation.tsx \
+        client/src/pages/Services.tsx \
+        client/src/pages/Solarpflicht.tsx \
+        client/src/pages/DachsanierungBochum.tsx \
+        client/src/pages/SturmschadenDach.tsx
+git commit -m "feat: D23 — Interne PV-Verlinkung (Footer/Nav/Services/Solarpflicht/Hub) + Sturmschaden FAQ-Schema, og:url, Cluster-Link"
+```
+
+---
+
+## Risiko-Profil
+
+| Bereich | Bewertung |
+|---|---|
+| Neue Routen | keine |
+| Neue Seiten | keine |
+| Footer/Navigation (global) | mittel — wirkt auf jede Seite |
+| Schema-Erweiterung (FAQ) | niedrig — additive Änderung |
+| Inhaltslinks | niedrig |
+
+**48h-Pause nach Deploy einhalten.**
+
+---
+
+## Post-Deploy-Checks (Tim)
+
+1. **Footer** (jede Seite): Link „Dach & Photovoltaik" im Leistungen-Block sichtbar
+2. **Navigation** (Desktop + Mobile): Leistungen-Dropdown enthält „Dach & Photovoltaik" als letzten Eintrag (13. Position)
+3. **`/leistungen`**: 7. Karte „Dach & Photovoltaik" mit Turmalin-Bild
+4. **`/solarpflicht`**: CTA-Block „Dach für PV vorbereiten — Rex hilft" vor FAQ sichtbar, Klick auf „Zur PV-Angebotsseite" funktioniert
+5. **`/dachsanierung-bochum`**: Im Leistungen-Block ist eine 7. Karte „Dach & Photovoltaik" mit Sonnen-Icon sichtbar, Link führt zur PV-Angebotsseite
+6. **`/sturmschaden-dach-bochum`**:
+   - Rich Results Test: FAQPage zeigt **6** Einträge
+   - View Source: `<meta property="og:url">` und `<meta property="og:type">` vorhanden
+   - „Verwandte Leistungen": 4. Karte „Wann lohnt sich Dachsanierung?"
+
+---
+
+## Beobachtung außerhalb D23-Scope (für späteren Deploy)
+
+**Navigation.tsx fehlt der VELUX Preisrechner** im services-Array (alle anderen Cluster-Seiten sind bereits drin). Kandidat für einen Folge-Mini-Deploy (Stufe A, 1 Datei).
+
+**Services.tsx fehlt der Gründach-Eintrag** (existiert auf `/gruendach-dachbegrunung-bochum` und ist in der Navigation, aber nicht in der Leistungen-Übersicht). Auch das ist ein Kandidat für einen Folge-Deploy.
+
+---
+
+## Commit-Message
+
+```
+feat: D23 — Interne PV-Verlinkung (Footer/Nav/Services/Solarpflicht/Hub) + Sturmschaden FAQ-Schema, og:url, Cluster-Link
+```
