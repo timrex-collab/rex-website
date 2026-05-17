@@ -201,45 +201,6 @@ export default function VeluxPreisrechnerBochum() {
         </div>
       </section>
 
-      {/* VELUX-Modellblock: Verglasungen mit Uw-Werten */}
-      <div className="bg-white">
-        <div className="max-w-3xl mx-auto px-4 py-8">
-          <h2 className="text-xl font-bold text-slate-900 mb-4">VELUX Verglasungen im Überblick</h2>
-          <p className="text-slate-600 text-sm mb-6">Nicht jede VELUX-Verglasung ist förderrelevant. Die BEG-Förderung erfordert Uw ≤ 1,0 W/(m²K).</p>
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
-            <div className="border border-slate-200 rounded-xl p-4 opacity-70">
-              <span className="inline-block text-[10px] font-medium px-2 py-0.5 rounded bg-red-50 text-red-700 mb-2">Nicht förderrelevant</span>
-              <p className="font-semibold text-sm text-slate-900">THERMO</p>
-              <p className="text-xs text-slate-500">Verglasung -70</p>
-              <p className="text-2xl font-bold text-slate-900 mt-1">1,3 <span className="text-xs font-normal text-slate-500">W/(m²K)</span></p>
-              <p className="text-xs text-slate-500 mt-1">Standard-Doppelverglasung. Erfüllt nicht die BEG-Anforderung Uw ≤ 1,0.</p>
-            </div>
-            <div className="border border-slate-200 rounded-xl p-4">
-              <span className="inline-block text-[10px] font-medium px-2 py-0.5 rounded bg-emerald-50 text-emerald-700 mb-2">Förderrelevant</span>
-              <p className="font-semibold text-sm text-slate-900">ENERGIE PLUS</p>
-              <p className="text-xs text-slate-500">Verglasung -66</p>
-              <p className="text-2xl font-bold text-slate-900 mt-1">1,0 <span className="text-xs font-normal text-slate-500">W/(m²K)</span></p>
-              <p className="text-xs text-slate-500 mt-1">Dreifachverglasung. Erreicht den Grenzwert Uw ≤ 1,0 — geeigneter Einstieg für energetische Maßnahmen.</p>
-            </div>
-            <div className="border border-slate-200 rounded-xl p-4">
-              <span className="inline-block text-[10px] font-medium px-2 py-0.5 rounded bg-emerald-50 text-emerald-700 mb-2">Förderrelevant</span>
-              <p className="font-semibold text-sm text-slate-900">SCHALLSCHUTZ</p>
-              <p className="text-xs text-slate-500">Verglasung -62</p>
-              <p className="text-2xl font-bold text-slate-900 mt-1">0,96 <span className="text-xs font-normal text-slate-500">W/(m²K)</span></p>
-              <p className="text-xs text-slate-500 mt-1">Dreifachverglasung mit erhöhtem Schallschutz. Sinnvoll an Straßen oder bei Einflugschneisen.</p>
-            </div>
-            <div className="border-2 border-emerald-500 rounded-xl p-4">
-              <span className="inline-block text-[10px] font-medium px-2 py-0.5 rounded bg-emerald-50 text-emerald-700 mb-2">Beste Dämmung</span>
-              <p className="font-semibold text-sm text-slate-900">WÄRMEDÄMMUNG</p>
-              <p className="text-xs text-slate-500">Verglasung -67</p>
-              <p className="text-2xl font-bold text-slate-900 mt-1">0,88 <span className="text-xs font-normal text-slate-500">W/(m²K)</span></p>
-              <p className="text-xs text-slate-500 mt-1">Bester Uw-Wert im Vergleich. Maximale Wärmedämmung für energetisch anspruchsvolle Sanierungen.</p>
-            </div>
-          </div>
-          <p className="text-xs text-slate-400 mt-4">Quelle: VELUX Technische Werte, CE-Kennzeichnung gem. EN 14351-1. Der Preisrechner unten kalkuliert mit drei Verglasungsstufen (THERMO / ENERGIE PLUS / WÄRMEDÄMMUNG). Preisindikation auf Basis der hinterlegten Verglasung — verbindliche Modell- und Preisprüfung erfolgt beim Vor-Ort-Termin.</p>
-        </div>
-      </div>
-
       {/* Rechner-Komponente */}
       <div id="preisrechner">
         <VeluxPreisrechner />
@@ -248,6 +209,43 @@ export default function VeluxPreisrechnerBochum() {
       {/* Statischer SEO-Content-Block */}
       <div className="bg-white">
         <div className="max-w-3xl mx-auto px-4 py-12 space-y-12">
+
+          {/* VELUX-Modellblock: Verglasungen mit Uw-Werten */}
+          <section>
+            <h2 className="text-xl font-bold text-slate-900 mb-4">VELUX Verglasungen im Überblick</h2>
+            <p className="text-slate-600 text-sm mb-6">Nicht jede VELUX-Verglasung ist förderrelevant. Die BEG-Förderung erfordert Uw ≤ 1,0 W/(m²K).</p>
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
+              <div className="border border-slate-200 rounded-xl p-4 opacity-70">
+                <span className="inline-block text-[10px] font-medium px-2 py-0.5 rounded bg-red-50 text-red-700 mb-2">Nicht förderrelevant</span>
+                <p className="font-semibold text-sm text-slate-900">THERMO</p>
+                <p className="text-xs text-slate-500">Verglasung -70</p>
+                <p className="text-2xl font-bold text-slate-900 mt-1">1,3 <span className="text-xs font-normal text-slate-500">W/(m²K)</span></p>
+                <p className="text-xs text-slate-500 mt-1">Standard-Doppelverglasung. Erfüllt nicht die BEG-Anforderung Uw ≤ 1,0.</p>
+              </div>
+              <div className="border border-slate-200 rounded-xl p-4">
+                <span className="inline-block text-[10px] font-medium px-2 py-0.5 rounded bg-emerald-50 text-emerald-700 mb-2">Förderrelevant</span>
+                <p className="font-semibold text-sm text-slate-900">ENERGIE PLUS</p>
+                <p className="text-xs text-slate-500">Verglasung -66</p>
+                <p className="text-2xl font-bold text-slate-900 mt-1">1,0 <span className="text-xs font-normal text-slate-500">W/(m²K)</span></p>
+                <p className="text-xs text-slate-500 mt-1">Dreifachverglasung. Erreicht den Grenzwert Uw ≤ 1,0 — geeigneter Einstieg für energetische Maßnahmen.</p>
+              </div>
+              <div className="border border-slate-200 rounded-xl p-4">
+                <span className="inline-block text-[10px] font-medium px-2 py-0.5 rounded bg-emerald-50 text-emerald-700 mb-2">Förderrelevant</span>
+                <p className="font-semibold text-sm text-slate-900">SCHALLSCHUTZ</p>
+                <p className="text-xs text-slate-500">Verglasung -62</p>
+                <p className="text-2xl font-bold text-slate-900 mt-1">0,96 <span className="text-xs font-normal text-slate-500">W/(m²K)</span></p>
+                <p className="text-xs text-slate-500 mt-1">Dreifachverglasung mit erhöhtem Schallschutz. Sinnvoll an Straßen oder bei Einflugschneisen.</p>
+              </div>
+              <div className="border-2 border-emerald-500 rounded-xl p-4">
+                <span className="inline-block text-[10px] font-medium px-2 py-0.5 rounded bg-emerald-50 text-emerald-700 mb-2">Beste Dämmung</span>
+                <p className="font-semibold text-sm text-slate-900">WÄRMEDÄMMUNG</p>
+                <p className="text-xs text-slate-500">Verglasung -67</p>
+                <p className="text-2xl font-bold text-slate-900 mt-1">0,88 <span className="text-xs font-normal text-slate-500">W/(m²K)</span></p>
+                <p className="text-xs text-slate-500 mt-1">Bester Uw-Wert im Vergleich. Maximale Wärmedämmung für energetisch anspruchsvolle Sanierungen.</p>
+              </div>
+            </div>
+            <p className="text-xs text-slate-400 mt-4">Quelle: VELUX Technische Werte, CE-Kennzeichnung gem. EN 14351-1. Der Preisrechner oben kalkuliert mit drei Verglasungsstufen (THERMO / ENERGIE PLUS / WÄRMEDÄMMUNG). Preisindikation auf Basis der hinterlegten Verglasung — verbindliche Modell- und Preisprüfung erfolgt beim Vor-Ort-Termin.</p>
+          </section>
 
           {/* Direktantwort */}
           <section>
