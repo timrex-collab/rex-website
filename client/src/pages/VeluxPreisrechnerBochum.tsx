@@ -156,19 +156,50 @@ export default function VeluxPreisrechnerBochum() {
         <input name="konfiguration" />
       </form>
 
-      {/* Hero-Bild */}
-      <div className="bg-white">
-        <div className="max-w-3xl mx-auto px-4 pt-8">
-          <img
-            src="/images/velux-dachfenster-preisrechner-bochum.webp"
-            alt="VELUX Dachfenster Preisrechner – Modell, Größe und Einbau konfigurieren"
-            width="1200"
-            height="630"
-            className="w-full rounded-xl shadow-sm"
-            loading="eager"
-          />
+      {/* Hero */}
+      <section className="relative text-white py-24 px-4 overflow-hidden">
+        <div
+          className="absolute inset-0 bg-cover bg-center scale-[1.04]"
+          style={{ backgroundImage: "url('/images/velux-preisrechner-bochum-header-dachfenster.webp')" }}
+          aria-hidden="true"
+        />
+        <div
+          className="absolute inset-0"
+          style={{ background: "linear-gradient(135deg, rgba(15,23,42,.74), rgba(30,58,138,.46))" }}
+          aria-hidden="true"
+        />
+
+        <div className="max-w-4xl mx-auto relative z-10">
+          <div className="inline-flex items-center gap-2 bg-white/10 border border-white/20 rounded-full px-4 py-1 mb-6">
+            <span className="text-sm font-medium text-blue-100 uppercase tracking-wider">
+              VELUX Preisrechner Bochum
+            </span>
+          </div>
+
+          <h1 className="text-3xl md:text-5xl font-extrabold leading-tight mb-4 max-w-3xl">
+            VELUX Dachfenster Preisrechner Bochum
+          </h1>
+
+          <p className="text-lg text-slate-200 mb-8 max-w-2xl leading-relaxed">
+            Konfigurieren Sie Ihr neues VELUX Dachfenster online: Fenstertyp, Größe, Verglasung und Zubehör auswählen – mit direkter Einschätzung durch Rex Bedachungs GmbH als autorisierter VELUX-Partner in Bochum.
+          </p>
+
+          <div className="flex flex-wrap gap-3">
+            <a
+              href="#preisrechner"
+              className="inline-flex items-center justify-center rounded-md bg-white px-6 py-3 text-sm font-semibold text-blue-900 shadow-sm hover:bg-slate-100 transition-colors"
+            >
+              Preisrechner starten
+            </a>
+            <a
+              href="tel:+49234583100"
+              className="inline-flex items-center justify-center rounded-md border border-white/30 bg-white/10 px-6 py-3 text-sm font-semibold text-white hover:bg-white/20 transition-colors"
+            >
+              +49 234 583100
+            </a>
+          </div>
         </div>
-      </div>
+      </section>
 
       {/* VELUX-Modellblock: Verglasungen mit Uw-Werten */}
       <div className="bg-white">
@@ -210,7 +241,9 @@ export default function VeluxPreisrechnerBochum() {
       </div>
 
       {/* Rechner-Komponente */}
-      <VeluxPreisrechner />
+      <div id="preisrechner">
+        <VeluxPreisrechner />
+      </div>
 
       {/* Statischer SEO-Content-Block */}
       <div className="bg-white">
