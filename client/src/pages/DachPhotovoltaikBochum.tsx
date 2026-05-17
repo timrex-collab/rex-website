@@ -97,10 +97,10 @@ export default function DachPhotovoltaikBochum() {
         <meta property="og:description" content="Dach für Photovoltaik vorbereiten in Bochum: Braas PV Premium dachintegriert oder Aufdach-PV. Kostenloser Dachcheck – Meisterbetrieb seit 1984." />
         <meta property="og:url" content="https://www.rex-bedachung.de/dach-photovoltaik-bochum" />
         <meta property="og:type" content="article" />
-        <meta property="og:image" content="https://www.rex-bedachung.de/images/braas-pv-premium-turmalin.webp" />
+        <meta property="og:image" content="https://www.rex-bedachung.de/images/braas-pv-premium-turmalin-header-photovoltaik-dach-bochum.webp" />
         <meta property="og:site_name" content="Rex Bedachungs GmbH" />
         <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:image" content="https://www.rex-bedachung.de/images/braas-pv-premium-turmalin.webp" />
+        <meta name="twitter:image" content="https://www.rex-bedachung.de/images/braas-pv-premium-turmalin-header-photovoltaik-dach-bochum.webp" />
         <script type="application/ld+json">{serviceSchema}</script>
         <script type="application/ld+json">{`{
   "@context": "https://schema.org",
@@ -154,8 +154,8 @@ export default function DachPhotovoltaikBochum() {
 
       {/* Hero */}
       <section className="relative text-white py-24 px-4 overflow-hidden">
-        <div className="absolute inset-0 bg-cover bg-center" style={{ backgroundImage: "url('/images/braas-pv-premium-turmalin.webp')" }} aria-hidden="true" />
-        <div className="absolute inset-0" style={{ background: "linear-gradient(135deg, #0f172a 0%, #1e3a8a 100%)", opacity: 0.82 }} aria-hidden="true" />
+        <div className="absolute inset-0 bg-cover bg-center" style={{ backgroundImage: "url('/images/braas-pv-premium-turmalin-header-photovoltaik-dach-bochum.webp')" }} aria-hidden="true" />
+        <div className="absolute inset-0" style={{ background: "linear-gradient(90deg, rgba(15,23,42,0.88) 0%, rgba(15,23,42,0.68) 42%, rgba(15,23,42,0.22) 100%)" }} aria-hidden="true" />
         <div className="max-w-4xl mx-auto relative z-10">
           <div className="inline-flex items-center gap-2 bg-white/10 border border-white/20 rounded-full px-4 py-1 mb-6">
             <Sun className="w-4 h-4 text-yellow-300" />
@@ -194,7 +194,7 @@ export default function DachPhotovoltaikBochum() {
           <p className="text-muted-foreground mb-8 leading-relaxed">Je nach Dachtyp, Budget und optischen Ansprüchen bieten wir zwei Lösungen – beide beginnen mit einem kostenlosen Dachcheck durch Rex.</p>
           <div className="grid md:grid-cols-2 gap-6">
             <div className="bg-card border-2 border-primary rounded-xl overflow-hidden">
-              <img src="/images/braas-pv-premium-turmalin.webp" alt="Braas PV Premium Turmalin – dachintegrierte Photovoltaik" className="w-full h-48 object-cover" />
+              <img src="/images/braas-pv-premium-turmalin-dachintegrierte-photovoltaik-bochum.webp" alt="Braas PV Premium Turmalin – dachintegrierte Photovoltaik" className="w-full h-48 object-cover" />
               <div className="p-6">
                 <span className="inline-block text-[11px] font-semibold uppercase tracking-widest text-primary bg-primary/10 px-3 py-0.5 rounded mb-3">Rex-Eigenleistung</span>
                 <h3 className="text-xl font-bold mb-3">Braas PV Premium</h3>
@@ -208,9 +208,7 @@ export default function DachPhotovoltaikBochum() {
               </div>
             </div>
             <div className="bg-card border border-border rounded-xl overflow-hidden">
-              <div className="w-full h-48 bg-slate-200 flex items-center justify-center">
-                <Sun className="w-12 h-12 text-slate-400" />
-              </div>
+              <img src="/images/konventionelle-aufdach-pv-photovoltaikanlage-dach-bochum.webp" alt="Konventionelle Aufdach Photovoltaikanlage auf Steildach in Bochum" loading="lazy" decoding="async" className="w-full h-48 object-cover" />
               <div className="p-6">
                 <span className="inline-block text-[11px] font-semibold uppercase tracking-widest text-muted-foreground bg-muted px-3 py-0.5 rounded mb-3">Partnerempfehlung</span>
                 <h3 className="text-xl font-bold mb-3">Konventionelle Aufdach-PV</h3>
@@ -234,14 +232,14 @@ export default function DachPhotovoltaikBochum() {
           <p className="text-muted-foreground mb-8 leading-relaxed">PV-Elemente ersetzen herkömmliche Dachziegel oder Dachsteine – kein separates Gestell, keine Aufbauten. Rex liefert und montiert die Braas PV Premium Fläche als Teil der Dacheindeckung.</p>
           <div className="grid md:grid-cols-2 gap-6 mb-8">
             <div className="bg-card border border-border rounded-xl overflow-hidden">
-              <img src="/images/braas-pv-premium-turmalin.webp" alt="Braas PV Premium Turmalin Dachziegel" className="w-full h-52 object-cover" />
+              <img src="/images/braas-pv-premium-turmalin-dachintegrierte-photovoltaik-bochum.webp" alt="Braas PV Premium Turmalin Dachziegel" className="w-full h-52 object-cover" />
               <div className="p-5">
                 <h3 className="text-lg font-bold mb-2">Braas Turmalin</h3>
                 <p className="text-sm text-muted-foreground">Dachziegel mit integrierter PV-Technologie. Hochwertige Keramikoptik, gleichzeitig Stromerzeugung. Ideal für sichtbare Dachflächen.</p>
               </div>
             </div>
             <div className="bg-card border border-border rounded-xl overflow-hidden">
-              <img src="/images/braas-pv-premium-tegalit.webp" alt="Braas PV Premium Tegalit Dachstein" className="w-full h-52 object-cover" />
+              <img src="/images/braas-pv-premium-tegalit-dachintegrierte-photovoltaik-bochum.webp" alt="Braas PV Premium Tegalit Dachstein" className="w-full h-52 object-cover" />
               <div className="p-5">
                 <h3 className="text-lg font-bold mb-2">Braas Tegalit</h3>
                 <p className="text-sm text-muted-foreground">Dachstein mit integrierter PV-Technologie. Flache, moderne Optik. Bewährt für großflächige Satteldächer.</p>

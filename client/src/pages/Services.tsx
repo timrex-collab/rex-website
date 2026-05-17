@@ -16,7 +16,7 @@ const flachdachImage = "/images/flachdach-sanierung-bochum-rex-bedachung.webp";
 const bauklempnereiImage = "/images/kamin-sanierung-bochum-dachdecker.webp";
 const dachfensterImage = "/images/velux-dachfenster-einbau-bochum-fachbetrieb.webp";
 const reparaturenImage = "/images/dachreparatur-bochum-rex-bedachung.webp";
-const photovoltaikImage = "/images/braas-pv-premium-turmalin.webp";
+const photovoltaikImage = "/images/braas-pv-premium-turmalin-dachintegrierte-photovoltaik-bochum.webp";
 
 export default function Services() {
   const services = [
@@ -42,6 +42,18 @@ export default function Services() {
         "Moderne Abdichtungssysteme",
         "Energieeffiziente Lösungen",
         "Gründach-Optionen",
+      ],
+    },
+    {
+      title: "Gründach",
+      description: "Extensive und intensive Dachbegrünung für Flachdächer in Bochum – mit Wurzelschutz, Drainage und fachgerechtem Systemaufbau.",
+      imageUrl: flachdachImage,
+      imageAlt: "Gründach und Dachbegrünung Bochum – Rex Bedachungs GmbH",
+      href: "/gruendach-dachbegrunung-bochum",
+      benefits: [
+        "Regenwasserrückhalt",
+        "Schutz der Abdichtung",
+        "Ökologischer Mehrwert",
       ],
     },
     {
