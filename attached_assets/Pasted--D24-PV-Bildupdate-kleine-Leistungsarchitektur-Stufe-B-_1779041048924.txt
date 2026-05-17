@@ -1,0 +1,488 @@
+# D24 — PV-Bildupdate + kleine Leistungsarchitektur
+**Stufe B | 3 TSX-Dateien + 4 WebP-Assets | keine neuen Routen | keine neuen Seiten | kein Schema**
+
+> ⏱ **Deploy-Zeitfenster:** Frühestens 16.05.2026 (48h-Pause D23 → D24 endet 15.05.2026 abends).
+
+## Ziel
+
+Führe exakt die folgenden Änderungen durch:
+
+1. Neue PV-Bilder auf `/dach-photovoltaik-bochum` einbinden.
+2. Header-Bild der PV-Seite ersetzen.
+3. Aufdach-PV-Platzhalter durch echtes Bild ersetzen.
+4. `VELUX Preisrechner` ins Leistungen-Dropdown der Navigation aufnehmen.
+5. `Gründach` in `/leistungen` ergänzen.
+6. Keine weiteren Dateien ändern.
+
+---
+
+## Feste Regeln
+
+- Keine Preise/Kosten ergänzen.
+- Kein Wort „zertifiziert" ergänzen.
+- Keine neuen Seiten.
+- Keine neuen Routen.
+- Keine Redirects.
+- `robots.txt` nicht anfassen.
+- `sitemap.xml` nicht anfassen.
+- `llms.txt` nicht anfassen.
+- `netlify.toml` nicht anfassen.
+- `attached_assets/` darf nicht committed werden.
+- Nach Deploy wieder 48h Pause einhalten.
+
+---
+
+## Vorab-Check
+
+```bash
+# 1. D23 muss bereits vorhanden sein
+grep -c "Dach & Photovoltaik" client/src/components/Navigation.tsx
+grep -c "dach-photovoltaik-bochum" client/src/pages/Services.tsx
+# Erwartung: Navigation ≥1, Services ≥1
+
+# 2. Alte Pfade müssen noch existieren (Doppellauf-Schutz)
+grep -c "braas-pv-premium-turmalin.webp" client/src/pages/DachPhotovoltaikBochum.tsx
+# Erwartung: ≥3 (OG, Twitter, Hero-Background)
+# Falls 0: D24 wurde bereits teilweise ausgeführt → STOP, Tim informieren.
+
+grep -c 'title: "Gründach"' client/src/pages/Services.tsx
+# Erwartung: 0
+# Falls ≥1: Gründach-Karte bereits vorhanden → Schritt 3b überspringen.
+
+grep -c "VELUX Preisrechner" client/src/components/Navigation.tsx
+# Erwartung: 0
+# Falls ≥1: bereits ergänzt → Datei 2 überspringen.
+```
+
+Falls einer der D23-Checks fehlschlägt: **STOP. D23 ist nicht sauberer Ausgangsstand. Tim informieren.**
+
+---
+
+# Asset-Setup
+
+Die vier hochgeladenen WebP-Bilder aus `attached_assets/` in `client/public/images/` kopieren und SEO-/GEO-optimiert benennen.
+
+## Erwartete Upload-Dateien
+
+- `BRAAS_PV_Premium_Turmalin.webp`
+- `braas-pv-premium-tegalit-dachintegrierte-photovoltaik-bochum.webp`
+- `braas-pv-premium-turmalin-dachintegrierte-photovoltaik-bochum.webp`
+- `konventionelle-aufdach-pv-photovoltaikanlage-dach-bochum.webp`
+
+## Optional: Dimensionen Hero-Bild prüfen
+
+```bash
+# Falls imagemagick verfügbar — OG-Empfehlung min. 1200×630
+identify attached_assets/BRAAS_PV_Premium_Turmalin.webp 2>/dev/null || echo "imagemagick nicht installiert — Dimensionen manuell prüfen"
+```
+
+## Ziel-Dateien
+
+```bash
+mkdir -p client/public/images
+
+cp attached_assets/BRAAS_PV_Premium_Turmalin.webp \
+  client/public/images/dach-photovoltaik-bochum-hero-braas-pv-premium-turmalin.webp
+
+cp attached_assets/braas-pv-premium-turmalin-dachintegrierte-photovoltaik-bochum.webp \
+  client/public/images/braas-pv-premium-turmalin-dachintegrierte-photovoltaik-bochum.webp
+
+cp attached_assets/braas-pv-premium-tegalit-dachintegrierte-photovoltaik-bochum.webp \
+  client/public/images/braas-pv-premium-tegalit-dachintegrierte-photovoltaik-bochum.webp
+
+cp attached_assets/konventionelle-aufdach-pv-photovoltaikanlage-dach-bochum.webp \
+  client/public/images/konventionelle-aufdach-pv-photovoltaikanlage-dach-bochum.webp
+```
+
+Falls eine Datei nicht gefunden wird:
+
+```bash
+find attached_assets -type f | grep -E 'BRAAS|braas-pv|aufdach|photovoltaik'
+```
+
+Dann exakt passende Datei aus `attached_assets/` verwenden. Keine neuen Dateinamen erfinden.
+
+---
+
+# Datei 1 — `client/src/pages/DachPhotovoltaikBochum.tsx`
+
+## Änderung 1a — OG-/Twitter-Bild auf neues Hero-Bild setzen
+
+SUCHE:
+
+```tsx
+<meta property="og:image" content="https://www.rex-bedachung.de/images/braas-pv-premium-turmalin.webp" />
+```
+
+ERSETZEN MIT:
+
+```tsx
+<meta property="og:image" content="https://www.rex-bedachung.de/images/dach-photovoltaik-bochum-hero-braas-pv-premium-turmalin.webp" />
+```
+
+SUCHE:
+
+```tsx
+<meta name="twitter:image" content="https://www.rex-bedachung.de/images/braas-pv-premium-turmalin.webp" />
+```
+
+ERSETZEN MIT:
+
+```tsx
+<meta name="twitter:image" content="https://www.rex-bedachung.de/images/dach-photovoltaik-bochum-hero-braas-pv-premium-turmalin.webp" />
+```
+
+---
+
+## Änderung 1b — Hero-Bild ersetzen
+
+SUCHE:
+
+```tsx
+<div className="absolute inset-0 bg-cover bg-center" style={{ backgroundImage: "url('/images/braas-pv-premium-turmalin.webp')" }} aria-hidden="true" />
+```
+
+ERSETZEN MIT:
+
+```tsx
+<div className="absolute inset-0 bg-cover bg-center" style={{ backgroundImage: "url('/images/dach-photovoltaik-bochum-hero-braas-pv-premium-turmalin.webp')" }} aria-hidden="true" />
+```
+
+---
+
+## Änderung 1c — Hero-Overlay an neues Bild anpassen
+
+SUCHE:
+
+```tsx
+<div className="absolute inset-0" style={{ background: "linear-gradient(135deg, #0f172a 0%, #1e3a8a 100%)", opacity: 0.82 }} aria-hidden="true" />
+```
+
+ERSETZEN MIT:
+
+```tsx
+<div className="absolute inset-0" style={{ background: "linear-gradient(90deg, rgba(15,23,42,0.88) 0%, rgba(15,23,42,0.68) 42%, rgba(15,23,42,0.22) 100%)" }} aria-hidden="true" />
+```
+
+Ziel: Text bleibt lesbar, das neue BRAAS-Headerbild bleibt sichtbar.
+
+---
+
+## Änderung 1d — Turmalin-Bilder auf neue Detaildatei setzen
+
+SUCHE alle Vorkommen:
+
+```tsx
+src="/images/braas-pv-premium-turmalin.webp"
+```
+
+ERSETZEN MIT:
+
+```tsx
+src="/images/braas-pv-premium-turmalin-dachintegrierte-photovoltaik-bochum.webp"
+```
+
+Wichtig: Nur `src="..."` ersetzen, nicht die Hero-Background-URL und nicht OG/Twitter. Diese wurden oben bereits separat auf das Hero-Bild gesetzt.
+
+---
+
+## Änderung 1e — Tegalit-Bild auf neue Detaildatei setzen
+
+SUCHE alle Vorkommen:
+
+```tsx
+src="/images/braas-pv-premium-tegalit.webp"
+```
+
+ERSETZEN MIT:
+
+```tsx
+src="/images/braas-pv-premium-tegalit-dachintegrierte-photovoltaik-bochum.webp"
+```
+
+---
+
+## Änderung 1f — Aufdach-PV-Platzhalter durch echtes Bild ersetzen
+
+**Vor SEARCH/REPLACE: Whitespace-Check**
+
+```bash
+grep -n 'Sun className="w-12 h-12 text-slate-400"' client/src/pages/DachPhotovoltaikBochum.tsx
+# Erwartung: 1 Treffer.
+# Falls 0: Indentation-Mismatch → mit awk/sed gezielt ersetzen statt SEARCH/REPLACE.
+```
+
+SUCHE exakt:
+
+```tsx
+              <div className="w-full h-48 bg-slate-200 flex items-center justify-center">
+                <Sun className="w-12 h-12 text-slate-400" />
+              </div>
+```
+
+ERSETZEN MIT:
+
+```tsx
+              <img src="/images/konventionelle-aufdach-pv-photovoltaikanlage-dach-bochum.webp" alt="Konventionelle Aufdach Photovoltaikanlage auf Steildach in Bochum" loading="lazy" decoding="async" className="w-full h-48 object-cover" />
+```
+
+---
+
+# Datei 2 — `client/src/components/Navigation.tsx`
+
+`VELUX Preisrechner` ins `services`-Array ergänzen. D23 hat bereits `Dach & Photovoltaik` ergänzt.
+
+SUCHE exakt:
+
+```tsx
+    { name: "Dach & Photovoltaik", path: "/dach-photovoltaik-bochum" },
+  ];
+```
+
+ERSETZEN MIT:
+
+```tsx
+    { name: "Dach & Photovoltaik", path: "/dach-photovoltaik-bochum" },
+    { name: "VELUX Preisrechner", path: "/velux-preisrechner-bochum" },
+  ];
+```
+
+Keine weiteren Navigationsänderungen.
+
+---
+
+# Datei 3 — `client/src/pages/Services.tsx`
+
+Zwei Änderungen:
+
+1. PV-Kartenbild auf die neue Turmalin-Detaildatei setzen.
+2. Gründach-Karte ergänzen.
+
+---
+
+## Änderung 3a — PV-Bildpfad aktualisieren
+
+SUCHE:
+
+```tsx
+const photovoltaikImage = "/images/braas-pv-premium-turmalin.webp";
+```
+
+ERSETZEN MIT:
+
+```tsx
+const photovoltaikImage = "/images/braas-pv-premium-turmalin-dachintegrierte-photovoltaik-bochum.webp";
+```
+
+Falls dieser exakte String nicht existiert, aber `photovoltaikImage` vorhanden ist:
+
+```bash
+grep -n "photovoltaikImage" client/src/pages/Services.tsx
+```
+
+Dann nur den Pfad von `photovoltaikImage` auf folgenden Wert setzen:
+
+```tsx
+"/images/braas-pv-premium-turmalin-dachintegrierte-photovoltaik-bochum.webp"
+```
+
+---
+
+## Änderung 3b — Gründach-Karte nach Flachdach einfügen
+
+SUCHE exakt den Flachdach-Eintrag:
+
+```tsx
+    {
+      title: "Flachdach",
+      description: "Professionelle Abdichtung und Sanierung von Flachdächern für Wohn- und Gewerbeimmobilien mit modernen Systemen.",
+      imageUrl: flachdachImage,
+      imageAlt: "Flachdach Sanierung Bochum – Rex Bedachungs GmbH Fachbetrieb",
+      href: "/flachdach-bochum",
+      benefits: [
+        "Moderne Abdichtungssysteme",
+        "Energieeffiziente Lösungen",
+        "Gründach-Optionen",
+      ],
+    },
+```
+
+ERSETZEN MIT:
+
+```tsx
+    {
+      title: "Flachdach",
+      description: "Professionelle Abdichtung und Sanierung von Flachdächern für Wohn- und Gewerbeimmobilien mit modernen Systemen.",
+      imageUrl: flachdachImage,
+      imageAlt: "Flachdach Sanierung Bochum – Rex Bedachungs GmbH Fachbetrieb",
+      href: "/flachdach-bochum",
+      benefits: [
+        "Moderne Abdichtungssysteme",
+        "Energieeffiziente Lösungen",
+        "Gründach-Optionen",
+      ],
+    },
+    {
+      title: "Gründach",
+      description: "Extensive und intensive Dachbegrünung für Flachdächer in Bochum – mit Wurzelschutz, Drainage und fachgerechtem Systemaufbau.",
+      imageUrl: flachdachImage,
+      imageAlt: "Gründach und Dachbegrünung Bochum – Rex Bedachungs GmbH",
+      href: "/gruendach-dachbegrunung-bochum",
+      benefits: [
+        "Regenwasserrückhalt",
+        "Schutz der Abdichtung",
+        "Ökologischer Mehrwert",
+      ],
+    },
+```
+
+Hinweis: `flachdachImage` wird bewusst als vorhandener Bild-Fallback verwendet, damit keine zusätzliche neue Gründach-Bilddatei nötig ist. Keine neue Gründach-Bilddatei anlegen.
+
+---
+
+# Verifikation
+
+```bash
+# 1. Geänderte Dateien prüfen
+git diff --stat
+# Erwartung: 3 TSX-Dateien + 4 WebP-Assets
+# Keine Änderung an sitemap.xml, llms.txt, netlify.toml, robots.txt
+
+# 2. Neue Bildassets vorhanden
+ls -la client/public/images/dach-photovoltaik-bochum-hero-braas-pv-premium-turmalin.webp
+ls -la client/public/images/braas-pv-premium-turmalin-dachintegrierte-photovoltaik-bochum.webp
+ls -la client/public/images/braas-pv-premium-tegalit-dachintegrierte-photovoltaik-bochum.webp
+ls -la client/public/images/konventionelle-aufdach-pv-photovoltaikanlage-dach-bochum.webp
+
+# 3. DachPhotovoltaikBochum: neue Bildpfade
+grep -c "dach-photovoltaik-bochum-hero-braas-pv-premium-turmalin.webp" client/src/pages/DachPhotovoltaikBochum.tsx
+# Erwartung: ≥3 (OG, Twitter, Hero)
+
+grep -c "braas-pv-premium-turmalin-dachintegrierte-photovoltaik-bochum.webp" client/src/pages/DachPhotovoltaikBochum.tsx
+# Erwartung: ≥2
+
+grep -c "braas-pv-premium-tegalit-dachintegrierte-photovoltaik-bochum.webp" client/src/pages/DachPhotovoltaikBochum.tsx
+# Erwartung: ≥1
+
+grep -c "konventionelle-aufdach-pv-photovoltaikanlage-dach-bochum.webp" client/src/pages/DachPhotovoltaikBochum.tsx
+# Erwartung: ≥1
+
+# 4. Navigation: VELUX Preisrechner
+grep -c "VELUX Preisrechner" client/src/components/Navigation.tsx
+# Erwartung: ≥1
+
+grep -c "velux-preisrechner-bochum" client/src/components/Navigation.tsx
+# Erwartung: ≥1
+
+# 5. Services: Gründach + PV-Bild
+grep -c 'title: "Gründach"' client/src/pages/Services.tsx
+# Erwartung: 1
+
+grep -c "gruendach-dachbegrunung-bochum" client/src/pages/Services.tsx
+# Erwartung: ≥1
+
+grep -c "braas-pv-premium-turmalin-dachintegrierte-photovoltaik-bochum.webp" client/src/pages/Services.tsx
+# Erwartung: ≥1
+
+# 6. Unerwünschte Dateien prüfen
+git diff --name-only | grep -E 'sitemap.xml|llms.txt|netlify.toml|robots.txt' && echo "FEHLER: gesperrte Datei geändert" || echo "OK: keine gesperrte Datei geändert"
+
+# 7. attached_assets darf nicht im Commit landen
+git status --short | grep attached_assets && echo "WARNUNG: attached_assets sichtbar — NICHT committen" || echo "OK: attached_assets nicht im Status"
+
+# 8. Build
+npm run build
+```
+
+---
+
+# Pre-Push-Verification (PFLICHT — D16-Lesson Learned)
+
+**Erst nach erfolgreicher Verifikation oben durchführen. Niemals „Sync Changes" in Replit verwenden.**
+
+```bash
+# Schritt 1 — gezieltes git add der 7 erwarteten Dateien
+git add client/public/images/dach-photovoltaik-bochum-hero-braas-pv-premium-turmalin.webp \
+        client/public/images/braas-pv-premium-turmalin-dachintegrierte-photovoltaik-bochum.webp \
+        client/public/images/braas-pv-premium-tegalit-dachintegrierte-photovoltaik-bochum.webp \
+        client/public/images/konventionelle-aufdach-pv-photovoltaikanlage-dach-bochum.webp \
+        client/src/pages/DachPhotovoltaikBochum.tsx \
+        client/src/components/Navigation.tsx \
+        client/src/pages/Services.tsx
+
+# Schritt 2 — Vorhandene Commits prüfen (Auto-Checkpoint-Schutz)
+git log --oneline origin/main..HEAD
+# Erwartung: leer.
+# Falls Output: STOP — ungewollter Commit liegt vor → git reset --soft origin/main, dann von vorne.
+
+# Schritt 3 — Commit
+git commit -m "feat: D24 — PV-Bilder aktualisieren, VELUX Preisrechner in Navigation und Gründach in Leistungen"
+
+# Schritt 4 — Inhalt des Commits prüfen
+git show --stat HEAD
+# Erwartung: exakt 7 Dateien (4 WebP + 3 TSX).
+# Falls mehr/weniger: STOP, prüfen und ggf. git reset --soft origin/main.
+# Falls attached_assets/Pasted-*.txt enthalten: git reset --soft origin/main → git restore --staged attached_assets/Pasted-*.txt → recommit.
+
+# Schritt 5 — Push
+git push
+```
+
+---
+
+# Git-Hygiene bei Auto-Checkpoint (Fallback)
+
+Falls Replit einen Auto-Checkpoint erzeugt oder `attached_assets` ins Staging geraten ist, bevor der Pre-Push-Block ausgeführt wird:
+
+```bash
+git reset --soft origin/main
+git restore --staged attached_assets 2>/dev/null || true
+git restore attached_assets 2>/dev/null || true
+```
+
+Danach **Pre-Push-Verification (Schritte 1–5) von vorne** ausführen.
+
+---
+
+# Commit-Message
+
+```
+feat: D24 — PV-Bilder aktualisieren, VELUX Preisrechner in Navigation und Gründach in Leistungen
+```
+
+---
+
+# Post-Deploy-Checks
+
+Nach Preview/Deploy prüfen:
+
+## 1. `/dach-photovoltaik-bochum`
+
+- Header zeigt neues BRAAS PV Premium Turmalin Bild.
+- Hero-Text bleibt gut lesbar.
+- Turmalin-Karte nutzt das neue dunkle Turmalin-Detailbild.
+- Tegalit-Karte nutzt das neue Tegalit-Bild.
+- Aufdach-PV-Karte zeigt echtes Aufdach-PV-Bild statt grauem Platzhalter.
+
+## 2. Navigation Desktop + Mobile
+
+- Leistungen-Dropdown enthält `VELUX Preisrechner`.
+- Link führt zu `/velux-preisrechner-bochum`.
+
+## 3. `/leistungen`
+
+- Gründach-Karte sichtbar.
+- Gründach-Karte verlinkt auf `/gruendach-dachbegrunung-bochum`.
+- PV-Karte nutzt nicht das Headerbild, sondern das neue Turmalin-Detailbild.
+
+## 4. Social-Preview (optional)
+
+- OG-Image-URL erreichbar: `https://www.rex-bedachung.de/images/dach-photovoltaik-bochum-hero-braas-pv-premium-turmalin.webp`
+- Facebook Debugger / LinkedIn Post Inspector neu scrapen lassen.
+
+---
+
+# Hinweise für spätere Mini-Deploys (kein Teil von D24)
+
+- **Potenziell verwaiste Asset-Datei:** Nach D24 prüfen, ob `client/public/images/braas-pv-premium-turmalin.webp` noch referenziert wird. Nicht in D24 löschen.
+- **Gründach-Bild-Fallback:** Die Gründach-Karte in `Services.tsx` nutzt aktuell `flachdachImage` als Bildquelle. Sobald ein eigenes Gründach-Bild verfügbar ist, in `Services.tsx` ergänzen (Stufe A).
