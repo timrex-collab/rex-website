@@ -1,4 +1,5 @@
 import { useState } from "react";
+import DachfensterScrollAnimation from "@/components/DachfensterScrollAnimation";
 import { Helmet } from "react-helmet";
 import OrganizationSchema from "@/components/OrganizationSchema";
 import { useLocation } from "wouter";
@@ -366,6 +367,9 @@ export default function VeluxAustausch() {
         </div>
       </section>
 
+      {/* ── Scroll-Animation ── */}
+      <DachfensterScrollAnimation />
+
       {/* ── Modellvergleich ── */}
       <section className="py-16 px-4 bg-muted/40" data-testid="section-modelle">
         <div className="max-w-7xl mx-auto">
@@ -489,6 +493,17 @@ export default function VeluxAustausch() {
           <div className="rounded-md border border-border p-6 bg-muted/40" data-testid="box-preishinweis">
             <p className="text-sm text-muted-foreground leading-relaxed">
               <span className="font-semibold text-foreground">Hinweis:</span> Alle Preise sind Orientierungsrahmen für den Großraum Bochum und das Ruhrgebiet. Der genaue Preis hängt ab von Anzahl, Fenstertyp, Verglasung, Größe, Dachzugang und notwendigen Nebenarbeiten sowie Sicherheitsbestimmungen. Rex Bedachungs GmbH erstellt Ihnen nach kostenlosem Aufmaß ein transparentes Angebot.
+            </p>
+            <p className="text-sm text-muted-foreground mt-3 leading-relaxed">
+              Für eine erste Selbst-Einschätzung können Sie unseren{" "}
+              <a
+                href="/velux-preisrechner-bochum"
+                className="text-primary font-semibold underline underline-offset-2 hover:no-underline"
+                data-testid="link-preisrechner-hinweis"
+              >
+                VELUX-Preisrechner für Bochum
+              </a>{" "}
+              nutzen.
             </p>
           </div>
 

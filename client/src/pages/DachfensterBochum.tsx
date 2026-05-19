@@ -301,7 +301,17 @@ export default function DachfensterBochum() {
             </Button>
           </div>
           <p className="text-sm text-slate-300 font-medium" data-testid="text-trust-badge">
-            VELUX-Partner &bull; 40+ Jahre Erfahrung &bull; Ruhrgebiet
+            Autorisierter VELUX-Partner &bull; 40+ Jahre Erfahrung &bull; Ruhrgebiet
+          </p>
+          <p className="text-sm text-slate-200 mt-3" data-testid="text-preisrechner-hint">
+            Lieber selbst kalkulieren?{" "}
+            <a
+              href="/velux-preisrechner-bochum"
+              className="text-blue-300 underline underline-offset-2 hover:no-underline font-medium"
+              data-testid="link-hero-preisrechner"
+            >
+              Zum VELUX-Preisrechner &rarr;
+            </a>
           </p>
         </div>
       </section>
