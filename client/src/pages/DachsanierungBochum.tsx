@@ -173,7 +173,7 @@ const preisfaktoren = [
 const faqItems = [
   {
     question: "Was kostet eine Dachsanierung in Bochum?",
-    answer: "Eine energetische Dachsanierung in Bochum kostet je nach Dachtyp, Fläche, Dämmung und Eindeckung zwischen 150 und 350 \u20AC pro m² Dachfläche. Bei einem typischen Einfamilienhaus mit 120 m² Dachfläche liegt die Investition zwischen 18.000 und 42.000 \u20AC brutto. Mit iSFP-Bonus sind bis zu 12.000 \u20AC BAFA-Zuschuss möglich.",
+    answer: "Der Preis hängt von Dachtyp, Dachfläche, Dämmstandard, Eindeckungsmaterial, Dachfenstern, Gerüst, Entsorgung und Logistik ab. Eine seriöse Einschätzung ist erst nach Vor-Ort-Aufmaß möglich. Rex Bedachungs GmbH erstellt ein transparentes Angebot mit vollständiger Leistungsaufstellung. Über BAFA (BEG EM) sind 15\u201320 % Zuschuss auf die förderfähigen Kosten möglich, mit iSFP-Bonus bis zu 12.000 \u20AC pro Wohneinheit.",
   },
   {
     question: "Wie lange dauert eine Dachsanierung?",
@@ -263,14 +263,7 @@ export default function DachsanierungBochum() {
             "@type": "City",
             "name": "Bochum"
           },
-          "description": "Energetische Dachsanierung in Bochum: Steildach, Flachdach, Dämmung, Dachfenster – Komplettsanierung vom Meisterbetrieb Rex Bedachungs GmbH. Bis zu 20% BAFA-Förderung.",
-          "offers": {
-            "@type": "AggregateOffer",
-            "priceCurrency": "EUR",
-            "lowPrice": "150",
-            "highPrice": "350",
-            "unitText": "pro m² Dachfläche"
-          }
+          "description": "Energetische Dachsanierung in Bochum: Steildach, Flachdach, Dämmung, Dachfenster – Komplettsanierung vom Meisterbetrieb Rex Bedachungs GmbH. Bis zu 20% BAFA-Förderung."
         })}</script>
 
         <script type="application/ld+json">{JSON.stringify({
@@ -290,11 +283,6 @@ export default function DachsanierungBochum() {
           "name": "Ablauf einer Dachsanierung in Bochum",
           "description": "So läuft eine energetische Dachsanierung bei Rex Bedachungs GmbH in Bochum ab – von der Erstberatung bis zur Abnahme.",
           "totalTime": "P21D",
-          "estimatedCost": {
-            "@type": "MonetaryAmount",
-            "currency": "EUR",
-            "value": "15000-50000"
-          },
           "step": [
             { "@type": "HowToStep", "position": 1, "name": "Erstberatung und Dachinspektion", "text": "Rex Bedachungs GmbH kommt kostenlos zu Ihnen nach Bochum. Bestandsaufnahme: Dachzustand, Dämmung, Eindeckung, Entwässerung, Dachfenster. Fotodokumentation aller Mängel." },
             { "@type": "HowToStep", "position": 2, "name": "Energieberater einbinden", "text": "Für BAFA-Förderung ist ein Energieeffizienz-Experte (EEE) Pflicht. Wir koordinieren die Zusammenarbeit und die Erstellung des iSFP." },
@@ -312,7 +300,7 @@ export default function DachsanierungBochum() {
             {
               "@type": "Question",
               "name": "Was kostet eine Dachsanierung in Bochum?",
-              "acceptedAnswer": { "@type": "Answer", "text": "Eine energetische Dachsanierung in Bochum kostet je nach Dachtyp, Fläche, Dämmung und Eindeckung zwischen 150 und 350 € pro m². Bei einem typischen Einfamilienhaus mit 120 m² Dachfläche liegt die Investition zwischen 18.000 und 42.000 € brutto. Mit iSFP-Bonus sind bis zu 12.000 € BAFA-Zuschuss möglich." }
+              "acceptedAnswer": { "@type": "Answer", "text": "Der Preis hängt von Dachtyp, Dachfläche, Dämmstandard, Eindeckungsmaterial, Dachfenstern, Gerüst, Entsorgung und Logistik ab. Eine seriöse Einschätzung ist erst nach Vor-Ort-Aufmaß möglich. Rex Bedachungs GmbH erstellt ein transparentes Angebot mit vollständiger Leistungsaufstellung. Über BAFA (BEG EM) sind 15–20 % Zuschuss auf die förderfähigen Kosten möglich, mit iSFP-Bonus bis zu 12.000 € pro Wohneinheit." }
             },
             {
               "@type": "Question",
@@ -570,7 +558,7 @@ export default function DachsanierungBochum() {
           </div>
           <div className="bg-blue-50 dark:bg-blue-950/30 border border-blue-200 dark:border-blue-800 rounded-md p-6" data-testid="box-orientierung">
             <p className="text-sm text-foreground leading-relaxed">
-              <span className="font-semibold">Orientierung:</span> Energetische Dachsanierungen in Bochum bewegen sich typischerweise zwischen 150 und 350 € pro m² Dachfläche – je nach Umfang. Rex Bedachungs GmbH erstellt nach kostenlosem Aufmaß ein transparentes Angebot mit vollständiger Leistungsaufstellung.
+              <span className="font-semibold">Kein Pauschalpreis:</span> Dachfläche, Dämmvariante, Eindeckungsmaterial, Dachfenster und Logistik bestimmen den Endpreis gemeinsam. Rex Bedachungs GmbH kommt kostenlos vor Ort, nimmt auf und erstellt ein transparentes Angebot – ohne Lockpreise, ohne versteckte Positionen.
             </p>
           </div>
         </div>

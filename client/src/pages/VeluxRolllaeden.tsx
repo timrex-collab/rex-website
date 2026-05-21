@@ -58,7 +58,6 @@ const comparisonRows = [
   { label: "Stromanschluss", ssl: "Nein (Solar)", sml: "Ja (220 V)" },
   { label: "Steuerung", ssl: "Fernbedienung / App", sml: "KUX 110 + Schalter" },
   { label: "Montage", ssl: "Von innen, ca. 2 Std.", sml: "Von innen + Elektriker" },
-  { label: "Preis (Produkt)", ssl: "Ab ca. 536 \u20AC", sml: "Ab ca. 420 \u20AC + KUX 120 \u20AC" },
   { label: "Geeignet für", ssl: "Nachrüstung", sml: "Neubau / vorh. Anschluss" },
 ];
 
@@ -72,7 +71,7 @@ const ablaufSteps = [
 const faqItems = [
   {
     question: "Was kostet ein Velux SSL Solar-Rollladen inkl. Montage in Bochum?",
-    answer: "Der SSL kostet je nach Fenstergröße ab ca. 536 \u20AC (Produkt) zzgl. Montage durch Rex Bedachungs GmbH. Gesamtkosten inkl. Einbau ab ca. 700\u2013900 \u20AC. Nach kostenlosem Aufmaß vor Ort erhalten Sie ein Angebot nach kostenlosem Aufmaß.",
+    answer: "Der Preis hängt von Fenstergröße, Fenstertyp, Bedienvariante und Einbausituation ab. Rex Bedachungs GmbH kommt kostenlos vor Ort, prüft die Situation und erstellt ein transparentes Angebot. Für eine erste Einschätzung reichen oft Fotos von Fenster und Typenschild.",
   },
   {
     question: "Kann der SSL auf mein bestehendes Velux Fenster nachgerüstet werden?",
@@ -84,7 +83,7 @@ const faqItems = [
   },
   {
     question: "Was ist der Unterschied zwischen SSL und SML?",
-    answer: "Der SSL ist solar-betrieben und braucht keinen Stromanschluss. Der SML benötigt 220V und zusätzlich die Steuereinheit KUX 110 (ca. 120 \u20AC) \u2013 damit sind beide preislich ähnlich. Für Nachrüstungen empfehlen wir klar den SSL, da keine Elektrikerarbeiten nötig sind.",
+    answer: "Der SSL ist solar-betrieben und braucht keinen Stromanschluss. Der SML benötigt 220V und zusätzlich die Steuereinheit KUX 110. Für Nachrüstungen empfehlen wir in der Regel den SSL, da keine Elektrikerarbeiten nötig sind.",
   },
   {
     question: "Ist der Außenrollladen wirklich besser als ein innenliegendes Verdunkelungsrollo?",
@@ -99,7 +98,7 @@ const faqSchema = JSON.stringify({
     {
       "@type": "Question",
       "name": "Was kostet ein Velux SSL Solar-Rollladen inkl. Montage in Bochum?",
-      "acceptedAnswer": { "@type": "Answer", "text": "Der SSL kostet je nach Fenstergröße ab ca. 536 € (Produkt) zzgl. Montage durch Rex Bedachungs GmbH. Gesamtkosten inkl. Einbau ab ca. 700–900 €. Nach kostenlosem Aufmaß vor Ort erhalten Sie ein Angebot nach kostenlosem Aufmaß." }
+      "acceptedAnswer": { "@type": "Answer", "text": "Der Preis hängt von Fenstergröße, Fenstertyp, Bedienvariante und Einbausituation ab. Rex Bedachungs GmbH kommt kostenlos vor Ort, prüft die Situation und erstellt ein transparentes Angebot. Für eine erste Einschätzung reichen oft Fotos von Fenster und Typenschild." }
     },
     {
       "@type": "Question",
@@ -114,7 +113,7 @@ const faqSchema = JSON.stringify({
     {
       "@type": "Question",
       "name": "Was ist der Unterschied zwischen SSL und SML?",
-      "acceptedAnswer": { "@type": "Answer", "text": "Der SSL ist solar-betrieben und braucht keinen Stromanschluss. Der SML benötigt 220V und zusätzlich die Steuereinheit KUX 110 (ca. 120 €) – damit sind beide preislich ähnlich. Für Nachrüstungen empfehlen wir klar den SSL, da keine Elektrikerarbeiten nötig sind." }
+      "acceptedAnswer": { "@type": "Answer", "text": "Der SSL ist solar-betrieben und braucht keinen Stromanschluss. Der SML benötigt 220V und zusätzlich die Steuereinheit KUX 110. Für Nachrüstungen empfehlen wir in der Regel den SSL, da keine Elektrikerarbeiten nötig sind." }
     },
     {
       "@type": "Question",
@@ -143,12 +142,6 @@ const serviceSchema = JSON.stringify({
   },
   "areaServed": ["Bochum", "Herne", "Castrop-Rauxel", "Witten", "Hattingen", "Ruhrgebiet"],
   "description": "Montage und Nachrüstung von Velux Außenrollläden in Bochum – SSL Solar, SML Elektro, von innen montierbar, autorisierter VELUX-Partner.",
-  "offers": {
-    "@type": "Offer",
-    "priceCurrency": "EUR",
-    "price": "700",
-    "availability": "https://schema.org/InStock",
-  },
 });
 
 const breadcrumbSchema = JSON.stringify({
@@ -171,36 +164,21 @@ export default function VeluxRolllaeden() {
         <title>Velux Außenrollladen Bochum – SSL Solar nachrüsten | Rex Bedachung</title>
         <meta
           name="description"
-          content="Velux Außenrollladen Bochum ✓ SSL Solar kabellos nachrüsten ✓ Bis zu 94% Hitzeschutz ✓ Ab ca. 700 € ✓ VELUX-Partner – Rex Bedachungs GmbH."
+          content="Velux Außenrollladen Bochum ✓ SSL Solar kabellos nachrüsten ✓ Bis zu 94% Hitzeschutz ✓ Kein Stromanschluss nötig ✓ Autorisierter VELUX-Partner – Rex Bedachungs GmbH."
         />
         <meta property="og:title" content="Velux Außenrollladen Bochum – SSL Solar nachrüsten | Rex Bedachungs GmbH" />
-        <meta property="og:description" content="Velux Außenrollladen Bochum ✓ SSL Solar kabellos nachrüsten ✓ Bis zu 94% Hitzeschutz ✓ Ab ca. 700 € ✓ VELUX-Partner – Rex Bedachungs GmbH." />
+        <meta property="og:description" content="Velux Außenrollladen Bochum ✓ SSL Solar kabellos nachrüsten ✓ Bis zu 94% Hitzeschutz ✓ Kein Stromanschluss nötig ✓ Autorisierter VELUX-Partner – Rex Bedachungs GmbH." />
         <meta property="og:image" content="https://www.rex-bedachung.de/images/velux-dachfenster-einbau-bochum-fachbetrieb.webp" />
         <meta property="og:site_name" content="Rex Bedachungs GmbH" />
         <meta property="og:url" content="https://www.rex-bedachung.de/velux-dachfenster-rolllaeden-bochum" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="Velux Außenrollladen Bochum – SSL Solar nachrüsten | Rex Bedachungs GmbH" />
-        <meta name="twitter:description" content="Velux Außenrollladen Bochum ✓ SSL Solar kabellos nachrüsten ✓ Bis zu 94% Hitzeschutz ✓ Ab ca. 700 € ✓ VELUX-Partner – Rex Bedachungs GmbH." />
+        <meta name="twitter:description" content="Velux Außenrollladen Bochum ✓ SSL Solar kabellos nachrüsten ✓ Bis zu 94% Hitzeschutz ✓ Kein Stromanschluss nötig ✓ Autorisierter VELUX-Partner – Rex Bedachungs GmbH." />
         <meta name="twitter:image" content="https://www.rex-bedachung.de/images/velux-dachfenster-einbau-bochum-fachbetrieb.webp" />
         <link rel="canonical" href="https://www.rex-bedachung.de/velux-dachfenster-rolllaeden-bochum" />
         <script type="application/ld+json">{faqSchema}</script>
         <script type="application/ld+json">{serviceSchema}</script>
         <script type="application/ld+json">{breadcrumbSchema}</script>
-        <script type="application/ld+json">{`{
-  "@context": "https://schema.org",
-  "@type": "Service",
-  "name": "Velux Dachfenster Rollläden nachrüsten",
-  "description": "Velux Rollläden und Sonnenschutz nachrüsten in Bochum – Beratung und Montage.",
-  "provider": {
-    "@type": "RoofingContractor",
-    "@id": "https://www.rex-bedachung.de/#organization"
-  },
-  "areaServed": {
-    "@type": "City",
-    "name": "Bochum"
-  },
-  "serviceType": "Rollladenmontage"
-}`}</script>
       </Helmet>
       <OrganizationSchema />
 
@@ -251,7 +229,7 @@ export default function VeluxRolllaeden() {
             </Button>
           </div>
           <p className="text-sm text-slate-300 font-medium" data-testid="text-trust-badge">
-            VELUX-Partner &bull; Kostenloser Aufma&szlig;-Service &bull; Montage ab ca. 700 &euro;
+            Autorisierter VELUX-Partner &bull; Kostenloser Aufma&szlig;-Service &bull; Von innen montiert
           </p>
         </div>
       </section>
@@ -260,7 +238,7 @@ export default function VeluxRolllaeden() {
       <section className="py-16 px-4 bg-muted/40" data-testid="section-einleitung">
         <div className="max-w-4xl mx-auto text-center">
           <p className="text-muted-foreground leading-relaxed text-base md:text-lg" data-testid="text-einleitung">
-            Im Sommer wird es unter dem Dach schnell unerträglich heiß – ein innenliegendes Rollo reicht oft nicht aus. Der Velux SSL Solar-Außenrollladen stoppt die Hitze bereits vor dem Glas und erreicht bis zu 94 % Hitzeschutz. Rex Bedachungs GmbH ist autorisierter VELUX-Partner in Bochum und rüstet den SSL kabellos nach – komplett von innen montiert, in ca. 2 Stunden pro Fenster, ab ca. 700 &euro; inkl. Einbau.
+            Im Sommer wird es unter dem Dach schnell unerträglich heiß – ein innenliegendes Rollo reicht oft nicht aus. Der Velux SSL Solar-Außenrollladen stoppt die Hitze bereits vor dem Glas und erreicht bis zu 94 % Hitzeschutz. Rex Bedachungs GmbH ist autorisierter VELUX-Partner in Bochum und rüstet den SSL kabellos nach – komplett von innen montiert, in ca. 2 Stunden pro Fenster, ohne Gerüst und ohne Elektriker.
           </p>
         </div>
       </section>
@@ -327,9 +305,9 @@ export default function VeluxRolllaeden() {
               <CardContent>
                 <ul className="space-y-2 text-sm text-muted-foreground">
                   <li className="flex items-start gap-2"><CheckCircle className="w-4 h-4 text-primary shrink-0 mt-0.5" />220 V Stromanschluss erforderlich</li>
-                  <li className="flex items-start gap-2"><CheckCircle className="w-4 h-4 text-primary shrink-0 mt-0.5" />Steuereinheit KUX 110 nötig (ca. 120 &euro;)</li>
+                  <li className="flex items-start gap-2"><CheckCircle className="w-4 h-4 text-primary shrink-0 mt-0.5" />Steuereinheit KUX 110 nötig</li>
                   <li className="flex items-start gap-2"><CheckCircle className="w-4 h-4 text-primary shrink-0 mt-0.5" />Montage von innen + Elektriker</li>
-                  <li className="flex items-start gap-2"><CheckCircle className="w-4 h-4 text-primary shrink-0 mt-0.5" />Günstigerer Produktpreis</li>
+                  <li className="flex items-start gap-2"><CheckCircle className="w-4 h-4 text-primary shrink-0 mt-0.5" />Direkte Stromversorgung, kein Akku nötig</li>
                   <li className="flex items-start gap-2"><CheckCircle className="w-4 h-4 text-primary shrink-0 mt-0.5" />Ideal bei vorhandenem Stromanschluss</li>
                 </ul>
               </CardContent>
@@ -362,71 +340,52 @@ export default function VeluxRolllaeden() {
         </div>
       </section>
 
-      {/* ── Preise ── */}
+      {/* ── Was beeinflusst den Preis? ── */}
       <section className="py-16 px-4 bg-background" data-testid="section-preise">
         <div className="max-w-7xl mx-auto">
           <h2 className="text-2xl md:text-3xl font-bold text-center mb-4 text-foreground" data-testid="heading-preise">
-            Velux SSL Rollladen – Kosten in Bochum
+            Was beeinflusst den Preis eines Velux Rollladens?
           </h2>
           <p className="text-muted-foreground text-center mb-10 max-w-3xl mx-auto" data-testid="text-preise-intro">
-            Realistische Preisrahmen inkl. Montage durch Rex Bedachungs GmbH – nach kostenlosem Aufmaß erhalten Sie ein Angebot nach kostenlosem Aufmaß.
+            Pauschale Angaben sind bei Dachfenstern wenig aussagekräftig. Nach kostenlosem Aufmaß vor Ort erstellt Rex Bedachungs GmbH ein transparentes Angebot.
           </p>
-          <div className="grid md:grid-cols-3 gap-6 mb-8">
-            <Card className="border-blue-200 dark:border-blue-900 bg-blue-50/50 dark:bg-blue-950/20" data-testid="card-preis-standard">
-              <CardHeader>
-                <CardTitle className="text-lg">Kleine Fenster</CardTitle>
-                <p className="text-2xl font-bold text-foreground mt-2" data-testid="text-preis-standard">ab 700 &euro;</p>
-                <p className="text-sm text-muted-foreground">inkl. Montage</p>
+          <div className="grid sm:grid-cols-2 gap-4 mb-8">
+            <Card data-testid="card-faktor-groesse">
+              <CardHeader className="pb-2">
+                <CardTitle className="text-sm font-semibold">Fenstergröße</CardTitle>
               </CardHeader>
               <CardContent>
-                <ul className="space-y-2 text-sm text-muted-foreground">
-                  <li className="flex items-start gap-2"><CheckCircle className="w-4 h-4 text-primary shrink-0 mt-0.5" />Fenstergr&ouml;&szlig;e bis 78 &times; 98 cm</li>
-                  <li className="flex items-start gap-2"><CheckCircle className="w-4 h-4 text-primary shrink-0 mt-0.5" />SSL Solar-Rollladen</li>
-                  <li className="flex items-start gap-2"><CheckCircle className="w-4 h-4 text-primary shrink-0 mt-0.5" />Inkl. Fernbedienung</li>
-                  <li className="flex items-start gap-2"><CheckCircle className="w-4 h-4 text-primary shrink-0 mt-0.5" />Montage von innen</li>
-                </ul>
+                <p className="text-muted-foreground text-sm leading-relaxed">VELUX-Rollläden werden nach Fenstertyp und Fenstergröße ausgewählt. Die Größe ist ein zentraler Angebotsfaktor.</p>
               </CardContent>
             </Card>
-
-            <Card className="border-primary bg-primary/5 dark:bg-primary/10 ring-2 ring-primary" data-testid="card-preis-mittel">
-              <CardHeader>
-                <div className="flex items-center justify-between gap-2 flex-wrap">
-                  <CardTitle className="text-lg">Mittlere Fenster</CardTitle>
-                  <Badge data-testid="badge-haeufigste">H&auml;ufigste Variante</Badge>
-                </div>
-                <p className="text-2xl font-bold text-foreground mt-2" data-testid="text-preis-mittel">ab 850 &euro;</p>
-                <p className="text-sm text-muted-foreground">inkl. Montage</p>
+            <Card data-testid="card-faktor-modell">
+              <CardHeader className="pb-2">
+                <CardTitle className="text-sm font-semibold">Modell: SSL Solar oder SML Elektro</CardTitle>
               </CardHeader>
               <CardContent>
-                <ul className="space-y-2 text-sm text-muted-foreground">
-                  <li className="flex items-start gap-2"><CheckCircle className="w-4 h-4 text-primary shrink-0 mt-0.5" />Fenstergr&ouml;&szlig;e bis 94 &times; 118 cm</li>
-                  <li className="flex items-start gap-2"><CheckCircle className="w-4 h-4 text-primary shrink-0 mt-0.5" />SSL Solar-Rollladen</li>
-                  <li className="flex items-start gap-2"><CheckCircle className="w-4 h-4 text-primary shrink-0 mt-0.5" />Inkl. Fernbedienung &amp; App</li>
-                  <li className="flex items-start gap-2"><CheckCircle className="w-4 h-4 text-primary shrink-0 mt-0.5" />Montage von innen</li>
-                </ul>
+                <p className="text-muted-foreground text-sm leading-relaxed">Der SSL Solar benötigt keinen Stromanschluss und eignet sich ideal zur Nachrüstung. Der SML Elektro setzt eine passende Stromversorgung und Steuerung voraus.</p>
               </CardContent>
             </Card>
-
-            <Card className="border-blue-800 dark:border-blue-700 bg-blue-900/10 dark:bg-blue-900/30" data-testid="card-preis-premium">
-              <CardHeader>
-                <CardTitle className="text-lg">Gro&szlig;e / Sondergr&ouml;&szlig;en</CardTitle>
-                <p className="text-2xl font-bold text-foreground mt-2" data-testid="text-preis-premium">ab 1.000 &euro;</p>
-                <p className="text-sm text-muted-foreground">inkl. Montage</p>
+            <Card data-testid="card-faktor-anzahl">
+              <CardHeader className="pb-2">
+                <CardTitle className="text-sm font-semibold">Anzahl der Fenster</CardTitle>
               </CardHeader>
               <CardContent>
-                <ul className="space-y-2 text-sm text-muted-foreground">
-                  <li className="flex items-start gap-2"><CheckCircle className="w-4 h-4 text-primary shrink-0 mt-0.5" />&Uuml;bergr&ouml;&szlig;en &amp; Sonderma&szlig;e</li>
-                  <li className="flex items-start gap-2"><CheckCircle className="w-4 h-4 text-primary shrink-0 mt-0.5" />SSL Solar-Rollladen</li>
-                  <li className="flex items-start gap-2"><CheckCircle className="w-4 h-4 text-primary shrink-0 mt-0.5" />Inkl. Fernbedienung &amp; App</li>
-                  <li className="flex items-start gap-2"><CheckCircle className="w-4 h-4 text-primary shrink-0 mt-0.5" />Ggf. Adapterset f&uuml;r &auml;ltere Fenster</li>
-                </ul>
+                <p className="text-muted-foreground text-sm leading-relaxed">Bei mehreren Fenstern in einem Zug lassen sich Aufmaß, Anfahrt und Montage effizient bündeln. Rex Bedachungs GmbH montiert auch einzelne Fenster.</p>
+              </CardContent>
+            </Card>
+            <Card data-testid="card-faktor-adapterset">
+              <CardHeader className="pb-2">
+                <CardTitle className="text-sm font-semibold">Fensteralter und Adapterset</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <p className="text-muted-foreground text-sm leading-relaxed">Bei älteren Velux-Fenstern kann zusätzliches Montagezubehör erforderlich sein. Rex Bedachungs GmbH prüft dies kostenlos beim Aufmaß anhand von Typ und Seriennummer.</p>
               </CardContent>
             </Card>
           </div>
-
           <div className="rounded-md border border-border p-6 bg-muted/40" data-testid="box-preishinweis">
             <p className="text-sm text-muted-foreground leading-relaxed">
-              <strong className="text-foreground">Hinweis:</strong> Alle Preise sind Richtwerte inkl. Montage. Nach kostenlosem Aufmaß vor Ort erhalten Sie ein Angebot nach kostenlosem Aufmaß von Rex Bedachungs GmbH – ohne versteckte Zusatzkosten.
+              <strong className="text-foreground">Angebot anfragen:</strong> Foto des Fensters und des Typenschildes reichen oft für eine erste Einschätzung. Rex Bedachungs GmbH meldet sich innerhalb eines Werktages.
             </p>
           </div>
         </div>
