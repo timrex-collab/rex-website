@@ -1,0 +1,334 @@
+# D27 — Velux/Dachfenster Konsolidierung
+
+**Stufe:** A (Wording/Text) + B (Schema-Reduktion)
+**Dateien:** 2 — `client/src/pages/VeluxAustausch.tsx`, `client/src/pages/DachfensterBochum.tsx`
+**Edits gesamt:** 9
+**Frühestens deploybar:** ab 21.05.2026 abends
+
+---
+
+## Auftrag an den Replit Agent
+
+Führe die unten beschriebenen SEARCH/REPLACE-Operationen exakt aus. Jede Operation ist **idempotent**: Wenn der SEARCH-Block nicht mehr gefunden wird (z. B. bei Re-Run), überspringe die Operation kommentarlos – kein Abbruch. Bearbeite **ausschließlich** die zwei genannten Dateien. **Keine** Änderungen an Routen, `robots.txt`, `sitemap.xml`, `netlify.toml`, `_redirects`, `index.html`, Schema-Komponenten oder anderen Pages. **Kein** Git-Commit, **kein** Push – das mache ich manuell.
+
+Nach allen Edits: `npm run build` ausführen und Buildergebnis melden. Anschließend die unten gelisteten Post-Verification-Grep-Checks ausführen und Treffer-Zähler zurückgeben.
+
+---
+
+## Datei 1: `client/src/pages/VeluxAustausch.tsx`
+
+### Edit 1.1 — Meta-Description Preis-Inkonsistenz beseitigen
+
+```
+SEARCH:
+          content="Velux Dachfenster austauschen in Bochum: Modellvergleich, Festpreise ab 1.800 € & Komplettmontage vom Meisterbetrieb. Jetzt Termin anfragen."
+
+REPLACE:
+          content="Velux Dachfenster austauschen in Bochum: Modellvergleich, Preise ab 1.000 € & Komplettmontage vom Meisterbetrieb. Jetzt Termin anfragen."
+```
+
+### Edit 1.2 — Inline-Service-Schema (Duplikat) entfernen
+
+```
+SEARCH:
+        <script type="application/ld+json">{`{
+  "@context": "https://schema.org",
+  "@type": "Service",
+  "name": "Velux Dachfenster Austausch",
+  "description": "Professioneller Austausch von Velux Dachfenstern in Bochum – alle Modelle, fachgerechte Montage.",
+  "provider": {
+    "@type": "RoofingContractor",
+    "@id": "https://www.rex-bedachung.de/#organization"
+  },
+  "areaServed": {
+    "@type": "City",
+    "name": "Bochum"
+  },
+  "serviceType": "Dachfensteraustausch"
+}`}</script>
+      </Helmet>
+
+REPLACE:
+      </Helmet>
+```
+
+### Edit 1.3 — Hero Trust-Badge: Wording + Preis-Element raus, "Autorisierter" rein, Meisterbetrieb-Trust-Anker
+
+```
+SEARCH:
+          <p className="text-sm text-slate-300 font-medium" data-testid="text-trust-badge">
+            VELUX-Partner &bull; Bochum &amp; Ruhrgebiet &bull; Preise ab 1.000 &euro;
+          </p>
+        </div>
+      </section>
+
+      {/* ── Einleitungstext ── */}
+
+REPLACE:
+          <p className="text-sm text-slate-300 font-medium" data-testid="text-trust-badge">
+            Autorisierter VELUX-Partner &bull; Meisterbetrieb seit 1984 &bull; Bochum &amp; Ruhrgebiet
+          </p>
+          <a
+            href="/velux-preisrechner-bochum"
+            className="inline-block mt-2 text-sm text-slate-200 underline underline-offset-2 hover:text-white transition-colors"
+            data-testid="link-hero-preisrechner"
+          >
+            Preis in 3 Schritten berechnen →
+          </a>
+        </div>
+      </section>
+
+      {/* ── Einleitungstext ── */}
+```
+
+### Edit 1.4 — Preisrechner-Sektion neu nach Einleitung einfügen
+
+```
+SEARCH:
+      {/* ── Einleitungstext ── */}
+      <section className="py-16 px-4 bg-muted/40" data-testid="section-einleitung">
+        <div className="max-w-4xl mx-auto text-center">
+          <p className="text-muted-foreground leading-relaxed text-base md:text-lg" data-testid="text-einleitung">
+            Rex Bedachungs GmbH ist autorisierter VELUX-Partner in Bochum und tauscht Velux Dachfenster aller Modelle fachgerecht aus – im Bestand, ohne unnötige Nebenarbeiten, mit transparenter Kostenaufstellung ab 1.000 €. Ob GGL, GGU, GPU oder Integra: Wir beraten Sie kostenlos zum passenden Modell für Ihr Dach und Ihren Bedarf.
+          </p>
+        </div>
+      </section>
+
+      {/* ── Wann lohnt sich ein Austausch ── */}
+
+REPLACE:
+      {/* ── Einleitungstext ── */}
+      <section className="py-16 px-4 bg-muted/40" data-testid="section-einleitung">
+        <div className="max-w-4xl mx-auto text-center">
+          <p className="text-muted-foreground leading-relaxed text-base md:text-lg" data-testid="text-einleitung">
+            Rex Bedachungs GmbH ist autorisierter VELUX-Partner in Bochum und tauscht Velux Dachfenster aller Modelle fachgerecht aus – im Bestand, ohne unnötige Nebenarbeiten, mit transparenter Kostenaufstellung ab 1.000 €. Ob GGL, GGU, GPU oder Integra: Wir beraten Sie kostenlos zum passenden Modell für Ihr Dach und Ihren Bedarf.
+          </p>
+        </div>
+      </section>
+
+      {/* ── Preisrechner-Sektion (D27: nach oben verschoben) ── */}
+      <section className="py-12 px-4 bg-background" data-testid="section-preisrechner">
+        <div className="max-w-4xl mx-auto">
+          <div className="rounded-xl bg-gradient-to-r from-red-700 to-red-500 p-6 text-white shadow-lg">
+            <h2 className="mb-2 text-xl md:text-2xl font-bold">VELUX Preisrechner Bochum</h2>
+            <p className="mb-4 text-sm md:text-base leading-relaxed">
+              Kosten für Ihr VELUX Dachfenster in 3 Schritten berechnen – Fenstertyp, Größe und Eindeckrahmen auswählen, sofort Preisindikation erhalten.
+            </p>
+            <a
+              href="/velux-preisrechner-bochum"
+              className="inline-block rounded-lg bg-white px-5 py-2 font-semibold text-red-700 hover:bg-gray-100 transition-colors"
+              data-testid="button-preisrechner-section"
+            >
+              Jetzt Preis berechnen →
+            </a>
+          </div>
+        </div>
+      </section>
+
+      {/* ── Wann lohnt sich ein Austausch ── */}
+```
+
+### Edit 1.5 — Alten Preisrechner-Teaser aus Preis-Sektion entfernen
+
+```
+SEARCH:
+          {/* Preisrechner-Teaser */}
+          <div className="my-8 rounded-xl bg-gradient-to-r from-red-700 to-red-500 p-6 text-white shadow-lg">
+            <h3 className="mb-2 text-xl font-bold">VELUX Preisrechner Bochum</h3>
+            <p className="mb-4 text-sm leading-relaxed">
+              Kosten für Ihr VELUX Dachfenster in 3 Schritten berechnen – Fenstertyp, Größe und Eindeckrahmen auswählen, sofort Preisindikation erhalten.
+            </p>
+            <a
+              href="/velux-preisrechner-bochum"
+              className="inline-block rounded-lg bg-white px-5 py-2 font-semibold text-red-700 hover:bg-gray-100 transition-colors"
+            >
+              Jetzt Preis berechnen →
+            </a>
+          </div>
+        </div>
+      </section>
+
+REPLACE:
+        </div>
+      </section>
+```
+
+### Edit 1.6 — H2 Why-Block: "autorisierter" ergänzen
+
+```
+SEARCH:
+            Warum Rex Bedachungs GmbH als VELUX-Partner in Bochum
+
+REPLACE:
+            Warum Rex Bedachungs GmbH als autorisierter VELUX-Partner in Bochum
+```
+
+---
+
+## Datei 2: `client/src/pages/DachfensterBochum.tsx`
+
+### Edit 2.1 — twitter:description: "Autorisierter" ergänzen
+
+```
+SEARCH:
+        <meta name="twitter:description" content="Dachfenster Bochum ✓ VELUX-Partner ✓ Neueinbau & Austausch ✓ Kurzfristige Hilfe ✓ BAFA/KfW-Förderung – Rex Bedachungs GmbH." />
+
+REPLACE:
+        <meta name="twitter:description" content="Dachfenster Bochum ✓ Autorisierter VELUX-Partner ✓ Neueinbau & Austausch ✓ Kurzfristige Hilfe ✓ BAFA/KfW-Förderung – Rex Bedachungs GmbH." />
+```
+
+### Edit 2.2 — ExpertenBlock normen: "Autorisierter VELUX-Partner"
+
+```
+SEARCH:
+      <ExpertenBlock normen={["VELUX-Partner", "BEG EM Uw ≤ 1,0", "GEG 2024"]} />
+
+REPLACE:
+      <ExpertenBlock normen={["Autorisierter VELUX-Partner", "BEG EM Uw ≤ 1,0", "GEG 2024"]} />
+```
+
+### Edit 2.3 — Marken-Sektion: "Als autorisierter VELUX-Partner"
+
+```
+SEARCH:
+            Als VELUX-Partner verfügen wir über umfassendes Fachwissen und direkten Zugang zu
+
+REPLACE:
+            Als autorisierter VELUX-Partner verfügen wir über umfassendes Fachwissen und direkten Zugang zu
+```
+
+---
+
+## Build-Check
+
+Nach allen Edits:
+
+```bash
+npm run build
+```
+
+Buildergebnis (Success/Error inkl. Bundle-Größen) zurückmelden.
+
+---
+
+## Post-Verification (Agent führt aus und meldet Treffer-Zähler)
+
+```bash
+# 1. Keine "Festpreise ab 1.800" mehr in VeluxAustausch
+grep -c "Festpreise ab 1.800" client/src/pages/VeluxAustausch.tsx
+# Erwartet: 0
+
+# 2. Genau 1 Service-Schema in VeluxAustausch (nicht 2)
+grep -c '"@type": "Service"' client/src/pages/VeluxAustausch.tsx
+# Erwartet: 1
+
+# 3. Neue Preisrechner-Sektion vorhanden
+grep -c 'data-testid="section-preisrechner"' client/src/pages/VeluxAustausch.tsx
+# Erwartet: 1
+
+# 4. Hero-Preisrechner-Link vorhanden
+grep -c 'data-testid="link-hero-preisrechner"' client/src/pages/VeluxAustausch.tsx
+# Erwartet: 1
+
+# 5. Alter Preisrechner-Teaser (mit className="my-8") entfernt; rote Gradient-Klasse nur noch 1× (in neuer Sektion)
+grep -c 'rounded-xl bg-gradient-to-r from-red-700 to-red-500 p-6 text-white shadow-lg' client/src/pages/VeluxAustausch.tsx
+# Erwartet: 1
+
+# 6. Trust-Badge neu
+grep -c "Autorisierter VELUX-Partner &bull; Meisterbetrieb seit 1984" client/src/pages/VeluxAustausch.tsx
+# Erwartet: 1
+
+# 7. Alter Trust-Badge mit Preis weg
+grep -c "VELUX-Partner &bull; Bochum &amp; Ruhrgebiet &bull; Preise ab 1.000" client/src/pages/VeluxAustausch.tsx
+# Erwartet: 0
+
+# 8a. H2 Why-Block korrekt (nach Edit 1.6)
+grep -c "Warum Rex Bedachungs GmbH als autorisierter VELUX-Partner in Bochum" client/src/pages/VeluxAustausch.tsx
+# Erwartet: 1
+
+# 8b. USP-Block-Absatz unverändert vorhanden
+grep -c "Als autorisierter VELUX-Partner in Bochum führt die Rex" client/src/pages/VeluxAustausch.tsx
+# Erwartet: 1
+
+# 9. DachfensterBochum: twitter:description
+grep -c 'twitter:description" content="Dachfenster Bochum ✓ Autorisierter VELUX-Partner' client/src/pages/DachfensterBochum.tsx
+# Erwartet: 1
+
+# 10. DachfensterBochum: ExpertenBlock normen
+grep -c '"Autorisierter VELUX-Partner", "BEG EM Uw ≤ 1,0"' client/src/pages/DachfensterBochum.tsx
+# Erwartet: 1
+
+# 11. DachfensterBochum: Marken-Sektion
+grep -c "Als autorisierter VELUX-Partner verfügen wir" client/src/pages/DachfensterBochum.tsx
+# Erwartet: 1
+```
+
+Bitte Treffer-Zähler aller 12 Checks als nummerierte Liste zurückgeben.
+
+---
+
+## NICHT TUN
+
+- Kein `git add`, `git commit`, `git push`.
+- Kein "Sync Changes" in Replit.
+- Keine andere Datei anfassen.
+- Keine Bilder, kein neues Asset, keine Imports zusätzlich.
+- `H1 "Dachwartung Bochum…"` und `zertifiziert`-Schutzstellen unverändert lassen.
+
+---
+
+# Für mich (Tim) — nach dem Agent-Lauf
+
+## Pre-Push-Protokoll (Pflicht)
+
+```bash
+# 1. Status sauber halten
+git status
+git restore --staged attached_assets/Pasted-*.txt 2>/dev/null || true
+
+# 2. Replit-Helium-Checkpoints abfangen
+git log --oneline origin/main..HEAD
+# Falls Commits von Author: Agent oder Replit-Helium-Checkpoint:
+# git reset --soft origin/main
+
+# 3. Gezielt stagen
+git add client/src/pages/VeluxAustausch.tsx client/src/pages/DachfensterBochum.tsx
+
+# 4. Pre-Push-Check
+git log --oneline origin/main..HEAD
+# muss leer sein
+
+# 5. Commit
+git commit -m "D27: VELUX-Konsolidierung – Wording (Autorisierter VELUX-Partner), Preisrechner-Reposition, Service-Schema-Dedupe, Meta-Preis-Fix"
+
+# 6. Diff-Verifikation
+git show --stat HEAD
+# muss zeigen: nur die 2 Files
+
+# 7. Push
+git push
+```
+
+## Live-Verifikation (nach Netlify-Deploy)
+
+```bash
+# Service-Schema-Count auf Live-Seite
+curl -s https://www.rex-bedachung.de/velux-dachfenster-austausch-bochum | grep -c '"@type": "Service"'
+# Erwartet: 1
+
+# Trust-Badge live (robust gegen &bull;-Entity-Auflösung im Prerender)
+curl -s https://www.rex-bedachung.de/velux-dachfenster-austausch-bochum | grep -E -c "Autorisierter VELUX-Partner.*Meisterbetrieb seit 1984"
+# Erwartet: 1
+
+# Rich Results Test
+# https://search.google.com/test/rich-results?url=https://www.rex-bedachung.de/velux-dachfenster-austausch-bochum
+# → HowTo, FAQPage, Service, BreadcrumbList müssen valid sein, kein Duplicate-Service
+```
+
+---
+
+## Nach erfolgreichem D27
+
+- 48h-Pause bis frühestens **D28-Start = D27-Deploy + 48 h**.
+- D28-Vorbereitung (PV-/Solarpflicht-Linkfluss) kann ich parallel beginnen, sobald du grünes Licht gibst.
+- **Parallel ohne Deploy:** GSC-Impressum-Check ab 23.05., Domain-Renewal `rex-bedachungen.de` bis 02.06., GBP Post 2 "Förderung" (online stellen).
