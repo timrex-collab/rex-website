@@ -239,7 +239,7 @@ export default function VeluxAustausch() {
         <title>Velux Dachfenster Austausch Bochum | Rex Bedachungs GmbH</title>
         <meta
           name="description"
-          content="Velux Dachfenster austauschen in Bochum: Modellvergleich, Festpreise ab 1.800 € & Komplettmontage vom Meisterbetrieb. Jetzt Termin anfragen."
+          content="Velux Dachfenster austauschen in Bochum: Modellvergleich, Preise ab 1.000 € & Komplettmontage vom Meisterbetrieb. Jetzt Termin anfragen."
         />
         <meta property="og:title" content="Velux Dachfenster Austausch Bochum | Rex Bedachungs GmbH" />
         <meta property="og:description" content="Velux Dachfenster austauschen in Bochum: GGL, GGU, GPU & Integra. Ab 1.000 € inkl. Einbau, kostenloser Aufmaß-Service. Autorisierter VELUX-Partner – Rex Bedachungs GmbH." />
@@ -262,21 +262,6 @@ export default function VeluxAustausch() {
     {"@type":"ListItem","position":2,"name":"Dachfenster Bochum","item":"https://www.rex-bedachung.de/dachfenster-bochum"},
     {"@type":"ListItem","position":3,"name":"Velux Dachfenster Austausch Bochum","item":"https://www.rex-bedachung.de/velux-dachfenster-austausch-bochum"}
   ]
-}`}</script>
-        <script type="application/ld+json">{`{
-  "@context": "https://schema.org",
-  "@type": "Service",
-  "name": "Velux Dachfenster Austausch",
-  "description": "Professioneller Austausch von Velux Dachfenstern in Bochum – alle Modelle, fachgerechte Montage.",
-  "provider": {
-    "@type": "RoofingContractor",
-    "@id": "https://www.rex-bedachung.de/#organization"
-  },
-  "areaServed": {
-    "@type": "City",
-    "name": "Bochum"
-  },
-  "serviceType": "Dachfensteraustausch"
 }`}</script>
       </Helmet>
       <OrganizationSchema />
@@ -328,8 +313,15 @@ export default function VeluxAustausch() {
             </Button>
           </div>
           <p className="text-sm text-slate-300 font-medium" data-testid="text-trust-badge">
-            VELUX-Partner &bull; Bochum &amp; Ruhrgebiet &bull; Preise ab 1.000 &euro;
+            Autorisierter VELUX-Partner &bull; Meisterbetrieb seit 1984 &bull; Bochum &amp; Ruhrgebiet
           </p>
+          <a
+            href="/velux-preisrechner-bochum"
+            className="inline-block mt-2 text-sm text-slate-200 underline underline-offset-2 hover:text-white transition-colors"
+            data-testid="link-hero-preisrechner"
+          >
+            Preis in 3 Schritten berechnen →
+          </a>
         </div>
       </section>
 
@@ -339,6 +331,25 @@ export default function VeluxAustausch() {
           <p className="text-muted-foreground leading-relaxed text-base md:text-lg" data-testid="text-einleitung">
             Rex Bedachungs GmbH ist autorisierter VELUX-Partner in Bochum und tauscht Velux Dachfenster aller Modelle fachgerecht aus – im Bestand, ohne unnötige Nebenarbeiten, mit transparenter Kostenaufstellung ab 1.000 €. Ob GGL, GGU, GPU oder Integra: Wir beraten Sie kostenlos zum passenden Modell für Ihr Dach und Ihren Bedarf.
           </p>
+        </div>
+      </section>
+
+      {/* ── Preisrechner-Sektion (D27: nach oben verschoben) ── */}
+      <section className="py-12 px-4 bg-background" data-testid="section-preisrechner">
+        <div className="max-w-4xl mx-auto">
+          <div className="rounded-xl bg-gradient-to-r from-red-700 to-red-500 p-6 text-white shadow-lg">
+            <h2 className="mb-2 text-xl md:text-2xl font-bold">VELUX Preisrechner Bochum</h2>
+            <p className="mb-4 text-sm md:text-base leading-relaxed">
+              Kosten für Ihr VELUX Dachfenster in 3 Schritten berechnen – Fenstertyp, Größe und Eindeckrahmen auswählen, sofort Preisindikation erhalten.
+            </p>
+            <a
+              href="/velux-preisrechner-bochum"
+              className="inline-block rounded-lg bg-white px-5 py-2 font-semibold text-red-700 hover:bg-gray-100 transition-colors"
+              data-testid="button-preisrechner-section"
+            >
+              Jetzt Preis berechnen →
+            </a>
+          </div>
         </div>
       </section>
 
@@ -507,19 +518,6 @@ export default function VeluxAustausch() {
             </p>
           </div>
 
-          {/* Preisrechner-Teaser */}
-          <div className="my-8 rounded-xl bg-gradient-to-r from-red-700 to-red-500 p-6 text-white shadow-lg">
-            <h3 className="mb-2 text-xl font-bold">VELUX Preisrechner Bochum</h3>
-            <p className="mb-4 text-sm leading-relaxed">
-              Kosten für Ihr VELUX Dachfenster in 3 Schritten berechnen – Fenstertyp, Größe und Eindeckrahmen auswählen, sofort Preisindikation erhalten.
-            </p>
-            <a
-              href="/velux-preisrechner-bochum"
-              className="inline-block rounded-lg bg-white px-5 py-2 font-semibold text-red-700 hover:bg-gray-100 transition-colors"
-            >
-              Jetzt Preis berechnen →
-            </a>
-          </div>
         </div>
       </section>
 
@@ -614,7 +612,7 @@ export default function VeluxAustausch() {
       <section className="py-16 px-4 bg-background" data-testid="section-warum-rex">
         <div className="max-w-5xl mx-auto">
           <h2 className="text-2xl md:text-3xl font-bold text-center mb-10 text-foreground" data-testid="heading-warum-rex">
-            Warum Rex Bedachungs GmbH als VELUX-Partner in Bochum
+            Warum Rex Bedachungs GmbH als autorisierter VELUX-Partner in Bochum
           </h2>
           <div className="grid sm:grid-cols-2 gap-8">
             <div className="flex items-start gap-3" data-testid="item-usp-0">

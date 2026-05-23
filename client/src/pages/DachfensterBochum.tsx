@@ -138,7 +138,7 @@ export default function DachfensterBochum() {
         <meta property="og:site_name" content="Rex Bedachungs GmbH" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="Dachfenster Bochum – VELUX Einbau | Rex Bedachung" />
-        <meta name="twitter:description" content="Dachfenster Bochum ✓ VELUX-Partner ✓ Neueinbau & Austausch ✓ Kurzfristige Hilfe ✓ BAFA/KfW-Förderung – Rex Bedachungs GmbH." />
+        <meta name="twitter:description" content="Dachfenster Bochum ✓ Autorisierter VELUX-Partner ✓ Neueinbau & Austausch ✓ Kurzfristige Hilfe ✓ BAFA/KfW-Förderung – Rex Bedachungs GmbH." />
         <meta name="twitter:image" content="https://www.rex-bedachung.de/images/velux-dachfenster-einbau-bochum-fachbetrieb.webp" />
         <link rel="canonical" href="https://www.rex-bedachung.de/dachfenster-bochum" />
         <script type="application/ld+json">{schemaJson}</script>
@@ -316,7 +316,7 @@ export default function DachfensterBochum() {
         </div>
       </section>
 
-      <ExpertenBlock normen={["VELUX-Partner", "BEG EM Uw ≤ 1,0", "GEG 2024"]} />
+      <ExpertenBlock normen={["Autorisierter VELUX-Partner", "BEG EM Uw ≤ 1,0", "GEG 2024"]} />
 
       {/* ── Leistungs-Sektion ── */}
       <section className="py-16 px-4 bg-background" data-testid="section-leistungen">
@@ -386,7 +386,7 @@ export default function DachfensterBochum() {
             Ihr VELUX &amp; Roto Fachbetrieb in Bochum
           </h2>
           <p className="text-muted-foreground leading-relaxed text-base md:text-lg" data-testid="text-marken">
-            Als VELUX-Partner verfügen wir über umfassendes Fachwissen und direkten Zugang zu
+            Als autorisierter VELUX-Partner verfügen wir über umfassendes Fachwissen und direkten Zugang zu
             Originalteilen und Zubehör. Natürlich verbauen wir auch Roto Dachfenster in allen gängigen Ausführungen –
             vom einfachen Klappfenster bis zum elektrischen Dachflächenfenster mit Fernbedienung.
           </p>
