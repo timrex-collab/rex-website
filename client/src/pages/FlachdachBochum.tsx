@@ -629,7 +629,7 @@ export default function FlachdachBochum() {
           <h2 className="text-xl font-bold text-gray-900 mb-6">
             Das könnte Sie auch interessieren
           </h2>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+          <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-4">
             <a href="/gruendach-dachbegrunung-bochum" className="block p-5 bg-white rounded-xl border border-gray-200 hover:border-primary hover:shadow-md transition-all">
               <div className="font-semibold text-gray-900 mb-1">Gründach & Dachbegrünung</div>
               <div className="text-sm text-gray-500">Ihr Flachdach als Grünfläche – extensive und intensive Begrünung in Bochum.</div>
@@ -641,6 +641,14 @@ export default function FlachdachBochum() {
             <a href="/foerderung" className="block p-5 bg-white rounded-xl border border-gray-200 hover:border-primary hover:shadow-md transition-all">
               <div className="font-semibold text-gray-900 mb-1">Förderung für Flachdach</div>
               <div className="text-sm text-gray-500">BAFA und KfW fördern auch Flachdachdämmung – bis zu 20% Zuschuss.</div>
+            </a>
+            <a href="/dach-photovoltaik-bochum" className="block p-5 bg-white rounded-xl border border-gray-200 hover:border-primary hover:shadow-md transition-all">
+              <div className="font-semibold text-gray-900 mb-1">Dach &amp; Photovoltaik</div>
+              <div className="text-sm text-gray-500">Aufständerung und Abdichtung für Flachdach-PV.</div>
+            </a>
+            <a href="/solarpflicht" className="block p-5 bg-white rounded-xl border border-gray-200 hover:border-primary hover:shadow-md transition-all">
+              <div className="font-semibold text-gray-900 mb-1">NRW-Solarpflicht</div>
+              <div className="text-sm text-gray-500">Pflicht-Beurteilung bei vollständiger Flachdach-Sanierung.</div>
             </a>
           </div>
         </div>

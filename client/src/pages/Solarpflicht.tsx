@@ -647,6 +647,35 @@ export default function Solarpflicht() {
         </div>
       </section>
 
+      {/* Verwandte Leistungen */}
+      <section className="py-12 bg-gray-50">
+        <div className="container mx-auto px-4">
+          <h2 className="text-xl font-bold text-gray-900 mb-6">Verwandte Leistungen</h2>
+          <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-4">
+            <a href="/dach-photovoltaik-bochum" className="block p-5 bg-white rounded-xl border border-gray-200 hover:border-primary hover:shadow-md transition-all">
+              <div className="font-semibold text-gray-900 mb-1">Dach &amp; Photovoltaik</div>
+              <div className="text-sm text-gray-500">Wir bereiten Ihr Dach für die PV-Pflicht vor.</div>
+            </a>
+            <a href="/dachsanierung-bochum" className="block p-5 bg-white rounded-xl border border-gray-200 hover:border-primary hover:shadow-md transition-all">
+              <div className="font-semibold text-gray-900 mb-1">Dachsanierung Bochum</div>
+              <div className="text-sm text-gray-500">Komplettsanierung mit Pflicht-Beurteilung und Förderung.</div>
+            </a>
+            <a href="/steildach-bochum" className="block p-5 bg-white rounded-xl border border-gray-200 hover:border-primary hover:shadow-md transition-all">
+              <div className="font-semibold text-gray-900 mb-1">Steildach Bochum</div>
+              <div className="text-sm text-gray-500">Neueindeckung mit integrierter PV-Planung.</div>
+            </a>
+            <a href="/flachdach-bochum" className="block p-5 bg-white rounded-xl border border-gray-200 hover:border-primary hover:shadow-md transition-all">
+              <div className="font-semibold text-gray-900 mb-1">Flachdach Bochum</div>
+              <div className="text-sm text-gray-500">Abdichtung und Aufständerung für Flachdach-PV.</div>
+            </a>
+            <a href="/foerderung" className="block p-5 bg-white rounded-xl border border-gray-200 hover:border-primary hover:shadow-md transition-all">
+              <div className="font-semibold text-gray-900 mb-1">Förderung</div>
+              <div className="text-sm text-gray-500">BEG EM, KfW und iSFP-Bonus im Überblick.</div>
+            </a>
+          </div>
+        </div>
+      </section>
+
       {/* ── CTA ── */}
       <section className="mx-4 mb-16 rounded-[2rem] p-12 text-center text-white shadow-2xl"
         style={{ background: "linear-gradient(135deg, #0f172a, #1e3a8a)" }}>

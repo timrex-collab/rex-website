@@ -635,7 +635,7 @@ export default function Foerderung() {
           <h2 className="text-xl font-bold text-gray-900 mb-6">
             Unsere geförderten Leistungen
           </h2>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+          <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-4">
             <a href="/steildach-bochum" className="block p-5 bg-white rounded-xl border border-gray-200 hover:border-primary hover:shadow-md transition-all">
               <div className="font-semibold text-gray-900 mb-1">Steildach Sanierung</div>
               <div className="text-sm text-gray-500">Energetische Steildachsanierung mit Aufsparrendämmung – BAFA-förderfähig.</div>
@@ -647,6 +647,14 @@ export default function Foerderung() {
             <a href="/dachreparatur-bochum" className="block p-5 bg-white rounded-xl border border-gray-200 hover:border-primary hover:shadow-md transition-all">
               <div className="font-semibold text-gray-900 mb-1">Dachreparatur</div>
               <div className="text-sm text-gray-500">Sturmschäden und dringende Reparaturen – schnell und zuverlässig.</div>
+            </a>
+            <a href="/dach-photovoltaik-bochum" className="block p-5 bg-white rounded-xl border border-gray-200 hover:border-primary hover:shadow-md transition-all">
+              <div className="font-semibold text-gray-900 mb-1">Dach &amp; Photovoltaik</div>
+              <div className="text-sm text-gray-500">PV-Vorbereitung – mit BEG EM und KfW kombinierbar.</div>
+            </a>
+            <a href="/solarpflicht" className="block p-5 bg-white rounded-xl border border-gray-200 hover:border-primary hover:shadow-md transition-all">
+              <div className="font-semibold text-gray-900 mb-1">NRW-Solarpflicht</div>
+              <div className="text-sm text-gray-500">Pflicht ab 01.01.2026 bei vollständiger Dacherneuerung.</div>
             </a>
           </div>
         </div>

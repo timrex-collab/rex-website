@@ -744,7 +744,7 @@ export default function SteildachBochum() {
           <p className="text-sm text-gray-500 mb-6">
             Vertiefende Informationen zu einzelnen Themen rund ums Steildach:
           </p>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
             <a href="/aufsparrendaemmung-bochum" className="block p-5 bg-white rounded-xl border border-gray-200 hover:border-primary hover:shadow-md transition-all">
               <div className="font-semibold text-gray-900 mb-1">Aufsparrendämmung Bochum</div>
               <div className="text-sm text-gray-500">Die effektivste Dämmvariante – Kosten, Ablauf und Förderung erklärt.</div>
@@ -757,11 +757,17 @@ export default function SteildachBochum() {
               <div className="font-semibold text-gray-900 mb-1">Dachgaube Bochum</div>
               <div className="text-sm text-gray-500">Schleppgaube, Spitzgaube, Kastengaube – Einbau vom Meisterbetrieb.</div>
             </a>
-          </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
             <a href="/steildach-undicht-bochum" className="block p-5 bg-white rounded-xl border border-gray-200 hover:border-primary hover:shadow-md transition-all">
               <div className="font-semibold text-gray-900 mb-1">Steildach undicht – was tun?</div>
               <div className="text-sm text-gray-500">Ursachen erkennen und Schaden dauerhaft beheben.</div>
+            </a>
+            <a href="/dach-photovoltaik-bochum" className="block p-5 bg-white rounded-xl border border-gray-200 hover:border-primary hover:shadow-md transition-all">
+              <div className="font-semibold text-gray-900 mb-1">Dach &amp; Photovoltaik</div>
+              <div className="text-sm text-gray-500">PV-Vorbereitung im Zuge der Steildach-Sanierung.</div>
+            </a>
+            <a href="/solarpflicht" className="block p-5 bg-white rounded-xl border border-gray-200 hover:border-primary hover:shadow-md transition-all">
+              <div className="font-semibold text-gray-900 mb-1">NRW-Solarpflicht</div>
+              <div className="text-sm text-gray-500">Was die Pflicht beim Steildach bedeutet.</div>
             </a>
           </div>
         </div>

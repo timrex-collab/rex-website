@@ -697,6 +697,35 @@ export default function DachsanierungBochum() {
         </div>
       </section>
 
+      {/* Verwandte Leistungen */}
+      <section className="py-12 bg-gray-50" data-testid="section-verwandte-leistungen">
+        <div className="container mx-auto px-4">
+          <h2 className="text-xl font-bold text-gray-900 mb-6">Verwandte Leistungen</h2>
+          <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-4">
+            <a href="/steildach-bochum" className="block p-5 bg-white rounded-xl border border-gray-200 hover:border-primary hover:shadow-md transition-all">
+              <div className="font-semibold text-gray-900 mb-1">Steildach Bochum</div>
+              <div className="text-sm text-gray-500">Neueindeckung, Dämmung, Aufsparrendämmung – BEG-konform.</div>
+            </a>
+            <a href="/flachdach-bochum" className="block p-5 bg-white rounded-xl border border-gray-200 hover:border-primary hover:shadow-md transition-all">
+              <div className="font-semibold text-gray-900 mb-1">Flachdach Bochum</div>
+              <div className="text-sm text-gray-500">Abdichtung und Dämmung mit Bitumen oder PVC.</div>
+            </a>
+            <a href="/dachfenster-bochum" className="block p-5 bg-white rounded-xl border border-gray-200 hover:border-primary hover:shadow-md transition-all">
+              <div className="font-semibold text-gray-900 mb-1">Dachfenster Bochum</div>
+              <div className="text-sm text-gray-500">VELUX-Austausch, Eindeckrahmen und Anschlüsse.</div>
+            </a>
+            <a href="/dach-photovoltaik-bochum" className="block p-5 bg-white rounded-xl border border-gray-200 hover:border-primary hover:shadow-md transition-all">
+              <div className="font-semibold text-gray-900 mb-1">Dach &amp; Photovoltaik</div>
+              <div className="text-sm text-gray-500">PV-Vorbereitung im Zuge der Sanierung – Braas PV Premium oder Aufdach.</div>
+            </a>
+            <a href="/solarpflicht" className="block p-5 bg-white rounded-xl border border-gray-200 hover:border-primary hover:shadow-md transition-all">
+              <div className="font-semibold text-gray-900 mb-1">NRW-Solarpflicht</div>
+              <div className="text-sm text-gray-500">Was die Pflicht bei vollständiger Dacherneuerung bedeutet.</div>
+            </a>
+          </div>
+        </div>
+      </section>
+
       {/* Abschluss-CTA */}
       <section className="py-16 px-4 bg-background" data-testid="section-cta-final">
         <div className="max-w-7xl mx-auto">
