@@ -154,7 +154,20 @@ export default function DachPhotovoltaikBochum() {
 
       {/* Hero */}
       <section className="relative text-white py-24 px-4 overflow-hidden">
-        <div className="absolute inset-0 bg-cover bg-center" style={{ backgroundImage: "url('/images/braas-pv-premium-turmalin-header-photovoltaik-dach-bochum.webp')" }} aria-hidden="true" />
+        <picture aria-hidden="true">
+          <source
+            type="image/webp"
+            srcSet="/images/braas-pv-premium-turmalin-header-photovoltaik-dach-bochum-480w.webp 480w, /images/braas-pv-premium-turmalin-header-photovoltaik-dach-bochum-1024w.webp 1024w, /images/braas-pv-premium-turmalin-header-photovoltaik-dach-bochum-1920w.webp 1920w"
+            sizes="100vw"
+          />
+          <img
+            src="/images/braas-pv-premium-turmalin-header-photovoltaik-dach-bochum-1920w.webp"
+            alt=""
+            className="absolute inset-0 w-full h-full object-cover"
+            loading="eager"
+            decoding="async"
+          />
+        </picture>
         <div className="absolute inset-0" style={{ background: "linear-gradient(90deg, rgba(15,23,42,0.88) 0%, rgba(15,23,42,0.68) 42%, rgba(15,23,42,0.22) 100%)" }} aria-hidden="true" />
         <div className="max-w-4xl mx-auto relative z-10">
           <div className="inline-flex items-center gap-2 bg-white/10 border border-white/20 rounded-full px-4 py-1 mb-6">

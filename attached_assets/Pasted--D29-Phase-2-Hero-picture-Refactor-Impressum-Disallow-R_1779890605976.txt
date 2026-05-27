@@ -1,0 +1,331 @@
+# D29 Phase 2 — Hero `<picture>`-Refactor + Impressum-Disallow
+
+**Repo:** `timrex-collab/rex-website` · Branch `main`
+**Stufe:** **C** (wegen `robots.txt`)
+**Code/Config-Files:** 4 (Stufe-C-Limit ≤ 5 — eingehalten)
+**Begleitfiles aus Phase 1:** 6 neue WebP-Assets + 1 neues Generator-Script
+**Push-Architektur:** 1 atomischer Commit für alles
+
+**Ziel:**
+1. Hero-Bilder in den 3 Komponenten von CSS-`background-image` auf `<picture>`-Element mit responsive `srcset` umstellen
+2. Tote `heroImage`/`heroImageFallback`-Konstanten in den 2 VELUX-Dateien entfernen
+3. `Disallow: /impressum` in `robots.txt` reaktivieren (GSC-Indexierung von Paulinenstraße 22 ist bestätigt — 25.05.2026)
+
+**Idempotenz:** Alle SEARCH-Strings matchen nur den jeweils aktuellen Zustand. Re-Run hängt nichts doppelt an.
+
+---
+
+## Pre-Check
+
+```bash
+cd ~/workspace
+
+# 1. Phase-1-Assets sind alle 6 da?
+echo "--- Phase-1-Assets ---"
+for f in \
+  velux-dachfenster-einbau-bochum-fachbetrieb-480w.webp \
+  velux-dachfenster-einbau-bochum-fachbetrieb-1024w.webp \
+  velux-dachfenster-einbau-bochum-fachbetrieb-1920w.webp \
+  braas-pv-premium-turmalin-header-photovoltaik-dach-bochum-480w.webp \
+  braas-pv-premium-turmalin-header-photovoltaik-dach-bochum-1024w.webp \
+  braas-pv-premium-turmalin-header-photovoltaik-dach-bochum-1920w.webp
+do
+  test -f "client/public/images/$f" && echo "  OK $f" || echo "  FEHLT $f — STOPP, Phase 1 nicht komplett"
+done
+
+# 2. Generator-Script aus Phase 1 vorhanden?
+test -f scripts/generate-hero-srcset.mjs && echo "  OK scripts/generate-hero-srcset.mjs" || echo "  FEHLT scripts/generate-hero-srcset.mjs"
+
+# 3. Sind die Code-Edits bereits angewendet? (Idempotenz)
+echo "--- Code-Edit-Idempotenz-Check ---"
+grep -l 'velux-dachfenster-einbau-bochum-fachbetrieb-480w.webp' client/src/pages/VeluxAustausch.tsx 2>/dev/null && echo "  VeluxAustausch: bereits refactored"
+grep -l 'velux-dachfenster-einbau-bochum-fachbetrieb-480w.webp' client/src/pages/VeluxRolllaeden.tsx 2>/dev/null && echo "  VeluxRolllaeden: bereits refactored"
+grep -l 'braas-pv-premium-turmalin-header-photovoltaik-dach-bochum-480w.webp' client/src/pages/DachPhotovoltaikBochum.tsx 2>/dev/null && echo "  DachPhotovoltaikBochum: bereits refactored"
+grep -l '^Disallow: /impressum$' client/public/robots.txt 2>/dev/null && echo "  robots.txt: Disallow /impressum bereits drin"
+```
+
+→ Wenn eine Datei „bereits refactored" meldet: zugehörigen Edit SKIPPEN. Restliche normal ausführen.
+
+---
+
+## Edit 1a — `client/src/pages/VeluxAustausch.tsx`: tote Konstanten löschen
+
+**SEARCH** (Z. 30-31, eindeutig):
+```tsx
+const heroImage = "/images/velux-dachfenster-einbau-bochum-fachbetrieb.webp";
+const heroImageFallback = "/images/velux-dachfenster-einbau-bochum-fachbetrieb.jpg";
+```
+
+**REPLACE:** *(leer — Konstanten ersatzlos entfernen)*
+
+---
+
+## Edit 1b — `client/src/pages/VeluxAustausch.tsx`: Hero-Section auf `<picture>`
+
+**SEARCH** (eindeutig, ein Match):
+```tsx
+        <div
+          className="absolute inset-0 bg-cover bg-center"
+          style={{ backgroundImage: `url('${heroImage}')` }}
+          aria-hidden="true"
+        />
+        <div className="absolute inset-0 bg-gradient-to-r from-black/75 via-black/55 to-black/30" aria-hidden="true" />
+```
+
+**REPLACE:**
+```tsx
+        <picture aria-hidden="true">
+          <source
+            type="image/webp"
+            srcSet="/images/velux-dachfenster-einbau-bochum-fachbetrieb-480w.webp 480w, /images/velux-dachfenster-einbau-bochum-fachbetrieb-1024w.webp 1024w, /images/velux-dachfenster-einbau-bochum-fachbetrieb-1920w.webp 1920w"
+            sizes="100vw"
+          />
+          <img
+            src="/images/velux-dachfenster-einbau-bochum-fachbetrieb-1920w.webp"
+            alt=""
+            className="absolute inset-0 w-full h-full object-cover"
+            loading="eager"
+            decoding="async"
+          />
+        </picture>
+        <div className="absolute inset-0 bg-gradient-to-r from-black/75 via-black/55 to-black/30" aria-hidden="true" />
+```
+
+---
+
+## Edit 2a — `client/src/pages/VeluxRolllaeden.tsx`: tote Konstanten löschen
+
+**SEARCH** (Z. 15-16, eindeutig):
+```tsx
+const heroImage = "/images/velux-dachfenster-einbau-bochum-fachbetrieb.webp";
+const heroImageFallback = "/images/velux-dachfenster-einbau-bochum-fachbetrieb.jpg";
+```
+
+**REPLACE:** *(leer — Konstanten ersatzlos entfernen)*
+
+---
+
+## Edit 2b — `client/src/pages/VeluxRolllaeden.tsx`: Hero-Section auf `<picture>`
+
+**SEARCH** (eindeutig, ein Match — identisch zum VeluxAustausch-Pattern):
+```tsx
+        <div
+          className="absolute inset-0 bg-cover bg-center"
+          style={{ backgroundImage: `url('${heroImage}')` }}
+          aria-hidden="true"
+        />
+        <div className="absolute inset-0 bg-gradient-to-r from-black/75 via-black/55 to-black/30" aria-hidden="true" />
+```
+
+**REPLACE:**
+```tsx
+        <picture aria-hidden="true">
+          <source
+            type="image/webp"
+            srcSet="/images/velux-dachfenster-einbau-bochum-fachbetrieb-480w.webp 480w, /images/velux-dachfenster-einbau-bochum-fachbetrieb-1024w.webp 1024w, /images/velux-dachfenster-einbau-bochum-fachbetrieb-1920w.webp 1920w"
+            sizes="100vw"
+          />
+          <img
+            src="/images/velux-dachfenster-einbau-bochum-fachbetrieb-1920w.webp"
+            alt=""
+            className="absolute inset-0 w-full h-full object-cover"
+            loading="eager"
+            decoding="async"
+          />
+        </picture>
+        <div className="absolute inset-0 bg-gradient-to-r from-black/75 via-black/55 to-black/30" aria-hidden="true" />
+```
+
+**Wichtig:** VeluxAustausch und VeluxRolllaeden haben **identische** SEARCH-Blöcke. Der `str_replace`-Mechanismus wird in jeder Datei einzeln aufgerufen — das ist OK, weil pro Datei der SEARCH genau einmal vorkommt.
+
+---
+
+## Edit 3 — `client/src/pages/DachPhotovoltaikBochum.tsx`: Hero-Section
+
+**Wichtig:** Die OG- und Twitter-Meta-Tags (Z. ~100, ~103) referenzieren das **Original-Bild** ohne `-1920w`-Suffix. Diese bleiben **unverändert** — das Original-Bild bleibt im Repo und ist für Social-Media-Crawler erreichbar. Cache-Invalidierung bei OG-Bildern ist mühsam und der Nutzen vernachlässigbar.
+
+**SEARCH** (eindeutig, ein Match — Z. 157):
+```tsx
+        <div className="absolute inset-0 bg-cover bg-center" style={{ backgroundImage: "url('/images/braas-pv-premium-turmalin-header-photovoltaik-dach-bochum.webp')" }} aria-hidden="true" />
+```
+
+**REPLACE:**
+```tsx
+        <picture aria-hidden="true">
+          <source
+            type="image/webp"
+            srcSet="/images/braas-pv-premium-turmalin-header-photovoltaik-dach-bochum-480w.webp 480w, /images/braas-pv-premium-turmalin-header-photovoltaik-dach-bochum-1024w.webp 1024w, /images/braas-pv-premium-turmalin-header-photovoltaik-dach-bochum-1920w.webp 1920w"
+            sizes="100vw"
+          />
+          <img
+            src="/images/braas-pv-premium-turmalin-header-photovoltaik-dach-bochum-1920w.webp"
+            alt=""
+            className="absolute inset-0 w-full h-full object-cover"
+            loading="eager"
+            decoding="async"
+          />
+        </picture>
+```
+
+---
+
+## Edit 4 — `client/public/robots.txt`: Impressum-Disallow
+
+**SEARCH** (eindeutig, exakte 2-Zeilen-Sequenz am Anfang):
+```
+Disallow: /danke
+Disallow: /datenschutz
+```
+
+**REPLACE:**
+```
+Disallow: /danke
+Disallow: /datenschutz
+Disallow: /impressum
+```
+
+---
+
+## Post-Check (nach allen 4 Code-Edits)
+
+```bash
+# 1. Picture-Elemente in allen 3 Hero-Komponenten?
+echo "--- Picture-Elemente ---"
+grep -c '<picture aria-hidden="true">' client/src/pages/VeluxAustausch.tsx
+grep -c '<picture aria-hidden="true">' client/src/pages/VeluxRolllaeden.tsx
+grep -c '<picture aria-hidden="true">' client/src/pages/DachPhotovoltaikBochum.tsx
+# Jeweils erwartet: 1
+
+# 2. Tote Konstanten weg?
+echo "--- Tote Konstanten ---"
+grep -c "const heroImage = " client/src/pages/VeluxAustausch.tsx
+grep -c "const heroImage = " client/src/pages/VeluxRolllaeden.tsx
+# Jeweils erwartet: 0
+
+# 3. Robots.txt enthält Impressum-Disallow?
+echo "--- robots.txt ---"
+grep -c "^Disallow: /impressum$" client/public/robots.txt
+# Erwartet: 1
+grep -c "^Disallow: /datenschutz$" client/public/robots.txt
+# Erwartet: 1 (vorherige Zeile darf nicht verschwunden sein)
+grep -c "^Sitemap: " client/public/robots.txt
+# Erwartet: 1 (Sitemap-Zeile muss weiterhin da sein)
+
+# 4. Keine alten background-image-Hero-Definitionen mehr?
+echo "--- Alte background-image-Hero-Definitionen ---"
+grep -c "backgroundImage: \`url('" client/src/pages/VeluxAustausch.tsx
+grep -c "backgroundImage: \`url('" client/src/pages/VeluxRolllaeden.tsx
+# Jeweils erwartet: 0
+
+# 5. Build-Test
+echo "--- Build ---"
+npm run build
+# Muss fehlerfrei durchlaufen
+```
+
+**Erwartet:** Werte wie oben angegeben, Build clean.
+
+---
+
+## Pre-Push-Protokoll (verbindlich, Stufe C)
+
+Hier ist der kritische Punkt: **6 Assets aus Phase 1 + 4 Code/Config-Files aus Phase 2 + 1 neues Generator-Script** gehen in einen einzigen atomischen Commit. Falls Replit-Helium-Checkpoints zwischen Phase 1 und Phase 2 entstanden sind: erst zurücksetzen, dann sauber neu stagen.
+
+```bash
+# 1. Status & Ghost-Commits abfangen
+git status
+git log --oneline origin/main..HEAD
+# Falls Commits auftauchen, die NICHT manuell von dir kamen:
+#   git reset --soft origin/main
+#   git restore --staged attached_assets/Pasted-*.txt   # falls Pasted-Files reingerutscht
+#   git status      # prüfen: nur die echten D29-Files sollen jetzt "Changes" zeigen
+
+# 2. Gezielt stagen — 11 Files total
+git add client/src/pages/VeluxAustausch.tsx \
+        client/src/pages/VeluxRolllaeden.tsx \
+        client/src/pages/DachPhotovoltaikBochum.tsx \
+        client/public/robots.txt \
+        scripts/generate-hero-srcset.mjs \
+        client/public/images/velux-dachfenster-einbau-bochum-fachbetrieb-480w.webp \
+        client/public/images/velux-dachfenster-einbau-bochum-fachbetrieb-1024w.webp \
+        client/public/images/velux-dachfenster-einbau-bochum-fachbetrieb-1920w.webp \
+        client/public/images/braas-pv-premium-turmalin-header-photovoltaik-dach-bochum-480w.webp \
+        client/public/images/braas-pv-premium-turmalin-header-photovoltaik-dach-bochum-1024w.webp \
+        client/public/images/braas-pv-premium-turmalin-header-photovoltaik-dach-bochum-1920w.webp
+
+git status
+# Erwartet: 11 Files unter "Changes to be committed", nichts unter "Untracked" oder "not staged"
+
+# 3. Pre-Push-Check (verbindlich)
+git log --oneline origin/main..HEAD
+# Muss leer sein
+
+# 4. Commit
+git commit -m "D29: Hero <picture>-srcset auf 3 Seiten + Impressum-Disallow"
+
+# 5. Diff-Verifikation (verbindlich, Lesson Learned D16/D19)
+git show --stat HEAD
+# Erwartet: genau diese 11 Pfade, sonst nichts:
+#   client/public/images/braas-pv-premium-turmalin-header-photovoltaik-dach-bochum-1024w.webp
+#   client/public/images/braas-pv-premium-turmalin-header-photovoltaik-dach-bochum-1920w.webp
+#   client/public/images/braas-pv-premium-turmalin-header-photovoltaik-dach-bochum-480w.webp
+#   client/public/images/velux-dachfenster-einbau-bochum-fachbetrieb-1024w.webp
+#   client/public/images/velux-dachfenster-einbau-bochum-fachbetrieb-1920w.webp
+#   client/public/images/velux-dachfenster-einbau-bochum-fachbetrieb-480w.webp
+#   client/public/robots.txt
+#   client/src/pages/DachPhotovoltaikBochum.tsx
+#   client/src/pages/VeluxAustausch.tsx
+#   client/src/pages/VeluxRolllaeden.tsx
+#   scripts/generate-hero-srcset.mjs
+
+# 6. Push
+git push
+```
+
+Falls in Schritt 5 fremde Files auftauchen: **STOPP**, `git reset --soft HEAD~1`, Bereinigung, neuer Commit.
+
+---
+
+## Live-Verifikation (nach Netlify-Deploy ca. 1-3 Min nach Push)
+
+```bash
+# 1. Hero-Bilder mit srcset live?
+for slug in velux-dachfenster-austausch-bochum velux-dachfenster-rolllaeden-bochum dach-photovoltaik-bochum; do
+  echo "=== /${slug} ==="
+  HTML=$(curl -sSL "https://www.rex-bedachung.de/${slug}")
+  echo -n "  <picture>-Element vorhanden: "
+  echo "$HTML" | grep -c '<picture'
+  echo -n "  srcSet vorhanden:            "
+  echo "$HTML" | grep -c 'srcset='
+done
+
+# 2. robots.txt enthält Impressum-Disallow?
+echo ""
+echo "=== robots.txt ==="
+curl -sSL "https://www.rex-bedachung.de/robots.txt"
+# Erwartet: Disallow: /impressum erscheint nach den anderen Disallows
+```
+
+**Browser-Test (1 Min):** F12 DevTools → Network → Reload `/velux-dachfenster-austausch-bochum`. Filter auf "Img". Erwartet: nur das 1920w-Bild (oder kleineres je nach Viewport), nicht das Original ohne Suffix. Lighthouse-Run sollte LCP-Verbesserung zeigen.
+
+---
+
+## Risiken & Hinweise
+
+- **Stufe C wegen robots.txt** — robots.txt-Änderungen sind seit dem März-2026-Vorfall mit besonderer Vorsicht zu behandeln. Wir fügen aber nur 1 Zeile hinzu, ändern nicht die Struktur. Risiko minimal.
+- **Impressum-Verhalten nach Disallow-Reaktivierung:** Google darf die Seite jetzt nicht mehr **crawlen**, aber die bereits indexierte Version bleibt in den Index. Das ist gewünscht: GSC hat Paulinenstraße 22 schon gesehen, der NAP-Anker bleibt erhalten — gleichzeitig blockieren wir zukünftiges Re-Crawling, um die Seite nicht in Top-Rankings zu drängen.
+- **Tote Konstanten-Cleanup:** `heroImageFallback` war ungenutzt, wird mit entfernt — kein Funktions-Eingriff.
+- **OG-Tags auf DachPhotovoltaikBochum:** Bleiben auf Original-Bild zeigen. Bewusste Entscheidung (Cache-Stabilität bei Social-Media-Crawlern).
+- **Nach erfolgreichem Deploy:** 48 h Pause bis frühestens D30.
+
+---
+
+## Nach D29 erfolgreich
+
+- ✅ Hero-Bilder responsive — LCP-Optimierung wirksam
+- ✅ `/impressum` in robots.txt blockiert
+- ✅ `scripts/generate-hero-srcset.mjs` wiederverwendbar im Repo
+- ✅ Tote Konstanten weg
+- ✅ Memory-Updates: D29 deployed, NICHT-OFFEN-Liste reduziert um 2 Punkte (Hero-Migration + Impressum-Disallow)
+
+Offen danach: Schema-@graph Money-Pages (D30-Kandidat), llms.txt Feinschliff (D31-Kandidat).

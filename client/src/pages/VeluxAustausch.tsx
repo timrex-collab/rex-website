@@ -27,8 +27,6 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 
-const heroImage = "/images/velux-dachfenster-einbau-bochum-fachbetrieb.webp";
-const heroImageFallback = "/images/velux-dachfenster-einbau-bochum-fachbetrieb.jpg";
 
 const symptomCards = [
   {
@@ -277,11 +275,20 @@ export default function VeluxAustausch() {
         className="relative text-white py-24 px-4 overflow-hidden"
         data-testid="section-hero"
       >
-        <div
-          className="absolute inset-0 bg-cover bg-center"
-          style={{ backgroundImage: `url('${heroImage}')` }}
-          aria-hidden="true"
-        />
+        <picture aria-hidden="true">
+          <source
+            type="image/webp"
+            srcSet="/images/velux-dachfenster-einbau-bochum-fachbetrieb-480w.webp 480w, /images/velux-dachfenster-einbau-bochum-fachbetrieb-1024w.webp 1024w, /images/velux-dachfenster-einbau-bochum-fachbetrieb-1920w.webp 1920w"
+            sizes="100vw"
+          />
+          <img
+            src="/images/velux-dachfenster-einbau-bochum-fachbetrieb-1920w.webp"
+            alt=""
+            className="absolute inset-0 w-full h-full object-cover"
+            loading="eager"
+            decoding="async"
+          />
+        </picture>
         <div className="absolute inset-0 bg-gradient-to-r from-black/75 via-black/55 to-black/30" aria-hidden="true" />
         <div className="relative z-10 max-w-7xl mx-auto">
           <h1 className="text-3xl md:text-5xl font-extrabold leading-tight mb-4 max-w-3xl" data-testid="heading-hero">
