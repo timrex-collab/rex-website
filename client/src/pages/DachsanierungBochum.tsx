@@ -273,7 +273,7 @@ export default function DachsanierungBochum() {
               "author": { "@id": "https://www.rex-bedachung.de/#author" },
               "publisher": { "@id": "https://www.rex-bedachung.de/#organization" },
               "datePublished": "2026-04-11",
-              "dateModified": "2026-05-29",
+              "dateModified": "2026-05-30",
               "mainEntityOfPage": { "@id": "https://www.rex-bedachung.de/dachsanierung-bochum#webpage" },
               "inLanguage": "de-DE"
             },
