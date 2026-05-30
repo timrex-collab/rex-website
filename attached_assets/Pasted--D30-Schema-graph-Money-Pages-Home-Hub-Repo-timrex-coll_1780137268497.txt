@@ -1,0 +1,641 @@
+# D30 — Schema-`@graph` Money-Pages (Home + Hub)
+
+**Repo:** `timrex-collab/rex-website` · Branch `main`
+**Stufe:** **B** (Schema-Eingriff)
+**Dateien:** 3 — `OrganizationSchema.tsx`, `Home.tsx`, `DachsanierungBochum.tsx`
+**Geplantes Deploy-Datum:** **2026-05-29** — siehe Hinweis am Ende von Edit 3, falls Deploy verschoben
+
+**Ziel:**
+1. `OrganizationSchema.tsx` wird zum `@graph` mit `Organization` (bestehend) + neuer `WebSite`-Entity
+2. `Home.tsx` bekommt einen `WebPage`-Knoten — bestehender `BreadcrumbList`-Block wird konsolidiert
+3. `DachsanierungBochum.tsx`: aus 5 separaten Schema-Blöcken wird **ein** `@graph` mit 6 Entities (WebPage, BreadcrumbList, Service, Article, HowTo, FAQPage). Inline-`RoofingContractor`-Bloat im Service-Schema wird durch `@id`-Ref auf `#organization` ersetzt.
+
+**Architektur-Regeln (verbindlich):**
+- `provider`, `publisher`, `author`, `isPartOf`, `about`, `mainEntityOfPage` immer als `@id`-Ref, nie inline
+- `WebSite` ohne `SearchAction`, ohne `potentialAction`
+- Keine Preise/Kosten ergänzen
+- Kein neues Wording mit „zertifiziert"
+- Keine Routen, Redirects, robots, sitemap, netlify.toml
+
+**Idempotenz:** Jeder Edit prüft per grep, ob die @graph-Struktur bereits drin ist. Re-Runs sind sicher.
+
+---
+
+## Pre-Check
+
+```bash
+cd ~/workspace
+
+# 1. Existieren alle 3 Zieldateien?
+for f in \
+  client/src/components/OrganizationSchema.tsx \
+  client/src/pages/Home.tsx \
+  client/src/pages/DachsanierungBochum.tsx
+do
+  test -f "$f" && echo "OK $f" || echo "FEHLT $f"
+done
+
+# 2. Sind die @graph-Strukturen bereits angewendet?
+echo "--- @graph-Idempotenz-Check ---"
+grep -l '"@graph"' client/src/components/OrganizationSchema.tsx 2>/dev/null && echo "  OrganizationSchema: schon @graph"
+grep -l '"@type": "WebPage"' client/src/pages/Home.tsx 2>/dev/null && echo "  Home: WebPage schon drin"
+grep -l '"@graph"' client/src/pages/DachsanierungBochum.tsx 2>/dev/null && echo "  DachsanierungBochum: schon @graph"
+```
+
+→ Wenn eine Datei „schon" meldet: zugehörigen Edit SKIPPEN.
+
+---
+
+## Edit 1 — `client/src/components/OrganizationSchema.tsx`
+
+**Eingriff:** Das gesamte Schema-Objekt wird umgehängt: Top-Level wird `@graph`-Array, in dem das bisherige RoofingContractor-Objekt als erstes Element und die neue WebSite als zweites steht.
+
+**SEARCH** (eindeutig — komplettes Schema-Objekt):
+```tsx
+  const schema = {
+    "@context": "https://schema.org",
+    "@type": "RoofingContractor",
+    "@id": "https://www.rex-bedachung.de/#organization",
+    "name": "Rex Bedachungs GmbH",
+    "legalName": "Rex Bedachungs GmbH",
+    "alternateName": [
+      "Rex Bedachung",
+      "Dachdecker Rex Bochum"
+    ],
+    "disambiguatingDescription": "Rex Bedachungs GmbH ist ein seit 1984 bestehender Dachdecker-Meisterbetrieb mit alleinigem Unternehmenssitz in der Paulinenstraße 22, 44799 Bochum. Geschäftsführer sind Peter Rex und Tim Rex. Die Gesellschaft ist im Handelsregister beim Amtsgericht Bochum unter HRB 2478 eingetragen.",
+    "identifier": {
+      "@type": "PropertyValue",
+      "propertyID": "Handelsregister",
+      "value": "HRB 2478, Amtsgericht Bochum"
+    },
+    "taxID": "DE124085752",
+    "url": "https://www.rex-bedachung.de",
+    "logo": "https://www.rex-bedachung.de/images/logo-rex-bedachungs-gmbh-bochum-2025.webp",
+    "image": "https://www.rex-bedachung.de/images/dachdecker-bochum-steildach-hero.webp",
+    "description": "Rex Bedachungs GmbH ist ein Dachdecker-Meisterbetrieb in Bochum mit über 40 Jahren Erfahrung. Spezialisiert auf Steildach, Flachdach, Dachfenster (VELUX), Bauklempnerei, Dachreparatur und Dachwartung.",
+    "foundingYear": "1984",
+    "telephone": "+49-234-583100",
+    "faxNumber": "+49-234-583137",
+    "email": "info@rex-bedachung.de",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "Paulinenstraße 22",
+      "addressLocality": "Bochum",
+      "postalCode": "44799",
+      "addressRegion": "Nordrhein-Westfalen",
+      "addressCountry": "DE"
+    },
+    "geo": {
+      "@type": "GeoCoordinates",
+      "latitude": 51.46262,
+      "longitude": 7.24442
+    },
+    "openingHoursSpecification": [
+      {
+        "@type": "OpeningHoursSpecification",
+        "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+        "opens": "07:00",
+        "closes": "17:00"
+      }
+    ],
+    "priceRange": "€€",
+    "areaServed": {
+      "@type": "GeoCircle",
+      "geoMidpoint": {
+        "@type": "GeoCoordinates",
+        "latitude": 51.46262,
+        "longitude": 7.24442
+      },
+      "geoRadius": "30000"
+    },
+    "hasOfferCatalog": {
+      "@type": "OfferCatalog",
+      "name": "Dachdeckerleistungen",
+      "itemListElement": [
+        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Steildacharbeiten" } },
+        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Flachdacharbeiten" } },
+        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Dachfenster & VELUX" } },
+        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Bauklempnerei" } },
+        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Dachreparatur" } },
+        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Dachwartung" } }
+      ]
+    },
+    "sameAs": [
+      "https://www.google.com/maps/place/Rex+Bedachungs+GmbH/@51.4623584,7.2428438,17z",
+      "https://www.facebook.com/rexbedachung",
+      "https://www.instagram.com/rexbedachung",
+      "https://www.dachdecker-innung-bochum.de/unternehmen/details/rex-bedachungen-gmbh"
+    ]
+  };
+```
+
+**REPLACE:**
+```tsx
+  const schema = {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "RoofingContractor",
+        "@id": "https://www.rex-bedachung.de/#organization",
+        "name": "Rex Bedachungs GmbH",
+        "legalName": "Rex Bedachungs GmbH",
+        "alternateName": [
+          "Rex Bedachung",
+          "Dachdecker Rex Bochum"
+        ],
+        "disambiguatingDescription": "Rex Bedachungs GmbH ist ein seit 1984 bestehender Dachdecker-Meisterbetrieb mit alleinigem Unternehmenssitz in der Paulinenstraße 22, 44799 Bochum. Geschäftsführer sind Peter Rex und Tim Rex. Die Gesellschaft ist im Handelsregister beim Amtsgericht Bochum unter HRB 2478 eingetragen.",
+        "identifier": {
+          "@type": "PropertyValue",
+          "propertyID": "Handelsregister",
+          "value": "HRB 2478, Amtsgericht Bochum"
+        },
+        "taxID": "DE124085752",
+        "url": "https://www.rex-bedachung.de",
+        "logo": "https://www.rex-bedachung.de/images/logo-rex-bedachungs-gmbh-bochum-2025.webp",
+        "image": "https://www.rex-bedachung.de/images/dachdecker-bochum-steildach-hero.webp",
+        "description": "Rex Bedachungs GmbH ist ein Dachdecker-Meisterbetrieb in Bochum mit über 40 Jahren Erfahrung. Spezialisiert auf Steildach, Flachdach, Dachfenster (VELUX), Bauklempnerei, Dachreparatur und Dachwartung.",
+        "foundingYear": "1984",
+        "telephone": "+49-234-583100",
+        "faxNumber": "+49-234-583137",
+        "email": "info@rex-bedachung.de",
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "Paulinenstraße 22",
+          "addressLocality": "Bochum",
+          "postalCode": "44799",
+          "addressRegion": "Nordrhein-Westfalen",
+          "addressCountry": "DE"
+        },
+        "geo": {
+          "@type": "GeoCoordinates",
+          "latitude": 51.46262,
+          "longitude": 7.24442
+        },
+        "openingHoursSpecification": [
+          {
+            "@type": "OpeningHoursSpecification",
+            "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+            "opens": "07:00",
+            "closes": "17:00"
+          }
+        ],
+        "priceRange": "€€",
+        "areaServed": {
+          "@type": "GeoCircle",
+          "geoMidpoint": {
+            "@type": "GeoCoordinates",
+            "latitude": 51.46262,
+            "longitude": 7.24442
+          },
+          "geoRadius": "30000"
+        },
+        "hasOfferCatalog": {
+          "@type": "OfferCatalog",
+          "name": "Dachdeckerleistungen",
+          "itemListElement": [
+            { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Steildacharbeiten" } },
+            { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Flachdacharbeiten" } },
+            { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Dachfenster & VELUX" } },
+            { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Bauklempnerei" } },
+            { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Dachreparatur" } },
+            { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Dachwartung" } }
+          ]
+        },
+        "sameAs": [
+          "https://www.google.com/maps/place/Rex+Bedachungs+GmbH/@51.4623584,7.2428438,17z",
+          "https://www.facebook.com/rexbedachung",
+          "https://www.instagram.com/rexbedachung",
+          "https://www.dachdecker-innung-bochum.de/unternehmen/details/rex-bedachungen-gmbh"
+        ]
+      },
+      {
+        "@type": "WebSite",
+        "@id": "https://www.rex-bedachung.de/#website",
+        "url": "https://www.rex-bedachung.de/",
+        "name": "Rex Bedachungs GmbH",
+        "publisher": { "@id": "https://www.rex-bedachung.de/#organization" },
+        "inLanguage": "de-DE"
+      }
+    ]
+  };
+```
+
+**Was sich ändert:**
+- Top-Level `"@type": "RoofingContractor"` wird zu `"@graph": [ ... ]`
+- Komplettes bisheriges Organization-Objekt wandert als erstes `@graph`-Element rein (alle Felder unverändert)
+- Zweites `@graph`-Element: neue `WebSite`-Entity
+
+---
+
+## Edit 2 — `client/src/pages/Home.tsx`
+
+**Eingriff:** Bestehender BreadcrumbList-Block wird ersetzt durch konsolidierten `@graph` mit `WebPage` + `BreadcrumbList`.
+
+**SEARCH** (eindeutig):
+```tsx
+  <script type="application/ld+json">{JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Startseite", "item": "https://www.rex-bedachung.de/" }
+    ]
+  })}</script>
+```
+
+**REPLACE:**
+```tsx
+  <script type="application/ld+json">{JSON.stringify({
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebPage",
+        "@id": "https://www.rex-bedachung.de/#webpage",
+        "url": "https://www.rex-bedachung.de/",
+        "name": "Dachdecker Bochum – Rex Bedachungs GmbH",
+        "description": "Meisterbetrieb für Dachdeckerei in Bochum. Steildach, Flachdach, Bauklempnerei & Dachfenster – Rex Bedachungs GmbH. Jetzt Angebot anfragen.",
+        "isPartOf": { "@id": "https://www.rex-bedachung.de/#website" },
+        "about": { "@id": "https://www.rex-bedachung.de/#organization" },
+        "breadcrumb": { "@id": "https://www.rex-bedachung.de/#breadcrumb" },
+        "primaryImageOfPage": "https://www.rex-bedachung.de/images/dachdecker-bochum-steildach-hero.webp",
+        "inLanguage": "de-DE"
+      },
+      {
+        "@type": "BreadcrumbList",
+        "@id": "https://www.rex-bedachung.de/#breadcrumb",
+        "itemListElement": [
+          { "@type": "ListItem", "position": 1, "name": "Startseite", "item": "https://www.rex-bedachung.de/" }
+        ]
+      }
+    ]
+  })}</script>
+```
+
+---
+
+## Edit 3 — `client/src/pages/DachsanierungBochum.tsx`
+
+**Eingriff:** Alle 5 separaten Schema-Blöcke (BreadcrumbList, Service, Article, HowTo, FAQPage) werden durch einen einzigen konsolidierten `@graph`-Block ersetzt. Inhalte aller 5 Blöcke bleiben 1:1 erhalten — nur Provider-Bloat raus, `@id`-Refs rein, `WebPage`-Entity ergänzt.
+
+**Hinweis zum Datum:** Im REPLACE unten steht `"dateModified": "2026-05-29"`. Wenn Deploy nicht am 29.05.2026 stattfindet, **dieses Datum vor der Ausführung des Replace auf das tatsächliche Deploy-Datum anpassen**. `datePublished` bleibt unverändert (2026-04-11).
+
+**SEARCH** (eindeutig — alle 5 Schema-Blöcke am Stück):
+```tsx
+        <script type="application/ld+json">{JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "BreadcrumbList",
+          "itemListElement": [
+            { "@type": "ListItem", "position": 1, "name": "Startseite", "item": "https://www.rex-bedachung.de/" },
+            { "@type": "ListItem", "position": 2, "name": "Dachsanierung Bochum", "item": "https://www.rex-bedachung.de/dachsanierung-bochum" }
+          ]
+        })}</script>
+
+        <script type="application/ld+json">{JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "Service",
+          "serviceType": "Dachsanierung",
+          "provider": {
+            "@type": "RoofingContractor",
+            "name": "Rex Bedachungs GmbH",
+            "address": {
+              "@type": "PostalAddress",
+              "streetAddress": "Paulinenstraße 22",
+              "addressLocality": "Bochum",
+              "postalCode": "44799",
+              "addressCountry": "DE"
+            },
+            "telephone": "+49234583100",
+            "url": "https://www.rex-bedachung.de"
+          },
+          "areaServed": {
+            "@type": "City",
+            "name": "Bochum"
+          },
+          "description": "Energetische Dachsanierung in Bochum: Steildach, Flachdach, Dämmung, Dachfenster – Komplettsanierung vom Meisterbetrieb Rex Bedachungs GmbH. Bis zu 20% BAFA-Förderung."
+        })}</script>
+
+        <script type="application/ld+json">{JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "Article",
+          "headline": "Dachsanierung Bochum – Komplettsanierung vom Meisterbetrieb",
+          "author": { "@id": "https://www.rex-bedachung.de/#author" },
+          "publisher": { "@id": "https://www.rex-bedachung.de/#organization" },
+          "datePublished": "2026-04-11",
+          "dateModified": "2026-04-11",
+          "mainEntityOfPage": "https://www.rex-bedachung.de/dachsanierung-bochum"
+        })}</script>
+
+        <script type="application/ld+json">{JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "HowTo",
+          "name": "Ablauf einer Dachsanierung in Bochum",
+          "description": "So läuft eine energetische Dachsanierung bei Rex Bedachungs GmbH in Bochum ab – von der Erstberatung bis zur Abnahme.",
+          "totalTime": "P21D",
+          "step": [
+            { "@type": "HowToStep", "position": 1, "name": "Erstberatung und Dachinspektion", "text": "Rex Bedachungs GmbH kommt kostenlos zu Ihnen nach Bochum. Bestandsaufnahme: Dachzustand, Dämmung, Eindeckung, Entwässerung, Dachfenster. Fotodokumentation aller Mängel." },
+            { "@type": "HowToStep", "position": 2, "name": "Energieberater einbinden", "text": "Für BAFA-Förderung ist ein Energieeffizienz-Experte (EEE) Pflicht. Wir koordinieren die Zusammenarbeit und die Erstellung des iSFP." },
+            { "@type": "HowToStep", "position": 3, "name": "Angebot und Förderantrag", "text": "Rex erstellt ein BEG-konformes Angebot mit getrennter Aufstellung förderfähiger und nicht förderfähiger Leistungen. Der EEE erstellt die Technische Projektbeschreibung. Wichtig: Erst Antrag, dann Auftrag." },
+            { "@type": "HowToStep", "position": 4, "name": "BAFA-Bewilligung abwarten", "text": "Nach Antragstellung vergehen 6–8 Wochen bis zum Zuwendungsbescheid. In dieser Zeit keine Aufträge erteilen oder Anzahlungen leisten." },
+            { "@type": "HowToStep", "position": 5, "name": "Ausführung der Sanierung", "text": "Gerüststellung, Rückbau alte Eindeckung, Dämmung, Neueindeckung, Dachfenster, Klempnerarbeiten, Entwässerung. Dauer bei einem EFH: 2–4 Wochen." },
+            { "@type": "HowToStep", "position": 6, "name": "Abnahme und Fördergeld", "text": "Gemeinsame Abnahme. Der EEE erstellt den Technischen Projektnachweis. Nach Einreichung des Verwendungsnachweises überweist das BAFA den Zuschuss – in der Regel 4–8 Wochen." }
+          ]
+        })}</script>
+
+        <script type="application/ld+json">{JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "FAQPage",
+          "mainEntity": [
+            {
+              "@type": "Question",
+              "name": "Was kostet eine Dachsanierung in Bochum?",
+              "acceptedAnswer": { "@type": "Answer", "text": "Der Preis hängt von Dachtyp, Dachfläche, Dämmstandard, Eindeckungsmaterial, Dachfenstern, Gerüst, Entsorgung und Logistik ab. Eine seriöse Einschätzung ist erst nach Vor-Ort-Aufmaß möglich. Rex Bedachungs GmbH erstellt ein transparentes Angebot mit vollständiger Leistungsaufstellung. Über BAFA (BEG EM) sind 15–20 % Zuschuss auf die förderfähigen Kosten möglich, mit iSFP-Bonus bis zu 12.000 € pro Wohneinheit." }
+            },
+            {
+              "@type": "Question",
+              "name": "Wie lange dauert eine Dachsanierung?",
+              "acceptedAnswer": { "@type": "Answer", "text": "Die reine Bauzeit bei einem Einfamilienhaus in Bochum beträgt 2–4 Wochen. Dazu kommen 6–8 Wochen für den BAFA-Bewilligungsprozess. Von der Erstberatung bis zur Auszahlung des Zuschusses vergehen insgesamt 4–8 Monate." }
+            },
+            {
+              "@type": "Question",
+              "name": "Wird eine Dachsanierung staatlich gefördert?",
+              "acceptedAnswer": { "@type": "Answer", "text": "Ja. Über BAFA (BEG EM) erhalten Sie 15% Zuschuss auf alle förderfähigen Kosten – mit individuellem Sanierungsfahrplan (iSFP) steigt der Satz auf 20% bei einem Förderhöchstbetrag von 60.000 € pro Wohneinheit. Zusätzlich ist der KfW-Ergänzungskredit 358/359 bis 120.000 € kombinierbar." }
+            },
+            {
+              "@type": "Question",
+              "name": "Wann lohnt sich eine Dachsanierung statt einer Reparatur?",
+              "acceptedAnswer": { "@type": "Answer", "text": "Eine Sanierung ist sinnvoll wenn: die Eindeckung über 25–30 Jahre alt ist, wiederkehrende Schäden auftreten, mehrere Bauteile betroffen sind, energetische Mängel bestehen oder die Dämmung fehlt bzw. unzureichend ist. Bei lokalen Einzelschäden an einem sonst intakten Dach ist eine Reparatur wirtschaftlicher." }
+            },
+            {
+              "@type": "Question",
+              "name": "Muss die Neueindeckung bei einer geförderten Dachsanierung mitbezahlt werden?",
+              "acceptedAnswer": { "@type": "Answer", "text": "Nein – die Neueindeckung ist als Umfeldmaßnahme vollständig förderfähig, wenn sie im Zusammenhang mit einer energetischen Dämmmaßnahme steht. Bei Aufsparrendämmung ist die Neueindeckung zwingend notwendig und wird automatisch mitgefördert." }
+            },
+            {
+              "@type": "Question",
+              "name": "Welchen U-Wert muss die Dachdämmung für die Förderung erreichen?",
+              "acceptedAnswer": { "@type": "Answer", "text": "Die BEG EM verlangt einen U-Wert von maximal 0,14 W/(m²·K) für Steildächer und Flachdächer. Das liegt deutlich unter der GEG-Anforderung (0,24 bzw. 0,20 W/(m²·K)). Für Gauben gilt U ≤ 0,20 W/(m²·K). Wer nur auf GEG-Niveau dämmt, verliert den gesamten Förderanspruch." }
+            },
+            {
+              "@type": "Question",
+              "name": "Kann Rex Bedachungs GmbH auch nur eine Dachseite sanieren?",
+              "acceptedAnswer": { "@type": "Answer", "text": "Ja. Auch Teilsanierungen – zum Beispiel nur die Wetterseite – sind technisch und fördertechnisch möglich, solange die BEG-Mindestanforderungen am sanierten Bauteil eingehalten werden. Rex Bedachungs GmbH berät vor Ort, ob eine Teil- oder Komplettsanierung wirtschaftlicher ist." }
+            },
+            {
+              "@type": "Question",
+              "name": "Gilt die Solarpflicht NRW bei einer Dachsanierung?",
+              "acceptedAnswer": { "@type": "Answer", "text": "Ja. Seit 01.01.2026 gilt in NRW bei grundlegender Dacherneuerung ab 50 m² Dachfläche die Solardachpflicht: Mindestens 30% der geeigneten Dachfläche müssen mit Photovoltaik belegt werden. Rex Bedachungs GmbH berücksichtigt diese Pflicht in der Projektplanung." }
+            }
+          ]
+        })}</script>
+```
+
+**REPLACE:**
+```tsx
+        <script type="application/ld+json">{JSON.stringify({
+          "@context": "https://schema.org",
+          "@graph": [
+            {
+              "@type": "WebPage",
+              "@id": "https://www.rex-bedachung.de/dachsanierung-bochum#webpage",
+              "url": "https://www.rex-bedachung.de/dachsanierung-bochum",
+              "name": "Dachsanierung Bochum – Komplettsanierung vom Meisterbetrieb",
+              "description": "Komplettsanierung Steildach & Flachdach in Bochum. Seit 1984. Bis zu 20% BAFA-Förderung. Kostenlose Beratung.",
+              "isPartOf": { "@id": "https://www.rex-bedachung.de/#website" },
+              "about": { "@id": "https://www.rex-bedachung.de/#organization" },
+              "breadcrumb": { "@id": "https://www.rex-bedachung.de/dachsanierung-bochum#breadcrumb" },
+              "primaryImageOfPage": "https://www.rex-bedachung.de/images/dach-hintergrund-rex-bedachung.webp",
+              "inLanguage": "de-DE"
+            },
+            {
+              "@type": "BreadcrumbList",
+              "@id": "https://www.rex-bedachung.de/dachsanierung-bochum#breadcrumb",
+              "itemListElement": [
+                { "@type": "ListItem", "position": 1, "name": "Startseite", "item": "https://www.rex-bedachung.de/" },
+                { "@type": "ListItem", "position": 2, "name": "Dachsanierung Bochum", "item": "https://www.rex-bedachung.de/dachsanierung-bochum" }
+              ]
+            },
+            {
+              "@type": "Service",
+              "@id": "https://www.rex-bedachung.de/dachsanierung-bochum#service",
+              "serviceType": "Dachsanierung",
+              "provider": { "@id": "https://www.rex-bedachung.de/#organization" },
+              "areaServed": { "@type": "City", "name": "Bochum" },
+              "description": "Energetische Dachsanierung in Bochum: Steildach, Flachdach, Dämmung, Dachfenster – Komplettsanierung vom Meisterbetrieb Rex Bedachungs GmbH. Bis zu 20% BAFA-Förderung."
+            },
+            {
+              "@type": "Article",
+              "@id": "https://www.rex-bedachung.de/dachsanierung-bochum#article",
+              "headline": "Dachsanierung Bochum – Komplettsanierung vom Meisterbetrieb",
+              "description": "Komplettsanierung Steildach & Flachdach in Bochum. Seit 1984. Bis zu 20% BAFA-Förderung. Kostenlose Beratung.",
+              "image": "https://www.rex-bedachung.de/images/dach-hintergrund-rex-bedachung.webp",
+              "author": { "@id": "https://www.rex-bedachung.de/#author" },
+              "publisher": { "@id": "https://www.rex-bedachung.de/#organization" },
+              "datePublished": "2026-04-11",
+              "dateModified": "2026-05-29",
+              "mainEntityOfPage": { "@id": "https://www.rex-bedachung.de/dachsanierung-bochum#webpage" },
+              "inLanguage": "de-DE"
+            },
+            {
+              "@type": "HowTo",
+              "@id": "https://www.rex-bedachung.de/dachsanierung-bochum#howto",
+              "name": "Ablauf einer Dachsanierung in Bochum",
+              "description": "So läuft eine energetische Dachsanierung bei Rex Bedachungs GmbH in Bochum ab – von der Erstberatung bis zur Abnahme.",
+              "totalTime": "P21D",
+              "step": [
+                { "@type": "HowToStep", "position": 1, "name": "Erstberatung und Dachinspektion", "text": "Rex Bedachungs GmbH kommt kostenlos zu Ihnen nach Bochum. Bestandsaufnahme: Dachzustand, Dämmung, Eindeckung, Entwässerung, Dachfenster. Fotodokumentation aller Mängel." },
+                { "@type": "HowToStep", "position": 2, "name": "Energieberater einbinden", "text": "Für BAFA-Förderung ist ein Energieeffizienz-Experte (EEE) Pflicht. Wir koordinieren die Zusammenarbeit und die Erstellung des iSFP." },
+                { "@type": "HowToStep", "position": 3, "name": "Angebot und Förderantrag", "text": "Rex erstellt ein BEG-konformes Angebot mit getrennter Aufstellung förderfähiger und nicht förderfähiger Leistungen. Der EEE erstellt die Technische Projektbeschreibung. Wichtig: Erst Antrag, dann Auftrag." },
+                { "@type": "HowToStep", "position": 4, "name": "BAFA-Bewilligung abwarten", "text": "Nach Antragstellung vergehen 6–8 Wochen bis zum Zuwendungsbescheid. In dieser Zeit keine Aufträge erteilen oder Anzahlungen leisten." },
+                { "@type": "HowToStep", "position": 5, "name": "Ausführung der Sanierung", "text": "Gerüststellung, Rückbau alte Eindeckung, Dämmung, Neueindeckung, Dachfenster, Klempnerarbeiten, Entwässerung. Dauer bei einem EFH: 2–4 Wochen." },
+                { "@type": "HowToStep", "position": 6, "name": "Abnahme und Fördergeld", "text": "Gemeinsame Abnahme. Der EEE erstellt den Technischen Projektnachweis. Nach Einreichung des Verwendungsnachweises überweist das BAFA den Zuschuss – in der Regel 4–8 Wochen." }
+              ]
+            },
+            {
+              "@type": "FAQPage",
+              "@id": "https://www.rex-bedachung.de/dachsanierung-bochum#faq",
+              "mainEntity": [
+                {
+                  "@type": "Question",
+                  "name": "Was kostet eine Dachsanierung in Bochum?",
+                  "acceptedAnswer": { "@type": "Answer", "text": "Der Preis hängt von Dachtyp, Dachfläche, Dämmstandard, Eindeckungsmaterial, Dachfenstern, Gerüst, Entsorgung und Logistik ab. Eine seriöse Einschätzung ist erst nach Vor-Ort-Aufmaß möglich. Rex Bedachungs GmbH erstellt ein transparentes Angebot mit vollständiger Leistungsaufstellung. Über BAFA (BEG EM) sind 15–20 % Zuschuss auf die förderfähigen Kosten möglich, mit iSFP-Bonus bis zu 12.000 € pro Wohneinheit." }
+                },
+                {
+                  "@type": "Question",
+                  "name": "Wie lange dauert eine Dachsanierung?",
+                  "acceptedAnswer": { "@type": "Answer", "text": "Die reine Bauzeit bei einem Einfamilienhaus in Bochum beträgt 2–4 Wochen. Dazu kommen 6–8 Wochen für den BAFA-Bewilligungsprozess. Von der Erstberatung bis zur Auszahlung des Zuschusses vergehen insgesamt 4–8 Monate." }
+                },
+                {
+                  "@type": "Question",
+                  "name": "Wird eine Dachsanierung staatlich gefördert?",
+                  "acceptedAnswer": { "@type": "Answer", "text": "Ja. Über BAFA (BEG EM) erhalten Sie 15% Zuschuss auf alle förderfähigen Kosten – mit individuellem Sanierungsfahrplan (iSFP) steigt der Satz auf 20% bei einem Förderhöchstbetrag von 60.000 € pro Wohneinheit. Zusätzlich ist der KfW-Ergänzungskredit 358/359 bis 120.000 € kombinierbar." }
+                },
+                {
+                  "@type": "Question",
+                  "name": "Wann lohnt sich eine Dachsanierung statt einer Reparatur?",
+                  "acceptedAnswer": { "@type": "Answer", "text": "Eine Sanierung ist sinnvoll wenn: die Eindeckung über 25–30 Jahre alt ist, wiederkehrende Schäden auftreten, mehrere Bauteile betroffen sind, energetische Mängel bestehen oder die Dämmung fehlt bzw. unzureichend ist. Bei lokalen Einzelschäden an einem sonst intakten Dach ist eine Reparatur wirtschaftlicher." }
+                },
+                {
+                  "@type": "Question",
+                  "name": "Muss die Neueindeckung bei einer geförderten Dachsanierung mitbezahlt werden?",
+                  "acceptedAnswer": { "@type": "Answer", "text": "Nein – die Neueindeckung ist als Umfeldmaßnahme vollständig förderfähig, wenn sie im Zusammenhang mit einer energetischen Dämmmaßnahme steht. Bei Aufsparrendämmung ist die Neueindeckung zwingend notwendig und wird automatisch mitgefördert." }
+                },
+                {
+                  "@type": "Question",
+                  "name": "Welchen U-Wert muss die Dachdämmung für die Förderung erreichen?",
+                  "acceptedAnswer": { "@type": "Answer", "text": "Die BEG EM verlangt einen U-Wert von maximal 0,14 W/(m²·K) für Steildächer und Flachdächer. Das liegt deutlich unter der GEG-Anforderung (0,24 bzw. 0,20 W/(m²·K)). Für Gauben gilt U ≤ 0,20 W/(m²·K). Wer nur auf GEG-Niveau dämmt, verliert den gesamten Förderanspruch." }
+                },
+                {
+                  "@type": "Question",
+                  "name": "Kann Rex Bedachungs GmbH auch nur eine Dachseite sanieren?",
+                  "acceptedAnswer": { "@type": "Answer", "text": "Ja. Auch Teilsanierungen – zum Beispiel nur die Wetterseite – sind technisch und fördertechnisch möglich, solange die BEG-Mindestanforderungen am sanierten Bauteil eingehalten werden. Rex Bedachungs GmbH berät vor Ort, ob eine Teil- oder Komplettsanierung wirtschaftlicher ist." }
+                },
+                {
+                  "@type": "Question",
+                  "name": "Gilt die Solarpflicht NRW bei einer Dachsanierung?",
+                  "acceptedAnswer": { "@type": "Answer", "text": "Ja. Seit 01.01.2026 gilt in NRW bei grundlegender Dacherneuerung ab 50 m² Dachfläche die Solardachpflicht: Mindestens 30% der geeigneten Dachfläche müssen mit Photovoltaik belegt werden. Rex Bedachungs GmbH berücksichtigt diese Pflicht in der Projektplanung." }
+                }
+              ]
+            }
+          ]
+        })}</script>
+```
+
+**Was sich ändert (Zusammenfassung):**
+- 5 separate `<script>`-Blöcke → 1 konsolidierter Block mit `@graph`-Array
+- `Service.provider`: voller `RoofingContractor` (Adresse + Telefon + URL) → `@id`-Ref auf `#organization`
+- `Article.mainEntityOfPage`: URL-String → `@id`-Ref auf `#webpage`
+- `Article.description` + `Article.image` neu ergänzt (aus Helmet/og-image — kein neues Wording)
+- `Article.dateModified`: `2026-04-11` → `2026-05-29` (Deploy-Datum)
+- Alle Entities mit eindeutigen `@id`s versehen
+- Neue `WebPage`-Entity als Knotenanker
+
+---
+
+## Post-Check
+
+```bash
+# 1. @graph-Strukturen vorhanden?
+echo "--- @graph-Strukturen ---"
+grep -c '"@graph"' client/src/components/OrganizationSchema.tsx     # erwartet: 1
+grep -c '"@graph"' client/src/pages/Home.tsx                         # erwartet: 1
+grep -c '"@graph"' client/src/pages/DachsanierungBochum.tsx          # erwartet: 1
+
+# 2. WebSite-Entity nur in OrganizationSchema?
+echo "--- WebSite-Entity ---"
+grep -c '"@type": "WebSite"' client/src/components/OrganizationSchema.tsx  # erwartet: 1
+grep -c '"@id": "https://www.rex-bedachung.de/#website"' client/src/components/OrganizationSchema.tsx  # erwartet: 1
+
+# 3. WebPage-Entities mit korrekten @ids?
+echo "--- WebPage-Entities ---"
+grep -c '"@id": "https://www.rex-bedachung.de/#webpage"' client/src/pages/Home.tsx                            # erwartet: 1
+grep -c '"@id": "https://www.rex-bedachung.de/dachsanierung-bochum#webpage"' client/src/pages/DachsanierungBochum.tsx  # erwartet: 1
+
+# 4. Provider-Bloat weg (kein voller RoofingContractor im Service mehr)?
+echo "--- Provider-Bloat-Check ---"
+grep -c '"provider": { "@id"' client/src/pages/DachsanierungBochum.tsx     # erwartet: 1 (jetzt als Ref)
+grep -c '"@type": "RoofingContractor"' client/src/pages/DachsanierungBochum.tsx  # erwartet: 0 (keine inline RoofingContractor mehr)
+
+# 5. dateModified aktualisiert?
+echo "--- dateModified ---"
+grep -c '"dateModified": "2026-05-29"' client/src/pages/DachsanierungBochum.tsx  # erwartet: 1
+grep -c '"dateModified": "2026-04-11"' client/src/pages/DachsanierungBochum.tsx  # erwartet: 0
+
+# 6. Anzahl <script type="application/ld+json"> in DachsanierungBochum?
+echo "--- Script-Block-Anzahl DachsanierungBochum ---"
+grep -c 'application/ld+json' client/src/pages/DachsanierungBochum.tsx  # erwartet: 1 (vorher: 5)
+
+# 7. JSON-LD ist valides JSON nach Build?
+echo "--- Build ---"
+npm run build
+# Muss fehlerfrei durchlaufen
+```
+
+**Erwartetes Ergebnis:** Alle grep-Werte wie kommentiert, Build clean.
+
+---
+
+## Validator-Checks nach Live-Deploy
+
+Nach erfolgreichem Push und Netlify-Deploy bitte beide Validatoren laufen lassen:
+
+**1. Schema.org Validator** (struktureller Check):
+- https://validator.schema.org/
+- URLs: `https://www.rex-bedachung.de/` und `https://www.rex-bedachung.de/dachsanierung-bochum`
+- Erwartet: 0 Errors, 0 Warnings. Falls Warnings auftauchen, prüfen — meistens Hinweise zu optionalen Feldern, kein Blocker.
+
+**2. Google Rich Results Test** (Eligibility-Check):
+- https://search.google.com/test/rich-results
+- Gleiche URLs prüfen
+- Erwartet: FAQPage + HowTo + BreadcrumbList als rich-result-eligible erkannt. WebPage/WebSite/Organization sind keine Rich Results, werden aber als gültiges Schema angezeigt.
+
+---
+
+## Pre-Push-Protokoll
+
+```bash
+# 1. Status & Ghost-Commits abfangen
+git status
+git log --oneline origin/main..HEAD
+# Falls Replit-Helium-Checkpoints auftauchen:
+#   git reset --soft origin/main
+#   git restore --staged attached_assets/Pasted-*.txt   # falls Pasted-Files reingerutscht
+
+# 2. Gezielt stagen — 3 Files
+git add client/src/components/OrganizationSchema.tsx \
+        client/src/pages/Home.tsx \
+        client/src/pages/DachsanierungBochum.tsx
+
+git status
+# Erwartet: genau diese 3 Files unter "Changes to be committed"
+
+# 3. Pre-Push-Check
+git log --oneline origin/main..HEAD
+# Muss leer sein
+
+# 4. Commit
+git commit -m "D30: Schema-@graph Konsolidierung Home + Dachsanierung-Hub + WebSite-Entity"
+
+# 5. Diff-Verifikation (verbindlich)
+git show --stat HEAD
+# Erwartet: exakt 3 Files:
+#   client/src/components/OrganizationSchema.tsx
+#   client/src/pages/Home.tsx
+#   client/src/pages/DachsanierungBochum.tsx
+
+# 6. Push
+git push
+```
+
+---
+
+## Live-Verifikation (nach Netlify-Deploy)
+
+```bash
+# Schema-Existenz live über curl auf Route-Chunks
+# (SPA-Pattern: index.html-Shell allein zeigt das Schema nicht, aber Helmet rendert es in den Prerender)
+
+# Variante A — Bot-UA für Prerender:
+UA="Mozilla/5.0 (compatible; Googlebot/2.1; +http://www.google.com/bot.html)"
+for url in "" "dachsanierung-bochum"; do
+  echo "=== https://www.rex-bedachung.de/${url} ==="
+  HTML=$(curl -sSL -A "$UA" "https://www.rex-bedachung.de/${url}")
+  echo -n "  @graph vorhanden: "
+  echo "$HTML" | grep -c '"@graph"'
+done
+
+# Variante B — Browser DevTools:
+#   Devtools öffnen, Console: document.querySelectorAll('script[type="application/ld+json"]').length
+#   Erwartet: 2 Scripts pro Seite (1× OrganizationSchema mit @graph + 1× Page-Specific @graph)
+```
+
+**Validator-Run:** wie oben in „Validator-Checks nach Live-Deploy" beschrieben.
+
+---
+
+## Risiken & Hinweise
+
+- **Stufe B, mittleres Risiko** — Schema-Eingriffe waren historisch ein Pain Point (März-2026-Vorfall). Hier nur 3 Files, keine inhaltlichen Änderungen, klare `@id`-Refs.
+- **Vor dem Push:** `dateModified` ggf. anpassen, wenn Deploy nicht am 29.05.2026 stattfindet.
+- **OrganizationSchema betrifft ALLE Seiten:** Jede Seite, die `<OrganizationSchema />` importiert, rendert nach D30 ein `@graph` mit 2 Entities statt einer. Das ist sauberer und Schema.org-konform, sollte aber bei der Validator-Prüfung berücksichtigt werden (auf jeder Seite, nicht nur Home/Hub).
+- **Article.dateModified-Update:** Google interpretiert `dateModified` als Signal für Inhalts-Frische. Konsolidierung des Schemas zählt als legitime Modifikation. Nicht öfter als nötig setzen (sonst Spam-Verdacht).
+- **Nach erfolgreichem Deploy:** 48 h Pause bis frühestens D31.
+- **D31-Kandidaten:** Schema-@graph auf Pillars (Flach/Steild/Dachfenster), llms.txt Feinschliff, restliche Hero-Bilder responsive.
