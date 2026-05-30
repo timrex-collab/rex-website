@@ -235,107 +235,108 @@ export default function DachsanierungBochum() {
 
         <script type="application/ld+json">{JSON.stringify({
           "@context": "https://schema.org",
-          "@type": "BreadcrumbList",
-          "itemListElement": [
-            { "@type": "ListItem", "position": 1, "name": "Startseite", "item": "https://www.rex-bedachung.de/" },
-            { "@type": "ListItem", "position": 2, "name": "Dachsanierung Bochum", "item": "https://www.rex-bedachung.de/dachsanierung-bochum" }
-          ]
-        })}</script>
-
-        <script type="application/ld+json">{JSON.stringify({
-          "@context": "https://schema.org",
-          "@type": "Service",
-          "serviceType": "Dachsanierung",
-          "provider": {
-            "@type": "RoofingContractor",
-            "name": "Rex Bedachungs GmbH",
-            "address": {
-              "@type": "PostalAddress",
-              "streetAddress": "Paulinenstraße 22",
-              "addressLocality": "Bochum",
-              "postalCode": "44799",
-              "addressCountry": "DE"
-            },
-            "telephone": "+49234583100",
-            "url": "https://www.rex-bedachung.de"
-          },
-          "areaServed": {
-            "@type": "City",
-            "name": "Bochum"
-          },
-          "description": "Energetische Dachsanierung in Bochum: Steildach, Flachdach, Dämmung, Dachfenster – Komplettsanierung vom Meisterbetrieb Rex Bedachungs GmbH. Bis zu 20% BAFA-Förderung."
-        })}</script>
-
-        <script type="application/ld+json">{JSON.stringify({
-          "@context": "https://schema.org",
-          "@type": "Article",
-          "headline": "Dachsanierung Bochum – Komplettsanierung vom Meisterbetrieb",
-          "author": { "@id": "https://www.rex-bedachung.de/#author" },
-          "publisher": { "@id": "https://www.rex-bedachung.de/#organization" },
-          "datePublished": "2026-04-11",
-          "dateModified": "2026-04-11",
-          "mainEntityOfPage": "https://www.rex-bedachung.de/dachsanierung-bochum"
-        })}</script>
-
-        <script type="application/ld+json">{JSON.stringify({
-          "@context": "https://schema.org",
-          "@type": "HowTo",
-          "name": "Ablauf einer Dachsanierung in Bochum",
-          "description": "So läuft eine energetische Dachsanierung bei Rex Bedachungs GmbH in Bochum ab – von der Erstberatung bis zur Abnahme.",
-          "totalTime": "P21D",
-          "step": [
-            { "@type": "HowToStep", "position": 1, "name": "Erstberatung und Dachinspektion", "text": "Rex Bedachungs GmbH kommt kostenlos zu Ihnen nach Bochum. Bestandsaufnahme: Dachzustand, Dämmung, Eindeckung, Entwässerung, Dachfenster. Fotodokumentation aller Mängel." },
-            { "@type": "HowToStep", "position": 2, "name": "Energieberater einbinden", "text": "Für BAFA-Förderung ist ein Energieeffizienz-Experte (EEE) Pflicht. Wir koordinieren die Zusammenarbeit und die Erstellung des iSFP." },
-            { "@type": "HowToStep", "position": 3, "name": "Angebot und Förderantrag", "text": "Rex erstellt ein BEG-konformes Angebot mit getrennter Aufstellung förderfähiger und nicht förderfähiger Leistungen. Der EEE erstellt die Technische Projektbeschreibung. Wichtig: Erst Antrag, dann Auftrag." },
-            { "@type": "HowToStep", "position": 4, "name": "BAFA-Bewilligung abwarten", "text": "Nach Antragstellung vergehen 6–8 Wochen bis zum Zuwendungsbescheid. In dieser Zeit keine Aufträge erteilen oder Anzahlungen leisten." },
-            { "@type": "HowToStep", "position": 5, "name": "Ausführung der Sanierung", "text": "Gerüststellung, Rückbau alte Eindeckung, Dämmung, Neueindeckung, Dachfenster, Klempnerarbeiten, Entwässerung. Dauer bei einem EFH: 2–4 Wochen." },
-            { "@type": "HowToStep", "position": 6, "name": "Abnahme und Fördergeld", "text": "Gemeinsame Abnahme. Der EEE erstellt den Technischen Projektnachweis. Nach Einreichung des Verwendungsnachweises überweist das BAFA den Zuschuss – in der Regel 4–8 Wochen." }
-          ]
-        })}</script>
-
-        <script type="application/ld+json">{JSON.stringify({
-          "@context": "https://schema.org",
-          "@type": "FAQPage",
-          "mainEntity": [
+          "@graph": [
             {
-              "@type": "Question",
-              "name": "Was kostet eine Dachsanierung in Bochum?",
-              "acceptedAnswer": { "@type": "Answer", "text": "Der Preis hängt von Dachtyp, Dachfläche, Dämmstandard, Eindeckungsmaterial, Dachfenstern, Gerüst, Entsorgung und Logistik ab. Eine seriöse Einschätzung ist erst nach Vor-Ort-Aufmaß möglich. Rex Bedachungs GmbH erstellt ein transparentes Angebot mit vollständiger Leistungsaufstellung. Über BAFA (BEG EM) sind 15–20 % Zuschuss auf die förderfähigen Kosten möglich, mit iSFP-Bonus bis zu 12.000 € pro Wohneinheit." }
+              "@type": "WebPage",
+              "@id": "https://www.rex-bedachung.de/dachsanierung-bochum#webpage",
+              "url": "https://www.rex-bedachung.de/dachsanierung-bochum",
+              "name": "Dachsanierung Bochum – Komplettsanierung vom Meisterbetrieb",
+              "description": "Komplettsanierung Steildach & Flachdach in Bochum. Seit 1984. Bis zu 20% BAFA-Förderung. Kostenlose Beratung.",
+              "isPartOf": { "@id": "https://www.rex-bedachung.de/#website" },
+              "about": { "@id": "https://www.rex-bedachung.de/#organization" },
+              "breadcrumb": { "@id": "https://www.rex-bedachung.de/dachsanierung-bochum#breadcrumb" },
+              "primaryImageOfPage": "https://www.rex-bedachung.de/images/dach-hintergrund-rex-bedachung.webp",
+              "inLanguage": "de-DE"
             },
             {
-              "@type": "Question",
-              "name": "Wie lange dauert eine Dachsanierung?",
-              "acceptedAnswer": { "@type": "Answer", "text": "Die reine Bauzeit bei einem Einfamilienhaus in Bochum beträgt 2–4 Wochen. Dazu kommen 6–8 Wochen für den BAFA-Bewilligungsprozess. Von der Erstberatung bis zur Auszahlung des Zuschusses vergehen insgesamt 4–8 Monate." }
+              "@type": "BreadcrumbList",
+              "@id": "https://www.rex-bedachung.de/dachsanierung-bochum#breadcrumb",
+              "itemListElement": [
+                { "@type": "ListItem", "position": 1, "name": "Startseite", "item": "https://www.rex-bedachung.de/" },
+                { "@type": "ListItem", "position": 2, "name": "Dachsanierung Bochum", "item": "https://www.rex-bedachung.de/dachsanierung-bochum" }
+              ]
             },
             {
-              "@type": "Question",
-              "name": "Wird eine Dachsanierung staatlich gefördert?",
-              "acceptedAnswer": { "@type": "Answer", "text": "Ja. Über BAFA (BEG EM) erhalten Sie 15% Zuschuss auf alle förderfähigen Kosten – mit individuellem Sanierungsfahrplan (iSFP) steigt der Satz auf 20% bei einem Förderhöchstbetrag von 60.000 € pro Wohneinheit. Zusätzlich ist der KfW-Ergänzungskredit 358/359 bis 120.000 € kombinierbar." }
+              "@type": "Service",
+              "@id": "https://www.rex-bedachung.de/dachsanierung-bochum#service",
+              "serviceType": "Dachsanierung",
+              "provider": { "@id": "https://www.rex-bedachung.de/#organization" },
+              "areaServed": { "@type": "City", "name": "Bochum" },
+              "description": "Energetische Dachsanierung in Bochum: Steildach, Flachdach, Dämmung, Dachfenster – Komplettsanierung vom Meisterbetrieb Rex Bedachungs GmbH. Bis zu 20% BAFA-Förderung."
             },
             {
-              "@type": "Question",
-              "name": "Wann lohnt sich eine Dachsanierung statt einer Reparatur?",
-              "acceptedAnswer": { "@type": "Answer", "text": "Eine Sanierung ist sinnvoll wenn: die Eindeckung über 25–30 Jahre alt ist, wiederkehrende Schäden auftreten, mehrere Bauteile betroffen sind, energetische Mängel bestehen oder die Dämmung fehlt bzw. unzureichend ist. Bei lokalen Einzelschäden an einem sonst intakten Dach ist eine Reparatur wirtschaftlicher." }
+              "@type": "Article",
+              "@id": "https://www.rex-bedachung.de/dachsanierung-bochum#article",
+              "headline": "Dachsanierung Bochum – Komplettsanierung vom Meisterbetrieb",
+              "description": "Komplettsanierung Steildach & Flachdach in Bochum. Seit 1984. Bis zu 20% BAFA-Förderung. Kostenlose Beratung.",
+              "image": "https://www.rex-bedachung.de/images/dach-hintergrund-rex-bedachung.webp",
+              "author": { "@id": "https://www.rex-bedachung.de/#author" },
+              "publisher": { "@id": "https://www.rex-bedachung.de/#organization" },
+              "datePublished": "2026-04-11",
+              "dateModified": "2026-05-29",
+              "mainEntityOfPage": { "@id": "https://www.rex-bedachung.de/dachsanierung-bochum#webpage" },
+              "inLanguage": "de-DE"
             },
             {
-              "@type": "Question",
-              "name": "Muss die Neueindeckung bei einer geförderten Dachsanierung mitbezahlt werden?",
-              "acceptedAnswer": { "@type": "Answer", "text": "Nein – die Neueindeckung ist als Umfeldmaßnahme vollständig förderfähig, wenn sie im Zusammenhang mit einer energetischen Dämmmaßnahme steht. Bei Aufsparrendämmung ist die Neueindeckung zwingend notwendig und wird automatisch mitgefördert." }
+              "@type": "HowTo",
+              "@id": "https://www.rex-bedachung.de/dachsanierung-bochum#howto",
+              "name": "Ablauf einer Dachsanierung in Bochum",
+              "description": "So läuft eine energetische Dachsanierung bei Rex Bedachungs GmbH in Bochum ab – von der Erstberatung bis zur Abnahme.",
+              "totalTime": "P21D",
+              "step": [
+                { "@type": "HowToStep", "position": 1, "name": "Erstberatung und Dachinspektion", "text": "Rex Bedachungs GmbH kommt kostenlos zu Ihnen nach Bochum. Bestandsaufnahme: Dachzustand, Dämmung, Eindeckung, Entwässerung, Dachfenster. Fotodokumentation aller Mängel." },
+                { "@type": "HowToStep", "position": 2, "name": "Energieberater einbinden", "text": "Für BAFA-Förderung ist ein Energieeffizienz-Experte (EEE) Pflicht. Wir koordinieren die Zusammenarbeit und die Erstellung des iSFP." },
+                { "@type": "HowToStep", "position": 3, "name": "Angebot und Förderantrag", "text": "Rex erstellt ein BEG-konformes Angebot mit getrennter Aufstellung förderfähiger und nicht förderfähiger Leistungen. Der EEE erstellt die Technische Projektbeschreibung. Wichtig: Erst Antrag, dann Auftrag." },
+                { "@type": "HowToStep", "position": 4, "name": "BAFA-Bewilligung abwarten", "text": "Nach Antragstellung vergehen 6–8 Wochen bis zum Zuwendungsbescheid. In dieser Zeit keine Aufträge erteilen oder Anzahlungen leisten." },
+                { "@type": "HowToStep", "position": 5, "name": "Ausführung der Sanierung", "text": "Gerüststellung, Rückbau alte Eindeckung, Dämmung, Neueindeckung, Dachfenster, Klempnerarbeiten, Entwässerung. Dauer bei einem EFH: 2–4 Wochen." },
+                { "@type": "HowToStep", "position": 6, "name": "Abnahme und Fördergeld", "text": "Gemeinsame Abnahme. Der EEE erstellt den Technischen Projektnachweis. Nach Einreichung des Verwendungsnachweises überweist das BAFA den Zuschuss – in der Regel 4–8 Wochen." }
+              ]
             },
             {
-              "@type": "Question",
-              "name": "Welchen U-Wert muss die Dachdämmung für die Förderung erreichen?",
-              "acceptedAnswer": { "@type": "Answer", "text": "Die BEG EM verlangt einen U-Wert von maximal 0,14 W/(m²·K) für Steildächer und Flachdächer. Das liegt deutlich unter der GEG-Anforderung (0,24 bzw. 0,20 W/(m²·K)). Für Gauben gilt U ≤ 0,20 W/(m²·K). Wer nur auf GEG-Niveau dämmt, verliert den gesamten Förderanspruch." }
-            },
-            {
-              "@type": "Question",
-              "name": "Kann Rex Bedachungs GmbH auch nur eine Dachseite sanieren?",
-              "acceptedAnswer": { "@type": "Answer", "text": "Ja. Auch Teilsanierungen – zum Beispiel nur die Wetterseite – sind technisch und fördertechnisch möglich, solange die BEG-Mindestanforderungen am sanierten Bauteil eingehalten werden. Rex Bedachungs GmbH berät vor Ort, ob eine Teil- oder Komplettsanierung wirtschaftlicher ist." }
-            },
-            {
-              "@type": "Question",
-              "name": "Gilt die Solarpflicht NRW bei einer Dachsanierung?",
-              "acceptedAnswer": { "@type": "Answer", "text": "Ja. Seit 01.01.2026 gilt in NRW bei grundlegender Dacherneuerung ab 50 m² Dachfläche die Solardachpflicht: Mindestens 30% der geeigneten Dachfläche müssen mit Photovoltaik belegt werden. Rex Bedachungs GmbH berücksichtigt diese Pflicht in der Projektplanung." }
+              "@type": "FAQPage",
+              "@id": "https://www.rex-bedachung.de/dachsanierung-bochum#faq",
+              "mainEntity": [
+                {
+                  "@type": "Question",
+                  "name": "Was kostet eine Dachsanierung in Bochum?",
+                  "acceptedAnswer": { "@type": "Answer", "text": "Der Preis hängt von Dachtyp, Dachfläche, Dämmstandard, Eindeckungsmaterial, Dachfenstern, Gerüst, Entsorgung und Logistik ab. Eine seriöse Einschätzung ist erst nach Vor-Ort-Aufmaß möglich. Rex Bedachungs GmbH erstellt ein transparentes Angebot mit vollständiger Leistungsaufstellung. Über BAFA (BEG EM) sind 15–20 % Zuschuss auf die förderfähigen Kosten möglich, mit iSFP-Bonus bis zu 12.000 € pro Wohneinheit." }
+                },
+                {
+                  "@type": "Question",
+                  "name": "Wie lange dauert eine Dachsanierung?",
+                  "acceptedAnswer": { "@type": "Answer", "text": "Die reine Bauzeit bei einem Einfamilienhaus in Bochum beträgt 2–4 Wochen. Dazu kommen 6–8 Wochen für den BAFA-Bewilligungsprozess. Von der Erstberatung bis zur Auszahlung des Zuschusses vergehen insgesamt 4–8 Monate." }
+                },
+                {
+                  "@type": "Question",
+                  "name": "Wird eine Dachsanierung staatlich gefördert?",
+                  "acceptedAnswer": { "@type": "Answer", "text": "Ja. Über BAFA (BEG EM) erhalten Sie 15% Zuschuss auf alle förderfähigen Kosten – mit individuellem Sanierungsfahrplan (iSFP) steigt der Satz auf 20% bei einem Förderhöchstbetrag von 60.000 € pro Wohneinheit. Zusätzlich ist der KfW-Ergänzungskredit 358/359 bis 120.000 € kombinierbar." }
+                },
+                {
+                  "@type": "Question",
+                  "name": "Wann lohnt sich eine Dachsanierung statt einer Reparatur?",
+                  "acceptedAnswer": { "@type": "Answer", "text": "Eine Sanierung ist sinnvoll wenn: die Eindeckung über 25–30 Jahre alt ist, wiederkehrende Schäden auftreten, mehrere Bauteile betroffen sind, energetische Mängel bestehen oder die Dämmung fehlt bzw. unzureichend ist. Bei lokalen Einzelschäden an einem sonst intakten Dach ist eine Reparatur wirtschaftlicher." }
+                },
+                {
+                  "@type": "Question",
+                  "name": "Muss die Neueindeckung bei einer geförderten Dachsanierung mitbezahlt werden?",
+                  "acceptedAnswer": { "@type": "Answer", "text": "Nein – die Neueindeckung ist als Umfeldmaßnahme vollständig förderfähig, wenn sie im Zusammenhang mit einer energetischen Dämmmaßnahme steht. Bei Aufsparrendämmung ist die Neueindeckung zwingend notwendig und wird automatisch mitgefördert." }
+                },
+                {
+                  "@type": "Question",
+                  "name": "Welchen U-Wert muss die Dachdämmung für die Förderung erreichen?",
+                  "acceptedAnswer": { "@type": "Answer", "text": "Die BEG EM verlangt einen U-Wert von maximal 0,14 W/(m²·K) für Steildächer und Flachdächer. Das liegt deutlich unter der GEG-Anforderung (0,24 bzw. 0,20 W/(m²·K)). Für Gauben gilt U ≤ 0,20 W/(m²·K). Wer nur auf GEG-Niveau dämmt, verliert den gesamten Förderanspruch." }
+                },
+                {
+                  "@type": "Question",
+                  "name": "Kann Rex Bedachungs GmbH auch nur eine Dachseite sanieren?",
+                  "acceptedAnswer": { "@type": "Answer", "text": "Ja. Auch Teilsanierungen – zum Beispiel nur die Wetterseite – sind technisch und fördertechnisch möglich, solange die BEG-Mindestanforderungen am sanierten Bauteil eingehalten werden. Rex Bedachungs GmbH berät vor Ort, ob eine Teil- oder Komplettsanierung wirtschaftlicher ist." }
+                },
+                {
+                  "@type": "Question",
+                  "name": "Gilt die Solarpflicht NRW bei einer Dachsanierung?",
+                  "acceptedAnswer": { "@type": "Answer", "text": "Ja. Seit 01.01.2026 gilt in NRW bei grundlegender Dacherneuerung ab 50 m² Dachfläche die Solardachpflicht: Mindestens 30% der geeigneten Dachfläche müssen mit Photovoltaik belegt werden. Rex Bedachungs GmbH berücksichtigt diese Pflicht in der Projektplanung." }
+                }
+              ]
             }
           ]
         })}</script>

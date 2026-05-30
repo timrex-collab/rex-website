@@ -165,9 +165,26 @@ export default function Home() {
   <meta name="twitter:image" content="https://www.rex-bedachung.de/images/dachdecker-bochum-steildach-hero.webp" />
   <script type="application/ld+json">{JSON.stringify({
     "@context": "https://schema.org",
-    "@type": "BreadcrumbList",
-    "itemListElement": [
-      { "@type": "ListItem", "position": 1, "name": "Startseite", "item": "https://www.rex-bedachung.de/" }
+    "@graph": [
+      {
+        "@type": "WebPage",
+        "@id": "https://www.rex-bedachung.de/#webpage",
+        "url": "https://www.rex-bedachung.de/",
+        "name": "Dachdecker Bochum – Rex Bedachungs GmbH",
+        "description": "Meisterbetrieb für Dachdeckerei in Bochum. Steildach, Flachdach, Bauklempnerei & Dachfenster – Rex Bedachungs GmbH. Jetzt Angebot anfragen.",
+        "isPartOf": { "@id": "https://www.rex-bedachung.de/#website" },
+        "about": { "@id": "https://www.rex-bedachung.de/#organization" },
+        "breadcrumb": { "@id": "https://www.rex-bedachung.de/#breadcrumb" },
+        "primaryImageOfPage": "https://www.rex-bedachung.de/images/dachdecker-bochum-steildach-hero.webp",
+        "inLanguage": "de-DE"
+      },
+      {
+        "@type": "BreadcrumbList",
+        "@id": "https://www.rex-bedachung.de/#breadcrumb",
+        "itemListElement": [
+          { "@type": "ListItem", "position": 1, "name": "Startseite", "item": "https://www.rex-bedachung.de/" }
+        ]
+      }
     ]
   })}</script>
 </Helmet>
