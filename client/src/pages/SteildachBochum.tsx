@@ -155,27 +155,73 @@ const faqItems = [
 
 const schemaJson = JSON.stringify({
   "@context": "https://schema.org",
-  "@type": "Service",
-  "name": "Steildach Bochum – Neueindeckung & Sanierung",
-  "provider": {
-    "@type": "RoofingContractor",
-    "@id": "https://www.rex-bedachung.de/#organization",
-    "name": "Rex Bedachungs GmbH",
-    "address": {
-      "@type": "PostalAddress",
-      "streetAddress": "Paulinenstraße 22",
-      "addressLocality": "Bochum",
-      "postalCode": "44799",
-      "addressCountry": "DE",
+  "@graph": [
+    {
+      "@type": "WebPage",
+      "@id": "https://www.rex-bedachung.de/steildach-bochum#webpage",
+      "url": "https://www.rex-bedachung.de/steildach-bochum",
+      "name": "Steildach Bochum – Sanierung & Dämmung",
+      "isPartOf": { "@id": "https://www.rex-bedachung.de/#website" },
+      "about": { "@id": "https://www.rex-bedachung.de/#organization" },
+      "breadcrumb": { "@id": "https://www.rex-bedachung.de/steildach-bochum#breadcrumb" },
+      "mainEntity": { "@id": "https://www.rex-bedachung.de/steildach-bochum#service" },
+      "primaryImageOfPage": "https://www.rex-bedachung.de/images/tondach-hero-dachdeckung-bochum.webp",
+      "inLanguage": "de-DE",
     },
-    "telephone": "+49 234 583100",
-  },
-  "areaServed": ["Bochum", "Herne", "Castrop-Rauxel", "Witten", "Hattingen", "Gelsenkirchen", "Ruhrgebiet"],
-  "description": "Steildach Neueindeckung und Sanierung in Bochum – Satteldach, Walmdach, Pultdach, Dämmung und Klempnerarbeiten. Meisterbetrieb mit 40+ Jahren Erfahrung im Ruhrgebiet.",
-  "offers": {
-    "@type": "Offer",
-    "availability": "https://schema.org/InStock",
-  },
+    {
+      "@type": "BreadcrumbList",
+      "@id": "https://www.rex-bedachung.de/steildach-bochum#breadcrumb",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Startseite", "item": "https://www.rex-bedachung.de/" },
+        { "@type": "ListItem", "position": 2, "name": "Steildach Bochum", "item": "https://www.rex-bedachung.de/steildach-bochum" },
+      ],
+    },
+    {
+      "@type": "Service",
+      "@id": "https://www.rex-bedachung.de/steildach-bochum#service",
+      "name": "Steildachsanierung und Dacheindeckung Bochum",
+      "description": "Steildach Neueindeckung und Sanierung in Bochum – Satteldach, Walmdach, Pultdach, Dämmung und Klempnerarbeiten. Meisterbetrieb mit 40+ Jahren Erfahrung im Ruhrgebiet.",
+      "serviceType": "Steildachsanierung",
+      "provider": { "@id": "https://www.rex-bedachung.de/#organization" },
+      "areaServed": ["Bochum", "Herne", "Castrop-Rauxel", "Witten", "Hattingen", "Gelsenkirchen", "Ruhrgebiet"],
+      "offers": {
+        "@type": "Offer",
+        "availability": "https://schema.org/InStock",
+      },
+    },
+    {
+      "@type": "Article",
+      "@id": "https://www.rex-bedachung.de/steildach-bochum#article",
+      "headline": "Steildach Bochum – Sanierung, Dämmung & Neueindeckung",
+      "url": "https://www.rex-bedachung.de/steildach-bochum",
+      "mainEntityOfPage": { "@id": "https://www.rex-bedachung.de/steildach-bochum#webpage" },
+      "author": { "@id": "https://www.rex-bedachung.de/#author" },
+      "publisher": { "@id": "https://www.rex-bedachung.de/#organization" },
+    },
+    {
+      "@type": "HowTo",
+      "@id": "https://www.rex-bedachung.de/steildach-bochum#howto",
+      "name": "Steildach sanieren lassen – Ablauf bei Rex Bedachungs GmbH",
+      "description": "In 6 Schritten zur neuen Steildacheindeckung in Bochum – vom ersten Kontakt bis zur Gewährleistung.",
+      "step": [
+        { "@type": "HowToStep", "position": 1, "name": "Kostenlose Vor-Ort-Besichtigung", "text": "Wir kommen zu Ihnen und begutachten den aktuellen Zustand des Dachs – kostenlos und unverbindlich." },
+        { "@type": "HowToStep", "position": 2, "name": "Detaillierte Planung und transparentes Angebot", "text": "Sie erhalten ein schriftliches Angebot mit allen Leistungen und Materialien – keine versteckten Kosten." },
+        { "@type": "HowToStep", "position": 3, "name": "Professionelle Ausführung durch Meisterbetrieb", "text": "Unsere erfahrenen Dachdecker führen alle Arbeiten fachgerecht nach DIN-Norm aus." },
+        { "@type": "HowToStep", "position": 4, "name": "Abschlusskontrolle und Übergabe", "text": "Nach Fertigstellung prüfen wir gemeinsam mit Ihnen das Ergebnis und übergeben alle Unterlagen." },
+        { "@type": "HowToStep", "position": 5, "name": "Dokumentation und Gewährleistung", "text": "Sie erhalten vollständige Dokumentation aller verbauten Materialien sowie unsere Gewährleistung." },
+        { "@type": "HowToStep", "position": 6, "name": "Optional: Wartungsvertrag abschließen", "text": "Mit einem Wartungsvertrag sichern Sie die Langlebigkeit Ihres neuen Dachs dauerhaft ab." },
+      ],
+    },
+    {
+      "@type": "FAQPage",
+      "@id": "https://www.rex-bedachung.de/steildach-bochum#faq",
+      "mainEntity": faqItems.map((item) => ({
+        "@type": "Question",
+        "name": item.question,
+        "acceptedAnswer": { "@type": "Answer", "text": item.answer },
+      })),
+    },
+  ],
 });
 
 export default function SteildachBochum() {
@@ -204,127 +250,6 @@ export default function SteildachBochum() {
         <meta name="twitter:image" content="https://www.rex-bedachung.de/images/tondach-hero-dachdeckung-bochum.webp" />
         <link rel="canonical" href="https://www.rex-bedachung.de/steildach-bochum" />
         <script type="application/ld+json">{schemaJson}</script>
-        <script type="application/ld+json">{`{
-  "@context": "https://schema.org",
-  "@type": "BreadcrumbList",
-  "itemListElement": [
-    {"@type":"ListItem","position":1,"name":"Startseite","item":"https://www.rex-bedachung.de/"},
-    {"@type":"ListItem","position":2,"name":"Steildach Bochum","item":"https://www.rex-bedachung.de/steildach-bochum"}
-  ]
-}`}</script>
-        <script type="application/ld+json">{`{
-  "@context": "https://schema.org",
-  "@type": "Service",
-  "name": "Steildachsanierung und Dacheindeckung",
-  "description": "Steildachsanierung, Neueindeckung und energetische Dachsanierung mit Aufsparrendämmung in Bochum.",
-  "provider": {
-    "@type": "RoofingContractor",
-    "@id": "https://www.rex-bedachung.de/#organization"
-  },
-  "areaServed": {
-    "@type": "City",
-    "name": "Bochum"
-  },
-  "serviceType": "Steildachsanierung"
-}`}</script>
-        <script type="application/ld+json">{`{
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  "mainEntity": [
-    {
-      "@type": "Question",
-      "name": "Was kostet eine Steildach-Neueindeckung in Bochum?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Die Kosten hängen von Dachgröße, Dachform und gewähltem Material ab – Preis nach Aufmaß. Wir erstellen kostenlos ein genaues Angebot nach Besichtigung vor Ort."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Wie lange hält ein neu eingedecktes Steildach?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Tonziegel halten 60–100 Jahre, Betondachsteine 30–50 Jahre, Naturschiefer über 100 Jahre – vorausgesetzt Lattung, Unterspannbahn und Dachanschlüsse sind fachgerecht ausgeführt."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Wird die Steildach-Sanierung gefördert?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Ja – bei energetischer Sanierung mit Dämmung gibt es BAFA-Zuschüsse bis 20% und günstige KfW-Kredite. Rex Bedachung berät kostenlos zu allen aktuellen Fördermöglichkeiten."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Wie lange dauert eine Steildach-Neueindeckung?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Ein durchschnittliches Einfamilienhaus (ca. 150 m² Dachfläche) ist in 3–5 Arbeitstagen neu eingedeckt – abhängig von Dachform, Komplexität und Wetterlage."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Sanieren Sie auch den Dachstuhl?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Ja. Vor jeder Neueindeckung prüfen wir den Dachstuhl auf Schäden und Standfestigkeit. Balken, Pfetten und Sparren reparieren oder ersetzen wir wenn nötig – alles aus einer Hand."
-      }
-    }
-  ]
-}`}</script>
-        <script type="application/ld+json">{`{
-  "@context": "https://schema.org",
-  "@type": "HowTo",
-  "name": "Steildach sanieren lassen – Ablauf bei Rex Bedachungs GmbH",
-  "description": "In 6 Schritten zur neuen Steildacheindeckung in Bochum – vom ersten Kontakt bis zur Gewährleistung.",
-  "step": [
-    {
-      "@type": "HowToStep",
-      "position": 1,
-      "name": "Kostenlose Vor-Ort-Besichtigung",
-      "text": "Wir kommen zu Ihnen und begutachten den aktuellen Zustand des Dachs – kostenlos und unverbindlich."
-    },
-    {
-      "@type": "HowToStep",
-      "position": 2,
-      "name": "Detaillierte Planung und transparentes Angebot",
-      "text": "Sie erhalten ein schriftliches Angebot mit allen Leistungen und Materialien – keine versteckten Kosten."
-    },
-    {
-      "@type": "HowToStep",
-      "position": 3,
-      "name": "Professionelle Ausführung durch Meisterbetrieb",
-      "text": "Unsere erfahrenen Dachdecker führen alle Arbeiten fachgerecht nach DIN-Norm aus."
-    },
-    {
-      "@type": "HowToStep",
-      "position": 4,
-      "name": "Abschlusskontrolle und Übergabe",
-      "text": "Nach Fertigstellung prüfen wir gemeinsam mit Ihnen das Ergebnis und übergeben alle Unterlagen."
-    },
-    {
-      "@type": "HowToStep",
-      "position": 5,
-      "name": "Dokumentation und Gewährleistung",
-      "text": "Sie erhalten vollständige Dokumentation aller verbauten Materialien sowie unsere Gewährleistung."
-    },
-    {
-      "@type": "HowToStep",
-      "position": 6,
-      "name": "Optional: Wartungsvertrag abschließen",
-      "text": "Mit einem Wartungsvertrag sichern Sie die Langlebigkeit Ihres neuen Dachs dauerhaft ab."
-    }
-  ]
-}`}</script>
-        <script type="application/ld+json">{`{
-  "@context": "https://schema.org",
-  "@type": "Article",
-  "headline": "Steildach Bochum – Sanierung, Dämmung & Neueindeckung",
-  "author": { "@id": "https://www.rex-bedachung.de/#author" },
-  "publisher": { "@id": "https://www.rex-bedachung.de/#organization" },
-  "url": "https://www.rex-bedachung.de/steildach-bochum"
-}`}</script>
       </Helmet>
       <OrganizationSchema />
       <AuthorSchema />

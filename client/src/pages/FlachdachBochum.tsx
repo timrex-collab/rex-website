@@ -168,37 +168,64 @@ const faqItems = [
 
 const schemaJson = JSON.stringify({
   "@context": "https://schema.org",
-  "@type": "Service",
-  "name": "Flachdach Sanierung Bochum",
-  "provider": {
-    "@type": "RoofingContractor",
-    "@id": "https://www.rex-bedachung.de/#organization",
-    "name": "Rex Bedachungs GmbH",
-    "address": {
-      "@type": "PostalAddress",
-      "addressLocality": "Bochum",
+  "@graph": [
+    {
+      "@type": "WebPage",
+      "@id": "https://www.rex-bedachung.de/flachdach-bochum#webpage",
+      "url": "https://www.rex-bedachung.de/flachdach-bochum",
+      "name": "Flachdach Bochum – Abdichtung, Sanierung & Neubau",
+      "isPartOf": { "@id": "https://www.rex-bedachung.de/#website" },
+      "about": { "@id": "https://www.rex-bedachung.de/#organization" },
+      "breadcrumb": { "@id": "https://www.rex-bedachung.de/flachdach-bochum#breadcrumb" },
+      "mainEntity": { "@id": "https://www.rex-bedachung.de/flachdach-bochum#service" },
+      "primaryImageOfPage": "https://www.rex-bedachung.de/images/flachdach-sanierung-bochum-rex-bedachung.webp",
+      "inLanguage": "de-DE",
     },
-  },
-  "areaServed": "Bochum, Ruhrgebiet",
-  "description": "Flachdach Neueindeckung, Sanierung, Abdichtung, Dämmung und Begrünung – alle Systeme",
-  "offers": {
-    "@type": "Offer",
-    "availability": "https://schema.org/InStock",
-  },
-  "hasOfferCatalog": {
-    "@type": "OfferCatalog",
-    "name": "Flachdach & Gründach Leistungen",
-    "itemListElement": [
-      {
+    {
+      "@type": "BreadcrumbList",
+      "@id": "https://www.rex-bedachung.de/flachdach-bochum#breadcrumb",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Startseite", "item": "https://www.rex-bedachung.de/" },
+        { "@type": "ListItem", "position": 2, "name": "Flachdach Bochum", "item": "https://www.rex-bedachung.de/flachdach-bochum" },
+      ],
+    },
+    {
+      "@type": "Service",
+      "@id": "https://www.rex-bedachung.de/flachdach-bochum#service",
+      "name": "Flachdachsanierung Bochum",
+      "description": "Flachdach Neueindeckung, Sanierung, Abdichtung, Dämmung und Begrünung – alle Systeme",
+      "serviceType": "Flachdachsanierung",
+      "provider": { "@id": "https://www.rex-bedachung.de/#organization" },
+      "areaServed": { "@type": "City", "name": "Bochum" },
+      "offers": {
         "@type": "Offer",
-        "itemOffered": {
-          "@type": "Service",
-          "name": "Gründach & Dachbegrünung Bochum – extensiv und intensiv",
-          "description": "Fachgerechte Dachbegrünung in Bochum – extensiv und intensiv, inklusive Wurzelschutz, Drainage und KfW-Förderberatung",
-        },
+        "availability": "https://schema.org/InStock",
       },
-    ],
-  },
+      "hasOfferCatalog": {
+        "@type": "OfferCatalog",
+        "name": "Flachdach & Gründach Leistungen",
+        "itemListElement": [
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Gründach & Dachbegrünung Bochum – extensiv und intensiv",
+              "description": "Fachgerechte Dachbegrünung in Bochum – extensiv und intensiv, inklusive Wurzelschutz, Drainage und KfW-Förderberatung",
+            },
+          },
+        ],
+      },
+    },
+    {
+      "@type": "FAQPage",
+      "@id": "https://www.rex-bedachung.de/flachdach-bochum#faq",
+      "mainEntity": faqItems.map((item) => ({
+        "@type": "Question",
+        "name": item.question,
+        "acceptedAnswer": { "@type": "Answer", "text": item.answer },
+      })),
+    },
+  ],
 });
 
 export default function FlachdachBochum() {
@@ -227,29 +254,6 @@ export default function FlachdachBochum() {
         <meta name="twitter:image" content="https://www.rex-bedachung.de/images/flachdach-sanierung-bochum-rex-bedachung.webp" />
         <link rel="canonical" href="https://www.rex-bedachung.de/flachdach-bochum" />
         <script type="application/ld+json">{schemaJson}</script>
-        <script type="application/ld+json">{`{
-  "@context": "https://schema.org",
-  "@type": "BreadcrumbList",
-  "itemListElement": [
-    {"@type":"ListItem","position":1,"name":"Startseite","item":"https://www.rex-bedachung.de/"},
-    {"@type":"ListItem","position":2,"name":"Flachdach Bochum","item":"https://www.rex-bedachung.de/flachdach-bochum"}
-  ]
-}`}</script>
-        <script type="application/ld+json">{`{
-  "@context": "https://schema.org",
-  "@type": "Service",
-  "name": "Flachdachsanierung und Flachdachabdichtung",
-  "description": "Professionelle Flachdachsanierung, Abdichtung und Gründachaufbau in Bochum und Umgebung.",
-  "provider": {
-    "@type": "RoofingContractor",
-    "@id": "https://www.rex-bedachung.de/#organization"
-  },
-  "areaServed": {
-    "@type": "City",
-    "name": "Bochum"
-  },
-  "serviceType": "Flachdachsanierung"
-}`}</script>
       </Helmet>
       <OrganizationSchema />
       <AuthorSchema />

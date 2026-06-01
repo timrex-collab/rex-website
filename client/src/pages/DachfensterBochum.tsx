@@ -99,23 +99,62 @@ const faqItems = [
 
 const schemaJson = JSON.stringify({
   "@context": "https://schema.org",
-  "@type": "Service",
-  "name": "Dachfenster Einbau Bochum",
-  "provider": {
-    "@type": "RoofingContractor",
-    "@id": "https://www.rex-bedachung.de/#organization",
-    "name": "Rex Bedachungs GmbH",
-    "address": {
-      "@type": "PostalAddress",
-      "addressLocality": "Bochum",
+  "@graph": [
+    {
+      "@type": "WebPage",
+      "@id": "https://www.rex-bedachung.de/dachfenster-bochum#webpage",
+      "url": "https://www.rex-bedachung.de/dachfenster-bochum",
+      "name": "Dachfenster Bochum – Einbau & Austausch",
+      "isPartOf": { "@id": "https://www.rex-bedachung.de/#website" },
+      "about": { "@id": "https://www.rex-bedachung.de/#organization" },
+      "breadcrumb": { "@id": "https://www.rex-bedachung.de/dachfenster-bochum#breadcrumb" },
+      "mainEntity": { "@id": "https://www.rex-bedachung.de/dachfenster-bochum#service" },
+      "primaryImageOfPage": "https://www.rex-bedachung.de/images/velux-dachfenster-einbau-bochum-fachbetrieb.webp",
+      "inLanguage": "de-DE",
     },
-  },
-  "areaServed": "Bochum, Ruhrgebiet",
-  "description": "VELUX und Roto Dachfenster – Neueinbau, Austausch und Reparatur",
-  "offers": {
-    "@type": "Offer",
-    "availability": "https://schema.org/InStock",
-  },
+    {
+      "@type": "BreadcrumbList",
+      "@id": "https://www.rex-bedachung.de/dachfenster-bochum#breadcrumb",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Startseite", "item": "https://www.rex-bedachung.de/" },
+        { "@type": "ListItem", "position": 2, "name": "Dachfenster Bochum", "item": "https://www.rex-bedachung.de/dachfenster-bochum" },
+      ],
+    },
+    {
+      "@type": "Service",
+      "@id": "https://www.rex-bedachung.de/dachfenster-bochum#service",
+      "name": "Dachfenster Einbau und Austausch Bochum",
+      "description": "VELUX und Roto Dachfenster – Neueinbau, Austausch und Reparatur in Bochum.",
+      "serviceType": "Dachfenstereinbau",
+      "provider": { "@id": "https://www.rex-bedachung.de/#organization" },
+      "areaServed": { "@type": "City", "name": "Bochum" },
+      "offers": {
+        "@type": "Offer",
+        "availability": "https://schema.org/InStock",
+      },
+    },
+    {
+      "@type": "Article",
+      "@id": "https://www.rex-bedachung.de/dachfenster-bochum#article",
+      "headline": "Dachfenster Bochum – Einbau & Austausch vom Meisterbetrieb",
+      "description": "VELUX und Roto Dachfenster in Bochum: Neueinbau, Austausch und Reparatur. Autorisierter VELUX-Partner seit 1984. Bis zu 20 % BAFA-Förderung bei Uw ≤ 1,0.",
+      "url": "https://www.rex-bedachung.de/dachfenster-bochum",
+      "mainEntityOfPage": { "@id": "https://www.rex-bedachung.de/dachfenster-bochum#webpage" },
+      "author": { "@id": "https://www.rex-bedachung.de/#author" },
+      "publisher": { "@id": "https://www.rex-bedachung.de/#organization" },
+      "datePublished": "2025-06-01",
+      "dateModified": "2026-04-28",
+    },
+    {
+      "@type": "FAQPage",
+      "@id": "https://www.rex-bedachung.de/dachfenster-bochum#faq",
+      "mainEntity": faqItems.map((item) => ({
+        "@type": "Question",
+        "name": item.question,
+        "acceptedAnswer": { "@type": "Answer", "text": item.answer },
+      })),
+    },
+  ],
 });
 
 export default function DachfensterBochum() {
@@ -142,109 +181,6 @@ export default function DachfensterBochum() {
         <meta name="twitter:image" content="https://www.rex-bedachung.de/images/velux-dachfenster-einbau-bochum-fachbetrieb.webp" />
         <link rel="canonical" href="https://www.rex-bedachung.de/dachfenster-bochum" />
         <script type="application/ld+json">{schemaJson}</script>
-        <script type="application/ld+json">{`{
-  "@context": "https://schema.org",
-  "@type": "BreadcrumbList",
-  "itemListElement": [
-    {"@type":"ListItem","position":1,"name":"Startseite","item":"https://www.rex-bedachung.de/"},
-    {"@type":"ListItem","position":2,"name":"Dachfenster Bochum","item":"https://www.rex-bedachung.de/dachfenster-bochum"}
-  ]
-}`}</script>
-        <script type="application/ld+json">{`{
-  "@context": "https://schema.org",
-  "@type": "Service",
-  "name": "Dachfenster Einbau und Austausch",
-  "description": "Einbau, Austausch und Wartung von Dachfenstern aller Marken in Bochum – inkl. Velux.",
-  "provider": {
-    "@type": "RoofingContractor",
-    "@id": "https://www.rex-bedachung.de/#organization"
-  },
-  "areaServed": {
-    "@type": "City",
-    "name": "Bochum"
-  },
-  "serviceType": "Dachfenstereinbau"
-}`}</script>
-        <script type="application/ld+json">{`{
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  "mainEntity": [
-    {
-      "@type": "Question",
-      "name": "Was kostet ein Dachfenster Einbau in Bochum?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Die Kosten variieren je nach Modell und Aufwand. Ein einfacher Austausch beginnt ab ca. 1.000 Euro, ein Standard-Austausch (GGL/GGU/GPU) ab ca. 1.500 Euro, Premium-/Integra-Modelle ab ca. 1.800 Euro."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Wie lange dauert der Einbau eines Dachfensters?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Ein Austausch ist in der Regel an einem halben Tag erledigt. Ein Neueinbau dauert je nach Dachkonstruktion 1–2 Tage."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Kann ich Förderung für neue Dachfenster bekommen?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Ja. Über BAFA (BEG Einzelmaßnahme) werden Dachfenster mit Uw ≤ 1,0 W/m²K mit 15 % Grundförderung bezuschusst — mit iSFP steigt der Satz auf 20 %. Nur VELUX ENERGIE und ENERGIE PLUS sind förderfähig, THERMO (Uw 1,3) nicht. Rex Bedachungs GmbH berät kostenlos zur Antragstellung."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Welche Dachfenster-Marken verbauen Sie?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Wir sind autorisierter VELUX-Partner und verbauen zusätzlich Roto Dachfenster in allen Ausführungen."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Brauche ich für ein Dachfenster eine Baugenehmigung?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Der reine Austausch eines bestehenden Dachfensters ist in den meisten Fällen genehmigungsfrei – vorausgesetzt, das Erscheinungsbild des Dachs wird nicht wesentlich verändert. Beim Neueinbau zusätzlicher Fenster hängt die Genehmigungspflicht von der Gemeinde und dem Bebauungsplan ab. Rex Bedachungs GmbH berät Sie kostenlos zum genauen Ablauf in Bochum."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Gibt es Förderung für den Einbau von Dachfenstern?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Ja — Dachfenster mit Uw ≤ 1,0 W/m²K werden über BAFA (BEG Einzelmaßnahme) mit 15 % Grundförderung bezuschusst. Mit iSFP steigt der Satz auf 20 % und der Förderhöchstbetrag auf 60.000 € pro Wohneinheit. Zusätzlich ist der KfW-Ergänzungskredit 358/359 kombinierbar."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Kann ein altes VELUX-Fenster 1:1 ersetzt werden?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "In der Regel ja – VELUX bietet für ältere Modelle passende Austauschfenster an, die ohne großen Eingriff in die Dachkonstruktion eingebaut werden können. Der Austausch ist meist in einem halben bis ganzen Arbeitstag erledigt. Als autorisierter VELUX-Partner findet Rex Bedachungs GmbH die passende Lösung für Ihr Fenster."
-      }
-    }
-  ]
-}`}</script>
-        <script type="application/ld+json">{`{
-  "@context": "https://schema.org",
-  "@type": "Article",
-  "headline": "Dachfenster Bochum – Einbau & Austausch vom Meisterbetrieb",
-  "description": "VELUX und Roto Dachfenster in Bochum: Neueinbau, Austausch und Reparatur. Autorisierter VELUX-Partner seit 1984. Bis zu 20 % BAFA-Förderung bei Uw ≤ 1,0.",
-  "author": {
-    "@type": "Person",
-    "@id": "https://www.rex-bedachung.de/#author",
-    "name": "Tim Rex"
-  },
-  "publisher": {
-    "@type": "Organization",
-    "@id": "https://www.rex-bedachung.de/#organization"
-  },
-  "datePublished": "2025-06-01",
-  "dateModified": "2026-04-28",
-  "mainEntityOfPage": "https://www.rex-bedachung.de/dachfenster-bochum"
-}`}</script>
       </Helmet>
       <OrganizationSchema />
       <AuthorSchema />
