@@ -1,0 +1,700 @@
+# D31 — Schema-@graph-Konsolidierung der drei Pillar-Pages
+
+**Stufe B · 3 Files · Schema-Refactor (kein Content-Ausbau)**
+**Pattern-Fortsetzung von D30 (Home, OrganizationSchema, DachsanierungBochum)**
+
+> **Deployfenster-Bedingung:** Nur ausführen, wenn das D31-Deployfenster gemäß 48h-Regel freigegeben ist. Falls nicht ausdrücklich freigegeben: Edits durchführen, **kein Commit, kein Push** — auf Freigabe warten.
+
+## Ziel
+
+In jeder der drei Dateien
+- `client/src/pages/FlachdachBochum.tsx`
+- `client/src/pages/SteildachBochum.tsx`
+- `client/src/pages/DachfensterBochum.tsx`
+
+werden die getrennten JSON-LD-Blöcke (alter `const schemaJson` mit Service + mehrere inline `<script>`-Tags im Helmet) zu **einer einzigen `@graph`-Struktur** konsolidiert. Pro Datei am Ende:
+
+- genau **eine** `const schemaJson = JSON.stringify({ "@context": "https://schema.org", "@graph": [...] })`-Konstante
+- genau **ein** `<script type="application/ld+json">{schemaJson}</script>` im Helmet
+- alle Provider/Author/Publisher-Verweise ausschließlich als `@id`-Referenz auf `#organization` bzw. `#author`
+- **kein** `pageSchema` (Konstantenname bleibt `schemaJson`)
+- **kein** Service-Duplikat
+- **kein** inline RoofingContractor mit Properties neben `@id`
+
+## Wichtig — was nicht passieren darf
+
+- Kein Renaming der Konstante (`schemaJson` bleibt `schemaJson`).
+- Keine neuen Leistungsversprechen, Preise oder Kostenangaben.
+- Bei FlachdachBochum: **kein** Article und **kein** HowTo ergänzen. Nur FAQPage neu (aus vorhandenen `faqItems` gespiegelt).
+- Bei DachfensterBochum: **kein** HowTo ergänzen.
+- Keine `<script>`-Tags mit JSON-LD im Helmet außer dem einen finalen Block.
+- Keine Änderungen an irgendetwas außerhalb der genannten Such-/Ersetzungsblöcke.
+
+---
+
+## Vor-Push-Check (Pflicht)
+
+Nach allen Edits, vor dem Commit:
+
+```bash
+git status
+git diff --stat
+git log --oneline origin/main..HEAD   # muss leer sein
+```
+
+---
+
+## 1) FlachdachBochum.tsx
+
+### 1A — `const schemaJson` ersetzen
+
+**Suchen:**
+
+```typescript
+const schemaJson = JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "Service",
+  "name": "Flachdach Sanierung Bochum",
+  "provider": {
+    "@type": "RoofingContractor",
+    "@id": "https://www.rex-bedachung.de/#organization",
+    "name": "Rex Bedachungs GmbH",
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Bochum",
+    },
+  },
+  "areaServed": "Bochum, Ruhrgebiet",
+  "description": "Flachdach Neueindeckung, Sanierung, Abdichtung, Dämmung und Begrünung – alle Systeme",
+  "offers": {
+    "@type": "Offer",
+    "availability": "https://schema.org/InStock",
+  },
+  "hasOfferCatalog": {
+    "@type": "OfferCatalog",
+    "name": "Flachdach & Gründach Leistungen",
+    "itemListElement": [
+      {
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "Service",
+          "name": "Gründach & Dachbegrünung Bochum – extensiv und intensiv",
+          "description": "Fachgerechte Dachbegrünung in Bochum – extensiv und intensiv, inklusive Wurzelschutz, Drainage und KfW-Förderberatung",
+        },
+      },
+    ],
+  },
+});
+```
+
+**Ersetzen durch:**
+
+```typescript
+const schemaJson = JSON.stringify({
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebPage",
+      "@id": "https://www.rex-bedachung.de/flachdach-bochum#webpage",
+      "url": "https://www.rex-bedachung.de/flachdach-bochum",
+      "name": "Flachdach Bochum – Abdichtung, Sanierung & Neubau",
+      "isPartOf": { "@id": "https://www.rex-bedachung.de/#website" },
+      "about": { "@id": "https://www.rex-bedachung.de/#organization" },
+      "breadcrumb": { "@id": "https://www.rex-bedachung.de/flachdach-bochum#breadcrumb" },
+      "mainEntity": { "@id": "https://www.rex-bedachung.de/flachdach-bochum#service" },
+      "primaryImageOfPage": "https://www.rex-bedachung.de/images/flachdach-sanierung-bochum-rex-bedachung.webp",
+      "inLanguage": "de-DE",
+    },
+    {
+      "@type": "BreadcrumbList",
+      "@id": "https://www.rex-bedachung.de/flachdach-bochum#breadcrumb",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Startseite", "item": "https://www.rex-bedachung.de/" },
+        { "@type": "ListItem", "position": 2, "name": "Flachdach Bochum", "item": "https://www.rex-bedachung.de/flachdach-bochum" },
+      ],
+    },
+    {
+      "@type": "Service",
+      "@id": "https://www.rex-bedachung.de/flachdach-bochum#service",
+      "name": "Flachdachsanierung Bochum",
+      "description": "Flachdach Neueindeckung, Sanierung, Abdichtung, Dämmung und Begrünung – alle Systeme",
+      "serviceType": "Flachdachsanierung",
+      "provider": { "@id": "https://www.rex-bedachung.de/#organization" },
+      "areaServed": { "@type": "City", "name": "Bochum" },
+      "offers": {
+        "@type": "Offer",
+        "availability": "https://schema.org/InStock",
+      },
+      "hasOfferCatalog": {
+        "@type": "OfferCatalog",
+        "name": "Flachdach & Gründach Leistungen",
+        "itemListElement": [
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Gründach & Dachbegrünung Bochum – extensiv und intensiv",
+              "description": "Fachgerechte Dachbegrünung in Bochum – extensiv und intensiv, inklusive Wurzelschutz, Drainage und KfW-Förderberatung",
+            },
+          },
+        ],
+      },
+    },
+    {
+      "@type": "FAQPage",
+      "@id": "https://www.rex-bedachung.de/flachdach-bochum#faq",
+      "mainEntity": faqItems.map((item) => ({
+        "@type": "Question",
+        "name": item.question,
+        "acceptedAnswer": { "@type": "Answer", "text": item.answer },
+      })),
+    },
+  ],
+});
+```
+
+### 1B — Helmet-Schema-Block reduzieren
+
+**Suchen:**
+
+```jsx
+        <script type="application/ld+json">{schemaJson}</script>
+        <script type="application/ld+json">{`{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {"@type":"ListItem","position":1,"name":"Startseite","item":"https://www.rex-bedachung.de/"},
+    {"@type":"ListItem","position":2,"name":"Flachdach Bochum","item":"https://www.rex-bedachung.de/flachdach-bochum"}
+  ]
+}`}</script>
+        <script type="application/ld+json">{`{
+  "@context": "https://schema.org",
+  "@type": "Service",
+  "name": "Flachdachsanierung und Flachdachabdichtung",
+  "description": "Professionelle Flachdachsanierung, Abdichtung und Gründachaufbau in Bochum und Umgebung.",
+  "provider": {
+    "@type": "RoofingContractor",
+    "@id": "https://www.rex-bedachung.de/#organization"
+  },
+  "areaServed": {
+    "@type": "City",
+    "name": "Bochum"
+  },
+  "serviceType": "Flachdachsanierung"
+}`}</script>
+```
+
+**Ersetzen durch:**
+
+```jsx
+        <script type="application/ld+json">{schemaJson}</script>
+```
+
+---
+
+## 2) SteildachBochum.tsx
+
+### 2A — `const schemaJson` ersetzen
+
+**Suchen:**
+
+```typescript
+const schemaJson = JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "Service",
+  "name": "Steildach Bochum – Neueindeckung & Sanierung",
+  "provider": {
+    "@type": "RoofingContractor",
+    "@id": "https://www.rex-bedachung.de/#organization",
+    "name": "Rex Bedachungs GmbH",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "Paulinenstraße 22",
+      "addressLocality": "Bochum",
+      "postalCode": "44799",
+      "addressCountry": "DE",
+    },
+    "telephone": "+49 234 583100",
+  },
+  "areaServed": ["Bochum", "Herne", "Castrop-Rauxel", "Witten", "Hattingen", "Gelsenkirchen", "Ruhrgebiet"],
+  "description": "Steildach Neueindeckung und Sanierung in Bochum – Satteldach, Walmdach, Pultdach, Dämmung und Klempnerarbeiten. Meisterbetrieb mit 40+ Jahren Erfahrung im Ruhrgebiet.",
+  "offers": {
+    "@type": "Offer",
+    "availability": "https://schema.org/InStock",
+  },
+});
+```
+
+**Ersetzen durch:**
+
+```typescript
+const schemaJson = JSON.stringify({
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebPage",
+      "@id": "https://www.rex-bedachung.de/steildach-bochum#webpage",
+      "url": "https://www.rex-bedachung.de/steildach-bochum",
+      "name": "Steildach Bochum – Sanierung & Dämmung",
+      "isPartOf": { "@id": "https://www.rex-bedachung.de/#website" },
+      "about": { "@id": "https://www.rex-bedachung.de/#organization" },
+      "breadcrumb": { "@id": "https://www.rex-bedachung.de/steildach-bochum#breadcrumb" },
+      "mainEntity": { "@id": "https://www.rex-bedachung.de/steildach-bochum#service" },
+      "primaryImageOfPage": "https://www.rex-bedachung.de/images/tondach-hero-dachdeckung-bochum.webp",
+      "inLanguage": "de-DE",
+    },
+    {
+      "@type": "BreadcrumbList",
+      "@id": "https://www.rex-bedachung.de/steildach-bochum#breadcrumb",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Startseite", "item": "https://www.rex-bedachung.de/" },
+        { "@type": "ListItem", "position": 2, "name": "Steildach Bochum", "item": "https://www.rex-bedachung.de/steildach-bochum" },
+      ],
+    },
+    {
+      "@type": "Service",
+      "@id": "https://www.rex-bedachung.de/steildach-bochum#service",
+      "name": "Steildachsanierung und Dacheindeckung Bochum",
+      "description": "Steildach Neueindeckung und Sanierung in Bochum – Satteldach, Walmdach, Pultdach, Dämmung und Klempnerarbeiten. Meisterbetrieb mit 40+ Jahren Erfahrung im Ruhrgebiet.",
+      "serviceType": "Steildachsanierung",
+      "provider": { "@id": "https://www.rex-bedachung.de/#organization" },
+      "areaServed": ["Bochum", "Herne", "Castrop-Rauxel", "Witten", "Hattingen", "Gelsenkirchen", "Ruhrgebiet"],
+      "offers": {
+        "@type": "Offer",
+        "availability": "https://schema.org/InStock",
+      },
+    },
+    {
+      "@type": "Article",
+      "@id": "https://www.rex-bedachung.de/steildach-bochum#article",
+      "headline": "Steildach Bochum – Sanierung, Dämmung & Neueindeckung",
+      "url": "https://www.rex-bedachung.de/steildach-bochum",
+      "mainEntityOfPage": { "@id": "https://www.rex-bedachung.de/steildach-bochum#webpage" },
+      "author": { "@id": "https://www.rex-bedachung.de/#author" },
+      "publisher": { "@id": "https://www.rex-bedachung.de/#organization" },
+    },
+    {
+      "@type": "HowTo",
+      "@id": "https://www.rex-bedachung.de/steildach-bochum#howto",
+      "name": "Steildach sanieren lassen – Ablauf bei Rex Bedachungs GmbH",
+      "description": "In 6 Schritten zur neuen Steildacheindeckung in Bochum – vom ersten Kontakt bis zur Gewährleistung.",
+      "step": [
+        { "@type": "HowToStep", "position": 1, "name": "Kostenlose Vor-Ort-Besichtigung", "text": "Wir kommen zu Ihnen und begutachten den aktuellen Zustand des Dachs – kostenlos und unverbindlich." },
+        { "@type": "HowToStep", "position": 2, "name": "Detaillierte Planung und transparentes Angebot", "text": "Sie erhalten ein schriftliches Angebot mit allen Leistungen und Materialien – keine versteckten Kosten." },
+        { "@type": "HowToStep", "position": 3, "name": "Professionelle Ausführung durch Meisterbetrieb", "text": "Unsere erfahrenen Dachdecker führen alle Arbeiten fachgerecht nach DIN-Norm aus." },
+        { "@type": "HowToStep", "position": 4, "name": "Abschlusskontrolle und Übergabe", "text": "Nach Fertigstellung prüfen wir gemeinsam mit Ihnen das Ergebnis und übergeben alle Unterlagen." },
+        { "@type": "HowToStep", "position": 5, "name": "Dokumentation und Gewährleistung", "text": "Sie erhalten vollständige Dokumentation aller verbauten Materialien sowie unsere Gewährleistung." },
+        { "@type": "HowToStep", "position": 6, "name": "Optional: Wartungsvertrag abschließen", "text": "Mit einem Wartungsvertrag sichern Sie die Langlebigkeit Ihres neuen Dachs dauerhaft ab." },
+      ],
+    },
+    {
+      "@type": "FAQPage",
+      "@id": "https://www.rex-bedachung.de/steildach-bochum#faq",
+      "mainEntity": faqItems.map((item) => ({
+        "@type": "Question",
+        "name": item.question,
+        "acceptedAnswer": { "@type": "Answer", "text": item.answer },
+      })),
+    },
+  ],
+});
+```
+
+### 2B — Helmet-Schema-Block reduzieren
+
+**Suchen:** Der gesamte Block ab Zeile mit `<script type="application/ld+json">{schemaJson}</script>` bis einschließlich des letzten `</script>` direkt vor `</Helmet>`. Konkret: die sechs `<script>`-Blöcke (schemaJson, BreadcrumbList, zweiter Service, FAQPage, HowTo, Article) — alle ersetzen durch:
+
+```jsx
+        <script type="application/ld+json">{schemaJson}</script>
+```
+
+**Suchblock vollständig (alle sechs alten Scripts):**
+
+```jsx
+        <script type="application/ld+json">{schemaJson}</script>
+        <script type="application/ld+json">{`{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {"@type":"ListItem","position":1,"name":"Startseite","item":"https://www.rex-bedachung.de/"},
+    {"@type":"ListItem","position":2,"name":"Steildach Bochum","item":"https://www.rex-bedachung.de/steildach-bochum"}
+  ]
+}`}</script>
+        <script type="application/ld+json">{`{
+  "@context": "https://schema.org",
+  "@type": "Service",
+  "name": "Steildachsanierung und Dacheindeckung",
+  "description": "Steildachsanierung, Neueindeckung und energetische Dachsanierung mit Aufsparrendämmung in Bochum.",
+  "provider": {
+    "@type": "RoofingContractor",
+    "@id": "https://www.rex-bedachung.de/#organization"
+  },
+  "areaServed": {
+    "@type": "City",
+    "name": "Bochum"
+  },
+  "serviceType": "Steildachsanierung"
+}`}</script>
+        <script type="application/ld+json">{`{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Was kostet eine Steildach-Neueindeckung in Bochum?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Die Kosten hängen von Dachgröße, Dachform und gewähltem Material ab – Preis nach Aufmaß. Wir erstellen kostenlos ein genaues Angebot nach Besichtigung vor Ort."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Wie lange hält ein neu eingedecktes Steildach?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Tonziegel halten 60–100 Jahre, Betondachsteine 30–50 Jahre, Naturschiefer über 100 Jahre – vorausgesetzt Lattung, Unterspannbahn und Dachanschlüsse sind fachgerecht ausgeführt."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Wird die Steildach-Sanierung gefördert?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Ja – bei energetischer Sanierung mit Dämmung gibt es BAFA-Zuschüsse bis 20% und günstige KfW-Kredite. Rex Bedachung berät kostenlos zu allen aktuellen Fördermöglichkeiten."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Wie lange dauert eine Steildach-Neueindeckung?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Ein durchschnittliches Einfamilienhaus (ca. 150 m² Dachfläche) ist in 3–5 Arbeitstagen neu eingedeckt – abhängig von Dachform, Komplexität und Wetterlage."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Sanieren Sie auch den Dachstuhl?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Ja. Vor jeder Neueindeckung prüfen wir den Dachstuhl auf Schäden und Standfestigkeit. Balken, Pfetten und Sparren reparieren oder ersetzen wir wenn nötig – alles aus einer Hand."
+      }
+    }
+  ]
+}`}</script>
+        <script type="application/ld+json">{`{
+  "@context": "https://schema.org",
+  "@type": "HowTo",
+  "name": "Steildach sanieren lassen – Ablauf bei Rex Bedachungs GmbH",
+  "description": "In 6 Schritten zur neuen Steildacheindeckung in Bochum – vom ersten Kontakt bis zur Gewährleistung.",
+  "step": [
+    {
+      "@type": "HowToStep",
+      "position": 1,
+      "name": "Kostenlose Vor-Ort-Besichtigung",
+      "text": "Wir kommen zu Ihnen und begutachten den aktuellen Zustand des Dachs – kostenlos und unverbindlich."
+    },
+    {
+      "@type": "HowToStep",
+      "position": 2,
+      "name": "Detaillierte Planung und transparentes Angebot",
+      "text": "Sie erhalten ein schriftliches Angebot mit allen Leistungen und Materialien – keine versteckten Kosten."
+    },
+    {
+      "@type": "HowToStep",
+      "position": 3,
+      "name": "Professionelle Ausführung durch Meisterbetrieb",
+      "text": "Unsere erfahrenen Dachdecker führen alle Arbeiten fachgerecht nach DIN-Norm aus."
+    },
+    {
+      "@type": "HowToStep",
+      "position": 4,
+      "name": "Abschlusskontrolle und Übergabe",
+      "text": "Nach Fertigstellung prüfen wir gemeinsam mit Ihnen das Ergebnis und übergeben alle Unterlagen."
+    },
+    {
+      "@type": "HowToStep",
+      "position": 5,
+      "name": "Dokumentation und Gewährleistung",
+      "text": "Sie erhalten vollständige Dokumentation aller verbauten Materialien sowie unsere Gewährleistung."
+    },
+    {
+      "@type": "HowToStep",
+      "position": 6,
+      "name": "Optional: Wartungsvertrag abschließen",
+      "text": "Mit einem Wartungsvertrag sichern Sie die Langlebigkeit Ihres neuen Dachs dauerhaft ab."
+    }
+  ]
+}`}</script>
+        <script type="application/ld+json">{`{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Steildach Bochum – Sanierung, Dämmung & Neueindeckung",
+  "author": { "@id": "https://www.rex-bedachung.de/#author" },
+  "publisher": { "@id": "https://www.rex-bedachung.de/#organization" },
+  "url": "https://www.rex-bedachung.de/steildach-bochum"
+}`}</script>
+```
+
+**Ersetzen durch:**
+
+```jsx
+        <script type="application/ld+json">{schemaJson}</script>
+```
+
+---
+
+## 3) DachfensterBochum.tsx
+
+### 3A — `const schemaJson` ersetzen
+
+**Suchen:**
+
+```typescript
+const schemaJson = JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "Service",
+  "name": "Dachfenster Einbau Bochum",
+  "provider": {
+    "@type": "RoofingContractor",
+    "@id": "https://www.rex-bedachung.de/#organization",
+    "name": "Rex Bedachungs GmbH",
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Bochum",
+    },
+  },
+  "areaServed": "Bochum, Ruhrgebiet",
+  "description": "VELUX und Roto Dachfenster – Neueinbau, Austausch und Reparatur",
+  "offers": {
+    "@type": "Offer",
+    "availability": "https://schema.org/InStock",
+  },
+});
+```
+
+**Ersetzen durch:**
+
+```typescript
+const schemaJson = JSON.stringify({
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebPage",
+      "@id": "https://www.rex-bedachung.de/dachfenster-bochum#webpage",
+      "url": "https://www.rex-bedachung.de/dachfenster-bochum",
+      "name": "Dachfenster Bochum – Einbau & Austausch",
+      "isPartOf": { "@id": "https://www.rex-bedachung.de/#website" },
+      "about": { "@id": "https://www.rex-bedachung.de/#organization" },
+      "breadcrumb": { "@id": "https://www.rex-bedachung.de/dachfenster-bochum#breadcrumb" },
+      "mainEntity": { "@id": "https://www.rex-bedachung.de/dachfenster-bochum#service" },
+      "primaryImageOfPage": "https://www.rex-bedachung.de/images/velux-dachfenster-einbau-bochum-fachbetrieb.webp",
+      "inLanguage": "de-DE",
+    },
+    {
+      "@type": "BreadcrumbList",
+      "@id": "https://www.rex-bedachung.de/dachfenster-bochum#breadcrumb",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Startseite", "item": "https://www.rex-bedachung.de/" },
+        { "@type": "ListItem", "position": 2, "name": "Dachfenster Bochum", "item": "https://www.rex-bedachung.de/dachfenster-bochum" },
+      ],
+    },
+    {
+      "@type": "Service",
+      "@id": "https://www.rex-bedachung.de/dachfenster-bochum#service",
+      "name": "Dachfenster Einbau und Austausch Bochum",
+      "description": "VELUX und Roto Dachfenster – Neueinbau, Austausch und Reparatur in Bochum.",
+      "serviceType": "Dachfenstereinbau",
+      "provider": { "@id": "https://www.rex-bedachung.de/#organization" },
+      "areaServed": { "@type": "City", "name": "Bochum" },
+      "offers": {
+        "@type": "Offer",
+        "availability": "https://schema.org/InStock",
+      },
+    },
+    {
+      "@type": "Article",
+      "@id": "https://www.rex-bedachung.de/dachfenster-bochum#article",
+      "headline": "Dachfenster Bochum – Einbau & Austausch vom Meisterbetrieb",
+      "description": "VELUX und Roto Dachfenster in Bochum: Neueinbau, Austausch und Reparatur. Autorisierter VELUX-Partner seit 1984. Bis zu 20 % BAFA-Förderung bei Uw ≤ 1,0.",
+      "url": "https://www.rex-bedachung.de/dachfenster-bochum",
+      "mainEntityOfPage": { "@id": "https://www.rex-bedachung.de/dachfenster-bochum#webpage" },
+      "author": { "@id": "https://www.rex-bedachung.de/#author" },
+      "publisher": { "@id": "https://www.rex-bedachung.de/#organization" },
+      "datePublished": "2025-06-01",
+      "dateModified": "2026-04-28",
+    },
+    {
+      "@type": "FAQPage",
+      "@id": "https://www.rex-bedachung.de/dachfenster-bochum#faq",
+      "mainEntity": faqItems.map((item) => ({
+        "@type": "Question",
+        "name": item.question,
+        "acceptedAnswer": { "@type": "Answer", "text": item.answer },
+      })),
+    },
+  ],
+});
+```
+
+### 3B — Helmet-Schema-Block reduzieren
+
+**Suchen:**
+
+```jsx
+        <script type="application/ld+json">{schemaJson}</script>
+        <script type="application/ld+json">{`{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {"@type":"ListItem","position":1,"name":"Startseite","item":"https://www.rex-bedachung.de/"},
+    {"@type":"ListItem","position":2,"name":"Dachfenster Bochum","item":"https://www.rex-bedachung.de/dachfenster-bochum"}
+  ]
+}`}</script>
+        <script type="application/ld+json">{`{
+  "@context": "https://schema.org",
+  "@type": "Service",
+  "name": "Dachfenster Einbau und Austausch",
+  "description": "Einbau, Austausch und Wartung von Dachfenstern aller Marken in Bochum – inkl. Velux.",
+  "provider": {
+    "@type": "RoofingContractor",
+    "@id": "https://www.rex-bedachung.de/#organization"
+  },
+  "areaServed": {
+    "@type": "City",
+    "name": "Bochum"
+  },
+  "serviceType": "Dachfenstereinbau"
+}`}</script>
+        <script type="application/ld+json">{`{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Was kostet ein Dachfenster Einbau in Bochum?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Die Kosten variieren je nach Modell und Aufwand. Ein einfacher Austausch beginnt ab ca. 1.000 Euro, ein Standard-Austausch (GGL/GGU/GPU) ab ca. 1.500 Euro, Premium-/Integra-Modelle ab ca. 1.800 Euro."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Wie lange dauert der Einbau eines Dachfensters?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Ein Austausch ist in der Regel an einem halben Tag erledigt. Ein Neueinbau dauert je nach Dachkonstruktion 1–2 Tage."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Kann ich Förderung für neue Dachfenster bekommen?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Ja. Über BAFA (BEG Einzelmaßnahme) werden Dachfenster mit Uw ≤ 1,0 W/m²K mit 15 % Grundförderung bezuschusst — mit iSFP steigt der Satz auf 20 %. Nur VELUX ENERGIE und ENERGIE PLUS sind förderfähig, THERMO (Uw 1,3) nicht. Rex Bedachungs GmbH berät kostenlos zur Antragstellung."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Welche Dachfenster-Marken verbauen Sie?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Wir sind autorisierter VELUX-Partner und verbauen zusätzlich Roto Dachfenster in allen Ausführungen."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Brauche ich für ein Dachfenster eine Baugenehmigung?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Der reine Austausch eines bestehenden Dachfensters ist in den meisten Fällen genehmigungsfrei – vorausgesetzt, das Erscheinungsbild des Dachs wird nicht wesentlich verändert. Beim Neueinbau zusätzlicher Fenster hängt die Genehmigungspflicht von der Gemeinde und dem Bebauungsplan ab. Rex Bedachungs GmbH berät Sie kostenlos zum genauen Ablauf in Bochum."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Gibt es Förderung für den Einbau von Dachfenstern?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Ja — Dachfenster mit Uw ≤ 1,0 W/m²K werden über BAFA (BEG Einzelmaßnahme) mit 15 % Grundförderung bezuschusst. Mit iSFP steigt der Satz auf 20 % und der Förderhöchstbetrag auf 60.000 € pro Wohneinheit. Zusätzlich ist der KfW-Ergänzungskredit 358/359 kombinierbar."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Kann ein altes VELUX-Fenster 1:1 ersetzt werden?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "In der Regel ja – VELUX bietet für ältere Modelle passende Austauschfenster an, die ohne großen Eingriff in die Dachkonstruktion eingebaut werden können. Der Austausch ist meist in einem halben bis ganzen Arbeitstag erledigt. Als autorisierter VELUX-Partner findet Rex Bedachungs GmbH die passende Lösung für Ihr Fenster."
+      }
+    }
+  ]
+}`}</script>
+        <script type="application/ld+json">{`{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Dachfenster Bochum – Einbau & Austausch vom Meisterbetrieb",
+  "description": "VELUX und Roto Dachfenster in Bochum: Neueinbau, Austausch und Reparatur. Autorisierter VELUX-Partner seit 1984. Bis zu 20 % BAFA-Förderung bei Uw ≤ 1,0.",
+  "author": {
+    "@type": "Person",
+    "@id": "https://www.rex-bedachung.de/#author",
+    "name": "Tim Rex"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "@id": "https://www.rex-bedachung.de/#organization"
+  },
+  "datePublished": "2025-06-01",
+  "dateModified": "2026-04-28",
+  "mainEntityOfPage": "https://www.rex-bedachung.de/dachfenster-bochum"
+}`}</script>
+```
+
+**Ersetzen durch:**
+
+```jsx
+        <script type="application/ld+json">{schemaJson}</script>
+```
+
+---
+
+## Verification (Pflicht, vor Push)
+
+```bash
+set -e
+
+# 1) Konstantenname unverändert – keine pageSchema-Renames
+! grep -R "const pageSchema" client/src/pages/FlachdachBochum.tsx client/src/pages/SteildachBochum.tsx client/src/pages/DachfensterBochum.tsx
+
+# 2) Keine inline RoofingContractor-Blöcke mehr in den drei Files
+! grep -R '"RoofingContractor"' client/src/pages/FlachdachBochum.tsx client/src/pages/SteildachBochum.tsx client/src/pages/DachfensterBochum.tsx
+
+# 3) Genau ein JSON-LD-Script + genau ein @graph pro Datei
+for f in client/src/pages/FlachdachBochum.tsx client/src/pages/SteildachBochum.tsx client/src/pages/DachfensterBochum.tsx; do
+  test "$(grep -c '<script type="application/ld+json">' "$f")" -eq 1 || { echo "FAIL: $f hat nicht genau 1 JSON-LD-Script"; exit 1; }
+  test "$(grep -c '"@graph"' "$f")" -eq 1 || { echo "FAIL: $f hat nicht genau 1 @graph"; exit 1; }
+done
+
+# 4) Build muss grün sein
+npm run build
+```
+
+**Zielbild:** kein `pageSchema`, je Datei genau **ein** JSON-LD-Script, je Datei genau **ein** `@graph`, keine `RoofingContractor`-Erwähnung in den drei Pillar-Files (kommt zentral aus OrganizationSchema), Build grün.
+
+---
+
+## Commit
+
+**Nur ausführen bei expliziter Deployfenster-Freigabe.** Erst nach erfolgreichem Build und allen Verification-Checks:
+
+```bash
+git add client/src/pages/FlachdachBochum.tsx client/src/pages/SteildachBochum.tsx client/src/pages/DachfensterBochum.tsx
+git log --oneline origin/main..HEAD   # muss leer sein
+git commit -m "D31: Schema-@graph-Konsolidierung der Pillar-Pages
+
+- FlachdachBochum, SteildachBochum, DachfensterBochum: getrennte JSON-LD-Blöcke zu einem @graph zusammengeführt
+- Service-Duplikate eliminiert, Provider/Author/Publisher nur noch als @id-Referenz
+- WebPage-Entity je Pillar neu (analog Home/DachsanierungBochum)
+- FlachdachBochum: FAQPage neu aus vorhandenen faqItems gespiegelt
+- DachfensterBochum: inline Person+Organization-Properties im Article entfernt
+- Stufe B, 3 Files"
+git show --stat HEAD                  # muss exakt 3 Files zeigen
+git push
+```
