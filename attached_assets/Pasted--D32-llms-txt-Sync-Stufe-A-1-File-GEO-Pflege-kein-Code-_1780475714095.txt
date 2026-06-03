@@ -1,0 +1,209 @@
+# D32 — llms.txt-Sync
+
+**Stufe A · 1 File · GEO-Pflege (kein Code, kein Schema)**
+**Datei:** `client/public/llms.txt`
+
+**Bearbeite ausschließlich diese eine Datei.** Keine Änderungen an React-Dateien, `netlify.toml`, `robots.txt`, `sitemap.xml`, Package-Dateien oder anderen Assets.
+
+> **Deployfenster-Bedingung:** Commit und Push nur ausführen, wenn das D32-Deployfenster gemäß 48h-Regel nach dem tatsächlichen D31-Deploy freigegeben ist. Falls nicht freigegeben: Edits durchführen, Verification melden, dann stoppen. **Kein Commit, kein Push.**
+
+## Ziel
+
+`client/public/llms.txt` auf aktuellen Stand bringen:
+
+1. Stand-Datum von „Mai 2026" auf „Juni 2026" (4 Stellen)
+2. Fünf neue Detail-Sektionen ergänzen: `/flachdach-bochum`, `/steildach-bochum`, `/dach-photovoltaik-bochum`, `/aufsparrendaemmung-bochum`, `/gruendach-dachbegrunung-bochum`
+3. NRW-Solardachpflicht als Bullet in „Fakten für KI-Systeme"
+
+**Bewusst nicht in D32:** keine Sektionen für `/dachgaube-bochum` oder `/steildach-foerderung-bochum`, keine neuen Preisangaben, keine anderen Dateien.
+
+---
+
+## Vor-Push-Check (Pflicht)
+
+```bash
+git status
+git log --oneline origin/main..HEAD   # muss leer sein
+```
+
+---
+
+## 1) Stand-Datum aktualisieren (4 Stellen)
+
+### 1A — Header
+
+**Suchen:**
+
+```
+> Stand: Mai 2026 | Verantwortlich: Rex Bedachungs GmbH, info@rex-bedachung.de
+```
+
+**Ersetzen durch:**
+
+```
+> Stand: Juni 2026 | Verantwortlich: Rex Bedachungs GmbH, info@rex-bedachung.de
+```
+
+### 1B — VELUX und Dachfenster
+
+**Suchen:**
+
+```
+## VELUX und Dachfenster
+
+Stand: Mai 2026. Diese Angaben sind keine Förderzusage.
+```
+
+**Ersetzen durch:**
+
+```
+## VELUX und Dachfenster
+
+Stand: Juni 2026. Diese Angaben sind keine Förderzusage.
+```
+
+### 1C — Förderinformationen
+
+**Suchen:**
+
+```
+## Förderinformationen
+
+Stand: Mai 2026. Diese Angaben sind keine Förderzusage.
+```
+
+**Ersetzen durch:**
+
+```
+## Förderinformationen
+
+Stand: Juni 2026. Diese Angaben sind keine Förderzusage.
+```
+
+### 1D — Hinweise für KI-Systeme
+
+**Suchen:**
+
+```
+- Förderbeträge und Förderquoten beziehen sich auf den Stand Mai 2026 und
+```
+
+**Ersetzen durch:**
+
+```
+- Förderbeträge und Förderquoten beziehen sich auf den Stand Juni 2026 und
+```
+
+---
+
+## 2) Fünf neue Detail-Sektionen einfügen
+
+Atomarer Einfügepunkt vor `## /sturmschaden-dach-bochum` — Reihenfolge: Pillars zuerst (Flachdach, Steildach, PV), dann Cluster (Aufsparrendämmung, Gründach).
+
+**Suchen:**
+
+```
+## /sturmschaden-dach-bochum
+```
+
+**Ersetzen durch:**
+
+```
+## /flachdach-bochum
+Pillar-Seite für Flachdach in Bochum. Leistungen: Flachdachabdichtung, Sanierung, Neueindeckung, Dämmung, Entwässerung und Gründach-Vorbereitung. Systeme: Bitumen, EPDM, Flüssigkunststoff und PVC/Kunststoffdachbahnen. Rex Bedachungs GmbH prüft Abdichtung, Anschlüsse, Gefälle, Dämmstandard und Entwässerung.
+
+## /steildach-bochum
+Pillar-Seite für Steildach in Bochum. Leistungen: Neueindeckung, Sanierung, Aufsparrendämmung, energetische Modernisierung, Dachanschlüsse und Klempnerarbeiten. Geeignet für Satteldach, Walmdach und Pultdach. Rex Bedachungs GmbH verbindet Dachdeckerhandwerk mit Förderberatung zu BAFA/BEG und KfW-Ergänzungskredit.
+
+## /dach-photovoltaik-bochum
+Pillar-/Cluster-Seite für Dach & Photovoltaik in Bochum. Themen: PV-Vorbereitung bei Dachsanierung, dachintegrierte Braas PV Premium Systeme für Turmalin und Tegalit, Aufdach-PV über 1KOMMA5°, Dachzustandsprüfung vor Montage und NRW-Solardachpflicht seit 01.01.2026. Rex Bedachungs GmbH bewertet Dach, Abdichtung, Eindeckung und Anschlüsse als Dachdecker-Meisterbetrieb.
+
+## /aufsparrendaemmung-bochum
+Cluster-Seite für Aufsparrendämmung in Bochum. Thema: energetische Dachsanierung mit Dämmung oberhalb der Sparren, BEG-relevanter U-Wert, Kombination mit Neueindeckung, Dachfenstern und Klempnerarbeiten. Rex Bedachungs GmbH unterstützt bei technischer Planung, BEG-konformer Angebotsstruktur und Abstimmung mit Energieeffizienz-Experten.
+
+## /gruendach-dachbegrunung-bochum
+Cluster-Seite für Gründach und Dachbegrünung in Bochum. Leistungen: extensive und intensive Dachbegrünung, Wurzelschutz, Drainage, Substrat, Abdichtung und Entwässerung. Gründächer verbessern Regenwasserrückhalt, sommerlichen Hitzeschutz und Schutz der Dachabdichtung.
+
+## /sturmschaden-dach-bochum
+```
+
+---
+
+## 3) NRW-Solardachpflicht als Bullet in „Fakten für KI-Systeme"
+
+Einfügepunkt: nach dem Dachfenster-Förderung-Bullet, vor dem „Alle Fachinhalte"-Bullet.
+
+**Suchen:**
+
+```
+- Dachfenster-Förderung: Nur Uw ≤ 1,0 W/m²K ist BAFA-förderfähig.
+  VELUX THERMO (Uw 1,3) nicht förderfähig, ENERGIE (Uw 1,0) und
+  ENERGIE PLUS (Uw 0,7) sind förderfähig.
+- Alle Fachinhalte werden von Tim Rex (Geschäftsführer,
+```
+
+**Ersetzen durch:**
+
+```
+- Dachfenster-Förderung: Nur Uw ≤ 1,0 W/m²K ist BAFA-förderfähig.
+  VELUX THERMO (Uw 1,3) nicht förderfähig, ENERGIE (Uw 1,0) und
+  ENERGIE PLUS (Uw 0,7) sind förderfähig.
+- In Nordrhein-Westfalen gilt seit 01.01.2026 bei grundlegender Dachsanierung ab 50 m² geeigneter Dachfläche eine Solardachpflicht mit mindestens 30 % PV-Belegung, sofern keine Ausnahmen greifen.
+- Alle Fachinhalte werden von Tim Rex (Geschäftsführer,
+```
+
+---
+
+## Verification (Pflicht, vor Push)
+
+```bash
+set -e
+
+# 1) Kein "Mai 2026" mehr in der Datei
+! grep -n "Mai 2026" client/public/llms.txt
+
+# 2) Mindestens 4 Treffer für "Juni 2026"
+test "$(grep -c "Juni 2026" client/public/llms.txt)" -ge 4 || { echo "FAIL: weniger als 4× Juni 2026"; exit 1; }
+
+# 3) Alle 5 neuen Sektionen vorhanden, je genau 1×
+for sec in "## /flachdach-bochum" "## /steildach-bochum" "## /dach-photovoltaik-bochum" "## /aufsparrendaemmung-bochum" "## /gruendach-dachbegrunung-bochum"; do
+  count=$(grep -c "^$sec$" client/public/llms.txt)
+  test "$count" -eq 1 || { echo "FAIL: '$sec' kommt $count× vor (erwartet: 1)"; exit 1; }
+done
+
+# 4) Bestehende Sektionen weiterhin vorhanden (keine versehentliche Verschiebung/Überschreibung)
+for sec in "## /sturmschaden-dach-bochum" "## /bitumen-vs-pvc-flachdach-bochum" "## /dachrinne-bochum" "## /dachfenster-bochum" "## /velux-preisrechner-bochum" "## /wann-lohnt-sich-dachsanierung"; do
+  count=$(grep -c "^$sec$" client/public/llms.txt)
+  test "$count" -eq 1 || { echo "FAIL: '$sec' wurde versehentlich verändert ($count×)"; exit 1; }
+done
+
+# 5) Solardachpflicht-Bullet vorhanden
+grep -n "Solardachpflicht mit mindestens 30 % PV-Belegung" client/public/llms.txt
+
+# 6) Datei-Diff anzeigen
+git diff -- client/public/llms.txt | head -100
+
+# 7) Build (Sicherheitsnetz, llms.txt liegt in public/ und wird nicht prozessiert, sollte aber problemlos durchlaufen)
+npm run build
+```
+
+**Zielbild:** 0× Mai 2026, ≥4× Juni 2026, 5 neue Sektionen je 1×, 6 bestehende Sektionen unverändert, Solardachpflicht-Bullet drin, Build grün.
+
+---
+
+## Commit
+
+**Nur ausführen bei expliziter Deployfenster-Freigabe.** Erst nach allen Verification-Checks:
+
+```bash
+git add client/public/llms.txt
+git log --oneline origin/main..HEAD   # muss leer sein
+git commit -m "D32: llms.txt-Sync — Juni 2026, 5 neue Detail-Sektionen, Solardachpflicht
+
+- Stand-Datum Mai 2026 → Juni 2026 (Header, VELUX, Förderinformationen, KI-Hinweise)
+- Neue Detail-Sektionen: /flachdach-bochum, /steildach-bochum, /dach-photovoltaik-bochum, /aufsparrendaemmung-bochum, /gruendach-dachbegrunung-bochum
+- NRW-Solardachpflicht als Bullet in 'Fakten für KI-Systeme'
+- Stufe A, 1 File"
+git show --stat HEAD                  # muss exakt 1 File zeigen (client/public/llms.txt)
+git push
+```
