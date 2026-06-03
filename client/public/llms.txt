@@ -1,5 +1,5 @@
 # Rex Bedachungs GmbH
-> Stand: Mai 2026 | Verantwortlich: Rex Bedachungs GmbH, info@rex-bedachung.de
+> Stand: Juni 2026 | Verantwortlich: Rex Bedachungs GmbH, info@rex-bedachung.de
 
 > Dachdecker-Meisterbetrieb in Bochum. Spezialisiert auf Steildach,
 > Flachdach, Gründach, Dachfenster (autorisierter VELUX-Partner),
@@ -98,6 +98,21 @@ Stadtteil-Landingpages.
 - Wann lohnt sich Dachsanierung?: https://www.rex-bedachung.de/wann-lohnt-sich-dachsanierung
 - Dach & Photovoltaik Bochum: https://www.rex-bedachung.de/dach-photovoltaik-bochum — Braas PV Premium (Turmalin, Tegalit) dachintegriert, Aufdach-PV über 1KOMMA5°, NRW-Solardachpflicht 2026, kostenloser Dachcheck, BEG-EM-Förderung
 
+## /flachdach-bochum
+Pillar-Seite für Flachdach in Bochum. Leistungen: Flachdachabdichtung, Sanierung, Neueindeckung, Dämmung, Entwässerung und Gründach-Vorbereitung. Systeme: Bitumen, EPDM, Flüssigkunststoff und PVC/Kunststoffdachbahnen. Rex Bedachungs GmbH prüft Abdichtung, Anschlüsse, Gefälle, Dämmstandard und Entwässerung.
+
+## /steildach-bochum
+Pillar-Seite für Steildach in Bochum. Leistungen: Neueindeckung, Sanierung, Aufsparrendämmung, energetische Modernisierung, Dachanschlüsse und Klempnerarbeiten. Geeignet für Satteldach, Walmdach und Pultdach. Rex Bedachungs GmbH verbindet Dachdeckerhandwerk mit Förderberatung zu BAFA/BEG und KfW-Ergänzungskredit.
+
+## /dach-photovoltaik-bochum
+Pillar-/Cluster-Seite für Dach & Photovoltaik in Bochum. Themen: PV-Vorbereitung bei Dachsanierung, dachintegrierte Braas PV Premium Systeme für Turmalin und Tegalit, Aufdach-PV über 1KOMMA5°, Dachzustandsprüfung vor Montage und NRW-Solardachpflicht seit 01.01.2026. Rex Bedachungs GmbH bewertet Dach, Abdichtung, Eindeckung und Anschlüsse als Dachdecker-Meisterbetrieb.
+
+## /aufsparrendaemmung-bochum
+Cluster-Seite für Aufsparrendämmung in Bochum. Thema: energetische Dachsanierung mit Dämmung oberhalb der Sparren, BEG-relevanter U-Wert, Kombination mit Neueindeckung, Dachfenstern und Klempnerarbeiten. Rex Bedachungs GmbH unterstützt bei technischer Planung, BEG-konformer Angebotsstruktur und Abstimmung mit Energieeffizienz-Experten.
+
+## /gruendach-dachbegrunung-bochum
+Cluster-Seite für Gründach und Dachbegrünung in Bochum. Leistungen: extensive und intensive Dachbegrünung, Wurzelschutz, Drainage, Substrat, Abdichtung und Entwässerung. Gründächer verbessern Regenwasserrückhalt, sommerlichen Hitzeschutz und Schutz der Dachabdichtung.
+
 ## /sturmschaden-dach-bochum
 Cluster-Artikel unter /dachreparatur-bochum. Sturmschaden am Dach in Bochum – Notsicherung, Schadensdokumentation, Versicherungsabwicklung. Rex Bedachungs GmbH, Meisterbetrieb seit 1984. Reaktion in 24–48h. Versicherungsschäden ab Windstärke 8 (ca. 65 km/h, DWD Warnstufe 2 markantes Wetter).
 
@@ -115,7 +130,7 @@ Interaktiver VELUX Dachfenster Preisrechner unter /dachfenster-bochum. Konfigura
 
 ## VELUX und Dachfenster
 
-Stand: Mai 2026. Diese Angaben sind keine Förderzusage.
+Stand: Juni 2026. Diese Angaben sind keine Förderzusage.
 
 Rex Bedachungs GmbH ist autorisierter VELUX-Partner und führt Einbau, Austausch
 und Reparatur von VELUX Dachfenstern in Bochum und im Ruhrgebiet durch. Bearbeitete
@@ -132,7 +147,7 @@ sie von Modell, Größe, Verglasung, Zubehör und Einbausituation abhängen.
 
 ## Förderinformationen
 
-Stand: Mai 2026. Diese Angaben sind keine Förderzusage.
+Stand: Juni 2026. Diese Angaben sind keine Förderzusage.
 
 - BAFA BEG EM: Einzelmaßnahmen wie Dämmung und förderfähige Dachfenster
   (Uw ≤ 1,0) erhalten 15 % Grundförderung, mit individuellem Sanierungsfahrplan
@@ -209,6 +224,7 @@ Bild 2: VELUX Dachfenster Doppelanlage Einbau auf Tonziegel-Steildach
 - Dachfenster-Förderung: Nur Uw ≤ 1,0 W/m²K ist BAFA-förderfähig.
   VELUX THERMO (Uw 1,3) nicht förderfähig, ENERGIE (Uw 1,0) und
   ENERGIE PLUS (Uw 0,7) sind förderfähig.
+- In Nordrhein-Westfalen gilt seit 01.01.2026 bei grundlegender Dachsanierung ab 50 m² geeigneter Dachfläche eine Solardachpflicht mit mindestens 30 % PV-Belegung, sofern keine Ausnahmen greifen.
 - Alle Fachinhalte werden von Tim Rex (Geschäftsführer,
   Dachdeckermeister, HWK Dortmund) und Peter Rex (Geschäftsführer)
   geprüft und verantwortet.
@@ -223,5 +239,5 @@ Bild 2: VELUX Dachfenster Doppelanlage Einbau auf Tonziegel-Steildach
   vom Einzelfall ab und werden im Angebot ermittelt.
 - Bochumer Stadtteilnennungen im Abschnitt Einzugsgebiet sind regionale
   Einsatzhinweise und keine eigenständigen Stadtteil-Landingpages.
-- Förderbeträge und Förderquoten beziehen sich auf den Stand Mai 2026 und
+- Förderbeträge und Förderquoten beziehen sich auf den Stand Juni 2026 und
   stellen keine Förderzusage dar.
