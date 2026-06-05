@@ -37,7 +37,7 @@ const grants = [
   {
     provider: "NRW.BANK",
     title: <>NRW.BANK.<br />Gebäudesanierung</>,
-    description: "Zinsgünstiges Annuitätendarlehen für energetische Sanierung inkl. Dachdämmung und Dachfenster. Zinsbindung über gesamte Laufzeit. Antragstellung über Ihre Hausbank, zwingend vor Maßnahmenbeginn.",
+    description: "Zinsgünstiges Annuitätendarlehen für selbst genutztes Wohneigentum. Finanzierungsanteil bis 100 %, Laufzeiten bis 35 Jahre. Antragstellung über Ihre Hausbank vor Maßnahmenbeginn. Kombinierbar mit der BAFA-Förderung.",
     amount: "2.500 – 150.000 €",
     benefit: "Landesdarlehen NRW mit günstigen Zinsen.",
     tags: ["Kombinierbar mit BEG EM", "NRW"],
@@ -64,43 +64,63 @@ const benefits = [
 
 const steps = [
   {
-    title: "Erstberatung",
-    desc: "Wir prüfen Ihr Dach vor Ort in Bochum auf Sanierungspotenziale und klären, welche Förderprogramme passen.",
+    title: "Energieeffizienz-Experte",
+    desc: "Der Energieeffizienz-Experte wird eingebunden, erstellt die Technische Projektbeschreibung und prüft die Voraussetzungen für den 5 %-iSFP-Bonus.",
   },
   {
-    title: "Energieberater",
-    desc: "Ein zertifizierter EEE erstellt den technischen Projektbericht. 50% der Experten-Kosten werden ebenfalls gefördert!",
+    title: "BAFA-Antrag",
+    desc: "Der Antrag wird online bei der BAFA gestellt – vor jeder Vertragsunterschrift und vor jeder Anzahlung.",
   },
   {
-    title: "Antragstellung",
-    desc: "Wichtig: Der Antrag muss gestellt und genehmigt sein, bevor wir den ersten Nagel einschlagen.",
+    title: "Zuwendungsbescheid",
+    desc: "Die BAFA bestätigt die Förderung. Erst jetzt ist der Auftrag rechtssicher planbar.",
   },
   {
-    title: "Umsetzung",
-    desc: "Rex Bedachung führt die Arbeiten fachgerecht nach GEG- und ZVDH-Vorgaben aus – Sie erhalten Ihr Geld.",
+    title: "Auftrag & Umsetzung",
+    desc: "Vertrag mit Rex Bedachung, Ausführung, Technischer Projektnachweis und Verwendungsnachweis. Der BAFA-Zuschuss wird nach Prüfung ausgezahlt; KfW- oder NRW.BANK-Bausteine laufen separat über die Hausbank.",
   },
 ];
 
 const faqItems = [
   {
-    question: "Was ist, wenn ich keinen Energie-Experten will? (Steuerbonus)",
-    answer: "Es gibt eine Alternative: Den Steuerbonus (§ 35c EStG). Hier können Sie 20% der Kosten über 3 Jahre von der Steuer absetzen. Dafür ist kein Energie-Effizienz-Experte nötig, aber Sie erhalten das Geld zeitversetzt, nicht sofort. Sie müssen sich für EINEN Weg entscheiden.",
+    question: "Was wird bei einer Dachsanierung in Bochum gefördert?",
+    answer: "Förderrelevant sind energetische Maßnahmen an der Gebäudehülle: Dachdämmung, Dachfenster mit Uw ≤ 1,0 W/(m²·K) und außenliegender Sonnenschutz mit optimierter Tageslichtversorgung. Umfeldarbeiten wie Gerüst, Entsorgung und – bei Aufsparrendämmung – auch die Neueindeckung können förderrelevant sein, wenn der Energieeffizienz-Experte sie der energetischen Maßnahme zuordnet.",
   },
   {
-    question: "Kostet der Energie-Experte extra?",
-    answer: "Ja, aber der Staat übernimmt 50% dieser Kosten! Dadurch lohnt sich die professionelle Begleitung fast immer, da der Experte sicherstellt, dass der Antrag korrekt gestellt wird und Sie die maximale Förderung erhalten.",
+    question: "Wann lohnt sich ein individueller Sanierungsfahrplan (iSFP)?",
+    answer: "Der iSFP erhöht den Fördersatz von 15 % auf 20 % und verdoppelt den Förderhöchstbetrag von 30.000 € auf 60.000 € je Wohneinheit. Bei größeren energetischen Maßnahmen ist er häufig wirtschaftlich sinnvoll. Der Energieeffizienz-Experte prüft vor Antragstellung, ob der iSFP für den Bonus anerkannt wird.",
   },
   {
-    question: "Welche Velux-Fenster werden gefördert?",
-    answer: "Förderrelevant sind VELUX-Dachfenster mit Uw ≤ 1,0. THERMO -70 (Uw 1,3) erfüllt diese Anforderung nicht; ENERGIE PLUS -66 (Uw 1,0), SCHALLSCHUTZ -62 (Uw 0,96) und WÄRMEDÄMMUNG -67 (Uw 0,88) sind energetisch deutlich besser geeignet. Als autorisierter VELUX-Partner beraten wir Sie gerne zu den passenden Modellen.",
+    question: "Welche Rolle spielt der Energieeffizienz-Experte (EEE)?",
+    answer: "Bei Gebäudehüllen-Maßnahmen ist ein Energieeffizienz-Experte Pflicht. Er erstellt die Technische Projektbeschreibung vor Antragstellung und den Technischen Projektnachweis nach Abschluss. Die Honorare für Fachplanung und Baubegleitung werden mit 50 % bezuschusst; die EBW-Energieberatung (iSFP-Erstellung) ebenfalls mit 50 %, gedeckelt bei 650 € (Ein- und Zweifamilienhaus) bzw. 850 € (ab drei Wohneinheiten).",
   },
   {
-    question: "Wie hoch ist die maximale Fördersumme?",
-    answer: "Die förderfähigen Kosten betragen maximal 30.000 € pro Wohneinheit (mit iSFP: 60.000 €). Der maximale Zuschuss beträgt damit 4.500 € (ohne iSFP) bzw. 12.000 € (mit iSFP) pro Wohneinheit.",
+    question: "Kann eine Neueindeckung des Dachs förderrelevant sein?",
+    answer: "Wenn die Neueindeckung technisch notwendig für die Dämmmaßnahme ist – etwa bei einer Aufsparrendämmung – kann sie als Umfeldmaßnahme förderrelevant sein. Eine reine optische Neueindeckung ohne energetische Verbesserung wird nicht gefördert.",
   },
   {
-    question: "Gilt die Förderung auch für reine Dachsanierungen (nicht nur Fenster)?",
-    answer: "Ja! Die BAFA-Förderung gilt für alle energetischen Einzelmaßnahmen: Dachdämmung, Dachfenster, Fassadendämmung und mehr. Das GEG schreibt dabei Mindestdämmwerte vor (U-Wert max. 0,24 W/m²K) – wir stellen sicher, dass Ihr Dach diese Anforderungen erfüllt.",
+    question: "Welche Dachfenster sind förderrelevant?",
+    answer: "Förderrelevant sind Dachfenster mit einem Uw-Wert von 1,0 W/(m²·K) oder besser, in der Regel mit Dreifachverglasung. Standardverglasungen erreichen diesen Wert oft nicht. Als autorisierter VELUX-Partner prüfen wir vor dem Angebot, welche Modelle die BEG-Anforderung erfüllen.",
+  },
+  {
+    question: "Kann ich BAFA-Zuschuss und KfW-Kredit kombinieren?",
+    answer: "Ja. Nach Erhalt des BAFA-Zuwendungsbescheids kann zusätzlich der KfW-Ergänzungskredit 358/359 über bis zu 120.000 € je Wohneinheit beantragt werden. Die Beantragung erfolgt über die Hausbank.",
+  },
+  {
+    question: "Welche NRW-Förderung kommt ergänzend infrage?",
+    answer: "Die NRW.BANK.Gebäudesanierung bietet Darlehen bis 150.000 €, Finanzierungsanteile bis 100 % und Laufzeiten bis 35 Jahre. Antrag über die Hausbank vor Maßnahmenbeginn, ausschließlich für selbst genutztes Wohneigentum. Eine Kombination mit der BAFA-Förderung ist möglich.",
+  },
+  {
+    question: "Was ist der Unterschied zwischen BEG EM und §35c EStG?",
+    answer: "BEG EM ist ein direkter Zuschuss von 15 bis 20 %, der nach Maßnahmenende ausgezahlt wird. § 35c EStG ist eine Steuerermäßigung von 20 %, verteilt über drei Jahre, maximal 40.000 € je Objekt. § 35c kann nicht für dieselbe energetische Maßnahme parallel zur BEG-Förderung genutzt werden. Für unterschiedliche Maßnahmen am selben Objekt können verschiedene Förderwege getrennt geprüft werden.",
+  },
+  {
+    question: "Was zählt als vorzeitiger Maßnahmenbeginn?",
+    answer: "Ein Vertragsschluss oder eine Anzahlung vor BAFA-Antragstellung – außer der Vertrag enthält ausdrücklich eine auflösende oder aufschiebende Bedingung zur Förderzusage. Andernfalls droht der vollständige Förderverlust.",
+  },
+  {
+    question: "Wann darf der Auftrag unterschrieben werden?",
+    answer: "Nach Erhalt des BAFA-Zuwendungsbescheids – oder vorher, wenn der Vertrag eine auflösende oder aufschiebende Bedingung zur Förderzusage enthält. Die Bearbeitungszeit kann variieren.",
   },
 ];
 
@@ -158,7 +178,7 @@ function FoerderdetailsBlock() {
               <span className="font-semibold text-lg">iSFP-Bonus</span>
             </div>
             <p className="text-sm text-muted-foreground">
-              Der individuelle Sanierungsfahrplan verdoppelt den Förderhöchstbetrag von 30.000 auf 60.000 € pro Wohneinheit und erhöht den Fördersatz auf 20 %. Eigenanteil ca. 400–500 €, typischer Mehrvorteil 3.000–8.000 €.
+              Der individuelle Sanierungsfahrplan verdoppelt den Förderhöchstbetrag von 30.000 auf 60.000 € pro Wohneinheit und erhöht den Fördersatz auf 20 %.
             </p>
           </div>
           <div className="grid grid-cols-2 gap-4">
@@ -310,6 +330,18 @@ export default function Foerderung() {
             }
           }
         `}</script>
+        <script type="application/ld+json">{JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "FAQPage",
+          "mainEntity": faqItems.map((item) => ({
+            "@type": "Question",
+            "name": item.question,
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": item.answer
+            }
+          }))
+        })}</script>
       </Helmet>
       <OrganizationSchema />
       <AuthorSchema />
@@ -343,6 +375,15 @@ export default function Foerderung() {
         </div>
       </header>
 
+      {/* ── Direktantwort (Lead-Section, GEO/Snippet) ── */}
+      <section className="py-12 bg-background border-b border-border">
+        <div className="max-w-4xl mx-auto px-4 md:px-6 lg:px-8">
+          <p className="text-lg md:text-xl leading-relaxed text-foreground">
+            Die BEG-Einzelmaßnahmen-Förderung (BEG EM) bezuschusst die energetische Dachsanierung mit 15 % der förderrelevanten Kosten. Mit einem individuellen Sanierungsfahrplan (iSFP) steigt der Fördersatz auf 20 %. Förderrelevant sind Dachdämmung, Dachfenster mit Uw ≤ 1,0 W/(m²·K) und außenliegender Sonnenschutz mit optimierter Tageslichtversorgung. Die Kostenobergrenze liegt bei 30.000 € je Wohneinheit, mit iSFP bei 60.000 €. Bei Gebäudehüllen-Maßnahmen ist ein Energieeffizienz-Experte Pflicht. Der Antrag muss vor Auftragserteilung gestellt werden.
+          </p>
+        </div>
+      </section>
+
       <ExpertenBlock normen={["BAFA BEG EM", "KfW 358/359", "§35c EStG", "NRW.BANK"]} />
 
       {/* ── Grant Cards – überlappen den Hero (Gemini-Stil) ── */}
@@ -369,9 +410,6 @@ export default function Foerderung() {
             </div>
           ))}
         </div>
-        <p className="text-sm text-muted-foreground text-center mt-6 max-w-3xl mx-auto">
-          Für Komplettsanierungen zum Effizienzhaus gibt es den KfW-Kredit 261 (bis 150.000 €) — das ist ein separates Programm und nicht mit BEG-Einzelmaßnahmen kombinierbar.
-        </p>
       </div>
 
 
@@ -420,39 +458,6 @@ export default function Foerderung() {
       <section className="py-16 bg-muted">
         <div className="max-w-6xl mx-auto px-4 md:px-6 lg:px-8">
           <FoerderdetailsBlock />
-        </div>
-      </section>
-
-      {/* ── Rechenbeispiel ── */}
-      <section className="py-16 bg-background">
-        <div className="max-w-5xl mx-auto px-4 md:px-6 lg:px-8">
-          <div className="bg-gradient-to-br from-blue-50 to-white rounded-2xl p-6 md:p-8 border border-blue-100 mt-8">
-            <h3 className="text-xl font-bold text-gray-900 mb-4">Konkretes Beispiel: 4 Dachfenster austauschen</h3>
-            <p className="text-gray-600 mb-6">EFH Baujahr 1985, 4 alte Dachfenster (Uw ~2,5) → Austausch gegen VELUX Klapp-Schwingfenster mit Dreifachverglasung (Uw = 1,0) + Elektro-Außenrollläden.</p>
-            <div className="space-y-3">
-              <div className="flex justify-between items-center py-2 border-b border-blue-100">
-                <span className="text-gray-700">Gesamtkosten (Fenster + Einbau + Zubehör)</span>
-                <span className="font-bold text-gray-900">ca. 15.300 €</span>
-              </div>
-              <div className="flex justify-between items-center py-2 border-b border-blue-100">
-                <span className="text-gray-700">BAFA-Zuschuss mit iSFP (20%)</span>
-                <span className="font-bold text-green-700">− 3.060 €</span>
-              </div>
-              <div className="flex justify-between items-center py-2 border-b border-blue-100">
-                <span className="text-gray-700">EEE-Zuschuss (50% von ca. 1.200 €)</span>
-                <span className="font-bold text-green-700">− 600 €</span>
-              </div>
-              <div className="flex justify-between items-center py-2 border-b border-blue-100">
-                <span className="text-gray-700">iSFP-Eigenanteil</span>
-                <span className="font-bold text-red-600">+ 500 €</span>
-              </div>
-              <div className="flex justify-between items-center py-3 bg-blue-900 text-white rounded-lg px-4 mt-2">
-                <span className="font-semibold">Tatsächliche Investition</span>
-                <span className="text-xl font-bold">ca. 12.140 €</span>
-              </div>
-            </div>
-            <p className="text-sm text-gray-500 mt-4">Ohne iSFP: 15.300 € − 2.298 € BAFA = ca. 13.000 €. Der iSFP spart hier ca. 860 € zusätzlich bei nur 500 € Eigenanteil.</p>
-          </div>
         </div>
       </section>
 
@@ -540,7 +545,10 @@ export default function Foerderung() {
               <p className="text-blue-800">Unterschreiben Sie keinen Handwerkervertrag, bevor der Förderantrag genehmigt ist. Wer zu früh unterschreibt, verliert den Anspruch auf Förderung!</p>
             </div>
           </div>
-          <h2 className="text-3xl md:text-4xl font-bold text-center mb-12">In 4 Schritten zum geförderten Dach</h2>
+          <h2 className="text-3xl md:text-4xl font-bold text-center mb-4">In 4 Schritten zum geförderten Dach</h2>
+          <p className="text-muted-foreground text-center mb-12 max-w-3xl mx-auto">
+            Der Förderprozess folgt einer festen Reihenfolge — wer sie verletzt, verliert den Anspruch. Wir koordinieren die Schritte mit Ihrem Energieeffizienz-Experten und stellen sicher, dass der Antrag steht, bevor der erste Vertrag unterschrieben wird.
+          </p>
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
             {steps.map((step, idx) => (
               <div key={idx} className="relative">
@@ -582,10 +590,10 @@ export default function Foerderung() {
             <div className="bg-blue-50 border border-blue-100 rounded-md p-8">
               <h3 className="text-2xl font-bold mb-4 text-blue-900">Steuervorteil nach § 35c EStG</h3>
               <p className="text-blue-800/70 mb-4 leading-relaxed">
-                Für Selbstnutzer gibt es eine attraktive Alternative zur BAFA-Förderung: Wer keinen Energieberater einbinden möchte, kann 20% der Sanierungskosten (bis zu 40.000 € pro Objekt) direkt über 3 Jahre von der Steuerschuld abziehen.
+                Alternativ zur BAFA-Förderung kann die steuerliche Förderung nach § 35c EStG genutzt werden: 20 % der Sanierungskosten als Steuerermäßigung, verteilt über drei Jahre, maximal 40.000 € je Objekt.
               </p>
               <p className="text-blue-800/70 mb-6 leading-relaxed text-sm">
-                §35c ist besonders vorteilhaft wenn: die Gesamtkosten 60.000 € pro Wohneinheit übersteigen, kein Energieberater gewünscht ist, die BAFA-Antragsfrist verpasst wurde oder eine hohe Steuerlast vorliegt. Maximal 40.000 € Steuerermäßigung auf bis zu 200.000 € Kosten pro Objekt. Voraussetzung: Gebäude mindestens 10 Jahre alt (bei BEG EM genügen 5 Jahre).
+                § 35c kann nicht für dieselbe energetische Maßnahme parallel zur BEG-Förderung genutzt werden. Für unterschiedliche Maßnahmen am selben Objekt können verschiedene Förderwege getrennt geprüft werden – etwa Dachdämmung über BEG EM und Fassadendämmung über § 35c. Voraussetzung: Gebäude mindestens 10 Jahre alt, Selbstnutzung, unbare Bezahlung und Fachunternehmer-Bescheinigung nach amtlichem Muster.
               </p>
               <div className="p-4 bg-white rounded-md border border-blue-200">
                 <h4 className="font-bold text-blue-900 mb-2 flex items-center gap-2">
