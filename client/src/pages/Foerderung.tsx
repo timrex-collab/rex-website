@@ -260,6 +260,63 @@ function FoerderdetailsBlock() {
   );
 }
 
+const schemaJson = JSON.stringify({
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebPage",
+      "@id": "https://www.rex-bedachung.de/foerderung#webpage",
+      "url": "https://www.rex-bedachung.de/foerderung",
+      "name": "BAFA & KfW Förderung für Dachsanierung Bochum",
+      "isPartOf": { "@id": "https://www.rex-bedachung.de/#website" },
+      "about": { "@id": "https://www.rex-bedachung.de/#organization" },
+      "breadcrumb": { "@id": "https://www.rex-bedachung.de/foerderung#breadcrumb" },
+      "mainEntity": { "@id": "https://www.rex-bedachung.de/foerderung#service" },
+      "primaryImageOfPage": "https://www.rex-bedachung.de/images/dach-hintergrund-rex-bedachung.webp",
+      "inLanguage": "de-DE",
+    },
+    {
+      "@type": "Article",
+      "@id": "https://www.rex-bedachung.de/foerderung#article",
+      "headline": "BAFA & KfW Förderung für Dacharbeiten in Bochum",
+      "name": "BAFA & KfW Förderung für Dachsanierung Bochum",
+      "description": "Staatliche Förderung für Dachsanierung und Velux-Dachfenster bei Rex Bedachungs GmbH Bochum",
+      "url": "https://www.rex-bedachung.de/foerderung",
+      "author": { "@id": "https://www.rex-bedachung.de/#author" },
+      "publisher": { "@id": "https://www.rex-bedachung.de/#organization" },
+    },
+    {
+      "@type": "GovernmentService",
+      "@id": "https://www.rex-bedachung.de/foerderung#service",
+      "name": "BAFA & KfW Förderberatung Dach Bochum",
+      "provider": { "@id": "https://www.rex-bedachung.de/#organization" },
+      "serviceOutput": "Zuschüsse und Förderung für energetische Dachsanierung",
+      "audience": {
+        "@type": "Audience",
+        "audienceType": "Hauseigentümer und Vermieter in Bochum und Umgebung",
+      },
+      "areaServed": { "@type": "City", "name": "Bochum" },
+    },
+    {
+      "@type": "BreadcrumbList",
+      "@id": "https://www.rex-bedachung.de/foerderung#breadcrumb",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Startseite", "item": "https://www.rex-bedachung.de/" },
+        { "@type": "ListItem", "position": 2, "name": "Förderung", "item": "https://www.rex-bedachung.de/foerderung" },
+      ],
+    },
+    {
+      "@type": "FAQPage",
+      "@id": "https://www.rex-bedachung.de/foerderung#faq",
+      "mainEntity": faqItems.map((item) => ({
+        "@type": "Question",
+        "name": item.question,
+        "acceptedAnswer": { "@type": "Answer", "text": item.answer },
+      })),
+    },
+  ],
+});
+
 export default function Foerderung() {
   const [activeAccordion, setActiveAccordion] = useState<number | null>(null);
 
@@ -280,68 +337,7 @@ export default function Foerderung() {
         <meta property="og:image:height" content="630" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:image" content="https://www.rex-bedachung.de/images/dach-hintergrund-rex-bedachung.webp" />
-        <script type="application/ld+json">{`
-          {
-            "@context": "https://schema.org",
-            "@type": "Article",
-            "headline": "BAFA & KfW Förderung für Dacharbeiten in Bochum",
-            "author": { "@id": "https://www.rex-bedachung.de/#author" },
-            "publisher": { "@id": "https://www.rex-bedachung.de/#organization" },
-            "name": "BAFA & KfW Förderung für Dachsanierung Bochum",
-            "description": "Staatliche Förderung für Dachsanierung und Velux-Dachfenster bei Rex Bedachungs GmbH Bochum",
-            "url": "https://www.rex-bedachung.de/foerderung",
-            "provider": {
-              "@type": "RoofingContractor",
-              "name": "Rex Bedachungs GmbH",
-              "telephone": "+49 234 583100",
-              "address": {
-                "@type": "PostalAddress",
-                "streetAddress": "Paulinenstraße 22",
-                "addressLocality": "Bochum",
-                "postalCode": "44799"
-              }
-            }
-          }
-        `}</script>
-        <script type="application/ld+json">{JSON.stringify({
-          "@context": "https://schema.org",
-          "@type": "BreadcrumbList",
-          "itemListElement": [
-            { "@type": "ListItem", "position": 1, "name": "Startseite", "item": "https://www.rex-bedachung.de/" },
-            { "@type": "ListItem", "position": 2, "name": "Förderung", "item": "https://www.rex-bedachung.de/foerderung" }
-          ]
-        })}</script>
-        <script type="application/ld+json">{`
-          {
-            "@context": "https://schema.org",
-            "@type": "GovernmentService",
-            "name": "BAFA & KfW Förderberatung Dach Bochum",
-            "provider": {
-              "@id": "https://www.rex-bedachung.de/#organization"
-            },
-            "serviceOutput": "Zuschüsse und Förderung für energetische Dachsanierung",
-            "audience": {
-              "@type": "Audience",
-              "audienceType": "Hauseigentümer und Vermieter in Bochum und Umgebung"
-            },
-            "areaServed": {
-              "@type": "City",
-              "name": "Bochum"
-            }
-          }
-        `}</script>
-        <script type="application/ld+json">{JSON.stringify({
-          "@context": "https://schema.org",
-          "@type": "FAQPage",
-          "mainEntity": faqItems.map((item) => ({
-            "@type": "Question",
-            "name": item.question,
-            "acceptedAnswer": {
-              "@type": "Answer",
-              "text": item.answer
-            }
-          }))
-        })}</script>
+        <script type="application/ld+json">{schemaJson}</script>
       </Helmet>
       <OrganizationSchema />
       <AuthorSchema />
