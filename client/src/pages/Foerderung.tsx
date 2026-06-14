@@ -497,7 +497,7 @@ export default function Foerderung() {
 
           <div className="mt-6 bg-amber-50 border-l-4 border-amber-500 p-4 rounded-r-md">
             <p className="text-sm text-amber-800">
-              <strong>Solardachpflicht NRW ab 2026:</strong> Bei vollständiger Erneuerung der Dachhaut müssen Photovoltaikanlagen grundsätzlich mindestens 30 % der Nettodachfläche bedecken; bei bestimmten Wohngebäuden kann alternativ eine Mindestleistung nach kWp ausreichen. Eine energetische Komplettsanierung löst die Pflicht aus, wenn dabei die Dachhaut vollständig erneuert wird; kleine Reparaturen oder einzelne Ziegelwechsel nicht. Wir planen Dach und PV als ein Projekt.
+              <strong>Solardachpflicht NRW ab 2026:</strong> Bei vollständiger Erneuerung der Dachhaut müssen Photovoltaikanlagen grundsätzlich mindestens 30 % der Nettodachfläche bedecken; bei bestimmten Wohngebäuden kann alternativ eine Mindestleistung nach kWp ausreichen. Eine energetische Komplettsanierung löst die Pflicht aus, wenn dabei die Dachhaut vollständig erneuert wird; kleine Reparaturen oder einzelne Ziegelwechsel nicht. Wir planen Dach und PV als ein Projekt – das spart doppelte Gerüst- und Bauzeit. <a href="/solarpflicht" className="font-bold underline hover:text-amber-900">Mehr zur Solarpflicht</a>
             </p>
           </div>
         </div>
