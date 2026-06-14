@@ -122,6 +122,18 @@ const faqItems = [
     question: "Wann darf der Auftrag unterschrieben werden?",
     answer: "Nach Erhalt des BAFA-Zuwendungsbescheids – oder vorher, wenn der Vertrag eine auflösende oder aufschiebende Bedingung zur Förderzusage enthält. Die Bearbeitungszeit kann variieren.",
   },
+  {
+    question: "Welche U-Werte verlangt die BEG-Förderung für die Dachsanierung?",
+    answer: "Die BEG EM verlangt für Steildach und Flachdach einen U-Wert von maximal 0,14 W/(m²·K) – das sind 30 bis 42 % strengere Werte als die GEG-Mindestanforderung. Für Dachfenster gilt Uw ≤ 1,0 W/(m²·K), für senkrechte Gaubenfenster Uw ≤ 0,95. Wer nur auf GEG-Niveau dämmt, erfüllt die BEG-Anforderung für diese Maßnahme nicht und verliert dafür den Förderanspruch.",
+  },
+  {
+    question: "Gilt die Solardachpflicht NRW bei meiner Dachsanierung?",
+    answer: "Seit dem 1. Januar 2026 muss bei vollständiger Erneuerung der Dachhaut in NRW grundsätzlich mindestens 30 % der Nettodachfläche mit Photovoltaik belegt werden; bei bestimmten Wohngebäuden genügt alternativ eine Mindestleistung nach kWp. Eine energetische Komplettsanierung löst die Pflicht aus, wenn dabei die Dachhaut vollständig erneuert wird; kleine Reparaturen nicht. Bei ungeeigneter oder unwirtschaftlicher Dachfläche entfällt die Pflicht. Wir prüfen das im Rahmen der Sanierungsplanung.",
+  },
+  {
+    question: "Kann ich mehrere Förderprogramme kombinieren?",
+    answer: "Der BAFA-Zuschuss (BEG EM) lässt sich mit dem KfW-Ergänzungskredit 358/359 und der NRW.BANK.Gebäudesanierung kombinieren. Die öffentliche Gesamtförderung darf dabei 60 % der förderrelevanten Kosten nicht übersteigen. Nicht kombinierbar für dieselbe Maßnahme sind BEG EM und die Steuerermäßigung nach § 35c EStG – verschiedene Maßnahmen am selben Gebäude können aber über verschiedene Förderwege laufen.",
+  },
 ];
 
 function FoerderdetailsBlock() {
@@ -284,6 +296,7 @@ const schemaJson = JSON.stringify({
       "url": "https://www.rex-bedachung.de/foerderung",
       "author": { "@id": "https://www.rex-bedachung.de/#author" },
       "publisher": { "@id": "https://www.rex-bedachung.de/#organization" },
+      "image": "https://www.rex-bedachung.de/images/dach-hintergrund-rex-bedachung.webp",
     },
     {
       "@type": "GovernmentService",
@@ -447,6 +460,70 @@ export default function Foerderung() {
               </div>
             </div>
           </div>
+
+          <div className="mt-8 overflow-x-auto">
+            <h3 className="text-xl font-bold mb-4 text-center">BEG-Förderanforderung vs. GEG-Mindestanforderung</h3>
+            <table className="w-full text-sm border-collapse bg-card rounded-md overflow-hidden border border-border">
+              <thead>
+                <tr className="bg-muted">
+                  <th className="text-left p-3 border border-border font-medium text-muted-foreground">Bauteil</th>
+                  <th className="text-left p-3 border border-border font-medium text-muted-foreground">BEG-Förderung</th>
+                  <th className="text-left p-3 border border-border font-medium text-muted-foreground">GEG-Pflicht</th>
+                  <th className="text-left p-3 border border-border font-medium text-muted-foreground">Differenz</th>
+                </tr>
+              </thead>
+              <tbody>
+                {[
+                  { bauteil: "Steildach", beg: "0,14 W/(m²·K)", geg: "0,24 W/(m²·K)", diff: "−42 %" },
+                  { bauteil: "Flachdach", beg: "0,14 W/(m²·K)", geg: "0,20 W/(m²·K)", diff: "−30 %" },
+                  { bauteil: "Oberste Geschossdecke", beg: "0,14 W/(m²·K)", geg: "0,24 W/(m²·K)", diff: "−42 %" },
+                  { bauteil: "Gauben", beg: "0,20 W/(m²·K)", geg: "0,24 W/(m²·K)", diff: "−17 %" },
+                  { bauteil: "Dachfenster", beg: "Uw 1,0 W/(m²·K)", geg: "Uw 1,4 W/(m²·K)", diff: "−29 %" },
+                  { bauteil: "Senkrechte Gaubenfenster", beg: "Uw 0,95 W/(m²·K)", geg: "Uw 1,3 W/(m²·K)", diff: "−27 %" },
+                ].map((row, i) => (
+                  <tr key={i} className={i % 2 === 0 ? "bg-card" : "bg-muted/30"}>
+                    <td className="p-3 border border-border font-semibold text-foreground">{row.bauteil}</td>
+                    <td className="p-3 border border-border text-blue-700 font-bold">{row.beg}</td>
+                    <td className="p-3 border border-border text-muted-foreground">{row.geg}</td>
+                    <td className="p-3 border border-border text-green-700 font-medium">{row.diff}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+            <p className="text-sm text-muted-foreground mt-3 text-center">
+              Wer nur auf GEG-Niveau plant, riskiert den BEG-Förderanspruch für diese Maßnahme. Die BEG verlangt bei Dachflächen bis zu 42 % bessere Dämmwerte als das GEG.
+            </p>
+          </div>
+
+          <div className="mt-6 bg-amber-50 border-l-4 border-amber-500 p-4 rounded-r-md">
+            <p className="text-sm text-amber-800">
+              <strong>Solardachpflicht NRW ab 2026:</strong> Bei vollständiger Erneuerung der Dachhaut müssen Photovoltaikanlagen grundsätzlich mindestens 30 % der Nettodachfläche bedecken; bei bestimmten Wohngebäuden kann alternativ eine Mindestleistung nach kWp ausreichen. Eine energetische Komplettsanierung löst die Pflicht aus, wenn dabei die Dachhaut vollständig erneuert wird; kleine Reparaturen oder einzelne Ziegelwechsel nicht. Wir planen Dach und PV als ein Projekt.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* ── iSFP-Hebel ── */}
+      <section className="py-12 bg-background">
+        <div className="max-w-5xl mx-auto px-4 md:px-6 lg:px-8">
+          <div className="bg-blue-600 text-white rounded-md p-8 md:p-10">
+            <h2 className="text-2xl md:text-3xl font-bold mb-4">Warum der iSFP bei größeren Dachsanierungen entscheidend ist</h2>
+            <div className="grid sm:grid-cols-2 gap-6 mb-6">
+              <div className="bg-white/10 rounded-md p-5">
+                <p className="text-sm text-blue-100 mb-1">Ohne iSFP</p>
+                <p className="text-lg font-bold">15 % auf max. 30.000 €</p>
+                <p className="text-blue-100 text-sm mt-1">→ bis zu 4.500 € Zuschuss</p>
+              </div>
+              <div className="bg-white/20 rounded-md p-5 border border-white/30">
+                <p className="text-sm text-blue-100 mb-1">Mit iSFP</p>
+                <p className="text-lg font-bold">20 % auf max. 60.000 €</p>
+                <p className="text-blue-100 text-sm mt-1">→ bis zu 12.000 € Zuschuss</p>
+              </div>
+            </div>
+            <p className="text-blue-100 leading-relaxed text-sm">
+              Der individuelle Sanierungsfahrplan erhöht nicht nur den Fördersatz, sondern verdoppelt auch die anrechenbare Kostenobergrenze. Die iSFP-Erstellung wird über die Energieberatung für Wohngebäude (EBW) mit 50 % gefördert. Der Energieeffizienz-Experte prüft vor Antragstellung, ob der iSFP für den Bonus anerkannt wird.
+            </p>
+          </div>
         </div>
       </section>
 
@@ -602,6 +679,30 @@ export default function Foerderung() {
               </div>
             </div>
           </div>
+
+          <div className="mt-8 bg-card border border-border rounded-md p-8">
+            <h3 className="text-xl font-bold mb-4 text-foreground">Förderung kombinieren in NRW</h3>
+            <p className="text-muted-foreground mb-5 leading-relaxed text-sm">
+              Der BAFA-Zuschuss lässt sich mit zinsgünstigen Darlehen kombinieren. So senken Sie die Finanzierungslast auch bei größeren Vorhaben:
+            </p>
+            <div className="grid md:grid-cols-3 gap-4">
+              <div className="bg-muted rounded-md p-4">
+                <p className="font-bold text-foreground mb-1">KfW-Ergänzungskredit 358/359</p>
+                <p className="text-sm text-muted-foreground">Zinsvergünstigtes Darlehen bis 120.000 € je Wohneinheit nach BAFA-Zusage. Besonders günstig bei Haushaltseinkommen bis 90.000 € (358 Plus).</p>
+              </div>
+              <div className="bg-muted rounded-md p-4">
+                <p className="font-bold text-foreground mb-1">NRW.BANK.Gebäudesanierung</p>
+                <p className="text-sm text-muted-foreground">Darlehen bis 150.000 €, Finanzierungsanteil bis 100 %, Laufzeit bis 35 Jahre. Aktuelle Konditionen unter nrwbank.de/konditionen.</p>
+              </div>
+              <div className="bg-muted rounded-md p-4">
+                <p className="font-bold text-foreground mb-1">NRW-Eigentumsförderung Modernisierung</p>
+                <p className="text-sm text-muted-foreground">Für selbstnutzende Eigentümer mit kleinen und mittleren Einkommen: vergünstigte Zinsen und Tilgungsnachlass, Antragstellung über die zuständige Bewilligungsbehörde.</p>
+              </div>
+            </div>
+            <p className="text-xs text-muted-foreground mt-4">
+              Kumulierungsgrenze: Die öffentliche Gesamtförderung darf 60 % der förderrelevanten Kosten nicht übersteigen.
+            </p>
+          </div>
         </div>
       </section>
 
@@ -639,7 +740,11 @@ export default function Foerderung() {
           <h2 className="text-xl font-bold text-gray-900 mb-6">
             Unsere geförderten Leistungen
           </h2>
-          <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-4">
+          <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-3 gap-4">
+            <a href="/dachsanierung-bochum" className="block p-5 bg-white rounded-xl border border-gray-200 hover:border-primary hover:shadow-md transition-all">
+              <div className="font-semibold text-gray-900 mb-1">Dachsanierung Bochum</div>
+              <div className="text-sm text-gray-500">Komplette energetische Dachsanierung – Ihr Überblick zu Ablauf und Förderung.</div>
+            </a>
             <a href="/steildach-bochum" className="block p-5 bg-white rounded-xl border border-gray-200 hover:border-primary hover:shadow-md transition-all">
               <div className="font-semibold text-gray-900 mb-1">Steildach Sanierung</div>
               <div className="text-sm text-gray-500">Energetische Steildachsanierung mit Aufsparrendämmung – BAFA-förderfähig.</div>
