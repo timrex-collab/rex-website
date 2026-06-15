@@ -9,26 +9,26 @@ import { ChevronRight, ChevronLeft, Calculator, Home, Sun, Phone, Mail, Check, I
 const DIMS = {CK02:"55×78",CK04:"55×98",CK06:"55×118",FK04:"66×98",FK06:"66×118",FK08:"66×140",MK04:"78×98",MK06:"78×118",MK08:"78×140",MK10:"78×160",PK06:"94×118",PK08:"94×140",PK10:"94×160",SK06:"114×118",SK08:"114×140",SK10:"114×160",UK04:"134×98",UK08:"134×140",UK10:"134×160"};
 
 const WINDOWS = {
-  GGU:{name:"Kunststoff-Schwingfenster",short:"Kunststoff Schwing",desc:"Feuchtraumgeeignet, pflegeleicht",icon:"droplets",prices:{CK02:{T:536,E:554,P:670},CK04:{T:579,E:608,P:747},CK06:{T:601,E:643,P:802},FK04:{T:601,E:643,P:802},FK06:{T:679,E:733,P:921},FK08:{T:715,E:785,P:1000},MK04:{T:651,E:704,P:886},MK06:{T:715,E:785,P:1000},MK08:{T:772,E:861,P:1110},MK10:{T:865,E:969,P:1253},PK06:{T:801,E:890,P:1145},PK08:{T:872,E:985,P:1282},PK10:{T:951,E:1083,P:1419},SK06:{T:894,E:1007,P:1309},SK08:{T:965,E:1107,P:1458},SK10:{T:1051,E:1217,P:1615},UK04:{T:894,E:1003,P:1300},UK08:{T:1058,E:1231,P:1638},UK10:{T:1230,E:1426,P:1893}}},
-  GGL:{name:"Holz-Schwingfenster",short:"Holz Schwing",desc:"Natürliches Holz, weiß/klar lackiert",icon:"home",prices:{CK02:{T:413,E:440,P:546},CK04:{T:446,E:480,P:613},CK06:{T:462,E:515,P:664},FK04:{T:462,E:515,P:613},FK06:{T:523,E:589,P:765},FK08:{T:551,E:620,P:836},MK04:{T:501,E:566,P:737},MK06:{T:551,E:633,P:836},MK08:{T:595,E:697,P:932},MK10:{T:666,E:785,P:1050},PK06:{T:617,E:720,P:961},PK08:{T:672,E:780,P:1081},PK10:{T:732,E:881,P:1200},SK06:{T:688,E:817,P:1104},SK08:{T:743,E:902,P:1236},SK10:{T:809,E:994,P:1374},UK04:{T:688,E:813,P:1094},UK08:{T:815,E:1006,P:1395},UK10:{T:947,E:1164,P:1610}}},
-  GPU:{name:"Kunststoff-Klapp-Schwingfenster",short:"Kunststoff Klapp-Schwing",desc:"Panoramablick, feuchtraumgeeignet",icon:"eye",prices:{CK04:{T:855,E:864,P:1023},CK06:{T:877,E:899,P:1078},FK06:{T:955,E:989,P:1197},FK08:{T:991,E:1041,P:1276},MK04:{T:927,E:960,P:1162},MK06:{T:991,E:1041,P:1276},MK08:{T:1048,E:1117,P:1386},MK10:{T:1141,E:1225,P:1529},PK06:{T:1077,E:1146,P:1421},PK08:{T:1148,E:1241,P:1558},PK10:{T:1227,E:1339,P:1695},SK06:{T:1170,E:1263,P:1585},SK08:{T:1241,E:1363,P:1734},SK10:{T:1327,E:1473,P:1891},UK08:{T:1334,E:1487,P:1914}}},
-  GPL:{name:"Holz-Klapp-Schwingfenster",short:"Holz Klapp-Schwing",desc:"Panoramablick, natürliches Holz",icon:"sun",prices:{CK04:{T:722,E:741,P:889},CK06:{T:738,E:771,P:940},FK06:{T:799,E:845,P:1041},FK08:{T:827,E:889,P:1112},MK04:{T:777,E:850,P:1013},MK06:{T:827,E:889,P:1112},MK08:{T:871,E:953,P:1208},MK10:{T:942,E:1041,P:1330},PK06:{T:893,E:976,P:1237},PK08:{T:948,E:1055,P:1357},PK10:{T:1008,E:1137,P:1476},SK06:{T:964,E:1073,P:1380},SK08:{T:1019,E:1158,P:1512},SK10:{T:1085,E:1250,P:1650},UK04:{T:964,E:1050,P:1370},UK08:{T:1091,E:1262,P:1671}}}
+  GGU:{name:"Kunststoff-Schwingfenster",short:"Kunststoff Schwing",desc:"Feuchtraumgeeignet, pflegeleicht",icon:"droplets",prices:{CK02:{T:550,E:647,P:686},CK04:{T:594,E:716,P:765},CK06:{T:616,E:763,P:822},FK04:{T:616,E:763,P:822},FK06:{T:696,E:873,P:944},FK08:{T:733,E:941,P:1026},MK04:{T:667,E:839,P:909},MK06:{T:733,E:941,P:1026},MK08:{T:792,E:1038,P:1138},MK10:{T:887,E:1169,P:1284},PK06:{T:821,E:1072,P:1174},PK08:{T:894,E:1193,P:1314},PK10:{T:975,E:1316,P:1455},SK06:{T:916,E:1219,P:1342},SK08:{T:990,E:1349,P:1495},SK10:{T:1078,E:1489,P:1656},UK04:{T:916,E:1212,P:1333},UK08:{T:1085,E:1507,P:1680},UK10:{T:1230,E:1426,P:1893}}},
+  GGL:{name:"Holz-Schwingfenster",short:"Holz Schwing",desc:"Natürliches Holz, weiß/klar lackiert",icon:"home",prices:{CK02:{T:423,E:520,P:560},CK04:{T:457,E:579,P:629},CK06:{T:474,E:621,P:681},FK04:{T:474,E:621,P:681},FK06:{T:536,E:712,P:784},FK08:{T:564,E:772,P:857},MK04:{T:514,E:685,P:755},MK06:{T:564,E:772,P:857},MK08:{T:610,E:856,P:956},MK10:{T:683,E:965,P:1080},PK06:{T:632,E:883,P:985},PK08:{T:689,E:987,P:1108},PK10:{T:751,E:1092,P:1231},SK06:{T:706,E:1008,P:1132},SK08:{T:762,E:1121,P:1268},SK10:{T:830,E:1241,P:1408},UK04:{T:706,E:1002,P:1122},UK08:{T:835,E:1258,P:1430},UK10:{T:971,E:1454,P:1651}}},
+  GPU:{name:"Kunststoff-Klapp-Schwingfenster",short:"Kunststoff Klapp-Schwing",desc:"Panoramablick, feuchtraumgeeignet",icon:"eye",prices:{CK04:{T:877,E:999,P:1048},CK06:{T:899,E:1046,P:1105},FK06:{T:979,E:1156,P:1227},FK08:{T:1016,E:1224,P:1309},MK04:{T:950,E:1122,P:1192},MK06:{T:1016,E:1224,P:1309},MK08:{T:1075,E:1321,P:1421},MK10:{T:1170,E:1452,P:1567},PK06:{T:1104,E:1355,P:1457},PK08:{T:1177,E:1476,P:1597},PK10:{T:1258,E:1599,P:1738},SK06:{T:1199,E:1502,P:1625},SK08:{T:1273,E:1632,P:1778},SK10:{T:1361,E:1772,P:1939},UK08:{T:1368,E:1790,P:1963}}},
+  GPL:{name:"Holz-Klapp-Schwingfenster",short:"Holz Klapp-Schwing",desc:"Panoramablick, natürliches Holz",icon:"sun",prices:{CK04:{T:740,E:862,P:912},CK06:{T:757,E:904,P:964},FK06:{T:819,E:995,P:1067},FK08:{T:847,E:1055,P:1140},MK04:{T:797,E:968,P:1038},MK06:{T:847,E:1055,P:1140},MK08:{T:893,E:1139,P:1239},MK10:{T:966,E:1248,P:1363},PK06:{T:915,E:1166,P:1268},PK08:{T:972,E:1270,P:1391},PK10:{T:1034,E:1375,P:1514},SK06:{T:989,E:1291,P:1415},SK08:{T:1045,E:1404,P:1551},SK10:{T:1113,E:1524,P:1691},UK04:{T:989,E:1285,P:1405},UK08:{T:1118,E:1541,P:1713}}}
 };
 
-const EDW = {CK02:136,CK04:144,CK06:149,FK04:149,FK06:163,FK08:168,MK04:159,MK06:168,MK08:176,MK10:201,PK06:191,PK08:201,PK10:213,SK06:201,SK08:206,SK10:228,UK04:201,UK08:218,UK10:243};
+const EDW = {CK02:139,CK04:148,CK06:153,FK04:153,FK06:167,FK08:172,MK04:163,MK06:172,MK08:180,MK10:206,PK06:196,PK08:206,PK10:218,SK06:206,SK08:211,SK10:234,UK04:206,UK08:223,UK10:249};
 
 const SHUTTERS = {
-  SSL:{name:"Solar-Rollladen",short:"SSL Solar",prices:{CK02:611,CK04:632,CK06:647,FK04:658,FK06:684,FK08:689,MK04:679,MK06:705,MK08:731,MK10:773,PK06:752,PK08:783,PK10:825,SK06:804,SK08:841,SK10:878,UK04:851,UK08:904,UK10:946}},
-  SML:{name:"Elektro-Rollladen",short:"SML Elektro",prices:{CK02:429,CK04:450,CK06:465,FK04:476,FK06:502,FK08:507,MK04:497,MK06:523,MK08:549,MK10:591,PK06:570,PK08:601,PK10:643,SK06:622,SK08:659,SK10:696,UK04:669,UK08:722,UK10:764}}
+  SSL:{name:"Solar-Rollladen",short:"SSL Solar",prices:{CK02:627,CK04:648,CK06:664,FK04:675,FK06:702,FK08:707,MK04:696,MK06:723,MK08:750,MK10:793,PK06:771,PK08:803,PK10:846,SK06:825,SK08:862,SK10:900,UK04:873,UK08:927,UK10:970}},
+  SML:{name:"Elektro-Rollladen",short:"SML Elektro",prices:{CK02:440,CK04:461,CK06:477,FK04:488,FK06:515,FK08:520,MK04:509,MK06:536,MK08:563,MK10:606,PK06:584,PK08:616,PK10:659,SK06:638,SK08:675,SK10:713,UK04:686,UK08:740,UK10:783}}
 };
 
 const BLINDS = {
-  DKL:{name:"Verdunkelungsrollo manuell",short:"DKL Manuell",prices:{CK02:80,CK04:91,CK06:101,FK04:100,FK06:111,FK08:114,MK04:105,MK06:114,MK08:117,MK10:124,PK06:122,PK08:131,PK10:143,SK06:138,SK08:146,SK10:164,UK04:146,UK08:158,UK10:176}},
-  DSL:{name:"Verdunkelungsrollo solar",short:"DSL Solar",prices:{CK02:186,CK04:198,CK06:208,FK04:207,FK06:217,FK08:223,MK04:211,MK06:220,MK08:223,MK10:248,PK06:228,PK08:237,PK10:248,SK06:244,SK08:251,SK10:269,UK04:251,UK08:264,UK10:270}}
+  DKL:{name:"Verdunkelungsrollo manuell",short:"DKL Manuell",prices:{CK02:82,CK04:94,CK06:104,FK04:103,FK06:113,FK08:117,MK04:108,MK06:117,MK08:121,MK10:128,PK06:125,PK08:135,PK10:146,SK06:142,SK08:150,SK10:168,UK04:150,UK08:163,UK10:180}},
+  DSL:{name:"Verdunkelungsrollo solar",short:"DSL Solar",prices:{CK02:217,CK04:229,CK06:239,FK04:238,FK06:248,FK08:252,MK04:243,MK06:252,MK08:256,MK10:263,PK06:260,PK08:270,PK10:281,SK06:277,SK08:285,SK10:303,UK04:285,UK08:298,UK10:315}}
 };
 
 const LABOR = { demontage:100, einbau:300, eindeckrahmen:150, rollladen:120, rollo:50 };
-const GL = { T:{l:"THERMO",code:"-70",uw:"1,3"},E:{l:"ENERGIE PLUS",code:"-66",uw:"1,0"},P:{l:"WÄRMEDÄMMUNG",code:"-67",uw:"0,88"} };
+const GL = { T:{l:"THERMO",code:"-70",uw:"1,3",g:"0,46"},E:{l:"ENERGIE",code:"-84",uw:"1,0",g:"0,46"},P:{l:"ENERGIE PLUS",code:"-66",uw:"1,0",g:"0,44"} };
 const fmt = (n) => new Intl.NumberFormat("de-DE").format(n);
 let _id = 0;
 const uid = () => ++_id;
@@ -99,7 +99,7 @@ function buildPdfHtml(details, totals, foerderung, kunde) {
       <p class="small" style="margin-top:6px;color:#1e40af"><strong>Voraussetzungen:</strong> Selbstgenutztes Wohneigentum, Gebäude ≥ 10 Jahre alt, Fachunternehmen. Nicht kombinierbar mit BAFA für dieselbe Maßnahme.</p>
     </div>`:""}` : totals.eligible ? `
     <div class="foerder-box" style="background:#f8fafc;border-color:#e2e8f0">
-      <p style="font-size:10px;color:#475569">Keine förderrelevanten Positionen vorhanden. Für die BEG-Förderung (BEG EM) ist eine Verglasung mit Uw ≤ 1,0 W/m²K erforderlich (ENERGIE PLUS oder WÄRMEDÄMMUNG).</p>
+      <p style="font-size:10px;color:#475569">Keine förderrelevanten Positionen vorhanden. Für die BEG-Förderung (BEG EM) ist eine Verglasung mit Uw ≤ 1,0 W/m²K erforderlich (ENERGIE oder ENERGIE PLUS).</p>
     </div>` : "";
 
   const kundeSection = kunde.name ? `
@@ -263,7 +263,7 @@ function PosCard({pos,onChange,onRemove,index,canRemove}){
           <div className="grid grid-cols-3 gap-2">{glazings.map(g=>(
             <button key={g} onClick={()=>onChange({...pos,glazing:g})}
               className={`p-3 rounded-xl border-2 text-left transition-all ${glazing===g?"border-slate-800 bg-slate-50":"border-slate-200 hover:border-slate-300"}`}>
-              <div className="font-semibold text-xs">{GL[g].l}</div><div className="text-[10px] text-slate-400 mt-0.5">Uw {GL[g].uw} W/m²K</div>
+              <div className="font-semibold text-xs">{GL[g].l}</div><div className="text-[10px] text-slate-400 mt-0.5">Uw {GL[g].uw} · g {GL[g].g}</div>
               <div className="font-bold text-sm mt-1.5">{fmt(WINDOWS[model].prices[size][g])} €</div>
             </button>))}</div></div>)}
         {/* EDW */}
@@ -372,7 +372,7 @@ function Step3({positions,foerderung}){
   const totalFenster=details.reduce((s,d)=>s+d.qty,0);
 
   // ─── Förderung nach BEG EM (BAFA Einzelmaßnahme) ─────────────────
-  // Nur Fenster mit Uw ≤ 1,0 W/(m²·K) sind förderrelevant → ENERGIE PLUS + WÄRMEDÄMMUNG, NICHT THERMO
+  // Nur Fenster mit Uw ≤ 1,0 W/(m²·K) sind förderrelevant → ENERGIE + ENERGIE PLUS, NICHT THERMO
   const eligible=foerderung.altbau==="ja"&&foerderung.sanierung==="ja";
   const hasIsfp=foerderung.isfp==="ja";
   const bafaRate=eligible?(hasIsfp?0.20:0.15):0;
@@ -535,7 +535,7 @@ function Step3({positions,foerderung}){
                 <div className="bg-amber-50 border border-amber-200 rounded-lg p-3 flex gap-2">
                   <Info className="w-4 h-4 text-amber-600 shrink-0 mt-0.5"/>
                   <div className="text-xs text-amber-800">
-                    <span className="font-semibold">Nicht förderrelevant:</span> {ineligibleDetails.length} Position(en) mit THERMO-Verglasung (Uw 1,3 W/m²K). Die BEG-Förderung erfordert Uw ≤ 1,0 W/m²K — nur ENERGIE PLUS und WÄRMEDÄMMUNG Verglasungen sind förderrelevant.
+                    <span className="font-semibold">Nicht förderrelevant:</span> {ineligibleDetails.length} Position(en) mit THERMO-Verglasung (Uw 1,3 W/m²K). Die BEG-Förderung erfordert Uw ≤ 1,0 W/m²K — nur ENERGIE und ENERGIE PLUS Verglasungen sind förderrelevant.
                   </div>
                 </div>
               )}
@@ -592,7 +592,7 @@ function Step3({positions,foerderung}){
                 </div>
               ):(
                 <div className="bg-slate-50 border border-slate-200 rounded-lg p-3 text-xs text-slate-600">
-                  Keine förderrelevanten Positionen vorhanden. Für die BEG-Förderung ist eine Verglasung mit Uw ≤ 1,0 W/m²K erforderlich (ENERGIE PLUS oder WÄRMEDÄMMUNG).
+                  Keine förderrelevanten Positionen vorhanden. Für die BEG-Förderung ist eine Verglasung mit Uw ≤ 1,0 W/m²K erforderlich (ENERGIE oder ENERGIE PLUS).
                 </div>
               )}
             </div>
