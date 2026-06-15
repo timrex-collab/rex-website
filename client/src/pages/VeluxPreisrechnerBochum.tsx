@@ -12,7 +12,7 @@ const faqData = [
   },
   {
     q: "Welche VELUX Verglasung ist förderfähig über die BAFA?",
-    a: "Nur Verglasungen mit einem Uw-Wert von maximal 1,0 W/m²K sind über die BAFA (BEG Einzelmaßnahme) förderrelevant. Bei VELUX erfüllen das die Verglasungsstufen ENERGIE PLUS -66 (Uw 1,0), SCHALLSCHUTZ -62 (Uw 0,96) und WÄRMEDÄMMUNG -67 (Uw 0,88). Die Standardverglasung THERMO -70 (Uw 1,3) ist nicht förderrelevant."
+    a: "Nur Verglasungen mit einem Uw-Wert von maximal 1,0 W/m²K sind über die BAFA (BEG Einzelmaßnahme) förderrelevant. Bei VELUX erfüllen das die Verglasungsstufen ENERGIE -84 (Uw 1,0) und ENERGIE PLUS -66 (Uw 1,0). Beide erreichen Uw 1,0; ENERGIE PLUS bietet zusätzlich besseren sommerlichen Hitzeschutz (g-Wert 0,44 statt 0,46). Die Standardverglasung THERMO -70 (Uw 1,3) ist nicht förderrelevant."
   },
   {
     q: "Wie hoch ist die BAFA-Förderung für neue Dachfenster?",
@@ -88,7 +88,7 @@ const articleSchema = {
     "@id": "https://www.rex-bedachung.de/#organization"
   },
   datePublished: "2026-04-20",
-  dateModified: "2026-04-28",
+  dateModified: "2026-06-15",
   mainEntityOfPage: "https://www.rex-bedachung.de/velux-preisrechner-bochum"
 };
 
@@ -214,44 +214,37 @@ export default function VeluxPreisrechnerBochum() {
           <section>
             <h2 className="text-xl font-bold text-slate-900 mb-4">VELUX Verglasungen im Überblick</h2>
             <p className="text-slate-600 text-sm mb-6">Nicht jede VELUX-Verglasung ist förderrelevant. Die BEG-Förderung erfordert Uw ≤ 1,0 W/(m²K).</p>
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
               <div className="border border-slate-200 rounded-xl p-4 opacity-70">
                 <span className="inline-block text-[10px] font-medium px-2 py-0.5 rounded bg-red-50 text-red-700 mb-2">Nicht förderrelevant</span>
                 <p className="font-semibold text-sm text-slate-900">THERMO</p>
                 <p className="text-xs text-slate-500">Verglasung -70</p>
                 <p className="text-2xl font-bold text-slate-900 mt-1">1,3 <span className="text-xs font-normal text-slate-500">W/(m²K)</span></p>
-                <p className="text-xs text-slate-500 mt-1">Standard-Doppelverglasung. Erfüllt nicht die BEG-Anforderung Uw ≤ 1,0.</p>
+                <p className="text-xs text-slate-500 mt-1">Standard-Doppelverglasung (g-Wert 0,46). Erfüllt nicht die BEG-Anforderung Uw ≤ 1,0.</p>
               </div>
               <div className="border border-slate-200 rounded-xl p-4">
                 <span className="inline-block text-[10px] font-medium px-2 py-0.5 rounded bg-emerald-50 text-emerald-700 mb-2">Förderrelevant</span>
+                <p className="font-semibold text-sm text-slate-900">ENERGIE</p>
+                <p className="text-xs text-slate-500">Verglasung -84</p>
+                <p className="text-2xl font-bold text-slate-900 mt-1">1,0 <span className="text-xs font-normal text-slate-500">W/(m²K)</span></p>
+                <p className="text-xs text-slate-500 mt-1">Dreifachverglasung (g-Wert 0,46). Erreicht den Grenzwert Uw ≤ 1,0 — geeigneter Einstieg für energetische Maßnahmen.</p>
+              </div>
+              <div className="border-2 border-emerald-500 rounded-xl p-4">
+                <span className="inline-block text-[10px] font-medium px-2 py-0.5 rounded bg-emerald-50 text-emerald-700 mb-2">Förderrelevant + Hitzeschutz</span>
                 <p className="font-semibold text-sm text-slate-900">ENERGIE PLUS</p>
                 <p className="text-xs text-slate-500">Verglasung -66</p>
                 <p className="text-2xl font-bold text-slate-900 mt-1">1,0 <span className="text-xs font-normal text-slate-500">W/(m²K)</span></p>
-                <p className="text-xs text-slate-500 mt-1">Dreifachverglasung. Erreicht den Grenzwert Uw ≤ 1,0 — geeigneter Einstieg für energetische Maßnahmen.</p>
-              </div>
-              <div className="border border-slate-200 rounded-xl p-4">
-                <span className="inline-block text-[10px] font-medium px-2 py-0.5 rounded bg-emerald-50 text-emerald-700 mb-2">Förderrelevant</span>
-                <p className="font-semibold text-sm text-slate-900">SCHALLSCHUTZ</p>
-                <p className="text-xs text-slate-500">Verglasung -62</p>
-                <p className="text-2xl font-bold text-slate-900 mt-1">0,96 <span className="text-xs font-normal text-slate-500">W/(m²K)</span></p>
-                <p className="text-xs text-slate-500 mt-1">Dreifachverglasung mit erhöhtem Schallschutz. Sinnvoll an Straßen oder bei Einflugschneisen.</p>
-              </div>
-              <div className="border-2 border-emerald-500 rounded-xl p-4">
-                <span className="inline-block text-[10px] font-medium px-2 py-0.5 rounded bg-emerald-50 text-emerald-700 mb-2">Beste Dämmung</span>
-                <p className="font-semibold text-sm text-slate-900">WÄRMEDÄMMUNG</p>
-                <p className="text-xs text-slate-500">Verglasung -67</p>
-                <p className="text-2xl font-bold text-slate-900 mt-1">0,88 <span className="text-xs font-normal text-slate-500">W/(m²K)</span></p>
-                <p className="text-xs text-slate-500 mt-1">Bester Uw-Wert im Vergleich. Maximale Wärmedämmung für energetisch anspruchsvolle Sanierungen.</p>
+                <p className="text-xs text-slate-500 mt-1">Dreifachverglasung mit verbessertem sommerlichem Hitzeschutz (g-Wert 0,44). Gleicher Uw-Wert wie ENERGIE, weniger Aufheizung im Sommer.</p>
               </div>
             </div>
-            <p className="text-xs text-slate-400 mt-4">Quelle: VELUX Technische Werte, CE-Kennzeichnung gem. EN 14351-1. Der Preisrechner oben kalkuliert mit drei Verglasungsstufen (THERMO / ENERGIE PLUS / WÄRMEDÄMMUNG). Preisindikation auf Basis der hinterlegten Verglasung — verbindliche Modell- und Preisprüfung erfolgt beim Vor-Ort-Termin.</p>
+            <p className="text-xs text-slate-400 mt-4">Quelle: VELUX Technische Werte, CE-Kennzeichnung gem. EN 14351-1. Der Preisrechner oben kalkuliert mit drei Verglasungsstufen (THERMO / ENERGIE / ENERGIE PLUS). Preisindikation auf Basis der hinterlegten Verglasung — verbindliche Modell- und Preisprüfung erfolgt beim Vor-Ort-Termin.</p>
           </section>
 
           {/* Direktantwort */}
           <section>
             <h2 className="text-xl font-bold text-slate-900 mb-4">Was kostet ein VELUX Dachfenster mit Einbau?</h2>
             <p className="text-slate-700 leading-relaxed">
-              Die Gesamtkosten für ein VELUX Dachfenster setzen sich aus dem Fensterpreis, Eindeckrahmen, optionalem Zubehör (Rollladen, Verdunkelungsrollo) und den Einbaukosten zusammen. In Bochum beginnen die Kosten für ein Kunststoff-Schwingfenster mit ENERGIE-Verglasung, Eindeckrahmen und fachgerechtem Einbau ab ca. 1.800 € netto. Klapp-Schwingfenster, größere Formate oder die hochdämmende ENERGIE-PLUS-Verglasung liegen entsprechend höher. Mit unserem Preisrechner berechnen Sie Ihre individuelle Kostenschätzung — inkl. Prüfung der BAFA-Förderung und des Steuerbonus nach §35c EStG. Als autorisierter VELUX-Partner in Bochum erstellen wir nach der Kostenschätzung ein verbindliches Festangebot nach Vor-Ort-Begehung.
+              Die Gesamtkosten für ein VELUX Dachfenster setzen sich aus dem Fensterpreis, Eindeckrahmen, optionalem Zubehör (Rollladen, Verdunkelungsrollo) und den Einbaukosten zusammen. In Bochum beginnen die Kosten für ein Kunststoff-Schwingfenster mit ENERGIE-Verglasung, Eindeckrahmen und fachgerechtem Einbau ab ca. 1.800 € netto. Klapp-Schwingfenster, größere Formate oder die ENERGIE-PLUS-Verglasung mit zusätzlichem Hitzeschutz liegen entsprechend höher. Mit unserem Preisrechner berechnen Sie Ihre individuelle Kostenschätzung — inkl. Prüfung der BAFA-Förderung und des Steuerbonus nach §35c EStG. Als autorisierter VELUX-Partner in Bochum erstellen wir nach der Kostenschätzung ein verbindliches Festangebot nach Vor-Ort-Begehung.
             </p>
           </section>
 
@@ -270,7 +263,7 @@ export default function VeluxPreisrechnerBochum() {
           <section>
             <h2 className="text-xl font-bold text-slate-900 mb-4">Welche Verglasung ist förderfähig?</h2>
             <p className="text-slate-700 leading-relaxed mb-3">
-              VELUX bietet mehrere Verglasungsstufen an: THERMO -70 (Uw 1,3 W/m²K), ENERGIE PLUS -66 (Uw 1,0 W/m²K), SCHALLSCHUTZ -62 (Uw 0,96 W/m²K) und WÄRMEDÄMMUNG -67 (Uw 0,88 W/m²K). Für die BEG-Förderung ist ein Uw-Wert von maximal 1,0 W/m²K vorgeschrieben — das bedeutet: nur ENERGIE PLUS, SCHALLSCHUTZ und WÄRMEDÄMMUNG sind förderrelevant. Die THERMO-Verglasung erfüllt zwar die GEG-Mindestanforderung, nicht aber die strengere BEG-Vorgabe.
+              Im Preisrechner stehen drei Verglasungsstufen zur Wahl: THERMO -70 (Uw 1,3 W/m²K), ENERGIE -84 (Uw 1,0 W/m²K) und ENERGIE PLUS -66 (Uw 1,0 W/m²K). ENERGIE und ENERGIE PLUS erreichen denselben Uw-Wert; ENERGIE PLUS verbessert zusätzlich den sommerlichen Hitzeschutz (g-Wert 0,44 gegenüber 0,46). Für die BEG-Förderung ist ein Uw-Wert von maximal 1,0 W/m²K vorgeschrieben — das bedeutet: ENERGIE und ENERGIE PLUS sind förderrelevant, THERMO nicht. Die THERMO-Verglasung erfüllt zwar die GEG-Mindestanforderung, nicht aber die strengere BEG-Vorgabe.
             </p>
             <p className="text-slate-700 leading-relaxed">
               Unser Preisrechner zeigt Ihnen automatisch, welche Positionen förderrelevant sind und berechnet den geschätzten Zuschuss. Für Eigentümer ohne individuellen Sanierungsfahrplan (iSFP) prüft der Rechner zusätzlich, ob der Steuerbonus nach §35c EStG mit 20 % Steuerermäßigung die bessere Option ist.
