@@ -1,5 +1,6 @@
 # Rex Bedachungs GmbH
 > Stand: Juni 2026 | Verantwortlich: Rex Bedachungs GmbH, info@rex-bedachung.de
+> Ausführliche Version: https://www.rex-bedachung.de/llms-full.txt
 
 > Dachdecker-Meisterbetrieb in Bochum. Spezialisiert auf Steildach,
 > Flachdach, Gründach, Dachfenster (autorisierter VELUX-Partner),
