@@ -1,3 +1,16 @@
+# ─────────────────────────────────────────────────────────────────────────────
+# PRERENDERING / GEO-Hinweis (Stand: Juni 2026)
+# Diese Seite ist eine Vite + React SPA (Client-Side-Rendering). Vollständiges
+# HTML inkl. Title/Meta/JSON-LD für Crawler & KI-Agenten (GPTBot, ClaudeBot,
+# PerplexityBot, Googlebot) wird NICHT im Build erzeugt, sondern zur Laufzeit von
+# der "Netlify Prerender Extension" (Edge) ausgeliefert. Diese ist auf Site-/
+# Team-Ebene im Netlify-Dashboard aktiviert und NICHT in dieser Datei oder im
+# Repo konfiguriert.
+#   → Kein eigener Puppeteer-/react-snap-/SSG-Prerender nötig (Doppelstruktur!).
+#   → Prerender-Status/-Funktion nur über das Netlify-Dashboard prüf-/änderbar.
+#   → Statische Default-Metadaten als Fallback liegen in client/index.html.
+# ─────────────────────────────────────────────────────────────────────────────
+
 [build]
   command = "npm run build"
   publish = "dist/public"
