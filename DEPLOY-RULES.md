@@ -214,7 +214,7 @@ SSR-/Framework-Migration · Stadtteil-Seiten · separate Kosten-Seiten · Gewerb
 - „Dachreport Bochum" (zitierfähiger Datencontent, Konzept) · YouTube als GEO-Kanal.
 - Backlinks: VELUX-Händlerverzeichnis · HWK Dortmund / ZVDH · lokale Partner · Presse-Outreach.
 - GSC-Indexierung offen: `/dachreparatur-bochum`, `/dachwartung-bochum`, `/dachgaube-bochum`, `/bauklempnerei-bochum`, `/velux-preisrechner-bochum`.
-- ⚠️ **Domain-Renewal `rex-bedachungen.de`** (mit „en") — Ablauf 02.06.2026, bereits zurück. Status prüfen (extern, kein Deploy): 301-Redirect via `.htaccess` (cPanel/Apache) auf `rex-bedachung.de`; bei Ablauf bricht der Redirect.
+- ✅ **Schutz-/Tippfehlerdomain `rex-bedachungen.de`** (mit „en") — erledigt 17.06.2026. Sauberer http-**301-Redirect** auf `https://www.rex-bedachung.de/` via `.htaccess` (DomainFactory-cPanel, DocumentRoot `/root_old/htm_rex-bedachungen.de`, **separate Infra von Netlify**). Alte 2011er-Inhalte gelöscht; nur `.htaccess` + `.user.ini` verbleiben; `/.well-known/` vom Redirect ausgenommen. **Kein SSL-Zert** (bewusst, AutoSSL im DF-Tarif nicht verfügbar), **„Force HTTPS" bleibt AUS** — sonst Zert-Warnung statt Redirect. Caveat: `https://`-Direkteingabe zeigt in HTTPS-First-Browsern eine Zert-Warnung statt des Redirects (akzeptiert, ~0 Traffic). Registrierung beider Domains bis **Mitte 2027** mit Auto-Verlängerung — **kein Handlungsbedarf**.
 
 ---
 
