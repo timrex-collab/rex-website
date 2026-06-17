@@ -1,11 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
 
   <url>
     <loc>https://www.rex-bedachung.de/</loc>
     <lastmod>2026-03-17</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
+    <image:image>
+      <image:loc>https://www.rex-bedachung.de/images/dachdecker-bochum-steildach-hero.webp</image:loc>
+    </image:image>
   </url>
 
   <url>
@@ -13,6 +17,9 @@
     <lastmod>2026-03-07</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
+    <image:image>
+      <image:loc>https://www.rex-bedachung.de/images/velux-dachfenster-einbau-bochum-fachbetrieb.webp</image:loc>
+    </image:image>
   </url>
 
   <url>
@@ -20,6 +27,9 @@
     <lastmod>2026-04-22</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
+    <image:image>
+      <image:loc>https://www.rex-bedachung.de/images/flachdach-sanierung-bochum-rex-bedachung.webp</image:loc>
+    </image:image>
   </url>
 
   <url>
@@ -27,6 +37,9 @@
     <lastmod>2026-03-14</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
+    <image:image>
+      <image:loc>https://www.rex-bedachung.de/images/dachreparatur-bochum-rex-bedachung.webp</image:loc>
+    </image:image>
   </url>
 
   <url>
@@ -34,6 +47,9 @@
     <lastmod>2026-03-14</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
+    <image:image>
+      <image:loc>https://www.rex-bedachung.de/images/tondach-hero-dachdeckung-bochum.webp</image:loc>
+    </image:image>
   </url>
 
   <url>
@@ -41,6 +57,9 @@
     <lastmod>2026-03-14</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
+    <image:image>
+      <image:loc>https://www.rex-bedachung.de/images/kamin-sanierung-bochum-dachdecker.webp</image:loc>
+    </image:image>
   </url>
 
   <url>
@@ -48,6 +67,9 @@
     <lastmod>2026-03-14</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
+    <image:image>
+      <image:loc>https://www.rex-bedachung.de/images/dachdecker-inspektion-dachwartung-bochum.webp</image:loc>
+    </image:image>
   </url>
 
   <url>
@@ -55,6 +77,9 @@
     <lastmod>2026-04-24</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://www.rex-bedachung.de/images/velux-dachfenster-einbau-bochum-fachbetrieb.webp</image:loc>
+    </image:image>
   </url>
 
   <url>
@@ -62,6 +87,9 @@
     <lastmod>2026-04-24</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://www.rex-bedachung.de/images/velux-dachfenster-einbau-bochum-fachbetrieb.webp</image:loc>
+    </image:image>
   </url>
 
   <url>
@@ -69,6 +97,9 @@
     <lastmod>2026-03-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
+    <image:image>
+      <image:loc>https://www.rex-bedachung.de/images/gruendach-bochum-dachbegruenung-experten.webp</image:loc>
+    </image:image>
   </url>
 
   <url>
@@ -139,6 +170,9 @@
     <lastmod>2026-03-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://www.rex-bedachung.de/images/tondach-hero-dachdeckung-bochum.webp</image:loc>
+    </image:image>
   </url>
 
   <url>
@@ -146,6 +180,9 @@
     <lastmod>2026-03-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://www.rex-bedachung.de/images/dachgaube-bochum-stiepel.webp</image:loc>
+    </image:image>
   </url>
 
   <url>
@@ -153,6 +190,9 @@
     <lastmod>2026-03-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://www.rex-bedachung.de/images/dachsanierung-bochum-stiepel-Aufsparrendaemmung.webp</image:loc>
+    </image:image>
   </url>
 
   <url>
@@ -160,6 +200,9 @@
     <lastmod>2026-03-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://www.rex-bedachung.de/images/tondach-hero-dachdeckung-bochum.webp</image:loc>
+    </image:image>
   </url>
 
   <url>
@@ -174,6 +217,9 @@
     <lastmod>2026-03-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://www.rex-bedachung.de/images/sturmschaden-dach-bochum.webp</image:loc>
+    </image:image>
   </url>
   <url>
     <loc>https://www.rex-bedachung.de/bitumen-vs-pvc-flachdach-bochum</loc>
@@ -186,6 +232,9 @@
     <lastmod>2026-04-02</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://www.rex-bedachung.de/images/dachrinne-fallrohr-bochum.webp</image:loc>
+    </image:image>
   </url>
 
   <url>
@@ -193,6 +242,9 @@
     <lastmod>2026-04-24</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://www.rex-bedachung.de/images/velux-dachfenster-preisrechner-bochum.webp</image:loc>
+    </image:image>
   </url>
 
   <url>
@@ -206,6 +258,9 @@
     <lastmod>2026-05-13</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://www.rex-bedachung.de/images/braas-pv-premium-turmalin-header-photovoltaik-dach-bochum.webp</image:loc>
+    </image:image>
   </url>
 
 </urlset>

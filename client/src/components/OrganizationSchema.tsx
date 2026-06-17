@@ -19,8 +19,8 @@ export default function OrganizationSchema() {
         },
         "taxID": "DE124085752",
         "url": "https://www.rex-bedachung.de",
-        "logo": "https://www.rex-bedachung.de/images/logo-rex-bedachungs-gmbh-bochum-2025.webp",
-        "image": "https://www.rex-bedachung.de/images/dachdecker-bochum-steildach-hero.webp",
+        "logo": { "@id": "https://www.rex-bedachung.de/#logo" },
+        "image": { "@id": "https://www.rex-bedachung.de/#primaryimage" },
         "description": "Rex Bedachungs GmbH ist ein Dachdecker-Meisterbetrieb in Bochum mit über 40 Jahren Erfahrung. Spezialisiert auf Steildach, Flachdach, Dachfenster (VELUX), Bauklempnerei, Dachreparatur und Dachwartung.",
         "foundingYear": "1984",
         "telephone": "+49-234-583100",
@@ -83,6 +83,32 @@ export default function OrganizationSchema() {
         "name": "Rex Bedachungs GmbH",
         "publisher": { "@id": "https://www.rex-bedachung.de/#organization" },
         "inLanguage": "de-DE"
+      },
+      {
+        "@type": "ImageObject",
+        "@id": "https://www.rex-bedachung.de/#logo",
+        "url": "https://www.rex-bedachung.de/images/logo-rex-bedachungs-gmbh-bochum-2025.webp",
+        "contentUrl": "https://www.rex-bedachung.de/images/logo-rex-bedachungs-gmbh-bochum-2025.webp",
+        "caption": "Logo der Rex Bedachungs GmbH – Dachdecker-Meisterbetrieb in Bochum"
+      },
+      {
+        "@type": "ImageObject",
+        "@id": "https://www.rex-bedachung.de/#primaryimage",
+        "url": "https://www.rex-bedachung.de/images/dachdecker-bochum-steildach-hero.webp",
+        "contentUrl": "https://www.rex-bedachung.de/images/dachdecker-bochum-steildach-hero.webp",
+        "caption": "Steildach-Eindeckung durch die Rex Bedachungs GmbH in Bochum",
+        "creditText": "Rex Bedachungs GmbH",
+        "copyrightNotice": "© Rex Bedachungs GmbH",
+        "creator": { "@id": "https://www.rex-bedachung.de/#organization" },
+        "contentLocation": {
+          "@type": "Place",
+          "name": "Bochum, Nordrhein-Westfalen",
+          "geo": {
+            "@type": "GeoCoordinates",
+            "latitude": 51.46262,
+            "longitude": 7.24442
+          }
+        }
       }
     ]
   };
