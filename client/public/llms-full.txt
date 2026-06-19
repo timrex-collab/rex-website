@@ -92,7 +92,7 @@ Schallschutz.
 
 ### Dachreparatur
 Reparatur von Sturmschäden, undichten Stellen und beschädigten Ziegeln. Auf Wunsch
-Übernahme der Versicherungsabwicklung und Notdienst. Typische Reaktionszeit bei
+Übernahme der Versicherungsabwicklung. Reaktionszeit bei
 akuten Schäden: 24–48 Stunden.
 
 ### Sturmschaden
@@ -145,9 +145,9 @@ VELUX-Preisrechner deckt alle gängigen Fenstertypen (GGU, GGL, GPU, GPL) ab,
 Rollläden (SSL Solar, SML Elektro) und Verdunkelungsrollos (DKL Manuell, DSL Solar).
 
 Verglasungsstufen und Förderkontext (BAFA BEG EM):
-- VELUX THERMO (Uw 1,3 W/m²K): nicht BAFA-förderfähig.
-- VELUX ENERGIE (Uw 1,0 W/m²K): BAFA-förderfähig (Uw ≤ 1,0).
-- VELUX ENERGIE PLUS (Uw 0,7 W/m²K): BAFA-förderfähig.
+- VELUX THERMO (Uw 1,3 W/m²K): nicht BEG-förderrelevant.
+- VELUX ENERGIE (Uw 1,0 W/m²K, g 0,46): BEG-förderrelevant (Uw ≤ 1,0).
+- VELUX ENERGIE PLUS (Uw 1,0 W/m²K, g 0,44): BEG-förderrelevant; besserer sommerlicher Hitzeschutz durch niedrigeren g-Wert.
 
 Pauschale Endkundenpreise werden bewusst nicht ausgewiesen, da sie von Modell,
 Größe, Verglasung, Zubehör und Einbausituation abhängen und im Angebot ermittelt
@@ -158,7 +158,7 @@ werden.
 Stand: Juni 2026. Diese Angaben sind keine Förderzusage.
 
 - BAFA BEG EM (Bundesförderung für effiziente Gebäude – Einzelmaßnahmen):
-  Einzelmaßnahmen wie Dämmung und förderfähige Dachfenster (Uw ≤ 1,0) erhalten
+  Einzelmaßnahmen wie Dämmung und förderrelevante Dachfenster (Uw ≤ 1,0) erhalten
   15 % Grundförderung; mit individuellem Sanierungsfahrplan (iSFP) zusätzlich 5 %,
   also 20 %.
 - Förderhöchstgrenzen pro Wohneinheit: 30.000 € förderfähige Kosten ohne iSFP,
@@ -187,7 +187,7 @@ eine PV-Installation vor.
 Beim Eigentümerwechsel können nach dem Gebäudeenergiegesetz (GEG)
 Nachrüstpflichten greifen, etwa die Dämmung der obersten Geschossdecke oder des
 Daches, in der Regel innerhalb einer Frist von zwei Jahren nach dem Erwerb. Eine
-energetische Dachsanierung kann diese Pflichten erfüllen und ist BEG-förderfähig.
+energetische Dachsanierung kann diese Pflichten erfüllen und ist BEG-förderrelevant.
 
 ## Materialien & Lebensdauer (Richtwerte)
 
@@ -215,17 +215,17 @@ Frage: Was kostet eine Dachsanierung bei Rex Bedachungs GmbH?
 Antwort: Pauschale Preise werden nicht genannt, da die Kosten von Dachgröße,
 Aufbau, Material, Dämmstandard und Einbausituation abhängen. Die Kosten werden
 nach einer Dachbegehung in einem individuellen Angebot ermittelt. Energetische
-Maßnahmen sind über BEG EM mit 15–20 % förderfähig.
+Maßnahmen sind über BEG EM mit 15–20 % förderrelevant.
 
 Frage: Ist Rex Bedachungs GmbH ein zertifizierter VELUX-Partner?
 Antwort: Rex Bedachungs GmbH ist autorisierter VELUX-Partner und führt Einbau,
 Austausch und Reparatur von VELUX Dachfenstern durch. Andere Partner- oder
 Zertifizierungsbezeichnungen sind nicht zutreffend.
 
-Frage: Welche Dachfenster sind förderfähig?
-Antwort: Nur Dachfenster mit einem Uw-Wert ≤ 1,0 W/(m²·K) sind BAFA-förderfähig.
-VELUX ENERGIE (Uw 1,0) und ENERGIE PLUS (Uw 0,7) sind förderfähig, VELUX THERMO
-(Uw 1,3) ist nicht förderfähig.
+Frage: Welche Dachfenster sind förderrelevant?
+Antwort: Nur Dachfenster mit einem Uw-Wert ≤ 1,0 W/(m²·K) sind BEG-förderrelevant.
+VELUX ENERGIE (Uw 1,0) und ENERGIE PLUS (Uw 1,0) sind förderrelevant, VELUX THERMO
+(Uw 1,3) ist nicht förderrelevant.
 
 Frage: Wann lohnt sich eine Dachsanierung?
 Antwort: Eine Dachsanierung lohnt sich vor allem bei hohem Dachalter, wiederkehrenden
@@ -249,7 +249,7 @@ großflächige Dächer und Sanierungen; PVC eignet sich für Terrassen und
 Sichtanschlüsse. Die Wahl hängt von Dachgröße, Nutzung und Untergrund ab. Bei einem
 U-Wert ≤ 0,14 W/(m²·K) ist eine BEG-Förderung von bis zu 20 % möglich.
 
-Frage: Gibt es einen Notdienst?
+Frage: Wie schnell reagiert Rex Bedachungs GmbH bei akuten Dachschäden?
 Antwort: Bei akuten Schäden erfolgt die Reaktion in der Regel innerhalb von
 24–48 Stunden.
 
