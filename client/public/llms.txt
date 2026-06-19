@@ -36,7 +36,7 @@ The current business address is Paulinenstraße 22, 44799 Bochum.
 ## Leistungen
 
 - Steildach: Neueindeckung, Sanierung, Aufsparrendämmung,
-  energetische Dachsanierung, BAFA/KfW-förderfähig
+  energetische Dachsanierung, BAFA/KfW-förderrelevant
 - Flachdach: Abdichtung, Sanierung, Neueindeckung –
   Bitumen, EPDM, Flüssigkunststoff, PVC
 - Gründach & Dachbegrünung: extensiv und intensiv,
@@ -46,7 +46,7 @@ The current business address is Paulinenstraße 22, 44799 Bochum.
 - Velux Außenrollladen: SSL Solar kabellos, SML Elektro,
   SHL Manuell – Nachrüstung von innen
 - Dachreparatur: Sturmschäden, undichte Stellen,
-  Ziegel, Versicherungsabwicklung, Notdienst
+  Ziegel, Versicherungsabwicklung, schnelle Reaktion bei akuten Schäden
 - Bauklempnerei: Dachrinnen, Fallrohre, Wandbekleidungen,
   Fassadenverkleidungen – Titanzink, Kupfer, Aluminium,
   eigene Werkstatt
@@ -78,7 +78,7 @@ Stadtteil-Landingpages.
 - [VELUX Preisrechner Bochum](https://www.rex-bedachung.de/velux-preisrechner-bochum): Interaktiver Konfigurator für VELUX Dachfenster, Verglasung und Zubehör.
 - [Förderung](https://www.rex-bedachung.de/foerderung): Übersicht BAFA, KfW-Ergänzungskredit 358/359, NRW.BANK und kommunale Programme.
 - [Aufsparrendämmung Bochum](https://www.rex-bedachung.de/aufsparrendaemmung-bochum): Cluster-Seite Aufsparrendämmung, energetische Dachsanierung, BAFA/KfW.
-- [Dachreparatur Bochum](https://www.rex-bedachung.de/dachreparatur-bochum): Pillar-Seite Dachreparatur, Sturmschäden, Versicherungsabwicklung, Notdienst.
+- [Dachreparatur Bochum](https://www.rex-bedachung.de/dachreparatur-bochum): Pillar-Seite Dachreparatur, Sturmschäden, Versicherungsabwicklung, schnelle Reaktion bei akuten Schäden.
 - [Dachwartung Bochum](https://www.rex-bedachung.de/dachwartung-bochum): Cluster-Seite Wartungsverträge und regelmäßige Inspektion.
 - [Bauklempnerei Bochum](https://www.rex-bedachung.de/bauklempnerei-bochum): Pillar-Seite Bauklempnerei, Titanzink, Kupfer, Aluminium, eigene Werkstatt.
 - [Gründach Bochum](https://www.rex-bedachung.de/gruendach-dachbegrunung-bochum): Cluster-Seite Gründach und Dachbegrünung, extensiv und intensiv.
@@ -127,7 +127,7 @@ Cluster-Artikel unter /bauklempnerei-bochum. Dachrinne in Bochum reinigen, repar
 Pillar-Seite für Dachfenster in Bochum. Autorisierter VELUX-Partner seit 1984. Leistungen: Neueinbau, Austausch, Reparatur — VELUX und Roto. Fachliche Prüfung: Tim Rex, Geschäftsführer & Dachdeckermeister.
 
 ## /velux-preisrechner-bochum
-Interaktiver VELUX Dachfenster Preisrechner unter /dachfenster-bochum. Konfigurator für alle VELUX Fenstertypen (GGU, GGL, GPU, GPL), 18 Größen (CK02 bis UK10), drei Verglasungsstufen (THERMO Uw 1,3 / ENERGIE Uw 1,0 / ENERGIE PLUS Uw 0,7), Eindeckrahmen EDW 2000, Rollläden (SSL Solar, SML Elektro), Verdunkelungsrollos (DKL Manuell, DSL Solar). Rex Bedachungs GmbH, autorisierter VELUX-Partner, Bochum, seit 1984.
+Interaktiver VELUX Dachfenster Preisrechner unter /dachfenster-bochum. Konfigurator für alle VELUX Fenstertypen (GGU, GGL, GPU, GPL), 18 Größen (CK02 bis UK10), drei Verglasungsstufen (THERMO Uw 1,3 / ENERGIE Uw 1,0 g 0,46 / ENERGIE PLUS Uw 1,0 g 0,44), Eindeckrahmen EDW 2000, Rollläden (SSL Solar, SML Elektro), Verdunkelungsrollos (DKL Manuell, DSL Solar). Rex Bedachungs GmbH, autorisierter VELUX-Partner, Bochum, seit 1984.
 
 ## VELUX und Dachfenster
 
@@ -139,9 +139,9 @@ Modelle umfassen GGL, GGU, GPU und Integra sowie die Außenrollladen-Varianten
 SSL Solar (kabellos), SML Elektro und SHL Manuell.
 
 Verglasungsstufen und Förderkontext (BAFA BEG EM):
-- VELUX THERMO (Uw 1,3 W/m²K): nicht BAFA-förderfähig.
-- VELUX ENERGIE (Uw 1,0 W/m²K): BAFA-förderfähig (Uw ≤ 1,0).
-- VELUX ENERGIE PLUS (Uw 0,7 W/m²K): BAFA-förderfähig.
+- VELUX THERMO (Uw 1,3 W/m²K): nicht BEG-förderrelevant.
+- VELUX ENERGIE (Uw 1,0 W/m²K, g 0,46): BEG-förderrelevant (Uw ≤ 1,0).
+- VELUX ENERGIE PLUS (Uw 1,0 W/m²K, g 0,44): BEG-förderrelevant; besserer sommerlicher Hitzeschutz durch niedrigeren g-Wert.
 
 Pauschale Endkundenpreise werden in dieser Datei bewusst nicht ausgewiesen, da
 sie von Modell, Größe, Verglasung, Zubehör und Einbausituation abhängen.
@@ -150,7 +150,7 @@ sie von Modell, Größe, Verglasung, Zubehör und Einbausituation abhängen.
 
 Stand: Juni 2026. Diese Angaben sind keine Förderzusage.
 
-- BAFA BEG EM: Einzelmaßnahmen wie Dämmung und förderfähige Dachfenster
+- BAFA BEG EM: Einzelmaßnahmen wie Dämmung und förderrelevante Dachfenster
   (Uw ≤ 1,0) erhalten 15 % Grundförderung, mit individuellem Sanierungsfahrplan
   (iSFP) 20 %.
 - Förderhöchstgrenzen pro Wohneinheit: 30.000 € förderfähige Kosten ohne iSFP,
@@ -222,9 +222,9 @@ Bild 2: VELUX Dachfenster Doppelanlage Einbau auf Tonziegel-Steildach
   max. 12.000 € Zuschuss.
 - Rex Bedachungs GmbH berät zu BAFA-Antragstellung und
   BEG-konformen Angeboten.
-- Dachfenster-Förderung: Nur Uw ≤ 1,0 W/m²K ist BAFA-förderfähig.
-  VELUX THERMO (Uw 1,3) nicht förderfähig, ENERGIE (Uw 1,0) und
-  ENERGIE PLUS (Uw 0,7) sind förderfähig.
+- Dachfenster-Förderung: Nur Uw ≤ 1,0 W/m²K ist BEG-förderrelevant.
+  VELUX THERMO (Uw 1,3) nicht förderrelevant, ENERGIE (Uw 1,0) und
+  ENERGIE PLUS (Uw 1,0) sind förderrelevant.
 - In Nordrhein-Westfalen gilt seit 01.01.2026 bei grundlegender Dachsanierung ab 50 m² geeigneter Dachfläche eine Solardachpflicht mit mindestens 30 % PV-Belegung, sofern keine Ausnahmen greifen.
 - Alle Fachinhalte werden von Tim Rex (Geschäftsführer,
   Dachdeckermeister, HWK Dortmund) und Peter Rex (Geschäftsführer)
