@@ -149,9 +149,9 @@ function FoerderdetailsBlock() {
     ],
     no: [
       "VELUX THERMO -70 (Uw 1,3) – nicht förderrelevant",
-      "Innenliegender Sonnenschutz – nicht förderfähig",
+      "Innenliegender Sonnenschutz – nicht förderrelevant",
     ],
-    note: "Förderrelevant: VELUX ENERGIE PLUS -66 (Uw 1,0), SCHALLSCHUTZ -62 (Uw 0,96) und WÄRMEDÄMMUNG -67 (Uw 0,88). THERMO -70 (Uw 1,3) erfüllt die BEG-Anforderung nicht.",
+    note: "Förderrelevant: VELUX ENERGIE PLUS -66 (Uw 1,0 · g 0,44) und ENERGIE -84 (Uw 1,0 · g 0,46). THERMO -70 (Uw 1,3) erfüllt die BEG-Anforderung nicht.",
     req: "Förderrelevant bei Uw ≤ 1,0 W/(m²K)",
   };
 
@@ -164,11 +164,11 @@ function FoerderdetailsBlock() {
       "Energieberater (EEE) zu 50 % gefördert",
     ],
     no: [
-      "Reine Neueindeckung ohne Dämmung – nicht förderfähig",
+      "Reine Neueindeckung ohne Dämmung – nicht förderrelevant",
       "Nur GEG-Niveau (U 0,24) – kein Förderanspruch",
     ],
     note: "BEG-Mindestanforderung: U ≤ 0,14 W/(m²·K) – deutlich strenger als GEG (0,24). Gilt für Steildach und Flachdach gleichermaßen.",
-    req: "Förderfähig wenn U ≤ 0,14 W/(m²·K)",
+    req: "Förderrelevant bei U ≤ 0,14 W/(m²·K)",
   };
 
   const items = activeTab === "fenster" ? fensterItems : daemmungItems;
@@ -284,7 +284,7 @@ const schemaJson = JSON.stringify({
       "about": { "@id": "https://www.rex-bedachung.de/#organization" },
       "breadcrumb": { "@id": "https://www.rex-bedachung.de/foerderung#breadcrumb" },
       "mainEntity": { "@id": "https://www.rex-bedachung.de/foerderung#service" },
-      "primaryImageOfPage": "https://www.rex-bedachung.de/images/dach-hintergrund-rex-bedachung.webp",
+      "primaryImageOfPage": { "@id": "https://www.rex-bedachung.de/foerderung#primaryimage" },
       "inLanguage": "de-DE",
     },
     {
@@ -296,7 +296,19 @@ const schemaJson = JSON.stringify({
       "url": "https://www.rex-bedachung.de/foerderung",
       "author": { "@id": "https://www.rex-bedachung.de/#author" },
       "publisher": { "@id": "https://www.rex-bedachung.de/#organization" },
-      "image": "https://www.rex-bedachung.de/images/dach-hintergrund-rex-bedachung.webp",
+      "image": { "@id": "https://www.rex-bedachung.de/foerderung#primaryimage" },
+    },
+    {
+      "@type": "ImageObject",
+      "@id": "https://www.rex-bedachung.de/foerderung#primaryimage",
+      "url": "https://www.rex-bedachung.de/images/dach-hintergrund-rex-bedachung.webp",
+      "contentUrl": "https://www.rex-bedachung.de/images/dach-hintergrund-rex-bedachung.webp",
+      "width": 1200,
+      "height": 630,
+      "caption": "Geförderte Dachsanierung in Bochum – Rex Bedachungs GmbH",
+      "creditText": "Rex Bedachungs GmbH",
+      "copyrightNotice": "© Rex Bedachungs GmbH",
+      "creator": { "@id": "https://www.rex-bedachung.de/#organization" },
     },
     {
       "@type": "GovernmentService",
@@ -747,7 +759,7 @@ export default function Foerderung() {
             </a>
             <a href="/steildach-bochum" className="block p-5 bg-white rounded-xl border border-gray-200 hover:border-primary hover:shadow-md transition-all">
               <div className="font-semibold text-gray-900 mb-1">Steildach Sanierung</div>
-              <div className="text-sm text-gray-500">Energetische Steildachsanierung mit Aufsparrendämmung – BAFA-förderfähig.</div>
+              <div className="text-sm text-gray-500">Energetische Steildachsanierung mit Aufsparrendämmung – BEG-förderrelevant.</div>
             </a>
             <a href="/flachdach-bochum" className="block p-5 bg-white rounded-xl border border-gray-200 hover:border-primary hover:shadow-md transition-all">
               <div className="font-semibold text-gray-900 mb-1">Flachdach Abdichtung</div>

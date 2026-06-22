@@ -124,8 +124,8 @@ Claude Code verifiziert **nicht** per `curl` oder `raw.githubusercontent` (Cache
 > ENERGIE und ENERGIE PLUS haben **beide Uw 1,0** — Unterschied ist der **g-Wert**
 > (sommerlicher Hitzeschutz). WÄRMEDÄMMUNG (−67) und SCHALLSCHUTZ (−62) sind aus
 > Rechner UND Seite entfernt. Anzeige: „Uw · g". Preise = VELUX UVP ab 01.07.2026.
-> **Achtung Altlast:** In `llms.txt`/`llms-full.txt` steht für ENERGIE PLUS noch
-> fälschlich „Uw 0,7" — Korrektur eingeplant (siehe Abschnitt 10, CC-Fix).
+> **Altlast behoben:** Der frühere fälschliche „Uw 0,7"-Eintrag für ENERGIE PLUS
+> in `llms.txt`/`llms-full.txt` ist korrigiert (CC-Fix, PR #9, live seit 19.06.2026).
 
 ### Explizit ausgeschlossen (nicht vorschlagen)
 SSR-/Framework-Migration · Stadtteil-Seiten · separate Kosten-Seiten · Gewerbeseiten · SearchAction-Schema · AggregateRating on-site · EPDM-Vergleiche · Notdienst-Seite · Roto-spezifische Cluster-Seiten · eigener Puppeteer-/SSG-Prerender.
@@ -169,7 +169,7 @@ SSR-/Framework-Migration · Stadtteil-Seiten · separate Kosten-Seiten · Gewerb
 ---
 
 ## 10. Deploy-Historie & aktueller Stand
-**D1–D35 live ✅ · CC1–CC3 live ✅ (Claude-Code-Deploys) · D36 geplant.**
+**D1–D35 live ✅ · CC1–CC3 live ✅ · CC-Fix live ✅ (Claude-Code-Deploys) · D36 in Arbeit.**
 
 | Deploy | Inhalt | Status |
 |---|---|---|
@@ -178,15 +178,17 @@ SSR-/Framework-Migration · Stadtteil-Seiten · separate Kosten-Seiten · Gewerb
 | D35 | PageSpeed-Mobile (62 → 95); `richsnippet.js` deferred; `.cta-pulse` entfernt | ✅ live |
 | **CC1** (PR #4) | statische Meta-Fallbacks `index.html` + Prerender-Doku `netlify.toml` | ✅ live |
 | **CC2** (PR #5) | Bild-Sitemap `sitemap.xml` + ImageObject-Schema `OrganizationSchema.tsx` | ✅ live |
-| **CC3** (PR #6) | `llms-full.txt` + Verweis aus `llms.txt` | ✅ live (⚠️ enthält Uw-/Terminologie-Altlast) |
-| **CC-Fix** | Korrektur `llms.txt` + `llms-full.txt`: ENERGIE PLUS **Uw 1,0** (statt 0,7) · „förderrelevant"/„BEG" statt „förderfähig"/„BAFA-förderfähig" · „Notdienst" entschärfen | 🔜 geplant (Stufe B, **nach 48h-Pause**, frühestens ~19.06.2026) |
-| D36 | Content-Expansion `Foerderung.tsx` (BEG-vs-GEG-Tabelle, Solardachpflicht-Alert, iSFP-Hebel, NRW-Kombi-Block, FAQ 11–13, Hub-Link, Article-Image-Schema-Fix) | 🔜 NEXT (nach CC-Fix-Fenster) |
+| **CC3** (PR #6) | `llms-full.txt` + Verweis aus `llms.txt` | ✅ live (Uw-/Terminologie-Altlast durch CC-Fix korrigiert) |
+| **CC-Fix** (PR #9) | Korrektur `llms.txt` + `llms-full.txt`: ENERGIE PLUS **Uw 1,0** (statt 0,7) · „förderrelevant"/„BEG" statt „förderfähig"/„BAFA-förderfähig" · „Notdienst" entschärfen | ✅ live (gemergt 19.06.2026 ~20:37 UTC) |
+| D36-Content | `Foerderung.tsx`: BEG-vs-GEG-Tabelle, Solardachpflicht-Alert, iSFP-Hebel, NRW-Kombi-Block, FAQ 11–13, Hub-Link | ✅ live (über Replit-Hybrid, Commits `0c56007` / `744d5a9`; nicht als nummerierter Deploy protokolliert) |
+| **D36** (Claude Code) | `Foerderung.tsx` Article-Image-Schema-Fix (`ImageObject` `#primaryimage`, `@id`-Referenz in Article + WebPage) + Content-Audit (VELUX-Tier-Altlast bereinigt, Terminologie förderrelevant/BEG) · `DEPLOY-RULES.md`-Abgleich | 🟦 PR offen (22.06.2026, Stufe B, 2 Dateien) — Merge durch Tim |
 | D-IndexNow | IndexNow-Key + Bulk-Submit für 25 Routen; permanenter Post-Deploy-Schritt | ⏳ geplant |
 
-> **Cadence-Hinweis (17.06.2026):** CC1–CC3 sind innerhalb ~30 min gelaufen
-> (Ausnahme-Situation der Workflow-Umstellung). Ab sofort gilt das 48h-Gate
-> wieder strikt. Aktueller Deploy-Stopp bis frühestens ~19.06.2026, Wirkung in
-> GSC/Bing beobachten.
+> **Cadence-Hinweis (22.06.2026):** Das 48h-Gate gilt strikt. Letzter
+> funktionaler Merge CC-Fix (PR #9) am 19.06.2026 ~20:37 UTC → Fenster seit
+> ~21.06. ~20:37 UTC offen. D36 läuft als nächster atomarer Stufe-B-Deploy
+> (PR offen); danach D-IndexNow mit erneutem 48h-Abstand. Wirkung in GSC/Bing
+> beobachten.
 
 ### Separat live: VELUX Preisrechner Modell B (06/2026 ✅) — siehe Uw-/g-Tabelle Abschnitt 6.
 
@@ -203,12 +205,12 @@ SSR-/Framework-Migration · Stadtteil-Seiten · separate Kosten-Seiten · Gewerb
 - **`netlify.toml`:** verwaister `[[edge_functions]]` og-inject-Eintrag — beim nächsten passenden Deploy still entfernen. (CC1 hat nur einen Doku-Kommentar oben ergänzt, diesen Eintrag NICHT angefasst.)
 - **`index.html`:** evtl. stale `<link rel="preload">` für altes Hero-Image — bei nächstem Stufe-A-Deploy prüfen.
 - **`About.tsx`:** Peter-Rex-Foto (Platzhalter) — wartet auf Asset.
-- **CC-Fix** (Uw/Terminologie) abarbeiten, siehe Abschnitt 10.
+- ✅ **CC-Fix** (Uw/Terminologie) erledigt (PR #9, 19.06.2026), siehe Abschnitt 10.
 
 ---
 
 ## 13. Roadmap
-- CC-Fix → D36 → D-IndexNow (je mit 48h-Abstand).
+- ✅ CC-Fix → **D36 (in Arbeit)** → D-IndexNow (je mit 48h-Abstand).
 - KI-Sichtbarkeits-Monitoring (ChatGPT, Perplexity, Gemini, Claude).
 - Off-Site-Citation-Building (NAP-Konsistenz) · Google Business Profile · Wikidata-Entity.
 - „Dachreport Bochum" (zitierfähiger Datencontent, Konzept) · YouTube als GEO-Kanal.
@@ -232,7 +234,7 @@ SSR-/Framework-Migration · Stadtteil-Seiten · separate Kosten-Seiten · Gewerb
 | `rex-bedachungen.de` | 301-Redirect via `.htaccess` (separate Infra) |
 
 ### Sicherungs-Mechanismus (löst die frühere „Replit kann nicht pushen"-Bremse ab)
-- Claude Code committet auf Feature-Branch `claude/awesome-lamport-uzhmdl`, öffnet **PR**, Netlify baut **Preview**. **Tim merged.**
+- Claude Code committet auf Feature-Branch `claude/stoic-knuth-7a72qd`, öffnet **PR**, Netlify baut **Preview**. **Tim merged.**
 - **Kein Direct-Push auf `main`, kein Auto-Merge.** Der Merge durch Tim ist das 48h-/Freigabe-Gate.
 - 48h-Gate, Stufen-Obergrenzen, atomare Commits, `attached_assets`-Ausschluss gelten unverändert.
 - Hybrid: strukturelle/Schema-/Datei-Änderungen über Claude Code; visuelles/Layout-Probing über Replit. Nicht gleichzeitig auf derselben Datei arbeiten (Merge-Konflikte).
