@@ -169,7 +169,7 @@ SSR-/Framework-Migration · Stadtteil-Seiten · separate Kosten-Seiten · Gewerb
 ---
 
 ## 10. Deploy-Historie & aktueller Stand
-**D1–D35 live ✅ · CC1–CC3 live ✅ · CC-Fix live ✅ (Claude-Code-Deploys) · D36 in Arbeit.**
+**D1–D35 live ✅ · CC1–CC3 live ✅ · CC-Fix live ✅ · D36 live ✅ (Claude-Code-Deploys) · D-IndexNow in Arbeit.**
 
 | Deploy | Inhalt | Status |
 |---|---|---|
@@ -181,14 +181,17 @@ SSR-/Framework-Migration · Stadtteil-Seiten · separate Kosten-Seiten · Gewerb
 | **CC3** (PR #6) | `llms-full.txt` + Verweis aus `llms.txt` | ✅ live (Uw-/Terminologie-Altlast durch CC-Fix korrigiert) |
 | **CC-Fix** (PR #9) | Korrektur `llms.txt` + `llms-full.txt`: ENERGIE PLUS **Uw 1,0** (statt 0,7) · „förderrelevant"/„BEG" statt „förderfähig"/„BAFA-förderfähig" · „Notdienst" entschärfen | ✅ live (gemergt 19.06.2026 ~20:37 UTC) |
 | D36-Content | `Foerderung.tsx`: BEG-vs-GEG-Tabelle, Solardachpflicht-Alert, iSFP-Hebel, NRW-Kombi-Block, FAQ 11–13, Hub-Link | ✅ live (über Replit-Hybrid, Commits `0c56007` / `744d5a9`; nicht als nummerierter Deploy protokolliert) |
-| **D36** (Claude Code) | `Foerderung.tsx` Article-Image-Schema-Fix (`ImageObject` `#primaryimage`, `@id`-Referenz in Article + WebPage) + Content-Audit (VELUX-Tier-Altlast bereinigt, Terminologie förderrelevant/BEG) · `DEPLOY-RULES.md`-Abgleich | 🟦 PR offen (22.06.2026, Stufe B, 2 Dateien) — Merge durch Tim |
-| D-IndexNow | IndexNow-Key + Bulk-Submit für 25 Routen; permanenter Post-Deploy-Schritt | ⏳ geplant |
+| **D36** (Claude Code) | `Foerderung.tsx` Article-Image-Schema-Fix (`ImageObject` `#primaryimage`, `@id`-Referenz in Article + WebPage) + Content-Audit (VELUX-Tier-Altlast bereinigt, Terminologie förderrelevant/BEG) · `DEPLOY-RULES.md`-Abgleich | ✅ live (PR #10, gemergt 22.06.2026 ~06:44 UTC) |
+| **D-IndexNow** | IndexNow-Key-Datei `client/public/5bc5e3a3…f8a299.txt` + Submit-Skript `scripts/indexnow-submit.mjs` (`npm run indexnow:submit`): Bulk-POST der 30 indexierbaren Sitemap-URLs an `api.indexnow.org`. Manuell als permanenter Post-Deploy-Schritt (kein Build-Plugin, keine Env-Var). | 🔜 NEXT (vorbereitet auf Branch; Deploy im 48h-Fenster, Merge durch Tim) |
 
-> **Cadence-Hinweis (22.06.2026):** Das 48h-Gate gilt strikt. Letzter
-> funktionaler Merge CC-Fix (PR #9) am 19.06.2026 ~20:37 UTC → Fenster seit
-> ~21.06. ~20:37 UTC offen. D36 läuft als nächster atomarer Stufe-B-Deploy
-> (PR offen); danach D-IndexNow mit erneutem 48h-Abstand. Wirkung in GSC/Bing
-> beobachten.
+> **Cadence-Hinweis (22.06.2026):** Das 48h-Gate gilt strikt. D36 (PR #10)
+> gemergt 22.06.2026 ~06:44 UTC → nächstes Fenster frühestens ~24.06. ~06:44 UTC.
+> D-IndexNow ist der nächste Deploy. Wirkung in GSC/Bing beobachten.
+
+> **Permanenter Post-Deploy-Schritt (IndexNow):** Nach jedem funktionalen
+> Production-Deploy einmal `npm run indexnow:submit` ausführen — meldet die
+> 30 indexierbaren Sitemap-URLs an IndexNow. Bewusst manuell: kein Build-Plugin,
+> keine GitHub-Action, keine Env-Var (passt zur Merge-only-Disziplin).
 
 ### Separat live: VELUX Preisrechner Modell B (06/2026 ✅) — siehe Uw-/g-Tabelle Abschnitt 6.
 
@@ -196,7 +199,7 @@ SSR-/Framework-Migration · Stadtteil-Seiten · separate Kosten-Seiten · Gewerb
 
 ## 11. GEO / Off-Site-Arbeit (in Arbeit)
 - **Bing Webmaster Tools:** CNAME verifiziert. Nächster Schritt: Sitemap-Submission + URL-Inspection nicht indexierter Routen.
-- **IndexNow:** Key generiert, Deploy-Prompt fertig, nach D36 sequenziert.
+- **IndexNow:** Key-Datei + Submit-Skript `scripts/indexnow-submit.mjs` umgesetzt (D-IndexNow). Permanenter Post-Deploy-Schritt: `npm run indexnow:submit` nach jedem funktionalen Production-Deploy.
 - **robots.txt** (gesperrt, Stufe C): AI-Crawler-Permissions-Erweiterung; `Disallow: /impressum`-Wiedereintrag geparkt für nächsten Stufe-C-Deploy.
 
 ---
@@ -210,7 +213,7 @@ SSR-/Framework-Migration · Stadtteil-Seiten · separate Kosten-Seiten · Gewerb
 ---
 
 ## 13. Roadmap
-- ✅ CC-Fix → **D36 (in Arbeit)** → D-IndexNow (je mit 48h-Abstand).
+- ✅ CC-Fix → ✅ D36 → **D-IndexNow (vorbereitet, NEXT)** (je mit 48h-Abstand).
 - KI-Sichtbarkeits-Monitoring (ChatGPT, Perplexity, Gemini, Claude).
 - Off-Site-Citation-Building (NAP-Konsistenz) · Google Business Profile · Wikidata-Entity.
 - „Dachreport Bochum" (zitierfähiger Datencontent, Konzept) · YouTube als GEO-Kanal.
@@ -230,7 +233,7 @@ SSR-/Framework-Migration · Stadtteil-Seiten · separate Kosten-Seiten · Gewerb
 | Bing Webmaster Tools | CNAME verifiziert; Sitemap ausstehend |
 | Rich Results Test | Schema-Verifikation |
 | ProvenExpert | Review-Widget (4,48★, 13 Bewertungen), deferred seit D35 |
-| IndexNow | Key generiert |
+| IndexNow | Key-Datei + Submit-Skript (`npm run indexnow:submit`); manueller Post-Deploy-Schritt |
 | `rex-bedachungen.de` | 301-Redirect via `.htaccess` (separate Infra) |
 
 ### Sicherungs-Mechanismus (löst die frühere „Replit kann nicht pushen"-Bremse ab)
