@@ -35,6 +35,7 @@ Dach-Keywords in Bochum und im Ruhrgebiet.
 | Adresse | Paulinenstraße 22, 44799 Bochum |
 | GPS | 51.46262° N / 7.24442° E |
 | Telefon | +49 234 583100 |
+| Fax | +49 234 583137 |
 | WhatsApp | https://wa.me/49234583126 |
 | Öffnungszeiten | Mo–Fr 07:00–17:00 Uhr |
 | HRB | 2478 |
