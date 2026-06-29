@@ -169,7 +169,7 @@ SSR-/Framework-Migration · Stadtteil-Seiten · separate Kosten-Seiten · Gewerb
 ---
 
 ## 10. Deploy-Historie & aktueller Stand
-**D1–D35 live ✅ · CC1–CC3 live ✅ · CC-Fix live ✅ · D36 live ✅ (Claude-Code-Deploys) · D-IndexNow in Arbeit.**
+**D1–D35 live ✅ · CC1–CC3 live ✅ · CC-Fix live ✅ · D36 live ✅ · D-IndexNow live ✅ · D-Sitemap-Refresh live ✅ · Repo-Fix live ✅ (Claude-Code-Deploys).**
 
 | Deploy | Inhalt | Status |
 |---|---|---|
@@ -182,11 +182,14 @@ SSR-/Framework-Migration · Stadtteil-Seiten · separate Kosten-Seiten · Gewerb
 | **CC-Fix** (PR #9) | Korrektur `llms.txt` + `llms-full.txt`: ENERGIE PLUS **Uw 1,0** (statt 0,7) · „förderrelevant"/„BEG" statt „förderfähig"/„BAFA-förderfähig" · „Notdienst" entschärfen | ✅ live (gemergt 19.06.2026 ~20:37 UTC) |
 | D36-Content | `Foerderung.tsx`: BEG-vs-GEG-Tabelle, Solardachpflicht-Alert, iSFP-Hebel, NRW-Kombi-Block, FAQ 11–13, Hub-Link | ✅ live (über Replit-Hybrid, Commits `0c56007` / `744d5a9`; nicht als nummerierter Deploy protokolliert) |
 | **D36** (Claude Code) | `Foerderung.tsx` Article-Image-Schema-Fix (`ImageObject` `#primaryimage`, `@id`-Referenz in Article + WebPage) + Content-Audit (VELUX-Tier-Altlast bereinigt, Terminologie förderrelevant/BEG) · `DEPLOY-RULES.md`-Abgleich | ✅ live (PR #10, gemergt 22.06.2026 ~06:44 UTC) |
-| **D-IndexNow** | IndexNow-Key-Datei `client/public/5bc5e3a3…f8a299.txt` + Submit-Skript `scripts/indexnow-submit.mjs` (`npm run indexnow:submit`): Bulk-POST der 30 indexierbaren Sitemap-URLs an `api.indexnow.org`. Manuell als permanenter Post-Deploy-Schritt (kein Build-Plugin, keine Env-Var). | 🔜 NEXT (vorbereitet auf Branch; Deploy im 48h-Fenster, Merge durch Tim) |
+| **D-IndexNow** | IndexNow-Key-Datei `client/public/5bc5e3a3…f8a299.txt` + Submit-Skript `scripts/indexnow-submit.mjs` (`npm run indexnow:submit`): Bulk-POST der 30 indexierbaren Sitemap-URLs an `api.indexnow.org`. Manuell als permanenter Post-Deploy-Schritt (kein Build-Plugin, keine Env-Var). | ✅ live (PR #11, gemergt 26.06.2026 ~10:17 UTC; Submit HTTP 202) |
+| **D-Sitemap-Refresh** | `client/public/sitemap.xml`: 29 `lastmod`-Werte auf die echten letzten Änderungsdaten (git-verifiziert, Route→Datei gegen `App.tsx` geprüft) gesetzt — bessere Recrawl-Priorität für Google/Bing, u. a. die 5 GSC-offenen Routen | ✅ live (PR #12, gemergt 29.06.2026 ~13:02 UTC; Submit HTTP 200) |
+| **Repo-Fix** | leere 0-Byte-Datei `name="contact"` (Windows-ungültiger Pfad — `"` verboten; blockierte `git clone`/checkout auf Windows) entfernt; vom Build nicht referenziert, keine Production-Auswirkung | ✅ live (PR #13, gemergt 29.06.2026; reines Housekeeping) |
 
-> **Cadence-Hinweis (22.06.2026):** Das 48h-Gate gilt strikt. D36 (PR #10)
-> gemergt 22.06.2026 ~06:44 UTC → nächstes Fenster frühestens ~24.06. ~06:44 UTC.
-> D-IndexNow ist der nächste Deploy. Wirkung in GSC/Bing beobachten.
+> **Cadence-Hinweis (29.06.2026):** Das 48h-Gate gilt strikt. Letzte funktionale
+> Merges: D-IndexNow 26.06. ~10:17 UTC, D-Sitemap-Refresh 29.06. ~13:02 UTC
+> (Repo-Fix 29.06. = reines Housekeeping, nicht gate-relevant). Nächstes
+> funktionales Fenster frühestens ~01.07. ~13:02 UTC. Wirkung in GSC/Bing beobachten.
 
 > **Permanenter Post-Deploy-Schritt (IndexNow):** Nach jedem funktionalen
 > Production-Deploy einmal `npm run indexnow:submit` ausführen — meldet die
@@ -198,7 +201,7 @@ SSR-/Framework-Migration · Stadtteil-Seiten · separate Kosten-Seiten · Gewerb
 ---
 
 ## 11. GEO / Off-Site-Arbeit (in Arbeit)
-- **Bing Webmaster Tools:** CNAME verifiziert. Nächster Schritt: Sitemap-Submission + URL-Inspection nicht indexierter Routen.
+- **Bing Webmaster Tools:** CNAME verifiziert. Sitemap `…/sitemap.xml` eingereicht (26.06.2026, Status **Success**, 30 URLs erkannt, erster Crawl 27.06.). Hinweis: veralteter `firma.rex-bedachung.de/sitemap.xml`-Eintrag (301→www, redundant — zählt dieselben 30 URLs doppelt) kann im Bing-Dashboard entfernt werden.
 - **IndexNow:** Key-Datei + Submit-Skript `scripts/indexnow-submit.mjs` umgesetzt (D-IndexNow). Permanenter Post-Deploy-Schritt: `npm run indexnow:submit` nach jedem funktionalen Production-Deploy.
 - **robots.txt** (gesperrt, Stufe C): AI-Crawler-Permissions-Erweiterung; `Disallow: /impressum`-Wiedereintrag geparkt für nächsten Stufe-C-Deploy.
 
@@ -213,12 +216,12 @@ SSR-/Framework-Migration · Stadtteil-Seiten · separate Kosten-Seiten · Gewerb
 ---
 
 ## 13. Roadmap
-- ✅ CC-Fix → ✅ D36 → **D-IndexNow (vorbereitet, NEXT)** (je mit 48h-Abstand).
+- ✅ CC-Fix → ✅ D36 → ✅ D-IndexNow → ✅ D-Sitemap-Refresh → ✅ Repo-Fix.
 - KI-Sichtbarkeits-Monitoring (ChatGPT, Perplexity, Gemini, Claude).
 - Off-Site-Citation-Building (NAP-Konsistenz) · Google Business Profile · Wikidata-Entity.
 - „Dachreport Bochum" (zitierfähiger Datencontent, Konzept) · YouTube als GEO-Kanal.
 - Backlinks: VELUX-Händlerverzeichnis · HWK Dortmund / ZVDH · lokale Partner · Presse-Outreach.
-- GSC-Indexierung offen: `/dachreparatur-bochum`, `/dachwartung-bochum`, `/dachgaube-bochum`, `/bauklempnerei-bochum`, `/velux-preisrechner-bochum`.
+- GSC-Indexierung der 5 Routen (`/dachreparatur-bochum`, `/dachwartung-bochum`, `/dachgaube-bochum`, `/bauklempnerei-bochum`, `/velux-preisrechner-bochum`): **Indexierung am 29.06.2026 angefordert** (URL-Prüfung), unterstützt durch frisches `lastmod` aus D-Sitemap-Refresh. Status in GSC beobachten — bei „Gecrawlt, nicht indexiert" Hebel beim Inhalt/interner Verlinkung.
 - ✅ **Schutz-/Tippfehlerdomain `rex-bedachungen.de`** (mit „en") — erledigt 17.06.2026. Sauberer http-**301-Redirect** auf `https://www.rex-bedachung.de/` via `.htaccess` (DomainFactory-cPanel, DocumentRoot `/root_old/htm_rex-bedachungen.de`, **separate Infra von Netlify**). Alte 2011er-Inhalte gelöscht; nur `.htaccess` + `.user.ini` verbleiben; `/.well-known/` vom Redirect ausgenommen. **Kein SSL-Zert** (bewusst, AutoSSL im DF-Tarif nicht verfügbar), **„Force HTTPS" bleibt AUS** — sonst Zert-Warnung statt Redirect. Caveat: `https://`-Direkteingabe zeigt in HTTPS-First-Browsern eine Zert-Warnung statt des Redirects (akzeptiert, ~0 Traffic). Registrierung beider Domains bis **Mitte 2027** mit Auto-Verlängerung — **kein Handlungsbedarf**.
 
 ---
@@ -230,7 +233,7 @@ SSR-/Framework-Migration · Stadtteil-Seiten · separate Kosten-Seiten · Gewerb
 | Netlify-Connector (`leafy-sprite-bbbfd6`) | Deploy-/Build-Status, Prerender-Verifikation |
 | Replit Agent | Code-Ausführung (Hybrid); kann nicht pushen |
 | Google Search Console | URL-Prefix `https://www.rex-bedachung.de/` |
-| Bing Webmaster Tools | CNAME verifiziert; Sitemap ausstehend |
+| Bing Webmaster Tools | CNAME verifiziert; Sitemap eingereicht (Success, 30 URLs, 26.06.2026) |
 | Rich Results Test | Schema-Verifikation |
 | ProvenExpert | Review-Widget (4,48★, 13 Bewertungen), deferred seit D35 |
 | IndexNow | Key-Datei + Submit-Skript (`npm run indexnow:submit`); manueller Post-Deploy-Schritt |
