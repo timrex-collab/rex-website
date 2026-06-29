@@ -208,9 +208,9 @@ SSR-/Framework-Migration · Stadtteil-Seiten · separate Kosten-Seiten · Gewerb
 ---
 
 ## 12. Offene Housekeeping-Punkte
-- **`netlify.toml`:** verwaister `[[edge_functions]]` og-inject-Eintrag — beim nächsten passenden Deploy still entfernen. (CC1 hat nur einen Doku-Kommentar oben ergänzt, diesen Eintrag NICHT angefasst.)
-- **`index.html`:** evtl. stale `<link rel="preload">` für altes Hero-Image — bei nächstem Stufe-A-Deploy prüfen.
-- **`About.tsx`:** Peter-Rex-Foto (Platzhalter) — wartet auf Asset.
+- ✅ **`netlify.toml`:** verwaister `[[edge_functions]]`-og-inject-Eintrag — erledigt; nicht mehr in der Datei vorhanden (verifiziert 29.06.2026).
+- ✅ **`index.html`:** `<link rel="preload">` Hero-Image — verifiziert, **kein Altlast** (29.06.2026): `dachdecker-bochum-steildach-hero.webp` ist das aktuelle Homepage-LCP-Bild (`Home.tsx` `heroImage`; og:/twitter:/primaryImage identisch). Korrektes LCP-Preload mit `fetchpriority="high"` — bleibt unverändert.
+- **`About.tsx`:** Peter-Rex-Foto (Platzhalter) — wartet auf Asset (externe Abhängigkeit, kein Code-Task).
 - ✅ **CC-Fix** (Uw/Terminologie) erledigt (PR #9, 19.06.2026), siehe Abschnitt 10.
 
 ---
