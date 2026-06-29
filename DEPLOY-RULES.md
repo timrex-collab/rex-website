@@ -203,7 +203,7 @@ SSR-/Framework-Migration · Stadtteil-Seiten · separate Kosten-Seiten · Gewerb
 ## 11. GEO / Off-Site-Arbeit (in Arbeit)
 - **Bing Webmaster Tools:** CNAME verifiziert. Sitemap `…/sitemap.xml` eingereicht (26.06.2026, Status **Success**, 30 URLs erkannt, erster Crawl 27.06.). Hinweis: veralteter `firma.rex-bedachung.de/sitemap.xml`-Eintrag (301→www, redundant — zählt dieselben 30 URLs doppelt) kann im Bing-Dashboard entfernt werden.
 - **IndexNow:** Key-Datei + Submit-Skript `scripts/indexnow-submit.mjs` umgesetzt (D-IndexNow). Permanenter Post-Deploy-Schritt: `npm run indexnow:submit` nach jedem funktionalen Production-Deploy.
-- **robots.txt** (gesperrt, Stufe C): AI-Crawler-Permissions-Erweiterung; `Disallow: /impressum`-Wiedereintrag geparkt für nächsten Stufe-C-Deploy.
+- ✅ **robots.txt** (gesperrt, Stufe C): keine offenen Punkte. `Disallow: /impressum` ist live seit 27.05.2026 (Commit `ead75b0`); die KI-Crawler-Allow-Liste ist bereits breit (GPTBot, ClaudeBot, Claude-Web, Google-Extended, PerplexityBot, anthropic-ai, OAI-SearchBot). Eine Erweiterung um neuere 2026er-Agents (ChatGPT-User, Applebot-Extended, Meta-ExternalAgent, CCBot …) wäre reines Signaling — `User-agent: *` setzt bereits `Allow: /` — und ist bewusst zurückgestellt.
 
 ---
 
