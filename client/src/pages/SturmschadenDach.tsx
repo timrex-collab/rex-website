@@ -58,15 +58,6 @@ const schemaJson = JSON.stringify({
   "provider": {
     "@type": "RoofingContractor",
     "@id": "https://www.rex-bedachung.de/#organization",
-    "name": "Rex Bedachungs GmbH",
-    "address": {
-      "@type": "PostalAddress",
-      "streetAddress": "Paulinenstraße 22",
-      "addressLocality": "Bochum",
-      "postalCode": "44799",
-      "addressCountry": "DE",
-    },
-    "telephone": "+49-234-583100",
   },
   "areaServed": ["Bochum", "Herne", "Castrop-Rauxel", "Witten", "Hattingen", "Gelsenkirchen"],
   "description": "Sturmschaden am Dach in Bochum – Notsicherung, Reparatur und Schadensdokumentation für die Versicherung. Meisterbetrieb Rex Bedachungs GmbH.",

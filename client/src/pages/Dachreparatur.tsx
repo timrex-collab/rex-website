@@ -126,15 +126,6 @@ const schemaJson = JSON.stringify({
   "provider": {
     "@type": "RoofingContractor",
     "@id": "https://www.rex-bedachung.de/#organization",
-    "name": "Rex Bedachungs GmbH",
-    "address": {
-      "@type": "PostalAddress",
-      "streetAddress": "Paulinenstraße 22",
-      "addressLocality": "Bochum",
-      "postalCode": "44799",
-      "addressCountry": "DE",
-    },
-    "telephone": "+49-234-583100",
   },
   "areaServed": ["Bochum", "Wiemelhausen", "Stiepel", "Weitmar", "Querenburg", "Altenbochum", "Steinkuhl", "Ehrenfeld", "Langendreer", "Wattenscheid", "Herne", "Castrop-Rauxel", "Witten", "Hattingen", "Gelsenkirchen"],
   "description": "Dachreparatur in Bochum – Sturmschäden, undichte Dächer, Ziegel, Dachrinnen und Kaminanschlüsse. Kurzfristiger Einsatz, Versicherungsabwicklung inklusive.",
