@@ -6,27 +6,15 @@
     <meta name="keywords" content="Dachdecker, Bochum, Ruhrgebiet, Steildach, Flachdach, Dachdeckerei, Meisterbetrieb" />
 
     <!--
-      Statische Default-Metadaten als Fallback.
-      Pro Route werden Title/Description/OG/Twitter clientseitig via React Helmet
-      gesetzt und vom Netlify-Prerender für Crawler in den Quelltext geschrieben.
-      Dieser Block greift nur, falls Helmet/Prerender für eine Anfrage nicht greift.
+      Nur statische, seitenübergreifend gültige Metadaten.
+      Title/Description/Canonical/OG/Twitter werden pro Route AUSSCHLIESSLICH
+      clientseitig via React Helmet gesetzt und vom Netlify-Prerender für Crawler
+      in den Quelltext geschrieben. Sie dürfen hier NICHT zusätzlich statisch
+      stehen, sonst liefert der Prerender doppelte Tags aus (Bing-Fehler
+      "Mehr als ein Meta-Tag für die Beschreibung" / "Mehr als ein kanonisches Tag").
     -->
     <title>Dachdecker Bochum – Rex Bedachungs GmbH</title>
-    <meta name="description" content="Meisterbetrieb für Dachdeckerei in Bochum. Steildach, Flachdach, Bauklempnerei & Dachfenster – Rex Bedachungs GmbH. Jetzt Angebot anfragen." />
     <meta name="theme-color" content="#223fb4" />
-    <link rel="canonical" href="https://www.rex-bedachung.de/" />
-
-    <meta property="og:type" content="website" />
-    <meta property="og:site_name" content="Rex Bedachungs GmbH" />
-    <meta property="og:title" content="Dachdecker Bochum – Rex Bedachungs GmbH" />
-    <meta property="og:description" content="Professionelle Dachdeckerarbeiten im Ruhrgebiet. Meisterbetrieb mit 40 Jahren Erfahrung." />
-    <meta property="og:url" content="https://www.rex-bedachung.de/" />
-    <meta property="og:image" content="https://www.rex-bedachung.de/images/dachdecker-bochum-steildach-hero.webp" />
-
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="Dachdecker Bochum – Rex Bedachungs GmbH" />
-    <meta name="twitter:description" content="Professionelle Dachdeckerarbeiten im Ruhrgebiet. Meisterbetrieb mit 40 Jahren Erfahrung." />
-    <meta name="twitter:image" content="https://www.rex-bedachung.de/images/dachdecker-bochum-steildach-hero.webp" />
 
     <link rel="sitemap" type="application/xml" href="/sitemap.xml">
     <link rel="icon" type="image/png" sizes="512x512" href="/favicon.png" />
