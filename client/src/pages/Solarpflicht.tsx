@@ -158,9 +158,7 @@ export default function Solarpflicht() {
           "url": "https://www.rex-bedachung.de/solarpflicht",
           "provider": {
             "@type": "RoofingContractor",
-            "name": "Rex Bedachungs GmbH",
-            "telephone": "+49 234 583100",
-            "address": {"@type": "PostalAddress", "streetAddress": "Paulinenstraße 22", "addressLocality": "Bochum", "postalCode": "44799"}
+            "@id": "https://www.rex-bedachung.de/#organization"
           }
         }`}</script>
         <script type="application/ld+json">{JSON.stringify({
