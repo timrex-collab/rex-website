@@ -6,6 +6,7 @@ export default function Datenschutz() {
     <>
       <Helmet>
         <title>Datenschutzerklärung - Rex Bedachungs GmbH</title>
+        <meta name="description" content="Datenschutzerklärung der Rex Bedachungs GmbH aus Bochum – Informationen zur Verarbeitung personenbezogener Daten und zu Ihren Rechten gemäß DSGVO." />
         <meta name="robots" content="noindex, nofollow" />
         <link rel="canonical" href="https://www.rex-bedachung.de/datenschutz" />
         <meta property="og:site_name" content="Rex Bedachungs GmbH" />
