@@ -6,6 +6,7 @@ export default function Impressum() {
     <>
       <Helmet>
         <title>Impressum - Rex Bedachungs GmbH</title>
+        <meta name="description" content="Impressum der Rex Bedachungs GmbH – Dachdecker-Meisterbetrieb in Bochum. Anschrift, Kontakt, Geschäftsführung und rechtliche Angaben gemäß § 5 TMG." />
         <link rel="canonical" href="https://www.rex-bedachung.de/impressum" />
         <meta property="og:site_name" content="Rex Bedachungs GmbH" />
       </Helmet>
