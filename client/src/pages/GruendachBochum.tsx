@@ -191,16 +191,6 @@ export default function GruendachBochum() {
     provider: {
       "@type": "RoofingContractor",
       "@id": "https://www.rex-bedachung.de/#organization",
-      name: "Rex Bedachungs GmbH",
-      address: {
-        "@type": "PostalAddress",
-        streetAddress: "Paulinenstraße 22",
-        addressLocality: "Bochum",
-        postalCode: "44799",
-        addressCountry: "DE",
-      },
-      telephone: "+49-234-583100",
-      url: "https://rex-bedachung.de",
     },
     areaServed: [
       "Bochum", "Dortmund", "Essen", "Herne",
