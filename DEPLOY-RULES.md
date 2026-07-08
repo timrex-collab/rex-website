@@ -217,12 +217,16 @@ SSR-/Framework-Migration · Stadtteil-Seiten · separate Kosten-Seiten · Gewerb
 ---
 
 ## 13. Roadmap
-- ✅ CC-Fix → ✅ D36 → ✅ D-IndexNow → ✅ D-Sitemap-Refresh → ✅ Repo-Fix.
-- KI-Sichtbarkeits-Monitoring (ChatGPT, Perplexity, Gemini, Claude).
-- Off-Site-Citation-Building (NAP-Konsistenz) · Google Business Profile · Wikidata-Entity.
-- „Dachreport Bochum" (zitierfähiger Datencontent, Konzept) · YouTube als GEO-Kanal.
-- Backlinks: VELUX-Händlerverzeichnis · HWK Dortmund / ZVDH · lokale Partner · Presse-Outreach.
-- GSC-Indexierung der 5 Routen (`/dachreparatur-bochum`, `/dachwartung-bochum`, `/dachgaube-bochum`, `/bauklempnerei-bochum`, `/velux-preisrechner-bochum`): **Indexierung am 29.06.2026 angefordert** (URL-Prüfung), unterstützt durch frisches `lastmod` aus D-Sitemap-Refresh. Status in GSC beobachten — bei „Gecrawlt, nicht indexiert" Hebel beim Inhalt/interner Verlinkung.
+- ✅ CC-Fix → ✅ D36 → ✅ D-IndexNow → ✅ D-Sitemap-Refresh → ✅ Repo-Fix → ✅ Schema-Hygiene B1+B2 (`provider`-`@id`-Konsolidierung, 10 Service-Seiten, live 01.–03.07.2026).
+- ✅ **Off-Site-Grundlagen dokumentiert** (getrackte Repo-Dokus; externe Umsetzung durch Tim):
+  - NAP-Audit + Citation-Zielliste → `CITATIONS.md` (On-Site-NAP verifiziert konsistent, 29.06.2026).
+  - Google Business Profile → `GBP-CHECKLIST.md`.
+  - Backlinks (VELUX-Händlerverzeichnis · HWK Dortmund/ZVDH · Innung Bochum · lokale Partner · Presse) → `BACKLINKS.md`.
+  - Wikidata-Entity → `WIKIDATA.md` (nach QID-Vergabe: `sameAs`-Nachtrag in `OrganizationSchema.tsx` als eigener Stufe-B-Deploy).
+- 🔄 „Dachreport Bochum" (zitierfähiger Datencontent als Link-/GEO-Magnet) → Konzept in `DACHREPORT-KONZEPT.md`.
+- ⬜ KI-Sichtbarkeits-Monitoring (ChatGPT, Perplexity, Gemini, Claude) — bewusst zurückgestellt.
+- ⬜ YouTube als GEO-Kanal.
+- ✅ GSC-Indexierung der 5 Routen (`/dachreparatur-bochum`, `/dachwartung-bochum`, `/dachgaube-bochum`, `/bauklempnerei-bochum`, `/velux-preisrechner-bochum`): in GSC bearbeitet (Indexierung 29.06.2026 angefordert, unterstützt durch frisches `lastmod` aus D-Sitemap-Refresh).
 - ✅ **Schutz-/Tippfehlerdomain `rex-bedachungen.de`** (mit „en") — erledigt 17.06.2026. Sauberer http-**301-Redirect** auf `https://www.rex-bedachung.de/` via `.htaccess` (DomainFactory-cPanel, DocumentRoot `/root_old/htm_rex-bedachungen.de`, **separate Infra von Netlify**). Alte 2011er-Inhalte gelöscht; nur `.htaccess` + `.user.ini` verbleiben; `/.well-known/` vom Redirect ausgenommen. **Kein SSL-Zert** (bewusst, AutoSSL im DF-Tarif nicht verfügbar), **„Force HTTPS" bleibt AUS** — sonst Zert-Warnung statt Redirect. Caveat: `https://`-Direkteingabe zeigt in HTTPS-First-Browsern eine Zert-Warnung statt des Redirects (akzeptiert, ~0 Traffic). Registrierung beider Domains bis **Mitte 2027** mit Auto-Verlängerung — **kein Handlungsbedarf**.
 
 ---
