@@ -53,11 +53,12 @@ Damit wir nichts doppelt machen. Diese Audit-Punkte sind abgehakt oder per Regel
 
 ### Priorität 1 — Schutz & Hygiene (geringer Aufwand, schützt Bestehendes)
 
-- [ ] **P1.1 — Prerender-Health-Check als feste Routine** · 🔁🌐 · Aufwand niedrig · Wirkung hoch
+- [x] **P1.1 — Prerender-Health-Check als feste Routine** · 🔁🌐 · Aufwand niedrig · Wirkung hoch
   Größtes Audit-Risiko: Fällt die Netlify Prerender Extension aus, sehen Crawler/KI nur die SPA-Shell.
-  → Monatlicher Browser-Check (Tim, Bot-User-Agent/DevTools) auf **Startseite + 5 wichtigste
-  Leistungsseiten + `llms.txt` + `sitemap.xml`**: Sind Title/Meta/H1/JSON-LD ohne JS sichtbar?
-  Claude liefert dazu eine feste Mini-Checkliste (eigenes Doc oder Abschnitt in `DEPLOY-RULES.md`).
+  → **Checkliste geliefert: [`PRERENDER-CHECK.md`](./PRERENDER-CHECK.md)** — 6 Kern-URLs, objektive
+  Pass/Fail-Kriterien (Fallback-Shell hat *kein* JSON-LD/Meta/H1), 4 Browser-Methoden, Soll-Titles,
+  Eskalation. Kadenz: monatlich + einmal nach jedem funktionalen Deploy.
+  *Offen:* laufende Durchführung durch Tim (erster Lauf + Protokoll in `PRERENDER-CHECK.md` §6).
 
 - [ ] **P1.2 — Externe NAP-Altlasten bereinigen** · 🌐 · Aufwand mittel · Wirkung mittel
   Veraltete Adressen in Aggregatoren (z. B. *Brenscheder Str. 19*, *Friederikastraße 12*) verwirren
