@@ -130,6 +130,16 @@ const reasons = [
 
 const faqItems = [
   {
+    question: "Was ist eine Flachdachabdichtung?",
+    answer:
+      "Die Flachdachabdichtung ist die wasserführende Schutzschicht, die ein flach geneigtes Dach dauerhaft vor eindringender Feuchtigkeit schützt. Je nach Gebäude kommen Bitumenbahnen, Kunststoffbahnen (PVC/TPO), EPDM-Folie oder Flüssigkunststoff zum Einsatz – fachgerecht ausgeführt nach DIN 18531. In Bochum wählen wir das System passend zu Dachgröße, Nutzung und Budget.",
+  },
+  {
+    question: "Was ist der Unterschied zwischen Flachdachabdichtung und Flachdachsanierung?",
+    answer:
+      "Die Abdichtung ist die eigentliche wasserdichte Schicht des Flachdachs. Eine Flachdachsanierung ist der umfassendere Vorgang: Sie erneuert die Abdichtung und bei Bedarf auch Dämmung, Gefälle und Entwässerung – etwa bei einem undichten Dach oder zur energetischen Verbesserung. Wir prüfen vor Ort, ob eine Teilsanierung genügt oder ein Neuaufbau sinnvoll ist.",
+  },
+  {
     question: "Was kostet eine Flachdachsanierung in Bochum?",
     answer:
       "Die Kosten hängen von Fläche, Zustand und gewähltem Abdichtungssystem ab – Preis nach Aufmaß und Dachgröße. Wir erstellen Ihnen kostenlos ein genaues Aufmaß und transparentes Angebot.",
