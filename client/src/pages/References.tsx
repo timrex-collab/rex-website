@@ -198,6 +198,72 @@ const projects = [
   },
 ];
 
+const caseStudies = [
+  {
+    image: "/images/dachsanierung-schieferoptik-velux-dachfenster-photovoltaik-bochum.webp",
+    imageAlt:
+      "Dachsanierung mit anthrazitfarbenen Schiefer-Dachziegeln, VELUX-Dachfenstern und Photovoltaik – Bochum-Querenburg",
+    title: "Dachsanierung mit Schieferoptik, VELUX & Photovoltaik",
+    meta: "Bochum-Querenburg · Steildach-Sanierung · 2025",
+    situation:
+      "Modernisierung eines Wohnhauses in Bochum-Querenburg. In einem Zug sollten ein neues Erscheinungsbild, mehr Tageslicht im Dachgeschoss und die Vorbereitung für eigenen Solarstrom umgesetzt werden.",
+    work: [
+      "Neueindeckung des Steildachs in Schieferoptik mit anthrazitfarbenen Dachziegeln",
+      "Einbau einer VELUX-Dachfensteranlage für mehr Tageslicht",
+      "Integration einer Photovoltaik-Anlage in die Dachfläche",
+    ],
+    material: "Anthrazitfarbene Schiefer-Dachziegel, VELUX-Dachfenster",
+    result:
+      "Modernes, wettergeschütztes Steildach mit optimaler Belichtung und dachintegrierter Photovoltaik – ausgeführt als autorisierter VELUX-Partner.",
+    links: [
+      { href: "/dachsanierung-bochum", label: "Dachsanierung Bochum" },
+      { href: "/dach-photovoltaik-bochum", label: "Dach & Photovoltaik" },
+    ],
+  },
+  {
+    image: "/images/steildach-dachgauben-komplettsanierung-bochum-stiepel.webp",
+    imageAlt:
+      "Steildach-Komplettsanierung mit zwei großen Dachgauben und Tondachziegeln – Bochum-Stiepel",
+    title: "Steildach-Komplettsanierung mit zwei Dachgauben",
+    meta: "Bochum-Stiepel · Steildach · 2020",
+    situation:
+      "Wohnhaus in Bochum-Stiepel mit anstehender Steildach-Sanierung. Für mehr Wohnfläche und Tageslicht im Dachgeschoss waren zwei große Dachgauben vorgesehen.",
+    work: [
+      "Komplettsanierung des Steildachs",
+      "Erstellung von zwei großen Dachgauben",
+      "Neueindeckung mit hochwertigen Tondachziegeln",
+    ],
+    material: "Tondachziegel",
+    result:
+      "Dauerhaft wettergeschütztes Steildach mit zwei Gauben, die zusätzlichen Wohnraum und spürbar mehr Tageslicht im Dachgeschoss schaffen.",
+    links: [
+      { href: "/steildach-bochum", label: "Steildach Bochum" },
+      { href: "/dachgaube-bochum", label: "Dachgaube Bochum" },
+    ],
+  },
+  {
+    image: "/images/tondach-dachziegel-bochum-typ4.webp",
+    imageAlt:
+      "Neubaugebiet mit Steil- und Zeltdächern, Tondachziegeln und Zinkblech-Entwässerung – Hattingen",
+    title: "Neubaugebiet mit Steil- & Zeltdächern",
+    meta: "Hattingen · Steildach & Bauklempnerei · 2022",
+    situation:
+      "Mehrere Neubauten in einem Hattinger Neubaugebiet benötigten die komplette Dacheindeckung samt Entwässerung – außerhalb Bochums im benachbarten Hattingen.",
+    work: [
+      "Eindeckung der Steil- und Zeltdächer mit Tondachziegeln",
+      "Bauklempnerarbeiten mit hochwertigen Zinkblechen",
+      "Fachgerechte Dachentwässerung",
+    ],
+    material: "Tondachziegel, Zinkblech",
+    result:
+      "Einheitliche, langlebige Dacheindeckung mit zuverlässiger Entwässerung für die Neubauten im Einzugsgebiet rund um Bochum.",
+    links: [
+      { href: "/steildach-bochum", label: "Steildach Bochum" },
+      { href: "/bauklempnerei-bochum", label: "Bauklempnerei Bochum" },
+    ],
+  },
+];
+
 const heights = [192, 144, 176, 208, 192, 144, 176, 192, 144];
 
 export default function References() {
@@ -292,6 +358,81 @@ export default function References() {
                 );
               })}
             </div>
+        </div>
+      </section>
+
+      <section className="py-16 md:py-20 bg-muted/30">
+        <div className="max-w-7xl mx-auto px-4 md:px-6 lg:px-8">
+          <div className="max-w-3xl mb-10 md:mb-14">
+            <h2 className="text-2xl md:text-3xl font-bold mb-4">Ausgewählte Projekte im Detail</h2>
+            <p className="text-muted-foreground text-base md:text-lg leading-relaxed">
+              Drei Projekte aus Bochum und dem direkten Umland – von der Ausgangslage über die
+              ausgeführten Arbeiten und Materialien bis zum Ergebnis.
+            </p>
+          </div>
+
+          <div className="space-y-10 md:space-y-16">
+            {caseStudies.map((cs, i) => (
+              <article
+                key={i}
+                className="grid md:grid-cols-2 gap-6 md:gap-10 items-center"
+                data-testid={`case-study-${i}`}
+              >
+                <div className={`overflow-hidden rounded-lg ${i % 2 === 1 ? "md:order-2" : ""}`}>
+                  <img
+                    src={cs.image}
+                    alt={cs.imageAlt}
+                    loading="lazy"
+                    width={800}
+                    height={600}
+                    className="w-full h-full object-cover"
+                  />
+                </div>
+                <div className={i % 2 === 1 ? "md:order-1" : ""}>
+                  <p className="text-sm font-semibold text-primary uppercase tracking-wide mb-2">{cs.meta}</p>
+                  <h3 className="text-xl md:text-2xl font-bold mb-4">{cs.title}</h3>
+                  <dl className="space-y-3 text-sm md:text-base">
+                    <div>
+                      <dt className="font-semibold">Ausgangslage</dt>
+                      <dd className="text-muted-foreground">{cs.situation}</dd>
+                    </div>
+                    <div>
+                      <dt className="font-semibold">Ausgeführte Arbeiten</dt>
+                      <dd className="text-muted-foreground">
+                        <ul className="list-disc pl-5 space-y-1">
+                          {cs.work.map((w, k) => (
+                            <li key={k}>{w}</li>
+                          ))}
+                        </ul>
+                      </dd>
+                    </div>
+                    <div className="flex flex-col sm:flex-row sm:gap-8 gap-3">
+                      <div className="sm:flex-1">
+                        <dt className="font-semibold">Material</dt>
+                        <dd className="text-muted-foreground">{cs.material}</dd>
+                      </div>
+                      <div className="sm:flex-1">
+                        <dt className="font-semibold">Ergebnis</dt>
+                        <dd className="text-muted-foreground">{cs.result}</dd>
+                      </div>
+                    </div>
+                  </dl>
+                  <div className="flex flex-wrap gap-2 mt-5">
+                    {cs.links.map((l, k) => (
+                      <Link
+                        key={k}
+                        href={l.href}
+                        className="inline-flex items-center rounded-md border border-border px-3 py-1.5 text-sm font-medium hover:bg-muted transition-colors"
+                        data-testid={`case-study-${i}-link-${k}`}
+                      >
+                        {l.label}
+                      </Link>
+                    ))}
+                  </div>
+                </div>
+              </article>
+            ))}
+          </div>
         </div>
       </section>
 
