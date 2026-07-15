@@ -127,6 +127,11 @@ const vorgehen = [
 
 const faqItems = [
   {
+    question: "Was ist ein Steildach?",
+    answer:
+      "Ein Steildach ist ein geneigtes Dach mit einer Dachneigung von in der Regel etwa 20° oder mehr. Es wird mit Dachziegeln, Betondachsteinen oder Schiefer gedeckt und über eine Unterkonstruktion aus Sparren, Lattung und Unterspannbahn aufgebaut – im Unterschied zum nahezu flachen Flachdach, das abgedichtet statt gedeckt wird. In Bochum ist das Steildach die häufigste Dachform bei Wohnhäusern.",
+  },
+  {
     question: "Was kostet eine Steildach-Neueindeckung in Bochum?",
     answer:
       "Die Kosten hängen von Dachgröße, Dachform und gewähltem Material ab – Preis nach Aufmaß. Wir erstellen kostenlos ein genaues Angebot nach Besichtigung vor Ort.",
