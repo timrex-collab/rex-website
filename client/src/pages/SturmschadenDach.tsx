@@ -26,6 +26,10 @@ const leistungen = [
 
 const faqItems = [
   {
+    question: "Was zählt als Sturmschaden am Dach?",
+    answer: "Als Sturmschaden am Dach gelten Schäden, die durch Sturm ab Windstärke 8 (ca. 65 km/h) entstehen: fehlende, verschobene oder zerbrochene Dachziegel, abgedeckte Dachflächen, gelöste First- und Ortgangziegel, abgerissene Bleche oder Dachrinnen sowie Folgeschäden durch eindringendes Wasser. Auch Schäden durch umgestürzte Bäume oder herabgefallene Äste zählen dazu. Wir dokumentieren den Schaden fachgerecht für Ihre Versicherung.",
+  },
+  {
     question: "Ab welcher Windstärke spricht man von einem versicherten Sturmschaden?",
     answer: "Die Gebäudeversicherung erkennt in der Regel Schäden ab Windstärke 8 (ab ca. 65 km/h) als versicherten Sturmschaden an – das entspricht dem DWD-Warnsystem Stufe 2 (markantes Wetter). Bei niedrigeren Windstärken kann dennoch ein Schaden entstehen, der aber unterschiedlich behandelt wird. Rex dokumentiert den Schaden so, dass Ihre Versicherung alle notwendigen Informationen erhält.",
   },
@@ -98,6 +102,11 @@ export default function SturmschadenDach() {
   "@context": "https://schema.org",
   "@type": "FAQPage",
   "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Was zählt als Sturmschaden am Dach?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Als Sturmschaden am Dach gelten Schäden, die durch Sturm ab Windstärke 8 (ca. 65 km/h) entstehen: fehlende, verschobene oder zerbrochene Dachziegel, abgedeckte Dachflächen, gelöste First- und Ortgangziegel, abgerissene Bleche oder Dachrinnen sowie Folgeschäden durch eindringendes Wasser. Auch Schäden durch umgestürzte Bäume oder herabgefallene Äste zählen dazu. Wir dokumentieren den Schaden fachgerecht für Ihre Versicherung." }
+    },
     {
       "@type": "Question",
       "name": "Ab welcher Windstärke spricht man von einem versicherten Sturmschaden?",
