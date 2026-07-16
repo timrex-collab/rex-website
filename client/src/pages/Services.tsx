@@ -139,7 +139,7 @@ export default function Services() {
       <Hero
         title="Unsere Leistungen"
         subtitle="Kompetenz rund ums Dach"
-        description="Von der Neueindeckung über Sanierung bis zur Wartung – wir bieten Ihnen alle Leistungen aus einer Hand."
+        description="Von der Neueindeckung über Sanierung bis zur Wartung – Ihre Dachdeckerei in Bochum bietet alle Leistungen aus einer Hand."
         imageUrl={heroImage}
         imageFallbackUrl={heroImageFallback}
         imageAlt="Tondach Hero – professionelle Dachdeckung Bochum"
