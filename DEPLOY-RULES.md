@@ -192,10 +192,14 @@ SSR-/Framework-Migration · Stadtteil-Seiten · separate Kosten-Seiten · Gewerb
 > (Repo-Fix 29.06. = reines Housekeeping, nicht gate-relevant). Nächstes
 > funktionales Fenster frühestens ~01.07. ~13:02 UTC. Wirkung in GSC/Bing beobachten.
 
-> **Permanenter Post-Deploy-Schritt (IndexNow):** Nach jedem funktionalen
-> Production-Deploy einmal `npm run indexnow:submit` ausführen — meldet die
-> 30 indexierbaren Sitemap-URLs an IndexNow. Bewusst manuell: kein Build-Plugin,
-> keine GitHub-Action, keine Env-Var (passt zur Merge-only-Disziplin).
+> **Post-Deploy-Schritt (IndexNow) — automatisiert seit 07/2026:** Die GitHub
+> Action `.github/workflows/indexnow.yml` läuft bei jedem Push/Merge auf `main`
+> und meldet die 30 indexierbaren Sitemap-URLs via `scripts/indexnow-submit.mjs`
+> an IndexNow. Der Merge bleibt der **einzige Auslöser** — die Merge-only-Disziplin
+> bleibt gewahrt (nur die Handarbeit entfällt). Kein Secret nötig (Key ist
+> öffentlich), kein npm-Install nötig (nur Node-Boardmittel). Manueller Fallback:
+> „Run workflow" in der Actions-UI (`workflow_dispatch`) oder lokal
+> `npm run indexnow:submit`.
 
 ### Separat live: VELUX Preisrechner Modell B (06/2026 ✅) — siehe Uw-/g-Tabelle Abschnitt 6.
 
@@ -203,7 +207,7 @@ SSR-/Framework-Migration · Stadtteil-Seiten · separate Kosten-Seiten · Gewerb
 
 ## 11. GEO / Off-Site-Arbeit (in Arbeit)
 - **Bing Webmaster Tools:** CNAME verifiziert. Sitemap `…/sitemap.xml` eingereicht (26.06.2026, Status **Success**, 30 URLs erkannt, erster Crawl 27.06.). Hinweis: veralteter `firma.rex-bedachung.de/sitemap.xml`-Eintrag (301→www, redundant — zählt dieselben 30 URLs doppelt) kann im Bing-Dashboard entfernt werden.
-- **IndexNow:** Key-Datei + Submit-Skript `scripts/indexnow-submit.mjs` umgesetzt (D-IndexNow). Permanenter Post-Deploy-Schritt: `npm run indexnow:submit` nach jedem funktionalen Production-Deploy.
+- **IndexNow:** Key-Datei + Submit-Skript `scripts/indexnow-submit.mjs` (D-IndexNow). **Automatisiert seit 07/2026** über die GitHub Action `.github/workflows/indexnow.yml` (Trigger: Push/Merge auf `main`; `workflow_dispatch` für manuellen Lauf). Lokaler Fallback: `npm run indexnow:submit`.
 - ✅ **robots.txt** (gesperrt, Stufe C): keine offenen Punkte. `Disallow: /impressum` ist live seit 27.05.2026 (Commit `ead75b0`); die KI-Crawler-Allow-Liste ist bereits breit (GPTBot, ClaudeBot, Claude-Web, Google-Extended, PerplexityBot, anthropic-ai, OAI-SearchBot). Eine Erweiterung um neuere 2026er-Agents (ChatGPT-User, Applebot-Extended, Meta-ExternalAgent, CCBot …) wäre reines Signaling — `User-agent: *` setzt bereits `Allow: /` — und ist bewusst zurückgestellt.
 
 ---
@@ -241,7 +245,7 @@ SSR-/Framework-Migration · Stadtteil-Seiten · separate Kosten-Seiten · Gewerb
 | Bing Webmaster Tools | CNAME verifiziert; Sitemap eingereicht (Success, 30 URLs, 26.06.2026) |
 | Rich Results Test | Schema-Verifikation |
 | ProvenExpert | Review-Widget (4,48★, 13 Bewertungen), deferred seit D35 |
-| IndexNow | Key-Datei + Submit-Skript (`npm run indexnow:submit`); manueller Post-Deploy-Schritt |
+| IndexNow | Key-Datei + Submit-Skript; **automatisiert** via GitHub Action `.github/workflows/indexnow.yml` (Push auf `main`), Fallback `npm run indexnow:submit` |
 | `rex-bedachungen.de` | 301-Redirect via `.htaccess` (separate Infra) |
 
 ### Sicherungs-Mechanismus (löst die frühere „Replit kann nicht pushen"-Bremse ab)
