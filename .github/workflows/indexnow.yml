@@ -1,0 +1,38 @@
+name: IndexNow submit
+
+# Meldet die indexierbaren Sitemap-URLs nach jedem Merge auf main automatisch an
+# IndexNow (Bing/Yandex u. a.). Loest den bisherigen manuellen Schritt
+# `npm run indexnow:submit` ab. Der Merge auf main bleibt der einzige Ausloeser
+# -> die Merge-only-Disziplin (DEPLOY-RULES) bleibt gewahrt.
+#
+# - Kein Secret noetig: der IndexNow-Key liegt oeffentlich unter
+#   client/public/5bc5e3a3ecc3b983c8f83a2095f8a299.txt.
+# - Kein npm-Install noetig: das Skript nutzt nur Node-Boardmittel (fetch/fs/path).
+# - Manueller Fallback: "Run workflow" (workflow_dispatch) oder lokal
+#   `npm run indexnow:submit`.
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+# Ueberlappende Laeufe serialisieren (die URL-Liste ist idempotent).
+concurrency:
+  group: indexnow-submit
+  cancel-in-progress: false
+
+jobs:
+  submit:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - name: Submit sitemap URLs to IndexNow
+        run: node scripts/indexnow-submit.mjs
