@@ -68,6 +68,16 @@ const schemaJson = JSON.stringify({
   "serviceType": "Sturmschaden Dachreparatur",
 });
 
+const faqSchema = JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": faqItems.map((item) => ({
+    "@type": "Question",
+    "name": item.question,
+    "acceptedAnswer": { "@type": "Answer", "text": item.answer },
+  })),
+});
+
 export default function SturmschadenDach() {
   const [openFaq, setOpenFaq] = useState<number | null>(null);
 
@@ -98,47 +108,7 @@ export default function SturmschadenDach() {
     {"@type":"ListItem","position":3,"name":"Sturmschaden Dach Bochum","item":"https://www.rex-bedachung.de/sturmschaden-dach-bochum"}
   ]
 }`}</script>
-        <script type="application/ld+json">{`{
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  "mainEntity": [
-    {
-      "@type": "Question",
-      "name": "Was zählt als Sturmschaden am Dach?",
-      "acceptedAnswer": { "@type": "Answer", "text": "Als Sturmschaden am Dach gelten Schäden, die durch Sturm ab Windstärke 8 (ca. 65 km/h) entstehen: fehlende, verschobene oder zerbrochene Dachziegel, abgedeckte Dachflächen, gelöste First- und Ortgangziegel, abgerissene Bleche oder Dachrinnen sowie Folgeschäden durch eindringendes Wasser. Auch Schäden durch umgestürzte Bäume oder herabgefallene Äste zählen dazu. Wir dokumentieren den Schaden fachgerecht für Ihre Versicherung." }
-    },
-    {
-      "@type": "Question",
-      "name": "Ab welcher Windstärke spricht man von einem versicherten Sturmschaden?",
-      "acceptedAnswer": { "@type": "Answer", "text": "Die Gebäudeversicherung erkennt in der Regel Schäden ab Windstärke 8 (ab ca. 65 km/h, DWD Warnstufe 2 markantes Wetter) als versicherten Sturmschaden an." }
-    },
-    {
-      "@type": "Question",
-      "name": "Was tun wenn nach einem Sturm Ziegel fehlen oder das Dach undicht ist?",
-      "acceptedAnswer": { "@type": "Answer", "text": "Schaden fotografieren, Versicherung informieren, Rex anrufen für Notsicherung und dauerhafte Reparatur. Beschädigte Ziegel nicht entsorgen." }
-    },
-    {
-      "@type": "Question",
-      "name": "Übernimmt die Gebäudeversicherung die Kosten für Sturmschäden?",
-      "acceptedAnswer": { "@type": "Answer", "text": "Bei Sturmschäden ab Windstärke 8 übernimmt die Gebäudeversicherung in der Regel die Reparaturkosten abzüglich der vereinbarten Selbstbeteiligung." }
-    },
-    {
-      "@type": "Question",
-      "name": "Wie schnell können Sie nach einem Sturm kommen?",
-      "acceptedAnswer": { "@type": "Answer", "text": "In der Regel innerhalb von 24–48 Stunden für erste Beurteilung und Notsicherung." }
-    },
-    {
-      "@type": "Question",
-      "name": "Was kostet die Begutachtung und Notsicherung?",
-      "acceptedAnswer": { "@type": "Answer", "text": "Die Schadensbegutachtung vor Ort ist kostenlos. Kosten für Notsicherung und Reparatur werden in einem transparenten Angebot aufgelistet, bevor wir beginnen." }
-    },
-    {
-      "@type": "Question",
-      "name": "Kann ich den Sturmschaden auch ohne Versicherung reparieren lassen?",
-      "acceptedAnswer": { "@type": "Answer", "text": "Ja. Auch ohne Versicherungsleistung oder wenn die Selbstbeteiligung die Reparaturkosten übersteigt, führen wir die Reparatur fachgerecht aus. Wir beraten ehrlich, ob eine Meldung an die Versicherung sich lohnt." }
-    }
-  ]
-}`}</script>
+        <script type="application/ld+json">{faqSchema}</script>
         <script type="application/ld+json">{`{
   "@context": "https://schema.org",
   "@type": "HowTo",
