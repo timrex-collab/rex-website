@@ -135,7 +135,14 @@ const schemaJson = JSON.stringify({
     "@type": "RoofingContractor",
     "@id": "https://www.rex-bedachung.de/#organization",
   },
-  "areaServed": ["Bochum", "Herne", "Castrop-Rauxel", "Witten", "Hattingen", "Ruhrgebiet"],
+  "areaServed": [
+    { "@type": "City", "name": "Bochum" },
+    { "@type": "City", "name": "Herne" },
+    { "@type": "City", "name": "Castrop-Rauxel" },
+    { "@type": "City", "name": "Witten" },
+    { "@type": "City", "name": "Hattingen" },
+    { "@type": "City", "name": "Gelsenkirchen" }
+  ],
   "description": "Bauklempnerei in Bochum – maßgefertigte Dachrinnen, Fallrohre, Wandbekleidungen und Fassadenverkleidungen aus Titanzink, Kupfer und Aluminium. Eigene Werkstatt, fachgerechte Montage.",
   "offers": {
     "@type": "Offer",
@@ -184,10 +191,14 @@ export default function BauklempnereiBochum() {
     "@type": "RoofingContractor",
     "@id": "https://www.rex-bedachung.de/#organization"
   },
-  "areaServed": {
-    "@type": "City",
-    "name": "Bochum"
-  },
+  "areaServed": [
+    { "@type": "City", "name": "Bochum" },
+    { "@type": "City", "name": "Herne" },
+    { "@type": "City", "name": "Castrop-Rauxel" },
+    { "@type": "City", "name": "Witten" },
+    { "@type": "City", "name": "Hattingen" },
+    { "@type": "City", "name": "Gelsenkirchen" }
+  ],
   "serviceType": "Bauklempnerei"
 }`}</script>
         <script type="application/ld+json">{`{

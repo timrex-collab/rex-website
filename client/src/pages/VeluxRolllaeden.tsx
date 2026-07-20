@@ -129,7 +129,14 @@ const serviceSchema = JSON.stringify({
     "@type": "RoofingContractor",
     "@id": "https://www.rex-bedachung.de/#organization",
   },
-  "areaServed": ["Bochum", "Herne", "Castrop-Rauxel", "Witten", "Hattingen", "Ruhrgebiet"],
+  "areaServed": [
+    { "@type": "City", "name": "Bochum" },
+    { "@type": "City", "name": "Herne" },
+    { "@type": "City", "name": "Castrop-Rauxel" },
+    { "@type": "City", "name": "Witten" },
+    { "@type": "City", "name": "Hattingen" },
+    { "@type": "City", "name": "Gelsenkirchen" }
+  ],
   "description": "Montage und Nachrüstung von Velux Außenrollläden in Bochum – SSL Solar, SML Elektro, von innen montierbar, autorisierter VELUX-Partner.",
 });
 

@@ -70,7 +70,14 @@ const serviceSchema = JSON.stringify({
     "@type": "RoofingContractor",
     "@id": "https://www.rex-bedachung.de/#organization",
   },
-  "areaServed": ["Bochum", "Herne", "Castrop-Rauxel", "Witten", "Hattingen", "Gelsenkirchen"],
+  "areaServed": [
+    { "@type": "City", "name": "Bochum" },
+    { "@type": "City", "name": "Herne" },
+    { "@type": "City", "name": "Castrop-Rauxel" },
+    { "@type": "City", "name": "Witten" },
+    { "@type": "City", "name": "Hattingen" },
+    { "@type": "City", "name": "Gelsenkirchen" }
+  ],
   "description": "Dach für Photovoltaik vorbereiten in Bochum: Braas PV Premium (Turmalin, Tegalit) als dachintegrierte Lösung oder Vorbereitung für Aufdach-PV. Rex Bedachungs GmbH – Meisterbetrieb seit 1984.",
   "serviceType": "Dach Photovoltaik Vorbereitung",
 });

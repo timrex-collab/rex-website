@@ -188,7 +188,14 @@ const schemaJson = JSON.stringify({
       "description": "Steildach Neueindeckung und Sanierung in Bochum – Satteldach, Walmdach, Pultdach, Dämmung und Klempnerarbeiten. Meisterbetrieb mit 40+ Jahren Erfahrung im Ruhrgebiet.",
       "serviceType": "Steildachsanierung",
       "provider": { "@id": "https://www.rex-bedachung.de/#organization" },
-      "areaServed": ["Bochum", "Herne", "Castrop-Rauxel", "Witten", "Hattingen", "Gelsenkirchen", "Ruhrgebiet"],
+      "areaServed": [
+        { "@type": "City", "name": "Bochum" },
+        { "@type": "City", "name": "Herne" },
+        { "@type": "City", "name": "Castrop-Rauxel" },
+        { "@type": "City", "name": "Witten" },
+        { "@type": "City", "name": "Hattingen" },
+        { "@type": "City", "name": "Gelsenkirchen" }
+      ],
       "offers": {
         "@type": "Offer",
         "availability": "https://schema.org/InStock",
