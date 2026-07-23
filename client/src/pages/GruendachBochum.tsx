@@ -193,8 +193,12 @@ export default function GruendachBochum() {
       "@id": "https://www.rex-bedachung.de/#organization",
     },
     areaServed: [
-      "Bochum", "Dortmund", "Essen", "Herne",
-      "Gelsenkirchen", "Witten", "Hattingen", "Ruhrgebiet",
+      { "@type": "City", "name": "Bochum" },
+      { "@type": "City", "name": "Herne" },
+      { "@type": "City", "name": "Castrop-Rauxel" },
+      { "@type": "City", "name": "Witten" },
+      { "@type": "City", "name": "Hattingen" },
+      { "@type": "City", "name": "Gelsenkirchen" }
     ],
     description:
       "Planung und Einbau von extensiven und intensiven Gründächern auf Flachdächern in Bochum und dem Ruhrgebiet.",
@@ -259,10 +263,14 @@ export default function GruendachBochum() {
     "@type": "RoofingContractor",
     "@id": "https://www.rex-bedachung.de/#organization"
   },
-  "areaServed": {
-    "@type": "City",
-    "name": "Bochum"
-  },
+  "areaServed": [
+    { "@type": "City", "name": "Bochum" },
+    { "@type": "City", "name": "Herne" },
+    { "@type": "City", "name": "Castrop-Rauxel" },
+    { "@type": "City", "name": "Witten" },
+    { "@type": "City", "name": "Hattingen" },
+    { "@type": "City", "name": "Gelsenkirchen" }
+  ],
   "serviceType": "Dachbegrünung"
 }`}</script>
       </Helmet>

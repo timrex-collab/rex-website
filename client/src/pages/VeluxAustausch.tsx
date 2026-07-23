@@ -208,7 +208,14 @@ const serviceSchema = JSON.stringify({
     "@type": "RoofingContractor",
     "@id": "https://www.rex-bedachung.de/#organization",
   },
-  "areaServed": ["Bochum", "Herne", "Castrop-Rauxel", "Witten", "Hattingen", "Ruhrgebiet"],
+  "areaServed": [
+    { "@type": "City", "name": "Bochum" },
+    { "@type": "City", "name": "Herne" },
+    { "@type": "City", "name": "Castrop-Rauxel" },
+    { "@type": "City", "name": "Witten" },
+    { "@type": "City", "name": "Hattingen" },
+    { "@type": "City", "name": "Gelsenkirchen" }
+  ],
   "description": "Velux Dachfenster Austausch in Bochum – GGL, GGU, GPU und Integra, ab 1.000 €, autorisierter VELUX-Partner, kostenlose Beratung und transparentes Angebot.",
   "offers": {
     "@type": "Offer",

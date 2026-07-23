@@ -127,7 +127,14 @@ const schemaJson = JSON.stringify({
     "@type": "RoofingContractor",
     "@id": "https://www.rex-bedachung.de/#organization",
   },
-  "areaServed": ["Bochum", "Wiemelhausen", "Stiepel", "Weitmar", "Querenburg", "Altenbochum", "Steinkuhl", "Ehrenfeld", "Langendreer", "Wattenscheid", "Herne", "Castrop-Rauxel", "Witten", "Hattingen", "Gelsenkirchen"],
+  "areaServed": [
+    { "@type": "City", "name": "Bochum" },
+    { "@type": "City", "name": "Herne" },
+    { "@type": "City", "name": "Castrop-Rauxel" },
+    { "@type": "City", "name": "Witten" },
+    { "@type": "City", "name": "Hattingen" },
+    { "@type": "City", "name": "Gelsenkirchen" }
+  ],
   "description": "Dachreparatur in Bochum – Sturmschäden, undichte Dächer, Ziegel, Dachrinnen und Kaminanschlüsse. Kurzfristiger Einsatz, Versicherungsabwicklung inklusive.",
   "offers": {
     "@type": "Offer",
@@ -176,10 +183,14 @@ export default function Dachreparatur() {
     "@type": "RoofingContractor",
     "@id": "https://www.rex-bedachung.de/#organization"
   },
-  "areaServed": {
-    "@type": "City",
-    "name": "Bochum"
-  },
+  "areaServed": [
+    { "@type": "City", "name": "Bochum" },
+    { "@type": "City", "name": "Herne" },
+    { "@type": "City", "name": "Castrop-Rauxel" },
+    { "@type": "City", "name": "Witten" },
+    { "@type": "City", "name": "Hattingen" },
+    { "@type": "City", "name": "Gelsenkirchen" }
+  ],
   "serviceType": "Dachreparatur"
 }`}</script>
         <script type="application/ld+json">{`{
