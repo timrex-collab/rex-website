@@ -137,7 +137,14 @@ export default function AufsparrendaemmungBochum() {
         name: "Aufsparrendämmung Bochum",
         serviceType: "Dachdämmung Steildach",
         provider: { "@id": "https://www.rex-bedachung.de/#organization" },
-        areaServed: { "@type": "City", name: "Bochum" },
+        areaServed: [
+          { "@type": "City", "name": "Bochum" },
+          { "@type": "City", "name": "Herne" },
+          { "@type": "City", "name": "Castrop-Rauxel" },
+          { "@type": "City", "name": "Witten" },
+          { "@type": "City", "name": "Hattingen" },
+          { "@type": "City", "name": "Gelsenkirchen" }
+        ],
       },
       {
         "@type": "FAQPage",
