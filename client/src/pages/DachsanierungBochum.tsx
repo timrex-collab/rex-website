@@ -261,7 +261,14 @@ export default function DachsanierungBochum() {
               "@id": "https://www.rex-bedachung.de/dachsanierung-bochum#service",
               "serviceType": "Dachsanierung",
               "provider": { "@id": "https://www.rex-bedachung.de/#organization" },
-              "areaServed": { "@type": "City", "name": "Bochum" },
+              "areaServed": [
+                { "@type": "City", "name": "Bochum" },
+                { "@type": "City", "name": "Herne" },
+                { "@type": "City", "name": "Castrop-Rauxel" },
+                { "@type": "City", "name": "Witten" },
+                { "@type": "City", "name": "Hattingen" },
+                { "@type": "City", "name": "Gelsenkirchen" }
+              ],
               "description": "Energetische Dachsanierung in Bochum: Steildach, Flachdach, Dämmung, Dachfenster – Komplettsanierung vom Meisterbetrieb Rex Bedachungs GmbH. Bis zu 20% BAFA-Förderung."
             },
             {

@@ -93,7 +93,14 @@ const schemaJson = JSON.stringify({
     "@type": "RoofingContractor",
     "@id": "https://www.rex-bedachung.de/#organization",
   },
-  "areaServed": ["Bochum", "Herne", "Castrop-Rauxel", "Witten", "Hattingen", "Gelsenkirchen"],
+  "areaServed": [
+    { "@type": "City", "name": "Bochum" },
+    { "@type": "City", "name": "Herne" },
+    { "@type": "City", "name": "Castrop-Rauxel" },
+    { "@type": "City", "name": "Witten" },
+    { "@type": "City", "name": "Hattingen" },
+    { "@type": "City", "name": "Gelsenkirchen" }
+  ],
   "description": "Dachrinne in Bochum reinigen, reparieren oder erneuern – Rex Bedachungs GmbH, Meisterbetrieb seit 1984. Zink, Aluminium, Kupfer, alle Befestigungssysteme, Laubschutz auf Wunsch.",
   "serviceType": "Dachentwässerung",
 });
