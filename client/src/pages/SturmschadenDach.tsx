@@ -63,7 +63,14 @@ const schemaJson = JSON.stringify({
     "@type": "RoofingContractor",
     "@id": "https://www.rex-bedachung.de/#organization",
   },
-  "areaServed": ["Bochum", "Herne", "Castrop-Rauxel", "Witten", "Hattingen", "Gelsenkirchen"],
+  "areaServed": [
+    { "@type": "City", "name": "Bochum" },
+    { "@type": "City", "name": "Herne" },
+    { "@type": "City", "name": "Castrop-Rauxel" },
+    { "@type": "City", "name": "Witten" },
+    { "@type": "City", "name": "Hattingen" },
+    { "@type": "City", "name": "Gelsenkirchen" }
+  ],
   "description": "Sturmschaden am Dach in Bochum – Notsicherung, Reparatur und Schadensdokumentation für die Versicherung. Meisterbetrieb Rex Bedachungs GmbH.",
   "serviceType": "Sturmschaden Dachreparatur",
 });
