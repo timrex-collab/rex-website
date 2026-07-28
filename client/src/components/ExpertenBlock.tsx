@@ -28,6 +28,10 @@ export default function ExpertenBlock({ normen = DEFAULT_NORMEN }: ExpertenBlock
               <CheckCircle className="w-3 h-3" />
               Meisterbetrieb seit 1984
             </span>
+            <span className="inline-flex items-center gap-1 text-xs font-medium bg-green-50 text-green-800 px-2 py-0.5 rounded">
+              <CheckCircle className="w-3 h-3" />
+              Mitglied der Dachdecker-Innung Bochum
+            </span>
             {normen.map((n) => (
               <span key={n} className="text-xs bg-muted text-muted-foreground px-2 py-0.5 rounded">
                 {n}

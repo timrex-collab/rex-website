@@ -114,12 +114,40 @@ export default function About() {
 
           <div className="mb-20 bg-slate-50 rounded-md p-6 border border-slate-200">
             <h2 className="text-2xl font-bold mb-4">Offizielle Unternehmensidentität</h2>
-            <p className="text-muted-foreground leading-relaxed">
-              Die Rex Bedachungs GmbH ist ein seit 1984 bestehender Dachdecker-Meisterbetrieb
-              mit alleinigem Unternehmenssitz in der Paulinenstraße 22 in 44799 Bochum.
-              Die Gesellschaft ist beim Amtsgericht Bochum unter HRB 2478 im Handelsregister
-              eingetragen. Geschäftsführer sind Peter Rex und Tim Rex.
-            </p>
+            <div className="flex flex-col sm:flex-row sm:items-start gap-6">
+              <div className="flex-1">
+                <p className="text-muted-foreground leading-relaxed">
+                  Die Rex Bedachungs GmbH ist ein seit 1984 bestehender Dachdecker-Meisterbetrieb
+                  mit alleinigem Unternehmenssitz in der Paulinenstraße 22 in 44799 Bochum.
+                  Die Gesellschaft ist beim Amtsgericht Bochum unter HRB 2478 im Handelsregister
+                  eingetragen. Geschäftsführer sind Peter Rex und Tim Rex.
+                </p>
+                <p className="text-muted-foreground leading-relaxed mt-4">
+                  Als <strong className="font-semibold text-foreground">Mitglied der Dachdecker-Innung Bochum</strong> arbeitet
+                  die Rex Bedachungs GmbH nach den Fachregeln des Deutschen Dachdeckerhandwerks (ZVDH-Regelwerk).
+                  Der Betrieb ist in der Handwerksrolle der Handwerkskammer Dortmund eingetragen, bei der auch der
+                  Meistertitel verankert ist. Die Mitgliedschaft ist öffentlich einsehbar im{" "}
+                  <a
+                    href="https://www.dachdecker-innung-bochum.de/unternehmen/details/rex-bedachungen-gmbh"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-primary underline underline-offset-2 hover:no-underline"
+                    data-testid="link-innung-verifizierung"
+                  >
+                    Verzeichnis der Dachdecker-Innung Bochum
+                  </a>.
+                </p>
+              </div>
+              <img
+                src="/images/logo-dachdecker-innung-bochum.png"
+                alt="Logo der Dachdecker-Innung – Rex Bedachungs GmbH ist Mitglied der Dachdecker-Innung Bochum"
+                width={709}
+                height={560}
+                loading="lazy"
+                className="w-24 h-auto shrink-0 self-start"
+                data-testid="img-innung-logo"
+              />
+            </div>
           </div>
 
           {/* Geschäftsführer */}
