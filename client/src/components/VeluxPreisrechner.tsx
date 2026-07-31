@@ -74,12 +74,12 @@ function buildPdfHtml(details, totals, foerderung, kunde) {
       <table>
         <tr><td>Förderfähige Kosten (brutto)</td><td class="r"><strong>${fmt(totals.foerderBrutto)} €</strong></td></tr>
         ${totals.foerderBrutto>totals.bafaMaxBrutto?`<tr class="muted"><td>Förderhöchstbetrag pro WE/Jahr</td><td class="r">${fmt(totals.bafaMaxBrutto)} €</td></tr>`:""}
-        <tr><td>Fördersatz</td><td class="r"><strong>${totals.hasIsfp?"20% (15% + 5% iSFP-Bonus)":"15%"}</strong></td></tr>
+        <tr><td>Fördersatz</td><td class="r"><strong>${totals.bafaRateLabel}</strong></td></tr>
         <tr><td><strong>Geschätzter BAFA-Zuschuss</strong></td><td class="r foerder-amount">− ${fmt(totals.bafaFoerder)} €</td></tr>
       </table>
       <p class="small" style="margin-top:8px"><strong>KfW Ergänzungskredit 358/359:</strong> Nach BAFA-Zusage ist zusätzlich ein zinsvergünstigter Kredit bis 120.000 € pro WE möglich.</p>
-      <p class="small"><strong>Fachplanung:</strong> 50% Zuschuss für den Energieeffizienz-Experten (bis 5.000 € bei EFH) — separater Fördertopf.</p>
-      ${!totals.hasIsfp?`<p class="small"><strong>Tipp:</strong> Mit einem iSFP (Eigenanteil ca. 400–500 €) steigt der Fördersatz auf 20% und der Höchstbetrag auf 60.000 €.</p>`:""}
+      <p class="small"><strong>Fachplanung:</strong> 50% Zuschuss für den Energieeffizienz-Experten auf förderrelevante Kosten bis 5.000 € bei EFH/ZFH (max. 2.500 €) — separater Fördertopf.</p>
+      ${!totals.hasIsfp?`<p class="small"><strong>Hinweis zum iSFP:</strong> Seit 21.07.2026 hebt der individuelle Sanierungsfahrplan die Obergrenze der förderrelevanten Kosten auf 60.000 € an. Der Bonus von 5 Prozentpunkten greift jedoch nur auf den Kostenanteil über 30.000 € — bei diesem Vorhabensvolumen bringt er beim Fördersatz keinen Vorteil.</p>`:""}
       ${totals.hasIneligible?`<p class="small" style="color:#92400e"><strong>Hinweis:</strong> Positionen mit THERMO-Verglasung (Uw 1,3) sind nicht förderrelevant. Die BEG-Förderung erfordert Uw ≤ 1,0 W/m²K.</p>`:""}
       <table class="total-table" style="margin-top:10px;border-top:1px solid #a7f3d0;padding-top:8px">
         <tr><td>Gesamtkosten brutto (inkl. MwSt.)</td><td class="r">${fmt(totals.totalBrutto)} €</td></tr>
@@ -87,10 +87,10 @@ function buildPdfHtml(details, totals, foerderung, kunde) {
         <tr><td><strong>Ihre tatsächliche Investition</strong></td><td class="r"><strong>ab ${fmt(totals.investitionBrutto)} €</strong></td></tr>
       </table>
     </div>
-    ${!totals.hasIsfp&&totals.steuerBonus>0?`
+    ${totals.steuerBonus>totals.bafaFoerder?`
     <div class="foerder-box" style="background:#eff6ff;border-color:#bfdbfe;margin-top:12px">
       <h3 style="color:#1d4ed8">Empfehlung: Steuerbonus §35c EStG</h3>
-      <p style="font-size:10px;color:#1e40af;margin-bottom:8px">Ohne Energieberater und iSFP ist der Steuerbonus oft die bessere Wahl: <strong>20% Steuerermäßigung</strong> — 5 Prozentpunkte mehr als BAFA ohne iSFP. Kein Energieeffizienz-Experte nötig, weniger Aufwand.</p>
+      <p style="font-size:10px;color:#1e40af;margin-bottom:8px">Seit der BEG-Reform vom 21.07.2026 greift der iSFP-Bonus nur noch oberhalb von 30.000 €. Bei diesem Vorhabensvolumen liegt der Steuerbonus mit <strong>20% Steuerermäßigung</strong> über dem BAFA-Zuschuss — und kommt ohne Energieeffizienz-Experten und ohne Antragsverfahren aus.</p>
       <table>
         <tr><td>Steuerermäßigung gesamt (20%)</td><td class="r"><strong>${fmt(totals.steuerBonus)} €</strong></td></tr>
         <tr class="muted"><td>Jahr 1 (7%) / Jahr 2 (7%) / Jahr 3 (6%)</td><td class="r">${fmt(totals.steuerJahr1)} / ${fmt(totals.steuerJahr2)} / ${fmt(totals.steuerJahr3)} €</td></tr>
@@ -328,7 +328,7 @@ function Step1({positions,setPositions}){
 }
 
 function Step2({foerderung,setFoerderung}){
-  const qs=[{key:"altbau",label:"Ist das Gebäude älter als 5 Jahre?",hint:"Grundvoraussetzung für BAFA- und KfW-Förderung"},{key:"sanierung",label:"Erfolgt der Einbau im Rahmen einer energetischen Sanierung?",hint:"Fensteraustausch mit verbessertem Uw-Wert"},{key:"isfp",label:"Liegt ein individueller Sanierungsfahrplan (iSFP) vor?",hint:"Erhöht den Fördersatz um 5 Prozentpunkte und die max. förderfähigen Kosten"}];
+  const qs=[{key:"altbau",label:"Ist das Gebäude älter als 5 Jahre?",hint:"Grundvoraussetzung für BAFA- und KfW-Förderung"},{key:"sanierung",label:"Erfolgt der Einbau im Rahmen einer energetischen Sanierung?",hint:"Fensteraustausch mit verbessertem Uw-Wert"},{key:"isfp",label:"Liegt ein individueller Sanierungsfahrplan (iSFP) vor?",hint:"Hebt die Obergrenze der förderrelevanten Kosten auf 60.000 €; +5 Prozentpunkte nur auf den Anteil über 30.000 €"}];
   return(<div className="space-y-5">
     <div className="bg-blue-50 border border-blue-200 rounded-xl p-4 flex gap-3"><Info className="w-5 h-5 text-blue-600 shrink-0 mt-0.5"/><div className="text-sm text-blue-800"><span className="font-semibold">Fördermittel-Check:</span> Wir prüfen BAFA-Einzelmaßnahme (BEG EM) und KfW-Ergänzungskredit und zeigen Ihnen die beste Option.</div></div>
     {qs.map((q,i)=>(<div key={q.key} className="bg-white border border-slate-200 rounded-xl p-5">
@@ -375,7 +375,6 @@ function Step3({positions,foerderung}){
   // Nur Fenster mit Uw ≤ 1,0 W/(m²·K) sind förderrelevant → ENERGIE + ENERGIE PLUS, NICHT THERMO
   const eligible=foerderung.altbau==="ja"&&foerderung.sanierung==="ja";
   const hasIsfp=foerderung.isfp==="ja";
-  const bafaRate=eligible?(hasIsfp?0.20:0.15):0;
   const bafaMaxBrutto=hasIsfp?60000:30000; // Cap pro WE/Jahr auf Bruttokosten
 
   // Förderfähige Positionen: nur ENERGIE (E) oder ENERGIE PLUS (P)
@@ -385,7 +384,18 @@ function Step3({positions,foerderung}){
   const foerderNetto=eligibleDetails.reduce((s,d)=>s+d.matPos+d.labPos,0);
   const foerderBrutto=Math.round(foerderNetto*1.19);
   const bafaBasis=Math.min(foerderBrutto,bafaMaxBrutto);
-  const bafaFoerder=eligible&&foerderBrutto>0?Math.round(bafaBasis*bafaRate):0;
+
+  // BEG EM seit 21.07.2026: 15 % Grundförderung; der iSFP-Bonus von 5 Prozentpunkten
+  // greift nur auf den Kostenanteil oberhalb von 30.000 €.
+  const ISFP_SCHWELLE=30000;
+  const isfpBonusBasis=hasIsfp?Math.max(0,bafaBasis-ISFP_SCHWELLE):0;
+  const isfpBonus=Math.round(isfpBonusBasis*0.05);
+  const bafaFoerder=eligible&&foerderBrutto>0?Math.round(bafaBasis*0.15)+isfpBonus:0;
+  // Effektiver Mischsatz für die Anzeige (z. B. 15,0 % / 17,5 %)
+  const bafaRateEffektiv=bafaBasis>0?bafaFoerder/bafaBasis:0;
+  const bafaRateLabel=isfpBonus>0
+    ? `${(bafaRateEffektiv*100).toLocaleString("de-DE",{maximumFractionDigits:1})} % (15 % + 5 % iSFP-Bonus auf den Anteil über ${fmt(ISFP_SCHWELLE)} €)`
+    : "15 %";
 
   // §35c EStG: 20% Steuerermäßigung über 3 Jahre (7%+7%+6%), kein Energieberater nötig
   // Voraussetzung: selbstgenutztes Wohneigentum, Gebäude ≥ 10 Jahre alt
@@ -399,7 +409,7 @@ function Step3({positions,foerderung}){
   const investitionBrutto=totalBrutto-bafaFoerder;
   const investitionSteuer=totalBrutto-steuerBonus;
   const kundeValid=kunde.name.trim().length>1&&(kunde.email.trim().includes("@")||kunde.telefon.trim().length>5);
-  const totals={totalMat,totalLab,totalNetto,mwst,totalBrutto,eligible,hasIsfp,bafaRate,bafaMaxBrutto,bafaFoerder,foerderBrutto,foerderNetto,hasIneligible,investitionBrutto,steuerBonus,steuerJahr1,steuerJahr2,steuerJahr3,investitionSteuer};
+  const totals={totalMat,totalLab,totalNetto,mwst,totalBrutto,eligible,hasIsfp,bafaRateEffektiv,bafaRateLabel,isfpBonus,bafaMaxBrutto,bafaFoerder,foerderBrutto,foerderNetto,hasIneligible,investitionBrutto,steuerBonus,steuerJahr1,steuerJahr2,steuerJahr3,investitionSteuer};
 
   const handlePdf=useCallback(()=>{
     const html=buildPdfHtml(details,totals,foerderung,kunde);
@@ -415,13 +425,13 @@ function Step3({positions,foerderung}){
       if(d.blindQty>0)t+=` + ${d.blindQty}x ${BLINDS[d.blind].short}`;
       t+=`\n  Material: ${fmt(d.matPos)} EUR | Einbau: ab ${fmt(d.labPos)} EUR`;
       return t;}).join("");
-    const ft=eligible&&bafaFoerder>0?`\n\nMoegl. BAFA-Foerderung (${Math.round(bafaRate*100)}%): ca. ${fmt(bafaFoerder)} EUR\nFoerderfaehige Bruttokosten: ${fmt(foerderBrutto)} EUR\nIhre tatsaechliche Investition: ab ${fmt(investitionBrutto)} EUR`:"";
+    const ft=eligible&&bafaFoerder>0?`\n\nMoegl. BAFA-Foerderung (BEG EM, Stand 21.07.2026): ca. ${fmt(bafaFoerder)} EUR\nFoerderrelevante Bruttokosten: ${fmt(foerderBrutto)} EUR\nIhre tatsaechliche Investition: ab ${fmt(investitionBrutto)} EUR`:"";
     const ad=kunde.strasse?`\nStrasse: ${kunde.strasse}`:"";
     const po=(kunde.plz||kunde.ort)?`\nPLZ/Ort: ${kunde.plz} ${kunde.ort}`:"";
     const subject=encodeURIComponent(`Angebotsanfrage VELUX Dachfenster – ${kunde.name.trim()}`);
     const body=encodeURIComponent(`Guten Tag,\n\nich moechte ein unverbindliches Angebot anfragen.\nDie detaillierte Kostenschaetzung ist als PDF beigefuegt.\n${posText}\n\nGesamt: ab ${fmt(totalNetto)} EUR netto (${fmt(totalBrutto)} EUR brutto inkl. MwSt.)${ft}\n\nKontaktdaten:\nName: ${kunde.name}${ad}${po}\nE-Mail: ${kunde.email}\nTelefon: ${kunde.telefon}${kunde.nachricht?`\nAnmerkung: ${kunde.nachricht}`:""}\n\nMit freundlichen Gruessen\n${kunde.name}`);
     return`mailto:info@rex-bedachung.de?subject=${subject}&body=${body}`;
-  },[details,totals,eligible,bafaRate,bafaFoerder,foerderBrutto,investitionBrutto,totalNetto,totalBrutto,kunde]);
+  },[details,totals,eligible,bafaFoerder,foerderBrutto,investitionBrutto,totalNetto,totalBrutto,kunde]);
 
   const buildKonfigText = () => {
     return details.map((d, i) =>
@@ -546,7 +556,7 @@ function Step3({positions,foerderung}){
                   <div className="space-y-1.5 text-sm mb-3">
                     <div className="flex justify-between"><span className="text-emerald-700">Förderfähige Kosten (brutto)</span><span className="font-semibold text-emerald-800">{fmt(foerderBrutto)} €</span></div>
                     {foerderBrutto>bafaMaxBrutto&&<div className="flex justify-between text-xs text-emerald-600"><span>Förderhöchstbetrag pro WE/Jahr</span><span>{fmt(bafaMaxBrutto)} €</span></div>}
-                    <div className="flex justify-between"><span className="text-emerald-700">Fördersatz</span><span className="font-semibold text-emerald-800">{hasIsfp?"20% (15% + 5% iSFP-Bonus)":"15%"}</span></div>
+                    <div className="flex justify-between gap-3"><span className="text-emerald-700 flex-shrink-0">Fördersatz</span><span className="font-semibold text-emerald-800 text-right">{bafaRateLabel}</span></div>
                   </div>
                   <div className="flex justify-between items-center py-2 border-t border-b border-emerald-200">
                     <span className="font-bold text-emerald-900">Geschätzter BAFA-Zuschuss</span>
@@ -554,8 +564,8 @@ function Step3({positions,foerderung}){
                   </div>
                   <div className="text-xs text-emerald-600 bg-emerald-100/60 rounded-lg p-2.5 mt-3 space-y-1">
                     <p><span className="font-semibold">KfW Ergänzungskredit 358/359:</span> Nach BAFA-Zusage ist zusätzlich ein zinsvergünstigter Kredit bis 120.000 € pro WE möglich. Bei Haushaltseinkommen ≤ 90.000 € besonders günstige Konditionen.</p>
-                    <p><span className="font-semibold">Fachplanung:</span> 50% Zuschuss für den Energieeffizienz-Experten (bis 5.000 € bei EFH) — separater Fördertopf.</p>
-                    {!hasIsfp&&<p><span className="font-semibold">Tipp:</span> Mit einem iSFP (Eigenanteil ca. 400–500 €) steigt der Fördersatz auf 20% und der Höchstbetrag auf 60.000 €.</p>}
+                    <p><span className="font-semibold">Fachplanung:</span> 50% Zuschuss für den Energieeffizienz-Experten auf förderrelevante Kosten bis 5.000 € bei EFH/ZFH (max. 2.500 €) — separater Fördertopf.</p>
+                    {!hasIsfp&&<p><span className="font-semibold">Hinweis zum iSFP:</span> Seit 21.07.2026 hebt der individuelle Sanierungsfahrplan nur noch die Obergrenze der förderrelevanten Kosten auf 60.000 € an. Der Bonus von 5 Prozentpunkten greift ausschließlich auf den Kostenanteil über 30.000 € — bei diesem Vorhabensvolumen bringt er beim Fördersatz keinen Vorteil.</p>}
                   </div>
                   <div className="border-t border-emerald-200 pt-3 mt-3">
                     <div className="flex justify-between items-center mb-1"><span className="text-sm text-emerald-700">Gesamtkosten brutto (inkl. MwSt.)</span><span className="text-sm text-emerald-700">{fmt(totalBrutto)} €</span></div>
@@ -567,11 +577,11 @@ function Step3({positions,foerderung}){
                   </div>
 
                   {/* §35c Steuerbonus — Empfehlung wenn kein iSFP */}
-                  {!hasIsfp&&steuerBonus>0&&(
+                  {steuerBonus>bafaFoerder&&(
                     <div className="mt-4 bg-blue-50 border border-blue-200 rounded-xl p-4">
                       <div className="text-xs font-semibold text-blue-700 uppercase tracking-wider mb-2">Empfehlung: Steuerbonus §35c EStG</div>
                       <p className="text-sm text-blue-800 mb-3">
-                        Ohne Energieberater und iSFP ist der <strong>Steuerbonus nach §35c EStG oft die bessere Wahl</strong>: 20% Steuerermäßigung — 5 Prozentpunkte mehr als die BAFA-Förderung ohne iSFP. Kein Energieeffizienz-Experte erforderlich, kein BAFA-Antrag, weniger Aufwand.
+                        Seit der BEG-Reform vom 21.07.2026 greift der iSFP-Bonus nur noch auf Kosten oberhalb von 30.000 €. Bei diesem Vorhabensvolumen ist der <strong>Steuerbonus nach §35c EStG rechnerisch die stärkere Variante</strong>: 20% Steuerermäßigung statt 15% BAFA-Zuschuss, ohne Energieeffizienz-Experten und ohne BAFA-Antrag. Er wirkt allerdings erst über drei Steuerjahre und setzt eine ausreichende Steuerschuld voraus.
                       </p>
                       <div className="space-y-1.5 text-sm mb-3">
                         <div className="flex justify-between"><span className="text-blue-700">Steuerermäßigung gesamt (20%)</span><span className="font-bold text-blue-800">{fmt(steuerBonus)} €</span></div>

@@ -61,7 +61,7 @@ const matrixRows = [
   { kriterium: "Heizkosten", reparatur: "konstant", sanierung: "steigen jährlich" },
   { kriterium: "Dachstuhl", reparatur: "trocken, intakt", sanierung: "Feuchtigkeit, Holzschäden" },
   { kriterium: "Optik", reparatur: "gleichmäßig", sanierung: "Moos, Verfärbungen, lose Ziegel" },
-  { kriterium: "Förderfähigkeit", reparatur: "meist nein (zu klein)", sanierung: "ja, BEG bis 20 %" },
+  { kriterium: "Förderfähigkeit", reparatur: "meist nein (zu klein)", sanierung: "ja, BEG EM ab 15 %" },
 ];
 
 const wirtschaftlichkeitFaktoren = [
@@ -82,7 +82,7 @@ const foerderungBlocks = [
   {
     icon: <ScrollText className="w-7 h-7 text-primary" />,
     title: "iSFP-Bonus",
-    text: "Der individuelle Sanierungsfahrplan, erstellt von einem zugelassenen Energieeffizienz-Experten, erhöht den BEG-Zuschuss um 5 Prozentpunkte und verbessert die förderfähige Obergrenze pro Wohneinheit. Für Eigentümer, die mehrere Sanierungsschritte planen, ist der iSFP nahezu immer wirtschaftlich vorteilhaft.",
+    text: "Der individuelle Sanierungsfahrplan, erstellt von einem zugelassenen Energieeffizienz-Experten, verdoppelt die Obergrenze der förderrelevanten Kosten von 30.000 € auf 60.000 € je Wohneinheit. Der Bonus von 5 Prozentpunkten greift seit der BEG-Reform vom 21.07.2026 nur noch auf den Kostenanteil oberhalb von 30.000 €. Für eine größere Komplettsanierung bleibt der iSFP damit wirtschaftlich, für kleine Einzelmaßnahmen lohnt er sich nicht mehr.",
   },
   {
     icon: <Building className="w-7 h-7 text-primary" />,
@@ -100,7 +100,7 @@ const wartenBlocks = [
   {
     icon: <ScrollText className="w-7 h-7 text-primary" />,
     title: "GEG-Nachrüstpflichten bei Eigentümerwechsel",
-    text: "Das Gebäudeenergiegesetz (GEG) verpflichtet bei Eigentümerwechsel zur Nachrüstung der obersten Geschossdecke beziehungsweise des Dachs auf Mindestdämmstandard. Die Frist beträgt zwei Jahre nach Eigentümerübergang. Wer früher saniert, vermeidet Termindruck und kann förderoptimal planen.",
+    text: "Das Gebäudemodernisierungsgesetz (GModG), seit Juli 2026 Nachfolger des GEG, verpflichtet bei Eigentümerwechsel unverändert zur Nachrüstung der obersten Geschossdecke beziehungsweise des Dachs auf Mindestdämmstandard. Die Frist beträgt zwei Jahre nach Eigentümerübergang. Wer früher saniert, vermeidet Termindruck und kann förderoptimal planen.",
   },
   {
     icon: <SunMedium className="w-7 h-7 text-primary" />,
@@ -133,7 +133,7 @@ const faqItems = [
   {
     question: "Wie viel Förderung gibt es 2026 für eine Dachsanierung?",
     answer:
-      "Über die BEG EM bis zu 20 Prozent Zuschuss vom BAFA — 15 Prozent Grundförderung plus 5 Prozent iSFP-Bonus. Maximal 60.000 Euro förderfähige Kosten pro Wohneinheit und Kalenderjahr.",
+      "Über die BEG EM 15 Prozent Grundförderung vom BAFA. Mit individuellem Sanierungsfahrplan steigt die Obergrenze der förderrelevanten Kosten auf 60.000 Euro pro Wohneinheit und Kalenderjahr; der iSFP-Bonus von 5 Prozentpunkten greift seit 21.07.2026 nur auf den Anteil über 30.000 Euro. Maximal sind damit 10.500 Euro Zuschuss möglich.",
   },
   {
     question: "Was ist der iSFP und warum ist er wichtig?",

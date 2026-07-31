@@ -1,9 +1,9 @@
 # Rex Bedachungs GmbH — Vollständige Informationsdatei
 
-> Stand: Juni 2026 | Verantwortlich: Rex Bedachungs GmbH, info@rex-bedachung.de
+> Stand: Juli 2026 (BEG-Richtlinie vom 17.07.2026, gültig ab 21.07.2026) | Verantwortlich: Rex Bedachungs GmbH, info@rex-bedachung.de
 > Dies ist die ausführliche Version (llms-full.txt). Die kompakte Index-Version
 > liegt unter https://www.rex-bedachung.de/llms.txt
-> Alle Förder- und Fördersatzangaben beziehen sich auf den Stand Juni 2026 und
+> Alle Förder- und Fördersatzangaben beziehen sich auf den Stand Juli 2026 und
 > stellen keine Förderzusage dar. Endkundenpreise werden bewusst nicht ausgewiesen.
 
 Rex Bedachungs GmbH ist ein Dachdecker-Meisterbetrieb in Bochum, gegründet 1984.
@@ -136,7 +136,7 @@ BEG-EM-Förderung der energetischen Maßnahmen.
 
 ## VELUX und Dachfenster im Detail
 
-Stand: Juni 2026. Diese Angaben sind keine Förderzusage.
+Stand: Juli 2026. Diese Angaben sind keine Förderzusage.
 
 Rex Bedachungs GmbH ist autorisierter VELUX-Partner und führt Einbau, Austausch und
 Reparatur von VELUX Dachfenstern in Bochum und im Ruhrgebiet durch. Der
@@ -155,17 +155,34 @@ werden.
 
 ## Förderung im Detail
 
-Stand: Juni 2026. Diese Angaben sind keine Förderzusage.
+Stand: Juli 2026. Diese Angaben sind keine Förderzusage.
 
-- BAFA BEG EM (Bundesförderung für effiziente Gebäude – Einzelmaßnahmen):
-  Einzelmaßnahmen wie Dämmung und förderrelevante Dachfenster (Uw ≤ 1,0) erhalten
-  15 % Grundförderung; mit individuellem Sanierungsfahrplan (iSFP) zusätzlich 5 %,
-  also 20 %.
-- Förderhöchstgrenzen pro Wohneinheit: 30.000 € förderfähige Kosten ohne iSFP,
-  60.000 € förderfähige Kosten mit iSFP, daraus maximal 12.000 € Zuschuss.
+- BAFA BEG EM (Bundesförderung für effiziente Gebäude – Einzelmaßnahmen),
+  Richtlinie vom 17.07.2026, gültig seit 21.07.2026: Einzelmaßnahmen wie Dämmung
+  und förderrelevante Dachfenster (Uw ≤ 1,0) erhalten 15 % Grundförderung.
+- iSFP-Bonus: 5 Prozentpunkte, seit 21.07.2026 nur noch ab 30.000 €
+  förderrelevanten Kosten und ausschließlich auf den darüber liegenden Anteil.
+  Unterhalb von 30.000 € bleibt es bei 15 %.
+- Förderhöchstgrenzen pro Wohneinheit und Kalenderjahr: 30.000 € förderrelevante
+  Kosten ohne iSFP (max. 4.500 € Zuschuss), 60.000 € mit iSFP (max. 10.500 €
+  Zuschuss = 15 % auf 60.000 € plus 5 % auf 30.000 €).
+- Technische Mindestanforderungen unverändert: Dach und oberste Geschossdecke
+  U ≤ 0,14 W/(m²·K), Gauben U ≤ 0,20, Dachfenster Uw ≤ 1,0, senkrechte
+  Gaubenfenster Uw ≤ 0,95.
+- Neu ab Quartal 1 2027: Bonus von 5 Prozentpunkten (WPB-Bonus) für Dämmmaßnahmen
+  an der Gebäudehülle bei Worst Performing Buildings. Voraussetzung ist ein über
+  die Energieberatung für Wohngebäude (EBW) geförderter iSFP; das
+  Mindestinvestitionsvolumen von 30.000 EUR muss dafür nicht erfüllt sein.
+  Maximal drei Antraege.
+- Fachplanung und Baubegleitung: 50 % Zuschuss auf förderrelevante Kosten bis
+  5.000 € bei Ein- und Zweifamilienhäusern (max. 2.500 €), 2.000 € je Wohneinheit
+  ab drei Wohneinheiten.
+- Übergang: Vor dem 21.07.2026 beantragte und bereits bewilligte Vorhaben behalten
+  die alten Konditionen. Für neue Anträge ist eine neue Technische
+  Projektbeschreibung (TPB-ID) nach aktueller Richtlinie erforderlich.
 - KfW-Ergänzungskredit 358/359: zinsgünstiger Ergänzungskredit, kombinierbar mit
   der BAFA BEG EM-Förderung.
-- §35c EStG: alternative Steuerermäßigung von 20 %, verteilt über drei Jahre, bei
+- §35c EStG: alternative Steuerermäßigung von 20 %, verteilt über drei Jahre (7/7/6 %); seit der Deckelung des iSFP-Bonus bei Vorhaben unter 30.000 € rechnerisch meist günstiger als BEG EM. Voraussetzung:
   selbstgenutztem Wohneigentum.
 - NRW.BANK.Gebäudesanierung sowie städtische Förderprogramme der Stadt Bochum
   können ergänzend in Frage kommen.
@@ -182,9 +199,9 @@ sofern keine Ausnahmen greifen. Rex Bedachungs GmbH bewertet als Dachdecker-
 Meisterbetrieb die Eignung des Daches und bereitet die Dachfläche bei Bedarf für
 eine PV-Installation vor.
 
-## GEG-Nachrüstpflichten
+## Nachrüstpflichten (GModG, vormals GEG)
 
-Beim Eigentümerwechsel können nach dem Gebäudeenergiegesetz (GEG)
+Beim Eigentümerwechsel können nach dem Gebäudemodernisierungsgesetz (GModG, seit Juli 2026 Nachfolger des GEG)
 Nachrüstpflichten greifen, etwa die Dämmung der obersten Geschossdecke oder des
 Daches, in der Regel innerhalb einer Frist von zwei Jahren nach dem Erwerb. Eine
 energetische Dachsanierung kann diese Pflichten erfüllen und ist BEG-förderrelevant.
@@ -215,7 +232,7 @@ Frage: Was kostet eine Dachsanierung bei Rex Bedachungs GmbH?
 Antwort: Pauschale Preise werden nicht genannt, da die Kosten von Dachgröße,
 Aufbau, Material, Dämmstandard und Einbausituation abhängen. Die Kosten werden
 nach einer Dachbegehung in einem individuellen Angebot ermittelt. Energetische
-Maßnahmen sind über BEG EM mit 15–20 % förderrelevant.
+Maßnahmen sind über BEG EM mit 15 % Grundförderung förderrelevant (iSFP-Bonus nur oberhalb von 30.000 €).
 
 Frage: Ist Rex Bedachungs GmbH ein zertifizierter VELUX-Partner?
 Antwort: Rex Bedachungs GmbH ist autorisierter VELUX-Partner und führt Einbau,
@@ -231,8 +248,8 @@ Frage: Wann lohnt sich eine Dachsanierung?
 Antwort: Eine Dachsanierung lohnt sich vor allem bei hohem Dachalter, wiederkehrenden
 Schäden, unzureichendem Dämmstandard, sichtbarer Alterung der Eindeckung oder
 Feuchtigkeit am Dachstuhl. Bei mehreren dieser Faktoren ist eine Sanierung der
-fortlaufenden Reparatur meist überlegen, zumal die BEG-Förderung 2026 (15 % + 5 %
-mit iSFP) energetische Sanierungen unterstützt.
+fortlaufenden Reparatur meist überlegen, zumal die BEG-Förderung 2026 (15 %
+Grundförderung, iSFP-Bonus oberhalb von 30.000 €) energetische Sanierungen unterstützt.
 
 Frage: Übernimmt Rex Bedachungs GmbH die Versicherungsabwicklung bei Sturmschäden?
 Antwort: Ja, auf Wunsch werden Notsicherung, Schadensdokumentation und die
@@ -247,7 +264,7 @@ Frage: Bitumen oder PVC für das Flachdach?
 Antwort: Bitumen (z. B. 2-lagige Elastomerbitumen-Schweißbahn) eignet sich für
 großflächige Dächer und Sanierungen; PVC eignet sich für Terrassen und
 Sichtanschlüsse. Die Wahl hängt von Dachgröße, Nutzung und Untergrund ab. Bei einem
-U-Wert ≤ 0,14 W/(m²·K) ist eine BEG-Förderung von bis zu 20 % möglich.
+U-Wert ≤ 0,14 W/(m²·K) ist eine BEG-Förderung ab 15 % möglich.
 
 Frage: Wie schnell reagiert Rex Bedachungs GmbH bei akuten Dachschäden?
 Antwort: Bei akuten Schäden erfolgt die Reaktion in der Regel innerhalb von
@@ -313,7 +330,7 @@ verantwortet.
   und werden im Angebot ermittelt.
 - Stadt- und Stadtteilnennungen sind regionale Einsatzhinweise und keine
   eigenständigen Landingpages.
-- Förderbeträge, Fördersätze und Pflichten (BEG, §35c, NRW-Solardachpflicht, GEG)
-  beziehen sich auf den Stand Juni 2026 und stellen keine Rechts- oder
+- Förderbeträge, Fördersätze und Pflichten (BEG, §35c, NRW-Solardachpflicht, GModG)
+  beziehen sich auf den Stand Juli 2026 und stellen keine Rechts- oder
   Förderberatung und keine Förderzusage dar.
 - Es gibt genau einen Unternehmenssitz: Paulinenstraße 22, 44799 Bochum.

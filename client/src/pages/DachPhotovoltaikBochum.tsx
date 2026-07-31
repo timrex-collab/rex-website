@@ -54,7 +54,7 @@ const faqItems = [
   },
   {
     question: "Kann ich Dachsanierung und PV-Förderung kombinieren?",
-    answer: "Ja. Die Dachsanierung wird über BEG EM (BAFA) mit bis zu 20 % Zuschuss gefördert. Die PV-Anlage läuft separat über KfW 270 und die EEG-Einspeisevergütung. Beide Programme sind kombinierbar – nur das PV-Pflichtmaß der NRW-Solardachpflicht wird nicht zusätzlich bezuschusst.",
+    answer: "Ja. Die Dachsanierung wird über BEG EM (BAFA) mit 15 % Zuschuss gefördert (mit iSFP bis zu 10.500 € je Wohneinheit). Die PV-Anlage läuft separat über KfW 270 und die EEG-Einspeisevergütung. Beide Programme sind kombinierbar – nur das PV-Pflichtmaß der NRW-Solardachpflicht wird nicht zusätzlich bezuschusst.",
   },
   {
     question: "Was unterscheidet Braas PV Premium von einer normalen Aufdach-Anlage?",
@@ -117,7 +117,7 @@ export default function DachPhotovoltaikBochum() {
     {"@type":"Question","name":"Ab wann gilt die NRW-Solardachpflicht und was passiert bei Verstoß?","acceptedAnswer":{"@type":"Answer","text":"Seit 01.01.2026 bei Dacherneuerung ab 50 m²: mindestens 30 % der geeigneten Dachfläche mit PV. Bei Verstoß droht ein Bußgeld."}},
     {"@type":"Question","name":"Übernimmt Rex auch den Elektroanschluss der PV-Anlage?","acceptedAnswer":{"@type":"Answer","text":"Nein. Rex montiert die PV-Dachfläche und bereitet Kabeldurchführungen vor. Den Elektroanschluss übernimmt ein Fachbetrieb – auf Wunsch empfehlen wir 1KOMMA5°."}},
     {"@type":"Question","name":"Muss das Dach vor der PV-Montage saniert werden?","acceptedAnswer":{"@type":"Answer","text":"Nicht immer. Bei Dächern älter als 15 Jahre oder mit Schäden empfehlen wir eine Sanierung vorher. Beim kostenlosen Dachcheck beurteilen wir das."}},
-    {"@type":"Question","name":"Kann ich Dachsanierung und PV-Förderung kombinieren?","acceptedAnswer":{"@type":"Answer","text":"Ja. Dachsanierung über BEG EM mit bis zu 20 % Zuschuss, PV-Anlage über KfW 270 und EEG-Einspeisevergütung. Beide Programme kombinierbar."}},
+    {"@type":"Question","name":"Kann ich Dachsanierung und PV-Förderung kombinieren?","acceptedAnswer":{"@type":"Answer","text":"Ja. Dachsanierung über BEG EM mit 15 % Zuschuss (mit iSFP bis zu 10.500 € je Wohneinheit), PV-Anlage über KfW 270 und EEG-Einspeisevergütung. Beide Programme kombinierbar."}},
     {"@type":"Question","name":"Was unterscheidet Braas PV Premium von einer normalen Aufdach-Anlage?","acceptedAnswer":{"@type":"Answer","text":"PV Premium ist in die Dachfläche integriert – optisch unauffällig. Aufdach-Anlagen werden auf Gestellen montiert und bieten höhere Maximalleistung pro Quadratmeter."}}
   ]
 }`}</script>
@@ -370,7 +370,7 @@ export default function DachPhotovoltaikBochum() {
           <h2 className="text-2xl md:text-3xl font-bold mb-6">Förderung – was greift hier?</h2>
           <div className="bg-gradient-to-br from-blue-900 to-blue-700 text-white rounded-xl p-7">
             <h3 className="text-lg font-bold mb-3">Dachsanierung + PV: doppelt förderbar</h3>
-            <p className="text-blue-100 text-sm leading-relaxed mb-3">Die energetische Dachsanierung ist über BEG EM (BAFA) als Einzelmaßnahme förderfähig – bis zu 20 % Zuschuss, maximal 12.000 € pro Wohneinheit mit iSFP. Die PV-Anlage selbst wird separat gefördert: KfW 270 und EEG-Einspeisevergütung. Beide Förderungen sind kombinierbar.</p>
+            <p className="text-blue-100 text-sm leading-relaxed mb-3">Die energetische Dachsanierung ist über BEG EM (BAFA) als Einzelmaßnahme förderrelevant – 15 % Grundförderung, mit iSFP maximal 10.500 € pro Wohneinheit und Jahr. Die PV-Anlage selbst wird separat gefördert: KfW 270 und EEG-Einspeisevergütung. Beide Förderungen sind kombinierbar.</p>
             <p className="text-blue-200 text-sm leading-relaxed mb-4">Das PV-Pflichtmaß der NRW-Solardachpflicht wird als gesetzliche Vorgabe grundsätzlich nicht zusätzlich bezuschusst.</p>
             <Link href="/foerderung" className="inline-flex items-center gap-1 text-blue-200 hover:text-white text-sm underline">
               Alle Fördermöglichkeiten im Überblick <ArrowRight className="w-3 h-3" />
