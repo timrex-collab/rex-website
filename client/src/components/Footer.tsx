@@ -18,6 +18,9 @@ export default function Footer() {
             <p className="text-sm text-muted-foreground leading-relaxed">
               Ihr zuverlässiger Meisterbetrieb für alle Dacharbeiten in Bochum und Umgebung
             </p>
+            <p className="text-sm text-muted-foreground leading-relaxed mt-2" data-testid="text-footer-innung">
+              Mitglied der Dachdecker-Innung Bochum
+            </p>
           </div>
 
           <div>

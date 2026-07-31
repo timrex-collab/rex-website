@@ -69,6 +69,11 @@ export default function OrganizationSchema() {
             { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Dachwartung" } }
           ]
         },
+        "memberOf": {
+          "@type": "Organization",
+          "name": "Dachdecker-Innung Bochum",
+          "url": "https://www.dachdecker-innung-bochum.de/"
+        },
         "sameAs": [
           "https://www.google.com/maps/place/Rex+Bedachungs+GmbH/@51.4623584,7.2428438,17z",
           "https://www.facebook.com/rexbedachung",

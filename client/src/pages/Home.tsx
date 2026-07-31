@@ -231,14 +231,14 @@ export default function Home() {
                 <Shield className="w-8 h-8 text-primary" />
               </div>
               <h2 className="font-semibold text-lg mb-2">Meisterbetrieb</h2>
-              <p className="text-sm text-muted-foreground">Mitglied der Dachdecker-Innung</p>
+              <p className="text-sm text-muted-foreground">Dachdeckerhandwerk seit 1984</p>
             </div>
             <div className="text-center">
               <div className="w-16 h-16 mx-auto mb-4 bg-primary/10 rounded-full flex items-center justify-center">
                 <Award className="w-8 h-8 text-primary" />
               </div>
-              <h2 className="font-semibold text-lg mb-2">40 Jahre</h2>
-              <p className="text-sm text-muted-foreground">Erfahrung im Dachhandwerk</p>
+              <h2 className="font-semibold text-lg mb-2">Innungsbetrieb</h2>
+              <p className="text-sm text-muted-foreground">Mitglied der Dachdecker-Innung Bochum</p>
             </div>
             <div className="text-center">
               <div className="w-16 h-16 mx-auto mb-4 bg-primary/10 rounded-full flex items-center justify-center">
