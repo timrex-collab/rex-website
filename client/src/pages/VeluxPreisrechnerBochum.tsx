@@ -16,11 +16,11 @@ const faqData = [
   },
   {
     q: "Wie hoch ist die BAFA-Förderung für neue Dachfenster?",
-    a: "Der Grundfördersatz beträgt 15 % der förderfähigen Bruttokosten. Mit einem individuellen Sanierungsfahrplan (iSFP) steigt der Satz auf 20 % und der Förderhöchstbetrag verdoppelt sich von 30.000 € auf 60.000 € pro Wohneinheit und Jahr. Zusätzlich sind 50 % der Kosten für den Energieeffizienz-Experten als separater Zuschuss erhältlich."
+    a: "Der Grundfördersatz beträgt 15 % der förderrelevanten Bruttokosten. Mit einem individuellen Sanierungsfahrplan (iSFP) verdoppelt sich die Kostenobergrenze von 30.000 € auf 60.000 € pro Wohneinheit und Jahr. Der iSFP-Bonus von 5 Prozentpunkten wird seit der BEG-Reform vom 21.07.2026 allerdings nur noch auf den Kostenanteil oberhalb von 30.000 € gewährt – bei einem reinen Dachfenstertausch bleibt es daher in aller Regel bei 15 %. Zusätzlich sind 50 % der Kosten für den Energieeffizienz-Experten als separater Zuschuss erhältlich (förderrelevant bis 5.000 € bei Ein- und Zweifamilienhäusern)."
   },
   {
     q: "Was ist der Unterschied zwischen BAFA-Zuschuss und Steuerbonus §35c?",
-    a: "Der BAFA-Zuschuss (15–20 %) wird direkt ausgezahlt, erfordert aber einen Energieeffizienz-Experten und einen Antrag vor Baubeginn. Der Steuerbonus nach §35c EStG bietet 20 % Steuerermäßigung über drei Jahre (7 %/7 %/6 %), braucht keinen Energieberater, gilt aber nur für selbstgenutztes Wohneigentum ab 10 Jahren Gebäudealter. Beide Wege sind nicht für dieselbe Maßnahme kombinierbar."
+    a: "Der BAFA-Zuschuss (15 %, mit iSFP anteilig mehr) wird direkt ausgezahlt, erfordert aber einen Energieeffizienz-Experten und einen Antrag vor Umsetzung. Der Steuerbonus nach §35c EStG bietet 20 % Steuerermäßigung über drei Jahre (7 %/7 %/6 %), braucht keinen Energieberater, gilt aber nur für selbstgenutztes Wohneigentum ab 10 Jahren Gebäudealter. Seit der Deckelung des iSFP-Bonus am 21.07.2026 ist §35c bei einem Dachfenstertausch meist der rechnerisch stärkere Weg. Beide Wege sind nicht für dieselbe Maßnahme kombinierbar."
   },
   {
     q: "Was ist im Einbaupreis für ein VELUX Dachfenster enthalten?",
@@ -270,7 +270,7 @@ export default function VeluxPreisrechnerBochum() {
           <section>
             <h2 className="text-xl font-bold text-slate-900 mb-4">Welche Verglasung ist förderfähig?</h2>
             <p className="text-slate-700 leading-relaxed mb-3">
-              Im Preisrechner stehen drei Verglasungsstufen zur Wahl: THERMO -70 (Uw 1,3 W/m²K), ENERGIE -84 (Uw 1,0 W/m²K) und ENERGIE PLUS -66 (Uw 1,0 W/m²K). ENERGIE und ENERGIE PLUS erreichen denselben Uw-Wert; ENERGIE PLUS verbessert zusätzlich den sommerlichen Hitzeschutz (g-Wert 0,44 gegenüber 0,46). Für die BEG-Förderung ist ein Uw-Wert von maximal 1,0 W/m²K vorgeschrieben — das bedeutet: ENERGIE und ENERGIE PLUS sind förderrelevant, THERMO nicht. Die THERMO-Verglasung erfüllt zwar die GEG-Mindestanforderung, nicht aber die strengere BEG-Vorgabe.
+              Im Preisrechner stehen drei Verglasungsstufen zur Wahl: THERMO -70 (Uw 1,3 W/m²K), ENERGIE -84 (Uw 1,0 W/m²K) und ENERGIE PLUS -66 (Uw 1,0 W/m²K). ENERGIE und ENERGIE PLUS erreichen denselben Uw-Wert; ENERGIE PLUS verbessert zusätzlich den sommerlichen Hitzeschutz (g-Wert 0,44 gegenüber 0,46). Für die BEG-Förderung ist ein Uw-Wert von maximal 1,0 W/m²K vorgeschrieben — das bedeutet: ENERGIE und ENERGIE PLUS sind förderrelevant, THERMO nicht. Die THERMO-Verglasung erfüllt zwar die gesetzliche Mindestanforderung, nicht aber die strengere BEG-Vorgabe.
             </p>
             <p className="text-slate-700 leading-relaxed">
               Unser Preisrechner zeigt Ihnen automatisch, welche Positionen förderrelevant sind und berechnet den geschätzten Zuschuss. Für Eigentümer ohne individuellen Sanierungsfahrplan (iSFP) prüft der Rechner zusätzlich, ob der Steuerbonus nach §35c EStG mit 20 % Steuerermäßigung die bessere Option ist.
@@ -281,7 +281,7 @@ export default function VeluxPreisrechnerBochum() {
           <section>
             <h2 className="text-xl font-bold text-slate-900 mb-4">BAFA, iSFP oder Steuerbonus — welche Förderung passt?</h2>
             <p className="text-slate-700 leading-relaxed mb-3">
-              Drei Förderwege stehen zur Verfügung: Der BAFA-Zuschuss (15 % Grundförderung, 20 % mit iSFP) wird direkt ausgezahlt und kann mit dem KfW-Ergänzungskredit (Programm 358/359, bis 120.000 € pro Wohneinheit) kombiniert werden. Der Steuerbonus nach §35c EStG bietet 20 % Steuerermäßigung über drei Jahre ohne Energieberater, erfordert aber selbstgenutztes Wohneigentum und ein Gebäudealter ab 10 Jahren. Beide Wege sind nicht für dieselbe Maßnahme kombinierbar.
+              Drei Förderwege stehen zur Verfügung: Der BAFA-Zuschuss (15 % Grundförderung; der iSFP-Bonus von 5 Prozentpunkten greift seit 21.07.2026 nur auf Kosten über 30.000 €) wird direkt ausgezahlt und kann mit dem KfW-Ergänzungskredit (Programm 358/359, bis 120.000 € pro Wohneinheit) kombiniert werden. Der Steuerbonus nach §35c EStG bietet 20 % Steuerermäßigung über drei Jahre ohne Energieberater, erfordert aber selbstgenutztes Wohneigentum und ein Gebäudealter ab 10 Jahren. Beide Wege sind nicht für dieselbe Maßnahme kombinierbar.
             </p>
             <p className="text-slate-700 leading-relaxed">
               Unsere <a href="/foerderung" className="text-slate-900 font-semibold underline decoration-slate-300 hover:decoration-slate-800 transition-colors">vollständige Förder-Checkliste</a> führt Sie in 14 Schritten durch den Antragsprozess — von der Erstprüfung bis zur Auszahlung.

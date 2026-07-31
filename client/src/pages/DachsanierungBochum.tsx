@@ -173,7 +173,7 @@ const preisfaktoren = [
 const faqItems = [
   {
     question: "Was kostet eine Dachsanierung in Bochum?",
-    answer: "Der Preis hängt von Dachtyp, Dachfläche, Dämmstandard, Eindeckungsmaterial, Dachfenstern, Gerüst, Entsorgung und Logistik ab. Eine seriöse Einschätzung ist erst nach Vor-Ort-Aufmaß möglich. Rex Bedachungs GmbH erstellt ein transparentes Angebot mit vollständiger Leistungsaufstellung. Über BAFA (BEG EM) sind 15\u201320 % Zuschuss auf die förderfähigen Kosten möglich, mit iSFP-Bonus bis zu 12.000 \u20AC pro Wohneinheit.",
+    answer: "Der Preis hängt von Dachtyp, Dachfläche, Dämmstandard, Eindeckungsmaterial, Dachfenstern, Gerüst, Entsorgung und Logistik ab. Eine seriöse Einschätzung ist erst nach Vor-Ort-Aufmaß möglich. Rex Bedachungs GmbH erstellt ein transparentes Angebot mit vollständiger Leistungsaufstellung. Über BAFA (BEG EM) sind 15 % Zuschuss auf die förderrelevanten Kosten möglich; mit individuellem Sanierungsfahrplan bis zu 10.500 \u20AC pro Wohneinheit und Jahr.",
   },
   {
     question: "Wie lange dauert eine Dachsanierung?",
@@ -181,7 +181,7 @@ const faqItems = [
   },
   {
     question: "Wird eine Dachsanierung staatlich gefördert?",
-    answer: "Ja. Über BAFA (BEG EM) erhalten Sie 15–20% Zuschuss auf alle förderfähigen Kosten. Mit individuellem Sanierungsfahrplan (iSFP) steigt der Förderhöchstbetrag auf 60.000 \u20AC pro Wohneinheit. Zusätzlich ist der KfW-Ergänzungskredit 358/359 bis 120.000 \u20AC kombinierbar.",
+    answer: "Ja. Über BAFA (BEG EM) erhalten Sie 15 % Zuschuss auf alle förderrelevanten Kosten. Mit individuellem Sanierungsfahrplan (iSFP) steigt die Kostenobergrenze auf 60.000 \u20AC pro Wohneinheit; der iSFP-Bonus von 5 Prozentpunkten greift seit 21.07.2026 nur auf den Anteil über 30.000 \u20AC, maximal 10.500 \u20AC Zuschuss. Zusätzlich ist der KfW-Ergänzungskredit 358/359 bis 120.000 \u20AC kombinierbar.",
     link: "/foerderung",
     linkText: "Alle Förderprogramme im Detail",
   },
@@ -197,7 +197,7 @@ const faqItems = [
   },
   {
     question: "Welchen U-Wert muss die Dämmung für die Förderung erreichen?",
-    answer: "Die BEG EM verlangt einen U-Wert von maximal 0,14 W/(m²·K) für Steildächer und Flachdächer – deutlich strenger als die GEG-Anforderung (0,24 bzw. 0,20). Für Gauben gilt U \u2264 0,20. Wer nur auf GEG-Niveau dämmt, verliert den gesamten Förderanspruch.",
+    answer: "Die BEG EM verlangt einen U-Wert von maximal 0,14 W/(m²·K) für Steildächer und Flachdächer – deutlich strenger als die gesetzliche Anforderung (0,24 bzw. 0,20). Für Gauben gilt U \u2264 0,20. Wer nur auf gesetzlichem Mindestniveau dämmt, verliert den Förderanspruch für diese Maßnahme. Die BEG-Reform vom 21.07.2026 hat diese Werte nicht verändert.",
     link: "/aufsparrendaemmung-bochum",
     linkText: "Mehr zur Aufsparrendämmung",
   },
@@ -306,7 +306,7 @@ export default function DachsanierungBochum() {
                 {
                   "@type": "Question",
                   "name": "Was kostet eine Dachsanierung in Bochum?",
-                  "acceptedAnswer": { "@type": "Answer", "text": "Der Preis hängt von Dachtyp, Dachfläche, Dämmstandard, Eindeckungsmaterial, Dachfenstern, Gerüst, Entsorgung und Logistik ab. Eine seriöse Einschätzung ist erst nach Vor-Ort-Aufmaß möglich. Rex Bedachungs GmbH erstellt ein transparentes Angebot mit vollständiger Leistungsaufstellung. Über BAFA (BEG EM) sind 15–20 % Zuschuss auf die förderfähigen Kosten möglich, mit iSFP-Bonus bis zu 12.000 € pro Wohneinheit." }
+                  "acceptedAnswer": { "@type": "Answer", "text": "Der Preis hängt von Dachtyp, Dachfläche, Dämmstandard, Eindeckungsmaterial, Dachfenstern, Gerüst, Entsorgung und Logistik ab. Eine seriöse Einschätzung ist erst nach Vor-Ort-Aufmaß möglich. Rex Bedachungs GmbH erstellt ein transparentes Angebot mit vollständiger Leistungsaufstellung. Über BAFA (BEG EM) sind 15 % Zuschuss auf die förderrelevanten Kosten möglich; mit individuellem Sanierungsfahrplan bis zu 10.500 € pro Wohneinheit und Jahr." }
                 },
                 {
                   "@type": "Question",
@@ -316,7 +316,7 @@ export default function DachsanierungBochum() {
                 {
                   "@type": "Question",
                   "name": "Wird eine Dachsanierung staatlich gefördert?",
-                  "acceptedAnswer": { "@type": "Answer", "text": "Ja. Über BAFA (BEG EM) erhalten Sie 15% Zuschuss auf alle förderfähigen Kosten – mit individuellem Sanierungsfahrplan (iSFP) steigt der Satz auf 20% bei einem Förderhöchstbetrag von 60.000 € pro Wohneinheit. Zusätzlich ist der KfW-Ergänzungskredit 358/359 bis 120.000 € kombinierbar." }
+                  "acceptedAnswer": { "@type": "Answer", "text": "Ja. Über BAFA (BEG EM) erhalten Sie 15 % Zuschuss auf alle förderrelevanten Kosten. Mit individuellem Sanierungsfahrplan (iSFP) steigt die Kostenobergrenze auf 60.000 € pro Wohneinheit; der iSFP-Bonus von 5 Prozentpunkten greift seit 21.07.2026 nur auf den Anteil über 30.000 €, maximal 10.500 € Zuschuss. Zusätzlich ist der KfW-Ergänzungskredit 358/359 bis 120.000 € kombinierbar." }
                 },
                 {
                   "@type": "Question",
@@ -331,7 +331,7 @@ export default function DachsanierungBochum() {
                 {
                   "@type": "Question",
                   "name": "Welchen U-Wert muss die Dachdämmung für die Förderung erreichen?",
-                  "acceptedAnswer": { "@type": "Answer", "text": "Die BEG EM verlangt einen U-Wert von maximal 0,14 W/(m²·K) für Steildächer und Flachdächer. Das liegt deutlich unter der GEG-Anforderung (0,24 bzw. 0,20 W/(m²·K)). Für Gauben gilt U ≤ 0,20 W/(m²·K). Wer nur auf GEG-Niveau dämmt, verliert den gesamten Förderanspruch." }
+                  "acceptedAnswer": { "@type": "Answer", "text": "Die BEG EM verlangt einen U-Wert von maximal 0,14 W/(m²·K) für Steildächer und Flachdächer. Das liegt deutlich unter der gesetzlichen Anforderung (0,24 bzw. 0,20 W/(m²·K)). Für Gauben gilt U ≤ 0,20 W/(m²·K). Wer nur auf gesetzlichem Mindestniveau dämmt, verliert den Förderanspruch für diese Maßnahme." }
                 },
                 {
                   "@type": "Question",
@@ -355,7 +355,7 @@ export default function DachsanierungBochum() {
         { label: "Dachsanierung Bochum" }
       ]} />
 
-      <ExpertenBlock normen={["GEG 2024", "BAFA BEG EM", "KfW 358/359", "ZVDH-Regelwerk"]} />
+      <ExpertenBlock normen={["GModG 2026", "BAFA BEG EM", "KfW 358/359", "ZVDH-Regelwerk"]} />
 
       {/* Hero */}
       <section className="relative text-white py-24 px-4 overflow-hidden" data-testid="section-hero">
@@ -375,7 +375,7 @@ export default function DachsanierungBochum() {
             Rex Bedachungs GmbH führt energetische Dachsanierungen in Bochum und dem Ruhrgebiet durch – Steildach, Flachdach, Dämmung und Dachfenster aus einer Hand. Als Dachdecker-Meisterbetrieb mit über 40 Jahren Erfahrung saniert Rex Bedachung jährlich Dutzende Dächer im Bochumer Stadtgebiet: von der Aufsparrendämmung mit Neueindeckung bis zur Komplettsanierung mit Dachfenstern und Klempnerarbeiten.
           </p>
           <p className="text-base md:text-lg text-slate-200 mb-8 max-w-3xl leading-relaxed" data-testid="text-hero-foerderung">
-            Eine energetische Dachsanierung wird 2026 über BAFA (BEG EM) mit bis zu 20% Zuschuss gefördert – bei einem Förderhöchstbetrag von 60.000 € pro Wohneinheit mit individuellem Sanierungsfahrplan. Rex Bedachungs GmbH berät kostenlos vor Ort und koordiniert den gesamten Förderprozess.
+            Eine energetische Dachsanierung wird über BAFA (BEG EM) mit 15 % Zuschuss gefördert – mit individuellem Sanierungsfahrplan sind bei 60.000 € förderrelevanten Kosten bis zu 10.500 € pro Wohneinheit möglich (Richtlinie seit 21.07.2026). Rex Bedachungs GmbH berät kostenlos vor Ort und koordiniert den gesamten Förderprozess.
           </p>
           <div className="flex flex-wrap gap-3 mb-8">
             <Button asChild size="lg" className="pulse-ring cta-pulse" data-testid="button-hero-beratung">
@@ -589,9 +589,9 @@ export default function DachsanierungBochum() {
               <CardContent>
                 <div className="space-y-2 text-sm text-muted-foreground">
                   <p>15% Grundförderung auf alle förderfähigen Bruttokosten</p>
-                  <p>+5% iSFP-Bonus = insgesamt 20%</p>
+                  <p>+5% iSFP-Bonus – nur auf den Kostenanteil über 30.000 €</p>
                   <p>Förderhöchstbetrag: 30.000 € ohne iSFP / 60.000 € mit iSFP pro Wohneinheit</p>
-                  <p>Maximaler Zuschuss: 4.500 € bzw. 12.000 € pro Wohneinheit</p>
+                  <p>Maximaler Zuschuss: 4.500 € bzw. 10.500 € pro Wohneinheit und Jahr</p>
                   <p>Voraussetzung: Gebäude mindestens 5 Jahre alt, Einbindung eines EEE</p>
                 </div>
               </CardContent>
@@ -659,7 +659,7 @@ export default function DachsanierungBochum() {
               <span className="text-muted-foreground font-medium">Material</span>
               <span className="text-foreground">PUR/PIR Aufsparrendämmung, Tondachziegel anthrazit, VELUX GGU 0066 Dreifachverglasung</span>
               <span className="text-muted-foreground font-medium">Ergebnis</span>
-              <span className="text-foreground">U-Wert 0,13 W/(m²·K) – deutlich unter BEG-Anforderung. Heizenergieeinsparung ca. 30%. BAFA-Zuschuss 20% mit iSFP.</span>
+              <span className="text-foreground">U-Wert 0,13 W/(m²·K) – deutlich unter BEG-Anforderung. Heizenergieeinsparung ca. 30%. BAFA-Zuschuss über BEG EM mit iSFP.</span>
             </div>
           </div>
         </div>

@@ -68,11 +68,31 @@ Claude Code verifiziert **nicht** per `curl` oder `raw.githubusercontent` (Cache
 ## 4. Deploy-Disziplin (NON-NEGOTIABLE)
 > **Warum:** März 2026 — 87+ Änderungen in 4 Tagen → Ranking-Verlust. Die Disziplin existiert genau deswegen.
 
-1. **48 Stunden Pflicht-Pause zwischen jedem Deploy.** Keine Ausnahme.
+1. **48 Stunden Pflicht-Pause zwischen jedem Deploy.** Keine Ausnahme — mit genau
+   einem eng definierten Vorbehalt, siehe „Notfall-Korrektur" unten.
 2. **Ein atomarer Commit pro Deploy.**
 3. **`attached_assets/` wird NIE committet.**
 4. **Redirects ausschließlich in `netlify.toml`.**
 5. **`robots.txt` ist gesperrt** — Änderungen nur als Stufe-C-Deploy.
+
+### Notfall-Korrektur (einzige Ausnahme vom 48h-Gate)
+Das Gate bremst **Optimierungs-Churn** — das ist sein Zweck und dafür gilt es
+ausnahmslos. Es bremst **nicht** die Korrektur sachlich falscher Aussagen.
+
+Das Gate darf ausgesetzt werden, wenn **alle** vier Bedingungen erfüllt sind:
+1. Auf der Live-Site steht eine **nachweisbar falsche Tatsachenbehauptung** —
+   typischerweise Förderbeträge, Preise, gesetzliche Pflichten oder ein Rechner,
+   der falsche Zahlen ausgibt. Nicht: „suboptimal formuliert", „könnte besser ranken".
+2. Der Deploy **korrigiert ausschließlich diesen Fehler**. Keine Optimierung
+   huckepack, keine neuen Routen, keine `robots.txt`, keine Redirects.
+3. Die Ausnahme wird **hier im Deploy-Log protokolliert**, mit Datum und Grund.
+4. Danach gilt für die nächsten Deploys wieder **volle Kadenz** — keine Kette.
+
+Begründung: Falsche Förderzahlen auf einer Handwerker-Website sind ein konkreter,
+zurechenbarer Schaden (Vertrauensverlust, im Zweifel Abmahnrisiko wegen
+irreführender Werbung). Das SEO-Risiko eines einzelnen zusätzlichen Merges ist
+demgegenüber diffus und klein. Diese Asymmetrie — und nur sie — rechtfertigt
+die Ausnahme.
 
 ### Deploy-Stufen (Datei-Obergrenzen)
 | Stufe | Inhalt | Max. Dateien |
@@ -186,6 +206,25 @@ SSR-/Framework-Migration · Stadtteil-Seiten · separate Kosten-Seiten · Gewerb
 | **D-IndexNow** | IndexNow-Key-Datei `client/public/5bc5e3a3…f8a299.txt` + Submit-Skript `scripts/indexnow-submit.mjs` (`npm run indexnow:submit`): Bulk-POST der 30 indexierbaren Sitemap-URLs an `api.indexnow.org`. Manuell als permanenter Post-Deploy-Schritt (kein Build-Plugin, keine Env-Var). | ✅ live (PR #11, gemergt 26.06.2026 ~10:17 UTC; Submit HTTP 202) |
 | **D-Sitemap-Refresh** | `client/public/sitemap.xml`: 29 `lastmod`-Werte auf die echten letzten Änderungsdaten (git-verifiziert, Route→Datei gegen `App.tsx` geprüft) gesetzt — bessere Recrawl-Priorität für Google/Bing, u. a. die 5 GSC-offenen Routen | ✅ live (PR #12, gemergt 29.06.2026 ~13:02 UTC; Submit HTTP 200) |
 | **Repo-Fix** | leere 0-Byte-Datei `name="contact"` (Windows-ungültiger Pfad — `"` verboten; blockierte `git clone`/checkout auf Windows) entfernt; vom Build nicht referenziert, keine Production-Auswirkung | ✅ live (PR #13, gemergt 29.06.2026; reines Housekeeping) |
+
+> **⚠ Gate-Ausnahme (31.07.2026) — Deploy BEG-1, Notfall-Korrektur:** Das 48h-Gate
+> wurde bewusst ausgesetzt. Letzter Merge war PR #34 (Innung-Trust) am 31.07. 09:07
+> CEST, das reguläre Fenster hätte erst am 02.08. ~09:07 geöffnet.
+> **Grund:** Die BEG-Richtlinie vom 17.07.2026 (gültig seit 21.07.2026) deckelt den
+> iSFP-Bonus. Auf der Live-Site stand seither ein Zuschussversprechen von 12.000 €
+> (korrekt: 10.500 €), und der VELUX-Preisrechner rechnete bei aktiviertem iSFP
+> pauschal 20 % statt 15 % — bei Projekten unter 30.000 € ein um bis zu ein Drittel
+> zu hoher Zuschuss, der auch ins Kunden-PDF lief.
+> Alle vier Bedingungen der Notfall-Korrektur (Abschnitt 4) waren erfüllt: falsche
+> Tatsachenbehauptung, reiner Korrektur-Deploy (8 Dateien, Stufe B, keine neuen
+> Routen/Redirects/`robots.txt`), Protokollierung hier, volle Kadenz danach.
+> **Auflage:** BEG-2 (20-%-Claims, ~8 Dateien) und BEG-3 (GEG → GModG, ~6 Dateien)
+> laufen strikt im 48h-Rhythmus — frühestens 02.08. und 04.08. Beides ist reine
+> Formulierungs- und Benennungsarbeit ohne falsche Zahlen und rechtfertigt **keine**
+> weitere Ausnahme.
+> **Beobachtung:** Innung-Trust und BEG-1 liegen ~5 h auseinander; ein GSC-Effekt
+> ist in dieser Woche nicht sauber einem der beiden zuzuordnen. Bewusst in Kauf
+> genommen.
 
 > **Cadence-Hinweis (29.06.2026):** Das 48h-Gate gilt strikt. Letzte funktionale
 > Merges: D-IndexNow 26.06. ~10:17 UTC, D-Sitemap-Refresh 29.06. ~13:02 UTC

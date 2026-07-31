@@ -13,10 +13,10 @@ const grants = [
   {
     provider: "BAFA (BEG EM)",
     title: "Einzelmaßnahmen",
-    description: "Ideal für Dachdämmung oder den Austausch von Dachfenstern.",
-    amount: "15% – 20% Zuschuss",
+    description: "Ideal für Dachdämmung oder den Austausch von Dachfenstern. 15 % Grundförderung; der iSFP-Bonus von 5 Prozentpunkten greift seit 21.07.2026 nur noch auf den Kostenanteil über 30.000 €.",
+    amount: "15 % Zuschuss",
     benefit: "Direkter Cash-Zuschuss auf Ihr Konto.",
-    tags: ["Dämmung", "Fenster", "iSFP-Bonus"],
+    tags: ["Dämmung", "Fenster", "Neue Richtlinie 07/2026"],
   },
   {
     provider: "KFW-ERGÄNZUNGSKREDIT 358/359",
@@ -65,7 +65,7 @@ const benefits = [
 const steps = [
   {
     title: "Energieeffizienz-Experte",
-    desc: "Der Energieeffizienz-Experte wird eingebunden, erstellt die Technische Projektbeschreibung und prüft die Voraussetzungen für den 5 %-iSFP-Bonus.",
+    desc: "Der Energieeffizienz-Experte wird eingebunden, erstellt die Technische Projektbeschreibung (TPB) und prüft, ob sich der iSFP-Bonus beim geplanten Volumen noch rechnet. Seit 21.07.2026 ist für jeden Antrag eine neue TPB-ID nötig.",
   },
   {
     title: "BAFA-Antrag",
@@ -88,11 +88,19 @@ const faqItems = [
   },
   {
     question: "Wann lohnt sich ein individueller Sanierungsfahrplan (iSFP)?",
-    answer: "Der iSFP erhöht den Fördersatz von 15 % auf 20 % und verdoppelt den Förderhöchstbetrag von 30.000 € auf 60.000 € je Wohneinheit. Bei größeren energetischen Maßnahmen ist er häufig wirtschaftlich sinnvoll. Der Energieeffizienz-Experte prüft vor Antragstellung, ob der iSFP für den Bonus anerkannt wird.",
+    answer: "Der iSFP verdoppelt die Obergrenze der förderrelevanten Kosten von 30.000 € auf 60.000 € je Wohneinheit und Kalenderjahr. Das ist seit der BEG-Reform vom 21.07.2026 sein eigentlicher Hebel: Der 5-Prozentpunkte-Bonus wird nur noch auf den Kostenanteil oberhalb von 30.000 € gewährt. Bei einem Vorhaben unter 30.000 € bringt der iSFP beim Fördersatz nichts mehr – es bleiben 15 %. Bei größeren Dachsanierungen bleibt er wirtschaftlich sinnvoll: Aus 60.000 € förderrelevanten Kosten werden 10.500 € Zuschuss statt 4.500 €. Der Energieeffizienz-Experte prüft vor Antragstellung, ob der iSFP für den Bonus anerkannt wird.",
+  },
+  {
+    question: "Was hat sich bei der BEG-Förderung zum 21. Juli 2026 geändert?",
+    answer: "Die BEG wird in gewohnter Struktur fortgeführt – das BAFA bleibt für Einzelmaßnahmen zuständig, die Richtlinie gilt bis 31.12.2030. Für die Gebäudehülle bleibt die Grundförderung bei 15 %, die Kostenobergrenzen bleiben bei 30.000 € bzw. 60.000 € für die erste Wohneinheit, und die technischen Mindestanforderungen (U ≤ 0,14 W/(m²·K) am Dach, Uw ≤ 1,0 für Dachflächenfenster) sind unverändert. Neu ist die Deckelung des iSFP-Bonus nach Nummer 8.4.2 der Richtlinie: Er setzt ein förderrelevantes Mindestinvestitionsvolumen von 30.000 € brutto voraus und wird nur auf die Ausgaben oberhalb der Höchstgrenze ohne iSFP gewährt. Beim Ein- und Zweifamilienhaus sinkt der maximale Zuschuss dadurch von 12.000 € auf 10.500 € je Wohneinheit und Jahr. Bereits bewilligte und vor dem 21.07.2026 beantragte Vorhaben behalten die alten Konditionen.",
+  },
+  {
+    question: "Was ist der neue Bonus für Worst Performing Buildings (WPB)?",
+    answer: "Die neue Richtlinie führt ab dem ersten Quartal 2027 einen zusätzlichen Bonus von 5 Prozentpunkten für Dämmmaßnahmen an der Gebäudehülle ein, wenn sich das Vorhaben auf ein sogenanntes Worst Performing Building bezieht – ein Gebäude, das energetisch zu den schlechtesten des deutschen Gebäudebestands zählt. Aus 15 % werden damit 20 %. Voraussetzung ist ein über die Energieberatung für Wohngebäude (EBW) geförderter iSFP; das Mindestinvestitionsvolumen von 30.000 € muss für diesen Bonus ausdrücklich nicht erfüllt sein. Der Bonus wird für maximal drei Anträge gewährt. Für viele ungedämmte Altbauten in Bochum ist das ab 2027 der interessanteste Hebel – wir prüfen im Erstgespräch, ob Ihr Gebäude in Frage kommt.",
   },
   {
     question: "Welche Rolle spielt der Energieeffizienz-Experte (EEE)?",
-    answer: "Bei Gebäudehüllen-Maßnahmen ist ein Energieeffizienz-Experte Pflicht. Er erstellt die Technische Projektbeschreibung vor Antragstellung und den Technischen Projektnachweis nach Abschluss. Die Honorare für Fachplanung und Baubegleitung werden mit 50 % bezuschusst; die EBW-Energieberatung (iSFP-Erstellung) ebenfalls mit 50 %, gedeckelt bei 650 € (Ein- und Zweifamilienhaus) bzw. 850 € (ab drei Wohneinheiten).",
+    answer: "Bei Gebäudehüllen-Maßnahmen ist ein Energieeffizienz-Experte Pflicht. Er erstellt die Technische Projektbeschreibung (TPB) vor Antragstellung und den Technischen Projektnachweis nach Abschluss. Seit dem 21.07.2026 muss dafür eine neue TPB-ID erzeugt werden – vor dem 09.07.2026 erstellte Projektbeschreibungen sind nicht mehr verwendbar. Fachplanung und Baubegleitung werden mit 50 % bezuschusst; förderrelevant sind dafür bis zu 5.000 € bei Ein- und Zweifamilienhäusern (also maximal 2.500 € Zuschuss) bzw. 2.000 € je Wohneinheit ab drei Wohneinheiten. Die EBW-Energieberatung (iSFP-Erstellung) wird ebenfalls mit 50 % gefördert, gedeckelt bei 650 € (Ein- und Zweifamilienhaus) bzw. 850 € (ab drei Wohneinheiten).",
   },
   {
     question: "Kann eine Neueindeckung des Dachs förderrelevant sein?",
@@ -112,19 +120,19 @@ const faqItems = [
   },
   {
     question: "Was ist der Unterschied zwischen BEG EM und §35c EStG?",
-    answer: "BEG EM ist ein direkter Zuschuss von 15 bis 20 %, der nach Maßnahmenende ausgezahlt wird. § 35c EStG ist eine Steuerermäßigung von 20 %, verteilt über drei Jahre, maximal 40.000 € je Objekt. § 35c kann nicht für dieselbe energetische Maßnahme parallel zur BEG-Förderung genutzt werden. Für unterschiedliche Maßnahmen am selben Objekt können verschiedene Förderwege getrennt geprüft werden.",
+    answer: "BEG EM ist ein direkter Zuschuss von 15 % (plus iSFP-Bonus auf den Kostenanteil über 30.000 €), der nach Maßnahmenende ausgezahlt wird. § 35c EStG ist eine Steuerermäßigung von 20 %, verteilt über drei Jahre, maximal 40.000 € je Objekt. Seit der Deckelung des iSFP-Bonus am 21.07.2026 ist § 35c bei kleineren Vorhaben unter 30.000 € rechnerisch oft die stärkere Variante – 20 % statt 15 %, ohne Energieeffizienz-Experten und ohne Antragsverfahren. Dafür wirkt die Steuerermäßigung erst über drei Veranlagungszeiträume und setzt eine ausreichende Steuerschuld voraus. § 35c kann nicht für dieselbe energetische Maßnahme parallel zur BEG-Förderung genutzt werden; für unterschiedliche Maßnahmen am selben Objekt sind verschiedene Förderwege möglich.",
   },
   {
     question: "Was zählt als vorzeitiger Maßnahmenbeginn?",
-    answer: "Ein Vertragsschluss oder eine Anzahlung vor BAFA-Antragstellung – außer der Vertrag enthält ausdrücklich eine auflösende oder aufschiebende Bedingung zur Förderzusage. Andernfalls droht der vollständige Förderverlust.",
+    answer: "Ein unbedingter Vertragsschluss, ein Baubeginn oder eine Anzahlung vor der BAFA-Antragstellung – außer der Vertrag enthält ausdrücklich eine auflösende oder aufschiebende Bedingung zur Förderzusage. Andernfalls droht der vollständige Förderverlust.",
   },
   {
     question: "Wann darf der Auftrag unterschrieben werden?",
-    answer: "Nach Erhalt des BAFA-Zuwendungsbescheids – oder vorher, wenn der Vertrag eine auflösende oder aufschiebende Bedingung zur Förderzusage enthält. Die Bearbeitungszeit kann variieren.",
+    answer: "Die BEG EM verlangt sogar, dass zum Zeitpunkt der Antragstellung bereits ein Liefer- oder Leistungsvertrag vorliegt – dieser muss aber eine aufschiebende oder auflösende Bedingung zur Förderzusage enthalten, seine Wirksamkeit also vom BAFA-Bescheid abhängig machen. Ein unbedingter Vertrag oder eine Anzahlung vor Antragstellung gilt als vorzeitiger Maßnahmenbeginn und kostet die Förderung. Wir formulieren die Bedingung im Angebot mit.",
   },
   {
     question: "Welche U-Werte verlangt die BEG-Förderung für die Dachsanierung?",
-    answer: "Die BEG EM verlangt für Steildach und Flachdach einen U-Wert von maximal 0,14 W/(m²·K) – das sind 30 bis 42 % strengere Werte als die GEG-Mindestanforderung. Für Dachfenster gilt Uw ≤ 1,0 W/(m²·K), für senkrechte Gaubenfenster Uw ≤ 0,95. Wer nur auf GEG-Niveau dämmt, erfüllt die BEG-Anforderung für diese Maßnahme nicht und verliert dafür den Förderanspruch.",
+    answer: "Die BEG EM verlangt für Steildach und Flachdach einen U-Wert von maximal 0,14 W/(m²·K) – das sind 30 bis 42 % strengere Werte als die gesetzliche Mindestanforderung bei Bauteilsanierung. Für Dachfenster gilt Uw ≤ 1,0 W/(m²·K), für senkrechte Gaubenfenster Uw ≤ 0,95. Diese Anforderungen hat die BEG-Reform zum 21.07.2026 nicht verändert. Wer nur auf gesetzlichem Mindestniveau dämmt, erfüllt die BEG-Anforderung für diese Maßnahme nicht und verliert dafür den Förderanspruch.",
   },
   {
     question: "Gilt die Solardachpflicht NRW bei meiner Dachsanierung?",
@@ -190,7 +198,7 @@ function FoerderdetailsBlock() {
               <span className="font-semibold text-lg">iSFP-Bonus</span>
             </div>
             <p className="text-sm text-muted-foreground">
-              Der individuelle Sanierungsfahrplan verdoppelt den Förderhöchstbetrag von 30.000 auf 60.000 € pro Wohneinheit und erhöht den Fördersatz auf 20 %.
+              Der individuelle Sanierungsfahrplan verdoppelt die Obergrenze der förderrelevanten Kosten von 30.000 auf 60.000 € für die erste Wohneinheit. Seit dem 21.07.2026 gilt der Bonus von 5 Prozentpunkten allerdings nur noch für den Kostenanteil <strong>oberhalb von 30.000 €</strong> – und setzt ein Mindestinvestitionsvolumen von 30.000 € brutto voraus. Bei kleineren Vorhaben bleibt es bei 15 %.
             </p>
           </div>
           <div className="grid grid-cols-2 gap-4">
@@ -202,14 +210,17 @@ function FoerderdetailsBlock() {
               <p className="text-xs text-gray-400">(15 % von 30.000 €)</p>
             </div>
             <div className="bg-white rounded-md p-4 border-2 border-blue-500 text-center relative">
-              <span className="absolute -top-3 left-1/2 -translate-x-1/2 bg-blue-600 text-white text-xs font-bold px-3 py-0.5 rounded-full">EMPFOHLEN</span>
+              <span className="absolute -top-3 left-1/2 -translate-x-1/2 bg-blue-600 text-white text-xs font-bold px-3 py-0.5 rounded-full">AB 30.000 €</span>
               <p className="text-xs font-semibold text-blue-600 uppercase tracking-wide mb-1">Mit iSFP</p>
               <p className="text-2xl font-bold text-gray-900">60.000 €</p>
               <p className="text-xs text-gray-500 mt-0.5">max. pro WE / Jahr</p>
-              <p className="text-sm font-bold text-blue-900 mt-2">→ max. 12.000 € Zuschuss</p>
-              <p className="text-xs text-gray-400">(20 % von 60.000 €)</p>
+              <p className="text-sm font-bold text-blue-900 mt-2">→ max. 10.500 € Zuschuss</p>
+              <p className="text-xs text-gray-400">(15 % von 60.000 € + 5 % von 30.000 €)</p>
             </div>
           </div>
+          <p className="text-xs text-blue-800/70 mt-4 leading-relaxed">
+            Angaben für die erste Wohneinheit nach Richtlinie BEG EM vom 17.07.2026 (gültig 21.07.2026 bis 31.12.2030). Ab der zweiten Wohneinheit gelten gestaffelt niedrigere Höchstgrenzen. Vorher beantragte und bereits bewilligte Vorhaben behalten die alten Konditionen. Ab dem ersten Quartal 2027 kommen für Worst Performing Buildings 5 Prozentpunkte hinzu.
+          </p>
         </div>
 
         {/* Rechte Spalte – Was wird gefördert */}
@@ -358,11 +369,11 @@ export default function Foerderung() {
         <title>BAFA &amp; KfW Förderung Dach Bochum | Rex Bedachung</title>
         <meta
           name="description"
-          content="Förderung für Dachsanierung in NRW: BAFA & KfW-Zuschüsse für Dämmung & Fenster. Rex Bedachung berät zu allen aktuellen Förderprogrammen."
+          content="Förderung Dachsanierung NRW nach der BEG-Reform vom 21.07.2026: 15 % BAFA-Zuschuss, bis 10.500 € mit iSFP. Rex Bedachung berät zu allen aktuellen Programmen."
         />
         <link rel="canonical" href="https://www.rex-bedachung.de/foerderung" />
         <meta property="og:title" content="BAFA & KfW Förderung Dachsanierung | Rex Bedachungs GmbH Bochum" />
-        <meta property="og:description" content="Bis zu 20% staatliche Förderung für Dachsanierung & Velux-Fenster. Wir begleiten Sie als Meisterbetrieb durch den Förderdschungel." />
+        <meta property="og:description" content="BEG-Reform 21.07.2026: 15 % Grundförderung, bis zu 10.500 € Zuschuss für Dachsanierung & Velux-Fenster. Wir begleiten Sie als Meisterbetrieb durch den Förderdschungel." />
         <meta property="og:image" content="https://www.rex-bedachung.de/images/dach-hintergrund-rex-bedachung.webp" />
         <meta property="og:site_name" content="Rex Bedachungs GmbH" />
         <meta property="og:image:width" content="1200" />
@@ -391,14 +402,14 @@ export default function Foerderung() {
         <div className="max-w-5xl mx-auto text-center relative z-10">
           <div className="inline-flex items-center gap-2 bg-blue-500/20 border border-blue-400/30 rounded-full px-4 py-1 mb-6">
             <Euro className="w-4 h-4 text-blue-300" />
-            <span className="text-sm font-medium text-blue-100 uppercase tracking-wider">Förder-Update 2026</span>
+            <span className="text-sm font-medium text-blue-100 uppercase tracking-wider">Förder-Update: BEG-Reform 21.07.2026</span>
           </div>
           <h1 className="text-4xl md:text-6xl font-extrabold mb-6 leading-tight">
             Dachsanierung in Bochum:<br />
             <span className="text-blue-400">Staatliche Zuschüsse clever nutzen</span>
           </h1>
           <p className="text-xl text-slate-300 max-w-2xl mx-auto leading-relaxed mb-8">
-            Sparen Sie bis zu 20% der Sanierungskosten durch BAFA und KfW. Wir begleiten Sie als Meisterbetrieb durch den Förderdschungel.
+            15 % BAFA-Grundförderung auf die energetische Dachsanierung, bis zu 10.500 € Zuschuss je Wohneinheit. Wir begleiten Sie als Meisterbetrieb durch den Förderdschungel – nach der neuen BEG-Richtlinie seit 21.07.2026.
           </p>
         </div>
       </header>
@@ -407,7 +418,7 @@ export default function Foerderung() {
       <section className="py-12 bg-background border-b border-border">
         <div className="max-w-4xl mx-auto px-4 md:px-6 lg:px-8">
           <p className="text-lg md:text-xl leading-relaxed text-foreground">
-            Die BEG-Einzelmaßnahmen-Förderung (BEG EM) bezuschusst die energetische Dachsanierung mit 15 % der förderrelevanten Kosten. Mit einem individuellen Sanierungsfahrplan (iSFP) steigt der Fördersatz auf 20 %. Förderrelevant sind Dachdämmung, Dachfenster mit Uw ≤ 1,0 W/(m²·K) und außenliegender Sonnenschutz mit optimierter Tageslichtversorgung. Die Kostenobergrenze liegt bei 30.000 € je Wohneinheit, mit iSFP bei 60.000 €. Bei Gebäudehüllen-Maßnahmen ist ein Energieeffizienz-Experte Pflicht. Der Antrag muss vor Auftragserteilung gestellt werden.
+            Die BEG-Einzelmaßnahmen-Förderung (BEG EM) bezuschusst die energetische Dachsanierung mit 15 % der förderrelevanten Kosten. Seit der Reform vom 21.07.2026 wird der iSFP-Bonus von 5 Prozentpunkten nur noch auf den Kostenanteil oberhalb von 30.000 € gewährt: Bis 30.000 € bleiben es 15 %, mit individuellem Sanierungsfahrplan sind bei 60.000 € förderrelevanten Kosten maximal 10.500 € Zuschuss je Wohneinheit und Jahr möglich. Förderrelevant sind Dachdämmung, Dachfenster mit Uw ≤ 1,0 W/(m²·K) und außenliegender Sonnenschutz mit optimierter Tageslichtversorgung. Bei Gebäudehüllen-Maßnahmen ist ein Energieeffizienz-Experte Pflicht. Der Antrag muss vor der Umsetzung gestellt werden.
           </p>
         </div>
       </section>
@@ -468,26 +479,26 @@ export default function Foerderung() {
               <ShieldCheck className="w-12 h-12" />
             </div>
             <div>
-              <h2 className="text-2xl md:text-3xl font-bold mb-3">Das Gebäudeenergiegesetz (GEG) 2026</h2>
+              <h2 className="text-2xl md:text-3xl font-bold mb-3">Vom GEG zum Gebäudemodernisierungsgesetz (GModG)</h2>
               <p className="text-muted-foreground leading-relaxed mb-3">
-                Das GEG schreibt bei größeren Sanierungen Mindestdämmwerte vor (U-Wert max. 0,24 W/m²K). Wir sorgen dafür, dass Ihr neues Dach nicht nur die gesetzlichen Anforderungen erfüllt, sondern diese für maximale Effizienz sogar übertrifft.
+                Das Gebäudeenergiegesetz ist im Juli 2026 durch das Gebäudemodernisierungsgesetz (GModG) abgelöst worden. Für das Dach ändert sich inhaltlich nichts: Wer mehr als 10 % einer Dachfläche erneuert, muss den Bauteil-Höchstwert von 0,24 W/(m²·K) einhalten, und die Nachrüstpflicht für oberste Geschossdecke bzw. Dach binnen zwei Jahren nach Eigentümerwechsel bleibt bestehen. Geändert hat sich vor allem die Heizungsseite – die 65-%-Pflicht für erneuerbare Energien ist entfallen.
               </p>
-              <p className="text-sm text-slate-600">Für energetische Dachsanierungen in Bochum sind über BAFA und KfW Förderungen von bis zu 20 % der Investitionskosten möglich – Rex Bedachung berät kostenlos zur passenden Fördermaßnahme.</p>
+              <p className="text-sm text-slate-600">Für energetische Dachsanierungen in Bochum sind über BAFA und KfW Zuschüsse ab 15 % der förderrelevanten Kosten möglich – Rex Bedachung berät kostenlos zur passenden Fördermaßnahme.</p>
               <div className="flex items-center gap-2 text-blue-600 font-bold">
                 <Info className="w-5 h-5" />
-                <span>Wichtig: Ohne Einhaltung der GEG-Werte gibt es keine Förderung!</span>
+                <span>Wichtig: Ohne Einhaltung der gesetzlichen Mindestwerte gibt es keine Förderung!</span>
               </div>
             </div>
           </div>
 
           <div className="mt-8 overflow-x-auto">
-            <h3 className="text-xl font-bold mb-4 text-center">BEG-Förderanforderung vs. GEG-Mindestanforderung</h3>
+            <h3 className="text-xl font-bold mb-4 text-center">BEG-Förderanforderung vs. gesetzliche Mindestanforderung</h3>
             <table className="w-full text-sm border-collapse bg-card rounded-md overflow-hidden border border-border">
               <thead>
                 <tr className="bg-muted">
                   <th className="text-left p-3 border border-border font-medium text-muted-foreground">Bauteil</th>
                   <th className="text-left p-3 border border-border font-medium text-muted-foreground">BEG-Förderung</th>
-                  <th className="text-left p-3 border border-border font-medium text-muted-foreground">GEG-Pflicht</th>
+                  <th className="text-left p-3 border border-border font-medium text-muted-foreground">Gesetzliche Pflicht (GModG)</th>
                   <th className="text-left p-3 border border-border font-medium text-muted-foreground">Differenz</th>
                 </tr>
               </thead>
@@ -510,7 +521,7 @@ export default function Foerderung() {
               </tbody>
             </table>
             <p className="text-sm text-muted-foreground mt-3 text-center">
-              Wer nur auf GEG-Niveau plant, riskiert den BEG-Förderanspruch für diese Maßnahme. Die BEG verlangt bei Dachflächen bis zu 42 % bessere Dämmwerte als das GEG.
+              Wer nur auf gesetzlichem Mindestniveau plant, riskiert den BEG-Förderanspruch für diese Maßnahme. Die BEG verlangt bei Dachflächen bis zu 42 % bessere Dämmwerte als das Gesetz. Die BEG-Reform vom 21.07.2026 hat diese technischen Mindestanforderungen nicht verändert.
             </p>
           </div>
 
@@ -526,7 +537,7 @@ export default function Foerderung() {
       <section className="py-12 bg-background">
         <div className="max-w-5xl mx-auto px-4 md:px-6 lg:px-8">
           <div className="bg-blue-600 text-white rounded-md p-8 md:p-10">
-            <h2 className="text-2xl md:text-3xl font-bold mb-4">Warum der iSFP bei größeren Dachsanierungen entscheidend ist</h2>
+            <h2 className="text-2xl md:text-3xl font-bold mb-4">Warum der iSFP nur noch bei größeren Dachsanierungen entscheidend ist</h2>
             <div className="grid sm:grid-cols-2 gap-6 mb-6">
               <div className="bg-white/10 rounded-md p-5">
                 <p className="text-sm text-blue-100 mb-1">Ohne iSFP</p>
@@ -535,12 +546,12 @@ export default function Foerderung() {
               </div>
               <div className="bg-white/20 rounded-md p-5 border border-white/30">
                 <p className="text-sm text-blue-100 mb-1">Mit iSFP</p>
-                <p className="text-lg font-bold">20 % auf max. 60.000 €</p>
-                <p className="text-blue-100 text-sm mt-1">→ bis zu 12.000 € Zuschuss</p>
+                <p className="text-lg font-bold">15 % auf max. 60.000 € + 5 % auf den Anteil über 30.000 €</p>
+                <p className="text-blue-100 text-sm mt-1">→ bis zu 10.500 € Zuschuss</p>
               </div>
             </div>
             <p className="text-blue-100 leading-relaxed text-sm">
-              Der individuelle Sanierungsfahrplan erhöht nicht nur den Fördersatz, sondern verdoppelt auch die anrechenbare Kostenobergrenze. Die iSFP-Erstellung wird über die Energieberatung für Wohngebäude (EBW) mit 50 % gefördert. Der Energieeffizienz-Experte prüft vor Antragstellung, ob der iSFP für den Bonus anerkannt wird.
+              Seit dem 21.07.2026 liegt der Hebel des individuellen Sanierungsfahrplans fast vollständig in der verdoppelten Kostenobergrenze: Der 5-Prozentpunkte-Bonus greift erst ab 30.000 € förderrelevanten Kosten und nur auf den darüber liegenden Anteil. Für eine Komplettsanierung von Dach und Dämmung bleibt der iSFP damit klar wirtschaftlich, für einen reinen Dachfenstertausch in der Regel nicht mehr – dort ist häufig die Steuerermäßigung nach § 35c EStG der bessere Weg. Die iSFP-Erstellung wird über die Energieberatung für Wohngebäude (EBW) mit 50 % gefördert, gedeckelt bei 650 € (Ein- und Zweifamilienhaus) bzw. 850 € (ab drei Wohneinheiten). Der Energieeffizienz-Experte prüft vor Antragstellung, ob der iSFP für den Bonus anerkannt wird.
             </p>
           </div>
         </div>
@@ -558,11 +569,11 @@ export default function Foerderung() {
         <div className="max-w-5xl mx-auto px-4 md:px-6 lg:px-8">
           <h2 className="text-2xl md:text-3xl font-bold text-center mb-4">Vom Erstgespräch bis zur Auszahlung</h2>
           <p className="text-muted-foreground text-center mb-4 max-w-2xl mx-auto">
-            Der BAFA-Förderantrag muss <strong>vor</strong> Vertragsabschluss gestellt sein. Ein vorzeitiger Maßnahmenbeginn führt zum vollständigen Förderverlust.
+            Der BAFA-Förderantrag muss gestellt sein, bevor das Vorhaben verbindlich wird. Ein vorzeitiger Maßnahmenbeginn führt zum vollständigen Förderverlust.
           </p>
           <div className="bg-blue-50 border-l-4 border-blue-700 p-4 rounded-r-md mb-8 max-w-3xl mx-auto">
             <p className="text-sm text-blue-800 font-medium">
-              Wichtigste Regel: BAFA-Antrag stellen → Eingangsbestätigung abwarten → erst dann Vertrag unterschreiben oder Anzahlung leisten.
+              Wichtigste Regel: Vertrag nur mit aufschiebender oder auflösender Bedingung zur Förderzusage → BAFA-Antrag stellen → Zuwendungsbescheid abwarten → erst dann Ausführung beauftragen oder Anzahlung leisten.
             </p>
           </div>
           <div className="overflow-x-auto">
@@ -579,10 +590,10 @@ export default function Foerderung() {
                   { n: 1, step: "Erstinteresse", desc: "Eigentümer äußert Sanierungswunsch", zeit: "Tag 0", highlight: false },
                   { n: 2, step: "Erstberatung", desc: "Förderfähigkeit prüfen: Gebäudealter ≥ 5 Jahre? Eigentümer?", zeit: "Tag 1–7", highlight: false },
                   { n: 3, step: "Energieberater (EEE) einbinden", desc: "Sofort starten – größter Engpass mit 3–8 Wochen Wartezeit", zeit: "Tag 7–14", highlight: true },
-                  { n: 4, step: "iSFP / Energieberatung", desc: "EEE erstellt Sanierungsfahrplan – sichert +5 % Bonus und 60.000 € Förderhöchstbetrag", zeit: "Woche 3–8", highlight: false },
+                  { n: 4, step: "iSFP / Energieberatung", desc: "EEE erstellt Sanierungsfahrplan – hebt die Kostenobergrenze auf 60.000 €; der +5 %-Bonus greift nur oberhalb von 30.000 €", zeit: "Woche 3–8", highlight: false },
                   { n: 5, step: "BEG-konformes Angebot", desc: "Rex erstellt Angebot mit Trennung förderfähig / nicht förderfähig, U-Wert-Nachweis, auflösender Bedingung", zeit: "Woche 4–9", highlight: false },
-                  { n: 6, step: "Technische Projektbeschreibung (TPB)", desc: "EEE erstellt TPB mit allen technischen Daten für den Antrag", zeit: "Woche 5–10", highlight: false },
-                  { n: 7, step: "BAFA-Antrag stellen", desc: "Eigentümer beantragt online unter bafa.de – TPB-ID eingeben. Kein Vertrag vorher!", zeit: "Woche 6–11", highlight: true },
+                  { n: 6, step: "Technische Projektbeschreibung (TPB)", desc: "EEE erstellt TPB mit allen technischen Daten für den Antrag. Seit 21.07.2026 ist eine neue TPB-ID nach der aktuellen Richtlinie erforderlich", zeit: "Woche 5–10", highlight: false },
+                  { n: 7, step: "BAFA-Antrag stellen", desc: "Eigentümer beantragt online unter bafa.de – TPB-ID eingeben. Der Vertrag muss zu diesem Zeitpunkt bereits vorliegen, aber unter Förderzusage-Vorbehalt stehen", zeit: "Woche 6–11", highlight: true },
                   { n: 8, step: "Eingangsbestätigung", desc: "BAFA bestätigt Eingang des Antrags", zeit: "1–2 Wochen", highlight: false },
                   { n: 9, step: "Zuwendungsbescheid", desc: "BAFA genehmigt Förderung – ab jetzt kann der Vertrag rechtssicher unterzeichnet werden", zeit: "6–8 Wochen", highlight: true },
                   { n: 10, step: "Auftragserteilung", desc: "Formaler Vertrag mit Rex Bedachungs GmbH", zeit: "Nach Bescheid", highlight: false },
@@ -671,7 +682,7 @@ export default function Foerderung() {
                 </div>
                 <h3 className="text-2xl font-bold mb-4 text-blue-100">Energieeffizienz-Experte (EEE)</h3>
                 <p className="text-slate-400 mb-6 leading-relaxed">
-                  Für BAFA und KfW ist die Einbindung eines Energieeffizienz-Experten (EEE) Pflicht. Wir arbeiten eng mit lokalen Experten in Bochum zusammen und koordinieren den gesamten Prozess für Sie. Die Experten-Kosten werden zu 50% gefördert!
+                  Für BAFA und KfW ist die Einbindung eines Energieeffizienz-Experten (EEE) Pflicht. Wir arbeiten eng mit lokalen Experten in Bochum zusammen und koordinieren den gesamten Prozess für Sie. Fachplanung und Baubegleitung werden mit 50 % bezuschusst – förderrelevant sind dafür bis zu 5.000 € beim Ein- und Zweifamilienhaus.
                 </p>
               </div>
               <div className="text-sm font-medium border-t border-slate-700 pt-4 flex justify-between">
@@ -682,7 +693,7 @@ export default function Foerderung() {
             <div className="bg-blue-50 border border-blue-100 rounded-md p-8">
               <h3 className="text-2xl font-bold mb-4 text-blue-900">Steuervorteil nach § 35c EStG</h3>
               <p className="text-blue-800/70 mb-4 leading-relaxed">
-                Alternativ zur BAFA-Förderung kann die steuerliche Förderung nach § 35c EStG genutzt werden: 20 % der Sanierungskosten als Steuerermäßigung, verteilt über drei Jahre, maximal 40.000 € je Objekt.
+                Alternativ zur BAFA-Förderung kann die steuerliche Förderung nach § 35c EStG genutzt werden: 20 % der Sanierungskosten als Steuerermäßigung, verteilt über drei Jahre (7 % / 7 % / 6 %), maximal 40.000 € je Objekt. Seit der Deckelung des iSFP-Bonus am 21.07.2026 ist dieser Weg bei Vorhaben unter 30.000 € rechnerisch häufig attraktiver als die BEG EM – vorausgesetzt, die Steuerschuld reicht aus.
               </p>
               <p className="text-blue-800/70 mb-6 leading-relaxed text-sm">
                 § 35c kann nicht für dieselbe energetische Maßnahme parallel zur BEG-Förderung genutzt werden. Für unterschiedliche Maßnahmen am selben Objekt können verschiedene Förderwege getrennt geprüft werden – etwa Dachdämmung über BEG EM und Fassadendämmung über § 35c. Voraussetzung: Gebäude mindestens 10 Jahre alt, Selbstnutzung, unbare Bezahlung und Fachunternehmer-Bescheinigung nach amtlichem Muster.
@@ -819,7 +830,7 @@ export default function Foerderung() {
       {/* ── Disclaimer (Gemini hatte den vollständigeren) ── */}
       <div className="bg-muted border-t border-border py-8 px-4">
         <div className="max-w-4xl mx-auto text-xs text-muted-foreground text-center leading-relaxed">
-          Hinweis: Alle Angaben zu Förderungen dienen der Information und stellen keine Rechts- oder Steuerberatung dar. Förderbedingungen können sich kurzfristig ändern. Die Einbindung eines Statikers sowie eines zertifizierten Energieeffizienz-Experten ist je nach Maßnahme gesetzlich vorgeschrieben.
+          Stand: 31.07.2026 · Grundlage: Richtlinie BEG Einzelmaßnahmen vom 17.07.2026 (gültig ab 21.07.2026). Hinweis: Alle Angaben zu Förderungen dienen der Information und stellen keine Rechts- oder Steuerberatung dar. Förderbedingungen können sich kurzfristig ändern. Die Einbindung eines Statikers sowie eines zertifizierten Energieeffizienz-Experten ist je nach Maßnahme gesetzlich vorgeschrieben.
         </div>
       </div>
     </>

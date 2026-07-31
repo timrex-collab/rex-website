@@ -1,5 +1,5 @@
 # Rex Bedachungs GmbH
-> Stand: Juni 2026 | Verantwortlich: Rex Bedachungs GmbH, info@rex-bedachung.de
+> Stand: Juli 2026 (BEG-Richtlinie vom 17.07.2026, gültig ab 21.07.2026) | Verantwortlich: Rex Bedachungs GmbH, info@rex-bedachung.de
 > Ausführliche Version: https://www.rex-bedachung.de/llms-full.txt
 
 > Dachdecker-Meisterbetrieb in Bochum. Spezialisiert auf Steildach,
@@ -69,7 +69,7 @@ Stadtteil-Landingpages.
 
 - [Startseite](https://www.rex-bedachung.de/): Einstiegsseite Rex Bedachungs GmbH, Dachdecker-Meisterbetrieb Bochum seit 1984.
 - [Leistungsübersicht](https://www.rex-bedachung.de/leistungen): Überblick aller Dachdecker-Leistungen in Bochum und Ruhrgebiet.
-- [Dachsanierung Bochum](https://www.rex-bedachung.de/dachsanierung-bochum): Hub-Seite für Komplettsanierung Steildach & Flachdach, Dämmung (BEG U-Wert 0,14), Dachfenster und Klempnerei, BAFA-Förderung bis 20 % (max. 12.000 € mit iSFP).
+- [Dachsanierung Bochum](https://www.rex-bedachung.de/dachsanierung-bochum): Hub-Seite für Komplettsanierung Steildach & Flachdach, Dämmung (BEG U-Wert 0,14), Dachfenster und Klempnerei, BAFA-Förderung 15 % Grundförderung (max. 10.500 € mit iSFP).
 - [Steildach Bochum](https://www.rex-bedachung.de/steildach-bochum): Pillar-Seite Steildach – Neueindeckung, Sanierung, Aufsparrendämmung.
 - [Flachdach Bochum](https://www.rex-bedachung.de/flachdach-bochum): Pillar-Seite Flachdach – Bitumen, EPDM, Flüssigkunststoff, PVC.
 - [Dachfenster Bochum](https://www.rex-bedachung.de/dachfenster-bochum): Pillar-Seite Dachfenster, autorisierter VELUX-Partner, Austausch und Neueinbau.
@@ -118,7 +118,7 @@ Cluster-Seite für Gründach und Dachbegrünung in Bochum. Leistungen: extensive
 Cluster-Artikel unter /dachreparatur-bochum. Sturmschaden am Dach in Bochum – Notsicherung, Schadensdokumentation, Versicherungsabwicklung. Rex Bedachungs GmbH, Meisterbetrieb seit 1984. Reaktion in 24–48h. Versicherungsschäden ab Windstärke 8 (ca. 65 km/h, DWD Warnstufe 2 markantes Wetter).
 
 ## /bitumen-vs-pvc-flachdach-bochum
-Cluster-Artikel unter /flachdach-bochum. Entscheidungshilfe: Bitumen (Elastomerbitumen PYE, APP Plastomer, Schweißbahn 2-lagig) für großflächige Dächer und Sanierung; PVC (mechanisch befestigt, verklebt, ballastiert) für Terrassen und Sichtanschlüsse. Haupthersteller: Bauder, Wolfin, Icopal, Soprema. BEG-Förderung bei U ≤ 0,14 W/(m²·K): bis zu 20% BAFA-Zuschuss.
+Cluster-Artikel unter /flachdach-bochum. Entscheidungshilfe: Bitumen (Elastomerbitumen PYE, APP Plastomer, Schweißbahn 2-lagig) für großflächige Dächer und Sanierung; PVC (mechanisch befestigt, verklebt, ballastiert) für Terrassen und Sichtanschlüsse. Haupthersteller: Bauder, Wolfin, Icopal, Soprema. BEG-Förderung bei U ≤ 0,14 W/(m²·K): 15 % BAFA-Grundförderung.
 
 ## /dachrinne-bochum
 Cluster-Artikel unter /bauklempnerei-bochum. Dachrinne in Bochum reinigen, reparieren oder erneuern. Materialien: Titanzink (40–60 Jahre), Aluminium (25–35 Jahre), Kupfer (80–100 Jahre). Leistungen: Reinigung, Reparatur, Komplettaustausch, Fallrohre, Laubschutzgitter, Sturmschadenreparatur. Rex Bedachungs GmbH, Meisterbetrieb seit 1984.
@@ -131,7 +131,7 @@ Interaktiver VELUX Dachfenster Preisrechner unter /dachfenster-bochum. Konfigura
 
 ## VELUX und Dachfenster
 
-Stand: Juni 2026. Diese Angaben sind keine Förderzusage.
+Stand: Juli 2026. Diese Angaben sind keine Förderzusage.
 
 Rex Bedachungs GmbH ist autorisierter VELUX-Partner und führt Einbau, Austausch
 und Reparatur von VELUX Dachfenstern in Bochum und im Ruhrgebiet durch. Bearbeitete
@@ -148,16 +148,24 @@ sie von Modell, Größe, Verglasung, Zubehör und Einbausituation abhängen.
 
 ## Förderinformationen
 
-Stand: Juni 2026. Diese Angaben sind keine Förderzusage.
+Stand: Juli 2026. Diese Angaben sind keine Förderzusage.
 
-- BAFA BEG EM: Einzelmaßnahmen wie Dämmung und förderrelevante Dachfenster
-  (Uw ≤ 1,0) erhalten 15 % Grundförderung, mit individuellem Sanierungsfahrplan
-  (iSFP) 20 %.
-- Förderhöchstgrenzen pro Wohneinheit: 30.000 € förderfähige Kosten ohne iSFP,
-  60.000 € förderfähige Kosten mit iSFP, daraus max. 12.000 € Zuschuss.
+- BAFA BEG EM (Richtlinie vom 17.07.2026, gültig seit 21.07.2026): Einzelmaßnahmen
+  wie Dämmung und förderrelevante Dachfenster (Uw ≤ 1,0) erhalten 15 %
+  Grundförderung.
+- iSFP-Bonus: 5 Prozentpunkte, nur ab 30.000 € förderrelevanten Kosten und nur auf
+  den darüber liegenden Anteil. Unter 30.000 € bleibt es bei 15 %.
+- Förderhöchstgrenzen pro Wohneinheit und Jahr: 30.000 € förderrelevante Kosten
+  ohne iSFP (max. 4.500 € Zuschuss), 60.000 € mit iSFP (max. 10.500 € Zuschuss).
+- Technische Mindestanforderungen unverändert: Dachflächen Schrägdach,
+  oberste Geschossdecke und Flachdach U ≤ 0,14 W/(m²·K), Dachgauben U ≤ 0,20,
+  Dachflächenfenster Uw ≤ 1,0, senkrechte Fenster Uw ≤ 0,95.
+- Neu ab Quartal 1 2027: Bonus von 5 Prozentpunkten für Dämmmaßnahmen an
+  Worst Performing Buildings (WPB), Voraussetzung EBW-geförderter iSFP,
+  ohne Mindestinvestitionsvolumen, maximal drei Anträge.
 - KfW-Ergänzungskredit 358/359: zinsgünstiger Ergänzungskredit, kombinierbar
   mit BAFA BEG EM.
-- §35c EStG: alternative Steuerermäßigung von 20 % verteilt über drei Jahre
+- §35c EStG: alternative Steuerermäßigung von 20 % verteilt über drei Jahre; bei Vorhaben unter 30.000 € seit 21.07.2026 rechnerisch meist günstiger als BEG EM
   bei selbstgenutztem Wohneigentum.
 - NRW.BANK.Gebäudesanierung sowie städtische Förderprogramme der Stadt Bochum
   können ergänzend in Frage kommen.
@@ -167,7 +175,7 @@ Angeboten, übernimmt aber keine Gewähr für Förderzusagen oder
 Förderhöchstbeträge im Einzelfall.
 
 ## /wann-lohnt-sich-dachsanierung
-Ratgeber-Artikel: Entscheidungshilfe Dachsanierung. 5 Faktoren (Alter, Schäden, Dämmstandard, Optik, Feuchtigkeit am Dachstuhl), Entscheidungsmatrix Reparatur vs. Sanierung, BEG-Förderhebel 2026 (15 % + 5 % iSFP, max. 60.000 € pro WE mit iSFP), GEG-Nachrüstpflichten bei Eigentümerwechsel (2-Jahres-Frist), NRW-Solardachpflicht seit 01.01.2026 (≥ 50 m², 30 % PV-Belegung, Ausnahmen). Author: Tim Rex (Dachdeckermeister & Geschäftsführer).
+Ratgeber-Artikel: Entscheidungshilfe Dachsanierung. 5 Faktoren (Alter, Schäden, Dämmstandard, Optik, Feuchtigkeit am Dachstuhl), Entscheidungsmatrix Reparatur vs. Sanierung, BEG-Förderhebel 2026 (15 % Grundförderung, iSFP-Bonus nur oberhalb 30.000 €, max. 60.000 € förderrelevante Kosten pro WE), GModG-Nachrüstpflichten bei Eigentümerwechsel (2-Jahres-Frist), NRW-Solardachpflicht seit 01.01.2026 (≥ 50 m², 30 % PV-Belegung, Ausnahmen). Author: Tim Rex (Dachdeckermeister & Geschäftsführer).
 
 ## Referenzbilder VELUX
 
@@ -214,12 +222,12 @@ Bild 2: VELUX Dachfenster Doppelanlage Einbau auf Tonziegel-Steildach
 - Alle Blecharbeiten werden in der eigenen Werkstatt
   in Bochum maßgenau gefertigt.
 - Energetische Dachsanierungen mit Aufsparrendämmung
-  sind mit BAFA und KfW bis zu 20 % förderbar.
+  sind über BAFA BEG EM ab 15 % förderbar.
 - Bei Sturmschäden wird die Versicherungsabwicklung
   auf Wunsch übernommen.
-- Energetische Dachsanierungen werden über BEG EM mit 15–20 % gefördert.
-- Mit iSFP-Bonus: bis zu 60.000 € förderfähige Kosten pro Wohneinheit,
-  max. 12.000 € Zuschuss.
+- Energetische Dachsanierungen werden über BEG EM mit 15 % Grundförderung gefördert.
+- Mit iSFP: bis zu 60.000 € förderrelevante Kosten pro Wohneinheit,
+  max. 10.500 € Zuschuss (Bonus nur auf den Anteil über 30.000 €).
 - Rex Bedachungs GmbH berät zu BAFA-Antragstellung und
   BEG-konformen Angeboten.
 - Dachfenster-Förderung: Nur Uw ≤ 1,0 W/m²K ist BEG-förderrelevant.
@@ -240,5 +248,5 @@ Bild 2: VELUX Dachfenster Doppelanlage Einbau auf Tonziegel-Steildach
   vom Einzelfall ab und werden im Angebot ermittelt.
 - Bochumer Stadtteilnennungen im Abschnitt Einzugsgebiet sind regionale
   Einsatzhinweise und keine eigenständigen Stadtteil-Landingpages.
-- Förderbeträge und Förderquoten beziehen sich auf den Stand Juni 2026 und
+- Förderbeträge und Förderquoten beziehen sich auf den Stand Juli 2026 (BEG-Richtlinie vom 17.07.2026) und
   stellen keine Förderzusage dar.
