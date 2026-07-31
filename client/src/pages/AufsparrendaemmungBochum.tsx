@@ -32,7 +32,7 @@ const faqItems = [
   {
     question: "Wird die Aufsparrendämmung gefördert?",
     answer:
-      "Ja – GEG-konforme Aufsparrendämmung ist über BAFA (BEG Einzelmaßnahme) mit bis zu 20 % förderfähig. Zusätzlich ist ein KfW-Kredit (Programm 261) möglich. Rex Bedachung berät kostenlos zur Antragstellung.",
+      "Ja – eine Aufsparrendämmung auf BEG-Niveau (U ≤ 0,14 W/(m²·K)) ist über BAFA (BEG Einzelmaßnahme) mit 15 % Grundförderung förderrelevant; mit individuellem Sanierungsfahrplan kommen oberhalb von 30.000 € weitere 5 Prozentpunkte hinzu. Zusätzlich ist der KfW-Ergänzungskredit 358/359 möglich. Rex Bedachung berät kostenlos zur Antragstellung.",
   },
   {
     question: "Verliere ich durch die Aufsparrendämmung Raumhöhe im Dachgeschoss?",
@@ -42,7 +42,7 @@ const faqItems = [
   {
     question: "Wie dick muss die Dämmschicht sein?",
     answer:
-      "Die erforderliche Dämmstärke hängt vom U-Wert-Ziel nach GEG und dem vorhandenen Sparrenquerschnitt ab. Rex Bedachung ermittelt die optimale Stärke im Rahmen der kostenlosen Vor-Ort-Beratung.",
+      "Die erforderliche Dämmstärke hängt vom U-Wert-Ziel und dem vorhandenen Sparrenquerschnitt ab. Rex Bedachung ermittelt die optimale Stärke im Rahmen der kostenlosen Vor-Ort-Beratung.",
   },
 ];
 
@@ -71,8 +71,8 @@ const vorteile = [
   "Vollständig wärmebrückenfreie Dämmebene",
   "Kein Verlust von Wohnfläche oder Raumhöhe",
   "Deutlich bessere Dämmwirkung als Zwischensparrendämmung",
-  "GEG-konforme U-Werte problemlos erreichbar",
-  "BAFA-Förderung bis zu 20 % möglich",
+  "BEG-Wert U ≤ 0,14 W/(m²·K) problemlos erreichbar",
+  "15 % BAFA-Grundförderung möglich",
   "Kombination mit KfW-Kredit möglich",
   "Langlebige Konstruktion ohne Folgeschäden",
   "Ideal kombinierbar mit Neueindeckung",
@@ -91,8 +91,8 @@ const wannCards = [
   },
   {
     icon: <AlertTriangle className="w-6 h-6 text-primary" />,
-    title: "Bei GEG-Pflicht",
-    text: "Wer sein Steildach neu eindeckt, ist nach GEG zur Dämmung verpflichtet – die Aufsparrendämmung erfüllt die Anforderungen optimal.",
+    title: "Bei gesetzlicher Dämmpflicht",
+    text: "Wer sein Steildach neu eindeckt, ist nach dem GModG zur Dämmung verpflichtet – die Aufsparrendämmung erfüllt die Anforderungen optimal.",
   },
   {
     icon: <Award className="w-6 h-6 text-primary" />,
@@ -103,7 +103,7 @@ const wannCards = [
 
 const ablaufSchritte = [
   { nr: 1, text: "Kostenlose Vor-Ort-Beratung und Dachinspektion" },
-  { nr: 2, text: "Bedarfsanalyse und Auswahl der Dämmstärke nach GEG" },
+  { nr: 2, text: "Bedarfsanalyse und Auswahl der Dämmstärke" },
   { nr: 3, text: "Transparentes Angebot nach Aufmaß" },
   { nr: 4, text: "Demontage der bestehenden Eindeckung" },
   { nr: 5, text: "Verlegung der Dämmplatten auf den Sparren" },
@@ -163,14 +163,14 @@ export default function AufsparrendaemmungBochum() {
         <title>Aufsparrendämmung Bochum – Kosten, Ablauf &amp; Förderung | Rex Bedachung</title>
         <meta
           name="description"
-          content="Aufsparrendämmung in Bochum: Die effektivste Dämmvariante für Steildächer. GEG-konform, BAFA-förderfähig. Rex Bedachungs GmbH – Meisterbetrieb seit 1984."
+          content="Aufsparrendämmung in Bochum: Die effektivste Dämmvariante für Steildächer. Gesetzeskonform, BEG-förderrelevant. Rex Bedachungs GmbH – Meisterbetrieb seit 1984."
         />
         <link rel="canonical" href="https://www.rex-bedachung.de/aufsparrendaemmung-bochum" />
         <meta property="og:type" content="article" />
         <meta property="og:title" content="Aufsparrendämmung Bochum – Kosten, Ablauf & Förderung | Rex Bedachung" />
         <meta
           property="og:description"
-          content="Aufsparrendämmung in Bochum: Die effektivste Dämmvariante für Steildächer. GEG-konform, BAFA-förderfähig. Rex Bedachungs GmbH – Meisterbetrieb seit 1984."
+          content="Aufsparrendämmung in Bochum: Die effektivste Dämmvariante für Steildächer. Gesetzeskonform, BEG-förderrelevant. Rex Bedachungs GmbH – Meisterbetrieb seit 1984."
         />
         <meta property="og:image" content="https://www.rex-bedachung.de/images/dachsanierung-bochum-stiepel-Aufsparrendaemmung.webp" />
         <meta property="og:url" content="https://www.rex-bedachung.de/aufsparrendaemmung-bochum" />
@@ -178,7 +178,7 @@ export default function AufsparrendaemmungBochum() {
         <meta name="twitter:title" content="Aufsparrendämmung Bochum – Kosten, Ablauf & Förderung | Rex Bedachung" />
         <meta
           name="twitter:description"
-          content="Aufsparrendämmung in Bochum: Die effektivste Dämmvariante für Steildächer. GEG-konform, BAFA-förderfähig. Rex Bedachungs GmbH – Meisterbetrieb seit 1984."
+          content="Aufsparrendämmung in Bochum: Die effektivste Dämmvariante für Steildächer. Gesetzeskonform, BEG-förderrelevant. Rex Bedachungs GmbH – Meisterbetrieb seit 1984."
         />
         <meta name="twitter:image" content="https://www.rex-bedachung.de/images/dachsanierung-bochum-stiepel-Aufsparrendaemmung.webp" />
         <script type="application/ld+json">{JSON.stringify(schemaData)}</script>
@@ -214,7 +214,7 @@ export default function AufsparrendaemmungBochum() {
             Lösung bei Dachsanierung oder Neueindeckung.
           </p>
           <p className="text-sm text-slate-300 mb-10" data-testid="text-hero-badge">
-            Meisterbetrieb&nbsp;•&nbsp;GEG-konform&nbsp;•&nbsp;BAFA-förderfähig
+            Meisterbetrieb&nbsp;•&nbsp;Gesetzeskonform&nbsp;•&nbsp;BEG-förderrelevant
           </p>
           <div className="flex flex-wrap justify-center gap-4">
             <Button
@@ -261,7 +261,7 @@ export default function AufsparrendaemmungBochum() {
           </p>
           <p className="text-sm text-slate-600 dark:text-slate-400 italic" data-testid="text-fact-snippet">
             Die Aufsparrendämmung gilt als technisch überlegenste Dämmvariante für Steildächer – Rex Bedachungs GmbH
-            führt sie in Bochum GEG-konform und BAFA-förderfähig aus.
+            führt sie in Bochum gesetzeskonform und BEG-förderrelevant aus.
           </p>
         </div>
       </section>
@@ -379,7 +379,7 @@ export default function AufsparrendaemmungBochum() {
             ))}
           </div>
           <p className="text-sm text-slate-600">
-            Mit iSFP-Bonus sind bis zu 60.000 € förderfähig bei 20 % Zuschuss – wir beraten kostenlos zur optimalen Förderstrategie.
+            Mit individuellem Sanierungsfahrplan sind bis zu 60.000 € förderrelevant; der Bonus von 5 Prozentpunkten greift oberhalb von 30.000 € – wir beraten kostenlos zur optimalen Förderstrategie.
           </p>
         </div>
       </section>

@@ -218,10 +218,10 @@ SSR-/Framework-Migration · Stadtteil-Seiten · separate Kosten-Seiten · Gewerb
 > Alle vier Bedingungen der Notfall-Korrektur (Abschnitt 4) waren erfüllt: falsche
 > Tatsachenbehauptung, reiner Korrektur-Deploy (8 Dateien, Stufe B, keine neuen
 > Routen/Redirects/`robots.txt`), Protokollierung hier, volle Kadenz danach.
-> **Auflage:** BEG-2 (20-%-Claims, ~8 Dateien) und BEG-3 (GEG → GModG, ~6 Dateien)
-> laufen strikt im 48h-Rhythmus — frühestens 02.08. und 04.08. Beides ist reine
-> Formulierungs- und Benennungsarbeit ohne falsche Zahlen und rechtfertigt **keine**
-> weitere Ausnahme.
+> **Auflage:** BEG-2 und BEG-3 laufen strikt im 48h-Rhythmus. BEG-1 wurde
+> 31.07. 16:09 gemergt → **BEG-2 frühestens 02.08. 16:09**, BEG-3 48 h danach.
+> Beides ist reine Formulierungs- und Benennungsarbeit ohne falsche Zahlen und
+> rechtfertigt **keine** weitere Ausnahme.
 > **Beobachtung:** Innung-Trust und BEG-1 liegen ~5 h auseinander; ein GSC-Effekt
 > ist in dieser Woche nicht sauber einem der beiden zuzuordnen. Bewusst in Kauf
 > genommen.

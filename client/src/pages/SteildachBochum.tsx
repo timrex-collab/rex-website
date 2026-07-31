@@ -50,7 +50,7 @@ const services = [
   {
     icon: <Thermometer className="w-8 h-8 text-primary" />,
     title: "Steildach Dämmung & Wärmeschutz",
-    text: "Fachgerechte Zwischensparren-, Aufsparren- und Untersparrendämmung nach aktuellem GEG. Senkt Heizkosten dauerhaft und steigert den Wohnkomfort im Dachgeschoss spürbar.",
+    text: "Fachgerechte Zwischensparren-, Aufsparren- und Untersparrendämmung nach aktuellem Gebäudemodernisierungsgesetz (GModG). Senkt Heizkosten dauerhaft und steigert den Wohnkomfort im Dachgeschoss spürbar.",
     testId: "card-daemmung",
   },
   {
@@ -82,8 +82,8 @@ const daemmungCards = [
   },
   {
     icon: <TrendingDown className="w-8 h-8 text-primary" />,
-    title: "Bis zu 20 % Förderung – BAFA & KfW",
-    text: "Energetische Dachsanierungen werden staatlich gefördert: BAFA-Bundesförderung für effiziente Gebäude (BEG) bis 20 % der Investitionskosten. KfW-Kredit mit Niedrigzins zusätzlich möglich. Wir übernehmen die komplette Förderberatung kostenlos.",
+    title: "15 % Grundförderung – BAFA & KfW",
+    text: "Energetische Dachsanierungen werden staatlich gefördert: BAFA-Bundesförderung für effiziente Gebäude (BEG) mit 15 % der förderrelevanten Kosten; mit individuellem Sanierungsfahrplan kommen oberhalb von 30.000 € weitere 5 Prozentpunkte hinzu. Der KfW-Ergänzungskredit 358/359 ist zusätzlich kombinierbar. Wir übernehmen die komplette Förderberatung kostenlos.",
     testId: "card-foerderung-daemmung",
   },
 ];
@@ -144,7 +144,7 @@ const faqItems = [
   {
     question: "Wird die Steildach-Sanierung gefördert?",
     answer:
-      "Ja – bei energetischer Sanierung mit Dämmung gibt es BAFA-Zuschüsse bis 20% und günstige KfW-Kredite. Wir beraten Sie kostenlos zu allen aktuellen Fördermöglichkeiten und helfen beim Antrag.",
+      "Ja – bei energetischer Sanierung mit Dämmung gibt es 15 % BAFA-Grundförderung und den zinsgünstigen KfW-Ergänzungskredit 358/359. Wir beraten Sie kostenlos zu allen aktuellen Fördermöglichkeiten und helfen beim Antrag.",
   },
   {
     question: "Sanieren Sie auch den Dachstuhl?",
@@ -245,12 +245,12 @@ export default function SteildachBochum() {
         <title>Steildach Bochum – Sanierung &amp; Dämmung | Rex Bedachung</title>
         <meta
           name="description"
-          content="Steildach-Sanierung in Bochum: Neueindeckung, Aufsparrendämmung & energetische Modernisierung. BAFA/KfW-förderfähig. Kostenlos beraten lassen."
+          content="Steildach-Sanierung in Bochum: Neueindeckung, Aufsparrendämmung & energetische Modernisierung. BEG-förderrelevant. Kostenlos beraten lassen."
         />
         <meta property="og:title" content="Steildach Bochum – Neueindeckung, Sanierung & Dämmung | Rex Bedachungs GmbH" />
         <meta
           property="og:description"
-          content="Steildach & energetische Dachsanierung Bochum ✓ Aufsparrendämmung ✓ Bis zu 20 % BAFA/KfW-Förderung ✓ Heizkosten dauerhaft senken – Rex Bedachungs GmbH, Ihr Fachbetrieb im Ruhrgebiet."
+          content="Steildach & energetische Dachsanierung Bochum ✓ Aufsparrendämmung ✓ 15 % BAFA-Grundförderung ✓ Heizkosten dauerhaft senken – Rex Bedachungs GmbH, Ihr Fachbetrieb im Ruhrgebiet."
         />
         <meta property="og:image" content="https://www.rex-bedachung.de/images/tondach-hero-dachdeckung-bochum.webp" />
         <meta property="og:site_name" content="Rex Bedachungs GmbH" />
@@ -258,7 +258,7 @@ export default function SteildachBochum() {
         <meta property="og:image:height" content="630" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="Steildach Bochum – Sanierung & Dämmung | Rex Bedachung" />
-        <meta name="twitter:description" content="Steildach Bochum ✓ Energetische Dachsanierung ✓ Aufsparrendämmung ✓ Bis zu 20% BAFA/KfW-Förderung – Rex Bedachungs GmbH." />
+        <meta name="twitter:description" content="Steildach Bochum ✓ Energetische Dachsanierung ✓ Aufsparrendämmung ✓ 15 % BAFA-Grundförderung – Rex Bedachungs GmbH." />
         <meta name="twitter:image" content="https://www.rex-bedachung.de/images/tondach-hero-dachdeckung-bochum.webp" />
         <link rel="canonical" href="https://www.rex-bedachung.de/steildach-bochum" />
         <script type="application/ld+json">{schemaJson}</script>
@@ -269,7 +269,7 @@ export default function SteildachBochum() {
         { label: "Startseite", href: "/" },
         { label: "Steildach" }
       ]} />
-      <ExpertenBlock normen={["GEG 2024", "ZVDH-Regelwerk", "BAFA BEG EM"]} />
+      <ExpertenBlock normen={["GModG 2026", "ZVDH-Regelwerk", "BAFA BEG EM"]} />
 
       {/* Hero */}
       <section
@@ -394,7 +394,7 @@ export default function SteildachBochum() {
           </p>
           <p className="text-muted-foreground text-center mb-10 max-w-3xl mx-auto text-sm leading-relaxed" data-testid="text-daemmung-intro">
             Bis zu 30 % der Heizenergie eines Hauses gehen über das Dach verloren. Eine professionelle Dachdämmung ist die
-            effektivste Maßnahme um den Energieverbrauch dauerhaft zu senken – und wird mit bis zu 20 % durch BAFA und KfW gefördert.
+            effektivste Maßnahme um den Energieverbrauch dauerhaft zu senken – und wird über die BEG EM mit 15 % Grundförderung bezuschusst.
           </p>
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
             {daemmungCards.map((d) => (
@@ -421,7 +421,7 @@ export default function SteildachBochum() {
                     "Immobilienwert steigern",
                     "CO\u2082-Fußabdruck reduzieren",
                     "Sommerhitze effektiv abhalten",
-                    "Förderfähig nach GEG (Gebäudeenergiegesetz)",
+                    "Förderrelevant nach BEG EM",
                   ].map((item, i) => (
                     <div key={i} className="flex items-start gap-2">
                       <CheckCircle className="w-4 h-4 text-primary shrink-0 mt-0.5" aria-hidden="true" />
@@ -531,7 +531,7 @@ export default function SteildachBochum() {
               Bei der energetischen Sanierung Ihres Steildachs profitieren Sie von attraktiven Förderprogrammen:
             </p>
             <p className="text-slate-300 leading-relaxed mb-4 max-w-2xl mx-auto" data-testid="text-foerderung-bafa">
-              BAFA-Bundesförderung BEG – bis zu 20% der Investitionskosten bei Dämmung nach GEG-Standard.
+              BAFA-Bundesförderung BEG – 15 % der förderrelevanten Kosten bei Dämmung auf BEG-Niveau (U ≤ 0,14 W/(m²·K)).
             </p>
             <p className="text-slate-300 leading-relaxed mb-4 max-w-2xl mx-auto" data-testid="text-foerderung-kfw">
               KfW-Ergänzungskredit (358/359) nach BAFA-Zusage – zinsgünstiger Kredit bis 120.000 € pro Wohneinheit, kombinierbar mit dem BAFA-Zuschuss.
@@ -615,7 +615,7 @@ export default function SteildachBochum() {
               <span className="text-muted-foreground font-medium">Lösung</span>
               <span>Komplette Neueindeckung mit Tondachziegeln, Aufsparrendämmung 16 cm PUR, neue Dachrinnen</span>
               <span className="text-muted-foreground font-medium">Ergebnis</span>
-              <span>GEG-konformes Dach, BAFA-Zuschuss 15 % gesichert</span>
+              <span>Gesetzeskonformes Dach, BAFA-Zuschuss 15 % gesichert</span>
             </div>
           </div>
         </div>
@@ -688,7 +688,7 @@ export default function SteildachBochum() {
             </a>
             <a href="/steildach-foerderung-bochum" className="block p-5 bg-white rounded-xl border border-gray-200 hover:border-primary hover:shadow-md transition-all">
               <div className="font-semibold text-gray-900 mb-1">Steildach Förderung Bochum</div>
-              <div className="text-sm text-gray-500">BAFA &amp; KfW für Steildachsanierung – was ist förderfähig?</div>
+              <div className="text-sm text-gray-500">BAFA &amp; KfW für Steildachsanierung – was ist förderrelevant?</div>
             </a>
             <a href="/dachgaube-bochum" className="block p-5 bg-white rounded-xl border border-gray-200 hover:border-primary hover:shadow-md transition-all">
               <div className="font-semibold text-gray-900 mb-1">Dachgaube Bochum</div>

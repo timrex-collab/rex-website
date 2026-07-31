@@ -157,7 +157,7 @@ export default function Services() {
                     <Badge variant="secondary" className="text-xs">Komplettsanierung</Badge>
                   </div>
                   <p className="text-muted-foreground leading-relaxed">
-                    Komplettsanierung aus einer Hand: Steildach, Flachdach, Dämmung, Dachfenster und mehr – inklusive Beratung zu BAFA/KfW-Förderung bis 20%.
+                    Komplettsanierung aus einer Hand: Steildach, Flachdach, Dämmung, Dachfenster und mehr – inklusive Beratung zur BAFA-Förderung ab 15 %.
                   </p>
                 </div>
                 <Button asChild variant="default" size="lg" data-testid="button-services-dachsanierung-hub">

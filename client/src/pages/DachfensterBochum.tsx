@@ -73,7 +73,7 @@ const faqItems = [
   {
     question: "Kann ich Förderung für neue Dachfenster bekommen?",
     answer:
-      "Ja. Über BAFA (BEG Einzelmaßnahme) werden Dachfenster mit Uw ≤ 1,0 W/m²K mit 15 % Grundförderung bezuschusst — mit iSFP steigt der Satz auf 20 %. Nur VELUX ENERGIE und ENERGIE PLUS sind förderfähig, THERMO (Uw 1,3) nicht. Rex Bedachungs GmbH berät kostenlos zur Antragstellung.",
+      "Ja. Über BAFA (BEG Einzelmaßnahme) werden Dachfenster mit Uw ≤ 1,0 W/m²K mit 15 % Grundförderung bezuschusst — der iSFP-Bonus von 5 Prozentpunkten greift seit 21.07.2026 nur oberhalb von 30.000 € förderrelevanten Kosten und damit bei einem reinen Fenstertausch in der Regel nicht. Nur VELUX ENERGIE und ENERGIE PLUS sind förderrelevant, THERMO (Uw 1,3) nicht. Rex Bedachungs GmbH berät kostenlos zur Antragstellung.",
   },
   {
     question: "Welche Dachfenster-Marken verbauen Sie?",
@@ -88,7 +88,7 @@ const faqItems = [
   {
     question: "Gibt es Förderung für den Einbau von Dachfenstern?",
     answer:
-      "Ja — Dachfenster mit Uw ≤ 1,0 W/m²K werden über BAFA (BEG Einzelmaßnahme) mit 15 % Grundförderung bezuschusst. Mit einem individuellen Sanierungsfahrplan (iSFP) steigt der Satz auf 20 % und der Förderhöchstbetrag auf 60.000 € pro Wohneinheit. Zusätzlich ist der KfW-Ergänzungskredit 358/359 kombinierbar. Rex Bedachungs GmbH berät kostenlos zu allen aktuellen Fördermöglichkeiten.",
+      "Ja — Dachfenster mit Uw ≤ 1,0 W/m²K werden über BAFA (BEG Einzelmaßnahme) mit 15 % Grundförderung bezuschusst. Mit einem individuellen Sanierungsfahrplan (iSFP) steigt die Obergrenze der förderrelevanten Kosten auf 60.000 € pro Wohneinheit; der Bonus von 5 Prozentpunkten greift allerdings nur oberhalb von 30.000 €. Bei einem reinen Fenstertausch ist deshalb oft die Steuerermäßigung nach § 35c EStG mit 20 % der bessere Weg. Zusätzlich ist der KfW-Ergänzungskredit 358/359 kombinierbar. Rex Bedachungs GmbH berät kostenlos zu allen aktuellen Fördermöglichkeiten.",
   },
   {
     question: "Kann ein altes VELUX-Fenster 1:1 ersetzt werden?",
@@ -144,7 +144,7 @@ const schemaJson = JSON.stringify({
       "@type": "Article",
       "@id": "https://www.rex-bedachung.de/dachfenster-bochum#article",
       "headline": "Dachfenster Bochum – Einbau & Austausch vom Meisterbetrieb",
-      "description": "VELUX und Roto Dachfenster in Bochum: Neueinbau, Austausch und Reparatur. Autorisierter VELUX-Partner seit 1984. Bis zu 20 % BAFA-Förderung bei Uw ≤ 1,0.",
+      "description": "VELUX und Roto Dachfenster in Bochum: Neueinbau, Austausch und Reparatur. Autorisierter VELUX-Partner seit 1984. 15 % BAFA-Grundförderung bei Uw ≤ 1,0.",
       "url": "https://www.rex-bedachung.de/dachfenster-bochum",
       "mainEntityOfPage": { "@id": "https://www.rex-bedachung.de/dachfenster-bochum#webpage" },
       "author": { "@id": "https://www.rex-bedachung.de/#author" },
@@ -173,7 +173,7 @@ export default function DachfensterBochum() {
         <title>Dachfenster Bochum – Einbau & Austausch | Rex Bedachung</title>
         <meta
           name="description"
-          content="Dachfenster in Bochum einbauen oder austauschen? Rex Bedachungs GmbH montiert VELUX & Roto – inkl. Dämmung, Anschlussabdichtung und bis zu 20 % BAFA-Förderung. Autorisierter VELUX-Partner seit 1984."
+          content="Dachfenster in Bochum einbauen oder austauschen? Rex Bedachungs GmbH montiert VELUX & Roto – inkl. Dämmung, Anschlussabdichtung und 15 % BAFA-Grundförderung. Autorisierter VELUX-Partner seit 1984."
         />
         <meta property="og:title" content="Dachfenster Bochum – VELUX & Roto Einbau | Rex Bedachungs GmbH" />
         <meta
@@ -259,7 +259,7 @@ export default function DachfensterBochum() {
         </div>
       </section>
 
-      <ExpertenBlock normen={["Autorisierter VELUX-Partner", "BEG EM Uw ≤ 1,0", "GEG 2024"]} />
+      <ExpertenBlock normen={["Autorisierter VELUX-Partner", "BEG EM Uw ≤ 1,0", "GModG 2026"]} />
 
       {/* ── Leistungs-Sektion ── */}
       <section className="py-16 px-4 bg-background" data-testid="section-leistungen">
@@ -369,10 +369,10 @@ export default function DachfensterBochum() {
             data-testid="box-foerderung"
           >
             <h3 className="mb-2 text-xl font-bold" data-testid="heading-foerderung">
-              Bis zu 20 % Förderung durch BAFA &amp; KfW
+              15 % Grundförderung durch BAFA
             </h3>
             <p className="mb-4 text-sm leading-relaxed" data-testid="text-foerderung">
-              Der Austausch alter Dachfenster gegen energieeffiziente Modelle mit Uw ≤ 1,0 W/m²K wird über BAFA (BEG Einzelmaßnahme) mit 15 % Grundförderung bezuschusst — mit iSFP steigt der Satz auf 20 %. Zusätzlich ist der KfW-Ergänzungskredit (358/359) bis 120.000 € kombinierbar.
+              Der Austausch alter Dachfenster gegen energieeffiziente Modelle mit Uw ≤ 1,0 W/m²K wird über BAFA (BEG Einzelmaßnahme) mit 15 % Grundförderung bezuschusst. Der iSFP-Bonus von 5 Prozentpunkten greift seit 21.07.2026 nur oberhalb von 30.000 € förderrelevanten Kosten — bei einem reinen Fenstertausch ist daher oft die Steuerermäßigung nach § 35c EStG mit 20 % der bessere Weg. Zusätzlich ist der KfW-Ergänzungskredit (358/359) bis 120.000 € kombinierbar.
             </p>
             <a
               href="/kontakt"

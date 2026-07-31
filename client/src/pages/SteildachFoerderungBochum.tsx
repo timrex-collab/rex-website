@@ -23,7 +23,7 @@ const faqItems = [
   {
     question: "Welche Förderung gibt es für die Steildachsanierung?",
     answer:
-      "Über BAFA (BEG Einzelmaßnahme) sind bis zu 20 % der förderfähigen Kosten als Zuschuss möglich. Zusätzlich kann ein KfW-Kredit (Programm 261) beantragt werden. Beide Programme sind kombinierbar.",
+      "Über BAFA (BEG Einzelmaßnahme) sind 15 % der förderrelevanten Kosten als Zuschuss möglich; mit individuellem Sanierungsfahrplan kommen oberhalb von 30.000 € weitere 5 Prozentpunkte hinzu. Zusätzlich kann der KfW-Ergänzungskredit 358/359 über die Hausbank beantragt werden. Beide Programme sind kombinierbar.",
   },
   {
     question: "Muss ich den Antrag selbst stellen?",
@@ -31,9 +31,9 @@ const faqItems = [
       "Den BAFA-Antrag stellt der Eigentümer über das BAFA-Portal. Rex Bedachung bereitet alle notwendigen Unterlagen vor und begleitet Sie durch den Prozess. Wichtig: Antrag vor Auftragsvergabe stellen.",
   },
   {
-    question: "Welche Dämmmaßnahmen am Steildach sind förderfähig?",
+    question: "Welche Dämmmaßnahmen am Steildach sind förderrelevant?",
     answer:
-      "Aufsparrendämmung und Zwischensparrendämmung sind förderfähig, wenn sie GEG-konforme U-Werte erreichen. Die reine Neueindeckung ohne Dämmung ist nicht förderfähig.",
+      "Aufsparrendämmung und Zwischensparrendämmung sind förderrelevant, wenn sie den BEG-Wert von U ≤ 0,14 W/(m²·K) erreichen. Die reine Neueindeckung ohne Dämmung ist nicht förderrelevant.",
   },
   {
     question: "Kann ich BAFA und KfW kombinieren?",
@@ -43,20 +43,20 @@ const faqItems = [
   {
     question: "Gilt die Förderung auch für ältere Häuser?",
     answer:
-      "Ja – die BEG-Förderung gilt für bestehende Wohngebäude unabhängig vom Baujahr. Entscheidend ist, dass die Mindestanforderungen ans Dämmniveau nach GEG eingehalten werden.",
+      "Ja – die BEG-Förderung gilt für bestehende Wohngebäude unabhängig vom Baujahr. Entscheidend ist, dass die technischen Mindestanforderungen der BEG ans Dämmniveau eingehalten werden.",
   },
 ];
 
 const bafaCards = [
   {
     icon: <CheckCircle className="w-6 h-6 text-primary" />,
-    title: "Bis zu 20 % Zuschuss",
-    text: "Offizieller Fördersatz auf die förderfähigen Kosten der Dämmmaßnahme – unabhängig von der Höhe der Investition.",
+    title: "15 % Grundförderung",
+    text: "Offizieller Fördersatz auf die förderrelevanten Kosten der Dämmmaßnahme. Mit individuellem Sanierungsfahrplan kommen oberhalb von 30.000 € weitere 5 Prozentpunkte hinzu.",
   },
   {
     icon: <Home className="w-6 h-6 text-primary" />,
-    title: "Förderfähige Maßnahmen",
-    text: "Aufsparrendämmung und Zwischensparrendämmung sind förderfähig, wenn GEG-konforme U-Werte erreicht werden.",
+    title: "Förderrelevante Maßnahmen",
+    text: "Aufsparrendämmung und Zwischensparrendämmung sind förderrelevant, wenn der BEG-Wert U ≤ 0,14 W/(m²·K) erreicht wird.",
   },
   {
     icon: <AlertTriangle className="w-6 h-6 text-primary" />,
@@ -73,8 +73,8 @@ const bafaCards = [
 const kfwItems = [
   {
     icon: <TrendingDown className="w-6 h-6 text-primary" />,
-    title: "KfW-Programm 261",
-    text: "Zinsgünstiger Kredit für energetische Einzelmaßnahmen am Gebäude – beantragbar über die Hausbank.",
+    title: "KfW-Ergänzungskredit 358/359",
+    text: "Zinsgünstiger Kredit bis 120.000 € je Wohneinheit nach BAFA-Zusage – beantragbar über die Hausbank.",
   },
   {
     icon: <CheckCircle className="w-6 h-6 text-primary" />,
@@ -113,7 +113,7 @@ export default function SteildachFoerderungBochum() {
       },
       {
         "@type": "Article",
-        "headline": "Steildach Förderung Bochum – BAFA, KfW und GEG 2026",
+        "headline": "Steildach Förderung Bochum – BAFA, KfW und GModG 2026",
         "author": { "@id": "https://www.rex-bedachung.de/#author" },
         "publisher": { "@id": "https://www.rex-bedachung.de/#organization" },
         "datePublished": "2026-03-17",
@@ -150,14 +150,14 @@ export default function SteildachFoerderungBochum() {
         <title>Steildach Förderung Bochum – BAFA &amp; KfW 2026 | Rex Bedachung</title>
         <meta
           name="description"
-          content="Steildach sanieren und Förderung nutzen: BAFA bis 20 %, KfW-Kredit, GEG-konforme Dämmung. Rex Bedachungs GmbH berät kostenlos in Bochum."
+          content="Steildach sanieren und Förderung nutzen: 15 % BAFA-Grundförderung, KfW-Ergänzungskredit, BEG-konforme Dämmung. Rex Bedachungs GmbH berät kostenlos in Bochum."
         />
         <link rel="canonical" href="https://www.rex-bedachung.de/steildach-foerderung-bochum" />
         <meta property="og:type" content="article" />
         <meta property="og:title" content="Steildach Förderung Bochum – BAFA & KfW 2026 | Rex Bedachung" />
         <meta
           property="og:description"
-          content="Steildach sanieren und Förderung nutzen: BAFA bis 20 %, KfW-Kredit, GEG-konforme Dämmung. Rex Bedachungs GmbH berät kostenlos in Bochum."
+          content="Steildach sanieren und Förderung nutzen: 15 % BAFA-Grundförderung, KfW-Ergänzungskredit, BEG-konforme Dämmung. Rex Bedachungs GmbH berät kostenlos in Bochum."
         />
         <meta property="og:image" content="https://www.rex-bedachung.de/images/tondach-hero-dachdeckung-bochum.webp" />
         <meta property="og:url" content="https://www.rex-bedachung.de/steildach-foerderung-bochum" />
@@ -165,7 +165,7 @@ export default function SteildachFoerderungBochum() {
         <meta name="twitter:title" content="Steildach Förderung Bochum – BAFA & KfW 2026 | Rex Bedachung" />
         <meta
           name="twitter:description"
-          content="Steildach sanieren und Förderung nutzen: BAFA bis 20 %, KfW-Kredit, GEG-konforme Dämmung. Rex Bedachungs GmbH berät kostenlos in Bochum."
+          content="Steildach sanieren und Förderung nutzen: 15 % BAFA-Grundförderung, KfW-Ergänzungskredit, BEG-konforme Dämmung. Rex Bedachungs GmbH berät kostenlos in Bochum."
         />
         <meta name="twitter:image" content="https://www.rex-bedachung.de/images/tondach-hero-dachdeckung-bochum.webp" />
         <script type="application/ld+json">{JSON.stringify(schemaData)}</script>
@@ -230,7 +230,7 @@ export default function SteildachFoerderungBochum() {
             Warum wird die Dachsanierung staatlich gefördert?
           </h2>
           <p className="text-muted-foreground mb-4 text-base leading-relaxed">
-            Das Gebäudeenergiegesetz (GEG) verpflichtet Eigentümer bei ohnehin anfallender Dachsanierung zur
+            Das Gebäudemodernisierungsgesetz (GModG) verpflichtet Eigentümer bei ohnehin anfallender Dachsanierung zur
             energetischen Mindestdämmung. Der Staat fördert diese Investition, weil energetisch sanierte Gebäude
             einen wesentlichen Beitrag zu den Klimazielen leisten – weniger Heizenergie, geringere CO₂-Emissionen.
             Für Eigentümer entsteht daraus eine Kombination aus gesetzlicher Pflicht und konkretem Förderanreiz.
@@ -244,7 +244,7 @@ export default function SteildachFoerderungBochum() {
           </p>
           <p className="text-sm text-slate-600 dark:text-slate-400 italic">
             Bei Steildachsanierungen in Bochum stellt die Rex Bedachungs GmbH sicher, dass alle Dämmmaßnahmen
-            GEG-konform ausgeführt werden – Voraussetzung für BAFA-Förderung und KfW-Kredit.
+            auf BEG-Niveau ausgeführt werden – Voraussetzung für BAFA-Förderung und KfW-Kredit.
           </p>
         </div>
       </section>
@@ -307,24 +307,24 @@ export default function SteildachFoerderungBochum() {
         </div>
       </section>
 
-      {/* 5. GEG */}
+      {/* 5. GModG */}
       <section className="py-14 px-4 bg-muted/40" data-testid="section-geg">
         <div className="max-w-3xl mx-auto">
           <h2 className="text-2xl md:text-3xl font-bold mb-5 text-foreground">
-            GEG 2026 – Pflicht und Fördervoraussetzung
+            GModG 2026 – Pflicht und Fördervoraussetzung
           </h2>
           <p className="text-muted-foreground mb-4 text-base leading-relaxed">
-            Das Gebäudeenergiegesetz schreibt beim Steildach einen Mindest-U-Wert für Dachflächen vor. Bei einer
+            Das Gebäudemodernisierungsgesetz, seit Juli 2026 Nachfolger des GEG, schreibt beim Steildach einen Mindest-U-Wert für Dachflächen vor. Bei einer
             ohnehin anfallenden Neueindeckung ist die gleichzeitige Dämmung auf dieses Niveau gesetzlich
             verpflichtend – unabhängig vom Eigentümerwunsch.
           </p>
           <p className="text-muted-foreground mb-4 text-base leading-relaxed">
-            Förderung setzt GEG-konforme Ausführung voraus. Eine reine Neueindeckung ohne Dämmung ist nicht
-            förderfähig – nur Dämmmaßnahmen berechtigen zur BAFA- und KfW-Förderung.
+            Die Förderung setzt darüber hinaus das strengere BEG-Niveau voraus. Eine reine Neueindeckung ohne Dämmung ist nicht
+            förderrelevant – nur Dämmmaßnahmen berechtigen zur BAFA- und KfW-Förderung.
           </p>
           <p className="text-sm text-slate-600 dark:text-slate-400 italic">
             Bei Steildachsanierungen in Bochum stellt die Rex Bedachungs GmbH sicher, dass alle Dämmmaßnahmen
-            GEG-konform ausgeführt werden – Voraussetzung für BAFA-Förderung und KfW-Kredit.
+            auf BEG-Niveau ausgeführt werden – Voraussetzung für BAFA-Förderung und KfW-Kredit.
           </p>
         </div>
       </section>

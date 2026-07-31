@@ -187,24 +187,47 @@ Alles, was **konkrete falsche Euro-Beträge** oder eine falsche Rechnung ausgibt
 7. `client/public/llms.txt`
 8. `client/public/llms-full.txt`
 
-### Deploy BEG-2 — offen (Stufe A, ~8 Dateien)
+### Deploy BEG-2 — umgesetzt, wartet auf das Deploy-Fenster (8 Dateien, Stufe B)
 
-„Bis zu 20 %"-Claims entschärfen auf „15 % Grundförderung":
+**Schnitt geändert:** ursprünglich war nach Themen geplant (BEG-2 = Förderclaims,
+BEG-3 = GEG → GModG). Das hätte fünf Dateien in zwei aufeinanderfolgenden Deploys
+angefasst. Jetzt wird **nach Dateien** geschnitten: Jede Datei wird genau einmal
+angefasst und dabei vollständig bereinigt. Weniger Änderungen treffen den Index,
+und der Diff je Datei ist abgeschlossen.
+
 `Home.tsx`, `Services.tsx`, `SteildachBochum.tsx`, `SteildachFoerderungBochum.tsx`,
 `AufsparrendaemmungBochum.tsx`, `FlachdachBochum.tsx`, `DachfensterBochum.tsx`,
-`Solarpflicht.tsx` — dabei gleich „KfW 261" → „KfW 358/359" und
-„förderfähig" → „förderrelevant".
+`Solarpflicht.tsx` — je Datei: „bis zu 20 %" → „15 % Grundförderung",
+„KfW 261" → „KfW-Ergänzungskredit 358/359", „förderfähig" → „förderrelevant",
+GEG → GModG.
 
-### Deploy BEG-3 — offen (Stufe A, ~6 Dateien)
+Inhaltlich neu formuliert statt nur ersetzt, wo die alte Aussage in die Irre führte —
+etwa bei `DachfensterBochum.tsx`: Bei einem reinen Fenstertausch greift der
+iSFP-Bonus nicht mehr, dort ist jetzt § 35c EStG als der oft bessere Weg benannt.
 
-GEG → GModG in Fließtext und Schema: `ExpertenBlock.tsx` (`DEFAULT_NORMEN`),
-`AuthorSchema.tsx` („GEG 2024"), `DachLexikon.tsx` (Lexikon-Eintrag),
-`DachgaubeBochum.tsx`, `VeluxAustausch.tsx`, `SteildachUndichtBochum.tsx`.
+### Deploy BEG-3 — offen (Stufe A, ~9 Dateien)
+
+Restliche GEG-Nennungen in Fließtext und Schema: `ExpertenBlock.tsx`
+(`DEFAULT_NORMEN`), `AuthorSchema.tsx` („GEG 2024"), `DachLexikon.tsx`
+(Lexikon-Eintrag „Gebäudeenergiegesetz"), `DachgaubeBochum.tsx`,
+`VeluxAustausch.tsx`, `SteildachUndichtBochum.tsx`, `About.tsx`,
+`BitumenVsPvc.tsx`, `llms-full.txt`.
+
+Nicht zu ändern: der erklärende Verweis „GModG, seit Juli 2026 Nachfolger des GEG"
+in `SteildachFoerderungBochum.tsx`, `Foerderung.tsx` und
+`WannLohntSichDachsanierung.tsx` — dort ist die Nennung des alten Namens gewollt,
+weil Nutzer nach „GEG" suchen.
 
 ### Deploy-Fenster
 
-Letzter Merge auf `main`: **31.07.2026, 09:07 CEST** (PR #34).
-48-h-Gate → nächstes funktionales Merge-Fenster frühestens **02.08.2026, ~09:07**.
+BEG-1 ist am **31.07.2026, 16:09 CEST** gemergt (PR #35) und seit 16:10 live
+(Netlify-Deploy `6a6cacad…`, `state: ready`, `plugin_state: success`,
+`commit_ref: cd95adb`). Das Gate wurde dafür als Notfall-Korrektur ausgesetzt und
+in `DEPLOY-RULES.md` protokolliert.
+
+48-h-Gate ab dem BEG-1-Merge → **BEG-2 frühestens 02.08.2026, 16:09**,
+BEG-3 frühestens 48 h danach. Für beide gibt es keinen Ausnahmegrund: Es sind
+Formulierungs- und Benennungskorrekturen, keine falschen Zahlen.
 
 ---
 
