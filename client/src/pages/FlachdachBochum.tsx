@@ -157,7 +157,7 @@ const faqItems = [
   {
     question: "Kann ich mein Flachdach fördern lassen?",
     answer:
-      "Ja! Bei Sanierungen mit verbesserter Dämmung können Sie über BAFA oder KfW bis zu 20% der Kosten zurückbekommen. Wir übernehmen auf Wunsch die komplette Antragstellung.",
+      "Ja! Bei Sanierungen mit verbesserter Dämmung erhalten Sie über die BEG EM 15 % der förderrelevanten Kosten als BAFA-Zuschuss. Wir übernehmen auf Wunsch die komplette Antragstellung.",
   },
   {
     question: "Kann man ein Flachdach begrünen oder als Terrasse nutzen?",
@@ -521,7 +521,7 @@ export default function FlachdachBochum() {
           >
             <AlertTriangle className="w-10 h-10 text-blue-300 mx-auto mb-4" aria-hidden="true" />
             <h2 className="text-2xl md:text-3xl font-bold text-white mb-4" data-testid="heading-foerderung">
-              Bis zu 20% Förderung durch BAFA &amp; KfW
+              15 % Grundförderung durch BAFA
             </h2>
             <p className="text-slate-300 leading-relaxed mb-4 max-w-2xl mx-auto" data-testid="text-foerderung">
               Flachdachsanierungen mit verbesserter Dämmung werden vom Staat großzügig gefördert. Wir beraten Sie
@@ -661,7 +661,7 @@ export default function FlachdachBochum() {
             </a>
             <a href="/foerderung" className="block p-5 bg-white rounded-xl border border-gray-200 hover:border-primary hover:shadow-md transition-all">
               <div className="font-semibold text-gray-900 mb-1">Förderung für Flachdach</div>
-              <div className="text-sm text-gray-500">BAFA und KfW fördern auch Flachdachdämmung – bis zu 20% Zuschuss.</div>
+              <div className="text-sm text-gray-500">BAFA und KfW fördern auch Flachdachdämmung – 15 % Grundförderung.</div>
             </a>
             <a href="/dach-photovoltaik-bochum" className="block p-5 bg-white rounded-xl border border-gray-200 hover:border-primary hover:shadow-md transition-all">
               <div className="font-semibold text-gray-900 mb-1">Dach &amp; Photovoltaik</div>

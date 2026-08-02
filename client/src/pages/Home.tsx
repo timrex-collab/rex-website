@@ -192,7 +192,7 @@ export default function Home() {
       <Hero
         title="Dachdecker Bochum – Ihr Partner rund um's Dach"
         subtitle="Rex Bedachungs GmbH"
-        description="Rex Bedachungs GmbH ist Ihr Dachdecker-Meisterbetrieb in Bochum – autorisierter VELUX-Partner, spezialisiert auf energetische Dachsanierung nach GEG, BAFA/KfW-Förderung bis 20% möglich, Flachdachabdichtung, Steildach, Reparaturen und Bauklempnerei."
+        description="Rex Bedachungs GmbH ist Ihr Dachdecker-Meisterbetrieb in Bochum – autorisierter VELUX-Partner, spezialisiert auf energetische Dachsanierung nach GModG, 15 % BAFA-Grundförderung möglich, Flachdachabdichtung, Steildach, Reparaturen und Bauklempnerei."
         imageUrl={heroImage}
         imageFallbackUrl={heroImageFallback}
         imageAlt="Dachdecker Bochum – Rex Bedachungs GmbH Steildach"
@@ -280,7 +280,7 @@ export default function Home() {
                     <Badge variant="secondary" className="text-xs">Komplettsanierung</Badge>
                   </div>
                   <p className="text-sm text-muted-foreground leading-relaxed">
-                    Steildach, Flachdach, Dämmung, Dachfenster – alles aus einer Hand. Bis zu 20% BAFA-Förderung.
+                    Steildach, Flachdach, Dämmung, Dachfenster – alles aus einer Hand. 15 % BAFA-Grundförderung.
                   </p>
                 </div>
                 <Button asChild variant="default" data-testid="button-dachsanierung-hub">

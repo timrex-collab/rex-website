@@ -81,7 +81,7 @@ const faqItems = [
   { q: "Was ist der genaue Stichtag für Bestandsgebäude?", a: "Entscheidend ist der Beginn der Baumaßnahme. Wer vor dem 1. Januar 2026 angefangen hat, ist nicht betroffen – auch wenn Arbeiten ins Jahr 2026 hineinreichen. Für Neubauten gilt das Datum der Bauantragseinreichung." },
   { q: "Was ist der Unterschied zwischen Brutto- und Nettodachfläche?", a: "Bei Neubauten ist die Bruttodachfläche (inkl. Dachüberstände) die Basis für die 30%-Regel. Bei Sanierungen im Bestand zählt die Nettodachfläche – abzüglich ungeeigneter Flächen (Verschattung, Gauben, reine Nordseiten)." },
   { q: "Was passiert, wenn ich die Solarpflicht ignoriere?", a: "Die Bauaufsichtsbehörden kontrollieren die Einhaltung. Bei Verstößen droht ein Bußgeld von bis zu 5.000 €. Bei Neubauten erfolgt die Prüfung bei der Bauabnahme, bei Bestandsgebäuden durch stichprobenartige Kontrollen." },
-  { q: "Gibt es Förderungen, die ich kombinieren kann?", a: "Ja! BAFA-Förderung (15–20% Zuschuss), KfW-Kredit 261 sowie der Steuerbonus nach § 35c EStG lassen sich nutzen. Die Kombination aus Pflicht und Förderung macht die Investition in den meisten Fällen wirtschaftlich sehr attraktiv." },
+  { q: "Gibt es Förderungen, die ich kombinieren kann?", a: "Ja! Die BAFA-Förderung (15 % Grundförderung), der KfW-Ergänzungskredit 358/359 sowie der Steuerbonus nach § 35c EStG lassen sich nutzen. Die Kombination aus Pflicht und Förderung macht die Investition in den meisten Fällen wirtschaftlich sehr attraktiv." },
   { q: "Gilt die Pflicht auch für Denkmalschutzgebäude?", a: "Nur wenn die PV-Installation den denkmalschutzrechtlichen Auflagen nicht widerspricht. Andernfalls entfällt die Pflicht. Dies muss im Einzelfall mit der unteren Denkmalbehörde geprüft werden." },
   { q: "Was ist das Optimierungsgebot bei Neubauten?", a: "Bei Neubauten schreibt das Gesetz ein Optimierungsgebot vor: Schon bei der Planung soll das Dach möglichst gut für eine PV-Anlage geeignet sein. Das beeinflusst Dachneigung, -ausrichtung und Konstruktion." },
 ];
@@ -107,7 +107,7 @@ function calculateResult(vorhaben: ProjectType, date: string): CheckResult | nul
 
   if (vorhaben === "Dachsanierung (Bestand)") {
     if (d >= new Date("2026-01-01"))
-      return { status: "Pflicht", reasons: ["Vollständige Erneuerung der Dachhaut", "Beginn der Maßnahme ab 01.01.2026", "Sanierungspflicht greift gemäß § 42a BauO NRW"], todos: ["Option wählen: 30% Nettofläche ODER kWp-Pauschalregel", "Statik des Bestandsdachs prüfen", "Ausnahmetatbestände prüfen (Statik, Wirtschaftlichkeit)", "BAFA-Förderung beantragen (15–20% Zuschuss)"] };
+      return { status: "Pflicht", reasons: ["Vollständige Erneuerung der Dachhaut", "Beginn der Maßnahme ab 01.01.2026", "Sanierungspflicht greift gemäß § 42a BauO NRW"], todos: ["Option wählen: 30% Nettofläche ODER kWp-Pauschalregel", "Statik des Bestandsdachs prüfen", "Ausnahmetatbestände prüfen (Statik, Wirtschaftlichkeit)", "BAFA-Förderung beantragen (15 % Grundförderung)"] };
     return { status: "Nicht betroffen", reasons: ["Sanierungsbeginn vor 01.01.2026", "Keine gesetzliche Pflicht"], todos: ["Freiwillige Installation empfohlen", "Dachsanierung und PV ideal kombinieren"] };
   }
 
@@ -578,7 +578,7 @@ export default function Solarpflicht() {
               <h3 className="text-2xl font-bold mb-4 text-blue-900">Förderung nicht vergessen!</h3>
               <p className="text-blue-800/80 mb-6 leading-relaxed">
                 Die Solarpflicht und staatliche Förderungen schließen sich nicht aus – im Gegenteil. Wer sowieso saniert,
-                kann zusätzlich <strong>15–20% BAFA-Förderung</strong> beantragen, KfW-Kredite nutzen und den Steuerbonus
+                kann zusätzlich <strong>15 % BAFA-Grundförderung</strong> beantragen, KfW-Kredite nutzen und den Steuerbonus
                 nach § 35c EStG in Anspruch nehmen.
               </p>
               <div className="bg-white p-4 rounded-md border border-blue-200 mb-6">
@@ -680,7 +680,7 @@ export default function Solarpflicht() {
         <Sun className="w-16 h-16 text-blue-300 mx-auto mb-6 opacity-80" />
         <h2 className="text-3xl md:text-5xl font-black mb-6">Dachsanierung geplant?</h2>
         <p className="text-blue-100 text-lg mb-10 max-w-xl mx-auto">
-          Wir beraten Sie kostenlos, ob und wie die Solarpflicht für Ihr Gebäude gilt – und koordinieren die gesamte Dachsanierung fachgerecht nach GEG und ZVDH.
+          Wir beraten Sie kostenlos, ob und wie die Solarpflicht für Ihr Gebäude gilt – und koordinieren die gesamte Dachsanierung fachgerecht nach GModG und ZVDH.
         </p>
         <div className="flex flex-col sm:flex-row justify-center gap-4">
           <a href="/kontakt"
