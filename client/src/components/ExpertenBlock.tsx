@@ -6,7 +6,7 @@ interface ExpertenBlockProps {
   normen?: string[];
 }
 
-const DEFAULT_NORMEN = ["GEG 2024", "ZVDH-Regelwerk", "BAFA BEG EM"];
+const DEFAULT_NORMEN = ["GModG 2026", "ZVDH-Regelwerk", "BAFA BEG EM"];
 
 export default function ExpertenBlock({ normen = DEFAULT_NORMEN }: ExpertenBlockProps) {
   const reviewDate = typeof __BUILD_DATE__ !== "undefined" ? __BUILD_DATE__ : "2026";

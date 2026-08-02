@@ -173,9 +173,9 @@ function FoerderdetailsBlock() {
     ],
     no: [
       "Reine Neueindeckung ohne Dämmung – nicht förderrelevant",
-      "Nur GEG-Niveau (U 0,24) – kein Förderanspruch",
+      "Nur gesetzliches Mindestniveau (U 0,24) – kein Förderanspruch",
     ],
-    note: "BEG-Mindestanforderung: U ≤ 0,14 W/(m²·K) – deutlich strenger als GEG (0,24). Gilt für Steildach und Flachdach gleichermaßen.",
+    note: "BEG-Mindestanforderung: U ≤ 0,14 W/(m²·K) – deutlich strenger als die gesetzliche Pflicht nach GModG (0,24). Gilt für Steildach und Flachdach gleichermaßen.",
     req: "Förderrelevant bei U ≤ 0,14 W/(m²·K)",
   };
 
@@ -471,7 +471,7 @@ export default function Foerderung() {
         </div>
       </section>
 
-      {/* ── GEG Info Box (beide hatten das) ── */}
+      {/* ── GModG Info Box ── */}
       <section className="py-16 bg-background">
         <div className="max-w-5xl mx-auto px-4 md:px-6 lg:px-8">
           <div className="bg-card rounded-md p-8 md:p-12 shadow-sm border border-border flex flex-col md:flex-row items-center gap-8">

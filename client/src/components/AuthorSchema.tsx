@@ -25,7 +25,7 @@ export default function AuthorSchema() {
           "Dachfenster VELUX",
           "Aufsparrendämmung",
           "BEG EM BAFA-Förderung",
-          "GEG 2024",
+          "GModG 2026",
           "ZVDH-Regelwerk",
           "DIN 18531",
           "FLL-Richtlinien Dachbegrünung",

@@ -38,7 +38,7 @@ const faqItems = [
   {
     question: "Wird eine Dachgaube gefördert?",
     answer:
-      "Wenn im Zuge des Gaubeneinbaus eine GEG-konforme Dämmung eingebaut wird, kann der Dämmanteil über BAFA oder KfW gefördert werden. Die reine Gaubenstruktur ist nicht förderfähig.",
+      "Wenn im Zuge des Gaubeneinbaus gedämmt wird, kann der Dämmanteil über die BEG EM gefördert werden – für Dachgauben verlangt die BEG einen U-Wert von höchstens 0,20 W/(m²·K). Die reine Gaubenstruktur ist nicht förderrelevant.",
   },
   {
     question: "Wie lange dauert der Einbau einer Dachgaube?",
@@ -76,7 +76,7 @@ const leistungen = [
   "Eindeckung passend zum Bestandsdach",
   "Dachanschlüsse und Abdichtung",
   "Dachfenstereinbau optional",
-  "Dämmung nach GEG",
+  "Dämmung nach GModG",
   "Spengler- und Blecharbeiten",
 ];
 
@@ -412,7 +412,7 @@ export default function DachgaubeBochum() {
               <span className="text-muted-foreground font-medium">Ausgangslage</span>
               <span>EFH mit ausgebautem Dachgeschoss, zu wenig Stehhöhe und Tageslicht im Kinderzimmer</span>
               <span className="text-muted-foreground font-medium">Lösung</span>
-              <span>Schleppgaube 3,5 m Breite, Eindeckung passend zum Bestandsdach, Innendämmung nach GEG, Baugenehmigung koordiniert</span>
+              <span>Schleppgaube 3,5 m Breite, Eindeckung passend zum Bestandsdach, Innendämmung nach GModG, Baugenehmigung koordiniert</span>
               <span className="text-muted-foreground font-medium">Ergebnis</span>
               <span>8 m² zusätzliche Nutzfläche mit voller Stehhöhe</span>
             </div>

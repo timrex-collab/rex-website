@@ -625,7 +625,7 @@ export default function VeluxAustausch() {
               <div>
                 <p className="font-semibold text-foreground mb-1">Autorisierter VELUX-Partner</p>
                 <p className="text-sm text-muted-foreground leading-relaxed">Rex Bedachungs GmbH ist autorisierter VELUX-Partner – mit direktem Zugriff auf alle aktuellen Modelle, Zubehör und Ersatzteile.</p>
-                <p className="text-sm text-slate-600 mt-2">Als autorisierter VELUX-Partner in Bochum führt die Rex Bedachungs GmbH den Dachfensteraustausch gemäß aktuellen GEG-Richtlinien durch – Montage und Abdichtung aus einer Hand, in der Regel innerhalb eines Arbeitstages.</p>
+                <p className="text-sm text-slate-600 mt-2">Als autorisierter VELUX-Partner in Bochum führt die Rex Bedachungs GmbH den Dachfensteraustausch gemäß den aktuellen Vorgaben des Gebäudemodernisierungsgesetzes (GModG) durch – Montage und Abdichtung aus einer Hand, in der Regel innerhalb eines Arbeitstages.</p>
               </div>
             </div>
             <div className="flex items-start gap-3" data-testid="item-usp-1">

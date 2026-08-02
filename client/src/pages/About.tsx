@@ -223,7 +223,7 @@ export default function About() {
             <p className="text-center text-lg text-muted-foreground mb-12 max-w-2xl mx-auto">
               Als Dachdecker-Meisterbetrieb aus Bochum decken wir das gesamte
               Spektrum des modernen Dachdeckerhandwerks ab – von klassischen
-              Steildächern bis zur energetischen Sanierung nach GEG.
+              Steildächern bis zur energetischen Sanierung nach GModG.
             </p>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
               <div className="bg-slate-50 rounded-md p-6">
@@ -231,7 +231,7 @@ export default function About() {
                 <ul className="space-y-2 text-muted-foreground">
                   <li>Neueindeckung mit Ton- und Betonziegeln</li>
                   <li>Schieferarbeiten und Metalleindeckung</li>
-                  <li>Aufsparrendämmung nach GEG</li>
+                  <li>Aufsparrendämmung nach GModG</li>
                   <li>Gaube und Dachaufbau</li>
                   <li>Sanierung und Teilreparatur</li>
                 </ul>
@@ -260,7 +260,7 @@ export default function About() {
             <p className="text-sm text-slate-600 text-center mt-8">
               Die Rex Bedachungs GmbH ist seit 1984 Meisterbetrieb in Bochum und
               führt alle Dacharbeiten nach den aktuellen Normen DIN 18531 und
-              TRGS 519 sowie den Anforderungen des Gebäudeenergiegesetzes (GEG) aus.
+              TRGS 519 sowie den Anforderungen des Gebäudemodernisierungsgesetzes (GModG) aus.
             </p>
           </div>
         </div>

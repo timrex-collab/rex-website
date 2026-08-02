@@ -205,6 +205,8 @@ SSR-/Framework-Migration · Stadtteil-Seiten · separate Kosten-Seiten · Gewerb
 | **D36** (Claude Code) | `Foerderung.tsx` Article-Image-Schema-Fix (`ImageObject` `#primaryimage`, `@id`-Referenz in Article + WebPage) + Content-Audit (VELUX-Tier-Altlast bereinigt, Terminologie förderrelevant/BEG) · `DEPLOY-RULES.md`-Abgleich | ✅ live (PR #10, gemergt 22.06.2026 ~06:44 UTC) |
 | **D-IndexNow** | IndexNow-Key-Datei `client/public/5bc5e3a3…f8a299.txt` + Submit-Skript `scripts/indexnow-submit.mjs` (`npm run indexnow:submit`): Bulk-POST der 30 indexierbaren Sitemap-URLs an `api.indexnow.org`. Manuell als permanenter Post-Deploy-Schritt (kein Build-Plugin, keine Env-Var). | ✅ live (PR #11, gemergt 26.06.2026 ~10:17 UTC; Submit HTTP 202) |
 | **D-Sitemap-Refresh** | `client/public/sitemap.xml`: 29 `lastmod`-Werte auf die echten letzten Änderungsdaten (git-verifiziert, Route→Datei gegen `App.tsx` geprüft) gesetzt — bessere Recrawl-Priorität für Google/Bing, u. a. die 5 GSC-offenen Routen | ✅ live (PR #12, gemergt 29.06.2026 ~13:02 UTC; Submit HTTP 200) |
+| **BEG-1** | BEG-Reform 21.07.2026: iSFP-Deckelung (max. 12.000 → 10.500 € je WE), Rechenlogik im VELUX-Preisrechner korrigiert (15 % + 5 % nur oberhalb 30.000 €), WPB-Bonus ab Q1 2027 ergänzt, GEG → GModG auf `Foerderung`; 8 Dateien + Doku. Verifiziert am Primärtext der Richtlinie BEG EM vom 17.07.2026 | ✅ live (PR #35, gemergt 31.07.2026 16:09 CEST; Netlify `6a6cacad…`, `commit_ref cd95adb`, `state ready`) — **Gate-Ausnahme, siehe Notfall-Korrektur unten** |
+| **BEG-2** | „bis zu 20 %"-Förderclaims auf 8 Money-Pages → „15 % Grundförderung"; „KfW 261" → „KfW-Ergänzungskredit 358/359"; „förderfähig" → „förderrelevant"; GEG → GModG in denselben Dateien | ✅ live (PR #36, gemergt 02.08.2026 20:35 CEST; Netlify `6a6f8ddc…`, `commit_ref 1da90ed`, `state ready`) |
 | **Repo-Fix** | leere 0-Byte-Datei `name="contact"` (Windows-ungültiger Pfad — `"` verboten; blockierte `git clone`/checkout auf Windows) entfernt; vom Build nicht referenziert, keine Production-Auswirkung | ✅ live (PR #13, gemergt 29.06.2026; reines Housekeeping) |
 
 > **⚠ Gate-Ausnahme (31.07.2026) — Deploy BEG-1, Notfall-Korrektur:** Das 48h-Gate
@@ -218,10 +220,10 @@ SSR-/Framework-Migration · Stadtteil-Seiten · separate Kosten-Seiten · Gewerb
 > Alle vier Bedingungen der Notfall-Korrektur (Abschnitt 4) waren erfüllt: falsche
 > Tatsachenbehauptung, reiner Korrektur-Deploy (8 Dateien, Stufe B, keine neuen
 > Routen/Redirects/`robots.txt`), Protokollierung hier, volle Kadenz danach.
-> **Auflage:** BEG-2 und BEG-3 laufen strikt im 48h-Rhythmus. BEG-1 wurde
-> 31.07. 16:09 gemergt → **BEG-2 frühestens 02.08. 16:09**, BEG-3 48 h danach.
-> Beides ist reine Formulierungs- und Benennungsarbeit ohne falsche Zahlen und
-> rechtfertigt **keine** weitere Ausnahme.
+> **Auflage — eingehalten:** BEG-2 und BEG-3 laufen strikt im 48h-Rhythmus.
+> BEG-1 wurde 31.07. 16:09 gemergt, BEG-2 am 02.08. 20:35 (Abstand 52 h),
+> **BEG-3 frühestens 04.08. 20:35**. Beides ist reine Formulierungs- und
+> Benennungsarbeit ohne falsche Zahlen und rechtfertigt **keine** weitere Ausnahme.
 > **Beobachtung:** Innung-Trust und BEG-1 liegen ~5 h auseinander; ein GSC-Effekt
 > ist in dieser Woche nicht sauber einem der beiden zuzuordnen. Bewusst in Kauf
 > genommen.
