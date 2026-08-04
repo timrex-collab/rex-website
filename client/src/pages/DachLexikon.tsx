@@ -25,7 +25,7 @@ const terms = [
   {
     term: "Aufsparrendämmung",
     definition:
-      "Die effizienteste Methode der Wärmedämmung nach GEG. Die Dämmschicht wird lückenlos oberhalb der Sparren verlegt. Wichtig: Aufgrund des Zusatzgewichts und der veränderten Aufbauhöhe ist hierbei immer eine Prüfung der Statik und der Anschlusshöhen erforderlich.",
+      "Die effizienteste Methode der Wärmedämmung. Die Dämmschicht wird lückenlos oberhalb der Sparren verlegt. Wichtig: Aufgrund des Zusatzgewichts und der veränderten Aufbauhöhe ist hierbei immer eine Prüfung der Statik und der Anschlusshöhen erforderlich.",
     category: "Energetik",
     anchor: "aufsparrendaemmung",
   },
@@ -86,9 +86,9 @@ const terms = [
     anchor: "fluessigkunststoff",
   },
   {
-    term: "Gebäudeenergiegesetz (GEG)",
+    term: "Gebäudemodernisierungsgesetz (GModG)",
     definition:
-      "Das GEG schreibt verbindliche energetische Mindeststandards vor. Es regelt, wie stark ein Dach gedämmt werden muss, wenn mehr als 10% der Fläche saniert werden. Wir beraten Sie zu den gesetzlichen Pflichten und Fördermöglichkeiten.",
+      "Das GModG hat im Juli 2026 das Gebäudeenergiegesetz (GEG) abgelöst und schreibt weiterhin verbindliche energetische Mindeststandards vor. Für das Dach ändert sich inhaltlich nichts: Wer mehr als 10 % einer Dachfläche erneuert, muss den Bauteil-Höchstwert von 0,24 W/(m²·K) einhalten. Achtung – die BEG-Förderung verlangt mit 0,14 W/(m²·K) deutlich mehr als das Gesetz. Wir beraten Sie zu den gesetzlichen Pflichten und Fördermöglichkeiten.",
     category: "Energetik",
     anchor: "geg",
   },
@@ -246,7 +246,7 @@ export default function DachLexikon() {
             <input
               type="text"
               className="block w-full pl-11 pr-4 py-3 border border-border rounded-md bg-card text-foreground placeholder-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary text-base transition-colors"
-              placeholder="Nach Begriffen suchen (z.B. Windsog, GEG, EPDM)..."
+              placeholder="Nach Begriffen suchen (z.B. Windsog, GModG, EPDM)..."
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
               data-testid="input-lexikon-search"
@@ -291,7 +291,7 @@ export default function DachLexikon() {
                   Dieses Lexikon dient der Information. Bauvorhaben am Dach sind hochkomplex. Bei Eingriffen in die{" "}
                   <strong className="text-foreground">Statik</strong> (z.B. Gründach, Aufsparrendämmung), der Berechnung der{" "}
                   <strong className="text-foreground">Windsogsicherung</strong> oder{" "}
-                  <strong className="text-foreground">energetischen GEG-Nachweisen</strong> ist zwingend eine individuelle
+                  <strong className="text-foreground">energetischen Nachweisen nach GModG</strong> ist zwingend eine individuelle
                   Fachberatung sowie ggf. die Hinzuziehung eines Statikers oder Energieberaters erforderlich.
                 </p>
               </div>

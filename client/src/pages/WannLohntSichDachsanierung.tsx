@@ -57,7 +57,7 @@ const fiveFaktoren = [
 const matrixRows = [
   { kriterium: "Dachalter", reparatur: "unter 25 Jahre", sanierung: "über 30 Jahre" },
   { kriterium: "Schadensumfang", reparatur: "punktuell, eine Stelle", sanierung: "mehrere Stellen, wiederkehrend" },
-  { kriterium: "Dämmstandard", reparatur: "vorhanden, GEG-konform", sanierung: "keine oder unzureichend" },
+  { kriterium: "Dämmstandard", reparatur: "vorhanden, gesetzeskonform", sanierung: "keine oder unzureichend" },
   { kriterium: "Heizkosten", reparatur: "konstant", sanierung: "steigen jährlich" },
   { kriterium: "Dachstuhl", reparatur: "trocken, intakt", sanierung: "Feuchtigkeit, Holzschäden" },
   { kriterium: "Optik", reparatur: "gleichmäßig", sanierung: "Moos, Verfärbungen, lose Ziegel" },
@@ -66,7 +66,7 @@ const matrixRows = [
 
 const wirtschaftlichkeitFaktoren = [
   "Dachfläche und Dachform — komplexe Geometrien (Gauben, Walme, Verschnitte) erhöhen den Aufwand",
-  "Dämmstandard und gewünschtes Dämmziel — GEG-Mindestmaß oder darüber hinaus",
+  "Dämmstandard und gewünschtes Dämmziel — gesetzliches Mindestmaß oder BEG-Niveau",
   "Zustand des Dachstuhls und der Anschlüsse — versteckte Schäden treiben Kosten",
   "Bestehende Entwässerung und Bauklempnerei — oft sinnvoll mitzuerneuern",
   "Gerüstaufwand und Zugänglichkeit",
@@ -99,7 +99,7 @@ const wartenBlocks = [
   },
   {
     icon: <ScrollText className="w-7 h-7 text-primary" />,
-    title: "GEG-Nachrüstpflichten bei Eigentümerwechsel",
+    title: "Nachrüstpflichten bei Eigentümerwechsel (GModG)",
     text: "Das Gebäudemodernisierungsgesetz (GModG), seit Juli 2026 Nachfolger des GEG, verpflichtet bei Eigentümerwechsel unverändert zur Nachrüstung der obersten Geschossdecke beziehungsweise des Dachs auf Mindestdämmstandard. Die Frist beträgt zwei Jahre nach Eigentümerübergang. Wer früher saniert, vermeidet Termindruck und kann förderoptimal planen.",
   },
   {
@@ -146,7 +146,7 @@ const faqItems = [
       "In NRW gilt seit 01.01.2026 bei grundlegender Erneuerung der Dachhaut von Wohngebäuden mit mindestens 50 m² Dachfläche eine Solardachpflicht. Mindestens 30 Prozent der geeigneten Nettodachfläche müssen mit Photovoltaik belegt werden. Es gibt Ausnahmen, etwa bei statischer oder wirtschaftlicher Unzumutbarkeit. Photovoltaik sollte deshalb bei jeder grundlegenden Dachsanierung früh mitgedacht werden.",
   },
   {
-    question: "Wann muss ich nach GEG dämmen?",
+    question: "Wann muss ich nach dem GModG dämmen?",
     answer:
       "Die oberste Geschossdecke zu unbeheizten Dachräumen muss bestimmte Mindestanforderungen erfüllen, wenn das Dach darüber nicht entsprechend gedämmt ist. Bei Ein- und Zweifamilienhäusern, in denen der Eigentümer bei Inkrafttreten 2002 selbst gewohnt hat, greift eine Ausnahme. Nach Eigentümerwechsel haben neue Eigentümer zwei Jahre Zeit, die Nachrüstung umzusetzen.",
   },

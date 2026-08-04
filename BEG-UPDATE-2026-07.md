@@ -205,18 +205,33 @@ Inhaltlich neu formuliert statt nur ersetzt, wo die alte Aussage in die Irre fü
 etwa bei `DachfensterBochum.tsx`: Bei einem reinen Fenstertausch greift der
 iSFP-Bonus nicht mehr, dort ist jetzt § 35c EStG als der oft bessere Weg benannt.
 
-### Deploy BEG-3 — offen (Stufe A, ~9 Dateien)
+### Deploy BEG-3 — umgesetzt, wartet auf das Deploy-Fenster (8 Dateien, Stufe B)
 
-Restliche GEG-Nennungen in Fließtext und Schema: `ExpertenBlock.tsx`
-(`DEFAULT_NORMEN`), `AuthorSchema.tsx` („GEG 2024"), `DachLexikon.tsx`
-(Lexikon-Eintrag „Gebäudeenergiegesetz"), `DachgaubeBochum.tsx`,
-`VeluxAustausch.tsx`, `SteildachUndichtBochum.tsx`, `About.tsx`,
-`BitumenVsPvc.tsx`, `llms-full.txt`.
+Restliche GEG-Nennungen in Fließtext und Schema:
+`ExpertenBlock.tsx` (`DEFAULT_NORMEN`), `AuthorSchema.tsx` (`knowsAbout`),
+`DachLexikon.tsx` (Lexikon-Eintrag umbenannt und inhaltlich erweitert),
+`DachgaubeBochum.tsx`, `WannLohntSichDachsanierung.tsx`, `VeluxAustausch.tsx`,
+`About.tsx`, `Foerderung.tsx`.
 
-Nicht zu ändern: der erklärende Verweis „GModG, seit Juli 2026 Nachfolger des GEG"
-in `SteildachFoerderungBochum.tsx`, `Foerderung.tsx` und
-`WannLohntSichDachsanierung.tsx` — dort ist die Nennung des alten Namens gewollt,
-weil Nutzer nach „GEG" suchen.
+Wo „GEG-konform" als Qualitätsaussage stand, ist jetzt entweder „nach GModG"
+(gesetzliche Pflicht) oder „auf BEG-Niveau" (Fördervoraussetzung) — die beiden
+wurden vorher durchgängig vermengt, obwohl die BEG mit 0,14 W/(m²·K) deutlich
+mehr verlangt als das Gesetz mit 0,24.
+
+**Bewusst stehen gelassen** — dort ist die Nennung des alten Namens gewollt, weil
+Nutzer weiterhin nach „GEG" suchen: der erklärende Nachfolger-Verweis in
+`SteildachFoerderungBochum.tsx`, `WannLohntSichDachsanierung.tsx`,
+`DachLexikon.tsx`, `Foerderung.tsx` und `llms-full.txt`.
+
+### Rest nach BEG-3 — zwei Einzeiler ohne eigenen Deploy
+
+`SteildachUndichtBochum.tsx:336` („Gleichzeitig Dämmung geplant (GEG/Förderung)")
+und `BitumenVsPvc.tsx:220` („GEG-Mindest: 0,20 W/(m²·K)").
+
+Beides je eine Zeile auf Nebenseiten, ohne Schema-Bezug. Sie sprengen die
+Stufe-B-Grenze von 8 Dateien und rechtfertigen keinen eigenen 48-h-Zyklus.
+**Empfehlung:** beim nächsten ohnehin anstehenden Deploy mitnehmen, der diese
+Seiten berührt — nicht als eigener Deploy BEG-4.
 
 ### Deploy-Fenster
 
@@ -225,9 +240,13 @@ BEG-1 ist am **31.07.2026, 16:09 CEST** gemergt (PR #35) und seit 16:10 live
 `commit_ref: cd95adb`). Das Gate wurde dafür als Notfall-Korrektur ausgesetzt und
 in `DEPLOY-RULES.md` protokolliert.
 
-48-h-Gate ab dem BEG-1-Merge → **BEG-2 frühestens 02.08.2026, 16:09**,
-BEG-3 frühestens 48 h danach. Für beide gibt es keinen Ausnahmegrund: Es sind
-Formulierungs- und Benennungskorrekturen, keine falschen Zahlen.
+BEG-2 ist am **02.08.2026, 20:35 CEST** gemergt (PR #36) und live
+(Netlify-Deploy `6a6f8ddc…`, `state: ready`, `commit_ref: 1da90ed`).
+Abstand zu BEG-1: 52 h — Gate eingehalten.
+
+48-h-Gate ab dem BEG-2-Merge → **BEG-3 frühestens 04.08.2026, 20:35**.
+Ein Ausnahmegrund besteht nicht: Es sind Benennungskorrekturen, keine
+falschen Zahlen.
 
 ---
 
