@@ -262,6 +262,32 @@ export default function About() {
               führt alle Dacharbeiten nach den aktuellen Normen DIN 18531 und
               TRGS 519 sowie den Anforderungen des Gebäudemodernisierungsgesetzes (GModG) aus.
             </p>
+            <div className="mt-10 grid grid-cols-1 md:grid-cols-3 gap-4">
+              <a
+                href="/leistungen"
+                className="block p-5 bg-slate-50 rounded-md border border-slate-200 hover:border-primary transition-colors"
+                data-testid="link-about-leistungen"
+              >
+                <div className="font-semibold mb-1">Unsere Leistungen</div>
+                <div className="text-sm text-muted-foreground">Steildach, Flachdach, Dachfenster, Bauklempnerei und mehr im Überblick.</div>
+              </a>
+              <a
+                href="/referenzen"
+                className="block p-5 bg-slate-50 rounded-md border border-slate-200 hover:border-primary transition-colors"
+                data-testid="link-about-referenzen"
+              >
+                <div className="font-semibold mb-1">Referenzen</div>
+                <div className="text-sm text-muted-foreground">Ausgeführte Projekte aus Bochum und Umgebung – mit Ausgangslage und Ergebnis.</div>
+              </a>
+              <a
+                href="/faq"
+                className="block p-5 bg-slate-50 rounded-md border border-slate-200 hover:border-primary transition-colors"
+                data-testid="link-about-faq"
+              >
+                <div className="font-semibold mb-1">Häufige Fragen</div>
+                <div className="text-sm text-muted-foreground">Antworten zu Ablauf, Dauer, Förderung und Kosten rund ums Dach.</div>
+              </a>
+            </div>
           </div>
         </div>
       </section>

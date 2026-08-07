@@ -573,6 +573,15 @@ export default function SteildachBochum() {
               </div>
             ))}
           </div>
+          <p className="text-center mt-8">
+            <a
+              href="/referenzen"
+              className="text-primary font-medium underline underline-offset-4 hover:no-underline"
+              data-testid="link-galerie-referenzen"
+            >
+              Ausgeführte Steildach-Projekte in Bochum ansehen
+            </a>
+          </p>
         </div>
       </section>
       {/* Preisfaktoren */}

@@ -730,6 +730,14 @@ export default function DachsanierungBochum() {
               <div className="font-semibold text-gray-900 mb-1">NRW-Solarpflicht</div>
               <div className="text-sm text-gray-500">Was die Pflicht bei vollständiger Dacherneuerung bedeutet.</div>
             </a>
+            <a href="/referenzen" className="block p-5 bg-white rounded-xl border border-gray-200 hover:border-primary hover:shadow-md transition-all">
+              <div className="font-semibold text-gray-900 mb-1">Referenzen</div>
+              <div className="text-sm text-gray-500">Ausgeführte Sanierungen aus Bochum und Umgebung – mit Ausgangslage und Ergebnis.</div>
+            </a>
+            <a href="/faq" className="block p-5 bg-white rounded-xl border border-gray-200 hover:border-primary hover:shadow-md transition-all">
+              <div className="font-semibold text-gray-900 mb-1">Häufige Fragen</div>
+              <div className="text-sm text-gray-500">Antworten zu Ablauf, Dauer, Förderung und Kosten einer Dachsanierung.</div>
+            </a>
           </div>
         </div>
       </section>
