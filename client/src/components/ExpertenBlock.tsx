@@ -1,4 +1,5 @@
 import { CheckCircle } from "lucide-react";
+import { Link } from "wouter";
 
 declare const __BUILD_DATE__: string;
 
@@ -21,7 +22,15 @@ export default function ExpertenBlock({ normen = DEFAULT_NORMEN }: ExpertenBlock
           TR
         </div>
         <div className="flex-1 min-w-0">
-          <p className="text-sm font-semibold text-foreground leading-snug">Tim Rex</p>
+          <p className="text-sm font-semibold text-foreground leading-snug">
+            <Link
+              href="/ueber-uns"
+              className="hover:text-primary transition-colors"
+              data-testid="link-experte-ueber-uns"
+            >
+              Tim Rex
+            </Link>
+          </p>
           <p className="text-xs text-muted-foreground mt-0.5">Geschäftsführer · Dachdeckermeister</p>
           <div className="flex flex-wrap gap-1.5 mt-2">
             <span className="inline-flex items-center gap-1 text-xs font-medium bg-green-50 text-green-800 px-2 py-0.5 rounded">

@@ -604,6 +604,10 @@ export default function GruendachBochum() {
               <div className="font-semibold text-gray-900 mb-1">Bauklempnerei & Entwässerung</div>
               <div className="text-sm text-gray-500">Fachgerechte Entwässerungslösungen für Ihr begrüntes Dach.</div>
             </a>
+            <a href="/bitumen-vs-pvc-flachdach-bochum" className="block p-5 bg-white rounded-xl border border-gray-200 hover:border-primary hover:shadow-md transition-all">
+              <div className="font-semibold text-gray-900 mb-1">Bitumen oder PVC?</div>
+              <div className="text-sm text-gray-500">Welche Abdichtung unter die Begrünung passt – Systemvergleich als Entscheidungshilfe.</div>
+            </a>
           </div>
         </div>
       </section>
