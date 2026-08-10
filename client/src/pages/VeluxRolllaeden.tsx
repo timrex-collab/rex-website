@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Helmet } from "react-helmet";
 import OrganizationSchema from "@/components/OrganizationSchema";
+import AuthorSchema from "@/components/AuthorSchema";
 import { useLocation } from "wouter";
 import Breadcrumb from "@/components/Breadcrumb";
 import {
@@ -177,6 +178,7 @@ export default function VeluxRolllaeden() {
         <script type="application/ld+json">{breadcrumbSchema}</script>
       </Helmet>
       <OrganizationSchema />
+      <AuthorSchema />
 
       <Breadcrumb items={[
         { label: "Startseite", href: "/" },

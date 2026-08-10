@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Helmet } from "react-helmet";
 import { useLocation } from "wouter";
 import OrganizationSchema from "@/components/OrganizationSchema";
+import AuthorSchema from "@/components/AuthorSchema";
 import Breadcrumb from "@/components/Breadcrumb";
 import Picture from "@/components/Picture";
 import { Button } from "@/components/ui/button";
@@ -218,6 +219,7 @@ export default function WannLohntSichDachsanierung() {
         <script type="application/ld+json">{faqSchema}</script>
       </Helmet>
       <OrganizationSchema />
+      <AuthorSchema />
       <Breadcrumb items={[{ label: "Startseite", href: "/" }, { label: "Wann lohnt sich Dachsanierung" }]} />
 
       {/* Hero */}

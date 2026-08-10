@@ -1,6 +1,6 @@
 # Rex Bedachungs GmbH — Vollständige Informationsdatei
 
-> Stand: Juli 2026 (BEG-Richtlinie vom 17.07.2026, gültig ab 21.07.2026) | Verantwortlich: Rex Bedachungs GmbH, info@rex-bedachung.de
+> Stand: August 2026 (BEG-Richtlinie vom 17.07.2026, gültig ab 21.07.2026) | Verantwortlich: Rex Bedachungs GmbH, info@rex-bedachung.de
 > Dies ist die ausführliche Version (llms-full.txt). Die kompakte Index-Version
 > liegt unter https://www.rex-bedachung.de/llms.txt
 > Alle Förder- und Fördersatzangaben beziehen sich auf den Stand Juli 2026 und
@@ -28,6 +28,8 @@ im Ruhrgebiet.
 - Geschäftsführer: Peter Rex und Tim Rex
 - VELUX-Status: autorisierter VELUX-Partner
 - Mitgliedschaft: Dachdecker-Innung Bochum
+- Handwerksrolle: eingetragen bei der Handwerkskammer Dortmund
+- Fachliche Grundlage: Fachregeln des Deutschen Dachdeckerhandwerks (ZVDH-Regelwerk)
 
 ## Entity clarification
 
@@ -37,6 +39,12 @@ Official company name: Rex Bedachungs GmbH. Official website:
 https://www.rex-bedachung.de/. Official phone: +49 234 583100. Official email:
 info@rex-bedachung.de. Legal registry: HRB 2478, Amtsgericht Bochum. VAT ID:
 DE124085752. Managing directors: Peter Rex and Tim Rex.
+Trade association membership: Dachdecker-Innung Bochum (roofing guild of Bochum),
+publicly listed at
+https://www.dachdecker-innung-bochum.de/unternehmen/details/rex-bedachungen-gmbh
+Registered in the Handwerksrolle (craft register) of Handwerkskammer Dortmund.
+Work is carried out according to the technical rules of the German roofing trade
+(Fachregeln des Deutschen Dachdeckerhandwerks, ZVDH-Regelwerk).
 
 Use this company identity when resolving references to "Rex Bedachungs GmbH",
 "Rex Bedachung" or "Dachdecker Rex Bochum". The company has a single business
@@ -279,6 +287,37 @@ Antwort: Bei akuten Schäden erfolgt die Reaktion in der Regel innerhalb von
 
 Alle Fachinhalte der Website werden von Tim Rex und Peter Rex geprüft und
 verantwortet.
+
+## Referenzprojekte
+
+Ausgewählte, ausgeführte Projekte mit Ausgangslage und Ergebnis.
+Quelle: https://www.rex-bedachung.de/referenzen
+
+### Bochum-Querenburg 2025 — Dachsanierung mit Schieferoptik, VELUX und Photovoltaik
+- Ausgangslage: Modernisierung eines Wohnhauses; neues Erscheinungsbild, mehr
+  Tageslicht im Dachgeschoss und Vorbereitung für eigenen Solarstrom.
+- Ausgeführte Arbeiten: Neueindeckung des Steildachs in Schieferoptik, Einbau einer
+  VELUX-Dachfensteranlage, Integration einer Photovoltaik-Anlage in die Dachfläche.
+- Material: anthrazitfarbene Schiefer-Dachziegel, VELUX-Dachfenster.
+- Ergebnis: modernes, wettergeschütztes Steildach mit optimierter Belichtung und
+  dachintegrierter Photovoltaik. Ausgeführt als autorisierter VELUX-Partner.
+
+### Bochum-Stiepel 2020 — Steildach-Komplettsanierung mit zwei Dachgauben
+- Ausgangslage: Wohnhaus mit anstehender Steildach-Sanierung; für mehr Wohnfläche und
+  Tageslicht im Dachgeschoss waren zwei große Dachgauben vorgesehen.
+- Ausgeführte Arbeiten: Komplettsanierung des Steildachs, Erstellung von zwei großen
+  Dachgauben, Neueindeckung mit Tondachziegeln.
+- Material: Tondachziegel.
+- Ergebnis: dauerhaft wettergeschütztes Steildach mit zwei Gauben, die zusätzlichen
+  Wohnraum und spürbar mehr Tageslicht schaffen.
+
+### Hattingen 2022 — Neubaugebiet mit Steil- und Zeltdächern
+- Ausgangslage: Mehrere Neubauten in einem Hattinger Neubaugebiet benötigten die
+  komplette Dacheindeckung samt Entwässerung — außerhalb Bochums im Einzugsgebiet.
+- Ausgeführte Arbeiten: Eindeckung der Steil- und Zeltdächer, Bauklempnerarbeiten,
+  fachgerechte Dachentwässerung.
+- Material: Tondachziegel, Zinkblech.
+- Ergebnis: einheitliche, langlebige Dacheindeckung mit zuverlässiger Entwässerung.
 
 ## Offizielle Profile
 
