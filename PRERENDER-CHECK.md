@@ -82,14 +82,30 @@ Erwartung: route-spezifischer Title **und** `application/ld+json` erscheinen.
 
 ## 4. Soll-Titles (Referenz)
 
-| URL | Soll-`<title>` |
-|---|---|
-| `/` | `Dachdecker Bochum – Rex Bedachungs GmbH` ⚠️ = Fallback → an JSON-LD/H1 erkennen |
-| `/dachsanierung-bochum` | `Dachsanierung Bochum – Komplettsanierung vom Meisterbetrieb \| Rex Bedachungs GmbH` |
-| `/flachdach-bochum` | `Flachdach Bochum – Abdichtung, Sanierung & Neubau \| Rex Bedachungs GmbH` |
-| `/steildach-bochum` | `Steildach Bochum – Sanierung & Dämmung \| Rex Bedachung` |
-| `/dachfenster-bochum` | `Dachfenster Bochum – Einbau & Austausch \| Rex Bedachung` |
-| `/dachreparatur-bochum` | `Dachreparatur Bochum \| Schnelle Hilfe bei undichtem Dach` |
+> **⚠ Diese Tabelle ist wartungspflichtig.** Sie muss bei **jeder** Title-Änderung
+> mitgezogen werden — sonst meldet der Check Fehlschläge, die keine sind. Zuletzt
+> abgeglichen: **11.08.2026** gegen `main` nach Deploy GSC-Meta-1 (PR #44).
+
+| URL | Soll-`<title>` | Stand |
+|---|---|---|
+| `/` | `Dachdecker Bochum – Rex Bedachungs GmbH` ⚠️ = Fallback → an JSON-LD/H1 erkennen | unverändert |
+| `/dachsanierung-bochum` | `Dachsanierung Bochum – Komplettsanierung vom Meister` | **neu 11.08.2026** |
+| `/flachdach-bochum` | `Flachdach Bochum – Abdichtung & Sanierung` | **neu 11.08.2026** |
+| `/steildach-bochum` | `Steildach Bochum – Sanierung & Dämmung \| Rex Bedachung` | unverändert |
+| `/dachfenster-bochum` | `Dachfenster Bochum – Einbau & Austausch` | **neu 11.08.2026** |
+| `/dachreparatur-bochum` | `Dachreparatur Bochum – Dach undicht? Wir helfen` | **neu 11.08.2026** |
+
+> **Hinweis zu `&`:** Im Quelltext stehen die Titles teils als `&amp;` (JSX-Entity).
+> Im gerenderten HTML und im Browser-Tab erscheint ein einfaches `&`. Beim Prüfen
+> also auf `&` suchen, nicht auf `&amp;`.
+
+> **Weitere Titles nach GSC-Meta-1** (nicht Teil der 6 Kern-URLs, hier nur als
+> Referenz für spätere Stichproben): `/solarpflicht` → `Solarpflicht NRW 2026: Gilt sie
+> für mein Dach?` · `/dachrinne-bochum` → `Dachrinnenreinigung Bochum – reinigen &
+> reparieren` · `/dachgaube-bochum` → `Dachgaube Bochum – Einbau, Sanierung &
+> Genehmigung` · `/foerderung` → `Dach-Förderung 2026: 15 % BAFA-Zuschuss sichern` ·
+> `/dachwartung-bochum` → `Dachwartung Bochum – Inspektion & Wartungsvertrag` ·
+> `/gruendach-dachbegrunung-bochum` → `Gründach Bochum – Dachbegrünung vom Meisterbetrieb`
 
 ---
 
@@ -111,4 +127,45 @@ Prerender liegt **nicht im Repo/`netlify.toml`**, sondern im Netlify-Dashboard �
 
 | Datum | Methode | `/` | Sanierung | Flachdach | Steildach | Dachfenster | Reparatur | llms/sitemap/robots | Ergebnis |
 |---|---|---|---|---|---|---|---|---|---|
-| _TT.MM.JJJJ_ | z. B. GSC | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | offen |
+| 11.08.2026 | Netlify-API (Stufe 1, s. u.) | — | — | — | — | — | — | — | **Infrastruktur OK, HTML-Ebene offen** |
+| _TT.MM.JJJJ_ | GSC / DevTools | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | offen |
+
+### Der Check hat zwei Stufen
+
+Die Trennung ist wichtig, weil nur Stufe 1 aus der Claude-Umgebung prüfbar ist
+(`DEPLOY-RULES.md` §3 — die Domain ist netzgesperrt; ein `curl` als Googlebot
+scheitert am Proxy mit `CONNECT tunnel failed, 403`).
+
+**Stufe 1 — Infrastruktur (Claude, via Netlify-Connector):** Läuft die Extension
+überhaupt und ist der Deploy sauber durch?
+
+**Stufe 2 — HTML-Ebene (Tim, im Browser):** Kommt das gerenderte HTML auch wirklich
+beim Bot an? Nur das ist der eigentliche Pass/Fail-Test nach §2. Methoden siehe §3.
+
+### Protokoll Stufe 1 — 11.08.2026
+
+Geprüft nach dem Merge von PR #44 (BEG-4 + GSC-Meta-1) und PR #45 (Doku).
+
+| Prüfpunkt | Soll | Ist | |
+|---|---|---|---|
+| Deploy `state` | `ready` | `ready` | ✅ |
+| `plugin_state` | `success` | `success` | ✅ |
+| `commit_ref` | Merge PR #45 | `3c631ce35913ca05d7b783f311be82589c4e4e57` | ✅ |
+| `branch` / `context` | `main` / `production` | `main` / `production` | ✅ |
+| Prerender-Function vorhanden | ja | `nf-prerender-ext_prerender` („Netlify Prerender", Gruppe `netlify-prerender-extension`, `nodejs20.x`) | ✅ |
+| `edge_functions_present` | `true` | `true` | ✅ |
+| Redirect-Regeln | fehlerfrei | 32 Regeln, keine Fehler | ✅ |
+| `error_message` | leer | `null` | ✅ |
+| Veröffentlicht | — | 11.08.2026 08:19:19 UTC (10:19 CEST) | — |
+
+**Ergebnis Stufe 1: bestanden.** Die Prerender-Extension ist deployed und aktiv.
+
+**Stufe 2 steht noch aus.** Das ist der Teil, der zählt: Stufe 1 belegt nur, dass die
+Function existiert — nicht, dass sie für jede Route korrektes HTML liefert. Bitte nach
+§3 Methode 1 (GSC-URL-Prüfung) oder Methode 3 (DevTools mit Bot-UA) durchführen und
+das Ergebnis in der Tabelle oben eintragen.
+
+> **Besonders relevant bei diesem Lauf:** GSC-Meta-1 hat 10 Titles und Descriptions
+> geändert. Diese Änderungen erreichen Google **ausschließlich** über die
+> Prerender-Extension. Bleibt Stufe 2 ungeprüft, ist unbekannt, ob die neuen Snippets
+> überhaupt ankommen — und der erwartete CTR-Effekt bliebe ohne erkennbare Ursache aus.
