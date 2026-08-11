@@ -23,7 +23,7 @@ const preisfaktoren = [
   { faktor: "Untergrundqualität", detail: "Feuchteschäden, Altaufbau abfräsen, Schüttgefälle oder Gefälleplatten" },
   { faktor: "Anschlüsse & Details", detail: "Anzahl Kehlen, Dachabläufe, Lichtkuppeln, Aufkantungen, Wandanschlüsse" },
   { faktor: "Zugang & Gerüst", detail: "Kran, Materialaufzug, Gerüststandzeit" },
-  { faktor: "Förderung & BEG", detail: "Bei U ≤ 0,14: bis zu 20 % BAFA-Zuschuss (mit iSFP), förderfähig als Gebäudehülle" },
+  { faktor: "Förderung & BEG", detail: "Bei U ≤ 0,14: 15 % BAFA-Grundförderung, förderrelevant als Gebäudehülle" },
 ];
 
 const faqItems = [
@@ -37,7 +37,7 @@ const faqItems = [
   },
   {
     question: "Wird Flachdachdämmung staatlich gefördert?",
-    answer: "Ja – wenn der U-Wert auf ≤ 0,14 W/(m²·K) verbessert wird, fördert die BAFA bis zu 15 % der Bruttokosten, mit iSFP-Bonus bis zu 20 % – bis zu einem Förderhöchstbetrag von 60.000 € pro Wohneinheit. Wir beraten Sie zur Förderfähigkeit bei der Vor-Ort-Besichtigung. Details unter /foerderung.",
+    answer: "Ja – wenn der U-Wert auf ≤ 0,14 W/(m²·K) verbessert wird, fördert die BAFA 15 % der Bruttokosten. Mit individuellem Sanierungsfahrplan (iSFP) steigt die Obergrenze der förderrelevanten Kosten auf 60.000 € pro Wohneinheit; der iSFP-Bonus von 5 Prozentpunkten greift seit 21.07.2026 nur auf den Anteil über 30.000 €, maximal 10.500 € Zuschuss. Wir beraten Sie dazu bei der Vor-Ort-Besichtigung. Details unter /foerderung.",
   },
   {
     question: "Kann Bitumen direkt auf PVC verlegt werden oder umgekehrt?",
@@ -108,7 +108,7 @@ export default function BitumenVsPvc() {
     {
       "@type": "Question",
       "name": "Wird Flachdachdämmung staatlich gefördert?",
-      "acceptedAnswer": { "@type": "Answer", "text": "Ja – bei U-Wert ≤ 0,14 W/(m²·K): BAFA bis zu 20 % (mit iSFP), Förderhöchstbetrag 60.000 € pro Wohneinheit." }
+      "acceptedAnswer": { "@type": "Answer", "text": "Ja – bei U-Wert ≤ 0,14 W/(m²·K): BAFA 15 % Grundförderung, Obergrenze der förderrelevanten Kosten 60.000 € pro Wohneinheit mit iSFP; der iSFP-Bonus greift seit 21.07.2026 nur auf den Anteil über 30.000 €, maximal 10.500 € Zuschuss." }
     }
   ]
 }`}</script>
@@ -321,7 +321,7 @@ export default function BitumenVsPvc() {
             </a>
             <a href="/foerderung" className="block p-5 bg-white rounded-xl border border-gray-200 hover:border-primary hover:shadow-md transition-all">
               <div className="font-semibold text-gray-900 mb-1">Förderung BAFA / KfW</div>
-              <div className="text-sm text-gray-500">Bis zu 20 % Zuschuss für Flachdachdämmung mit U ≤ 0,14 W/(m²·K).</div>
+              <div className="text-sm text-gray-500">15 % Grundförderung für Flachdachdämmung mit U ≤ 0,14 W/(m²·K).</div>
             </a>
             <a href="/gruendach-dachbegrunung-bochum" className="block p-5 bg-white rounded-xl border border-gray-200 hover:border-primary hover:shadow-md transition-all">
               <div className="font-semibold text-gray-900 mb-1">Gründach Bochum</div>

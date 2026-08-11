@@ -157,10 +157,10 @@ export default function DachwartungBochum() {
   return (
     <>
       <Helmet>
-        <title>Dachwartung Bochum | Dachinspektion &amp; Wartungsvertrag vom Meisterbetrieb</title>
+        <title>Dachwartung Bochum – Inspektion &amp; Wartungsvertrag</title>
         <meta
           name="description"
-          content="Dachwartung in Bochum: Schäden früh erkennen, Folgekosten vermeiden, Wartungsvertrag abschließen. Rex Bedachungs GmbH – Meisterbetrieb seit 1984. Jetzt Termin anfragen."
+          content="Jährliche Dachinspektion vom Meisterbetrieb: Schäden früh erkennen, Folgekosten vermeiden. Wartungsvertrag für Bochum und Umgebung."
         />
         <meta property="og:title" content="Dachwartung Bochum – Dachinspektion, Dachrinnenreinigung & Wartungsvertrag | Rex Bedachungs GmbH" />
         <meta

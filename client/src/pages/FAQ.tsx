@@ -42,7 +42,7 @@ export default function FAQ() {
           question:
             "Gibt es Fördermöglichkeiten oder Zuschüsse für Dachsanierungen?",
           answer:
-            "Ja, eine Dachsanierung wird über die Bundesförderung für effiziente Gebäude (BEG) gefördert.\n\nDas Bundesamt für Wirtschaft und Ausfuhrkontrolle (BAFA) bietet Zuschüsse für Einzelmaßnahmen (BEG EM):\n\n• Basiszuschuss: 15 % der förderfähigen Kosten (max. 30.000 €)\n• Mit individuellem Sanierungsfahrplan (iSFP): 20 % Zuschuss\n• Förderfähige Kosten verdoppeln sich auf 60.000 € pro Wohneinheit\n• Maximale Förderung: 12.000 € pro Wohneinheit\n\nAlternativ: Sanierung auf Effizienzhaus-Niveau (BEG WG) über die KfW mit zinsvergünstigten Krediten und Tilgungszuschüssen.\n\nWichtig:\n• Technische Mindestanforderungen müssen eingehalten werden (z.B. U-Wert 0,14 für das Dach)\n• Antrag muss vor Beginn der Maßnahme gestellt werden",
+            "Ja, eine Dachsanierung wird über die Bundesförderung für effiziente Gebäude (BEG) gefördert.\n\nDas Bundesamt für Wirtschaft und Ausfuhrkontrolle (BAFA) bietet Zuschüsse für Einzelmaßnahmen (BEG EM):\n\n• Grundförderung: 15 % der förderrelevanten Kosten (max. 30.000 € pro Wohneinheit)\n• Mit individuellem Sanierungsfahrplan (iSFP) steigt die Obergrenze auf 60.000 € pro Wohneinheit\n• Der iSFP-Bonus von 5 Prozentpunkten greift seit 21.07.2026 nur auf den Anteil über 30.000 €\n• Maximaler Zuschuss: 4.500 € ohne iSFP, 10.500 € mit iSFP – je Wohneinheit und Jahr\n\nAlternativ: Sanierung auf Effizienzhaus-Niveau (BEG WG) über die KfW mit zinsvergünstigten Krediten und Tilgungszuschüssen.\n\nWichtig:\n• Technische Mindestanforderungen müssen eingehalten werden (z.B. U-Wert 0,14 für das Dach)\n• Antrag muss vor Beginn der Maßnahme gestellt werden",
         },
       ],
     },
@@ -366,7 +366,7 @@ export default function FAQ() {
                 "name": "Gibt es Fördermöglichkeiten oder Zuschüsse für Dachsanierungen?",
                 "acceptedAnswer": {
                   "@type": "Answer",
-                  "text": "Ja, eine Dachsanierung wird über die Bundesförderung für effiziente Gebäude (BEG) gefördert. Das BAFA bietet Zuschüsse für Einzelmaßnahmen (BEG EM): Basiszuschuss 15% der förderfähigen Kosten (max. 30.000€), mit iSFP 20% Zuschuss. Alternativ: Sanierung auf Effizienzhaus-Niveau über die KfW mit zinsvergünstigten Krediten. Wichtig: Der Antrag muss vor Beginn der Maßnahme gestellt werden."
+                  "text": "Ja, eine Dachsanierung wird über die Bundesförderung für effiziente Gebäude (BEG) gefördert. Das BAFA bietet Zuschüsse für Einzelmaßnahmen (BEG EM): 15 % Grundförderung auf die förderrelevanten Kosten (max. 30.000 € pro Wohneinheit). Mit individuellem Sanierungsfahrplan (iSFP) steigt die Obergrenze auf 60.000 €; der iSFP-Bonus von 5 Prozentpunkten greift seit 21.07.2026 nur auf den Anteil über 30.000 €, maximal 10.500 € Zuschuss. Alternativ: Sanierung auf Effizienzhaus-Niveau über die KfW mit zinsvergünstigten Krediten. Wichtig: Der Antrag muss vor Beginn der Maßnahme gestellt werden."
                 }
               },
               {

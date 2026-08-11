@@ -219,18 +219,18 @@ export default function DachsanierungBochum() {
   return (
     <>
       <Helmet>
-        <title>Dachsanierung Bochum – Komplettsanierung vom Meisterbetrieb | Rex Bedachungs GmbH</title>
-        <meta name="description" content="Dachsanierung in Bochum: Rex Bedachungs GmbH saniert Steildächer, Flachdächer und Dachfenster – energetisch, förderfähig, seit 1984. Kostenlose Beratung: +49 234 583100." />
+        <title>Dachsanierung Bochum – Komplettsanierung vom Meister</title>
+        <meta name="description" content="Steildach, Flachdach und Dachfenster energetisch sanieren – BEG-förderrelevant, Meisterbetrieb seit 1984. Kostenlose Beratung: 0234 583100." />
         <link rel="canonical" href="https://www.rex-bedachung.de/dachsanierung-bochum" />
         <meta property="og:title" content="Dachsanierung Bochum – Komplettsanierung vom Meisterbetrieb" />
-        <meta property="og:description" content="Dachsanierung in Bochum: Steildach, Flachdach, Dämmung, Dachfenster – alles aus einer Hand. Bis zu 20% BAFA-Förderung. Rex Bedachungs GmbH." />
+        <meta property="og:description" content="Dachsanierung in Bochum: Steildach, Flachdach, Dämmung, Dachfenster – alles aus einer Hand. 15 % BAFA-Grundförderung. Rex Bedachungs GmbH." />
         <meta property="og:image" content="https://www.rex-bedachung.de/images/dach-hintergrund-rex-bedachung.webp" />
         <meta property="og:site_name" content="Rex Bedachungs GmbH" />
         <meta property="og:image:width" content="1200" />
         <meta property="og:image:height" content="630" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="Dachsanierung Bochum – Rex Bedachungs GmbH" />
-        <meta name="twitter:description" content="Komplettsanierung Steildach & Flachdach in Bochum. Seit 1984. Bis zu 20% BAFA-Förderung. Kostenlose Beratung." />
+        <meta name="twitter:description" content="Komplettsanierung Steildach & Flachdach in Bochum. Seit 1984. 15 % BAFA-Grundförderung. Kostenlose Beratung." />
         <meta name="twitter:image" content="https://www.rex-bedachung.de/images/dach-hintergrund-rex-bedachung.webp" />
 
         <script type="application/ld+json">{JSON.stringify({
@@ -241,7 +241,7 @@ export default function DachsanierungBochum() {
               "@id": "https://www.rex-bedachung.de/dachsanierung-bochum#webpage",
               "url": "https://www.rex-bedachung.de/dachsanierung-bochum",
               "name": "Dachsanierung Bochum – Komplettsanierung vom Meisterbetrieb",
-              "description": "Komplettsanierung Steildach & Flachdach in Bochum. Seit 1984. Bis zu 20% BAFA-Förderung. Kostenlose Beratung.",
+              "description": "Komplettsanierung Steildach & Flachdach in Bochum. Seit 1984. 15 % BAFA-Grundförderung. Kostenlose Beratung.",
               "isPartOf": { "@id": "https://www.rex-bedachung.de/#website" },
               "about": { "@id": "https://www.rex-bedachung.de/#organization" },
               "breadcrumb": { "@id": "https://www.rex-bedachung.de/dachsanierung-bochum#breadcrumb" },
@@ -269,13 +269,13 @@ export default function DachsanierungBochum() {
                 { "@type": "City", "name": "Hattingen" },
                 { "@type": "City", "name": "Gelsenkirchen" }
               ],
-              "description": "Energetische Dachsanierung in Bochum: Steildach, Flachdach, Dämmung, Dachfenster – Komplettsanierung vom Meisterbetrieb Rex Bedachungs GmbH. Bis zu 20% BAFA-Förderung."
+              "description": "Energetische Dachsanierung in Bochum: Steildach, Flachdach, Dämmung, Dachfenster – Komplettsanierung vom Meisterbetrieb Rex Bedachungs GmbH. 15 % BAFA-Grundförderung."
             },
             {
               "@type": "Article",
               "@id": "https://www.rex-bedachung.de/dachsanierung-bochum#article",
               "headline": "Dachsanierung Bochum – Komplettsanierung vom Meisterbetrieb",
-              "description": "Komplettsanierung Steildach & Flachdach in Bochum. Seit 1984. Bis zu 20% BAFA-Förderung. Kostenlose Beratung.",
+              "description": "Komplettsanierung Steildach & Flachdach in Bochum. Seit 1984. 15 % BAFA-Grundförderung. Kostenlose Beratung.",
               "image": "https://www.rex-bedachung.de/images/dach-hintergrund-rex-bedachung.webp",
               "author": { "@id": "https://www.rex-bedachung.de/#author" },
               "publisher": { "@id": "https://www.rex-bedachung.de/#organization" },

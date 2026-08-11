@@ -208,6 +208,35 @@ SSR-/Framework-Migration · Stadtteil-Seiten · separate Kosten-Seiten · Gewerb
 | **BEG-1** | BEG-Reform 21.07.2026: iSFP-Deckelung (max. 12.000 → 10.500 € je WE), Rechenlogik im VELUX-Preisrechner korrigiert (15 % + 5 % nur oberhalb 30.000 €), WPB-Bonus ab Q1 2027 ergänzt, GEG → GModG auf `Foerderung`; 8 Dateien + Doku. Verifiziert am Primärtext der Richtlinie BEG EM vom 17.07.2026 | ✅ live (PR #35, gemergt 31.07.2026 16:09 CEST; Netlify `6a6cacad…`, `commit_ref cd95adb`, `state ready`) — **Gate-Ausnahme, siehe Notfall-Korrektur unten** |
 | **BEG-2** | „bis zu 20 %"-Förderclaims auf 8 Money-Pages → „15 % Grundförderung"; „KfW 261" → „KfW-Ergänzungskredit 358/359"; „förderfähig" → „förderrelevant"; GEG → GModG in denselben Dateien | ✅ live (PR #36, gemergt 02.08.2026 20:35 CEST; Netlify `6a6f8ddc…`, `commit_ref 1da90ed`, `state ready`) |
 | **Repo-Fix** | leere 0-Byte-Datei `name="contact"` (Windows-ungültiger Pfad — `"` verboten; blockierte `git clone`/checkout auf Windows) entfernt; vom Build nicht referenziert, keine Production-Auswirkung | ✅ live (PR #13, gemergt 29.06.2026; reines Housekeeping) |
+| **BEG-4** | Nachzügler der BEG-Reform vom 21.07.2026, die BEG-1/BEG-2 nicht erfasst hatten: `FAQ.tsx` „Maximale Förderung: 12.000 €" → 10.500 € (Text **und** FAQPage-Schema), iSFP-30.000-€-Schwelle ergänzt; „Bis zu 20 % BAFA-Förderung" → „15 % BAFA-Grundförderung" in `DachsanierungBochum.tsx` (og/twitter/3× Schema) und `BitumenVsPvc.tsx` (Preisfaktor, FAQ, FAQPage-Schema, Fördermodul); „förderfähig" → „förderrelevant" in denselben Sätzen | 🔄 PR #44, Commit 1 — **keine Gate-Ausnahme beansprucht, siehe Hinweis unten** |
+| **GSC-Meta-1** | Meta-Offensive I aus dem GSC-Repo-Abgleich: `<title>` und `<meta name="description">` auf den 10 impressionsstärksten Seiten neu gefasst (`Solarpflicht`, `Dachreparatur`, `DachrinnenBochum`, `DachfensterBochum`, `DachgaubeBochum`, `Foerderung`, `DachwartungBochum`, `FlachdachBochum`, `DachsanierungBochum`, `GruendachBochum`). Alle Titles ≤ 60, alle Descriptions ≤ 155 Zeichen. Betrifft ~28.000 der 37.000 Impressionen. Behebt nebenbei „förderfähig" → „förderrelevant" in zwei Descriptions | 🔄 PR #44, Commit 2 — Stufe A, 10 Dateien |
+
+> **ℹ Hinweis zum 48h-Gate (11.08.2026) — PR #44 kombiniert BEG-4 und GSC-Meta-1:**
+> Die Faktenkorrektur BEG-4 hätte für sich genommen alle vier Bedingungen der
+> Notfall-Korrektur (Abschnitt 4) erfüllt: Auf der Live-Site standen seit dem
+> 21.07.2026 zwei nachweisbar falsche Förderaussagen. `FAQ.tsx` nannte „Maximale
+> Förderung: 12.000 € pro Wohneinheit" — seit der Richtlinie BEG EM vom 17.07.2026
+> sind es 10.500 € (15 % × 60.000 + 5 % × 30.000, belegt in `BEG-UPDATE-2026-07.md`).
+> Zusätzlich versprachen `DachsanierungBochum.tsx` und `BitumenVsPvc.tsx` weiterhin
+> „bis zu 20 % BAFA-Förderung"; durch die iSFP-Deckelung ist dieser Satz seither
+> unter **keinen** Umständen mehr erreichbar (effektiv maximal 17,5 % bei 60.000 €
+> förderrelevanten Kosten). BEG-1 (PR #35) und BEG-2 (PR #36) hatten diese Stellen
+> übersehen — `FAQ.tsx` war in der Dateiliste von BEG-1 gar nicht enthalten.
+>
+> **Auf Wunsch von Tim reist die Meta-Offensive GSC-Meta-1 im selben PR mit.** Damit
+> ist Bedingung 2 („Der Deploy korrigiert ausschließlich diesen Fehler, keine
+> Optimierung huckepack") nicht mehr erfüllt, und es wird **ausdrücklich keine
+> Gate-Ausnahme beansprucht**. Der PR läuft stattdessen im **regulären Fenster**:
+> letzter Merge war PR #39 am 10.08. 14:41 CEST, Merge daher frühestens
+> **12.08.2026 ~14:41 CEST**. Der Preis dieser Bündelung ist, dass die falschen
+> Förderzahlen rund einen Tag länger live stehen als nötig; der Gegenwert ist ein
+> Merge statt zwei. Bewusst so entschieden.
+>
+> **Trennschärfe bleibt im Commit-Log erhalten:** BEG-4 und GSC-Meta-1 sind zwei
+> getrennte atomare Commits. Ein späteres Rollback einzelner Teile ist per
+> `git revert <sha>` weiterhin möglich.
+> **Fundkontext:** GSC-Repo-Abgleich vom 11.08.2026, dokumentiert in
+> `GSC-AUDIT-2026-08.md`.
 
 > **⚠ Gate-Ausnahme (31.07.2026) — Deploy BEG-1, Notfall-Korrektur:** Das 48h-Gate
 > wurde bewusst ausgesetzt. Letzter Merge war PR #34 (Innung-Trust) am 31.07. 09:07

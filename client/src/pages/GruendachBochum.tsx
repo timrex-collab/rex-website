@@ -222,10 +222,10 @@ export default function GruendachBochum() {
   return (
     <>
       <Helmet>
-        <title>Gründach Bochum – Dachbegrünung & Förderung | Rex Bedachung</title>
+        <title>Gründach Bochum – Dachbegrünung vom Meisterbetrieb</title>
         <meta
           name="description"
-          content="Gründach in Bochum: Extensiv & Intensiv, fachgerechter Aufbau, bis 90 % Regenwasserrückhalt. BAFA-förderfähig. Rex Bedachungs GmbH – Meisterbetrieb seit 1984."
+          content="Extensive und intensive Dachbegrünung in Bochum: Aufbau, Wurzelschutz, bis 90 % Regenwasserrückhalt. BEG-förderrelevant. Kostenlose Beratung."
         />
         <meta
           property="og:title"

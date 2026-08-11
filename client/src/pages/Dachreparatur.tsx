@@ -148,10 +148,10 @@ export default function Dachreparatur() {
   return (
     <>
       <Helmet>
-        <title>Dachreparatur Bochum | Schnelle Hilfe bei undichtem Dach</title>
+        <title>Dachreparatur Bochum – Dach undicht? Wir helfen</title>
         <meta
           name="description"
-          content="Dach undicht, Sturmschaden oder Ziegel gebrochen? Rex Bedachungs GmbH behebt Dachschäden in Bochum schnell und dauerhaft – Meisterbetrieb seit 1984. Jetzt anfragen."
+          content="Dach undicht, Ziegel gebrochen, Sturmschaden? Rex Bedachungs GmbH repariert in Bochum – Meisterbetrieb seit 1984. Kostenlose Besichtigung."
         />
         <meta property="og:title" content="Dachreparatur Bochum – Sturmschaden, undichtes Dach & schnelle Hilfe | Rex Bedachungs GmbH" />
         <meta
