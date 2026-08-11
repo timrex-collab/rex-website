@@ -219,8 +219,8 @@ export default function DachsanierungBochum() {
   return (
     <>
       <Helmet>
-        <title>Dachsanierung Bochum – Komplettsanierung vom Meisterbetrieb | Rex Bedachungs GmbH</title>
-        <meta name="description" content="Dachsanierung in Bochum: Rex Bedachungs GmbH saniert Steildächer, Flachdächer und Dachfenster – energetisch, förderfähig, seit 1984. Kostenlose Beratung: +49 234 583100." />
+        <title>Dachsanierung Bochum – Komplettsanierung vom Meister</title>
+        <meta name="description" content="Steildach, Flachdach und Dachfenster energetisch sanieren – BEG-förderrelevant, Meisterbetrieb seit 1984. Kostenlose Beratung: 0234 583100." />
         <link rel="canonical" href="https://www.rex-bedachung.de/dachsanierung-bochum" />
         <meta property="og:title" content="Dachsanierung Bochum – Komplettsanierung vom Meisterbetrieb" />
         <meta property="og:description" content="Dachsanierung in Bochum: Steildach, Flachdach, Dämmung, Dachfenster – alles aus einer Hand. 15 % BAFA-Grundförderung. Rex Bedachungs GmbH." />

@@ -111,10 +111,10 @@ export default function DachrinnenBochum() {
   return (
     <>
       <Helmet>
-        <title>Dachrinne Bochum | Reinigung, Reparatur & Erneuerung – Rex Bedachung</title>
+        <title>Dachrinnenreinigung Bochum – reinigen & reparieren</title>
         <meta
           name="description"
-          content="Dachrinne in Bochum verstopft, undicht oder beschädigt? Rex Bedachungs GmbH reinigt, repariert und erneuert – Zink, Aluminium, Kupfer. Kostenlose Besichtigung."
+          content="Dachrinne verstopft oder undicht? Wir reinigen, reparieren und erneuern in Bochum – Zink, Alu, Kupfer. Kostenlose Besichtigung vor Ort."
         />
         <link rel="canonical" href="https://www.rex-bedachung.de/dachrinne-bochum" />
         <meta property="og:title" content="Dachrinne Bochum – Reinigung, Reparatur & Erneuerung | Rex Bedachungs GmbH" />

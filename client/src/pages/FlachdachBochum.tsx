@@ -252,10 +252,10 @@ export default function FlachdachBochum() {
   return (
     <>
       <Helmet>
-        <title>Flachdach Bochum – Abdichtung, Sanierung & Neubau | Rex Bedachungs GmbH</title>
+        <title>Flachdach Bochum – Abdichtung &amp; Sanierung</title>
         <meta
           name="description"
-          content="Flachdach in Bochum undicht oder sanierungsbedürftig? Rex Bedachung: Abdichtung, Gründach & Neuaufbau vom Meisterbetrieb. Angebot anfragen."
+          content="Flachdach undicht oder sanierungsbedürftig? Abdichtung, Gründach und Neuaufbau vom Meisterbetrieb in Bochum. Angebot nach kostenlosem Aufmaß."
         />
         <meta property="og:title" content="Flachdach Bochum – Abdichtung, Sanierung & Neubau | Rex Bedachungs GmbH" />
         <meta

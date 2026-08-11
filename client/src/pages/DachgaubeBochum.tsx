@@ -158,10 +158,10 @@ export default function DachgaubeBochum() {
   return (
     <>
       <Helmet>
-        <title>Dachgaube Bochum – Einbau &amp; Sanierung | Rex Bedachungs GmbH</title>
+        <title>Dachgaube Bochum – Einbau, Sanierung &amp; Genehmigung</title>
         <meta
           name="description"
-          content="Dachgaube einbauen oder sanieren in Bochum: Schleppgaube, Spitzgaube, Fledermausgaube, Kastengaube. Meisterbetrieb seit 1984. Angebot nach kostenlosem Aufmaß."
+          content="Gaube nachträglich einbauen oder sanieren: Schlepp-, Spitz-, Fledermaus- und Kastengaube. Baugenehmigung NRW geklärt. Meisterbetrieb seit 1984."
         />
         <link rel="canonical" href="https://www.rex-bedachung.de/dachgaube-bochum" />
         <meta property="og:type" content="article" />

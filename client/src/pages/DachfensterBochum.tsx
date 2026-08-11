@@ -170,10 +170,10 @@ export default function DachfensterBochum() {
   return (
     <>
       <Helmet>
-        <title>Dachfenster Bochum – Einbau & Austausch | Rex Bedachung</title>
+        <title>Dachfenster Bochum – Einbau & Austausch</title>
         <meta
           name="description"
-          content="Dachfenster in Bochum einbauen oder austauschen? Rex Bedachungs GmbH montiert VELUX & Roto – inkl. Dämmung, Anschlussabdichtung und 15 % BAFA-Grundförderung. Autorisierter VELUX-Partner seit 1984."
+          content="VELUX und Roto Dachfenster in Bochum einbauen oder austauschen – inkl. Dämmung und Abdichtung. Autorisierter VELUX-Partner seit 1984."
         />
         <meta property="og:title" content="Dachfenster Bochum – VELUX & Roto Einbau | Rex Bedachungs GmbH" />
         <meta

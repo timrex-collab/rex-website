@@ -366,10 +366,10 @@ export default function Foerderung() {
   return (
     <>
       <Helmet>
-        <title>BAFA &amp; KfW Förderung Dach Bochum | Rex Bedachung</title>
+        <title>Dach-Förderung 2026: 15 % BAFA-Zuschuss sichern</title>
         <meta
           name="description"
-          content="Förderung Dachsanierung NRW nach der BEG-Reform vom 21.07.2026: 15 % BAFA-Zuschuss, bis 10.500 € mit iSFP. Rex Bedachung berät zu allen aktuellen Programmen."
+          content="BEG-Förderung für die Dachsanierung nach der Reform vom 21.07.2026: 15 % Grundförderung, bis 10.500 € mit iSFP. Beratung in Bochum."
         />
         <link rel="canonical" href="https://www.rex-bedachung.de/foerderung" />
         <meta property="og:title" content="BAFA & KfW Förderung Dachsanierung | Rex Bedachungs GmbH Bochum" />
