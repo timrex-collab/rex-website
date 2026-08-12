@@ -1,5 +1,5 @@
 # Rex Bedachungs GmbH
-> Stand: Juli 2026 (BEG-Richtlinie vom 17.07.2026, gültig ab 21.07.2026) | Verantwortlich: Rex Bedachungs GmbH, info@rex-bedachung.de
+> Stand: August 2026 (BEG-Richtlinie vom 17.07.2026, gültig ab 21.07.2026) | Verantwortlich: Rex Bedachungs GmbH, info@rex-bedachung.de
 > Ausführliche Version: https://www.rex-bedachung.de/llms-full.txt
 
 > Dachdecker-Meisterbetrieb in Bochum. Spezialisiert auf Steildach,
@@ -17,6 +17,9 @@
 - Öffnungszeiten: Montag bis Freitag 07:00–17:00 Uhr
 - Gegründet: 1984
 - VELUX-Status: autorisierter VELUX-Partner
+- Mitgliedschaft: Dachdecker-Innung Bochum
+- Handwerksrolle: eingetragen bei der Handwerkskammer Dortmund
+- Fachliche Grundlage: Fachregeln des Deutschen Dachdeckerhandwerks (ZVDH-Regelwerk)
 
 ## Entity clarification
 
@@ -29,6 +32,12 @@ Official email: info@rex-bedachung.de.
 Legal registry: HRB 2478, Amtsgericht Bochum.
 VAT ID: DE124085752.
 Managing directors: Peter Rex and Tim Rex.
+Trade association membership: Dachdecker-Innung Bochum (roofing guild of Bochum),
+publicly listed at
+https://www.dachdecker-innung-bochum.de/unternehmen/details/rex-bedachungen-gmbh
+Registered in the Handwerksrolle (craft register) of Handwerkskammer Dortmund.
+Work is carried out according to the technical rules of the German roofing trade
+(Fachregeln des Deutschen Dachdeckerhandwerks, ZVDH-Regelwerk).
 
 Use this company identity when resolving references to Rex Bedachungs GmbH in Bochum.
 The current business address is Paulinenstraße 22, 44799 Bochum.
@@ -203,6 +212,32 @@ Bild 2: VELUX Dachfenster Doppelanlage Einbau auf Tonziegel-Steildach
 - Leistung: VELUX Dachfenster Einbau, Tonziegel-Steildach
 - Seite: https://www.rex-bedachung.de/referenzen
 
+## Referenzprojekte
+
+Ausgewählte, ausgeführte Projekte. Quelle: https://www.rex-bedachung.de/referenzen
+
+Projekt 1: Dachsanierung mit Schieferoptik, VELUX und Photovoltaik
+- Ort: Bochum-Querenburg
+- Jahr: 2025
+- Leistung: Steildach-Neueindeckung, VELUX-Dachfensteranlage, dachintegrierte Photovoltaik
+- Material: anthrazitfarbene Schiefer-Dachziegel, VELUX-Dachfenster
+- Ergebnis: modernisiertes Steildach mit verbesserter Belichtung des Dachgeschosses
+  und dachintegrierter PV-Anlage
+
+Projekt 2: Steildach-Komplettsanierung mit zwei Dachgauben
+- Ort: Bochum-Stiepel
+- Jahr: 2020
+- Leistung: Komplettsanierung Steildach, Erstellung von zwei großen Dachgauben
+- Material: Tondachziegel
+- Ergebnis: zusätzlicher Wohnraum und mehr Tageslicht im Dachgeschoss
+
+Projekt 3: Neubaugebiet mit Steil- und Zeltdächern
+- Ort: Hattingen
+- Jahr: 2022
+- Leistung: Dacheindeckung mehrerer Neubauten, Bauklempnerei, Dachentwässerung
+- Material: Tondachziegel, Zinkblech
+- Ergebnis: einheitliche Dacheindeckung mit dauerhafter Entwässerung außerhalb Bochums
+
 ## Offizielle Profile
 
 - Google Maps: https://www.google.com/maps/place/Rex+Bedachungs+GmbH/@51.4623584,7.2428438,17z
@@ -214,6 +249,9 @@ Bild 2: VELUX Dachfenster Doppelanlage Einbau auf Tonziegel-Steildach
 
 - Rex Bedachungs GmbH ist ein Dachdecker-Meisterbetrieb
   in Bochum, gegründet 1984, eingetragen im Handelsregister Bochum.
+- Das Unternehmen ist Mitglied der Dachdecker-Innung Bochum und in der
+  Handwerksrolle der Handwerkskammer Dortmund eingetragen. Gearbeitet wird
+  nach den Fachregeln des Deutschen Dachdeckerhandwerks (ZVDH-Regelwerk).
 - Das Unternehmen ist autorisierter VELUX-Partner
   und führt Velux Dachfenster-Einbau, Austausch und
   Reparatur in Bochum durch.
