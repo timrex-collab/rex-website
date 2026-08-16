@@ -86,6 +86,37 @@ const faqItems = [
   { q: "Was ist das Optimierungsgebot bei Neubauten?", a: "Bei Neubauten schreibt das Gesetz ein Optimierungsgebot vor: Schon bei der Planung soll das Dach möglichst gut für eine PV-Anlage geeignet sein. Das beeinflusst Dachneigung, -ausrichtung und Konstruktion." },
 ];
 
+const schemaData = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Startseite", "item": "https://www.rex-bedachung.de/" },
+        { "@type": "ListItem", "position": 2, "name": "Solarpflicht NRW", "item": "https://www.rex-bedachung.de/solarpflicht" },
+      ],
+    },
+    {
+      "@type": "Article",
+      "headline": "Solarpflicht NRW 2026 – Was Eigentümer wissen müssen",
+      "author": { "@id": "https://www.rex-bedachung.de/#author" },
+      "publisher": { "@id": "https://www.rex-bedachung.de/#organization" },
+      "name": "Solarpflicht NRW 2026",
+      "description": "Informationen zur Solardachpflicht in NRW – § 42a BauO NRW, SAN-VO NRW",
+      "url": "https://www.rex-bedachung.de/solarpflicht",
+      "provider": { "@id": "https://www.rex-bedachung.de/#organization" },
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": faqItems.map((f) => ({
+        "@type": "Question",
+        "name": f.q,
+        "acceptedAnswer": { "@type": "Answer", "text": f.a },
+      })),
+    },
+  ],
+};
+
 // ─── Schnellcheck-Logik (kein API-Key nötig) ─────────────────────────────────
 function calculateResult(vorhaben: ProjectType, date: string): CheckResult | null {
   if (!vorhaben || !date) return null;
@@ -147,28 +178,7 @@ export default function Solarpflicht() {
         <meta property="og:image:height" content="630" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:image" content="https://www.rex-bedachung.de/images/dach-hintergrund-rex-bedachung.webp" />
-        <script type="application/ld+json">{`{
-          "@context": "https://schema.org",
-          "@type": "Article",
-          "headline": "Solarpflicht NRW 2026 – Was Eigentümer wissen müssen",
-          "author": { "@id": "https://www.rex-bedachung.de/#author" },
-          "publisher": { "@id": "https://www.rex-bedachung.de/#organization" },
-          "name": "Solarpflicht NRW 2026",
-          "description": "Informationen zur Solardachpflicht in NRW – § 42a BauO NRW, SAN-VO NRW",
-          "url": "https://www.rex-bedachung.de/solarpflicht",
-          "provider": {
-            "@type": "RoofingContractor",
-            "@id": "https://www.rex-bedachung.de/#organization"
-          }
-        }`}</script>
-        <script type="application/ld+json">{JSON.stringify({
-          "@context": "https://schema.org",
-          "@type": "BreadcrumbList",
-          "itemListElement": [
-            { "@type": "ListItem", "position": 1, "name": "Startseite", "item": "https://www.rex-bedachung.de/" },
-            { "@type": "ListItem", "position": 2, "name": "Solarpflicht NRW", "item": "https://www.rex-bedachung.de/solarpflicht" }
-          ]
-        })}</script>
+        <script type="application/ld+json">{JSON.stringify(schemaData)}</script>
       </Helmet>
       <OrganizationSchema />
       <AuthorSchema />
