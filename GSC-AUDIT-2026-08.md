@@ -74,16 +74,24 @@ Dateiliste von BEG-1 gar nicht enthalten.
 
 | Dokument / Punkt | Status | Offen |
 |---|---|---|
-| `PRERENDER-CHECK.md` | Checkliste vollständig | **Protokoll §6 leer — nie durchgeführt** |
-| `UMSETZUNGSPLAN.md` P1.1 Prerender-Routine | dokumentiert | Durchführung 🌐 |
+| `PRERENDER-CHECK.md` | Checkliste vollständig | Stufe 1 protokolliert (11.08. + 18.08.) · **Stufe 2 nie durchgeführt** 🌐 |
+| `UMSETZUNGSPLAN.md` P1.1 Prerender-Routine | dokumentiert | Durchführung Stufe 2 🌐 |
 | P1.2 NAP-Altlasten | Zielliste steht | offen 🌐 |
 | P1.3 Redaktions-Review Förder-/Rechtsinfos | — | offen — hätte den 12.000-€-Fehler gefangen |
-| P2.1 „Dachdeckerei Bochum" integrieren | — | ✅ erledigt in GSC-Meta-2 (`/leistungen`) |
-| P2.2 Referenzen → Case-Studies | — | offen |
-| P2.3 Zitierfähige Fach-FAQ | — | offen |
-| P2.4 `areaServed` vereinheitlichen | — | offen, kosmetisch |
+| P2.1 „Dachdeckerei Bochum" integrieren | — | ✅ live (PR #28, 20.07.2026 — `Home.tsx` + `Services.tsx`) |
+| P2.2 Referenzen → Case-Studies | — | ✅ live (PR #25, 14.07.2026 — `References.tsx`) |
+| P2.3 Zitierfähige Fach-FAQ | — | ✅ live (PR #25/#26, 14.–16.07.2026 — Flachdach, Steildach, Sturmschaden) |
+| P2.4 `areaServed` vereinheitlichen | — | ✅ live (PR #31–#33, 23.–28.07.2026 — 24 Stellen in 20 Dateien) |
 | P3.1 Dachreport Bochum | Konzept liegt vor | offen |
 | `CITATIONS` / `GBP` / `BACKLINKS` / `WIKIDATA` | dokumentiert | externe Umsetzung 🌐 |
+
+> **Korrektur (18.08.2026):** Die ursprüngliche Fassung dieser Tabelle war an fünf Stellen
+> falsch. P2.1 wurde nicht in GSC-Meta-2 erledigt (das Paket ist bis heute nicht deployt),
+> sondern in **PR #28 am 20.07.2026** — betroffen waren `Home.tsx` und `Services.tsx`, nicht
+> `/leistungen` allein. P2.2, P2.3 und P2.4 standen als „offen", waren zum Zeitpunkt des
+> Audits aber bereits live. Ursache: `DEPLOY-RULES.md` §10 war zwischen PR #18 und PR #47
+> nicht mitgeführt worden, und das Audit hatte sich auf diese Tabelle gestützt statt auf die
+> Merge-Historie. Das Deploy-Log ist seit dem 18.08.2026 vollständig rekonstruiert.
 
 **Bewertung:** Die technische Basis ist überdurchschnittlich sauber. Was fehlt, ist fast
 durchweg *Content*, nicht *Technik*.
@@ -135,6 +143,10 @@ eigene Serviceseite ist regelkonform (kein Stadtteil, keine Kosten-Seite, keine 
 **Ursache im Code:** `DachwartungBochum.tsx` nennt „Dachrinnenreinigung" **7×**, die
 eigentliche `DachrinnenBochum.tsx` nur **3×**. Die Wartungsseite ist stärker auf das
 Keyword optimiert als die Zielseite.
+
+> **Nachmessung 18.08.2026:** Das Verhältnis steht jetzt bei **7× zu 1×**. GSC-Meta-1 hat
+> die Description von `DachrinnenBochum.tsx` neu gefasst und dabei zwei der drei Nennungen
+> entfernt. Die Lücke ist also größer geworden, nicht kleiner — Paket 5 gewinnt an Priorität.
 
 Rundherum liegen weitere ~1.400 Impressionen praktisch ohne Klicks: `regenrinne reinigen
 bochum` 185/8,9 · `dachrinnenreinigung firma bochum` 185/12,8 · `dachrinnenreinigung
@@ -253,13 +265,21 @@ Bei striktem 48-h-Gate rund zwei Wochen. Sortiert nach Aufwand-zu-Wirkung.
 
 | # | Paket | Stufe | Dateien | Wirkung | Status |
 |---|---|---|---:|---|---|
-| 0 | **BEG-4** — falsche Förderzahlen korrigieren | B | 4 | beseitigt falsche Tatsachenbehauptung | 🔄 PR #44 |
-| 1 | **GSC-Meta-1** — Meta-Offensive I, 10 Impressions-Riesen | A | 11 | **hoch** (~28.000 der 37.000 Impr.) | 🔄 PR #44 |
-| 2 | **GSC-Meta-2** — Meta-Offensive II, 10 Seiten mit 0–wenig Klicks auf Seite 1; enthält P2.1 | A | ≤ 12 | hoch, geringer Aufwand | ⬜ |
-| 3 | **FAQPage-Schema `/solarpflicht`** aus den 22 vorhandenen Abschnitten | B | 1–2 | **hoch** (31 % aller Impr.) | ⬜ |
-| 4 | **Neue Route `/dachreinigung-bochum`** + interne Links + Sitemap | C | ≤ 5 | **hoch** (892 Impr., 0 Landingpage) | ⬜ |
-| 5 | **Dachrinnenreinigung entflechten** — Content von `/dachwartung-bochum` nach `/dachrinne-bochum` | B | 2–3 | mittel–hoch | ⬜ |
-| 6 | **Interne Verlinkung** der unterverlinkten Money-Pages | A | ≤ 8 | mittel | ⬜ |
+| 0 | **BEG-4** — falsche Förderzahlen korrigieren | B | 4 | beseitigt falsche Tatsachenbehauptung | ✅ live (PR #44, 11.08.) |
+| 1 | **GSC-Meta-1** — Meta-Offensive I, 10 Impressions-Riesen | A | 11 | **hoch** (~28.000 der 37.000 Impr.) | ✅ live (PR #44, 11.08.) |
+| 3 | **FAQPage-Schema `/solarpflicht`** aus den vorhandenen Abschnitten | B | 1 | **hoch** (31 % aller Impr.) | ✅ live (PR #47, 16.08. — als GSC-Schema-1) |
+| 2 | **GSC-Meta-2** — Meta-Offensive II, 10 Seiten mit 0–wenig Klicks auf Seite 1 | A | ≤ 12 | hoch, geringer Aufwand | ⬜ **offen** |
+| 4 | **Neue Route `/dachreinigung-bochum`** + interne Links + Sitemap | C | ≤ 5 | **hoch** (892 Impr., 0 Landingpage) | ⬜ **offen** |
+| 5 | **Dachrinnenreinigung entflechten** — Content von `/dachwartung-bochum` nach `/dachrinne-bochum` | B | 2–3 | mittel–hoch | ⬜ **offen** (Lücke jetzt 7× zu 1×) |
+| 6 | **Interne Verlinkung** der unterverlinkten Money-Pages | A | ≤ 8 | mittel | ⬜ **offen** |
+
+> **Stand 18.08.2026 (nachgemessen, nicht geschätzt):** Pakete 0, 1 und 3 sind live.
+> Der Hinweis „enthält P2.1" bei Paket 2 ist gestrichen — P2.1 war bereits seit PR #28
+> (20.07.2026) live und gehörte nie in dieses Paket. Für die vier offenen Pakete gilt
+> weiterhin die Reihenfolge unten. Verifiziert am Repo-Stand `aecb53c`:
+> „Dachreinigung"/„Algenentfernung" kommen unverändert **0×** im gesamten Repo vor;
+> „Dachrinnenreinigung" steht 7× auf `/dachwartung-bochum` gegen 1× auf `/dachrinne-bochum`;
+> die sechs unterverlinkten Money-Pages haben weiterhin nur 2–5 eingehende interne Links.
 
 **Bewusst nicht enthalten:** Stadtteil-Landingpages für Wattenscheid/Langendreer
 (`DEPLOY-RULES.md` §6). Die 92 Impressionen der Nachbarstädte werden regelkonform über
@@ -283,9 +303,12 @@ Ausdrücklich offen — hier wurde nichts geraten:
 - **Core Web Vitals.** GSC meldet „Nicht genügend Nutzungsdaten in den letzten 90 Tagen"
   für Mobil **und** Computer. Kein Handlungsbedarf ableitbar.
 - **Prerender-Status live.** Nach `DEPLOY-RULES.md` §3 aus der Claude-Umgebung nicht
-  prüfbar. Das Protokoll in `PRERENDER-CHECK.md` §6 ist leer — ein erster Lauf ist
-  unabhängig von allem hier sinnvoll, weil geänderte Meta-Tags nur über die
-  Prerender-Extension bei Google ankommen.
+  prüfbar (die Domain ist netzgesperrt, `curl` scheitert am Proxy mit
+  `CONNECT tunnel failed, 403`). **Teilerledigt:** Stufe 1 (Infrastruktur, via
+  Netlify-Connector) ist am 11.08. und am 18.08.2026 gelaufen und bestanden —
+  `PRERENDER-CHECK.md` §6. **Stufe 2 (gerendertes HTML, Browser/GSC bei Tim) steht
+  weiterhin aus** und ist der Teil, der zählt: an ihr hängt inzwischen der sichtbare
+  Ertrag von GSC-Meta-1, GSC-Schema-1 und dem ExpertenBlock-Rollout.
 - **Interne-Link-Zähldifferenz.** GSC nennt 555 interne Links auf 26 Seiten; im Code hat
   jede der 30 indexierbaren Routen ≥ 2 Links. Zählweise nicht rekonstruierbar.
 
@@ -293,11 +316,14 @@ Ausdrücklich offen — hier wurde nichts geraten:
 
 ## Empfohlene Reihenfolge
 
-1. **PR #44** mergen (BEG-4 + GSC-Meta-1) im regulären Fenster ab 12.08.2026 ~14:41 CEST.
-2. **Prerender-Health-Check** nach `PRERENDER-CHECK.md` — kein Deploy nötig, schützt das Fundament.
-3. **Paket 3** (FAQPage `/solarpflicht`) als nächster funktionaler Deploy — bestes
-   Verhältnis von Aufwand zu betroffenem Impressionsvolumen.
-4. **Paket 4** (`/dachreinigung-bochum`) als erster echter Content-Deploy.
-5. Danach je 48 h Paket 5, 2, 6.
-6. GSC nach ~4 Wochen erneut auswerten und die CTR-Entwicklung der 10 Seiten aus
-   GSC-Meta-1 gegen diese Baseline halten.
+*(aktualisiert 18.08.2026 — erledigte Schritte gestrichen)*
+
+1. ~~PR #44 mergen (BEG-4 + GSC-Meta-1)~~ ✅ 11.08.2026 · ~~Paket 3 (FAQPage `/solarpflicht`)~~ ✅ 16.08.2026.
+2. **Prerender-Check Stufe 2** nach `PRERENDER-CHECK.md` §3 — kein Deploy nötig, schützt das
+   Fundament, und ohne ihn ist die Wirkung der letzten drei Deploys unbelegt. 🌐 Tim.
+3. **Paket 4** (`/dachreinigung-bochum`) als nächster funktionaler Deploy — 892 Impressionen
+   ohne jede passende Landingpage, Google verteilt sie derzeit auf 8 unpassende URLs.
+4. Danach je 48 h **Paket 5** (Dachrinnenreinigung entflechten — die Lücke wächst),
+   **Paket 2** (GSC-Meta-2), **Paket 6** (interne Verlinkung).
+5. GSC ab ~08.09.2026 (4 Wochen nach GSC-Meta-1) erneut auswerten und die CTR-Entwicklung
+   der 10 Seiten aus GSC-Meta-1 gegen die Baseline in Abschnitt 4 halten.

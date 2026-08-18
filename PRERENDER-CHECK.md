@@ -128,6 +128,7 @@ Prerender liegt **nicht im Repo/`netlify.toml`**, sondern im Netlify-Dashboard �
 | Datum | Methode | `/` | Sanierung | Flachdach | Steildach | Dachfenster | Reparatur | llms/sitemap/robots | Ergebnis |
 |---|---|---|---|---|---|---|---|---|---|
 | 11.08.2026 | Netlify-API (Stufe 1, s. u.) | — | — | — | — | — | — | — | **Infrastruktur OK, HTML-Ebene offen** |
+| 18.08.2026 | Netlify-API (Stufe 1, s. u.) | — | — | — | — | — | — | — | **Infrastruktur OK, HTML-Ebene offen** |
 | _TT.MM.JJJJ_ | GSC / DevTools | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | offen |
 
 ### Der Check hat zwei Stufen
@@ -169,3 +170,42 @@ das Ergebnis in der Tabelle oben eintragen.
 > geändert. Diese Änderungen erreichen Google **ausschließlich** über die
 > Prerender-Extension. Bleibt Stufe 2 ungeprüft, ist unbekannt, ob die neuen Snippets
 > überhaupt ankommen — und der erwartete CTR-Effekt bliebe ohne erkennbare Ursache aus.
+
+---
+
+### Protokoll Stufe 1 — 18.08.2026
+
+Geprüft nach dem Merge von PR #40 (ExpertenBlock-Rollout).
+
+| Prüfpunkt | Soll | Ist | |
+|---|---|---|---|
+| Deploy `state` | `ready` | `ready` | ✅ |
+| `plugin_state` | `success` | `success` | ✅ |
+| `commit_ref` | Merge PR #40 | `aecb53c75e938d578d33a060006d35742d146f03` | ✅ |
+| `branch` / `context` | `main` / `production` | `main` / `production` | ✅ |
+| Prerender-Function vorhanden | ja | `nf-prerender-ext_prerender` („Netlify Prerender", Gruppe `netlify-prerender-extension`, `nodejs20.x`) | ✅ |
+| `edge_functions_present` | `true` | `true` | ✅ |
+| Redirect-Regeln | fehlerfrei | 32 Regeln, keine Fehler | ✅ |
+| `error_message` | leer | `null` | ✅ |
+| Secret-Scan | 0 Funde | 659 Dateien gescannt, 0 Treffer | ✅ |
+| IndexNow-Action | `success` | Run #18 auf `aecb53c`, `success` | ✅ |
+| Veröffentlicht | — | 18.08.2026 10:11:40 UTC (12:11 CEST), Deploy-Zeit 32 s | — |
+
+**Ergebnis Stufe 1: bestanden.** Deploy `6a842fba1d71f6000807c51f`, Prerender-Extension
+deployed und aktiv.
+
+**Stufe 2 steht weiterhin aus** — seit dem ersten Lauf am 11.08.2026 unverändert offen.
+Inzwischen sind drei weitere Deploys live gegangen, die ausschließlich über die
+Prerender-Extension bei Google ankommen:
+
+| Deploy | Was nur über Prerender ankommt |
+|---|---|
+| GSC-Meta-1 (11.08.) | 10 neue Titles + Descriptions — der erwartete CTR-Effekt |
+| GSC-Schema-1 (16.08.) | `FAQPage`-Schema auf `/solarpflicht` — 31 % aller Impressionen |
+| ExpertenBlock-Rollout (18.08.) | Autorenbezug und Innungs-Chip auf 13 statt 5 Seiten |
+
+> Damit hängt inzwischen der sichtbare Ertrag von drei Deploys an einer Annahme, die
+> noch nie geprüft wurde. Stufe 2 ist der einzige Test, der sie belegt — Methode 1
+> (GSC-URL-Prüfung, „Live-Test" → „Gerendertes HTML") ist dafür am autoritativsten,
+> weil sie zeigt, was Google tatsächlich sieht. Ein einziger Lauf über die sechs
+> Kern-URLs aus §1 genügt.
