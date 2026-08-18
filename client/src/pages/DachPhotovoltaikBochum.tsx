@@ -3,6 +3,7 @@ import { Helmet } from "react-helmet";
 import { Link } from "wouter";
 import OrganizationSchema from "@/components/OrganizationSchema";
 import AuthorSchema from "@/components/AuthorSchema";
+import ExpertenBlock from "@/components/ExpertenBlock";
 import Breadcrumb from "@/components/Breadcrumb";
 import {
   Sun, CheckCircle, ChevronDown, ChevronUp,
@@ -197,6 +198,8 @@ export default function DachPhotovoltaikBochum() {
           </div>
         </div>
       </section>
+
+      <ExpertenBlock normen={["BAFA BEG EM", "ZVDH-Regelwerk"]} />
 
       {/* Zwei Wege */}
       <section className="py-16 px-4 bg-background">

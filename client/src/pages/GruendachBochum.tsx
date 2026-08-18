@@ -1,6 +1,7 @@
 import { Helmet } from "react-helmet";
 import OrganizationSchema from "@/components/OrganizationSchema";
 import AuthorSchema from "@/components/AuthorSchema";
+import ExpertenBlock from "@/components/ExpertenBlock";
 import { Link } from "wouter";
 import { useState } from "react";
 import Breadcrumb from "@/components/Breadcrumb";
@@ -319,6 +320,8 @@ export default function GruendachBochum() {
           </div>
         </div>
       </section>
+
+      <ExpertenBlock normen={["FLL-Richtlinien", "BAFA BEG EM", "ZVDH-Regelwerk"]} />
 
       <section className="py-16 px-4 bg-white" data-testid="section-vorteile">
         <div className="max-w-5xl mx-auto">

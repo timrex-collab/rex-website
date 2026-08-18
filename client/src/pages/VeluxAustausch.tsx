@@ -3,6 +3,7 @@ import DachfensterScrollAnimation from "@/components/DachfensterScrollAnimation"
 import { Helmet } from "react-helmet";
 import OrganizationSchema from "@/components/OrganizationSchema";
 import AuthorSchema from "@/components/AuthorSchema";
+import ExpertenBlock from "@/components/ExpertenBlock";
 import { useLocation } from "wouter";
 import Breadcrumb from "@/components/Breadcrumb";
 import {
@@ -331,6 +332,8 @@ export default function VeluxAustausch() {
           </a>
         </div>
       </section>
+
+      <ExpertenBlock normen={["Autorisierter VELUX-Partner", "BEG EM Uw ≤ 1,0", "GModG 2026"]} />
 
       {/* ── Einleitungstext ── */}
       <section className="py-16 px-4 bg-muted/40" data-testid="section-einleitung">

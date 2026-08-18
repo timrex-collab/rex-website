@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Helmet } from "react-helmet";
 import OrganizationSchema from "@/components/OrganizationSchema";
 import AuthorSchema from "@/components/AuthorSchema";
+import ExpertenBlock from "@/components/ExpertenBlock";
 import Breadcrumb from "@/components/Breadcrumb";
 import Picture from "@/components/Picture";
 import {
@@ -301,6 +302,8 @@ export default function Dachreparatur() {
           </p>
         </div>
       </section>
+
+      <ExpertenBlock normen={["ZVDH-Regelwerk"]} />
 
       {/* ── Einleitung ── */}
       <section className="py-16 px-4 bg-background" data-testid="section-einleitung">
