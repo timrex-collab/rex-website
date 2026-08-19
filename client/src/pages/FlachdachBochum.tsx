@@ -69,7 +69,7 @@ const services = [
   {
     icon: <ClipboardCheck className="w-8 h-8 text-primary" />,
     title: "Wartungsverträge für langfristige Sicherheit",
-    text: "Regelmäßige Kontrolle verhindert teure Schäden. Wir prüfen Abdichtung, Entwässerung und Dämmung – und beheben kleine Mängel direkt vor Ort.",
+    text: "Regelmäßige Kontrolle verhindert teure Schäden. Wir prüfen Abdichtung, Entwässerung und Dämmung, legen Gullys und Einläufe frei, reinigen Rand- und Eckbereiche – und beheben kleine Mängel direkt vor Ort.",
     testId: "card-wartung",
     highlight: false,
   },
@@ -173,6 +173,11 @@ const faqItems = [
     question: "Wird ein Gründach in Bochum gefördert?",
     answer:
       "Ja! Gründächer werden über KfW-Programme sowie teilweise durch städtische Förderprogramme der Stadt Bochum unterstützt. Zusätzlich senkt ein Gründach langfristig die Niederschlagswassergebühren. Wir beraten Sie kostenlos zu allen Fördermöglichkeiten.",
+  },
+  {
+    question: "Was gehört zur Wartung eines Flachdachs?",
+    answer:
+      "Wir prüfen Abdichtung, Anschlüsse und Dämmung und reinigen die Entwässerung: Gullys und Einläufe werden freigelegt und auf Durchgang kontrolliert, Rand- und Eckbereiche vom Laub- und Schmutzeintrag befreit. Ein zugesetzter Gully führt zu stehendem Wasser und belastet die Abdichtung dauerhaft. Eine Reinigung oder Beschichtung der Dachfläche selbst bieten wir nicht an – Details zum Umfang auf unserer Seite zur Dachwartung.",
   },
 ];
 
@@ -650,7 +655,7 @@ export default function FlachdachBochum() {
           <h2 className="text-xl font-bold text-gray-900 mb-6">
             Das könnte Sie auch interessieren
           </h2>
-          <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-4">
+          <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-3 gap-4">
             <a href="/gruendach-dachbegrunung-bochum" className="block p-5 bg-white rounded-xl border border-gray-200 hover:border-primary hover:shadow-md transition-all">
               <div className="font-semibold text-gray-900 mb-1">Gründach & Dachbegrünung</div>
               <div className="text-sm text-gray-500">Ihr Flachdach als Grünfläche – extensive und intensive Begrünung in Bochum.</div>
@@ -670,6 +675,10 @@ export default function FlachdachBochum() {
             <a href="/solarpflicht" className="block p-5 bg-white rounded-xl border border-gray-200 hover:border-primary hover:shadow-md transition-all">
               <div className="font-semibold text-gray-900 mb-1">NRW-Solarpflicht</div>
               <div className="text-sm text-gray-500">Pflicht-Beurteilung bei vollständiger Flachdach-Sanierung.</div>
+            </a>
+            <a href="/dachwartung-bochum" className="block p-5 bg-white rounded-xl border border-gray-200 hover:border-primary hover:shadow-md transition-all">
+              <div className="font-semibold text-gray-900 mb-1">Dachwartung &amp; Wartungsvertrag</div>
+              <div className="text-sm text-gray-500">Gullys und Einläufe freilegen, Rand- und Eckbereiche reinigen, Abdichtung kontrollieren.</div>
             </a>
           </div>
         </div>
