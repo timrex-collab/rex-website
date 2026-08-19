@@ -11,7 +11,22 @@ Projektstand abgleichen und daraus einen priorisierten, umsetzbaren Backlog mach
 **Governance gilt unverändert** (`DEPLOY-RULES.md`): 48-h-Gate zwischen funktionalen Deploys ·
 ein atomarer Commit pro Deploy · Stufen A (Text/CSS ≤12) / B (Schema/Content ≤8) / C (Routen/
 gesperrte Configs ≤5) · `attached_assets/` nie committen · Merge nur durch Tim.
-Letzter funktionaler Merge: **08.07.2026** → Gate aktuell frei.
+
+> ## Stand 18.08.2026 — dieser Plan ist zu 4/5 abgearbeitet
+>
+> **Erledigt und live:** P2.1 (PR #28) · P2.2 (PR #25) · P2.3 (PR #25/#26) · P2.4 (PR #31–#33).
+> P1.1 ist zur Hälfte erledigt — die Routine steht und Stufe 1 lief zweimal (11.08./18.08.),
+> Stufe 2 im Browser steht aus.
+>
+> **Noch offen aus diesem Plan:** P1.1 Stufe 2 🌐 · P1.2 NAP-Altlasten 🌐 ·
+> P1.3 Förder-Quartalsreview 🔁 · P3.1 Dachreport Bochum.
+>
+> **Der aktive Deploy-Backlog steht seit dem 11.08.2026 in [`GSC-AUDIT-2026-08.md`](./GSC-AUDIT-2026-08.md) §6** —
+> er ist datengestützt (Search-Console-Exporte) und hat vier offene Pakete. Dieses Dokument
+> bleibt als Herkunftsnachweis des Juli-Audits bestehen; neue Arbeit wird dort priorisiert.
+>
+> Letzter funktionaler Merge: **PR #40 am 18.08.2026 10:11 UTC** → nächstes Fenster
+> ab **20.08.2026 ~10:11 UTC**.
 
 **Legende:** 🧑‍💻 = Claude im Repo · 🌐 = Tim extern (außerhalb Repo) · 🔁 = Prozess/Routine ·
 Aufwand/Wirkung jeweils niedrig/mittel/hoch.
@@ -58,7 +73,9 @@ Damit wir nichts doppelt machen. Diese Audit-Punkte sind abgehakt oder per Regel
   → **Checkliste geliefert: [`PRERENDER-CHECK.md`](./PRERENDER-CHECK.md)** — 6 Kern-URLs, objektive
   Pass/Fail-Kriterien (Fallback-Shell hat *kein* JSON-LD/Meta/H1), 4 Browser-Methoden, Soll-Titles,
   Eskalation. Kadenz: monatlich + einmal nach jedem funktionalen Deploy.
-  *Offen:* laufende Durchführung durch Tim (erster Lauf + Protokoll in `PRERENDER-CHECK.md` §6).
+  *Stand 18.08.2026:* Stufe 1 (Infrastruktur, via Netlify-Connector) ist am 11.08. und 18.08.
+  gelaufen und bestanden, Protokoll in `PRERENDER-CHECK.md` §6. **Stufe 2 (gerendertes HTML im
+  Browser/GSC) steht weiterhin aus** — das ist der eigentliche Pass/Fail-Test. 🌐 Tim.
 
 - [ ] **P1.2 — Externe NAP-Altlasten bereinigen** · 🌐 · Aufwand mittel · Wirkung mittel
   Veraltete Adressen in Aggregatoren (z. B. *Brenscheder Str. 19*, *Friederikastraße 12*) verwirren
@@ -71,22 +88,22 @@ Damit wir nichts doppelt machen. Diese Audit-Punkte sind abgehakt oder per Regel
 
 ### Priorität 2 — On-Site-Content (erlaubt, mittlerer Aufwand, je 1 Deploy im 48-h-Gate)
 
-- [ ] **P2.1 — Begriff „Dachdeckerei Bochum" natürlich integrieren** · 🧑‍💻 Stufe A/B · Aufwand niedrig · Wirkung niedrig–mittel
+- [x] **P2.1 — Begriff „Dachdeckerei Bochum" natürlich integrieren** · 🧑‍💻 Stufe A/B · Aufwand niedrig · Wirkung niedrig–mittel ✅ live (PR #28, 20.07.2026)
   Aktuell nur 2× im Code. → Natürlich in Title/H2/FAQ auf `Home` + `Services` einweben. **Kein Keyword-Stuffing.**
 
-- [ ] **P2.2 — Referenzen → echte Case-Studies** · 🧑‍💻 Stufe A/B · Aufwand mittel · Wirkung mittel–hoch
+- [x] **P2.2 — Referenzen → echte Case-Studies** · 🧑‍💻 Stufe A/B · Aufwand mittel · Wirkung mittel–hoch ✅ live (PR #25, 14.07.2026)
   `References.tsx` ist heute reine Galerie (0 strukturierte Fälle). → Pro Projekt: **Ort/Stadtteil ·
   Dachtyp · Problem · Lösung · Material · Zeitraum · Ergebnis**. Bringt lokale Tiefe (Wiemelhausen,
   Querenburg, Stiepel, Weitmar, Wattenscheid, Hattingen) **ohne** Doorway-Seiten. Deckt die
   „lokale Autorität"-Empfehlung des Audits regelkonform ab.
 
-- [ ] **P2.3 — Zitierfähige Fach-FAQ mit Bochum-Bezug ausbauen** · 🧑‍💻 Stufe B · Aufwand mittel · Wirkung mittel
+- [x] **P2.3 — Zitierfähige Fach-FAQ mit Bochum-Bezug ausbauen** · 🧑‍💻 Stufe B · Aufwand mittel · Wirkung mittel ✅ live (PR #25/#26, 14.–16.07.2026)
   Kurze, definitorische Q&A nach Rex-Standard v3.1 („Was ist Flachdachabdichtung?", „Wann lohnt sich
   eine Dachsanierung?", „Was tun bei Sturmschaden?") — LLM-/Snippet-freundlich, je mit lokalem Bezug.
   Gleichzeitig „Dachabdichtung"/„Flachdachsanierung" als eigene Abschnitte + interne Verlinkung
   (`Flachdach` ↔ `Bitumen/PVC` ↔ `Dachreparatur` ↔ `Gruendach`) stärken.
 
-- [ ] **P2.4 — `areaServed`-Schema vereinheitlichen** *(optional/Hygiene)* · 🧑‍💻 Stufe B · Aufwand mittel · Wirkung niedrig–mittel
+- [x] **P2.4 — `areaServed`-Schema vereinheitlichen** *(optional/Hygiene)* · 🧑‍💻 Stufe B · Aufwand mittel · Wirkung niedrig–mittel ✅ live (PR #31–#33, 23.–28.07.2026)
   Heute Mischung aus `City`-Objekt und String-Array über die Seiten. → Einheitliches Modell (analog
   B1/B2-Disziplin). **Achtung Churn:** betrifft ~20 Seiten → in Batches ≤8 Dateien/Deploy. Nur wenn
   P2.1–P2.3 abgearbeitet sind; rein kosmetischer GEO-Gewinn.
@@ -112,5 +129,8 @@ Damit wir nichts doppelt machen. Diese Audit-Punkte sind abgehakt oder per Regel
 4. **P3.1** (Dachreport) als eigenes, größeres Vorhaben parallel vorbereiten (Datenrecherche 🌐).
 5. **P2.4** nur als abschließende Hygiene, wenn Kapazität bleibt.
 
-> Nächster Schritt: gemeinsam **einen** Startpunkt wählen — Empfehlung **P1.1** (Routine aufsetzen)
-> und **P2.2** (Case-Studies) als erster sichtbarer Content-Deploy.
+> **Diese Reihenfolge ist abgearbeitet** (Schritte 1–3 und 5 erledigt, Stand 18.08.2026).
+> Nächster Schritt steht nicht mehr hier, sondern in `GSC-AUDIT-2026-08.md` §6: Paket 4
+> (`/dachreinigung-bochum`) als nächster funktionaler Deploy, davor der Prerender-Check
+> Stufe 2 — der kostet keinen Deploy und belegt, dass die letzten drei Deploys bei Google
+> überhaupt ankommen.
