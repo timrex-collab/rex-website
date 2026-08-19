@@ -148,8 +148,23 @@ die Ausnahme.
 > **Altlast behoben:** Der frühere fälschliche „Uw 0,7"-Eintrag für ENERGIE PLUS
 > in `llms.txt`/`llms-full.txt` ist korrigiert (CC-Fix, PR #9, live seit 19.06.2026).
 
+### Leistungsabgrenzung Reinigung (verbindlich, Stand 18.08.2026)
+Festgelegt von Tim Rex. Gilt fuer Seiten, Schema, `llms*.txt` und jede Keyword-Empfehlung.
+
+| Leistung | Angeboten? |
+|---|---|
+| **Dachrinnenreinigung** (Rinnen, Fallrohre, Ablaeufe) | **ja** — eigenstaendig und im Wartungsumfang |
+| **Flachdachreinigung** (Gullys/Einlaeufe, Rand- und Eckbereiche) | **ja** — im Rahmen der Wartung |
+| Dachflaechenreinigung / Dachreinigung (Ziegel abstrahlen o. Ae.) | **nein** |
+| Algenentfernung / Moosentfernung / Dachbeschichtung | **nein** |
+
+> Die Suchnachfrage nach „Dachreinigung Bochum" ist real (892 Impressionen, s.
+> `GSC-AUDIT-2026-08.md` §3.1), aber **fuer uns nicht bedienbar** — sie zielt auf eine
+> Leistung, die wir nicht erbringen. Der einzige zulaessige Umgang damit ist eine
+> ehrliche Abgrenzung im Text, **keine** Landingpage und **kein** Keyword-Einbau.
+
 ### Explizit ausgeschlossen (nicht vorschlagen)
-SSR-/Framework-Migration · Stadtteil-Seiten · separate Kosten-Seiten · Gewerbeseiten · SearchAction-Schema · AggregateRating on-site · EPDM-Vergleiche · Notdienst-Seite · Roto-spezifische Cluster-Seiten · eigener Puppeteer-/SSG-Prerender.
+SSR-/Framework-Migration · Stadtteil-Seiten · separate Kosten-Seiten · Gewerbeseiten · SearchAction-Schema · AggregateRating on-site · EPDM-Vergleiche · Notdienst-Seite · Roto-spezifische Cluster-Seiten · eigener Puppeteer-/SSG-Prerender · **Dachreinigungs-/Algenentfernungs-Seite** (Leistung wird nicht angeboten, s. Leistungsabgrenzung oben).
 
 ---
 

@@ -127,8 +127,25 @@ Google verteilt die Anfragen mangels passender Seite auf **8 unpassende URLs**:
 | `/dachreparatur-bochum` | 5 | 66,6 |
 | `/dachsanierung-bochum` | 3 | 99,3 |
 
-Dachreinigung steht **nicht** auf der Ausschlussliste in `DEPLOY-RULES.md` §6 — eine
-eigene Serviceseite ist regelkonform (kein Stadtteil, keine Kosten-Seite, keine Gewerbeseite).
+> ### ⛔ Korrektur 18.08.2026 — die Schlussfolgerung war falsch
+>
+> Die urspruengliche Fassung schloss hier: „Dachreinigung steht nicht auf der Ausschlussliste
+> in `DEPLOY-RULES.md` §6 — eine eigene Serviceseite ist regelkonform." Das war eine reine
+> Regelpruefung ohne Ruecksprache. **Rex Bedachung bietet Dachflaechenreinigung und
+> Algenentfernung nicht an** (festgelegt von Tim Rex am 18.08.2026, jetzt als
+> Leistungsabgrenzung in `DEPLOY-RULES.md` §6 verbindlich hinterlegt).
+>
+> Eine Landingpage haette also eine Leistung beworben, die es nicht gibt: falsche
+> Kundenerwartung, Anfragen die abgesagt werden muessen, und ein Ranking, das dem Ruf mehr
+> schadet als es einbringt. Die 892 Impressionen sind **nicht bedienbar** — kein
+> Snippet-Problem, kein Ranking-Problem, sondern schlicht die falsche Zielgruppe.
+>
+> **Angeboten wird:** Dachrinnenreinigung (Rinnen, Fallrohre, Ablaeufe) sowie
+> Flachdachreinigung (Gullys/Einlaeufe, Rand- und Eckbereiche) im Rahmen der Wartung.
+> Genau darauf zielt der Ersatz fuer Paket 4 unten.
+>
+> **Merke fuer kuenftige Audits:** Bevor eine Keyword-Luecke zu einem Paket wird, gehoert
+> die Frage „bieten wir das ueberhaupt an?" vor die Frage „ist das regelkonform?".
 
 ### 3.2 🟠 Lücke B — Dachrinnenreinigung: Kannibalisierung
 
@@ -269,7 +286,8 @@ Bei striktem 48-h-Gate rund zwei Wochen. Sortiert nach Aufwand-zu-Wirkung.
 | 1 | **GSC-Meta-1** — Meta-Offensive I, 10 Impressions-Riesen | A | 11 | **hoch** (~28.000 der 37.000 Impr.) | ✅ live (PR #44, 11.08.) |
 | 3 | **FAQPage-Schema `/solarpflicht`** aus den vorhandenen Abschnitten | B | 1 | **hoch** (31 % aller Impr.) | ✅ live (PR #47, 16.08. — als GSC-Schema-1) |
 | 2 | **GSC-Meta-2** — Meta-Offensive II, 10 Seiten mit 0–wenig Klicks auf Seite 1 | A | ≤ 12 | hoch, geringer Aufwand | ⬜ **offen** |
-| 4 | **Neue Route `/dachreinigung-bochum`** + interne Links + Sitemap | C | ≤ 5 | **hoch** (892 Impr., 0 Landingpage) | ⬜ **offen** |
+| 4 | ~~Neue Route `/dachreinigung-bochum`~~ | — | — | — | ❌ **gestrichen 18.08.2026** — Leistung wird nicht angeboten |
+| 4a | **Flachdachreinigung im Wartungsumfang sichtbar machen** — Gullys/Einlaeufe, Rand- und Eckbereiche auf `/dachwartung-bochum` und `/flachdach-bochum`; dazu eine ehrliche Abgrenzungs-FAQ („Bieten Sie Dachreinigung/Algenentfernung an?" → nein, wir reinigen Dachrinnen und Flachdach-Entwaesserung im Rahmen der Wartung) | B | 2–3 | mittel — deckt eine real angebotene Leistung ab, die auf der Site **0×** vorkommt | ⬜ **offen** |
 | 5 | **Dachrinnenreinigung entflechten** — Content von `/dachwartung-bochum` nach `/dachrinne-bochum` | B | 2–3 | mittel–hoch | ⬜ **offen** (Lücke jetzt 7× zu 1×) |
 | 6 | **Interne Verlinkung** der unterverlinkten Money-Pages | A | ≤ 8 | mittel | ⬜ **offen** |
 
@@ -280,6 +298,14 @@ Bei striktem 48-h-Gate rund zwei Wochen. Sortiert nach Aufwand-zu-Wirkung.
 > „Dachreinigung"/„Algenentfernung" kommen unverändert **0×** im gesamten Repo vor;
 > „Dachrinnenreinigung" steht 7× auf `/dachwartung-bochum` gegen 1× auf `/dachrinne-bochum`;
 > die sechs unterverlinkten Money-Pages haben weiterhin nur 2–5 eingehende interne Links.
+
+> **Nachtrag 18.08.2026 — Paket 4 gestrichen, 4a tritt an seine Stelle.** Gemessen am
+> Repo-Stand `aecb53c` kommen **„Flachdachreinigung", „Gully", „Einlauf", „Randbereich"
+> und „Eckbereich" allesamt 0× vor** — die Leistung, die tatsaechlich erbracht wird, steht
+> nirgends auf der Website. `/dachwartung-bochum` hat zwar eine Karte „Dachrinnen &
+> Ablaeufe reinigen", benennt die Flachdach-Entwaesserung aber nicht. Das ist die echte
+> Luecke: kein 892-Impressionen-Hebel, aber ehrlich, belegbar und fuer Hausverwaltungen
+> (der erklaerte Wartungs-Schwerpunkt) unmittelbar relevant.
 
 **Bewusst nicht enthalten:** Stadtteil-Landingpages für Wattenscheid/Langendreer
 (`DEPLOY-RULES.md` §6). Die 92 Impressionen der Nachbarstädte werden regelkonform über
@@ -321,9 +347,10 @@ Ausdrücklich offen — hier wurde nichts geraten:
 1. ~~PR #44 mergen (BEG-4 + GSC-Meta-1)~~ ✅ 11.08.2026 · ~~Paket 3 (FAQPage `/solarpflicht`)~~ ✅ 16.08.2026.
 2. **Prerender-Check Stufe 2** nach `PRERENDER-CHECK.md` §3 — kein Deploy nötig, schützt das
    Fundament, und ohne ihn ist die Wirkung der letzten drei Deploys unbelegt. 🌐 Tim.
-3. **Paket 4** (`/dachreinigung-bochum`) als nächster funktionaler Deploy — 892 Impressionen
-   ohne jede passende Landingpage, Google verteilt sie derzeit auf 8 unpassende URLs.
-4. Danach je 48 h **Paket 5** (Dachrinnenreinigung entflechten — die Lücke wächst),
-   **Paket 2** (GSC-Meta-2), **Paket 6** (interne Verlinkung).
+3. **Paket 5** (Dachrinnenreinigung entflechten) als naechster funktionaler Deploy — die
+   Luecke ist auf 7× zu 1× gewachsen, und es geht um eine Leistung, die wir wirklich
+   erbringen. Rueckt nach dem Wegfall von Paket 4 auf Platz 1.
+4. Danach je 48 h **Paket 4a** (Flachdachreinigung im Wartungsumfang), **Paket 2**
+   (GSC-Meta-2), **Paket 6** (interne Verlinkung).
 5. GSC ab ~08.09.2026 (4 Wochen nach GSC-Meta-1) erneut auswerten und die CTR-Entwicklung
    der 10 Seiten aus GSC-Meta-1 gegen die Baseline in Abschnitt 4 halten.
