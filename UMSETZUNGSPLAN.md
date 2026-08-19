@@ -130,7 +130,11 @@ Damit wir nichts doppelt machen. Diese Audit-Punkte sind abgehakt oder per Regel
 5. **P2.4** nur als abschließende Hygiene, wenn Kapazität bleibt.
 
 > **Diese Reihenfolge ist abgearbeitet** (Schritte 1–3 und 5 erledigt, Stand 18.08.2026).
-> Nächster Schritt steht nicht mehr hier, sondern in `GSC-AUDIT-2026-08.md` §6: Paket 4
-> (`/dachreinigung-bochum`) als nächster funktionaler Deploy, davor der Prerender-Check
-> Stufe 2 — der kostet keinen Deploy und belegt, dass die letzten drei Deploys bei Google
-> überhaupt ankommen.
+> Nächster Schritt steht nicht mehr hier, sondern in `GSC-AUDIT-2026-08.md` §6: **Paket 5**
+> (Dachrinnenreinigung entflechten) als nächster funktionaler Deploy, davor der
+> Prerender-Check Stufe 2 — der kostet keinen Deploy und belegt, dass die letzten drei
+> Deploys bei Google überhaupt ankommen.
+>
+> Das ursprünglich erstplatzierte Paket 4 (`/dachreinigung-bochum`) ist am 18.08.2026
+> **gestrichen**: Dachflächenreinigung und Algenentfernung gehören nicht zum
+> Leistungsumfang. Die verbindliche Leistungsabgrenzung steht jetzt in `DEPLOY-RULES.md` §6.
