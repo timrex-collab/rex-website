@@ -84,7 +84,10 @@ Erwartung: route-spezifischer Title **und** `application/ld+json` erscheinen.
 
 > **⚠ Diese Tabelle ist wartungspflichtig.** Sie muss bei **jeder** Title-Änderung
 > mitgezogen werden — sonst meldet der Check Fehlschläge, die keine sind. Zuletzt
-> abgeglichen: **11.08.2026** gegen `main` nach Deploy GSC-Meta-1 (PR #44).
+> abgeglichen: **20.08.2026** gegen `main` (`89f8088`) — alle sechs Soll-Titles
+> maschinell gegen den Quelltext geprüft, **alle sechs stimmen**. GSC-Schema-1 (PR #47),
+> ExpertenBlock-Rollout (PR #40) und Paket 4a (PR #49) haben keinen der sechs
+> Kern-Titles verändert.
 
 | URL | Soll-`<title>` | Stand |
 |---|---|---|
@@ -245,3 +248,79 @@ Deploys, deren Wirkung ohne diesen Test unbelegt bleibt, ist auf **vier** gewach
 
 > Ein einziger Lauf über die sechs Kern-URLs aus §1 nach Methode 1 (GSC-URL-Prüfung,
 > „Live-Test" → „Gerendertes HTML") schließt das ab.
+
+---
+
+## 7. Laufzettel Stufe 2 — ausfüllfertig
+
+Alles unten ist am Repo-Stand `89f8088` (20.08.2026) maschinell aus dem Quelltext
+gezogen. **Ein Durchgang, sechs URLs, ca. 15 Minuten.**
+
+### So läuft es ab (Methode 1 — die autoritativste)
+
+1. Google Search Console öffnen → Property `https://www.rex-bedachung.de/`
+2. Oben in die **URL-Prüfung** die erste URL einfügen → Enter
+3. Rechts **„Live-Test"** klicken → warten
+4. **„Gecrawlte Seite ansehen"** → Reiter **„HTML"**
+5. Mit `Strg+F` im HTML nach den drei Prüfwerten unten suchen
+6. Ergebnis in die Tabelle eintragen, nächste URL
+
+> **Alternative ohne GSC (Methode 3):** Chrome DevTools → `Strg+Shift+P` →
+> „Show Network conditions" → User agent auf **Googlebot** stellen → Seite neu laden →
+> Reiter „Elements" durchsuchen. Schneller, aber weniger autoritativ: es zeigt, was der
+> Server einem Bot-User-Agent liefert, nicht zwingend was Google gespeichert hat.
+
+### Prüfwerte je URL
+
+Pro Zeile drei Dinge im gerenderten HTML suchen. **Alle drei müssen da sein.**
+
+| # | URL | 1. `<title>` muss enthalten | 2. `<h1>` muss enthalten | 3. JSON-LD muss enthalten |
+|---|---|---|---|---|
+| 1 | `/` | `Dachdecker Bochum – Rex Bedachungs GmbH` ⚠️ | `Dachdecker Bochum – Ihr Partner rund um's Dach` | `"@type": "WebPage"` + `"@type": "BreadcrumbList"` |
+| 2 | `/dachsanierung-bochum` | `Dachsanierung Bochum – Komplettsanierung vom Meister` | `Dachsanierung Bochum – Komplettsanierung vom Meisterbetrieb` | `"@type": "FAQPage"` + `"@type": "HowTo"` |
+| 3 | `/flachdach-bochum` | `Flachdach Bochum – Abdichtung & Sanierung` | `Flachdach & Gründach Bochum` | `"@type": "FAQPage"` + `"@type": "OfferCatalog"` |
+| 4 | `/steildach-bochum` | `Steildach Bochum – Sanierung & Dämmung` | `Steildach Bochum – Neueindeckung & Sanierung` | `"@type": "FAQPage"` + `"@type": "HowTo"` |
+| 5 | `/dachfenster-bochum` | `Dachfenster Bochum – Einbau & Austausch` | `Dachfenster Bochum – Einbau & Austausch vom Meisterbetrieb` | `"@type": "FAQPage"` + `"@type": "Article"` |
+| 6 | `/dachreparatur-bochum` | `Dachreparatur Bochum – Dach undicht? Wir helfen` | `Dachreparatur in Bochum – schnelle Hilfe bei Dachschäden` | `"@type": "FAQPage"` + `"@type": "RoofingContractor"` |
+
+> **⚠️ Zu Zeile 1 (`/`):** Der Title der Startseite ist **identisch mit dem
+> Fallback-Title** aus `index.html`. Er allein beweist gar nichts. Für `/` zählen
+> deshalb **nur H1 und JSON-LD** — findest du beide, hat der Prerender gearbeitet.
+> Findest du nur den Title, ist es die leere SPA-Shell und der Check ist
+> **fehlgeschlagen**.
+
+> **Zu `&`:** Im Quelltext stehen die Titles teils als `&amp;`. Im gerenderten HTML
+> steht ein einfaches `&`. Also nach `&` suchen, nicht nach `&amp;`.
+
+### Ergebnis eintragen
+
+| # | URL | Title | H1 | JSON-LD | Datum |
+|---|---|---|---|---|---|
+| 1 | `/` | n. z. | ⬜ | ⬜ | |
+| 2 | `/dachsanierung-bochum` | ⬜ | ⬜ | ⬜ | |
+| 3 | `/flachdach-bochum` | ⬜ | ⬜ | ⬜ | |
+| 4 | `/steildach-bochum` | ⬜ | ⬜ | ⬜ | |
+| 5 | `/dachfenster-bochum` | ⬜ | ⬜ | ⬜ | |
+| 6 | `/dachreparatur-bochum` | ⬜ | ⬜ | ⬜ | |
+
+**Alle Häkchen gesetzt → Stufe 2 bestanden.** Ergebnis zusätzlich als Zeile in die
+Protokoll-Tabelle in §6 eintragen.
+
+**Ein einziges Feld ohne Häkchen → Eskalation nach §5.** Nicht „nur eine Seite" —
+fällt die Extension aus, betrifft das potenziell alle Routen.
+
+### Warum das jetzt dran ist
+
+Vier Deploys hängen an dieser einen ungeprüften Annahme. Ihr sichtbarer Ertrag entsteht
+**ausschließlich** über die Prerender-Extension:
+
+| Deploy | Was nur über Prerender ankommt |
+|---|---|
+| GSC-Meta-1 (11.08.) | 10 neue Titles + Descriptions — der erwartete CTR-Effekt |
+| GSC-Schema-1 (16.08.) | `FAQPage` auf `/solarpflicht` — 31 % aller Impressionen |
+| ExpertenBlock-Rollout (18.08.) | Autorenbezug + Innungs-Chip auf 13 statt 5 Seiten |
+| Paket 4a (20.08.) | Leistungsabgrenzung Reinigung — genau die Antwort, die ausgespielt werden soll |
+
+Bleibt Stufe 2 offen und der erwartete CTR-Effekt aus, ist nicht unterscheidbar, ob die
+Texte schlecht waren oder Google sie nie gesehen hat. Der Test kostet 15 Minuten und
+trennt genau diese beiden Fälle.
