@@ -129,6 +129,7 @@ Prerender liegt **nicht im Repo/`netlify.toml`**, sondern im Netlify-Dashboard �
 |---|---|---|---|---|---|---|---|---|---|
 | 11.08.2026 | Netlify-API (Stufe 1, s. u.) | — | — | — | — | — | — | — | **Infrastruktur OK, HTML-Ebene offen** |
 | 18.08.2026 | Netlify-API (Stufe 1, s. u.) | — | — | — | — | — | — | — | **Infrastruktur OK, HTML-Ebene offen** |
+| 20.08.2026 | Netlify-API (Stufe 1, s. u.) | — | — | — | — | — | — | — | **Infrastruktur OK, HTML-Ebene offen** |
 | _TT.MM.JJJJ_ | GSC / DevTools | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | offen |
 
 ### Der Check hat zwei Stufen
@@ -209,3 +210,38 @@ Prerender-Extension bei Google ankommen:
 > (GSC-URL-Prüfung, „Live-Test" → „Gerendertes HTML") ist dafür am autoritativsten,
 > weil sie zeigt, was Google tatsächlich sieht. Ein einziger Lauf über die sechs
 > Kern-URLs aus §1 genügt.
+
+---
+
+### Protokoll Stufe 1 — 20.08.2026
+
+Geprüft nach dem Merge von PR #49 (Paket 4a) und PR #48/#50 (Doku).
+
+| Prüfpunkt | Soll | Ist | |
+|---|---|---|---|
+| Deploy `state` | `ready` | `ready` | ✅ |
+| `plugin_state` | `success` | `success` | ✅ |
+| `commit_ref` | Merge PR #49 | `efe40ceb1e83489e1c4e952b377c9170b00f55b6` | ✅ |
+| `branch` / `context` | `main` / `production` | `main` / `production` | ✅ |
+| Prerender-Function vorhanden | ja | `nf-prerender-ext_prerender` (`nodejs20.x`) | ✅ |
+| `edge_functions_present` | `true` | `true` | ✅ |
+| Redirect-Regeln | fehlerfrei | 32 Regeln, keine Fehler | ✅ |
+| `error_message` | leer | `null` | ✅ |
+| Secret-Scan | 0 Funde | 662 Dateien gescannt, 0 Treffer | ✅ |
+| IndexNow-Action | `success` | Run #21 auf `efe40ce`, `success` | ✅ |
+| Veröffentlicht | — | 20.08.2026 08:36:22 UTC (10:36 CEST), Deploy-Zeit 32 s | — |
+
+**Ergebnis Stufe 1: bestanden.** Deploy `6a86bc653975c400087b6664`.
+
+**Stufe 2 steht weiterhin aus** — offen seit dem ersten Lauf am 11.08.2026. Die Liste der
+Deploys, deren Wirkung ohne diesen Test unbelegt bleibt, ist auf **vier** gewachsen:
+
+| Deploy | Was nur über Prerender ankommt |
+|---|---|
+| GSC-Meta-1 (11.08.) | 10 neue Titles + Descriptions — der erwartete CTR-Effekt |
+| GSC-Schema-1 (16.08.) | `FAQPage`-Schema auf `/solarpflicht` — 31 % aller Impressionen |
+| ExpertenBlock-Rollout (18.08.) | Autorenbezug und Innungs-Chip auf 13 statt 5 Seiten |
+| Paket 4a (20.08.) | Drei neue FAQs inklusive der Leistungsabgrenzung — genau die Antwort, die Google und KI-Assistenten zur Dachreinigungs-Frage ausspielen sollen |
+
+> Ein einziger Lauf über die sechs Kern-URLs aus §1 nach Methode 1 (GSC-URL-Prüfung,
+> „Live-Test" → „Gerendertes HTML") schließt das ab.

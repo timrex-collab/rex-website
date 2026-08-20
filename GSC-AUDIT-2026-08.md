@@ -287,8 +287,8 @@ Bei striktem 48-h-Gate rund zwei Wochen. Sortiert nach Aufwand-zu-Wirkung.
 | 3 | **FAQPage-Schema `/solarpflicht`** aus den vorhandenen Abschnitten | B | 1 | **hoch** (31 % aller Impr.) | ✅ live (PR #47, 16.08. — als GSC-Schema-1) |
 | 2 | **GSC-Meta-2** — Meta-Offensive II, 10 Seiten mit 0–wenig Klicks auf Seite 1 | A | ≤ 12 | hoch, geringer Aufwand | ⬜ **offen** |
 | 4 | ~~Neue Route `/dachreinigung-bochum`~~ | — | — | — | ❌ **gestrichen 18.08.2026** — Leistung wird nicht angeboten |
-| 4a | **Flachdachreinigung im Wartungsumfang sichtbar machen** — Gullys/Einlaeufe, Rand- und Eckbereiche auf `/dachwartung-bochum` und `/flachdach-bochum`; dazu eine ehrliche Abgrenzungs-FAQ („Bieten Sie Dachreinigung/Algenentfernung an?" → nein, wir reinigen Dachrinnen und Flachdach-Entwaesserung im Rahmen der Wartung) | B | 2–3 | mittel — deckt eine real angebotene Leistung ab, die auf der Site **0×** vorkommt | ⬜ **offen** |
-| 5 | **Dachrinnenreinigung entflechten** — Content von `/dachwartung-bochum` nach `/dachrinne-bochum` | B | 2–3 | mittel–hoch | ⬜ **offen** (Lücke jetzt 7× zu 1×) |
+| 4a | **Flachdachreinigung im Wartungsumfang sichtbar machen** — Gullys/Einlaeufe, Rand- und Eckbereiche auf `/dachwartung-bochum` und `/flachdach-bochum`; dazu eine ehrliche Abgrenzungs-FAQ („Bieten Sie Dachreinigung/Algenentfernung an?" → nein, wir reinigen Dachrinnen und Flachdach-Entwaesserung im Rahmen der Wartung) | B | 2–3 | mittel — deckt eine real angebotene Leistung ab, die auf der Site **0×** vorkommt | ✅ live (PR #49, 20.08. — Gullys/Einläufe, Rand- und Eckbereiche, Abgrenzungs-FAQ) |
+| 5 | **Dachrinnenreinigung entflechten** — Content von `/dachwartung-bochum` nach `/dachrinne-bochum` | B | 2–3 | mittel–hoch | ⬜ **offen — als Nächstes** (Lücke 7× zu 1×) |
 | 6 | **Interne Verlinkung** der unterverlinkten Money-Pages | A | ≤ 8 | mittel | ⬜ **offen** |
 
 > **Stand 18.08.2026 (nachgemessen, nicht geschätzt):** Pakete 0, 1 und 3 sind live.
@@ -350,7 +350,7 @@ Ausdrücklich offen — hier wurde nichts geraten:
 3. **Paket 5** (Dachrinnenreinigung entflechten) als naechster funktionaler Deploy — die
    Luecke ist auf 7× zu 1× gewachsen, und es geht um eine Leistung, die wir wirklich
    erbringen. Rueckt nach dem Wegfall von Paket 4 auf Platz 1.
-4. Danach je 48 h **Paket 4a** (Flachdachreinigung im Wartungsumfang), **Paket 2**
-   (GSC-Meta-2), **Paket 6** (interne Verlinkung).
+4. ~~Paket 4a (Flachdachreinigung im Wartungsumfang)~~ ✅ 20.08.2026. Danach je 48 h
+   **Paket 2** (GSC-Meta-2) und **Paket 6** (interne Verlinkung).
 5. GSC ab ~08.09.2026 (4 Wochen nach GSC-Meta-1) erneut auswerten und die CTR-Entwicklung
    der 10 Seiten aus GSC-Meta-1 gegen die Baseline in Abschnitt 4 halten.
