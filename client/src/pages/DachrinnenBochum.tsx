@@ -13,8 +13,8 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 const services = [
   {
     icon: <Droplets className="w-8 h-8 text-primary" />,
-    title: "Dachrinne reinigen",
-    text: "Laub, Moos und Schmutz entfernen, Abläufe prüfen und durchspülen. Empfohlen mindestens einmal jährlich nach dem Laubfall.",
+    title: "Dachrinnenreinigung",
+    text: "Laub, Moos und Schmutz entfernen, Abläufe prüfen und durchspülen. Empfohlen mindestens einmal jährlich nach dem Laubfall. Wir reinigen einzeln oder wiederkehrend im Wartungsvertrag.",
     testId: "card-reinigen",
   },
   {
@@ -80,15 +80,29 @@ const faqItems = [
     answer: "Ja – Fallrohre, Bögen, Schellen, Abläufe und Anschlüsse an Grundleitung oder Zisterne gehören zu unserem Leistungsumfang. Bei einem Rinnenaustausch empfehlen wir, die Fallrohre gleichzeitig zu prüfen und bei Bedarf zu erneuern.",
   },
   {
+    question: "Was gehört zu einer Dachrinnenreinigung?",
+    answer: "Zur Dachrinnenreinigung gehört mehr als das Ausräumen der Rinne: Wir entfernen Laub, Moos und Schlamm, spülen die Rinne durch und prüfen dabei den Durchgang der Fallrohre bis zum Ablauf. Anschließend kontrollieren wir Gefälle, Nähte und Rinnenhalter – Verstopfungen und lose Halter fallen fast immer gemeinsam auf. In Bochum ist der Herbst nach dem Laubfall der übliche Termin.",
+  },
+  {
     question: "Helfen Laubschutzgitter wirklich?",
     answer: "Ja, bei starkem Baumbestand deutlich. Gute Systeme reduzieren die Reinigungshäufigkeit auf alle 2–3 Jahre. Wir empfehlen nur Systeme aus Edelstahl oder Aluminium mit geprüfter Wasserführung – billige Kunststoffeinleger verstopfen selbst.",
   },
 ];
 
+const faqSchema = JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": faqItems.map((item) => ({
+    "@type": "Question",
+    "name": item.question,
+    "acceptedAnswer": { "@type": "Answer", "text": item.answer },
+  })),
+});
+
 const schemaJson = JSON.stringify({
   "@context": "https://schema.org",
   "@type": "Service",
-  "name": "Dachrinne Bochum – Reinigung, Reparatur & Erneuerung",
+  "name": "Dachrinnenreinigung Bochum – Reinigung, Reparatur & Erneuerung der Dachrinne",
   "provider": {
     "@type": "RoofingContractor",
     "@id": "https://www.rex-bedachung.de/#organization",
@@ -101,7 +115,7 @@ const schemaJson = JSON.stringify({
     { "@type": "City", "name": "Hattingen" },
     { "@type": "City", "name": "Gelsenkirchen" }
   ],
-  "description": "Dachrinne in Bochum reinigen, reparieren oder erneuern – Rex Bedachungs GmbH, Meisterbetrieb seit 1984. Zink, Aluminium, Kupfer, alle Befestigungssysteme, Laubschutz auf Wunsch.",
+  "description": "Dachrinnenreinigung in Bochum sowie Reparatur und Erneuerung der Dachrinne – Rex Bedachungs GmbH, Meisterbetrieb seit 1984. Zink, Aluminium, Kupfer, alle Befestigungssysteme, Laubschutz auf Wunsch.",
   "serviceType": "Dachentwässerung",
 });
 
@@ -117,8 +131,8 @@ export default function DachrinnenBochum() {
           content="Dachrinne verstopft oder undicht? Wir reinigen, reparieren und erneuern in Bochum – Zink, Alu, Kupfer. Kostenlose Besichtigung vor Ort."
         />
         <link rel="canonical" href="https://www.rex-bedachung.de/dachrinne-bochum" />
-        <meta property="og:title" content="Dachrinne Bochum – Reinigung, Reparatur & Erneuerung | Rex Bedachungs GmbH" />
-        <meta property="og:description" content="Dachrinne in Bochum reinigen, reparieren oder erneuern lassen – alle Materialien, Laubschutz, Sturmschadenreparatur. Meisterbetrieb Rex Bedachungs GmbH." />
+        <meta property="og:title" content="Dachrinnenreinigung Bochum – Reinigung, Reparatur & Erneuerung | Rex Bedachungs GmbH" />
+        <meta property="og:description" content="Dachrinnenreinigung in Bochum, dazu Reparatur und Erneuerung – alle Materialien, Laubschutz, Sturmschadenreparatur. Meisterbetrieb Rex Bedachungs GmbH." />
         <meta property="og:image" content="https://www.rex-bedachung.de/images/dachrinne-fallrohr-bochum.webp" />
         <meta property="og:site_name" content="Rex Bedachungs GmbH" />
         <meta name="twitter:card" content="summary_large_image" />
@@ -133,41 +147,11 @@ export default function DachrinnenBochum() {
     {"@type":"ListItem","position":3,"name":"Dachrinne Bochum","item":"https://www.rex-bedachung.de/dachrinne-bochum"}
   ]
 }`}</script>
-        <script type="application/ld+json">{`{
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  "mainEntity": [
-    {
-      "@type": "Question",
-      "name": "Wie oft sollte ich meine Dachrinne reinigen lassen?",
-      "acceptedAnswer": { "@type": "Answer", "text": "Mindestens einmal jährlich nach dem Laubfall. Bei starkem Baumbestand auch zweimal. Verstopfte Rinnen sind von außen oft nicht erkennbar." }
-    },
-    {
-      "@type": "Question",
-      "name": "Wann lohnt sich Reparatur, wann kompletter Austausch?",
-      "acceptedAnswer": { "@type": "Answer", "text": "Reparatur bei lokalen Schäden wenn das restliche System intakt ist. Bei Alter über 25–30 Jahre oder großflächiger Korrosion rechnet sich ein Komplettaustausch wirtschaftlicher." }
-    },
-    {
-      "@type": "Question",
-      "name": "Welches Material empfehlen Sie für eine Dachrinne in Bochum?",
-      "acceptedAnswer": { "@type": "Answer", "text": "Für die meisten Wohngebäude Titanzink (40–60 Jahre Lebensdauer). Aluminium ist die günstigere Alternative. Kupfer für Denkmalobjekte." }
-    },
-    {
-      "@type": "Question",
-      "name": "Übernimmt die Versicherung Sturmschäden an der Dachrinne?",
-      "acceptedAnswer": { "@type": "Answer", "text": "Bei Sturmschäden ab Windstärke 8 übernimmt die Gebäudeversicherung in der Regel die Kosten abzüglich Selbstbeteiligung. Wir dokumentieren den Schaden professionell." }
-    },
-    {
-      "@type": "Question",
-      "name": "Helfen Laubschutzgitter wirklich?",
-      "acceptedAnswer": { "@type": "Answer", "text": "Ja, bei starkem Baumbestand deutlich. Gute Systeme aus Edelstahl oder Aluminium reduzieren die Reinigungshäufigkeit auf alle 2–3 Jahre." }
-    }
-  ]
-}`}</script>
+        <script type="application/ld+json">{faqSchema}</script>
         <script type="application/ld+json">{`{
   "@context": "https://schema.org",
   "@type": "Article",
-  "headline": "Dachrinne Bochum – Reinigung, Reparatur & Erneuerung",
+  "headline": "Dachrinnenreinigung Bochum – Reinigung, Reparatur & Erneuerung der Dachrinne",
   "author": { "@id": "https://www.rex-bedachung.de/#author" },
   "publisher": { "@id": "https://www.rex-bedachung.de/#organization" },
   "url": "https://www.rex-bedachung.de/dachrinne-bochum"
@@ -218,7 +202,7 @@ export default function DachrinnenBochum() {
       <section className="py-16 px-4 bg-background" data-testid="section-einleitung">
         <div className="max-w-4xl mx-auto text-center">
           <p className="text-muted-foreground leading-relaxed text-base md:text-lg">
-            Eine defekte oder verstopfte Dachrinne leitet Regenwasser unkontrolliert ab – das schädigt Fassade, Fundament und Kellermauerwerk, oft unbemerkt über Jahre. Rex Bedachungs GmbH reinigt, repariert und erneuert Dachrinnen und Fallrohre in Bochum: Zink, Aluminium, Kupfer und Kunststoff, alle Befestigungssysteme, Laubschutz auf Wunsch.
+            Eine defekte oder verstopfte Dachrinne leitet Regenwasser unkontrolliert ab – das schädigt Fassade, Fundament und Kellermauerwerk, oft unbemerkt über Jahre. Rex Bedachungs GmbH übernimmt die Dachrinnenreinigung in Bochum und repariert oder erneuert Dachrinnen und Fallrohre: Zink, Aluminium, Kupfer und Kunststoff, alle Befestigungssysteme, Laubschutz auf Wunsch.
           </p>
           <div className="mt-6 inline-block bg-amber-50 border border-amber-200 rounded-md px-4 py-3 text-sm text-amber-800">
             Regelmäßige Reinigung im Herbst ist der günstigste Schutz vor Feuchtigkeitsschäden an Fassade und Fundament.
@@ -357,7 +341,7 @@ export default function DachrinnenBochum() {
           <MapPin className="w-8 h-8 text-primary mx-auto mb-4" />
           <h2 className="text-2xl font-bold mb-4">Dachrinnen-Service im gesamten Ruhrgebiet</h2>
           <p className="text-muted-foreground leading-relaxed">
-            Rex Bedachungs GmbH reinigt, repariert und erneuert Dachrinnen in Bochum und Umgebung – Herne, Castrop-Rauxel, Witten, Hattingen, Gelsenkirchen. Kurzfristige Termine, transparente Preise.
+            Dachrinnenreinigung, Reparatur und Erneuerung bieten wir in Bochum und Umgebung an – Herne, Castrop-Rauxel, Witten, Hattingen, Gelsenkirchen. Kurzfristige Termine, transparente Preise.
           </p>
         </div>
       </section>
