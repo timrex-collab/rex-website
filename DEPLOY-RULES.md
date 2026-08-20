@@ -208,14 +208,16 @@ SSR-/Framework-Migration · Stadtteil-Seiten · separate Kosten-Seiten · Gewerb
 **Alle bis hier protokollierten Deploys sind live ✅** — D1–D36 · CC1–CC3 · CC-Fix ·
 D-IndexNow · D-Sitemap-Refresh (1+2) · Repo-Fix · B1/B2 · Meta-Fix · P2.1–P2.4 ·
 D-IndexNow-CI · Innung-Trust · BEG-1 bis BEG-4 · GSC-Meta-1 · GSC-Schema-1 ·
-Interne Verlinkung · GEO-Pflege · ExpertenBlock-Rollout.
+Interne Verlinkung · GEO-Pflege · ExpertenBlock-Rollout · Paket 4a.
 
-> **Stand 18.08.2026:** Die Tabelle hatte Lücken — von PR #18 bis PR #47 waren nur BEG-1,
+> **Stand 20.08.2026:** Die Tabelle hatte Lücken — von PR #18 bis PR #47 waren nur BEG-1,
 > BEG-2, BEG-4 und GSC-Meta-1 eingetragen; 18 weitere Deploy-Zeilen (20 gemergte PRs)
-> fehlten. Sie ist hier vollständig aus der Merge-Historie von `main` rekonstruiert.
-> Letzter funktionaler Merge: **PR #40 am 18.08.2026 10:11 UTC** → nächstes 48-h-Fenster öffnet
-> **20.08.2026 ~10:11 UTC**. Reine Doku-PRs (#14–#17, #22–#24, #45, #46) sind bewusst
-> nicht als Deploy-Zeilen geführt — sie berühren den Build nicht und sind nicht gate-relevant.
+> fehlten. Sie ist seit PR #48 vollständig aus der Merge-Historie von `main` rekonstruiert
+> und wird ab jetzt bei jedem Deploy mitgeführt.
+> Letzter funktionaler Merge: **PR #49 am 20.08.2026 08:36 UTC** → nächstes 48-h-Fenster
+> öffnet **22.08.2026 ~08:36 UTC**. Reine Doku-PRs (#14–#17, #22–#24, #45, #46, #48, #50)
+> sind bewusst nicht als Deploy-Zeilen geführt — sie berühren den Build nicht und sind nicht
+> gate-relevant.
 
 | Deploy | Inhalt | Status |
 |---|---|---|
@@ -251,6 +253,21 @@ Interne Verlinkung · GEO-Pflege · ExpertenBlock-Rollout.
 | **GEO-Pflege** | `llms.txt` + `llms-full.txt` nachgezogen (Innungsmitgliedschaft, Handwerksrolle HWK Dortmund, ZVDH-Regelwerk, englischer Entity-Klärungsblock, Abschnitt „Referenzprojekte", Stand → 08/2026) · fehlendes `AuthorSchema` ergänzt und ein hängender `#author`-Verweis auf `WannLohntSichDachsanierung` behoben | ✅ live (PR #43, gemergt 12.08.2026 09:12 CEST) |
 | **GSC-Schema-1** | `Solarpflicht.tsx`: `FAQPage`-Schema aus den vorhandenen Abschnitten ergänzt und das JSON-LD der Seite zu einem `@graph` konsolidiert. Betrifft die impressionsstärkste Seite der Property (11.583 Impr. = 31 % aller Impressionen, vorher ohne FAQ-Schema) | ✅ live (PR #47, gemergt 16.08.2026 09:58 CEST) |
 | **ExpertenBlock-Rollout** | `ExpertenBlock` von 5 auf 13 Serviceseiten ausgerollt, je mit seitenspezifisch passenden `normen` — damit erscheinen Autorenbezug (E-E-A-T) und Innungs-Chip auf allen relevanten Money-Pages statt nur auf fünf | ✅ live (PR #40, gemergt 18.08.2026 12:11 CEST; Netlify `6a842fba…`, `commit_ref aecb53c`, `state ready`, `plugin_state success`) |
+| **Paket 4a** | Flachdachreinigung im Wartungsumfang benannt: Gullys/Einläufe sowie Rand- und Eckbereiche auf `DachwartungBochum` und `FlachdachBochum`, dazu die ehrliche Abgrenzungs-FAQ „Bieten Sie Dachreinigung oder Algenentfernung an?" → nein. Ersetzt das gestrichene Paket 4 (`/dachreinigung-bochum`). Nebenbei: hartcodiertes `FAQPage`-Schema auf `DachwartungBochum` auf `faqItems.map()` umgestellt (es war bereits gedriftet) und die fehlende Linkkarte Flachdach → Dachwartung ergänzt | ✅ live (PR #49, gemergt 20.08.2026 10:35 CEST; Netlify `6a86bc65…`, `commit_ref efe40ce`, `state ready`, `plugin_state success`) — **Gate-Unterschreitung, siehe Hinweis unten** |
+
+> **⏱ Gate-Unterschreitung (20.08.2026) — Deploy Paket 4a, PR #49:** Nachgemessen betrug
+> der Abstand zum letzten funktionalen Merge **46 h 24 min** statt der geforderten 48 h —
+> PR #40 lief am 18.08. um 10:11 UTC, PR #49 am 20.08. um 08:36 UTC. Das Fenster hätte erst
+> um 10:11 UTC geöffnet, die Unterschreitung beträgt **1 h 35 min**.
+> **Keine Gate-Ausnahme beansprucht** — die Bedingungen aus Abschnitt 4 lagen nicht vor,
+> es war schlicht zu früh. **Auswirkung:** keine. Der Deploy ist sauber durchgelaufen
+> (`state ready`, `plugin_state success`, Secret-Scan 662 Dateien / 0 Treffer), und da
+> zwischen #40 und #49 nur die reinen Doku-PRs #48 und #50 lagen, ist die Wirkungsmessung
+> von #40 nicht gestört: die zwei Tage GSC-Beobachtung für den ExpertenBlock-Rollout sind
+> vollständig. **Auflage:** Der nächste funktionale Merge frühestens **22.08.2026
+> ~08:36 UTC**, gerechnet ab #49 — nicht ab dem theoretischen Sollzeitpunkt. Hier
+> protokolliert, weil das Deploy-Log nur dann etwas wert ist, wenn auch die Abweichungen
+> darin stehen.
 
 > **ℹ Hinweis zum 48h-Gate (11.08.2026) — PR #44 kombiniert BEG-4 und GSC-Meta-1:**
 > Die Faktenkorrektur BEG-4 hätte für sich genommen alle vier Bedingungen der
