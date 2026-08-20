@@ -36,8 +36,8 @@ const services = [
   },
   {
     icon: <Droplets className="w-8 h-8 text-primary" />,
-    title: "Dachrinnen & Abläufe reinigen",
-    text: "Verstopfte Dachrinnen und Abläufe sind die häufigste Ursache für Wasserschäden an Fassade und Fundament. Wir reinigen gründlich, prüfen auf Undichtigkeiten und montieren auf Wunsch Laubschutzgitter.",
+    title: "Dachrinnen, Gullys & Abläufe reinigen",
+    text: "Verstopfte Dachrinnen und Abläufe sind die häufigste Ursache für Wasserschäden an Fassade und Fundament. Wir reinigen gründlich, prüfen auf Undichtigkeiten und montieren auf Wunsch Laubschutzgitter. Am Flachdach legen wir zusätzlich Gullys und Einläufe frei und befreien Rand- und Eckbereiche vom Schmutzeintrag – dort sammelt sich der Laub- und Sandeintrag, weil der Wind ihn an die Attika treibt.",
     testId: "card-dachrinnen",
   },
   {
@@ -127,7 +127,27 @@ const faqItems = [
     answer:
       "Ja – wir betreuen mehrere Hausverwaltungen und WEGs im Ruhrgebiet mit individuellen Rahmenverträgen. Feste Ansprechpartner, Priorität bei Reparaturen, vergünstigte Konditionen und zentrale Dokumentation für alle Objekte.",
   },
+  {
+    question: "Reinigen Sie bei der Wartung auch das Flachdach?",
+    answer:
+      "Ja – im Rahmen der Wartung reinigen wir die Entwässerung: Gullys und Einläufe werden freigelegt und auf Durchgang geprüft, Rand- und Eckbereiche vom Laub- und Schmutzeintrag befreit. Genau dort sammelt sich der Schmutz, weil der Wind ihn an die Attika treibt. Ein zugesetzter Gully führt zu stehendem Wasser – das erhöht die Last auf der Konstruktion und belastet die Abdichtung dauerhaft.",
+  },
+  {
+    question: "Bieten Sie Dachreinigung oder Algenentfernung an?",
+    answer:
+      "Nein. Das Reinigen oder Beschichten von Dachflächen – etwa das Abstrahlen von Ziegeln oder das Entfernen von Moos und Algen – gehört nicht zu unserem Leistungsumfang. Wir reinigen ausschließlich die Entwässerung: Dachrinnen, Fallrohre und Abläufe am Steildach sowie Gullys, Rand- und Eckbereiche am Flachdach, jeweils im Rahmen einer Wartung.",
+  },
 ];
+
+const faqSchema = JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": faqItems.map((item) => ({
+    "@type": "Question",
+    "name": item.question,
+    "acceptedAnswer": { "@type": "Answer", "text": item.answer },
+  })),
+});
 
 const schemaJson = JSON.stringify({
   "@context": "https://schema.org",
@@ -203,52 +223,7 @@ export default function DachwartungBochum() {
   ],
   "serviceType": "Dachwartung"
 }`}</script>
-        <script type="application/ld+json">{`{
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  "mainEntity": [
-    {
-      "@type": "Question",
-      "name": "Wie oft sollte ein Dach gewartet werden?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Experten empfehlen mindestens einmal jährlich – idealerweise im Herbst vor der Regenzeit. Bei älteren Dächern oder nach Sturm ist eine zusätzliche Kontrolle sinnvoll."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Was kostet ein Wartungsvertrag?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Die Kosten hängen von Dachgröße und Leistungsumfang ab. Wir erstellen ein individuelles Angebot nach Aufmaß."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Beheben Sie Mängel direkt bei der Wartung?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Ja – kleine Mängel wie lose Ziegel oder verstopfte Abläufe beheben wir direkt vor Ort, ohne extra Termin."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Ist Dachwartung für Vermieter Pflicht?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Eigentümer sind zur Verkehrssicherungspflicht verpflichtet – das schließt die Instandhaltung des Daches ein. Bei Schäden durch unterlassene Wartung kann die Versicherung Leistungen kürzen."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Bieten Sie Wartungsverträge für Hausverwaltungen an?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Ja – wir betreuen mehrere Hausverwaltungen im Ruhrgebiet mit individuellen Rahmenverträgen, festen Ansprechpartnern und vergünstigten Konditionen."
-      }
-    }
-  ]
-}`}</script>
+        <script type="application/ld+json">{faqSchema}</script>
         <script type="application/ld+json">{`{
   "@context": "https://schema.org",
   "@type": "Article",
