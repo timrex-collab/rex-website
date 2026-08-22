@@ -157,10 +157,10 @@ export default function BauklempnereiBochum() {
   return (
     <>
       <Helmet>
-        <title>Bauklempnerei Bochum – Blecharbeiten | Rex Bedachung</title>
+        <title>Bauklempnerei Bochum – Blecharbeiten am Dach</title>
         <meta
           name="description"
-          content="Bauklempnerei in Bochum: Dachrinnen, Blecharbeiten & Entwässerung vom Meisterbetrieb. Sauber ausgeführt, langlebig. Jetzt anfragen."
+          content="Dachränder, Attiken, Kehlen, Wandanschlüsse und Entwässerung in Zink, Aluminium und Kupfer. Sauber gekantet, dauerhaft dicht. Meisterbetrieb seit 1984."
         />
         <meta property="og:title" content="Bauklempnerei Bochum – Dachrinnen, Blecharbeiten & Fassadenverkleidung | Rex Bedachungs GmbH" />
         <meta

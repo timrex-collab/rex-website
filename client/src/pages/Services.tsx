@@ -121,8 +121,8 @@ export default function Services() {
   return (
     <>
       <Helmet>
-        <title>Leistungen – Rex Bedachungs GmbH | Dachdecker Bochum</title>
-        <meta name="description" content="Alle Dachdeckerleistungen von Rex Bedachungs GmbH: Steildach, Flachdach, Gründach, Dachfenster, Bauklempnerei und Dachreparatur im Ruhrgebiet." />
+        <title>Leistungen – Dachdeckerei Bochum | Rex Bedachung</title>
+        <meta name="description" content="Steildach, Flachdach, Gründach, Dachfenster, Bauklempnerei, Wartung und Reparatur – alle Leistungen im Überblick. Meisterbetrieb in Bochum seit 1984." />
         <link rel="canonical" href="https://www.rex-bedachung.de/leistungen" />
         <meta property="og:title" content="Dachdecker Leistungen Bochum – Rex Bedachungs GmbH" />
         <meta property="og:description" content="Umfassende Dachdeckerleistungen von Ihrem Meisterbetrieb im Ruhrgebiet." />

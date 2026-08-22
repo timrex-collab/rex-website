@@ -94,7 +94,7 @@ Erwartung: route-spezifischer Title **und** `application/ld+json` erscheinen.
 | `/` | `Dachdecker Bochum – Rex Bedachungs GmbH` ⚠️ = Fallback → an JSON-LD/H1 erkennen | unverändert |
 | `/dachsanierung-bochum` | `Dachsanierung Bochum – Komplettsanierung vom Meister` | **neu 11.08.2026** |
 | `/flachdach-bochum` | `Flachdach Bochum – Abdichtung & Sanierung` | **neu 11.08.2026** |
-| `/steildach-bochum` | `Steildach Bochum – Sanierung & Dämmung \| Rex Bedachung` | unverändert |
+| `/steildach-bochum` | `Steildach Bochum – Neueindeckung & Dämmung` | **neu 24.08.2026 (GSC-Meta-2)** |
 | `/dachfenster-bochum` | `Dachfenster Bochum – Einbau & Austausch` | **neu 11.08.2026** |
 | `/dachreparatur-bochum` | `Dachreparatur Bochum – Dach undicht? Wir helfen` | **neu 11.08.2026** |
 
@@ -279,7 +279,7 @@ Pro Zeile drei Dinge im gerenderten HTML suchen. **Alle drei müssen da sein.**
 | 1 | `/` | `Dachdecker Bochum – Rex Bedachungs GmbH` ⚠️ | `Dachdecker Bochum – Ihr Partner rund um's Dach` | `"@type": "WebPage"` + `"@type": "BreadcrumbList"` |
 | 2 | `/dachsanierung-bochum` | `Dachsanierung Bochum – Komplettsanierung vom Meister` | `Dachsanierung Bochum – Komplettsanierung vom Meisterbetrieb` | `"@type": "FAQPage"` + `"@type": "HowTo"` |
 | 3 | `/flachdach-bochum` | `Flachdach Bochum – Abdichtung & Sanierung` | `Flachdach & Gründach Bochum` | `"@type": "FAQPage"` + `"@type": "OfferCatalog"` |
-| 4 | `/steildach-bochum` | `Steildach Bochum – Sanierung & Dämmung` | `Steildach Bochum – Neueindeckung & Sanierung` | `"@type": "FAQPage"` + `"@type": "HowTo"` |
+| 4 | `/steildach-bochum` | `Steildach Bochum – Neueindeckung & Dämmung` | `Steildach Bochum – Neueindeckung & Sanierung` | `"@type": "FAQPage"` + `"@type": "HowTo"` |
 | 5 | `/dachfenster-bochum` | `Dachfenster Bochum – Einbau & Austausch` | `Dachfenster Bochum – Einbau & Austausch vom Meisterbetrieb` | `"@type": "FAQPage"` + `"@type": "Article"` |
 | 6 | `/dachreparatur-bochum` | `Dachreparatur Bochum – Dach undicht? Wir helfen` | `Dachreparatur in Bochum – schnelle Hilfe bei Dachschäden` | `"@type": "FAQPage"` + `"@type": "RoofingContractor"` |
 

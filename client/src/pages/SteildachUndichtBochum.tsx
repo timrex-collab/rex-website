@@ -138,10 +138,10 @@ export default function SteildachUndichtBochum() {
   return (
     <>
       <Helmet>
-        <title>Steildach undicht Bochum – Ursachen &amp; Lösung | Rex Bedachungs GmbH</title>
+        <title>Steildach undicht? Ursachen &amp; Soforthilfe | Bochum</title>
         <meta
           name="description"
-          content="Steildach undicht in Bochum? Ursachen erkennen, Schäden richtig einschätzen, dauerhaft abdichten. Rex Bedachungs GmbH – Meisterbetrieb seit 1984."
+          content="Wasserfleck an der Decke? Verrutschte Ziegel, undichte Anschlüsse, beschädigte Unterspannbahn – was dahintersteckt und was Sie sofort tun können."
         />
         <link rel="canonical" href="https://www.rex-bedachung.de/steildach-undicht-bochum" />
         <meta property="og:type" content="article" />
