@@ -84,7 +84,7 @@ const kostenKarten = [
   {
     icon: <Home className="w-8 h-8 text-primary" />,
     title: "Einfamilienhaus",
-    text: "Inspektion, Dachrinnenreinigung und Dichtigkeitskontrolle – exakter Preis nach Aufmaß und Dachgröße. Kostenloses Angebot auf Anfrage.",
+    text: "Inspektion, Reinigung der Dachrinnen und Dichtigkeitskontrolle – exakter Preis nach Aufmaß und Dachgröße. Kostenloses Angebot auf Anfrage.",
     testId: "card-kosten-efh",
   },
   {
@@ -165,7 +165,7 @@ const schemaJson = JSON.stringify({
     { "@type": "City", "name": "Hattingen" },
     { "@type": "City", "name": "Gelsenkirchen" }
   ],
-  "description": "Dachwartung in Bochum – jährliche Dachinspektion, Dachrinnenreinigung, Dichtigkeitskontrolle und Wartungsverträge für Privat und Hausverwaltungen.",
+  "description": "Dachwartung in Bochum – jährliche Dachinspektion, Reinigung von Dachrinnen und Abläufen, Dichtigkeitskontrolle und Wartungsverträge für Privat und Hausverwaltungen.",
   "offers": {
     "@type": "Offer",
     "availability": "https://schema.org/InStock",
@@ -183,16 +183,16 @@ export default function DachwartungBochum() {
           name="description"
           content="Jährliche Dachinspektion vom Meisterbetrieb: Schäden früh erkennen, Folgekosten vermeiden. Wartungsvertrag für Bochum und Umgebung."
         />
-        <meta property="og:title" content="Dachwartung Bochum – Dachinspektion, Dachrinnenreinigung & Wartungsvertrag | Rex Bedachungs GmbH" />
+        <meta property="og:title" content="Dachwartung Bochum – Dachinspektion, Dichtigkeitskontrolle & Wartungsvertrag | Rex Bedachungs GmbH" />
         <meta
           property="og:description"
-          content="Dachwartung Bochum ✓ Jährliche Dachinspektion ✓ Dachrinnenreinigung ✓ Wartungsverträge ✓ Fotodokumentation – Rex Bedachungs GmbH, Ihr Fachbetrieb im Ruhrgebiet."
+          content="Dachwartung Bochum ✓ Jährliche Dachinspektion ✓ Dichtigkeitskontrolle ✓ Wartungsverträge ✓ Fotodokumentation – Rex Bedachungs GmbH, Ihr Fachbetrieb im Ruhrgebiet."
         />
         <meta property="og:image" content="https://www.rex-bedachung.de/images/dachdecker-inspektion-dachwartung-bochum.webp" />
         <meta property="og:site_name" content="Rex Bedachungs GmbH" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="Dachwartung Bochum – Inspektion & Wartungsvertrag | Rex Bedachung" />
-        <meta name="twitter:description" content="Dachwartung Bochum ✓ Jährliche Dachinspektion ✓ Dachrinnenreinigung ✓ Wartungsverträge – Rex Bedachungs GmbH." />
+        <meta name="twitter:description" content="Dachwartung Bochum ✓ Jährliche Dachinspektion ✓ Dichtigkeitskontrolle ✓ Wartungsverträge – Rex Bedachungs GmbH." />
         <meta name="twitter:image" content="https://www.rex-bedachung.de/images/dachdecker-inspektion-dachwartung-bochum.webp" />
         <link rel="canonical" href="https://www.rex-bedachung.de/dachwartung-bochum" />
         <script type="application/ld+json">{schemaJson}</script>
@@ -257,7 +257,7 @@ export default function DachwartungBochum() {
             Dachwartung Bochum – Schäden erkennen bevor sie teuer werden
           </h1>
           <p className="text-lg md:text-xl text-slate-200 mb-8 max-w-xl" data-testid="text-hero-subtitle">
-            Regelmäßige Inspektion, Dachrinnenreinigung und Dichtigkeitskontrolle – für die Sicherheit und Werterhaltung Ihres Gebäudes
+            Regelmäßige Inspektion, Reinigung der Entwässerung und Dichtigkeitskontrolle – für die Sicherheit und Werterhaltung Ihres Gebäudes
           </p>
           <div className="flex flex-wrap gap-3 mb-8">
             <Button
@@ -559,6 +559,27 @@ export default function DachwartungBochum() {
           <p className="text-sm text-muted-foreground text-center mt-6" data-testid="text-regionen-fact">
             Die Rex Bedachungs GmbH führt Dachwartungen in Bochum seit 1984 durch – mit vollständiger Dokumentation, transparentem Befundbericht und auf Wunsch mit Wartungsvertrag für langfristige Sicherheit.
           </p>
+        </div>
+      </section>
+
+      {/* Verwandte Leistungen */}
+      <section className="py-12 bg-gray-50">
+        <div className="container mx-auto px-4">
+          <h2 className="text-xl font-bold text-gray-900 mb-6">Verwandte Leistungen</h2>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+            <a href="/dachrinne-bochum" className="block p-5 bg-white rounded-xl border border-gray-200 hover:border-primary hover:shadow-md transition-all">
+              <div className="font-semibold text-gray-900 mb-1">Dachrinnenreinigung Bochum</div>
+              <div className="text-sm text-gray-500">Dachrinnen und Fallrohre reinigen, reparieren oder erneuern – auch ohne Wartungsvertrag.</div>
+            </a>
+            <a href="/dachreparatur-bochum" className="block p-5 bg-white rounded-xl border border-gray-200 hover:border-primary hover:shadow-md transition-all">
+              <div className="font-semibold text-gray-900 mb-1">Dachreparatur Bochum</div>
+              <div className="text-sm text-gray-500">Schnelle Hilfe, wenn die Wartung einen Schaden aufdeckt.</div>
+            </a>
+            <a href="/flachdach-bochum" className="block p-5 bg-white rounded-xl border border-gray-200 hover:border-primary hover:shadow-md transition-all">
+              <div className="font-semibold text-gray-900 mb-1">Flachdach Bochum</div>
+              <div className="text-sm text-gray-500">Abdichtung, Sanierung und Entwässerung – Gullys, Rand- und Eckbereiche.</div>
+            </a>
+          </div>
         </div>
       </section>
 
