@@ -133,6 +133,8 @@ Prerender liegt **nicht im Repo/`netlify.toml`**, sondern im Netlify-Dashboard �
 | 11.08.2026 | Netlify-API (Stufe 1, s. u.) | — | — | — | — | — | — | — | **Infrastruktur OK, HTML-Ebene offen** |
 | 18.08.2026 | Netlify-API (Stufe 1, s. u.) | — | — | — | — | — | — | — | **Infrastruktur OK, HTML-Ebene offen** |
 | 20.08.2026 | Netlify-API (Stufe 1, s. u.) | — | — | — | — | — | — | — | **Infrastruktur OK, HTML-Ebene offen** |
+| 22.08.2026 | Netlify-API (Stufe 1) | — | — | — | — | — | — | — | **Infrastruktur OK, HTML-Ebene offen** — Deploy `6a896439…`, `commit_ref 04535d2`, `state ready`, `plugin_state success`, Secret-Scan 664/0, IndexNow #23 + #24 `success` |
+| 24.08.2026 | GitHub Actions (Teil-Check) | — | — | — | — | — | — | — | **IndexNow #25 auf `431ecbd` `success`** · Netlify-Stufe-1 **nicht geprüft** (Connector in dieser Session nicht verfügbar) |
 | _TT.MM.JJJJ_ | GSC / DevTools | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | offen |
 
 ### Der Check hat zwei Stufen
@@ -253,8 +255,8 @@ Deploys, deren Wirkung ohne diesen Test unbelegt bleibt, ist auf **vier** gewach
 
 ## 7. Laufzettel Stufe 2 — ausfüllfertig
 
-Alles unten ist am Repo-Stand `89f8088` (20.08.2026) maschinell aus dem Quelltext
-gezogen. **Ein Durchgang, sechs URLs, ca. 15 Minuten.**
+Alles unten ist am Repo-Stand `04535d2` (22.08.2026) maschinell aus dem Quelltext
+gezogen — nach Paket 5 erneut gegengeprüft, **alle sechs Soll-Titles unverändert gültig**. **Ein Durchgang, sechs URLs, ca. 15 Minuten.**
 
 ### So läuft es ab (Methode 1 — die autoritativste)
 
