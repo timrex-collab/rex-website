@@ -161,10 +161,10 @@ export default function AufsparrendaemmungBochum() {
   return (
     <>
       <Helmet>
-        <title>Aufsparrendämmung Bochum – Kosten, Ablauf &amp; Förderung | Rex Bedachung</title>
+        <title>Aufsparrendämmung Bochum – Kosten, Ablauf &amp; Förderung</title>
         <meta
           name="description"
-          content="Aufsparrendämmung in Bochum: Die effektivste Dämmvariante für Steildächer. Gesetzeskonform, BEG-förderrelevant. Rex Bedachungs GmbH – Meisterbetrieb seit 1984."
+          content="Die wirksamste Dämmung fürs Steildach: durchgehende Dämmebene ohne Wärmebrücken, BEG-förderrelevant. Aufbau, Ablauf und Förderung erklärt."
         />
         <link rel="canonical" href="https://www.rex-bedachung.de/aufsparrendaemmung-bochum" />
         <meta property="og:type" content="article" />

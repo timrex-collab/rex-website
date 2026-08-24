@@ -120,8 +120,8 @@ export default function VeluxPreisrechnerBochum() {
   return (
     <>
       <Helmet>
-        <title>VELUX Dachfenster Preisrechner Bochum – Kosten & Förderung | Rex Bedachungs GmbH</title>
-        <meta name="description" content="VELUX Dachfenster-Kosten online berechnen: Fenstertyp, Größe, Verglasung und Einbau konfigurieren. BAFA-Förderung und Steuerbonus prüfen. Autorisierter VELUX-Partner in Bochum seit 1984." />
+        <title>VELUX Preisrechner Bochum – Kosten selbst berechnen</title>
+        <meta name="description" content="Fenstertyp, Größe und Verglasung wählen und sofort eine Kostenschätzung inklusive Einbau erhalten – mit Förderprüfung. Autorisierter VELUX-Partner." />
         <link rel="canonical" href="https://www.rex-bedachung.de/velux-preisrechner-bochum" />
         <meta property="og:title" content="VELUX Dachfenster Preisrechner – Kosten & Förderung berechnen" />
         <meta property="og:description" content="Konfigurieren Sie Ihr VELUX Dachfenster und berechnen Sie Kosten inkl. Einbau und Fördermöglichkeiten. Rex Bedachungs GmbH, Bochum." />

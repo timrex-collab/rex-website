@@ -92,10 +92,10 @@ export default function SturmschadenDach() {
   return (
     <>
       <Helmet>
-        <title>Sturmschaden Dach Bochum | Notsicherung & Reparatur – Rex Bedachung</title>
+        <title>Sturmschaden Dach Bochum – Notsicherung &amp; Reparatur</title>
         <meta
           name="description"
-          content="Sturmschaden am Dach in Bochum? Rex Bedachungs GmbH sichert und repariert kurzfristig – Schadensdokumentation für die Versicherung inklusive. Meisterbetrieb seit 1984."
+          content="Sturmschaden am Dach? Wir sichern kurzfristig, reparieren fachgerecht und dokumentieren den Schaden für Ihre Gebäudeversicherung. Bochum und Umgebung."
         />
         <link rel="canonical" href="https://www.rex-bedachung.de/sturmschaden-dach-bochum" />
         <meta property="og:url" content="https://www.rex-bedachung.de/sturmschaden-dach-bochum" />

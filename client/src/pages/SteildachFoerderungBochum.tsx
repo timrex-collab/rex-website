@@ -147,10 +147,10 @@ export default function SteildachFoerderungBochum() {
   return (
     <>
       <Helmet>
-        <title>Steildach Förderung Bochum – BAFA &amp; KfW 2026 | Rex Bedachung</title>
+        <title>Steildach Förderung 2026 – BAFA &amp; KfW in Bochum</title>
         <meta
           name="description"
-          content="Steildach sanieren und Förderung nutzen: 15 % BAFA-Grundförderung, KfW-Ergänzungskredit, BEG-konforme Dämmung. Rex Bedachungs GmbH berät kostenlos in Bochum."
+          content="15 % BAFA-Grundförderung für die Dachdämmung, dazu der KfW-Ergänzungskredit 358/359. Was gefördert wird und was der Antrag braucht – kostenlose Beratung."
         />
         <link rel="canonical" href="https://www.rex-bedachung.de/steildach-foerderung-bochum" />
         <meta property="og:type" content="article" />

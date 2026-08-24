@@ -195,10 +195,10 @@ export default function WannLohntSichDachsanierung() {
   return (
     <>
       <Helmet>
-        <title>Wann lohnt sich eine Dachsanierung? | Rex Bochum</title>
+        <title>Dachsanierung: Wann sie sich lohnt – 5 Kriterien</title>
         <meta
           name="description"
-          content="Sanieren oder reparieren? Entscheidungshilfe zu Dachalter, Schäden, Dämmung, Förderung 2026 und Pflichten vom Meisterbetrieb aus Bochum."
+          content="Sanieren oder reparieren? Dachalter, wiederkehrende Schäden, Dämmstandard, Substanz und Feuchtigkeit am Dachstuhl – die Entscheidungshilfe vom Meister."
         />
         <link rel="canonical" href="https://www.rex-bedachung.de/wann-lohnt-sich-dachsanierung" />
         <meta property="og:title" content="Wann lohnt sich eine Dachsanierung? | Rex Bochum" />
