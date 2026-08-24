@@ -18,7 +18,7 @@ gesperrte Configs ≤5) · `attached_assets/` nie committen · Merge nur durch T
 > P1.1 ist zur Hälfte erledigt — die Routine steht und Stufe 1 lief zweimal (11.08./18.08.),
 > Stufe 2 im Browser steht aus.
 >
-> **Noch offen aus diesem Plan:** P1.1 Stufe 2 🌐 · P1.2 NAP-Altlasten 🌐 ·
+> **Noch offen aus diesem Plan:** P1.2 NAP-Altlasten 🌐 ·
 > P1.3 Förder-Quartalsreview 🔁 · P3.1 Dachreport Bochum.
 >
 > **Der aktive Deploy-Backlog steht seit dem 11.08.2026 in [`GSC-AUDIT-2026-08.md`](./GSC-AUDIT-2026-08.md) §6** —
@@ -73,9 +73,10 @@ Damit wir nichts doppelt machen. Diese Audit-Punkte sind abgehakt oder per Regel
   → **Checkliste geliefert: [`PRERENDER-CHECK.md`](./PRERENDER-CHECK.md)** — 6 Kern-URLs, objektive
   Pass/Fail-Kriterien (Fallback-Shell hat *kein* JSON-LD/Meta/H1), 4 Browser-Methoden, Soll-Titles,
   Eskalation. Kadenz: monatlich + einmal nach jedem funktionalen Deploy.
-  *Stand 18.08.2026:* Stufe 1 (Infrastruktur, via Netlify-Connector) ist am 11.08. und 18.08.
-  gelaufen und bestanden, Protokoll in `PRERENDER-CHECK.md` §6. **Stufe 2 (gerendertes HTML im
-  Browser/GSC) steht weiterhin aus** — das ist der eigentliche Pass/Fail-Test. 🌐 Tim.
+  *Stand 24.08.2026: vollständig erledigt.* Stufe 1 lief am 11.08., 18.08. und 22.08.,
+  **Stufe 2 am 24.08.2026 — bestanden**: alle sechs Kern-URLs liefern gerendertes HTML an
+  Googlebot, alle Soll-Titles exakt. Protokoll in `PRERENDER-CHECK.md` §8. Die Routine läuft
+  ab jetzt per `npm run prerender:check` nach jedem funktionalen Deploy.
 
 - [ ] **P1.2 — Externe NAP-Altlasten bereinigen** · 🌐 · Aufwand mittel · Wirkung mittel
   Veraltete Adressen in Aggregatoren (z. B. *Brenscheder Str. 19*, *Friederikastraße 12*) verwirren

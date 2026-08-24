@@ -329,13 +329,13 @@ Ausdrücklich offen — hier wurde nichts geraten:
   sind exportiert, nicht Gründe oder Beispiel-URLs.
 - **Core Web Vitals.** GSC meldet „Nicht genügend Nutzungsdaten in den letzten 90 Tagen"
   für Mobil **und** Computer. Kein Handlungsbedarf ableitbar.
-- **Prerender-Status live.** Nach `DEPLOY-RULES.md` §3 aus der Claude-Umgebung nicht
-  prüfbar (die Domain ist netzgesperrt, `curl` scheitert am Proxy mit
-  `CONNECT tunnel failed, 403`). **Teilerledigt:** Stufe 1 (Infrastruktur, via
-  Netlify-Connector) ist am 11.08. und am 18.08.2026 gelaufen und bestanden —
-  `PRERENDER-CHECK.md` §6. **Stufe 2 (gerendertes HTML, Browser/GSC bei Tim) steht
-  weiterhin aus** und ist der Teil, der zählt: an ihr hängt inzwischen der sichtbare
-  Ertrag von GSC-Meta-1, GSC-Schema-1 und dem ExpertenBlock-Rollout.
+- ~~**Prerender-Status live.**~~ **✅ ERLEDIGT am 24.08.2026 — Stufe 2 bestanden.**
+  Tim hat alle sechs Kern-URLs gegen die rohe Server-Antwort mit Googlebot-User-Agent
+  geprüft: alle vier Kriterien erfüllt, alle Soll-Titles exakt. Protokoll in
+  `PRERENDER-CHECK.md` §8. Damit ist belegt, dass der Ertrag der fünf daran hängenden
+  Deploys bei Crawlern ankommen kann — am deutlichsten daran, dass `/steildach-bochum`
+  bereits den erst Stunden zuvor deployten GSC-Meta-2-Title ausliefert.
+  Verbleibender Restzweifel: ob Google auch so *indexiert*, zeigt nur ein GSC-Live-Test.
 - **Interne-Link-Zähldifferenz.** GSC nennt 555 interne Links auf 26 Seiten; im Code hat
   jede der 30 indexierbaren Routen ≥ 2 Links. Zählweise nicht rekonstruierbar.
 
@@ -346,8 +346,7 @@ Ausdrücklich offen — hier wurde nichts geraten:
 *(aktualisiert 18.08.2026 — erledigte Schritte gestrichen)*
 
 1. ~~PR #44 mergen (BEG-4 + GSC-Meta-1)~~ ✅ 11.08.2026 · ~~Paket 3 (FAQPage `/solarpflicht`)~~ ✅ 16.08.2026.
-2. **Prerender-Check Stufe 2** nach `PRERENDER-CHECK.md` §3 — kein Deploy nötig, schützt das
-   Fundament, und ohne ihn ist die Wirkung der letzten drei Deploys unbelegt. 🌐 Tim.
+2. ~~Prerender-Check Stufe 2~~ ✅ 24.08.2026 bestanden.
 3. ~~Paket 5 (Dachrinnenreinigung entflechten)~~ ✅ 22.08.2026 · ~~Paket 4a
    (Flachdachreinigung im Wartungsumfang)~~ ✅ 20.08.2026.
 4. ~~Paket 2 (GSC-Meta-2)~~ ✅ 24.08.2026. Offen bleiben **GSC-Meta-3** (PR #56, Merge ab
