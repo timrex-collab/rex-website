@@ -208,16 +208,16 @@ SSR-/Framework-Migration · Stadtteil-Seiten · separate Kosten-Seiten · Gewerb
 **Alle bis hier protokollierten Deploys sind live ✅** — D1–D36 · CC1–CC3 · CC-Fix ·
 D-IndexNow · D-Sitemap-Refresh (1+2) · Repo-Fix · B1/B2 · Meta-Fix · P2.1–P2.4 ·
 D-IndexNow-CI · Innung-Trust · BEG-1 bis BEG-4 · GSC-Meta-1 · GSC-Schema-1 ·
-Interne Verlinkung · GEO-Pflege · ExpertenBlock-Rollout · Paket 4a.
+Interne Verlinkung · GEO-Pflege · ExpertenBlock-Rollout · Paket 4a · Paket 5 · GSC-Meta-2.
 
 > **Stand 20.08.2026:** Die Tabelle hatte Lücken — von PR #18 bis PR #47 waren nur BEG-1,
 > BEG-2, BEG-4 und GSC-Meta-1 eingetragen; 18 weitere Deploy-Zeilen (20 gemergte PRs)
 > fehlten. Sie ist seit PR #48 vollständig aus der Merge-Historie von `main` rekonstruiert
 > und wird ab jetzt bei jedem Deploy mitgeführt.
-> Letzter funktionaler Merge: **PR #49 am 20.08.2026 08:36 UTC** → nächstes 48-h-Fenster
-> öffnet **22.08.2026 ~08:36 UTC**. Reine Doku-PRs (#14–#17, #22–#24, #45, #46, #48, #50)
-> sind bewusst nicht als Deploy-Zeilen geführt — sie berühren den Build nicht und sind nicht
-> gate-relevant.
+> Letzter funktionaler Merge: **PR #55 am 24.08.2026 14:33 UTC** → nächstes 48-h-Fenster
+> öffnet **26.08.2026 ~14:33 UTC**. Reine Doku-PRs (#14–#17, #22–#24, #45, #46, #48, #50,
+> #51, #53) sind bewusst nicht als Deploy-Zeilen geführt — sie berühren den Build nicht und
+> sind nicht gate-relevant.
 
 | Deploy | Inhalt | Status |
 |---|---|---|
@@ -254,6 +254,8 @@ Interne Verlinkung · GEO-Pflege · ExpertenBlock-Rollout · Paket 4a.
 | **GSC-Schema-1** | `Solarpflicht.tsx`: `FAQPage`-Schema aus den vorhandenen Abschnitten ergänzt und das JSON-LD der Seite zu einem `@graph` konsolidiert. Betrifft die impressionsstärkste Seite der Property (11.583 Impr. = 31 % aller Impressionen, vorher ohne FAQ-Schema) | ✅ live (PR #47, gemergt 16.08.2026 09:58 CEST) |
 | **ExpertenBlock-Rollout** | `ExpertenBlock` von 5 auf 13 Serviceseiten ausgerollt, je mit seitenspezifisch passenden `normen` — damit erscheinen Autorenbezug (E-E-A-T) und Innungs-Chip auf allen relevanten Money-Pages statt nur auf fünf | ✅ live (PR #40, gemergt 18.08.2026 12:11 CEST; Netlify `6a842fba…`, `commit_ref aecb53c`, `state ready`, `plugin_state success`) |
 | **Paket 4a** | Flachdachreinigung im Wartungsumfang benannt: Gullys/Einläufe sowie Rand- und Eckbereiche auf `DachwartungBochum` und `FlachdachBochum`, dazu die ehrliche Abgrenzungs-FAQ „Bieten Sie Dachreinigung oder Algenentfernung an?" → nein. Ersetzt das gestrichene Paket 4 (`/dachreinigung-bochum`). Nebenbei: hartcodiertes `FAQPage`-Schema auf `DachwartungBochum` auf `faqItems.map()` umgestellt (es war bereits gedriftet) und die fehlende Linkkarte Flachdach → Dachwartung ergänzt | ✅ live (PR #49, gemergt 20.08.2026 10:35 CEST; Netlify `6a86bc65…`, `commit_ref efe40ce`, `state ready`, `plugin_state success`) — **Gate-Unterschreitung, siehe Hinweis unten** |
+| **Paket 5** | Kannibalisierung bei „dachrinnenreinigung bochum" entflochten: exakter Begriff auf `DachwartungBochum` von 7× auf 2× reduziert (Kosten-Karte, Service-Schema, og/twitter, Hero-Subline umformuliert — die Leistung bleibt benannt), auf `DachrinnenBochum` von 1× auf 11× über acht verschiedene Elemente aufgebaut, dazu Definitions-FAQ „Was gehört zu einer Dachrinnenreinigung?". `DachwartungBochum` hatte **null** interne Serviceverlinkungen — neue Section „Verwandte Leistungen" ergänzt. `FAQPage` auf `DachrinnenBochum` auf `faqItems.map()` umgestellt (nur 5 von 6 Fragen standen im Schema) | ✅ live (PR #52, gemergt 22.08.2026 10:53 CEST; Gate eingehalten: 48 h 17 min nach #49) |
+| **GSC-Meta-2** | Meta-Offensive II: `<title>` und `<meta name="description"` auf den 10 Seiten neu gefasst, die auf Seite 1 ranken und trotzdem kaum Klicks holen (`SturmschadenDach`, `VeluxPreisrechnerBochum`, `AufsparrendaemmungBochum`, `Careers`, `SteildachFoerderungBochum`, `WannLohntSichDachsanierung`, `SteildachUndichtBochum`, `Services`, `SteildachBochum`, `BauklempnereiBochum`). Vier Titles waren bis 80 Zeichen lang, drei Descriptions bis 186 — sie wurden im Snippet abgeschnitten. Nebenbei eine Falschaussage korrigiert: `/karriere` warb mit „Dachdecker, **Klempner** und Auszubildende", es gibt aber nur zwei offene Stellen und keinen Klempner. Soll-Title `/steildach-bochum` im `PRERENDER-CHECK` §4 und §7 nachgezogen | ✅ live (PR #55, gemergt 24.08.2026 16:33 CEST; Gate eingehalten: 53 h 39 min nach #52) |
 
 > **⏱ Gate-Unterschreitung (20.08.2026) — Deploy Paket 4a, PR #49:** Nachgemessen betrug
 > der Abstand zum letzten funktionalen Merge **46 h 24 min** statt der geforderten 48 h —

@@ -285,10 +285,11 @@ Bei striktem 48-h-Gate rund zwei Wochen. Sortiert nach Aufwand-zu-Wirkung.
 | 0 | **BEG-4** — falsche Förderzahlen korrigieren | B | 4 | beseitigt falsche Tatsachenbehauptung | ✅ live (PR #44, 11.08.) |
 | 1 | **GSC-Meta-1** — Meta-Offensive I, 10 Impressions-Riesen | A | 11 | **hoch** (~28.000 der 37.000 Impr.) | ✅ live (PR #44, 11.08.) |
 | 3 | **FAQPage-Schema `/solarpflicht`** aus den vorhandenen Abschnitten | B | 1 | **hoch** (31 % aller Impr.) | ✅ live (PR #47, 16.08. — als GSC-Schema-1) |
-| 2 | **GSC-Meta-2** — Meta-Offensive II, 10 Seiten mit 0–wenig Klicks auf Seite 1 | A | ≤ 12 | hoch, geringer Aufwand | ⬜ **offen** |
+| 2 | **GSC-Meta-2** — Meta-Offensive II, 10 Seiten mit 0–wenig Klicks auf Seite 1 | A | 11 | hoch, geringer Aufwand | ✅ live (PR #55, 24.08.) |
+| 2b | **GSC-Meta-3** — die letzten 5 Seiten mit Meta-Überlängen; danach liegt keine Seite mehr über 60/155 | A | 5 | mittel | 🔄 PR #56, Merge ab 26.08. |
 | 4 | ~~Neue Route `/dachreinigung-bochum`~~ | — | — | — | ❌ **gestrichen 18.08.2026** — Leistung wird nicht angeboten |
 | 4a | **Flachdachreinigung im Wartungsumfang sichtbar machen** — Gullys/Einlaeufe, Rand- und Eckbereiche auf `/dachwartung-bochum` und `/flachdach-bochum`; dazu eine ehrliche Abgrenzungs-FAQ („Bieten Sie Dachreinigung/Algenentfernung an?" → nein, wir reinigen Dachrinnen und Flachdach-Entwaesserung im Rahmen der Wartung) | B | 2–3 | mittel — deckt eine real angebotene Leistung ab, die auf der Site **0×** vorkommt | ✅ live (PR #49, 20.08. — Gullys/Einläufe, Rand- und Eckbereiche, Abgrenzungs-FAQ) |
-| 5 | **Dachrinnenreinigung entflechten** — Content von `/dachwartung-bochum` nach `/dachrinne-bochum` | B | 2–3 | mittel–hoch | ⬜ **offen — als Nächstes** (Lücke 7× zu 1×) |
+| 5 | **Dachrinnenreinigung entflechten** — Content von `/dachwartung-bochum` nach `/dachrinne-bochum` | B | 2 | mittel–hoch | ✅ live (PR #52, 22.08. — Verhältnis 7:1 → 2:11) |
 | 6 | **Interne Verlinkung** der unterverlinkten Money-Pages | A | ≤ 8 | mittel | ⬜ **offen** |
 
 > **Stand 18.08.2026 (nachgemessen, nicht geschätzt):** Pakete 0, 1 und 3 sind live.
@@ -347,10 +348,64 @@ Ausdrücklich offen — hier wurde nichts geraten:
 1. ~~PR #44 mergen (BEG-4 + GSC-Meta-1)~~ ✅ 11.08.2026 · ~~Paket 3 (FAQPage `/solarpflicht`)~~ ✅ 16.08.2026.
 2. **Prerender-Check Stufe 2** nach `PRERENDER-CHECK.md` §3 — kein Deploy nötig, schützt das
    Fundament, und ohne ihn ist die Wirkung der letzten drei Deploys unbelegt. 🌐 Tim.
-3. **Paket 5** (Dachrinnenreinigung entflechten) als naechster funktionaler Deploy — die
-   Luecke ist auf 7× zu 1× gewachsen, und es geht um eine Leistung, die wir wirklich
-   erbringen. Rueckt nach dem Wegfall von Paket 4 auf Platz 1.
-4. ~~Paket 4a (Flachdachreinigung im Wartungsumfang)~~ ✅ 20.08.2026. Danach je 48 h
-   **Paket 2** (GSC-Meta-2) und **Paket 6** (interne Verlinkung).
+3. ~~Paket 5 (Dachrinnenreinigung entflechten)~~ ✅ 22.08.2026 · ~~Paket 4a
+   (Flachdachreinigung im Wartungsumfang)~~ ✅ 20.08.2026.
+4. ~~Paket 2 (GSC-Meta-2)~~ ✅ 24.08.2026. Offen bleiben **GSC-Meta-3** (PR #56, Merge ab
+   26.08.), **Paket 6** (interne Verlinkung) und die **Schema- und Terminologie-Hygiene**
+   aus Abschnitt 8 — je 48 h auseinander.
 5. GSC ab ~08.09.2026 (4 Wochen nach GSC-Meta-1) erneut auswerten und die CTR-Entwicklung
    der 10 Seiten aus GSC-Meta-1 gegen die Baseline in Abschnitt 4 halten.
+
+---
+
+## 8. Funde aus der Verifikation vom 22.08.2026
+
+Bei der Kontrolle nach Paket 5 habe ich das Repo einmal vollständig auf die
+`FAQPage`-Konvention aus `DEPLOY-RULES.md` §7 und auf die Terminologie-Regel aus §6
+geprüft. Zwei Befunde, beide gemessen, keiner davon dringend.
+
+### 8.1 `FAQ.tsx` — 14 Schema-Antworten, **keine einzige** deckungsgleich mit der Seite
+
+`FAQ.tsx` ist die letzte Seite mit hartcodiertem `FAQPage`-Schema. Sie zeigt 48 Fragen an
+und markiert 14 davon im Schema — eine Auswahl zu treffen ist bei einer Hub-FAQ völlig
+richtig. Das Problem ist der Zustand dieser Auswahl:
+
+| Prüfung | Ergebnis |
+|---|---|
+| Schema-Einträge | 14 |
+| Antwort **wortgleich** mit dem sichtbaren Text | **0** |
+| Antwort abweichend formuliert | 13 |
+| Frage steht **gar nicht** auf der Seite | 1 — „Wie lange dauert eine Dachsanierung beim Steildach?" (die Seite fragt „…bei einem Steildach") |
+
+**Fachlich sind die Angaben korrekt** — die BEG-Zahlen stimmen in Text und Schema
+überein (BEG-4 hat beide Stellen erwischt). Es geht um die Google-Vorgabe, dass der
+ausgezeichnete Frage- und Antworttext **auf der Seite sichtbar** sein muss. Ein
+Schema-Eintrag, den es auf der Seite nicht gibt, verstößt hart dagegen; 13 Paraphrasen
+sind ein weicher Verstoß.
+
+**Fix:** Auswahl über ein Flag im `faqCategories`-Array kennzeichnen und das Schema daraus
+generieren — dieselbe Lösung wie auf `SturmschadenDach` (PR #27), `DachwartungBochum` und
+`DachrinnenBochum` (PR #49/#52). Danach ist Drift auf dieser Seite konstruktiv unmöglich.
+
+> **Korrektur einer früheren Aussage:** `VeluxPreisrechnerBochum.tsx` hatte ich zunächst
+> ebenfalls als hartcodiert gemeldet. Das war falsch — die Seite baut ihr Schema über
+> `faqData.map()` und erfüllt §7. Mein Prüfskript hatte nur auf den Literalnamen
+> `faqItems.map` getestet und den abweichenden Array-Namen nicht erkannt.
+
+### 8.2 Terminologie „förderfähig" — vier Stellen gegen §6
+
+`DEPLOY-RULES.md` §6 schreibt **„förderrelevant"** statt „förderfähig" vor. Vier Stellen
+behaupten weiterhin Förderfähigkeit einer Leistung:
+
+| Datei | Stelle |
+|---|---|
+| `GruendachBochum.tsx` | „Gründächer sind im Rahmen der KfW-BEG förderfähig" |
+| `VeluxPreisrechnerBochum.tsx` | FAQ-Frage + H2 „Welche VELUX Verglasung ist förderfähig über die BAFA?" |
+| `WannLohntSichDachsanierung.tsx` | „kann über die BEG EM förderfähig sein" |
+
+**Nicht betroffen und bewusst unverändert:** „förderfähige Kosten", „förderfähige
+Bruttokosten", „förderfähige Obergrenze" und die Überschrift „Nicht förderfähig" in
+`Foerderung.tsx`, `DachsanierungBochum.tsx` und `WannLohntSichDachsanierung.tsx`. Das ist
+der amtliche Begriff der BEG-Richtlinie für die anrechenbare Kostenbasis — ihn zu ersetzen
+wäre sachlich falsch. Die Regel zielt auf Aussagen über *unsere Leistungen*, nicht auf das
+Zitat der Rechtsgrundlage.
