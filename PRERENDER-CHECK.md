@@ -258,7 +258,30 @@ Deploys, deren Wirkung ohne diesen Test unbelegt bleibt, ist auf **vier** gewach
 Alles unten ist am Repo-Stand `04535d2` (22.08.2026) maschinell aus dem Quelltext
 gezogen — nach Paket 5 erneut gegengeprüft, **alle sechs Soll-Titles unverändert gültig**. **Ein Durchgang, sechs URLs, ca. 15 Minuten.**
 
-### So läuft es ab (Methode 1 — die autoritativste)
+### Schnellster Weg: `npm run prerender:check`
+
+Auf dem **eigenen Rechner** im Projektordner (nicht in der Claude-Umgebung — dort ist die
+Domain netzgesperrt):
+
+```bash
+npm run prerender:check
+```
+
+Das Skript ruft alle sechs Kern-URLs mit Googlebot-User-Agent ab und prüft je die vier
+Pass-Kriterien aus §2. Ausgabe pro Zeile `PASS`/`FAIL`, am Ende eine Zusammenfassung;
+Exit-Code 1, wenn etwas fehlschlägt. `--verbose` zeigt zusätzlich die gefundenen Werte.
+
+Das ist **Methode 4** in automatisiert: Es belegt, dass der Server einem Googlebot-UA
+gerendertes HTML ausliefert. Ob Google es auch annimmt, zeigt zusätzlich Methode 1 — einmal
+zur Bestätigung sinnvoll, danach reicht das Skript nach jedem Deploy.
+
+`npm run prerender:check -- --self-test` prüft ohne Netz, ob die Erkennungslogik stimmt und
+ob die Soll-Titles im Skript noch zum Quelltext passen. Letzteres verhindert genau die
+Fehlalarme, vor denen §4 warnt.
+
+---
+
+### Manuell (Methode 1 — die autoritativste)
 
 1. Google Search Console öffnen → Property `https://www.rex-bedachung.de/`
 2. Oben in die **URL-Prüfung** die erste URL einfügen → Enter
