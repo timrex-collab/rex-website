@@ -98,9 +98,13 @@ Erwartung: route-spezifischer Title **und** `application/ld+json` erscheinen.
 | `/dachfenster-bochum` | `Dachfenster Bochum – Einbau & Austausch` | **neu 11.08.2026** |
 | `/dachreparatur-bochum` | `Dachreparatur Bochum – Dach undicht? Wir helfen` | **neu 11.08.2026** |
 
-> **Hinweis zu `&`:** Im Quelltext stehen die Titles teils als `&amp;` (JSX-Entity).
-> Im gerenderten HTML und im Browser-Tab erscheint ein einfaches `&`. Beim Prüfen
-> also auf `&` suchen, nicht auf `&amp;`.
+> **Hinweis zu `&` — hängt von der Prüfmethode ab (korrigiert 24.08.2026):**
+> In der **rohen Server-Antwort** (Skript, `curl`, DevTools → Network → Response,
+> GSC-Quelltextansicht) steht `&amp;` — HTML verlangt das so. Nur im **DevTools-
+> Elements-Panel** und im Browser-Tab erscheint das dekodierte `&`.
+> Also: bei Rohtext nach `&amp;` suchen, im Elements-Panel nach `&`. Am einfachsten
+> nach dem Wortteil davor oder danach suchen und das Zeichen ganz weglassen.
+> `npm run prerender:check` nimmt einem das ab — es dekodiert vor dem Vergleich.
 
 > **Weitere Titles nach GSC-Meta-1** (nicht Teil der 6 Kern-URLs, hier nur als
 > Referenz für spätere Stichproben): `/solarpflicht` → `Solarpflicht NRW 2026: Gilt sie
@@ -135,7 +139,7 @@ Prerender liegt **nicht im Repo/`netlify.toml`**, sondern im Netlify-Dashboard �
 | 20.08.2026 | Netlify-API (Stufe 1, s. u.) | — | — | — | — | — | — | — | **Infrastruktur OK, HTML-Ebene offen** |
 | 22.08.2026 | Netlify-API (Stufe 1) | — | — | — | — | — | — | — | **Infrastruktur OK, HTML-Ebene offen** — Deploy `6a896439…`, `commit_ref 04535d2`, `state ready`, `plugin_state success`, Secret-Scan 664/0, IndexNow #23 + #24 `success` |
 | 24.08.2026 | GitHub Actions (Teil-Check) | — | — | — | — | — | — | — | **IndexNow #25 auf `431ecbd` `success`** · Netlify-Stufe-1 **nicht geprüft** (Connector in dieser Session nicht verfügbar) |
-| _TT.MM.JJJJ_ | GSC / DevTools | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | offen |
+| **24.08.2026** | **Server-Antwort mit Googlebot-UA (Stufe 2)** | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | — | **BESTANDEN** |
 
 ### Der Check hat zwei Stufen
 
@@ -314,8 +318,10 @@ Pro Zeile drei Dinge im gerenderten HTML suchen. **Alle drei müssen da sein.**
 > Findest du nur den Title, ist es die leere SPA-Shell und der Check ist
 > **fehlgeschlagen**.
 
-> **Zu `&`:** Im Quelltext stehen die Titles teils als `&amp;`. Im gerenderten HTML
-> steht ein einfaches `&`. Also nach `&` suchen, nicht nach `&amp;`.
+> **Zu `&` (korrigiert 24.08.2026):** In der rohen Server-Antwort steht `&amp;`, im
+> DevTools-Elements-Panel `&`. Am sichersten nach dem Wort davor oder danach suchen.
+> Die frühere Anleitung „immer nach `&` suchen" war falsch und hätte bei drei der
+> sechs URLs einen Fehlschlag gemeldet, den es nicht gibt.
 
 ### Ergebnis eintragen
 
@@ -349,3 +355,56 @@ Vier Deploys hängen an dieser einen ungeprüften Annahme. Ihr sichtbarer Ertrag
 Bleibt Stufe 2 offen und der erwartete CTR-Effekt aus, ist nicht unterscheidbar, ob die
 Texte schlecht waren oder Google sie nie gesehen hat. Der Test kostet 15 Minuten und
 trennt genau diese beiden Fälle.
+
+---
+
+## 8. Protokoll Stufe 2 — 24.08.2026 · **BESTANDEN**
+
+Durchgeführt von Tim Rex in PowerShell gegen die **rohe Server-Antwort** mit
+Googlebot-User-Agent. Damit ist ausgeschlossen, dass der bereits gerenderte DOM das
+Ergebnis verfälscht — der Unterschied, an dem dieser Test steht und fällt.
+
+Repo-Stand `026d49d`, Live-Deploy nach GSC-Meta-2 (PR #55).
+
+| URL | `<h1>` | `description` | JSON-LD | `<title>` | |
+|---|---:|---:|---:|---|---|
+| `/` | 1 | 1 | 2 | Fallback — nicht bewertet | ✅ |
+| `/dachsanierung-bochum` | 1 | 1 | 3 | Dachsanierung Bochum – Komplettsanierung vom Meister | ✅ |
+| `/flachdach-bochum` | 1 | 1 | 3 | Flachdach Bochum – Abdichtung & Sanierung | ✅ |
+| `/steildach-bochum` | 1 | 1 | 3 | Steildach Bochum – Neueindeckung & Dämmung | ✅ |
+| `/dachfenster-bochum` | 1 | 1 | 3 | Dachfenster Bochum – Einbau & Austausch | ✅ |
+| `/dachreparatur-bochum` | 1 | 1 | 7 | Dachreparatur Bochum – Dach undicht? Wir helfen | ✅ |
+
+**Alle sechs Kern-URLs bestehen alle vier Kriterien aus §2.** Sämtliche Soll-Titles aus §4
+stimmen exakt. Auf `/` zählen wie vorgesehen nur `h1` und JSON-LD — beide vorhanden, es ist
+also nicht die leere Shell.
+
+### Was das beantwortet
+
+Die Prerender-Extension liefert Crawlern gerendertes HTML. Damit ist belegt, dass der Ertrag
+der fünf Deploys, die daran hingen, bei Google überhaupt ankommen kann:
+
+| Deploy | Nachweis im Ergebnis |
+|---|---|
+| GSC-Meta-1 (11.08.) | Titles kommen route-spezifisch an |
+| GSC-Schema-1 (16.08.) | JSON-LD wird ausgeliefert (3–7 Blöcke je Seite) |
+| ExpertenBlock-Rollout (18.08.) | im gerenderten Body enthalten |
+| Paket 4a (20.08.) | dito |
+| **GSC-Meta-2 (24.08.)** | `/steildach-bochum` liefert bereits den **neuen** Title „Neueindeckung & Dämmung" |
+
+Der letzte Punkt ist der stärkste: Ein Title, der erst Stunden zuvor deployt wurde, steht
+bereits in der Bot-Antwort. Die Kette Repo → Build → Deploy → Prerender → Crawler ist
+durchgängig belegt, nicht nur angenommen.
+
+### Was das *nicht* beantwortet
+
+Der Test zeigt, was der **Server** einem Googlebot-User-Agent liefert. Ob Google die Seiten
+auch tatsächlich so **indexiert**, zeigt nur die GSC-URL-Prüfung (Methode 1). Das ist der
+verbleibende Restzweifel — er ist deutlich kleiner als der vorherige, aber nicht null.
+Ein einmaliger GSC-Live-Test auf einer beliebigen Unterseite würde ihn schließen.
+
+### Kadenz ab jetzt
+
+`npm run prerender:check` nach jedem funktionalen Deploy. Ergebnis als Zeile in §6
+eintragen. Bei einem `FAIL` gilt weiterhin die Eskalation nach §5 — ein Fehlschlag betrifft
+potenziell alle Routen, nicht nur die gemeldete.
