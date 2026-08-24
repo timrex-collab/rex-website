@@ -591,6 +591,24 @@ export default function DachfensterBochum() {
         </div>
       </section>
 
+      {/* Verwandte Leistungen */}
+      <section className="py-12 bg-gray-50" data-testid="section-verwandte-leistungen">
+        <div className="container mx-auto px-4">
+          <h2 className="text-xl font-bold text-gray-900 mb-2">Verwandte Leistungen</h2>
+          <p className="text-sm text-gray-500 mb-6">Wenn mehr als nur Licht gefragt ist:</p>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <a href="/dachgaube-bochum" className="block p-5 bg-white rounded-xl border border-gray-200 hover:border-primary hover:shadow-md transition-all">
+              <div className="font-semibold text-gray-900 mb-1">Dachgaube Bochum</div>
+              <div className="text-sm text-gray-500">Mehr Stehhöhe statt nur mehr Licht – wann sich die Gaube gegenüber dem Dachfenster lohnt.</div>
+            </a>
+            <a href="/aufsparrendaemmung-bochum" className="block p-5 bg-white rounded-xl border border-gray-200 hover:border-primary hover:shadow-md transition-all">
+              <div className="font-semibold text-gray-900 mb-1">Aufsparrendämmung</div>
+              <div className="text-sm text-gray-500">Wird beim Fenstereinbau ohnehin am Dach gearbeitet, lohnt der Blick auf die Dämmung.</div>
+            </a>
+          </div>
+        </div>
+      </section>
+
       {/* ── Abschluss-CTA ── */}
       <section className="py-16 px-4 bg-background" data-testid="section-cta">
         <div className="max-w-3xl mx-auto text-center">

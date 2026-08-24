@@ -415,7 +415,7 @@ export default function DachPhotovoltaikBochum() {
       <section className="py-12 bg-gray-50">
         <div className="container mx-auto px-4">
           <h2 className="text-xl font-bold text-gray-900 mb-6">Verwandte Leistungen</h2>
-          <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-4">
+          <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-3 gap-4">
             <a href="/dachsanierung-bochum" className="block p-5 bg-white rounded-xl border border-gray-200 hover:border-primary hover:shadow-md transition-all">
               <div className="font-semibold text-gray-900 mb-1">Dachsanierung Bochum</div>
               <div className="text-sm text-gray-500">Komplettsanierung – oft der erste Schritt vor PV.</div>
@@ -435,6 +435,10 @@ export default function DachPhotovoltaikBochum() {
             <a href="/foerderung" className="block p-5 bg-white rounded-xl border border-gray-200 hover:border-primary hover:shadow-md transition-all">
               <div className="font-semibold text-gray-900 mb-1">Förderung</div>
               <div className="text-sm text-gray-500">BEG EM, KfW, iSFP-Bonus im Überblick.</div>
+            </a>
+            <a href="/bitumen-vs-pvc-flachdach-bochum" className="block p-5 bg-white rounded-xl border border-gray-200 hover:border-primary hover:shadow-md transition-all">
+              <div className="font-semibold text-gray-900 mb-1">Bitumen oder PVC?</div>
+              <div className="text-sm text-gray-500">Vor der Flachdach-PV steht die Abdichtung – Systemvergleich als Entscheidungshilfe.</div>
             </a>
           </div>
         </div>

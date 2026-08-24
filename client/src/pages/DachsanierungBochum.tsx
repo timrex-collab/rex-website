@@ -709,7 +709,7 @@ export default function DachsanierungBochum() {
       <section className="py-12 bg-gray-50" data-testid="section-verwandte-leistungen">
         <div className="container mx-auto px-4">
           <h2 className="text-xl font-bold text-gray-900 mb-6">Verwandte Leistungen</h2>
-          <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-4">
+          <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-4">
             <a href="/steildach-bochum" className="block p-5 bg-white rounded-xl border border-gray-200 hover:border-primary hover:shadow-md transition-all">
               <div className="font-semibold text-gray-900 mb-1">Steildach Bochum</div>
               <div className="text-sm text-gray-500">Neueindeckung, Dämmung, Aufsparrendämmung – BEG-konform.</div>
@@ -737,6 +737,22 @@ export default function DachsanierungBochum() {
             <a href="/faq" className="block p-5 bg-white rounded-xl border border-gray-200 hover:border-primary hover:shadow-md transition-all">
               <div className="font-semibold text-gray-900 mb-1">Häufige Fragen</div>
               <div className="text-sm text-gray-500">Antworten zu Ablauf, Dauer, Förderung und Kosten einer Dachsanierung.</div>
+            </a>
+            <a href="/dachgaube-bochum" className="block p-5 bg-white rounded-xl border border-gray-200 hover:border-primary hover:shadow-md transition-all">
+              <div className="font-semibold text-gray-900 mb-1">Dachgaube Bochum</div>
+              <div className="text-sm text-gray-500">Mehr Raum und Licht im Dachgeschoss – Einbau, Sanierung, Genehmigung.</div>
+            </a>
+            <a href="/velux-dachfenster-austausch-bochum" className="block p-5 bg-white rounded-xl border border-gray-200 hover:border-primary hover:shadow-md transition-all">
+              <div className="font-semibold text-gray-900 mb-1">VELUX Fenster austauschen</div>
+              <div className="text-sm text-gray-500">Altes Dachfenster raus, neues rein – meist an einem Arbeitstag.</div>
+            </a>
+            <a href="/aufsparrendaemmung-bochum" className="block p-5 bg-white rounded-xl border border-gray-200 hover:border-primary hover:shadow-md transition-all">
+              <div className="font-semibold text-gray-900 mb-1">Aufsparrendämmung</div>
+              <div className="text-sm text-gray-500">Die wirksamste Dämmung fürs Steildach – Aufbau, Ablauf, Förderung.</div>
+            </a>
+            <a href="/wann-lohnt-sich-dachsanierung" className="block p-5 bg-white rounded-xl border border-gray-200 hover:border-primary hover:shadow-md transition-all">
+              <div className="font-semibold text-gray-900 mb-1">Sanieren oder reparieren?</div>
+              <div className="text-sm text-gray-500">Die fünf Kriterien, an denen sich die Entscheidung festmacht.</div>
             </a>
           </div>
         </div>

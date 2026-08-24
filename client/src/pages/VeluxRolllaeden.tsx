@@ -510,6 +510,24 @@ export default function VeluxRolllaeden() {
         </div>
       </section>
 
+      {/* Verwandte Leistungen */}
+      <section className="py-12 bg-gray-50" data-testid="section-verwandte-leistungen">
+        <div className="container mx-auto px-4">
+          <h2 className="text-xl font-bold text-gray-900 mb-2">Verwandte Leistungen</h2>
+          <p className="text-sm text-gray-500 mb-6">Passend zum Sonnenschutz:</p>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <a href="/velux-dachfenster-austausch-bochum" className="block p-5 bg-white rounded-xl border border-gray-200 hover:border-primary hover:shadow-md transition-all">
+              <div className="font-semibold text-gray-900 mb-1">VELUX Fenster austauschen</div>
+              <div className="text-sm text-gray-500">Älteres Fenster ersetzen – der beste Zeitpunkt für den Rollladen.</div>
+            </a>
+            <a href="/velux-preisrechner-bochum" className="block p-5 bg-white rounded-xl border border-gray-200 hover:border-primary hover:shadow-md transition-all">
+              <div className="font-semibold text-gray-900 mb-1">VELUX Preisrechner</div>
+              <div className="text-sm text-gray-500">Fenster und Zubehör selbst kalkulieren – mit Förderprüfung.</div>
+            </a>
+          </div>
+        </div>
+      </section>
+
       {/* ── Abschluss-CTA ── */}
       <section className="py-16 px-4 bg-muted/40" data-testid="section-cta">
         <div className="max-w-3xl mx-auto text-center">
