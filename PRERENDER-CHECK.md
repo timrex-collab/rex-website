@@ -140,6 +140,15 @@ Prerender liegt **nicht im Repo/`netlify.toml`**, sondern im Netlify-Dashboard �
 | 22.08.2026 | Netlify-API (Stufe 1) | — | — | — | — | — | — | — | **Infrastruktur OK, HTML-Ebene offen** — Deploy `6a896439…`, `commit_ref 04535d2`, `state ready`, `plugin_state success`, Secret-Scan 664/0, IndexNow #23 + #24 `success` |
 | 24.08.2026 | GitHub Actions (Teil-Check) | — | — | — | — | — | — | — | **IndexNow #25 auf `431ecbd` `success`** · Netlify-Stufe-1 **nicht geprüft** (Connector in dieser Session nicht verfügbar) |
 | **24.08.2026** | **Server-Antwort mit Googlebot-UA (Stufe 2)** | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | — | **BESTANDEN** |
+| 26.08.2026 | Netlify-API (Stufe 1) + GitHub Actions | — | — | — | — | — | — | — | **Infrastruktur OK, HTML-Ebene offen** — Deploy `6a8efc52…`, `commit_ref b461b18` (Paket 6, PR #58), `state ready`, `plugin_state success`, Prerender-Function `nf-prerender-ext_prerender` vorhanden, Secret-Scan 669/0, IndexNow #28 HTTP 200 (30 URLs) · **Stufe 2 offen — bei Tim** |
+
+> **Nachtrag 26.08.2026 — Stufe 2 nach Paket 6 steht aus.** Stufe 1 ist nach dem Merge von
+> PR #58 grün (Zeile oben). Stufe 2 hat Claude erneut versucht (`npm run prerender:check`)
+> und wie erwartet **6 von 6 URLs mit HTTP 403 am Proxy** — die Domain ist aus der
+> Claude-Umgebung netzgesperrt (`DEPLOY-RULES.md` §3), das ist kein Prerender-Befund.
+> Der Lauf gehört auf Tims Rechner. **Risiko diesmal gering:** Paket 6 hat weder Routen
+> noch Titles noch Metadaten angefasst, nur interne Linkkarten im Body ergänzt — die
+> Soll-Titles in §4 bleiben unverändert gültig.
 
 ### Der Check hat zwei Stufen
 
