@@ -795,6 +795,10 @@ export default function Foerderung() {
               <div className="font-semibold text-gray-900 mb-1">NRW-Solarpflicht</div>
               <div className="text-sm text-gray-500">Pflicht ab 01.01.2026 bei vollständiger Dacherneuerung.</div>
             </a>
+            <a href="/wann-lohnt-sich-dachsanierung" className="block p-5 bg-white rounded-xl border border-gray-200 hover:border-primary hover:shadow-md transition-all">
+              <div className="font-semibold text-gray-900 mb-1">Wann lohnt sich die Sanierung?</div>
+              <div className="text-sm text-gray-500">Bevor es um Förderung geht: die fünf Kriterien für die Entscheidung.</div>
+            </a>
           </div>
         </div>
       </section>

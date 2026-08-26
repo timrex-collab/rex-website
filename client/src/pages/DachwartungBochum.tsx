@@ -579,6 +579,18 @@ export default function DachwartungBochum() {
               <div className="font-semibold text-gray-900 mb-1">Flachdach Bochum</div>
               <div className="text-sm text-gray-500">Abdichtung, Sanierung und Entwässerung – Gullys, Rand- und Eckbereiche.</div>
             </a>
+            <a href="/bitumen-vs-pvc-flachdach-bochum" className="block p-5 bg-white rounded-xl border border-gray-200 hover:border-primary hover:shadow-md transition-all">
+              <div className="font-semibold text-gray-900 mb-1">Bitumen oder PVC?</div>
+              <div className="text-sm text-gray-500">Welches Abdichtungssystem auf Ihrem Flachdach liegt – und was das für die Wartung heißt.</div>
+            </a>
+            <a href="/steildach-undicht-bochum" className="block p-5 bg-white rounded-xl border border-gray-200 hover:border-primary hover:shadow-md transition-all">
+              <div className="font-semibold text-gray-900 mb-1">Steildach undicht</div>
+              <div className="text-sm text-gray-500">Wenn die Wartung eine undichte Stelle aufdeckt: Ursachen und Vorgehen.</div>
+            </a>
+            <a href="/sturmschaden-dach-bochum" className="block p-5 bg-white rounded-xl border border-gray-200 hover:border-primary hover:shadow-md transition-all">
+              <div className="font-semibold text-gray-900 mb-1">Sturmschaden Dach</div>
+              <div className="text-sm text-gray-500">Notsicherung, Reparatur und Dokumentation für die Versicherung.</div>
+            </a>
           </div>
         </div>
       </section>

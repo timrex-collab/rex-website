@@ -709,6 +709,24 @@ export default function VeluxAustausch() {
         </div>
       </section>
 
+      {/* Verwandte Leistungen */}
+      <section className="py-12 bg-gray-50" data-testid="section-verwandte-leistungen">
+        <div className="container mx-auto px-4">
+          <h2 className="text-xl font-bold text-gray-900 mb-2">Verwandte Leistungen</h2>
+          <p className="text-sm text-gray-500 mb-6">Passend zum Fensteraustausch:</p>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <a href="/velux-dachfenster-rolllaeden-bochum" className="block p-5 bg-white rounded-xl border border-gray-200 hover:border-primary hover:shadow-md transition-all">
+              <div className="font-semibold text-gray-900 mb-1">VELUX Rollläden nachrüsten</div>
+              <div className="text-sm text-gray-500">Beim Austausch gleich mitmachen – SSL Solar, kabellos, Montage von innen.</div>
+            </a>
+            <a href="/dachgaube-bochum" className="block p-5 bg-white rounded-xl border border-gray-200 hover:border-primary hover:shadow-md transition-all">
+              <div className="font-semibold text-gray-900 mb-1">Dachgaube Bochum</div>
+              <div className="text-sm text-gray-500">Wenn statt eines größeren Fensters mehr Stehhöhe gebraucht wird.</div>
+            </a>
+          </div>
+        </div>
+      </section>
+
       {/* ── Abschluss-CTA ── */}
       <section className="py-16 px-4 bg-muted/40" data-testid="section-cta">
         <div className="max-w-3xl mx-auto text-center">

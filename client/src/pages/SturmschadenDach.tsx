@@ -340,6 +340,14 @@ export default function SturmschadenDach() {
               <div className="font-semibold text-gray-900 mb-1">Wann lohnt sich Dachsanierung?</div>
               <div className="text-sm text-gray-500">Entscheidungshilfe bei größeren Sturmfolgeschäden.</div>
             </a>
+            <a href="/dachrinne-bochum" className="block p-5 bg-white rounded-xl border border-gray-200 hover:border-primary hover:shadow-md transition-all">
+              <div className="font-semibold text-gray-900 mb-1">Dachrinne Bochum</div>
+              <div className="text-sm text-gray-500">Vom Sturm gelöste oder verbogene Rinnen und Fallrohre – reinigen, reparieren, erneuern.</div>
+            </a>
+            <a href="/steildach-undicht-bochum" className="block p-5 bg-white rounded-xl border border-gray-200 hover:border-primary hover:shadow-md transition-all">
+              <div className="font-semibold text-gray-900 mb-1">Steildach undicht</div>
+              <div className="text-sm text-gray-500">Wenn nach dem Sturm Wasser durchkommt: Ursachen und was sofort hilft.</div>
+            </a>
           </div>
         </div>
       </section>

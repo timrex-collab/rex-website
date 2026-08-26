@@ -639,6 +639,10 @@ export default function Dachreparatur() {
               <div className="font-semibold text-gray-900 mb-1">Steildach undicht?</div>
               <div className="text-sm text-gray-500">Ursachen erkennen: undichte Stellen am Steildach richtig orten und beheben.</div>
             </a>
+            <a href="/dachrinne-bochum" className="block p-5 bg-white rounded-xl border border-gray-200 hover:border-primary hover:shadow-md transition-all">
+              <div className="font-semibold text-gray-900 mb-1">Dachrinne Bochum</div>
+              <div className="text-sm text-gray-500">Undichte oder verstopfte Dachrinne? Reinigung, Reparatur und Erneuerung.</div>
+            </a>
           </div>
         </div>
       </section>
