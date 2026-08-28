@@ -141,6 +141,17 @@ Prerender liegt **nicht im Repo/`netlify.toml`**, sondern im Netlify-Dashboard �
 | 24.08.2026 | GitHub Actions (Teil-Check) | — | — | — | — | — | — | — | **IndexNow #25 auf `431ecbd` `success`** · Netlify-Stufe-1 **nicht geprüft** (Connector in dieser Session nicht verfügbar) |
 | **24.08.2026** | **Server-Antwort mit Googlebot-UA (Stufe 2)** | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | — | **BESTANDEN** |
 | 26.08.2026 | Netlify-API (Stufe 1) + GitHub Actions | — | — | — | — | — | — | — | **Infrastruktur OK, HTML-Ebene offen** — Deploy `6a8efc52…`, `commit_ref b461b18` (Paket 6, PR #58), `state ready`, `plugin_state success`, Prerender-Function `nf-prerender-ext_prerender` vorhanden, Secret-Scan 669/0, IndexNow #28 HTTP 200 (30 URLs) · **Stufe 2 offen — bei Tim** |
+| 28.08.2026 | Netlify-API (Stufe 1) + GitHub Actions | — | — | — | — | — | — | — | **Infrastruktur OK, HTML-Ebene offen** — Deploy `6a919fdb…`, `commit_ref db0dbdf` (GSC-Meta-3, PR #56), `state ready`, `plugin_state success`, Prerender-Function vorhanden, Secret-Scan 671/0, IndexNow #30 HTTP 200 (30 URLs) · **Stufe 2 offen — bei Tim** |
+
+> **Nachtrag 28.08.2026 — Stufe 2 nach GSC-Meta-3 steht ebenfalls aus.** Stufe 1 ist nach
+> dem Merge von PR #56 grün (Zeile oben), Stufe 2 scheiterte erneut mit **6× HTTP 403 am
+> Proxy** — dieselbe Netzsperre wie am 26.08., kein Prerender-Befund. **Die Soll-Titles in
+> §4 und §7 bleiben unverändert gültig:** GSC-Meta-3 hat zwar fünf `<title>` neu gefasst,
+> aber keine der sechs Kern-URLs aus §1 — betroffen sind `/bitumen-vs-pvc-flachdach-bochum`,
+> `/lexikon`, `/dach-photovoltaik-bochum`, `/velux-dachfenster-austausch-bochum` und
+> `/velux-dachfenster-rolllaeden-bochum`, die in diesem Dokument nicht vorkommen (geprüft).
+> Damit sind zwei Deploys ohne Stufe-2-Lauf aufgelaufen — beide ohne Routen- oder
+> Metadaten-Risiko für die geprüften URLs, ein Lauf bei Gelegenheit deckt beide ab.
 
 > **Nachtrag 26.08.2026 — Stufe 2 nach Paket 6 steht aus.** Stufe 1 ist nach dem Merge von
 > PR #58 grün (Zeile oben). Stufe 2 hat Claude erneut versucht (`npm run prerender:check`)

@@ -209,17 +209,18 @@ SSR-/Framework-Migration · Stadtteil-Seiten · separate Kosten-Seiten · Gewerb
 D-IndexNow · D-Sitemap-Refresh (1+2) · Repo-Fix · B1/B2 · Meta-Fix · P2.1–P2.4 ·
 D-IndexNow-CI · Innung-Trust · BEG-1 bis BEG-4 · GSC-Meta-1 · GSC-Schema-1 ·
 Interne Verlinkung · GEO-Pflege · ExpertenBlock-Rollout · Paket 4a · Paket 5 · GSC-Meta-2 ·
-Paket 6.
+Paket 6 · GSC-Meta-3.
 
 > **Stand 20.08.2026:** Die Tabelle hatte Lücken — von PR #18 bis PR #47 waren nur BEG-1,
 > BEG-2, BEG-4 und GSC-Meta-1 eingetragen; 18 weitere Deploy-Zeilen (20 gemergte PRs)
 > fehlten. Sie ist seit PR #48 vollständig aus der Merge-Historie von `main` rekonstruiert
 > und wird ab jetzt bei jedem Deploy mitgeführt.
-> Letzter funktionaler Merge: **PR #58 am 26.08.2026 14:46 UTC** → nächstes 48-h-Fenster
-> öffnet **28.08.2026 ~14:46 UTC**. Dort steht **PR #56 (GSC-Meta-3)**, der letzte offene
-> Merge aus dem Doppelfenster vom 26.08. Reine Doku-/Tooling-PRs (#14–#17, #22–#24, #45,
-> #46, #48, #50, #51, #53, #54, #57) sind bewusst nicht als Deploy-Zeilen geführt — sie
-> berühren den Build (`dist/public`) nicht und sind nicht gate-relevant.
+> Letzter funktionaler Merge: **PR #56 am 28.08.2026 14:49 UTC** → nächstes 48-h-Fenster
+> öffnet **30.08.2026 ~14:49 UTC**. Damit ist der Deploy-Backlog aus `GSC-AUDIT-2026-08.md`
+> §6 vollständig abgearbeitet; als Nächstes steht die Schema- und Terminologie-Hygiene aus
+> §8 desselben Dokuments an. Reine Doku-/Tooling-PRs (#14–#17, #22–#24, #45, #46, #48, #50,
+> #51, #53, #54, #57, #59) sind bewusst nicht als Deploy-Zeilen geführt — sie berühren den
+> Build (`dist/public`) nicht und sind nicht gate-relevant.
 
 | Deploy | Inhalt | Status |
 |---|---|---|
@@ -259,6 +260,24 @@ Paket 6.
 | **Paket 5** | Kannibalisierung bei „dachrinnenreinigung bochum" entflochten: exakter Begriff auf `DachwartungBochum` von 7× auf 2× reduziert (Kosten-Karte, Service-Schema, og/twitter, Hero-Subline umformuliert — die Leistung bleibt benannt), auf `DachrinnenBochum` von 1× auf 11× über acht verschiedene Elemente aufgebaut, dazu Definitions-FAQ „Was gehört zu einer Dachrinnenreinigung?". `DachwartungBochum` hatte **null** interne Serviceverlinkungen — neue Section „Verwandte Leistungen" ergänzt. `FAQPage` auf `DachrinnenBochum` auf `faqItems.map()` umgestellt (nur 5 von 6 Fragen standen im Schema) | ✅ live (PR #52, gemergt 22.08.2026 10:53 CEST; Gate eingehalten: 48 h 17 min nach #49) |
 | **GSC-Meta-2** | Meta-Offensive II: `<title>` und `<meta name="description"` auf den 10 Seiten neu gefasst, die auf Seite 1 ranken und trotzdem kaum Klicks holen (`SturmschadenDach`, `VeluxPreisrechnerBochum`, `AufsparrendaemmungBochum`, `Careers`, `SteildachFoerderungBochum`, `WannLohntSichDachsanierung`, `SteildachUndichtBochum`, `Services`, `SteildachBochum`, `BauklempnereiBochum`). Vier Titles waren bis 80 Zeichen lang, drei Descriptions bis 186 — sie wurden im Snippet abgeschnitten. Nebenbei eine Falschaussage korrigiert: `/karriere` warb mit „Dachdecker, **Klempner** und Auszubildende", es gibt aber nur zwei offene Stellen und keinen Klempner. Soll-Title `/steildach-bochum` im `PRERENDER-CHECK` §4 und §7 nachgezogen | ✅ live (PR #55, gemergt 24.08.2026 16:33 CEST; Gate eingehalten: 53 h 39 min nach #52) |
 | **Paket 6** | Interne Verlinkung der zehn unterverlinkten Money-Pages: kontextuelle Linkkarten aus zehn Quellseiten (`SturmschadenDach`, `Dachreparatur`, `SteildachBochum`, `DachsanierungBochum`, `DachwartungBochum`, `DachPhotovoltaikBochum`, `Foerderung`, `DachfensterBochum`, `VeluxAustausch`, `VeluxRolllaeden`), drei davon mit neuer Link-Section. Danach hat **keine** Money-Page mehr unter drei eingehende kontextuelle Links; die impressionsstärksten Nachzügler `/dachrinne-bochum` (2.571 Impr.) und `/dachgaube-bochum` (1.773 Impr.) gehen von 2 auf 5. Null neue Dubletten; Grid-Spalten auf `DachsanierungBochum` und `DachPhotovoltaikBochum` an die neue Kartenzahl angepasst. Letztes offenes Paket aus `GSC-AUDIT-2026-08.md` §6 | ✅ live (PR #58, gemergt 26.08.2026 14:46 UTC / 16:46 CEST; Stufe A, 10 Dateien; Gate eingehalten: 48 h 13 min nach #55; Netlify `6a8efc52…`, `commit_ref b461b18`, `state ready`, `plugin_state success`, Secret-Scan 669/0; IndexNow-Run #28 HTTP 200, 30 URLs) |
+| **GSC-Meta-3** | Abschluss der Meta-Offensive: `<title>` und `<meta name="description">` auf den letzten fünf Seiten mit Überlängen neu gefasst (`BitumenVsPvc` T70/D173 → T46/D148, `DachLexikon` T67/D145 → T47/D151, `DachPhotovoltaikBochum` T74/D171 → T48/D144, `VeluxRolllaeden` T66/D165 → T49/D149). Dazu `VeluxAustausch` ohne Überlänge, aber mit 22 von 55 Titelzeichen für den Firmennamen — neu gefasst und die Schreibweise auf **VELUX** vereinheitlicht (zwei Seiten schrieben „Velux“). **Danach liegt keine Seite im Repo mehr über 60/155.** | ✅ live (PR #56, gemergt 28.08.2026 14:49 UTC / 16:49 CEST; Stufe A, 5 Dateien; Gate eingehalten: 48 h 2 min nach #58; Netlify `6a919fdb…`, `commit_ref db0dbdf`, `state ready`, `plugin_state success`, Secret-Scan 671/0; IndexNow-Run #30 HTTP 200, 30 URLs) — **Merge durch Claude, siehe Hinweis unten** |
+
+> **👤 Abweichung von §5.5 (28.08.2026) — Deploy GSC-Meta-3, PR #56 von Claude gemergt:**
+> Abschnitt 5, Punkt 5 lautet „Merge ausschließlich durch Tim. Kein Direct-Push auf `main`,
+> kein Auto-Merge." Für diesen einen Merge hat Tim die Regel **ausdrücklich ausgesetzt** und
+> Claude beauftragt, das Fenster selbst abzuwarten und zu mergen. Grund: rein terminlich —
+> das Fenster öffnete an einem Freitagnachmittag, und der PR lag seit dem 24.08. fertig und
+> geprüft vor.
+> **Was dabei unangetastet blieb:** Das 48-h-Gate selbst. Der Merge lief 48 h 2 min nach #58,
+> also im regulären Fenster; es wurde **keine** Gate-Ausnahme nach Abschnitt 4 beansprucht.
+> Ebenso unangetastet: kein Direct-Push auf `main` — der Weg lief wie immer über den PR.
+> **Vorprüfung vor dem Merge** (16 min vor Fensteröffnung, protokolliert): `main` unverändert
+> seit dem Doku-Merge #59, PR-Head `81b027b` unverändert, `mergeable_state: clean`,
+> Test-Merge lokal sauber, Netlify-Preview-Checks grün. Zusätzlich wurde die Kernaussage des
+> PRs auf dem gemergten Baum nachgemessen statt übernommen: über alle 35 Titles und 34
+> Descriptions im Repo liegt **keine** über 60 bzw. 155 Zeichen.
+> **Reichweite:** Diese Aussetzung galt nur für PR #56. Für alle weiteren Deploys gilt §5.5
+> unverändert — Merge durch Tim.
 
 > **⏱ Gate-Unterschreitung (20.08.2026) — Deploy Paket 4a, PR #49:** Nachgemessen betrug
 > der Abstand zum letzten funktionalen Merge **46 h 24 min** statt der geforderten 48 h —
