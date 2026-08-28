@@ -89,8 +89,8 @@ export default function DachPhotovoltaikBochum() {
   return (
     <>
       <Helmet>
-        <title>Dach & Photovoltaik Bochum – Braas PV Premium & Aufdach-PV | Rex Bedachung</title>
-        <meta name="description" content="Dach für Photovoltaik vorbereiten in Bochum: Braas PV Premium (Turmalin, Tegalit) dachintegriert oder Aufdach-PV mit 1KOMMA5°. Kostenloser Dachcheck – Rex Bedachungs GmbH." />
+        <title>Dach &amp; Photovoltaik Bochum – PV-Dachcheck gratis</title>
+        <meta name="description" content="Ist Ihr Dach PV-tauglich? Kostenlose Prüfung von Tragfähigkeit, Ausrichtung und Verschattung. Dachintegriertes Braas PV Premium oder Aufdach-PV." />
         <link rel="canonical" href="https://www.rex-bedachung.de/dach-photovoltaik-bochum" />
         <meta property="og:title" content="Dach & Photovoltaik Bochum – Braas PV Premium & Aufdach-PV | Rex Bedachungs GmbH" />
         <meta property="og:description" content="Dach für Photovoltaik vorbereiten in Bochum: Braas PV Premium dachintegriert oder Aufdach-PV. Kostenloser Dachcheck – Meisterbetrieb seit 1984." />

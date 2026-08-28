@@ -69,10 +69,10 @@ export default function BitumenVsPvc() {
   return (
     <>
       <Helmet>
-        <title>Bitumen oder PVC Flachdach Bochum | Entscheidungshilfe – Rex Bedachung</title>
+        <title>Bitumen oder PVC? Flachdach-Vergleich | Bochum</title>
         <meta
           name="description"
-          content="Bitumen oder PVC auf dem Flachdach? Rex Bedachungs GmbH Bochum erklärt den Unterschied und wann welches System sinnvoll ist. Mit Vergleich, Systemaufbau und Förderhinweisen."
+          content="Welches Abdichtungssystem passt auf Ihr Flachdach? Vergleich von Aufbau, Lebensdauer und Kostenfaktoren – die Entscheidungshilfe vom Meisterbetrieb."
         />
         <link rel="canonical" href="https://www.rex-bedachung.de/bitumen-vs-pvc-flachdach-bochum" />
         <meta property="og:title" content="Bitumen oder PVC Flachdach Bochum – Vergleich & Entscheidungshilfe | Rex Bedachungs GmbH" />

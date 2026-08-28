@@ -158,10 +158,10 @@ export default function VeluxRolllaeden() {
   return (
     <>
       <Helmet>
-        <title>Velux Außenrollladen Bochum – SSL Solar nachrüsten | Rex Bedachung</title>
+        <title>VELUX Rollladen nachrüsten – ohne Gerüst | Bochum</title>
         <meta
           name="description"
-          content="Velux Außenrollladen Bochum ✓ SSL Solar kabellos nachrüsten ✓ Bis zu 94% Hitzeschutz ✓ Kein Stromanschluss nötig ✓ Autorisierter VELUX-Partner – Rex Bedachungs GmbH."
+          content="Bis zu 94 % Hitzeschutz mit dem SSL Solar: kabellos, kein Stromanschluss, Montage von innen in rund 2 Stunden. Autorisierter VELUX-Partner in Bochum."
         />
         <meta property="og:title" content="Velux Außenrollladen Bochum – SSL Solar nachrüsten | Rex Bedachungs GmbH" />
         <meta property="og:description" content="Velux Außenrollladen Bochum ✓ SSL Solar kabellos nachrüsten ✓ Bis zu 94% Hitzeschutz ✓ Kein Stromanschluss nötig ✓ Autorisierter VELUX-Partner – Rex Bedachungs GmbH." />
