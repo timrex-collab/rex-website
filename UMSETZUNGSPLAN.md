@@ -131,10 +131,12 @@ Damit wir nichts doppelt machen. Diese Audit-Punkte sind abgehakt oder per Regel
 5. **P2.4** nur als abschließende Hygiene, wenn Kapazität bleibt.
 
 > **Diese Reihenfolge ist abgearbeitet** (Schritte 1–3 und 5 erledigt, Stand 18.08.2026).
-> Nächster Schritt steht nicht mehr hier, sondern in `GSC-AUDIT-2026-08.md` §6: **Paket 5**
-> (Dachrinnenreinigung entflechten) als nächster funktionaler Deploy, davor der
-> Prerender-Check Stufe 2 — der kostet keinen Deploy und belegt, dass die letzten drei
-> Deploys bei Google überhaupt ankommen.
+> Nächster Schritt steht nicht mehr hier, sondern in `GSC-AUDIT-2026-08.md` §6.
+> *Stand 26.08.2026:* Auch dessen Backlog ist bis auf einen Punkt abgearbeitet — Paket 4a
+> (20.08.), Paket 5 (22.08.), GSC-Meta-2 (24.08.) und Paket 6 (26.08., PR #58) sind live,
+> der Prerender-Check Stufe 2 ist am 24.08. bestanden. Offen ist nur noch **GSC-Meta-3**
+> (PR #56, Merge-Fenster ab 28.08. ~14:46 UTC) und danach die Schema-/Terminologie-Hygiene
+> aus `GSC-AUDIT-2026-08.md` §8.
 >
 > Das ursprünglich erstplatzierte Paket 4 (`/dachreinigung-bochum`) ist am 18.08.2026
 > **gestrichen**: Dachflächenreinigung und Algenentfernung gehören nicht zum

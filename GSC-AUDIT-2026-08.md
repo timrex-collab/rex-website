@@ -286,11 +286,11 @@ Bei striktem 48-h-Gate rund zwei Wochen. Sortiert nach Aufwand-zu-Wirkung.
 | 1 | **GSC-Meta-1** — Meta-Offensive I, 10 Impressions-Riesen | A | 11 | **hoch** (~28.000 der 37.000 Impr.) | ✅ live (PR #44, 11.08.) |
 | 3 | **FAQPage-Schema `/solarpflicht`** aus den vorhandenen Abschnitten | B | 1 | **hoch** (31 % aller Impr.) | ✅ live (PR #47, 16.08. — als GSC-Schema-1) |
 | 2 | **GSC-Meta-2** — Meta-Offensive II, 10 Seiten mit 0–wenig Klicks auf Seite 1 | A | 11 | hoch, geringer Aufwand | ✅ live (PR #55, 24.08.) |
-| 2b | **GSC-Meta-3** — die letzten 5 Seiten mit Meta-Überlängen; danach liegt keine Seite mehr über 60/155 | A | 5 | mittel | 🔄 PR #56, Merge ab 26.08. |
+| 2b | **GSC-Meta-3** — die letzten 5 Seiten mit Meta-Überlängen; danach liegt keine Seite mehr über 60/155 | A | 5 | mittel | 🔄 PR #56, Merge ab **28.08. ~14:46 UTC** |
 | 4 | ~~Neue Route `/dachreinigung-bochum`~~ | — | — | — | ❌ **gestrichen 18.08.2026** — Leistung wird nicht angeboten |
 | 4a | **Flachdachreinigung im Wartungsumfang sichtbar machen** — Gullys/Einlaeufe, Rand- und Eckbereiche auf `/dachwartung-bochum` und `/flachdach-bochum`; dazu eine ehrliche Abgrenzungs-FAQ („Bieten Sie Dachreinigung/Algenentfernung an?" → nein, wir reinigen Dachrinnen und Flachdach-Entwaesserung im Rahmen der Wartung) | B | 2–3 | mittel — deckt eine real angebotene Leistung ab, die auf der Site **0×** vorkommt | ✅ live (PR #49, 20.08. — Gullys/Einläufe, Rand- und Eckbereiche, Abgrenzungs-FAQ) |
 | 5 | **Dachrinnenreinigung entflechten** — Content von `/dachwartung-bochum` nach `/dachrinne-bochum` | B | 2 | mittel–hoch | ✅ live (PR #52, 22.08. — Verhältnis 7:1 → 2:11) |
-| 6 | **Interne Verlinkung** der unterverlinkten Money-Pages | A | ≤ 8 | mittel | ⬜ **offen** |
+| 6 | **Interne Verlinkung** der unterverlinkten Money-Pages | A | 10 | mittel | ✅ live (PR #58, 26.08. — zehn Money-Pages, keine mehr unter 3 Links) |
 
 > **Stand 18.08.2026 (nachgemessen, nicht geschätzt):** Pakete 0, 1 und 3 sind live.
 > Der Hinweis „enthält P2.1" bei Paket 2 ist gestrichen — P2.1 war bereits seit PR #28
@@ -307,6 +307,36 @@ Bei striktem 48-h-Gate rund zwei Wochen. Sortiert nach Aufwand-zu-Wirkung.
 > Ablaeufe reinigen", benennt die Flachdach-Entwaesserung aber nicht. Das ist die echte
 > Luecke: kein 892-Impressionen-Hebel, aber ehrlich, belegbar und fuer Hausverwaltungen
 > (der erklaerte Wartungs-Schwerpunkt) unmittelbar relevant.
+
+> **Nachtrag 26.08.2026 — Paket 6 live, Backlog abgearbeitet.** Mit PR #58 ist das letzte
+> offene Paket dieses Abschnitts gemergt; von den ursprünglich sechs Positionen sind alle
+> erledigt oder bewusst gestrichen (Paket 4). Offen aus dem Audit bleiben damit nur noch
+> **GSC-Meta-3** (PR #56, Fenster ab 28.08.) und die **Schema-/Terminologie-Hygiene** aus
+> Abschnitt 8.
+>
+> **Korrektur an der Messung in Abschnitt 5.** Die Link-Zahlen der Tabelle oben
+> („Interne Verlinkung — unterverlinkte Money-Pages") stammen aus GSC und aus einer ersten
+> Repo-Messung, die nur das Attribut `href="/x"` gesucht hat. Links aus Objekt-Literalen
+> (`href: "/x"`, `link: "/x"`) — eine der Formen, in denen die Linkkarten geschrieben sind —
+> fehlten darin. Neu gemessen mit einem Muster, das beide Schreibweisen **inklusive
+> Leerzeichen nach dem Doppelpunkt** erfasst, lagen `/dachrinne-bochum` und
+> `/dachgaube-bochum` bei **2** statt bei 4 bzw. 5 eingehenden Links,
+> `/velux-preisrechner-bochum` dagegen bei 3 und damit gar nicht im Rückstand. Die Tabelle
+> in Abschnitt 5 bleibt als Audit-Momentaufnahme stehen; maßgeblich ist die korrigierte
+> Messung in PR #58.
+>
+> **Gegenprobe nach dem Merge (Repo-Stand `b461b18`):** alle zehn Zielrouten erreichen
+> exakt die in PR #58 angegebenen Werte (5 · 5 · 4 · 3 · 4 · 3 · 4 · 4 · 3 · 4), und über
+> alle 32 Routen liegt **keine Service- oder Money-Page** mehr unter drei kontextuellen
+> Links (Footer und Navigation nicht mitgezählt).
+>
+> **Randbefund derselben Messung:** Unter drei Links liegen nur noch Seiten ohne
+> Ranking-Ziel — `/danke` (noindex), `/impressum` (per `robots.txt` gesperrt),
+> `/datenschutz`, `/karriere`, `/faq` (2) und `/lexikon` (1: nur aus `FAQ.tsx`, dazu der
+> Footer). `/ueber-uns` sieht mit 1 ebenfalls dünn aus, wird aber über den `ExpertenBlock`
+> von 13 Seiten verlinkt — die Messung zählt Komponenten einmal, nicht je Einbindung.
+> `/lexikon` ist damit die einzige inhaltlich relevante Restlücke; kein Deploy-Anlass für
+> sich, aber ein Kandidat für das nächste Content-Paket.
 
 **Bewusst nicht enthalten:** Stadtteil-Landingpages für Wattenscheid/Langendreer
 (`DEPLOY-RULES.md` §6). Die 92 Impressionen der Nachbarstädte werden regelkonform über
@@ -349,9 +379,9 @@ Ausdrücklich offen — hier wurde nichts geraten:
 2. ~~Prerender-Check Stufe 2~~ ✅ 24.08.2026 bestanden.
 3. ~~Paket 5 (Dachrinnenreinigung entflechten)~~ ✅ 22.08.2026 · ~~Paket 4a
    (Flachdachreinigung im Wartungsumfang)~~ ✅ 20.08.2026.
-4. ~~Paket 2 (GSC-Meta-2)~~ ✅ 24.08.2026. Offen bleiben **GSC-Meta-3** (PR #56, Merge ab
-   26.08.), **Paket 6** (interne Verlinkung) und die **Schema- und Terminologie-Hygiene**
-   aus Abschnitt 8 — je 48 h auseinander.
+4. ~~Paket 2 (GSC-Meta-2)~~ ✅ 24.08.2026 · ~~Paket 6 (interne Verlinkung)~~ ✅ 26.08.2026
+   (PR #58). Offen bleiben **GSC-Meta-3** (PR #56, Merge ab **28.08. ~14:46 UTC**) und die
+   **Schema- und Terminologie-Hygiene** aus Abschnitt 8 — je 48 h auseinander.
 5. GSC ab ~08.09.2026 (4 Wochen nach GSC-Meta-1) erneut auswerten und die CTR-Entwicklung
    der 10 Seiten aus GSC-Meta-1 gegen die Baseline in Abschnitt 4 halten.
 
