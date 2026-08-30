@@ -77,7 +77,7 @@ const foerderungen = [
   },
   {
     Icon: Shield, title: "KfW Bundesförderung (BEG)",
-    text: "Gründächer sind im Rahmen der KfW-BEG förderfähig, wenn sie Teil einer Sanierungsmaßnahme sind. Beantragung über die Hausbank vor Baubeginn.",
+    text: "Gründächer sind im Rahmen der KfW-BEG förderrelevant, wenn sie Teil einer Sanierungsmaßnahme sind. Beantragung über die Hausbank vor Baubeginn.",
     hinweis: "Vor Baubeginn über Hausbank",
   },
   {

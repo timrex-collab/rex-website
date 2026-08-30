@@ -8,15 +8,24 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
+type FaqEntry = {
+  question: string;
+  answer: string;
+  /** true = Eintrag wird ins FAQPage-Schema aufgenommen (DEPLOY-RULES §7). */
+  schema?: boolean;
+};
+type FaqCategory = { category: string; questions: FaqEntry[] };
+
 const heroImage = "/images/tondach-hero-dachdeckung-bochum.webp";
 const heroImageFallback = "/images/tondach-hero-dachdeckung-bochum.jpg";
 
 export default function FAQ() {
-  const faqCategories = [
+  const faqCategories: FaqCategory[] = [
     {
       category: "Angebote & Preise",
       questions: [
         {
+          schema: true,
           question:
             "Sind Kostenvoranschläge und Angebote bei Ihnen kostenlos und unverbindlich?",
           answer:
@@ -39,6 +48,7 @@ export default function FAQ() {
             "Die Kosten richten sich nach verschiedenen Faktoren des Projekts. Größe und Umfang der Dachfläche, die gewählten Materialien (z.B. Ziegel, Dämmung, Abdichtung) sowie die Zugänglichkeit bzw. der Aufwand spielen eine große Rolle. Auch besondere Anforderungen – etwa Dachgauben, Dachfenster oder aufwendige Details – beeinflussen den Preis. Deshalb erstellen wir immer ein individuelles Angebot, das genau auf Ihre Gegebenheiten zugeschnitten ist.",
         },
         {
+          schema: true,
           question:
             "Gibt es Fördermöglichkeiten oder Zuschüsse für Dachsanierungen?",
           answer:
@@ -50,12 +60,14 @@ export default function FAQ() {
       category: "Steildach",
       questions: [
         {
+          schema: true,
           question:
             "Was kostet eine neue Dacheindeckung oder Dachsanierung beim Steildach?",
           answer:
             "Die Kosten für ein neues Steildach hängen von vielen Faktoren ab – insbesondere von der Dachgröße, der gewählten Eindeckung und eventuellen Dämm-Maßnahmen. Den genauen Preis ermitteln wir durch eine Vor-Ort-Besichtigung und einen detaillierten Kostenvoranschlag. Wir erstellen Ihnen nach kostenloser Besichtigung ein transparentes Angebot.",
         },
         {
+          schema: true,
           question: "Wie lange dauert eine Dachsanierung bei einem Steildach?",
           answer:
             "Die Dauer einer Dachsanierung hängt von Umfang und Dachgröße ab. Bei einem typischen Einfamilienhaus können Sie mit rund 3 bis 4 Wochen Arbeitszeit rechnen, wenn es um eine komplette Neueindeckung inklusive Dämmung geht. Müssen zusätzliche Details wie Gauben oder viele Dachfenster berücksichtigt werden, kann es etwas länger dauern – wir planen den Zeitrahmen individuell und sprechen ihn im Voraus mit Ihnen ab.",
@@ -76,11 +88,13 @@ export default function FAQ() {
       category: "Flachdach",
       questions: [
         {
+          schema: true,
           question: "Was kostet eine Flachdach-Reparatur oder -Sanierung?",
           answer:
             "Die Kosten bei Flachdacharbeiten sind sehr individuell. Sie hängen vor allem von der Fläche, dem Schadensbild und dem verwendeten Material ab. Kleine Reparaturen (beispielsweise eine undichte Anschlussstelle) lassen sich oft schon für wenige hundert Euro erledigen, während eine umfangreiche Flachdach-Komplettsanierung – je nach Größe des Dachs – in den höherpreisigen Bereich gehen kann. Wir erstellen Ihnen gerne ein maßgeschneidertes Angebot, sobald wir Ihr Flachdach vor Ort begutachtet haben.",
         },
         {
+          schema: true,
           question: "Wie lange hält ein Flachdach im Durchschnitt?",
           answer:
             "Ein professionell abgedichtetes Flachdach hält je nach verwendeter Abdichtung und Pflege etwa 20 bis 40 Jahre. Wichtig ist eine regelmäßige Wartung: Durch Inspektionen und rechtzeitige Reparaturen kann die Lebensdauer deutlich verlängert werden. Umgekehrt können stehendes Wasser, extreme Witterung oder mangelnde Pflege die Haltbarkeit verkürzen – daher achten wir auf eine einwandfreie Ausführung und bieten auf Wunsch auch Wartungsverträge an.",
@@ -117,6 +131,7 @@ export default function FAQ() {
             "Die Kosten richten sich nach dem individuellen Fall. Bei einer kleinen Reparatur – zum Beispiel dem Austausch einzelner Ziegel oder dem Abdichten einer undichten Stelle – hängen die Kosten von Umfang, Material und Zugänglichkeit ab. Oft bewegen sich solche Kleinstreparaturen im unteren dreistelligen Eurobereich, genaue Preise nennen wir Ihnen aber nach einer Begutachtung vor Ort. Selbstverständlich erhalten Sie vorab ein verbindliches Angebot, damit Sie volle Kostentransparenz haben.",
         },
         {
+          schema: true,
           question:
             "Bieten Sie auch kurzfristige Reparaturen an?",
           answer:
@@ -140,6 +155,7 @@ export default function FAQ() {
       category: "Velux-Dachfenster",
       questions: [
         {
+          schema: true,
           question: "Was kostet der Einbau eines VELUX-Dachfensters?",
           answer:
             "Die Kosten für ein VELUX-Dachfenster richten sich nach Modell, Größe und Aufwand. Bei Neueinbau ohne vorhandene Öffnung kann der Aufwand höher liegen. Die genauen Kosten ermitteln wir nach kostenlosem Aufmaß vor Ort. Wir erstellen Ihnen nach kostenloser Besichtigung ein transparentes Angebot.",
@@ -151,6 +167,7 @@ export default function FAQ() {
             "Erfreulicherweise ist der Fenstereinbau in der Regel zügig erledigt. Pro Dachfenster planen wir normalerweise einen halben bis ganzen Arbeitstag ein – darin sind Vorbereitung (z.B. Zuschnitt der Dachöffnung), die eigentliche Montage sowie der Innenausbau und die Abdichtung enthalten. Sie können Ihr neues VELUX-Fenster also meist schon am Abend des Einbautages voll nutzen.",
         },
         {
+          schema: true,
           question:
             "Benötigt man eine Baugenehmigung, um ein Dachfenster einzubauen?",
           answer:
@@ -174,6 +191,7 @@ export default function FAQ() {
       category: "Dachrinnen & Fallrohre",
       questions: [
         {
+          schema: true,
           question: "Was kostet der Austausch einer Dachrinne mit Fallrohren?",
           answer:
             "Die Kosten für eine Dachrinnenerneuerung hängen vor allem vom gewählten Material und der Gebäudelänge ab – Preis nach Aufmaß. Wir schauen uns Ihr Haus an und machen Ihnen dann ein transparentes Angebot.",
@@ -234,6 +252,7 @@ export default function FAQ() {
       category: "Flüssigkunststoffe",
       questions: [
         {
+          schema: true,
           question:
             "Was ist Flüssigkunststoff und wofür wird er am Dach eingesetzt?",
           answer:
@@ -267,6 +286,7 @@ export default function FAQ() {
       category: "Wartung",
       questions: [
         {
+          schema: true,
           question:
             "Wie oft sollte ein Dach gewartet oder kontrolliert werden?",
           answer:
@@ -283,6 +303,7 @@ export default function FAQ() {
             "Eine regelmäßige Wartung dient Ihrer Vorbeugung. Durch Inspektionen lassen sich größere Schäden vermeiden, bevor sie entstehen. Beispielsweise können wir eine kleine Undichtigkeit entdecken und reparieren, bevor Feuchtigkeit größere Mängel (wie Fäulnis im Gebälk oder Schimmel) verursacht. Das spart Ihnen nicht nur Kosten, sondern auch Ärger und schützt die Bausubstanz. Ein regelmäßiger Dach-Check erhöht außerdem die Lebensdauer des Dachs – ähnlich wie der Kundendienst beim Auto. Insgesamt gilt: Ein gewartetes Dach bleibt dichter und sicherer, während mangelnde Wartung oft erst bemerkt wird, wenn bereits ein Schaden aufgetreten ist.",
         },
         {
+          schema: true,
           question:
             "Bieten Sie Wartungsverträge oder jährliche Dachinspektionen an?",
           answer:
@@ -304,6 +325,7 @@ export default function FAQ() {
             "Die Dachrinne ist ein oft unterschätzter Teil des Daches – sie sorgt dafür, dass Regenwasser sicher vom Haus weggeleitet wird. Verstopfte Dachrinnen können daher ernsthafte Schäden verursachen: Läuft das Wasser ständig über, kann es in die Fassade oder sogar ins Fundament eindringen und dort Feuchtigkeitsschäden und Schimmel verursachen. Außerdem können sich in den angesammelten feuchten Laubablagerungen Schädlinge oder Mikroorganismen einnisten, die das Material der Rinne angreifen. Eine regelmäßige Reinigung (vor allem im Herbst, wenn viel Laub fällt) verhindert solche Verstopfungen und stellt sicher, dass das Regenwasser ungehindert abfließen kann – das schützt Ihr Haus vor kostspieligen Wasserschäden.",
         },
         {
+          schema: true,
           question: "Wie oft sollten Dachrinnen gereinigt werden?",
           answer:
             "Bewährt hat sich eine zweimalige Reinigung pro Jahr: einmal im Frühjahr und einmal im Herbst. Im Herbst fällt das meiste Laub an, das sollte vor dem Winter aus der Rinne entfernt werden, damit Regen- und Schmelzwasser ablaufen können. Im Frühjahr empfiehlt sich eine Kontrolle, um eventuellen Schmutz des Winters (Zweige, Moos etc.) zu beseitigen. Mindestens einmal jährlich sollten Sie die Rinnen jedoch in jedem Fall säubern. In waldreichen Umgebungen oder bei sehr vielen Bäumen am Haus kann auch eine zusätzliche Sommer-Reinigung sinnvoll sein. Wichtig ist: Lassen Sie die Rinne nicht jahrelang ungereinigt – die Folgen einer Verstopfung (Wasserüberlauf) können teuer werden.",
@@ -328,6 +350,25 @@ export default function FAQ() {
     },
   ];
 
+  // FAQPage-Schema aus den mit `schema: true` markierten Einträgen erzeugen.
+  // Ausgezeichnet wird damit ausschließlich Text, der auch sichtbar auf der Seite
+  // steht — Schema und Seite können nicht mehr auseinanderlaufen.
+  const faqSchema = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": faqCategories
+      .flatMap((category) => category.questions)
+      .filter((item) => item.schema)
+      .map((item) => ({
+        "@type": "Question",
+        "name": item.question,
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": item.answer.replace(/\s+/g, " ").trim(),
+        },
+      })),
+  };
+
   return (
     <>
       <Helmet>
@@ -348,126 +389,7 @@ export default function FAQ() {
         <meta property="og:image:height" content="630" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:image" content="https://www.rex-bedachung.de/images/dach-hintergrund-rex-bedachung.webp" />
-        <script type="application/ld+json">{`
-          {
-            "@context": "https://schema.org",
-            "@type": "FAQPage",
-            "mainEntity": [
-              {
-                "@type": "Question",
-                "name": "Sind Kostenvoranschläge und Angebote bei Ihnen kostenlos und unverbindlich?",
-                "acceptedAnswer": {
-                  "@type": "Answer",
-                  "text": "Ja – in der Regel ist die Erstellung eines Angebots für Sie kostenlos und erfolgt unverbindlich. Nach einer ausführlichen Begutachtung erhalten Sie von uns ein transparent kalkuliertes Angebot."
-                }
-              },
-              {
-                "@type": "Question",
-                "name": "Gibt es Fördermöglichkeiten oder Zuschüsse für Dachsanierungen?",
-                "acceptedAnswer": {
-                  "@type": "Answer",
-                  "text": "Ja, eine Dachsanierung wird über die Bundesförderung für effiziente Gebäude (BEG) gefördert. Das BAFA bietet Zuschüsse für Einzelmaßnahmen (BEG EM): 15 % Grundförderung auf die förderrelevanten Kosten (max. 30.000 € pro Wohneinheit). Mit individuellem Sanierungsfahrplan (iSFP) steigt die Obergrenze auf 60.000 €; der iSFP-Bonus von 5 Prozentpunkten greift seit 21.07.2026 nur auf den Anteil über 30.000 €, maximal 10.500 € Zuschuss. Alternativ: Sanierung auf Effizienzhaus-Niveau über die KfW mit zinsvergünstigten Krediten. Wichtig: Der Antrag muss vor Beginn der Maßnahme gestellt werden."
-                }
-              },
-              {
-                "@type": "Question",
-                "name": "Was kostet eine neue Dacheindeckung oder Dachsanierung beim Steildach?",
-                "acceptedAnswer": {
-                  "@type": "Answer",
-                  "text": "Den genauen Preis ermitteln wir durch eine Vor-Ort-Besichtigung und einen detaillierten Kostenvoranschlag – kostenloses Angebot auf Anfrage."
-                }
-              },
-              {
-                "@type": "Question",
-                "name": "Wie lange dauert eine Dachsanierung beim Steildach?",
-                "acceptedAnswer": {
-                  "@type": "Answer",
-                  "text": "Bei einem typischen Einfamilienhaus können Sie mit rund 3 bis 4 Wochen Arbeitszeit rechnen, wenn es um eine komplette Neueindeckung inklusive Dämmung geht."
-                }
-              },
-              {
-                "@type": "Question",
-                "name": "Was kostet eine Flachdach-Reparatur oder -Sanierung?",
-                "acceptedAnswer": {
-                  "@type": "Answer",
-                  "text": "Kleine Reparaturen lassen sich oft schon für wenige hundert Euro erledigen, während eine umfangreiche Flachdach-Komplettsanierung je nach Größe höher ausfallen kann. Wir erstellen Ihnen gerne ein maßgeschneidertes Angebot nach einer Vor-Ort-Begutachtung."
-                }
-              },
-              {
-                "@type": "Question",
-                "name": "Wie lange hält ein Flachdach im Durchschnitt?",
-                "acceptedAnswer": {
-                  "@type": "Answer",
-                  "text": "Ein professionell abgedichtetes Flachdach hält je nach verwendeter Abdichtung und Pflege etwa 20 bis 40 Jahre. Durch regelmäßige Wartung und rechtzeitige Reparaturen kann die Lebensdauer deutlich verlängert werden."
-                }
-              },
-              {
-                "@type": "Question",
-                "name": "Bieten Sie auch kurzfristige Reparaturen an?",
-                "acceptedAnswer": {
-                  "@type": "Answer",
-                  "text": "Wir versuchen, bei akuten Schäden so schnell wie möglich zu helfen. In dringenden Fällen finden wir meist eine schnelle Lösung innerhalb unserer Geschäftszeiten."
-                }
-              },
-              {
-                "@type": "Question",
-                "name": "Was kostet der Einbau eines VELUX-Dachfensters?",
-                "acceptedAnswer": {
-                  "@type": "Answer",
-                  "text": "Die Kosten richten sich nach Modell, Größe und Aufwand. Die genauen Kosten ermitteln wir nach kostenlosem Aufmaß vor Ort – kein verbindlicher Preis ohne Besichtigung."
-                }
-              },
-              {
-                "@type": "Question",
-                "name": "Benötigt man eine Baugenehmigung, um ein Dachfenster einzubauen?",
-                "acceptedAnswer": {
-                  "@type": "Answer",
-                  "text": "In den meisten Fällen ist der Einbau einzelner Dachfenster genehmigungsfrei. Allerdings können lokale Bauvorschriften abweichen. Im Zweifel sollte die zuständige Gemeinde kontaktiert werden – Bebauungspläne oder Denkmalschutzauflagen können eine Rolle spielen."
-                }
-              },
-              {
-                "@type": "Question",
-                "name": "Was kostet der Austausch einer Dachrinne mit Fallrohren?",
-                "acceptedAnswer": {
-                  "@type": "Answer",
-                  "text": "Die Kosten hängen vom gewählten Material und der Gebäudelänge ab – Preis nach Aufmaß. Wir erstellen Ihnen ein transparentes Angebot nach Vor-Ort-Besichtigung."
-                }
-              },
-              {
-                "@type": "Question",
-                "name": "Wie oft sollte ein Dach gewartet oder kontrolliert werden?",
-                "acceptedAnswer": {
-                  "@type": "Answer",
-                  "text": "Wir empfehlen, mindestens einmal im Jahr eine Dachinspektion durchführen zu lassen. Flachdächer sollten eher zweimal jährlich geprüft werden – idealerweise im Frühjahr und Herbst. Nach schweren Stürmen ist ebenfalls eine Kontrolle ratsam."
-                }
-              },
-              {
-                "@type": "Question",
-                "name": "Bieten Sie Wartungsverträge oder jährliche Dachinspektionen an?",
-                "acceptedAnswer": {
-                  "@type": "Answer",
-                  "text": "Ja. Wir bieten unseren Kunden einen Wartungsvertrag an – wir kommen automatisch in den vereinbarten Intervallen (z.B. jährlich oder halbjährlich) vorbei, kontrollieren und reinigen Ihr Dach und führen kleinere Reparaturen direkt durch."
-                }
-              },
-              {
-                "@type": "Question",
-                "name": "Was ist Flüssigkunststoff und wofür wird er am Dach eingesetzt?",
-                "acceptedAnswer": {
-                  "@type": "Answer",
-                  "text": "Flüssigkunststoff ist ein hochentwickeltes flüssiges Abdichtungsharz, das zur nahtlosen Dachabdichtung verwendet wird. Er wird direkt auf die bestehende Dachfläche aufgetragen und härtet zu einer durchgehenden, elastischen Membran aus – ideal für Flachdächer und komplizierte Anschlüsse."
-                }
-              },
-              {
-                "@type": "Question",
-                "name": "Wie oft sollten Dachrinnen gereinigt werden?",
-                "acceptedAnswer": {
-                  "@type": "Answer",
-                  "text": "Bewährt hat sich eine zweimalige Reinigung pro Jahr: einmal im Frühjahr und einmal im Herbst. Mindestens einmal jährlich sollten Dachrinnen in jedem Fall gesäubert werden, um Verstopfungen und Wasserschäden zu vermeiden."
-                }
-              }
-            ]
-          }
-        `}</script>
+        <script type="application/ld+json">{JSON.stringify(faqSchema)}</script>
         <script type="application/ld+json">{JSON.stringify({
           "@context": "https://schema.org",
           "@type": "BreadcrumbList",

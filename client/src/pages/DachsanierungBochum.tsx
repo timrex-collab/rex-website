@@ -302,48 +302,11 @@ export default function DachsanierungBochum() {
             {
               "@type": "FAQPage",
               "@id": "https://www.rex-bedachung.de/dachsanierung-bochum#faq",
-              "mainEntity": [
-                {
-                  "@type": "Question",
-                  "name": "Was kostet eine Dachsanierung in Bochum?",
-                  "acceptedAnswer": { "@type": "Answer", "text": "Der Preis hängt von Dachtyp, Dachfläche, Dämmstandard, Eindeckungsmaterial, Dachfenstern, Gerüst, Entsorgung und Logistik ab. Eine seriöse Einschätzung ist erst nach Vor-Ort-Aufmaß möglich. Rex Bedachungs GmbH erstellt ein transparentes Angebot mit vollständiger Leistungsaufstellung. Über BAFA (BEG EM) sind 15 % Zuschuss auf die förderrelevanten Kosten möglich; mit individuellem Sanierungsfahrplan bis zu 10.500 € pro Wohneinheit und Jahr." }
-                },
-                {
-                  "@type": "Question",
-                  "name": "Wie lange dauert eine Dachsanierung?",
-                  "acceptedAnswer": { "@type": "Answer", "text": "Die reine Bauzeit bei einem Einfamilienhaus in Bochum beträgt 2–4 Wochen. Dazu kommen 6–8 Wochen für den BAFA-Bewilligungsprozess. Von der Erstberatung bis zur Auszahlung des Zuschusses vergehen insgesamt 4–8 Monate." }
-                },
-                {
-                  "@type": "Question",
-                  "name": "Wird eine Dachsanierung staatlich gefördert?",
-                  "acceptedAnswer": { "@type": "Answer", "text": "Ja. Über BAFA (BEG EM) erhalten Sie 15 % Zuschuss auf alle förderrelevanten Kosten. Mit individuellem Sanierungsfahrplan (iSFP) steigt die Kostenobergrenze auf 60.000 € pro Wohneinheit; der iSFP-Bonus von 5 Prozentpunkten greift seit 21.07.2026 nur auf den Anteil über 30.000 €, maximal 10.500 € Zuschuss. Zusätzlich ist der KfW-Ergänzungskredit 358/359 bis 120.000 € kombinierbar." }
-                },
-                {
-                  "@type": "Question",
-                  "name": "Wann lohnt sich eine Dachsanierung statt einer Reparatur?",
-                  "acceptedAnswer": { "@type": "Answer", "text": "Eine Sanierung ist sinnvoll wenn: die Eindeckung über 25–30 Jahre alt ist, wiederkehrende Schäden auftreten, mehrere Bauteile betroffen sind, energetische Mängel bestehen oder die Dämmung fehlt bzw. unzureichend ist. Bei lokalen Einzelschäden an einem sonst intakten Dach ist eine Reparatur wirtschaftlicher." }
-                },
-                {
-                  "@type": "Question",
-                  "name": "Muss die Neueindeckung bei einer geförderten Dachsanierung mitbezahlt werden?",
-                  "acceptedAnswer": { "@type": "Answer", "text": "Nein – die Neueindeckung ist als Umfeldmaßnahme vollständig förderfähig, wenn sie im Zusammenhang mit einer energetischen Dämmmaßnahme steht. Bei Aufsparrendämmung ist die Neueindeckung zwingend notwendig und wird automatisch mitgefördert." }
-                },
-                {
-                  "@type": "Question",
-                  "name": "Welchen U-Wert muss die Dachdämmung für die Förderung erreichen?",
-                  "acceptedAnswer": { "@type": "Answer", "text": "Die BEG EM verlangt einen U-Wert von maximal 0,14 W/(m²·K) für Steildächer und Flachdächer. Das liegt deutlich unter der gesetzlichen Anforderung (0,24 bzw. 0,20 W/(m²·K)). Für Gauben gilt U ≤ 0,20 W/(m²·K). Wer nur auf gesetzlichem Mindestniveau dämmt, verliert den Förderanspruch für diese Maßnahme." }
-                },
-                {
-                  "@type": "Question",
-                  "name": "Kann Rex Bedachungs GmbH auch nur eine Dachseite sanieren?",
-                  "acceptedAnswer": { "@type": "Answer", "text": "Ja. Auch Teilsanierungen – zum Beispiel nur die Wetterseite – sind technisch und fördertechnisch möglich, solange die BEG-Mindestanforderungen am sanierten Bauteil eingehalten werden. Rex Bedachungs GmbH berät vor Ort, ob eine Teil- oder Komplettsanierung wirtschaftlicher ist." }
-                },
-                {
-                  "@type": "Question",
-                  "name": "Gilt die Solarpflicht NRW bei einer Dachsanierung?",
-                  "acceptedAnswer": { "@type": "Answer", "text": "Ja. Seit 01.01.2026 gilt in NRW bei grundlegender Dacherneuerung ab 50 m² Dachfläche die Solardachpflicht: Mindestens 30% der geeigneten Dachfläche müssen mit Photovoltaik belegt werden. Rex Bedachungs GmbH berücksichtigt diese Pflicht in der Projektplanung." }
-                }
-              ]
+              "mainEntity": faqItems.map((item) => ({
+                "@type": "Question",
+                "name": item.question,
+                "acceptedAnswer": { "@type": "Answer", "text": item.answer },
+              }))
             }
           ]
         })}</script>
