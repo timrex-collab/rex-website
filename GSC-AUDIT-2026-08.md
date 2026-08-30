@@ -444,3 +444,53 @@ Bruttokosten", „förderfähige Obergrenze" und die Überschrift „Nicht förd
 der amtliche Begriff der BEG-Richtlinie für die anrechenbare Kostenbasis — ihn zu ersetzen
 wäre sachlich falsch. Die Regel zielt auf Aussagen über *unsere Leistungen*, nicht auf das
 Zitat der Rechtsgrundlage.
+
+---
+
+### 8.3 Umsetzung am 30.08.2026 (PR #61) — und zwei Korrekturen an §8.1/§8.2
+
+**Live seit 30.08.2026 14:51 UTC** (Netlify `6a944355…`, `commit_ref 60550bf`, IndexNow-Run
+#32 HTTP 200). Umgesetzt wurden: `FAQ.tsx` mit `schema`-Flag im `faqCategories`-Array,
+`DachsanierungBochum` und `VeluxAustausch` mit `mainEntity` aus `faqItems`, sowie die vier
+Terminologie-Stellen aus §8.2.
+
+> **Korrektur 1 zu §8.1 — es war nicht eine Seite, sondern acht.** Die Aussage „`FAQ.tsx`
+> ist die letzte Seite mit hartcodiertem `FAQPage`-Schema" ist falsch. Nachgemessen auf
+> `f84eb5e` mit dem Kriterium „mehr als ein Literal `"@type": "Question"` je Datei"
+> (ein per `.map()` erzeugtes Schema enthält es genau einmal):
+>
+> | Seite | Einträge | Frage nicht auf der Seite | Antwort wortgleich |
+> |---|---:|---:|---:|
+> | `FAQ.tsx` | 14 | 1 | 0 |
+> | `DachsanierungBochum` | 8 | 3 | 1 |
+> | `VeluxAustausch` | 3 | 2 | 0 |
+> | `DachPhotovoltaikBochum` | 6 | 0 | 0 |
+> | `VeluxRolllaeden` | 5 | 0 | 2 |
+> | `Dachreparatur` | 5 | 0 | 0 |
+> | `BauklempnereiBochum` | 5 | 0 | 0 |
+> | `BitumenVsPvc` | 3 | 0 | 0 |
+>
+> Warum das Prüfskript im August danebenlag, ist dieselbe Ursache wie bei der schon in
+> §8.1 protokollierten Fehlmessung: Es testete auf den Literalnamen `faqItems.map` statt
+> auf die Struktur. Seiten, die ihr Schema hartcodiert **und** daneben ein `faqItems`-Array
+> für die Anzeige führen, fielen deshalb durch das Raster.
+>
+> **Folgepaket (offen):** Die fünf Seiten mit weichen Verstößen — `DachPhotovoltaikBochum`,
+> `VeluxRolllaeden`, `Dachreparatur`, `BauklempnereiBochum`, `BitumenVsPvc`. Dieselbe
+> Umstellung auf `faqItems.map()`, 5 Dateien, Stufe B, ein eigener Deploy.
+
+> **Korrektur 2 zu §8.2 — es waren fünf Stellen, nicht vier.** Die Liste oben ist
+> unvollständig: `DachsanierungBochum.tsx` sagt in der FAQ-Antwort „Bei Aufsparrendämmung
+> ist die Neueindeckung zwingend notwendig und damit **automatisch förderfähig**" — eine
+> Aussage über eine Leistung, also derselbe Verstoß gegen §6. Sie stand nicht in der
+> Audit-Liste und ist deshalb in PR #61 **nicht** mitkorrigiert worden; die Behauptung im
+> PR-Text, es blieben null solche Stellen, war falsch und ist dort richtiggestellt.
+> Durch die Schema-Umstellung steht der Satz seit diesem Deploy auch im JSON-LD (vorher
+> stand dort die Variante „vollständig förderfähig" — live war er also ohnehin).
+> **Gehört ins Folgepaket**, zusammen mit den fünf Seiten oben.
+
+**Damit ist §8 abgeschlossen**, mit dem benannten Folgepaket als Rest. Ebenfalls offen und
+bewusst nicht in PR #61: die Schreibweise „Velux" statt **VELUX** im Fließtext und in den
+FAQ-Fragen von `VeluxAustausch` — durch die Schema-Umstellung wandert sie jetzt ins
+JSON-LD. GSC-Meta-3 hatte die Marke nur in Titles und Descriptions vereinheitlicht. Das ist
+Content-Arbeit, kein Hygiene-Fix.
