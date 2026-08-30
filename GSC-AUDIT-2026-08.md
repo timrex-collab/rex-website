@@ -286,7 +286,7 @@ Bei striktem 48-h-Gate rund zwei Wochen. Sortiert nach Aufwand-zu-Wirkung.
 | 1 | **GSC-Meta-1** — Meta-Offensive I, 10 Impressions-Riesen | A | 11 | **hoch** (~28.000 der 37.000 Impr.) | ✅ live (PR #44, 11.08.) |
 | 3 | **FAQPage-Schema `/solarpflicht`** aus den vorhandenen Abschnitten | B | 1 | **hoch** (31 % aller Impr.) | ✅ live (PR #47, 16.08. — als GSC-Schema-1) |
 | 2 | **GSC-Meta-2** — Meta-Offensive II, 10 Seiten mit 0–wenig Klicks auf Seite 1 | A | 11 | hoch, geringer Aufwand | ✅ live (PR #55, 24.08.) |
-| 2b | **GSC-Meta-3** — die letzten 5 Seiten mit Meta-Überlängen; danach liegt keine Seite mehr über 60/155 | A | 5 | mittel | 🔄 PR #56, Merge ab **28.08. ~14:46 UTC** |
+| 2b | **GSC-Meta-3** — die letzten 5 Seiten mit Meta-Überlängen; danach liegt keine Seite mehr über 60/155 | A | 5 | mittel | ✅ live (PR #56, 28.08. — repoweit 0 Überlängen, nachgemessen auf `db0dbdf`) |
 | 4 | ~~Neue Route `/dachreinigung-bochum`~~ | — | — | — | ❌ **gestrichen 18.08.2026** — Leistung wird nicht angeboten |
 | 4a | **Flachdachreinigung im Wartungsumfang sichtbar machen** — Gullys/Einlaeufe, Rand- und Eckbereiche auf `/dachwartung-bochum` und `/flachdach-bochum`; dazu eine ehrliche Abgrenzungs-FAQ („Bieten Sie Dachreinigung/Algenentfernung an?" → nein, wir reinigen Dachrinnen und Flachdach-Entwaesserung im Rahmen der Wartung) | B | 2–3 | mittel — deckt eine real angebotene Leistung ab, die auf der Site **0×** vorkommt | ✅ live (PR #49, 20.08. — Gullys/Einläufe, Rand- und Eckbereiche, Abgrenzungs-FAQ) |
 | 5 | **Dachrinnenreinigung entflechten** — Content von `/dachwartung-bochum` nach `/dachrinne-bochum` | B | 2 | mittel–hoch | ✅ live (PR #52, 22.08. — Verhältnis 7:1 → 2:11) |
@@ -308,11 +308,17 @@ Bei striktem 48-h-Gate rund zwei Wochen. Sortiert nach Aufwand-zu-Wirkung.
 > Luecke: kein 892-Impressionen-Hebel, aber ehrlich, belegbar und fuer Hausverwaltungen
 > (der erklaerte Wartungs-Schwerpunkt) unmittelbar relevant.
 
-> **Nachtrag 26.08.2026 — Paket 6 live, Backlog abgearbeitet.** Mit PR #58 ist das letzte
-> offene Paket dieses Abschnitts gemergt; von den ursprünglich sechs Positionen sind alle
-> erledigt oder bewusst gestrichen (Paket 4). Offen aus dem Audit bleiben damit nur noch
-> **GSC-Meta-3** (PR #56, Fenster ab 28.08.) und die **Schema-/Terminologie-Hygiene** aus
-> Abschnitt 8.
+> **Nachtrag 28.08.2026 — Backlog vollständig abgearbeitet.** Mit PR #56 (GSC-Meta-3,
+> gemergt 28.08. 14:49 UTC) ist die letzte offene Position dieses Abschnitts live. Alle
+> Pakete sind erledigt oder bewusst gestrichen (Paket 4). Offen aus dem Audit bleibt nur
+> noch die **Schema- und Terminologie-Hygiene** aus Abschnitt 8 — nächstes Fenster ab
+> **30.08.2026 ~14:49 UTC**.
+> **Gegenprobe auf `db0dbdf`:** über alle 35 Titles und 34 Descriptions im Repo liegt keine
+> über 60 bzw. 155 Zeichen; die fünf geänderten Seiten treffen die Zahlen aus PR #56 exakt
+> (T46/D148 · T47/D151 · T48/D144 · T49/D147 · T49/D149).
+>
+> **Nachtrag 26.08.2026 — Paket 6 live.** Mit PR #58 war das vorletzte offene Paket dieses
+> Abschnitts gemergt.
 >
 > **Korrektur an der Messung in Abschnitt 5.** Die Link-Zahlen der Tabelle oben
 > („Interne Verlinkung — unterverlinkte Money-Pages") stammen aus GSC und aus einer ersten
@@ -380,8 +386,8 @@ Ausdrücklich offen — hier wurde nichts geraten:
 3. ~~Paket 5 (Dachrinnenreinigung entflechten)~~ ✅ 22.08.2026 · ~~Paket 4a
    (Flachdachreinigung im Wartungsumfang)~~ ✅ 20.08.2026.
 4. ~~Paket 2 (GSC-Meta-2)~~ ✅ 24.08.2026 · ~~Paket 6 (interne Verlinkung)~~ ✅ 26.08.2026
-   (PR #58). Offen bleiben **GSC-Meta-3** (PR #56, Merge ab **28.08. ~14:46 UTC**) und die
-   **Schema- und Terminologie-Hygiene** aus Abschnitt 8 — je 48 h auseinander.
+   (PR #58) · ~~GSC-Meta-3~~ ✅ 28.08.2026 (PR #56). Offen bleibt nur noch die **Schema- und
+   Terminologie-Hygiene** aus Abschnitt 8 — Fenster ab **30.08.2026 ~14:49 UTC**.
 5. GSC ab ~08.09.2026 (4 Wochen nach GSC-Meta-1) erneut auswerten und die CTR-Entwicklung
    der 10 Seiten aus GSC-Meta-1 gegen die Baseline in Abschnitt 4 halten.
 
