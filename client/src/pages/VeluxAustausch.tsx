@@ -174,32 +174,11 @@ const howToSchema = JSON.stringify({
 const faqSchema = JSON.stringify({
   "@context": "https://schema.org",
   "@type": "FAQPage",
-  "mainEntity": [
-    {
-      "@type": "Question",
-      "name": "Was kostet der Austausch eines Velux Dachfensters in Bochum?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Rex Bedachungs GmbH führt Velux Dachfenster-Austausch in Bochum ab 1.000 € inkl. Lieferung und Einbau durch. Nach kostenlosem Aufmaß erhalten Sie ein transparentes Angebot.",
-      },
-    },
-    {
-      "@type": "Question",
-      "name": "Wie lange dauert ein Velux Dachfensteraustausch?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Ein Standard-Austausch dauert in der Regel einen halben bis ganzen Arbeitstag. Bei Zusatzarbeiten 1–2 weitere Tage.",
-      },
-    },
-    {
-      "@type": "Question",
-      "name": "Welches Velux Modell ist das richtige für mein Dach?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "GGL für trockene Wohnräume, GGU für Feuchträume, GPU bei niedrigem Kniestock, Integra für elektrischen Komfort. Rex Bedachungs GmbH berät kostenlos vor Ort in Bochum.",
-      },
-    },
-  ],
+  "mainEntity": faqItems.map((item) => ({
+    "@type": "Question",
+    "name": item.question,
+    "acceptedAnswer": { "@type": "Answer", "text": item.answer },
+  })),
 });
 
 const serviceSchema = JSON.stringify({

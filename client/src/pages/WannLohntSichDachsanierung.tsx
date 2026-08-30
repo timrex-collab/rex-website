@@ -358,7 +358,7 @@ export default function WannLohntSichDachsanierung() {
               Förderhebel 2026: Wann die Sanierung wirtschaftlich attraktiver wird
             </h3>
             <p className="text-slate-700 leading-relaxed">
-              Eine Dachsanierung mit Dämmung kann über die BEG EM förderfähig sein. Für Maßnahmen an der Gebäudehülle liegt der
+              Eine Dachsanierung mit Dämmung kann über die BEG EM förderrelevant sein. Für Maßnahmen an der Gebäudehülle liegt der
               Basiszuschuss bei 15 Prozent. Mit individuellem Sanierungsfahrplan sind zusätzlich 5 Prozentpunkte möglich.
               Dadurch steigt auch die förderfähige Obergrenze pro Wohneinheit. Fachplanung und Baubegleitung werden separat
               betrachtet. Entscheidend sind Dämmstandard, technischer Zustand und Antragstellung vor Maßnahmenbeginn.

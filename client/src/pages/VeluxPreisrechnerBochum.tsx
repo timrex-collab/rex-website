@@ -11,7 +11,7 @@ const faqData = [
     a: "Die Gesamtkosten hängen von Fenstertyp, Größe, Verglasung und Zubehör ab. Ein Kunststoff-Schwingfenster (GGU) in Standardgröße MK08 mit ENERGIE-Verglasung, Eindeckrahmen und Einbau beginnt ab ca. 1.800 € netto. Klapp-Schwingfenster (GPU/GPL) liegen höher. Nutzen Sie unseren Preisrechner oben für eine individuelle Kostenschätzung."
   },
   {
-    q: "Welche VELUX Verglasung ist förderfähig über die BAFA?",
+    q: "Welche VELUX Verglasung ist förderrelevant über die BAFA?",
     a: "Nur Verglasungen mit einem Uw-Wert von maximal 1,0 W/m²K sind über die BAFA (BEG Einzelmaßnahme) förderrelevant. Bei VELUX erfüllen das die Verglasungsstufen ENERGIE -84 (Uw 1,0) und ENERGIE PLUS -66 (Uw 1,0). Beide erreichen Uw 1,0; ENERGIE PLUS bietet zusätzlich besseren sommerlichen Hitzeschutz (g-Wert 0,44 statt 0,46). Die Standardverglasung THERMO -70 (Uw 1,3) ist nicht förderrelevant."
   },
   {
@@ -268,7 +268,7 @@ export default function VeluxPreisrechnerBochum() {
 
           {/* Verglasung und Förderung */}
           <section>
-            <h2 className="text-xl font-bold text-slate-900 mb-4">Welche Verglasung ist förderfähig?</h2>
+            <h2 className="text-xl font-bold text-slate-900 mb-4">Welche Verglasung ist förderrelevant?</h2>
             <p className="text-slate-700 leading-relaxed mb-3">
               Im Preisrechner stehen drei Verglasungsstufen zur Wahl: THERMO -70 (Uw 1,3 W/m²K), ENERGIE -84 (Uw 1,0 W/m²K) und ENERGIE PLUS -66 (Uw 1,0 W/m²K). ENERGIE und ENERGIE PLUS erreichen denselben Uw-Wert; ENERGIE PLUS verbessert zusätzlich den sommerlichen Hitzeschutz (g-Wert 0,44 gegenüber 0,46). Für die BEG-Förderung ist ein Uw-Wert von maximal 1,0 W/m²K vorgeschrieben — das bedeutet: ENERGIE und ENERGIE PLUS sind förderrelevant, THERMO nicht. Die THERMO-Verglasung erfüllt zwar die gesetzliche Mindestanforderung, nicht aber die strengere BEG-Vorgabe.
             </p>
