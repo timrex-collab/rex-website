@@ -352,6 +352,16 @@ Paket 6 · GSC-Meta-3 · Schema-/Terminologie-Hygiene.
 > (Repo-Fix 29.06. = reines Housekeeping, nicht gate-relevant). Nächstes
 > funktionales Fenster frühestens ~01.07. ~13:02 UTC. Wirkung in GSC/Bing beobachten.
 
+> **Post-Deploy-Schritt (Prerender-Check) — automatisiert seit 31.08.2026:** Die GitHub
+> Action `.github/workflows/prerender-check.yml` prüft nach jedem Merge auf `main` (reine
+> Doku-Merges ausgenommen) und zusätzlich am 1. jedes Monats, ob die sechs Kern-URLs aus
+> `PRERENDER-CHECK.md` §1 einem Googlebot-User-Agent gerendertes HTML liefern. Sie wartet auf
+> den Netlify-Deploy und versucht es bis zu dreimal, bevor sie rot wird. Damit läuft die
+> Routine aus §1 ohne Handarbeit; der manuelle Lauf (`npm run prerender:check`) bleibt als
+> Fallback. **Wird die Action rot, gilt die Eskalation nach `PRERENDER-CHECK.md` §5** — und
+> die ist seit dem Befund vom 31.08.2026 dringlich: Fällt der Prerender aus, sieht Google
+> keine schwächere Seite, sondern eine leere (`PRERENDER-CHECK.md` §9).
+
 > **Post-Deploy-Schritt (IndexNow) — automatisiert seit 07/2026:** Die GitHub
 > Action `.github/workflows/indexnow.yml` läuft bei jedem Push/Merge auf `main`
 > und meldet die 30 indexierbaren Sitemap-URLs via `scripts/indexnow-submit.mjs`

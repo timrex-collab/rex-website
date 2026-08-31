@@ -10,6 +10,14 @@ Check macht einen Ausfall in 5 Minuten sichtbar.
 **Kadenz:** einmal pro **Monat** + einmal **ad hoc nach jedem funktionalen Deploy**
 (neue/geänderte Routen werden erst durch Prerender crawlbar).
 
+> **Automatisiert seit 31.08.2026:** Die GitHub Action
+> [`.github/workflows/prerender-check.yml`](../.github/workflows/prerender-check.yml) fährt
+> genau diese Kadenz von selbst — bei jedem Merge auf `main` (reine Doku-Merges ausgenommen)
+> und am 1. jedes Monats. Sie prüft zuerst offline die Soll-Titles gegen den Quelltext, wartet
+> dann auf den Netlify-Deploy und lässt `scripts/prerender-check.mjs` bis zu dreimal laufen,
+> bevor sie rot wird. Ein manueller Lauf bleibt jederzeit möglich — „Run workflow" in der
+> Actions-UI oder lokal `npm run prerender:check`; die Anleitung dafür steht in §7.
+
 > Der Live-HTML-Check läuft **im Browser bei Tim** — die Claude-Umgebung ist netz­gesperrt
 > (`DEPLOY-RULES.md` §3). Claude liefert nur diese Checkliste + die Soll-Werte.
 
