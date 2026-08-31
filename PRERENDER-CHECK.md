@@ -51,17 +51,43 @@ Prerender **FEHLGESCHLAGEN** (roher SPA-Shell), wenn **eines** zutrifft:
 
 ---
 
-## 3. Prüfmethoden (eine reicht; Methode 1 ist am autoritativsten für Google)
+## 3. Prüfmethoden (den Prerender belegen nur Methode 3 und 4)
 
-**Methode 1 — Google Search Console (empfohlen):**
+> **⚠ Korrigiert 31.08.2026 — die frühere Reihung war falsch.** Hier stand bis dahin,
+> Methode 1 sei „am autoritativsten für Google". Das gilt für die Frage, ob Google eine
+> Seite **indexieren** kann — nicht für die Frage, die dieses Dokument stellt.
+> GSC-URL-Prüfung und Rich Results Test zeigen das **gerenderte** HTML, also den DOM
+> **nach** JavaScript-Ausführung. Sie können deshalb gar nicht unterscheiden, ob Title und
+> JSON-LD aus der Prerender-Extension kamen oder ob Googles eigener Renderer die SPA
+> ausgeführt hat — beide Werkzeuge zeigten auch bei **abgeschalteter** Extension ein grünes
+> Ergebnis. **Den Prerender belegt allein die rohe Serverantwort:** Methode 3 (Reiter
+> *Response*), Methode 4 und `npm run prerender:check`.
+
+**Methode 1 — Google Search Console (belegt Indexierbarkeit, *nicht* den Prerender):**
 GSC → *URL-Prüfung* (Property `https://www.rex-bedachung.de/`) → URL eingeben →
-*Live-URL testen* → *Gecrawlte Seite ansehen* → Tab **HTML**. Dort muss der route-spezifische
-Title **und** JSON-LD stehen. Das ist exakt, was Googlebot empfängt.
+*Live-URL testen* → *Gecrawlte Seite ansehen* → Tab **HTML**. Stehen dort route-spezifischer
+Title und JSON-LD, ist belegt: Google **kann** die Seite so erfassen. Ob das über die
+Extension lief oder über Googles eigene JS-Ausführung, sagt der Test nicht. Als
+Pass/Fail-Test nach §2 damit ungeeignet, als Indexierungs-Kontrolle weiterhin nützlich.
 
-**Methode 2 — Rich Results Test (schnellster JSON-LD-Check):**
+> **Umgekehrt gilt: eine leere Shell in GSC ist *kein* Prerender-Ausfall.** GSC-URL-Prüfung
+> und Rich Results Test crawlen mit dem User-Agent `Google-InspectionTool`, nicht mit
+> `Googlebot`. Die Netlify-Prerender-Extension hat **keine editierbare Bot-Liste** (geprüft
+> am 31.08.2026: die Extension bietet als einzigen UA-Schalter „Skip user-agents supporting
+> JavaScript" — eine Ausschluss-, keine Einschlussliste; die Bot-Erkennung steckt fest in
+> der Edge-Function und ist auch über die Netlify-API nicht konfigurierbar). Steht
+> `Google-InspectionTool` dort nicht drauf, bekommen genau diese beiden Werkzeuge die
+> Shell — der indexierende Googlebot aber trotzdem gerendertes HTML.
+> **Ein solcher Befund löst keine Eskalation nach §5 aus.** Maßgeblich ist `npm run
+> prerender:check`. Ob der UA auf der Liste steht, klärt ein Aufruf nach Methode 4 mit dem
+> `Google-InspectionTool`-UA — reine Information, ohne Handlungsbedarf in beide Richtungen.
+
+**Methode 2 — Rich Results Test (JSON-LD-Syntaxcheck, *kein* Prerender-Nachweis):**
 `search.google.com/test/rich-results` → URL testen. Werden Typen wie *LocalBusiness/
-RoofingContractor, Service, Article, FAQPage, BreadcrumbList* erkannt → JSON-LD kommt als
-Googlebot an. „Keine Elemente" → Prerender-Verdacht.
+RoofingContractor, Service, Article, FAQPage, BreadcrumbList* erkannt, ist das JSON-LD für
+Google verwertbar. Das Werkzeug rendert JavaScript und nutzt denselben
+`Google-InspectionTool`-UA wie Methode 1 — es trennt Prerender und Client-Rendering nicht.
+„Keine Elemente" ist ein Schema-Verdacht, kein Prerender-Verdacht.
 
 **Methode 3 — Chrome DevTools mit Bot-User-Agent (voller Check, auch KI-Bots):**
 DevTools (F12) → *⋮* → *More tools* → *Network conditions* → *User agent* → Haken bei
@@ -70,8 +96,13 @@ Dokument-Anfrage anklicken → Tab **Response** (= rohes Server-HTML) → mit St
 `<title>`, `description`, `<h1>`, `ld+json` prüfen.
 - Googlebot: `Mozilla/5.0 (compatible; Googlebot/2.1; +http://www.google.com/bot.html)`
 - GPTBot: `Mozilla/5.0 AppleWebKit/537.36 (KHTML, like Gecko; compatible; GPTBot/1.1; +https://openai.com/gptbot)`
+- Google-InspectionTool (nur zur Diagnose, s. o.): `Mozilla/5.0 (compatible; Google-InspectionTool/1.0)`
 
-**Methode 4 — lokal per curl** (auf **Tims** Rechner, **nicht** in der Claude-Umgebung):
+> **Nur der Reiter *Response* zählt.** Der Reiter *Elements* zeigt den DOM nach
+> JavaScript-Ausführung und beweist — wie Methode 1 — nichts über den Prerender.
+
+**Methode 4 — lokal per curl (der maßgebliche Test)** — auf **Tims** Rechner, **nicht** in
+der Claude-Umgebung:
 ```bash
 curl -sA "Mozilla/5.0 (compatible; Googlebot/2.1; +http://www.google.com/bot.html)" \
   https://www.rex-bedachung.de/flachdach-bochum | grep -iE "<title>|ld\+json|<h1"
@@ -118,10 +149,19 @@ Erwartung: route-spezifischer Title **und** `application/ld+json` erscheinen.
 
 ## 5. Wenn der Check fehlschlägt (Eskalation)
 
+> **Vorher abgrenzen (Zusatz 31.08.2026):** Diese Eskalation gilt für einen Fehlschlag in
+> der **rohen Serverantwort** — `npm run prerender:check`, Methode 3 (*Response*) oder
+> Methode 4. Eine leere Shell in der GSC-URL-Prüfung oder im Rich Results Test ist **kein**
+> Auslöser: beide crawlen mit `Google-InspectionTool` und rendern JavaScript (§3). Erst das
+> Skript entscheidet.
+
 Prerender liegt **nicht im Repo/`netlify.toml`**, sondern im Netlify-Dashboard → Fix passiert dort:
 
 1. **Netlify-Dashboard** → Site `leafy-sprite-bbbfd6` → *Extensions/Integrations* → **Prerender** →
-   Status prüfen (aktiv? Fehler?).
+   Status prüfen (aktiv? Fehler?). Dort muss **„Enable prerendering" an** und **„Skip
+   user-agents supporting JavaScript" aus** sein — der zweite Haken nimmt Googlebot,
+   Bingbot und Amazonbot ausdrücklich vom Prerendering aus und würde §2 site-weit
+   fehlschlagen lassen. Eine Bot-Liste zum Ergänzen bietet die Extension nicht.
 2. **Netlify-Connector `get-deploy`** → letzter Deploy `state: ready`, `plugin_state: success`,
    Prerender-Function vorhanden.
 3. Letzten Deploy **erneut ausführen** (Retry) und erneut prüfen.
@@ -307,8 +347,9 @@ Pass-Kriterien aus §2. Ausgabe pro Zeile `PASS`/`FAIL`, am Ende eine Zusammenfa
 Exit-Code 1, wenn etwas fehlschlägt. `--verbose` zeigt zusätzlich die gefundenen Werte.
 
 Das ist **Methode 4** in automatisiert: Es belegt, dass der Server einem Googlebot-UA
-gerendertes HTML ausliefert. Ob Google es auch annimmt, zeigt zusätzlich Methode 1 — einmal
-zur Bestätigung sinnvoll, danach reicht das Skript nach jedem Deploy.
+gerendertes HTML ausliefert — und ist damit der **einzige** Test, der den Prerender von
+Googles eigener JS-Ausführung trennt (§3). Er genügt allein nach jedem Deploy. Methode 1
+beantwortet eine andere Frage (kann Google die Seite indexieren) und ersetzt ihn nicht.
 
 `npm run prerender:check -- --self-test` prüft ohne Netz, ob die Erkennungslogik stimmt und
 ob die Soll-Titles im Skript noch zum Quelltext passen. Letzteres verhindert genau die
@@ -316,19 +357,20 @@ Fehlalarme, vor denen §4 warnt.
 
 ---
 
-### Manuell (Methode 1 — die autoritativste)
+### Manuell (Methode 3 — wenn das Skript nicht läuft)
 
-1. Google Search Console öffnen → Property `https://www.rex-bedachung.de/`
-2. Oben in die **URL-Prüfung** die erste URL einfügen → Enter
-3. Rechts **„Live-Test"** klicken → warten
-4. **„Gecrawlte Seite ansehen"** → Reiter **„HTML"**
-5. Mit `Strg+F` im HTML nach den drei Prüfwerten unten suchen
-6. Ergebnis in die Tabelle eintragen, nächste URL
+Chrome DevTools → `Strg+Shift+P` → „Show Network conditions" → User agent auf **Googlebot**
+stellen → Seite neu laden → im *Network*-Tab die Dokument-Anfrage anklicken → Reiter
+**Response** → mit `Strg+F` die drei Prüfwerte unten suchen → Ergebnis eintragen, nächste URL.
 
-> **Alternative ohne GSC (Methode 3):** Chrome DevTools → `Strg+Shift+P` →
-> „Show Network conditions" → User agent auf **Googlebot** stellen → Seite neu laden →
-> Reiter „Elements" durchsuchen. Schneller, aber weniger autoritativ: es zeigt, was der
-> Server einem Bot-User-Agent liefert, nicht zwingend was Google gespeichert hat.
+> **Reiter *Response*, nicht *Elements*.** Nur die rohe Serverantwort trennt Prerender von
+> Client-Rendering. Der frühere Text an dieser Stelle empfahl den *Elements*-Reiter und die
+> GSC-URL-Prüfung als „die autoritativste" Methode — beides zeigt den gerenderten DOM und
+> hätte auch bei abgeschalteter Extension bestanden (korrigiert 31.08.2026, s. §3).
+
+> **Ergänzend, nicht als Ersatz (Methode 1):** GSC → *URL-Prüfung* → „Live-Test" →
+> „Gecrawlte Seite ansehen" → Reiter „HTML". Das belegt, dass Google die Seite so erfassen
+> kann — nicht, dass der Prerender läuft.
 
 ### Prüfwerte je URL
 
@@ -430,9 +472,15 @@ durchgängig belegt, nicht nur angenommen.
 ### Was das *nicht* beantwortet
 
 Der Test zeigt, was der **Server** einem Googlebot-User-Agent liefert. Ob Google die Seiten
-auch tatsächlich so **indexiert**, zeigt nur die GSC-URL-Prüfung (Methode 1). Das ist der
-verbleibende Restzweifel — er ist deutlich kleiner als der vorherige, aber nicht null.
-Ein einmaliger GSC-Live-Test auf einer beliebigen Unterseite würde ihn schließen.
+auch tatsächlich so **indexiert**, zeigt er nicht — das ist der verbleibende Restzweifel,
+deutlich kleiner als der vorherige, aber nicht null. Ihn schließt die
+GSC-Indexierungsabdeckung bzw. ein GSC-Live-Test auf einer beliebigen Unterseite.
+
+> **Korrektur 31.08.2026:** Hier stand, die GSC-URL-Prüfung sei dafür „Methode 1" im Sinne
+> des besseren Tests. Sie beantwortet eine **andere** Frage als §2: Sie rendert JavaScript
+> und kann Prerender und Client-Rendering nicht trennen (§3). Der Prerender-Nachweis oben
+> ist damit nicht schwächer als ein GSC-Test — er ist der einzige, der die Frage überhaupt
+> beantwortet. Ein GSC-Live-Test bleibt sinnvoll, aber für die Indexierungsfrage.
 
 ### Kadenz ab jetzt
 
