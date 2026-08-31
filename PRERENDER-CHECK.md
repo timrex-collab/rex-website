@@ -189,6 +189,11 @@ Prerender liegt **nicht im Repo/`netlify.toml`**, sondern im Netlify-Dashboard �
 
 ## 6. Protokoll
 
+> **Ab 31.08.2026 führt die GitHub Action das Protokoll.** Jeder Lauf steht mit Datum,
+> Commit und Ausgabe in der Actions-Historie — diese Tabelle muss dafür **nicht** mehr von
+> Hand gepflegt werden. Hier gehören ab jetzt nur noch Einträge hinein, die dort nicht
+> auftauchen: Läufe von Hand, Stufe-1-Prüfungen und alles Auffällige mit Befund.
+
 | Datum | Methode | `/` | Sanierung | Flachdach | Steildach | Dachfenster | Reparatur | llms/sitemap/robots | Ergebnis |
 |---|---|---|---|---|---|---|---|---|---|
 | 11.08.2026 | Netlify-API (Stufe 1, s. u.) | — | — | — | — | — | — | — | **Infrastruktur OK, HTML-Ebene offen** |
@@ -202,6 +207,7 @@ Prerender liegt **nicht im Repo/`netlify.toml`**, sondern im Netlify-Dashboard �
 | 30.08.2026 | Netlify-API (Stufe 1) + GitHub Actions | — | — | — | — | — | — | — | **Infrastruktur OK, HTML-Ebene offen** — Deploy `6a944355…`, `commit_ref 60550bf` (Schema-/Terminologie-Hygiene, PR #61), `state ready`, `plugin_state success`, Prerender-Function vorhanden, Secret-Scan 673/0, IndexNow #32 HTTP 200 (30 URLs) · **Stufe 2 offen — bei Tim** |
 | **31.08.2026** | **`npm run prerender:check` (Stufe 2)** | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | — | **BESTANDEN** — 6/6 PASS gegen Deploy `6a95312e…`, `commit_ref 63519ac`; deckt Paket 6, GSC-Meta-3 und die Schema-/Terminologie-Hygiene ab. Protokoll §9 |
 | 31.08.2026 | GSC-Livetest (Methode 1), nur `/dachsanierung-bochum` | — | ⚠️ | — | — | — | — | — | **Indexierung zulässig, aber CSR-Ausfall im Renderer** — Prüftool bekam die Shell, 6 von 21 Skripten nicht geladen, Screenshot leer. Kein Deploy-Defekt. Befund in §9 |
+| 31.08.2026 | **GitHub Action, Lauf 1** (`prerender-check.yml`) | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | — | **BESTANDEN** — erster automatischer Lauf nach dem Merge von PR #66, `head_sha b9d2229`. Selbsttest < 1 s, 3 min Wartezeit, Check 12 s **im ersten Versuch** (keine Wiederholung nötig) |
 
 > **Nachtrag 30.08.2026 — jetzt drei Deploys ohne Stufe-2-Lauf.** ✅ **Erledigt am
 > 31.08.2026, siehe §9.** Nach der Schema-/Terminologie-Hygiene (PR #61) ist Stufe 1 wieder
