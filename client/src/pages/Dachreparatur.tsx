@@ -120,6 +120,16 @@ const faqItems = [
   },
 ];
 
+const faqSchema = JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": faqItems.map((item) => ({
+    "@type": "Question",
+    "name": item.question,
+    "acceptedAnswer": { "@type": "Answer", "text": item.answer },
+  })),
+});
+
 const schemaJson = JSON.stringify({
   "@context": "https://schema.org",
   "@type": "Service",
@@ -194,52 +204,7 @@ export default function Dachreparatur() {
   ],
   "serviceType": "Dachreparatur"
 }`}</script>
-        <script type="application/ld+json">{`{
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  "mainEntity": [
-    {
-      "@type": "Question",
-      "name": "Was kostet eine Dachreparatur in Bochum?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Die Kosten hängen von Art und Umfang des Schadens ab. Wir erstellen kostenlos ein transparentes Angebot nach Vor-Ort-Diagnose."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Wie schnell können Sie einen Sturmschaden reparieren?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Bei dringenden Schäden reagieren wir kurzfristig. Bei akuter Gefahr sichern wir Ihr Dach provisorisch ab und führen die dauerhafte Reparatur schnellstmöglich durch."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Übernimmt die Versicherung die Kosten?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Bei Sturmschäden zahlt in der Regel die Gebäudeversicherung. Wir dokumentieren den Schaden professionell und helfen bei der Abwicklung."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Reparieren Sie alle Dacharten?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Ja – Steildächer, Flachdächer, Dachfenster, Kaminanschlüsse, Dachrinnen und Fallrohre. Für alle gängigen Hersteller und Modelle."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Bieten Sie auch Wartungsverträge an?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Ja! Mit einem Wartungsvertrag prüfen wir Ihr Dach regelmäßig und beheben kleine Mängel bevor sie zu teuren Schäden werden."
-      }
-    }
-  ]
-}`}</script>
+        <script type="application/ld+json">{faqSchema}</script>
         <script type="application/ld+json">{`{
   "@context": "https://schema.org",
   "@type": "Article",

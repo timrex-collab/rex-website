@@ -53,6 +53,16 @@ const faqItems = [
   },
 ];
 
+const faqSchema = JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": faqItems.map((item) => ({
+    "@type": "Question",
+    "name": item.question,
+    "acceptedAnswer": { "@type": "Answer", "text": item.answer },
+  })),
+});
+
 const schemaJson = JSON.stringify({
   "@context": "https://schema.org",
   "@type": "Article",
@@ -91,27 +101,7 @@ export default function BitumenVsPvc() {
     {"@type":"ListItem","position":3,"name":"Bitumen vs. PVC","item":"https://www.rex-bedachung.de/bitumen-vs-pvc-flachdach-bochum"}
   ]
 }`}</script>
-        <script type="application/ld+json">{`{
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  "mainEntity": [
-    {
-      "@type": "Question",
-      "name": "Wann ist Bitumen die bessere Wahl gegenüber PVC?",
-      "acceptedAnswer": { "@type": "Answer", "text": "Bei großflächigen Dächern ab ca. 30 m², Hauptdächern und Sanierungen. Bitumen ist mechanisch belastbarer, UV-resistenter und wird zweilagig verschweißt." }
-    },
-    {
-      "@type": "Question",
-      "name": "Für welche Flächen empfehlen Sie PVC?",
-      "acceptedAnswer": { "@type": "Answer", "text": "PVC für Balkone, Terrassen und kleine Flächen mit vielen Anschlüssen im Sichtbereich. Kaltverschweißung ergibt saubereres Fugenbild." }
-    },
-    {
-      "@type": "Question",
-      "name": "Wird Flachdachdämmung staatlich gefördert?",
-      "acceptedAnswer": { "@type": "Answer", "text": "Ja – bei U-Wert ≤ 0,14 W/(m²·K): BAFA 15 % Grundförderung, Obergrenze der förderrelevanten Kosten 60.000 € pro Wohneinheit mit iSFP; der iSFP-Bonus greift seit 21.07.2026 nur auf den Anteil über 30.000 €, maximal 10.500 € Zuschuss." }
-    }
-  ]
-}`}</script>
+        <script type="application/ld+json">{faqSchema}</script>
         <script type="application/ld+json">{`{
   "@context": "https://schema.org",
   "@type": "Service",
