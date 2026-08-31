@@ -565,12 +565,18 @@ Nach dem Merge des Folgepakets zu §8 (Fenster ab **01.09.2026 ~14:51 UTC**). Da
 ändert JSON-LD unter anderem auf `/dachreparatur-bochum` — Kern-URL **#6**. Die Soll-Titles
 bleiben unberührt, §4 und §7 brauchen dafür keine Pflege (per `--self-test` geprüft).
 
-### Gegenprobe Methode 1 am 31.08.2026 — und der eigentliche Fund
+### Gegenprobe per GSC-URL-Prüfung am 31.08.2026 — und der eigentliche Fund
 
-Direkt nach dem Skript-Lauf hat Tim zusätzlich die **GSC-URL-Prüfung** (Methode 1, die
-autoritativste) auf `/dachsanierung-bochum` laufen lassen — dem Punkt, der oben als
-verbleibender Restzweifel steht. Ergebnis auf den ersten Blick gut, auf den zweiten
-alarmierend.
+Direkt nach dem Skript-Lauf hat Tim zusätzlich die **GSC-URL-Prüfung** auf
+`/dachsanierung-bochum` laufen lassen, um die Indexierungsfrage zu klären. Ergebnis auf den
+ersten Blick gut, auf den zweiten alarmierend.
+
+> **Einordnung (nachgetragen nach PR #64):** Dieser Abschnitt hieß zunächst „Gegenprobe
+> Methode 1" und nannte die GSC-URL-Prüfung „die autoritativste". Das ist seit der
+> Methodenkorrektur in §3 überholt: Die URL-Prüfung zeigt den **gerenderten** DOM und belegt
+> Indexierbarkeit, **nicht** den Prerender. Für die Prerender-Frage zählt allein die rohe
+> Serverantwort. Der Befund unten wird dadurch nicht schwächer, im Gegenteil — er ist der
+> Beleg dafür, warum die Unterscheidung nötig war.
 
 **Was der Bericht meldet (Livetest, 31.08.2026 10:12, „Google-Prüftool (Smartphone)"):**
 
@@ -639,17 +645,22 @@ Renderer leer) und braucht keine eigene Untersuchung.
 
 #### Zwei Folgepunkte
 
-1. **`Google-InspectionTool` in die Bot-Liste der Prerender-Extension** (Netlify-Dashboard →
-   Site `leafy-sprite-bbbfd6` → Extensions → Prerender), falls dort konfigurierbar. Nutzen
-   doppelt: Der GSC-Livetest wird für uns überhaupt erst aussagekräftig, und die Reserve steht
-   wieder. **Offen — bei Tim.**
+1. ~~**`Google-InspectionTool` in die Bot-Liste der Prerender-Extension**~~ — **erledigt,
+   nicht umsetzbar (PR #64).** Die Extension bietet keine editierbare Bot-Liste; einziger
+   User-Agent-Schalter ist „Skip user-agents supporting JavaScript", eine Ausschluss- statt
+   Einschlussliste. Die Bot-Erkennung steckt fest in der Edge-Function. Praktische Folge: Die
+   GSC-URL-Prüfung wird für die Prerender-Frage **dauerhaft** nicht aussagekräftig — sie
+   bleibt das Werkzeug für die Indexierungsfrage, mehr nicht (§3).
 2. **Chunk-Granularität prüfen.** Die Seite lädt über 20 Einzel-Chunks, viele davon winzige
    Icon-Module (`sun`, `wrench`, `layers` …). Weniger, größere Chunks verkleinern die
    Angriffsfläche für genau diesen Fehler. Das ist eine Änderung an der Build-Konfiguration →
    eigenes Paket, eigener Deploy, **nicht** nebenbei. **Offen, nicht dringend.**
 
-Der Restzweifel aus §8 („liefert der Server ≠ indexiert Google") bleibt damit formal offen —
-beantwortet ist er nur für den Prerender-Pfad, und der ist der einzige, der zählt.
+**Zum Restzweifel aus §8** („liefert der Server ≠ indexiert Google"): Er ist mit diesem Test
+beantwortet, soweit er beantwortbar ist. Die URL-Prüfung meldet „URL ist für Google
+verfügbar", Crawling erlaubt, Indexierung zulässig — genau die Frage, für die sie das
+richtige Werkzeug ist. Die Prerender-Frage beantwortet sie nicht und kann sie nicht
+beantworten (§3); dafür stehen die bestandenen Skript-Läufe vom 24.08. und 31.08.
 
 #### Zweiter Lauf am 31.08.2026, 10:41 — Ursache eingekreist, Befund verschärft
 
