@@ -123,10 +123,12 @@ Erwartung: route-spezifischer Title **und** `application/ld+json` erscheinen.
 
 > **⚠ Diese Tabelle ist wartungspflichtig.** Sie muss bei **jeder** Title-Änderung
 > mitgezogen werden — sonst meldet der Check Fehlschläge, die keine sind. Zuletzt
-> abgeglichen: **20.08.2026** gegen `main` (`89f8088`) — alle sechs Soll-Titles
-> maschinell gegen den Quelltext geprüft, **alle sechs stimmen**. GSC-Schema-1 (PR #47),
-> ExpertenBlock-Rollout (PR #40) und Paket 4a (PR #49) haben keinen der sechs
-> Kern-Titles verändert.
+> abgeglichen: **31.08.2026** gegen `main` (`63519ac`) — doppelt bestätigt: der
+> `--self-test` prüft die sechs Soll-Titles maschinell gegen den Quelltext, und der
+> Live-Lauf vom 31.08. (§9) hat alle sechs auch in der Server-Antwort exakt so
+> vorgefunden. Seit dem letzten Abgleich haben GSC-Meta-3 (PR #56) und die
+> Schema-/Terminologie-Hygiene (PR #61) zwar Titles bzw. JSON-LD angefasst, aber
+> **keinen der sechs Kern-Titles**.
 
 | URL | Soll-`<title>` | Stand |
 |---|---|---|
@@ -191,16 +193,24 @@ Prerender liegt **nicht im Repo/`netlify.toml`**, sondern im Netlify-Dashboard �
 | 26.08.2026 | Netlify-API (Stufe 1) + GitHub Actions | — | — | — | — | — | — | — | **Infrastruktur OK, HTML-Ebene offen** — Deploy `6a8efc52…`, `commit_ref b461b18` (Paket 6, PR #58), `state ready`, `plugin_state success`, Prerender-Function `nf-prerender-ext_prerender` vorhanden, Secret-Scan 669/0, IndexNow #28 HTTP 200 (30 URLs) · **Stufe 2 offen — bei Tim** |
 | 28.08.2026 | Netlify-API (Stufe 1) + GitHub Actions | — | — | — | — | — | — | — | **Infrastruktur OK, HTML-Ebene offen** — Deploy `6a919fdb…`, `commit_ref db0dbdf` (GSC-Meta-3, PR #56), `state ready`, `plugin_state success`, Prerender-Function vorhanden, Secret-Scan 671/0, IndexNow #30 HTTP 200 (30 URLs) · **Stufe 2 offen — bei Tim** |
 | 30.08.2026 | Netlify-API (Stufe 1) + GitHub Actions | — | — | — | — | — | — | — | **Infrastruktur OK, HTML-Ebene offen** — Deploy `6a944355…`, `commit_ref 60550bf` (Schema-/Terminologie-Hygiene, PR #61), `state ready`, `plugin_state success`, Prerender-Function vorhanden, Secret-Scan 673/0, IndexNow #32 HTTP 200 (30 URLs) · **Stufe 2 offen — bei Tim** |
+| **31.08.2026** | **`npm run prerender:check` (Stufe 2)** | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | — | **BESTANDEN** — 6/6 PASS gegen Deploy `6a95312e…`, `commit_ref 63519ac`; deckt Paket 6, GSC-Meta-3 und die Schema-/Terminologie-Hygiene ab. Protokoll §9 |
 
-> **Nachtrag 30.08.2026 — jetzt drei Deploys ohne Stufe-2-Lauf.** Nach der
-> Schema-/Terminologie-Hygiene (PR #61) ist Stufe 1 wieder grün, Stufe 2 scheiterte erneut
-> mit **6× HTTP 403 am Proxy**. Betroffen sind `FAQ.tsx`, `DachsanierungBochum`,
-> `VeluxAustausch`, `GruendachBochum`, `VeluxPreisrechnerBochum` und
-> `WannLohntSichDachsanierung` — **keine der sechs Kern-URLs aus §1**, die Soll-Titles in §4
-> und §7 bleiben unverändert gültig. Der Deploy ändert allerdings **JSON-LD** auf drei
-> Seiten, und JSON-LD ist eines der vier Pass-Kriterien aus §2. Ein Lauf von
-> `npm run prerender:check` deckt inzwischen drei Deploys auf einmal ab und wäre langsam
-> fällig.
+> **Nachtrag 30.08.2026 — jetzt drei Deploys ohne Stufe-2-Lauf.** ✅ **Erledigt am
+> 31.08.2026, siehe §9.** Nach der Schema-/Terminologie-Hygiene (PR #61) ist Stufe 1 wieder
+> grün, Stufe 2 scheiterte erneut mit **6× HTTP 403 am Proxy**. Betroffen sind `FAQ.tsx`,
+> `DachsanierungBochum`, `VeluxAustausch`, `GruendachBochum`, `VeluxPreisrechnerBochum` und
+> `WannLohntSichDachsanierung`; die Soll-Titles in §4 und §7 bleiben unverändert gültig. Der
+> Deploy ändert **JSON-LD** auf drei Seiten, und JSON-LD ist eines der vier Pass-Kriterien
+> aus §2. Ein Lauf von `npm run prerender:check` deckt inzwischen drei Deploys auf einmal ab
+> und wäre langsam fällig.
+>
+> **Korrektur (31.08.2026):** Der Satz „keine der sechs Kern-URLs aus §1" stand hier
+> ursprünglich und war **falsch**. `DachsanierungBochum.tsx` ist die Komponente hinter
+> `/dachsanierung-bochum` (`App.tsx`, Route `/dachsanierung-bochum`) — Kern-URL **#2**. PR #61
+> hat also sehr wohl JSON-LD auf einer der sechs geprüften URLs verändert, und zwar auf dem
+> Hub. Für den Pass/Fail ändert das nichts (Kriterium 4 verlangt „mindestens ein JSON-LD-Block",
+> `FAQPage` und `HowTo` stehen weiter drin), aber die Begründung war zu entspannt: Der Lauf
+> vom 31.08. ist der erste, der eine JSON-LD-Änderung **auf einer Kern-URL** gegenprüft.
 
 > **Nachtrag 28.08.2026 — Stufe 2 nach GSC-Meta-3 steht ebenfalls aus.** Stufe 1 ist nach
 > dem Merge von PR #56 grün (Zeile oben), Stufe 2 scheiterte erneut mit **6× HTTP 403 am
@@ -495,3 +505,54 @@ GSC-Indexierungsabdeckung bzw. ein GSC-Live-Test auf einer beliebigen Unterseite
 `npm run prerender:check` nach jedem funktionalen Deploy. Ergebnis als Zeile in §6
 eintragen. Bei einem `FAIL` gilt weiterhin die Eskalation nach §5 — ein Fehlschlag betrifft
 potenziell alle Routen, nicht nur die gemeldete.
+
+---
+
+## 9. Protokoll Stufe 2 — 31.08.2026 · **BESTANDEN**
+
+Durchgeführt von Tim Rex in PowerShell mit `npm run prerender:check` — dem automatisierten
+Methode-4-Lauf gegen die **rohe Server-Antwort** mit Googlebot-User-Agent. Repo-Stand des
+Checkouts `63519ac`, live war Netlify-Deploy `6a95312e…` auf demselben `commit_ref`
+(published 07:46 UTC; PR #62 war reine Doku, das ausgelieferte HTML entspricht dem Stand
+nach PR #61).
+
+```
+PASS  /                        – title  ✓ description  ✓ h1  ✓ json-ld
+PASS  /dachsanierung-bochum    ✓ title  ✓ description  ✓ h1  ✓ json-ld
+PASS  /flachdach-bochum        ✓ title  ✓ description  ✓ h1  ✓ json-ld
+PASS  /steildach-bochum        ✓ title  ✓ description  ✓ h1  ✓ json-ld
+PASS  /dachfenster-bochum      ✓ title  ✓ description  ✓ h1  ✓ json-ld
+PASS  /dachreparatur-bochum    ✓ title  ✓ description  ✓ h1  ✓ json-ld
+```
+
+**6 von 6 Kern-URLs bestehen alle vier Kriterien aus §2.** Alle fünf bewertbaren Soll-Titles
+aus §4 stimmen exakt; auf `/` zählen wie vorgesehen nur H1 und JSON-LD — beide vorhanden, es
+ist also nicht die leere Shell.
+
+### Was dieser Lauf abdeckt
+
+Er schließt die drei seit dem 24.08. aufgelaufenen Deploys auf einmal:
+
+| Deploy | Was daran über Prerender ankommen muss | Nachweis |
+|---|---|---|
+| Paket 6 (26.08., PR #58) | interne Linkkarten im gerenderten Body | Body wird geliefert (H1 + Description je URL) |
+| GSC-Meta-3 (28.08., PR #56) | fünf neue Titles — keiner davon auf einer Kern-URL | indirekt: Title-Auslieferung funktioniert weiter |
+| **Schema-/Terminologie-Hygiene (30.08., PR #61)** | **JSON-LD auf `/dachsanierung-bochum`** | **direkt: json-ld ✓ auf Kern-URL #2** |
+
+Die letzte Zeile ist der eigentliche Zugewinn gegenüber dem Lauf vom 24.08.: Damals war
+belegt, dass ein frisch deployter **Title** beim Bot ankommt. Jetzt ist zusätzlich belegt,
+dass eine frisch deployte **JSON-LD-Änderung** auf einer geprüften URL ausgeliefert wird —
+und genau das war die Annahme, auf der die drei ungeprüften Deploys standen.
+
+### Was weiterhin offen bleibt
+
+Unverändert der Restzweifel aus §8: Der Test zeigt, was der **Server** einem
+Googlebot-User-Agent liefert, nicht ob Google die Seiten auch so **indexiert**. Das
+beantwortet nur die GSC-URL-Prüfung (Methode 1) — einmalig, auf einer beliebigen Unterseite.
+`/dachsanierung-bochum` wäre dafür der beste Kandidat, weil dort das neue Schema steht.
+
+### Nächster fälliger Lauf
+
+Nach dem Merge des Folgepakets zu §8 (Fenster ab **01.09.2026 ~14:51 UTC**). Das Paket
+ändert JSON-LD unter anderem auf `/dachreparatur-bochum` — Kern-URL **#6**. Die Soll-Titles
+bleiben unberührt, §4 und §7 brauchen dafür keine Pflege (per `--self-test` geprüft).
