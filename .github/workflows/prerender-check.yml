@@ -1,0 +1,78 @@
+name: Prerender-Check
+
+# Automatisiert die Routine aus PRERENDER-CHECK.md §1: einmal nach jedem
+# funktionalen Deploy und einmal im Monat. Bisher lief `npm run prerender:check`
+# von Hand auf Tims Rechner — aus der Claude-Umgebung geht es nicht, dort ist die
+# Domain netzgesperrt (DEPLOY-RULES §3). Ein GitHub-Runner erreicht sie.
+#
+# Der Check ist seit PR #64 die einzige Methode, die den Prerender ueberhaupt
+# belegt: Er liest die ROHE Serverantwort mit Googlebot-User-Agent. GSC-URL-
+# Pruefung und Rich Results Test zeigen den gerenderten DOM und bestuenden auch
+# bei abgeschalteter Extension (PRERENDER-CHECK.md §3).
+#
+# - Kein Secret noetig, kein npm install: das Skript nutzt nur Node-Boardmittel.
+# - Reine Doku-Merges loesen keinen Lauf aus (paths-ignore).
+# - Manueller Lauf jederzeit ueber "Run workflow" (workflow_dispatch)
+#   oder lokal per `npm run prerender:check`.
+#
+# Bei Rot: Eskalation nach PRERENDER-CHECK.md §5. Ein Fehlschlag betrifft
+# potenziell alle Routen, nicht nur die gemeldete.
+
+on:
+  push:
+    branches: [main]
+    paths-ignore:
+      - "**.md"
+  schedule:
+    # Monatlich am 1. um 06:00 UTC. Faengt den Fall ab, der ohne Deploy passiert:
+    # die Extension faellt einfach aus.
+    - cron: "0 6 1 * *"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: prerender-check
+  cancel-in-progress: false
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v5
+      - name: Setup Node
+        uses: actions/setup-node@v5
+        with:
+          node-version: 22
+
+      # Offline und ohne Netz: prueft die Erkennungslogik und haelt die
+      # Soll-Titles aus §4 gegen den Quelltext. Schlaegt das fehl, sind die
+      # Soll-Titles veraltet — und jeder Live-Fehlschlag danach waere ein
+      # Fehlalarm. Deshalb zuerst.
+      - name: Selbsttest (Soll-Titles gegen Quelltext)
+        run: node scripts/prerender-check.mjs --self-test
+
+      # Netlify baut nach dem Merge erst. Ohne Wartezeit pruefte der Lauf den
+      # alten Stand und meldete Abweichungen, die keine sind.
+      - name: Auf den Netlify-Deploy warten
+        if: github.event_name == 'push'
+        run: sleep 180
+
+      - name: Prerender-Check (bis zu drei Versuche)
+        run: |
+          for versuch in 1 2 3; do
+            echo "::group::Versuch $versuch"
+            if node scripts/prerender-check.mjs; then
+              echo "::endgroup::"
+              exit 0
+            fi
+            echo "::endgroup::"
+            if [ "$versuch" -lt 3 ]; then
+              echo "Versuch $versuch fehlgeschlagen — 60 s warten und erneut versuchen."
+              sleep 60
+            fi
+          done
+          echo "Drei Versuche fehlgeschlagen. Eskalation nach PRERENDER-CHECK.md §5."
+          exit 1
