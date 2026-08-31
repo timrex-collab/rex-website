@@ -165,6 +165,13 @@ Erwartung: route-spezifischer Title **und** `application/ld+json` erscheinen.
 > Auslöser: beide crawlen mit `Google-InspectionTool` und rendern JavaScript (§3). Erst das
 > Skript entscheidet.
 
+> **Wenn er zutrifft, ist er dringend (Zusatz 31.08.2026).** Zeigt die *rohe Serverantwort*
+> die Shell, gibt es **keine zweite Verteidigungslinie**: Googles Renderer bringt die SPA
+> nicht zuverlässig zum Laufen — bei zwei Livetests am 31.08. blieb `#root` leer, Screenshot
+> weiß, kein JSON-LD, kein H1 (Befund und Beleg in §9). Ein echter Prerender-Ausfall wäre
+> also kein Qualitätsverlust, sondern Totalausfall der Sichtbarkeit. Deshalb sind die
+> Schritte unten sofort abzuarbeiten und nicht bei Gelegenheit.
+
 Prerender liegt **nicht im Repo/`netlify.toml`**, sondern im Netlify-Dashboard → Fix passiert dort:
 
 1. **Netlify-Dashboard** → Site `leafy-sprite-bbbfd6` → *Extensions/Integrations* → **Prerender** →
@@ -194,6 +201,7 @@ Prerender liegt **nicht im Repo/`netlify.toml`**, sondern im Netlify-Dashboard �
 | 28.08.2026 | Netlify-API (Stufe 1) + GitHub Actions | — | — | — | — | — | — | — | **Infrastruktur OK, HTML-Ebene offen** — Deploy `6a919fdb…`, `commit_ref db0dbdf` (GSC-Meta-3, PR #56), `state ready`, `plugin_state success`, Prerender-Function vorhanden, Secret-Scan 671/0, IndexNow #30 HTTP 200 (30 URLs) · **Stufe 2 offen — bei Tim** |
 | 30.08.2026 | Netlify-API (Stufe 1) + GitHub Actions | — | — | — | — | — | — | — | **Infrastruktur OK, HTML-Ebene offen** — Deploy `6a944355…`, `commit_ref 60550bf` (Schema-/Terminologie-Hygiene, PR #61), `state ready`, `plugin_state success`, Prerender-Function vorhanden, Secret-Scan 673/0, IndexNow #32 HTTP 200 (30 URLs) · **Stufe 2 offen — bei Tim** |
 | **31.08.2026** | **`npm run prerender:check` (Stufe 2)** | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | — | **BESTANDEN** — 6/6 PASS gegen Deploy `6a95312e…`, `commit_ref 63519ac`; deckt Paket 6, GSC-Meta-3 und die Schema-/Terminologie-Hygiene ab. Protokoll §9 |
+| 31.08.2026 | GSC-Livetest (Methode 1), nur `/dachsanierung-bochum` | — | ⚠️ | — | — | — | — | — | **Indexierung zulässig, aber CSR-Ausfall im Renderer** — Prüftool bekam die Shell, 6 von 21 Skripten nicht geladen, Screenshot leer. Kein Deploy-Defekt. Befund in §9 |
 
 > **Nachtrag 30.08.2026 — jetzt drei Deploys ohne Stufe-2-Lauf.** ✅ **Erledigt am
 > 31.08.2026, siehe §9.** Nach der Schema-/Terminologie-Hygiene (PR #61) ist Stufe 1 wieder
@@ -556,3 +564,89 @@ beantwortet nur die GSC-URL-Prüfung (Methode 1) — einmalig, auf einer beliebi
 Nach dem Merge des Folgepakets zu §8 (Fenster ab **01.09.2026 ~14:51 UTC**). Das Paket
 ändert JSON-LD unter anderem auf `/dachreparatur-bochum` — Kern-URL **#6**. Die Soll-Titles
 bleiben unberührt, §4 und §7 brauchen dafür keine Pflege (per `--self-test` geprüft).
+
+### Gegenprobe Methode 1 am 31.08.2026 — und der eigentliche Fund
+
+Direkt nach dem Skript-Lauf hat Tim zusätzlich die **GSC-URL-Prüfung** (Methode 1, die
+autoritativste) auf `/dachsanierung-bochum` laufen lassen — dem Punkt, der oben als
+verbleibender Restzweifel steht. Ergebnis auf den ersten Blick gut, auf den zweiten
+alarmierend.
+
+**Was der Bericht meldet (Livetest, 31.08.2026 10:12, „Google-Prüftool (Smartphone)"):**
+
+| Feld | Wert |
+|---|---|
+| URL ist für Google verfügbar | ✅ |
+| Seitenabruf | Erfolgreich |
+| Crawling erlaubt / Indexierung zulässig | Ja / Ja |
+| Vom Nutzer angegebene kanonische URL | **Keine** ⚠️ |
+| Verbesserungen | **URL hat keine Verbesserungen** ⚠️ |
+| Screenshot | **leere Seite** ❌ |
+| Seitenressourcen | **6 von 21 konnten nicht geladen werden** ❌ |
+
+**Die Konsolenmeldung ist der Kern:**
+
+```
+TypeError: Failed to fetch dynamically imported module:
+https://www.rex-bedachung.de/assets/DachsanierungBochum-ChMWskWi.js
+  at https://www.rex-bedachung.de/assets/index-CEEBKbaG.js:41
+```
+
+Nicht geladen wurden sechs JS-Chunks — `AuthorSchema`, `chevron-up`, `clipboard-check`,
+`layers`, `sun`, `wrench` —, also genau die Module, die im HTML als `modulepreload` für diese
+Route stehen. Weil eine Abhängigkeit fehlte, scheiterte der dynamische Import der Route, und
+`<div id="root">` blieb leer.
+
+#### Die Kette, sauber getrennt
+
+1. Das Prüftool crawlt mit **`Google-InspectionTool`**, nicht mit `Googlebot`. Es bekam die
+   **rohe SPA-Shell** — die Prerender-Extension bedient diesen User-Agent offenbar nicht.
+2. Danach scheiterte das clientseitige Rendering in Googles Renderer (Chunks s. o.).
+3. Ergebnis: kein Title der Route, kein Canonical, keine Description, kein `<h1>`, kein JSON-LD.
+
+> **Warum Punkt 1 belegt ist und nicht nur vermutet:** Ein gescheitertes React-Mount räumt
+> ausschließlich `#root` leer — es entfernt nichts aus dem `<head>`. Hätte der Prerender
+> geliefert, stünden Title, Canonical und JSON-LD weiterhin im `<head>`. Dort stand aber der
+> Fallback-Title aus `client/index.html` und sonst nichts. Also war schon die Server-Antwort
+> die Shell. Umgekehrt ist belegt, dass es sich um die **gerenderte** Seite handelt: Die
+> Ausgabe enthält `<div class="pe-richsnippets"> <!-- error - wrong plan(1003)--></div>` und
+> ein per JS angehängtes ProvenExpert-`<script>` — im Repo steht der Container leer und ohne
+> Script-Tag (`client/index.html:110`).
+
+#### Was ausgeschlossen ist
+
+- **Kein robots.txt-Problem.** `/assets/` ist nicht gesperrt (geprüft).
+- **Kein 404, keine veraltete `index.html`.** Zwei der gemeldeten Chunks direkt im Browser
+  abgerufen (`sun-DdrG4UjD.js`, `wrench-Bz32aHVy.js`) — beide liefern gültiges JavaScript.
+  Die Dateien existieren; Googles Renderer hat sie nicht geholt (Ressourcenbudget/Abbruch).
+- **Kein Deploy-Defekt.** Der Stufe-2-Lauf desselben Tages war auf derselben URL grün.
+
+#### Was das bedeutet
+
+**Es gibt keine zweite Verteidigungslinie.** Bisher stand die stillschweigende Annahme im
+Raum, dass Google die Seite notfalls selbst rendert, wenn der Prerender einmal aussetzt. Das
+ist widerlegt: Fällt der Prerender aus, sieht Google eine **leere Seite** — nicht eine
+Seite mit weniger Schema, sondern nichts. Die Extension ist damit nicht Optimierung, sondern
+**tragende Infrastruktur**. §5 ist entsprechend verschärft.
+
+Für den laufenden Betrieb ist das **kein Notfall**: Googlebot mit echtem User-Agent bekommt
+vollständiges HTML (heute auf allen sechs Kern-URLs gemessen), die Property hat 29 indexierte
+Seiten und 37.000 Impressionen, und am 24.08. lieferte `/steildach-bochum` einen Stunden alten
+Title an den Bot aus. Die reale Indexierung läuft über den Prerender-Pfad und funktioniert.
+
+Die Zeile „URL hat keine Verbesserungen" ist nach diesem Befund erklärt (die Seite war für den
+Renderer leer) und braucht keine eigene Untersuchung.
+
+#### Zwei Folgepunkte
+
+1. **`Google-InspectionTool` in die Bot-Liste der Prerender-Extension** (Netlify-Dashboard →
+   Site `leafy-sprite-bbbfd6` → Extensions → Prerender), falls dort konfigurierbar. Nutzen
+   doppelt: Der GSC-Livetest wird für uns überhaupt erst aussagekräftig, und die Reserve steht
+   wieder. **Offen — bei Tim.**
+2. **Chunk-Granularität prüfen.** Die Seite lädt über 20 Einzel-Chunks, viele davon winzige
+   Icon-Module (`sun`, `wrench`, `layers` …). Weniger, größere Chunks verkleinern die
+   Angriffsfläche für genau diesen Fehler. Das ist eine Änderung an der Build-Konfiguration →
+   eigenes Paket, eigener Deploy, **nicht** nebenbei. **Offen, nicht dringend.**
+
+Der Restzweifel aus §8 („liefert der Server ≠ indexiert Google") bleibt damit formal offen —
+beantwortet ist er nur für den Prerender-Pfad, und der ist der einzige, der zählt.
