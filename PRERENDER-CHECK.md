@@ -650,3 +650,62 @@ Renderer leer) und braucht keine eigene Untersuchung.
 
 Der Restzweifel aus §8 („liefert der Server ≠ indexiert Google") bleibt damit formal offen —
 beantwortet ist er nur für den Prerender-Pfad, und der ist der einzige, der zählt.
+
+#### Zweiter Lauf am 31.08.2026, 10:41 — Ursache eingekreist, Befund verschärft
+
+Wiederholung desselben Livetests eine halbe Stunde später:
+
+| | 1. Lauf (10:12) | 2. Lauf (10:41) |
+|---|---|---|
+| Nicht geladene Ressourcen | 6 von 21 | **2 von 21** |
+| Welche | `AuthorSchema`, `chevron-up`, `clipboard-check`, `layers`, `sun`, `wrench` | `chevron-up`, `file-text` |
+| Konsolenfehler | Route-Import gescheitert | **identisch** |
+| Screenshot | leer | **leer** |
+
+**Eine andere, kleinere Teilmenge — und trotzdem dasselbe Ergebnis.** Damit ist zweierlei klar:
+
+1. **Keine defekte Datei.** Der Ausfall wandert; Googles Renderer bricht Requests willkürlich
+   ab (Ressourcenbudget). Die Dateien selbst sind erreichbar (stichprobenartig mit 200
+   abgerufen).
+2. **Die Seite ist gegen diesen Ausfall nicht robust.** Schon **zwei** fehlende Chunks — beides
+   winzige Icon-Module — genügen für eine komplett leere Seite.
+
+**Warum ein Icon die ganze Route killt:** `App.tsx` lädt Seiten per `React.lazy()`. Vite
+wickelt jeden dynamischen Import in seinen `__vitePreload`-Helfer, der auf **alle** Preloads
+der Route wartet und den Import ablehnt, sobald einer davon scheitert — exakt die Meldung
+`Failed to fetch dynamically imported module`. In `vite.config.ts` ist **kein** `manualChunks`
+konfiguriert, also erzeugt Vites Default-Splitting rund zwanzig Mini-Chunks pro Route. Jeder
+davon ist ein einzelner Ausfallpunkt für die gesamte Seite.
+
+**Das betrifft nicht nur Google.** Ein Besucher mit wackliger Mobilverbindung, der einen
+einzigen Chunk verliert, sieht dasselbe: eine weiße Seite, ohne Fehlermeldung, ohne
+Wiederholung. Der Befund ist damit nicht nur ein SEO-, sondern ein UX- und Conversion-Thema.
+
+**Zusätzlicher Beleg aus der HTTP-Antwort** (Reiter „Weitere Informationen" → HTTP-Antwort):
+
+```
+HTTP/1.1 200 OK
+Content-Type: text/html; charset=UTF-8
+Content-Length: 1721
+Cache-Control: public,max-age=0,must-revalidate
+Cache-Status: "Netlify Edge"; fwd=stale; fwd-status=200; stored
+Server: Netlify
+```
+
+1.721 Byte (brotli) ist die nackte Shell — eine geprerenderte Seite wäre ein Vielfaches davon.
+Damit ist auch von der Transportseite bestätigt, dass für `Google-InspectionTool` kein
+Prerender greift.
+
+#### Folgepunkt 2 wird damit konkreter — und wichtiger
+
+Statt „Chunk-Granularität prüfen" lautet die Aufgabe jetzt: **die Seite gegen den Verlust
+einzelner Chunks robust machen.** Zwei Hebel, kombinierbar:
+
+- **`manualChunks` in `vite.config.ts`** — Icons und kleine geteilte Module in wenige größere
+  Bündel zusammenfassen statt zwanzig Einzeldateien. Weniger Requests, weniger Ausfallpunkte.
+- **Retry beim Chunk-Load-Fehler** — den `lazy()`-Import einmal wiederholen, bevor die Route
+  aufgibt. Fängt genau den beobachteten Fall ab (Datei existiert, Request abgebrochen).
+
+Beides ist eine Änderung an der Build-Konfiguration bzw. am Routing-Einstieg, also ein
+**eigenes Paket mit eigenem Deploy** — nicht nebenbei in einem Content-Deploy. Priorität nach
+diesem Befund: **vor** den offenen Content-Funden aus `GSC-AUDIT-2026-08.md` §8.4.
