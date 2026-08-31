@@ -171,7 +171,11 @@ SSR-/Framework-Migration · Stadtteil-Seiten · separate Kosten-Seiten · Gewerb
 ## 7. Schema-Konventionen (etabliert ab D30)
 - **@id-URIs:** global `#organization`, `#website`, `#author`, `#webpage`; seitenbezogen `#service`, `#article`, `#primaryimage`, `#logo` etc.
 - **Pro Datei alle JSON-LD-Blöcke zu einem `@graph` konsolidieren.**
-- **`faqItems.map()` für FAQPage** (verhindert Drift Schema ↔ UI).
+- **`faqItems.map()` für FAQPage** (verhindert Drift Schema ↔ UI). Der Array-Name ist frei
+  (`faqData`, `faqCategories` …) — entscheidend ist, dass Schema und Anzeige dasselbe Objekt
+  lesen. **Prüfbar per `npm run faq:check`** (`scripts/faq-schema-check.mjs`): meldet jedes
+  hartcodierte `mainEntity` und jedes Schema aus einem Array, das die Seite nicht rendert,
+  mit Exit-Code 1. Sinnvoll vor jedem PR, der ein `FAQPage`-Schema anfasst.
 - **Inline-`RoofingContractor`-Blöcke durch `@id`-Referenz auf `#organization` ersetzen.**
 - **New-Page-Checklist:** BreadcrumbList-Schema im Helmet prüfen; fehlt es → flaggen + Snippet anbieten.
 
