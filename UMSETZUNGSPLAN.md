@@ -137,9 +137,11 @@ Damit wir nichts doppelt machen. Diese Audit-Punkte sind abgehakt oder per Regel
 > *Stand 30.08.2026:* Auch dessen Backlog ist **vollständig** abgearbeitet — Paket 4a
 > (20.08.), Paket 5 (22.08.), GSC-Meta-2 (24.08.), Paket 6 (26.08., PR #58), GSC-Meta-3
 > (28.08., PR #56) und die Schema-/Terminologie-Hygiene aus §8 (30.08., PR #61) sind live,
-> der Prerender-Check Stufe 2 ist am 24.08. bestanden. Nächster Schritt ist das Folgepaket
-> zu §8 — fünf Seiten mit weicher FAQPage-Drift plus eine übersehene „förderfähig"-Stelle,
-> siehe `GSC-AUDIT-2026-08.md` §8.3. Fenster ab **01.09.2026 ~14:51 UTC**.
+> der Prerender-Check Stufe 2 ist am 24.08. bestanden und läuft seit dem 31.08. als GitHub
+> Action automatisch. *Stand 01.09.2026:* Auch das Folgepaket zu §8 ist live (PR #63) —
+> damit ist `GSC-AUDIT-2026-08.md` vollständig abgearbeitet. Der nächste Deploy stammt
+> erstmals nicht mehr aus einem Audit, sondern aus dem Betrieb: PR #65 (Chunk-Robustheit)
+> behebt den Befund aus `PRERENDER-CHECK.md` §9. Fenster ab **03.09.2026 ~15:02 UTC**.
 >
 > Das ursprünglich erstplatzierte Paket 4 (`/dachreinigung-bochum`) ist am 18.08.2026
 > **gestrichen**: Dachflächenreinigung und Algenentfernung gehören nicht zum
