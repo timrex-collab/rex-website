@@ -193,7 +193,7 @@ const faqItems = [
   },
   {
     question: "Muss die Neueindeckung bei einer geförderten Sanierung selbst bezahlt werden?",
-    answer: "Nein. Die Neueindeckung gilt als Umfeldmaßnahme und wird vollständig mitgefördert, wenn sie im Zusammenhang mit einer energetischen Dämmmaßnahme steht. Bei Aufsparrendämmung ist die Neueindeckung zwingend notwendig und damit automatisch förderfähig.",
+    answer: "Nein. Die Neueindeckung gilt als Umfeldmaßnahme und wird vollständig mitgefördert, wenn sie im Zusammenhang mit einer energetischen Dämmmaßnahme steht. Bei Aufsparrendämmung ist die Neueindeckung zwingend notwendig und damit automatisch förderrelevant.",
   },
   {
     question: "Welchen U-Wert muss die Dämmung für die Förderung erreichen?",

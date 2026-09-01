@@ -73,10 +73,12 @@ Damit wir nichts doppelt machen. Diese Audit-Punkte sind abgehakt oder per Regel
   → **Checkliste geliefert: [`PRERENDER-CHECK.md`](./PRERENDER-CHECK.md)** — 6 Kern-URLs, objektive
   Pass/Fail-Kriterien (Fallback-Shell hat *kein* JSON-LD/Meta/H1), 4 Browser-Methoden, Soll-Titles,
   Eskalation. Kadenz: monatlich + einmal nach jedem funktionalen Deploy.
-  *Stand 24.08.2026: vollständig erledigt.* Stufe 1 lief am 11.08., 18.08. und 22.08.,
-  **Stufe 2 am 24.08.2026 — bestanden**: alle sechs Kern-URLs liefern gerendertes HTML an
-  Googlebot, alle Soll-Titles exakt. Protokoll in `PRERENDER-CHECK.md` §8. Die Routine läuft
-  ab jetzt per `npm run prerender:check` nach jedem funktionalen Deploy.
+  *Stand 31.08.2026: vollständig erledigt und im Betrieb.* Stufe 1 lief am 11.08., 18.08. und
+  22.08., **Stufe 2 am 24.08.2026 — bestanden** (Protokoll `PRERENDER-CHECK.md` §8) und
+  **erneut am 31.08.2026 — bestanden** (§9), diesmal per `npm run prerender:check` auf Tims
+  Rechner. Der zweite Lauf holt die drei seither aufgelaufenen Deploys nach und belegt
+  erstmals, dass auch eine frisch deployte **JSON-LD-Änderung auf einer Kern-URL**
+  (`/dachsanierung-bochum`) beim Bot ankommt — vorher war das nur für Titles gezeigt.
 
 - [ ] **P1.2 — Externe NAP-Altlasten bereinigen** · 🌐 · Aufwand mittel · Wirkung mittel
   Veraltete Adressen in Aggregatoren (z. B. *Brenscheder Str. 19*, *Friederikastraße 12*) verwirren

@@ -494,3 +494,52 @@ bewusst nicht in PR #61: die Schreibweise „Velux" statt **VELUX** im Fließtex
 FAQ-Fragen von `VeluxAustausch` — durch die Schema-Umstellung wandert sie jetzt ins
 JSON-LD. GSC-Meta-3 hatte die Marke nur in Titles und Descriptions vereinheitlicht. Das ist
 Content-Arbeit, kein Hygiene-Fix.
+
+---
+
+### 8.4 Folgepaket vorbereitet (31.08.2026) — und drei Funde daneben
+
+Das in §8.3 benannte Folgepaket ist umgesetzt und wartet auf das Deployfenster
+(**ab 01.09.2026 ~14:51 UTC**, gerechnet ab PR #61). Ein Deploy, Stufe B, 6 Dateien:
+die fünf Seiten mit weicher `FAQPage`-Drift auf `faqItems.map()` plus die fünfte
+„förderfähig"-Stelle auf `DachsanierungBochum`.
+
+Nachgemessen vor der Umstellung — die Tabelle aus §8.3, um die Antwortseite ergänzt:
+
+| Seite | sichtbar | im Schema | Frage nicht auf der Seite | Antwort wortgleich | paraphrasiert |
+|---|---:|---:|---:|---:|---:|
+| `BauklempnereiBochum` | 5 | 5 | 0 | 0 | 5 |
+| `Dachreparatur` | 5 | 5 | 0 | 0 | 5 |
+| `DachPhotovoltaikBochum` | 6 | 6 | 0 | 0 | 6 |
+| `BitumenVsPvc` | 6 | 3 | 0 | 0 | 3 |
+| `VeluxRolllaeden` | 5 | 5 | 0 | 4 | 1 |
+
+Danach hat das Repo **kein hartcodiertes `FAQPage`-Schema mehr**: 23 Seiten führen eines,
+alle 23 erzeugen es aus dem gerenderten Array.
+
+**Das Zählproblem ist beseitigt.** Beide Fehlmessungen aus §8.1 und §8.3 gingen auf
+Prüfskripte zurück, die auf den Literalnamen `faqItems.map` statt auf die Struktur testeten.
+`npm run faq:check` (`scripts/faq-schema-check.mjs`) liest jetzt den Bezeichner aus dem
+`mainEntity`-Ausdruck und prüft zusätzlich, ob dasselbe Array im JSX gerendert wird. Gegenprobe
+an drei Repo-Ständen: `dc812bb^` → 8 beanstandet (exakt die Tabelle in §8.3), `63519ac` → 5
+(exakt dieses Folgepaket), danach 0. Die Regel steht als prüfbare Zeile in `DEPLOY-RULES.md` §7.
+
+#### Drei Funde, die *nicht* in diesem Paket stecken
+
+1. **Widersprüchliche Lebensdauer-Angaben zu Dachrinnen-Materialien.** Der Nur-Schema-Satz
+   „Kupfer hält am längsten mit bis zu 30 Jahren" auf `BauklempnereiBochum` verschwindet mit
+   der Umstellung — er stand direkt neben „Titanzink ist die langlebigste Wahl mit bis zu
+   80 Jahren" und widersprach ihm. Der Widerspruch bleibt aber **zwischen zwei Seiten** im
+   sichtbaren Text bestehen: `/bauklempnerei-bochum` nennt Titanzink „bis zu 80 Jahre",
+   `/faq` nennt „Titanzink oder Aluminium … häufig 15–25 Jahre, Kupfer … bis zu 30 Jahren".
+   Das ist eine fachliche Festlegung, keine Hygiene — **gehört Tim vorgelegt**, nicht still
+   korrigiert. Die `/faq`-Antwort ist nicht schema-ausgezeichnet, die von
+   `BauklempnereiBochum` seit diesem Paket schon.
+2. **Nackte Pfade in FAQ-Antworten auf `BitumenVsPvc`.** Vier Antworten enden auf „… unter
+   `/flachdach-bochum`" bzw. `/foerderung`, `/gruendach-dachbegrunung-bochum`,
+   `/dachsanierung-bochum` (alle vier Routen existieren). Drei davon stehen durch dieses
+   Paket erstmals im JSON-LD. Sauber wäre ein echter Link im sichtbaren Text — Content-Arbeit
+   für ein späteres Paket, kein Grund, das Schema vom sichtbaren Text abweichen zu lassen.
+3. **„Velux" statt VELUX** (schon in §8.3 notiert) betrifft nicht nur `VeluxAustausch`:
+   `VeluxRolllaeden` schreibt die Marke in FAQ-Fragen und -Antworten ebenfalls klein — dort
+   stand sie allerdings schon vor diesem Paket im Schema, die Umstellung ändert daran nichts.

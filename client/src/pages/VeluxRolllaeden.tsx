@@ -93,33 +93,11 @@ const faqItems = [
 const faqSchema = JSON.stringify({
   "@context": "https://schema.org",
   "@type": "FAQPage",
-  "mainEntity": [
-    {
-      "@type": "Question",
-      "name": "Was kostet ein Velux SSL Solar-Rollladen inkl. Montage in Bochum?",
-      "acceptedAnswer": { "@type": "Answer", "text": "Der Preis hängt von Fenstergröße, Fenstertyp, Bedienvariante und Einbausituation ab. Rex Bedachungs GmbH kommt kostenlos vor Ort, prüft die Situation und erstellt ein transparentes Angebot. Für eine erste Einschätzung reichen oft Fotos von Fenster und Typenschild." }
-    },
-    {
-      "@type": "Question",
-      "name": "Kann der SSL auf mein bestehendes Velux Fenster nachgerüstet werden?",
-      "acceptedAnswer": { "@type": "Answer", "text": "In den meisten Fällen ja – der SSL ist speziell für die Nachrüstung entwickelt und benötigt keinen Stromanschluss. Für ältere Fenster vor Mitte 2000 wird das Montageset ZOZ 253 benötigt. Rex Bedachungs GmbH prüft das kostenlos beim Aufmaß." }
-    },
-    {
-      "@type": "Question",
-      "name": "Funktioniert der SSL auch bei bewölktem Himmel und nachts?",
-      "acceptedAnswer": { "@type": "Answer", "text": "Ja. Der integrierte Hochleistungsakku speichert genug Energie für zuverlässigen Betrieb bei Bewölkung und in der Nacht – auch im Ruhrgebiets-Herbst." }
-    },
-    {
-      "@type": "Question",
-      "name": "Was ist der Unterschied zwischen SSL und SML?",
-      "acceptedAnswer": { "@type": "Answer", "text": "Der SSL ist solar-betrieben und braucht keinen Stromanschluss. Der SML benötigt 220V und zusätzlich die Steuereinheit KUX 110. Für Nachrüstungen empfehlen wir in der Regel den SSL, da keine Elektrikerarbeiten nötig sind." }
-    },
-    {
-      "@type": "Question",
-      "name": "Ist der Außenrollladen wirklich besser als ein innenliegendes Verdunkelungsrollo?",
-      "acceptedAnswer": { "@type": "Answer", "text": "Ja, deutlich. Der Außenrollladen SSL erreicht bis zu 94% Hitzeschutz, weil er die Wärme vor dem Glas stoppt. Ein Innenrollo lässt die Wärme erst durch das Glas und erreicht nur 20–40% Wirkungsgrad." }
-    }
-  ]
+  "mainEntity": faqItems.map((item) => ({
+    "@type": "Question",
+    "name": item.question,
+    "acceptedAnswer": { "@type": "Answer", "text": item.answer },
+  })),
 });
 
 const serviceSchema = JSON.stringify({

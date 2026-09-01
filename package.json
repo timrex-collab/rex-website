@@ -9,6 +9,7 @@
     "start": "NODE_ENV=production node dist/index.js",
     "indexnow:submit": "node scripts/indexnow-submit.mjs",
     "prerender:check": "node scripts/prerender-check.mjs",
+    "faq:check": "node scripts/faq-schema-check.mjs",
     "check": "tsc",
     "db:push": "drizzle-kit push"
   },

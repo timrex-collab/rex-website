@@ -63,6 +63,16 @@ const faqItems = [
   },
 ];
 
+const faqSchema = JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": faqItems.map((item) => ({
+    "@type": "Question",
+    "name": item.question,
+    "acceptedAnswer": { "@type": "Answer", "text": item.answer },
+  })),
+});
+
 const serviceSchema = JSON.stringify({
   "@context": "https://schema.org",
   "@type": "Service",
@@ -110,18 +120,7 @@ export default function DachPhotovoltaikBochum() {
     {"@type":"ListItem","position":3,"name":"Dach & Photovoltaik","item":"https://www.rex-bedachung.de/dach-photovoltaik-bochum"}
   ]
 }`}</script>
-        <script type="application/ld+json">{`{
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  "mainEntity": [
-    {"@type":"Question","name":"Was ist Braas PV Premium und für welche Modelle ist es verfügbar?","acceptedAnswer":{"@type":"Answer","text":"Braas PV Premium ist eine dachintegrierte Photovoltaik-Lösung: PV-Elemente ersetzen herkömmliche Dachziegel oder Dachsteine. Bei Rex verfügbar für die Modelle Turmalin (Dachziegel) und Tegalit (Dachstein)."}},
-    {"@type":"Question","name":"Ab wann gilt die NRW-Solardachpflicht und was passiert bei Verstoß?","acceptedAnswer":{"@type":"Answer","text":"Seit 01.01.2026 bei Dacherneuerung ab 50 m²: mindestens 30 % der geeigneten Dachfläche mit PV. Bei Verstoß droht ein Bußgeld."}},
-    {"@type":"Question","name":"Übernimmt Rex auch den Elektroanschluss der PV-Anlage?","acceptedAnswer":{"@type":"Answer","text":"Nein. Rex montiert die PV-Dachfläche und bereitet Kabeldurchführungen vor. Den Elektroanschluss übernimmt ein Fachbetrieb – auf Wunsch empfehlen wir 1KOMMA5°."}},
-    {"@type":"Question","name":"Muss das Dach vor der PV-Montage saniert werden?","acceptedAnswer":{"@type":"Answer","text":"Nicht immer. Bei Dächern älter als 15 Jahre oder mit Schäden empfehlen wir eine Sanierung vorher. Beim kostenlosen Dachcheck beurteilen wir das."}},
-    {"@type":"Question","name":"Kann ich Dachsanierung und PV-Förderung kombinieren?","acceptedAnswer":{"@type":"Answer","text":"Ja. Dachsanierung über BEG EM mit 15 % Zuschuss (mit iSFP bis zu 10.500 € je Wohneinheit), PV-Anlage über KfW 270 und EEG-Einspeisevergütung. Beide Programme kombinierbar."}},
-    {"@type":"Question","name":"Was unterscheidet Braas PV Premium von einer normalen Aufdach-Anlage?","acceptedAnswer":{"@type":"Answer","text":"PV Premium ist in die Dachfläche integriert – optisch unauffällig. Aufdach-Anlagen werden auf Gestellen montiert und bieten höhere Maximalleistung pro Quadratmeter."}}
-  ]
-}`}</script>
+        <script type="application/ld+json">{faqSchema}</script>
         <script type="application/ld+json">{`{
   "@context": "https://schema.org",
   "@type": "HowTo",

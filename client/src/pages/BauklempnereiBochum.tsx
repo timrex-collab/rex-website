@@ -128,6 +128,16 @@ const faqItems = [
   },
 ];
 
+const faqSchema = JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": faqItems.map((item) => ({
+    "@type": "Question",
+    "name": item.question,
+    "acceptedAnswer": { "@type": "Answer", "text": item.answer },
+  })),
+});
+
 const schemaJson = JSON.stringify({
   "@context": "https://schema.org",
   "@type": "Service",
@@ -202,52 +212,7 @@ export default function BauklempnereiBochum() {
   ],
   "serviceType": "Bauklempnerei"
 }`}</script>
-        <script type="application/ld+json">{`{
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  "mainEntity": [
-    {
-      "@type": "Question",
-      "name": "Was kostet eine neue Dachrinne in Bochum?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Aluminium-Dachrinnen beginnen ab ca. 30–60 €/m inkl. Montage, Zinkrinnen ab ca. 50–90 €/m. Wir erstellen Ihnen kostenlos ein genaues Angebot nach Aufmaß vor Ort."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Welches Material ist für Dachrinnen am besten?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Titanzink ist die langlebigste Wahl mit bis zu 80 Jahren Lebensdauer. Aluminium ist die wirtschaftliche Alternative. Kupfer hält am längsten mit bis zu 30 Jahren."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Fertigen Sie auch Sondermaße?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Ja – alle Bauteile werden in unserer eigenen Werkstatt in Bochum maßgenau gefertigt."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Reparieren Sie auch bestehende Blecharbeiten?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Ja, wir reparieren und erneuern bestehende Dachrinnen, Fallrohre, Kehlen und Wandbekleidungen – auch partiell."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Übernehmen Sie auch Arbeiten an Altbauten?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Ja – wir restaurieren und erneuern Blecharbeiten nach Originalvorbild und arbeiten eng mit Denkmalbehörden zusammen."
-      }
-    }
-  ]
-}`}</script>
+        <script type="application/ld+json">{faqSchema}</script>
         <script type="application/ld+json">{`{
   "@context": "https://schema.org",
   "@type": "Article",

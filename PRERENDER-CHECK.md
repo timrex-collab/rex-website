@@ -123,10 +123,12 @@ Erwartung: route-spezifischer Title **und** `application/ld+json` erscheinen.
 
 > **⚠ Diese Tabelle ist wartungspflichtig.** Sie muss bei **jeder** Title-Änderung
 > mitgezogen werden — sonst meldet der Check Fehlschläge, die keine sind. Zuletzt
-> abgeglichen: **20.08.2026** gegen `main` (`89f8088`) — alle sechs Soll-Titles
-> maschinell gegen den Quelltext geprüft, **alle sechs stimmen**. GSC-Schema-1 (PR #47),
-> ExpertenBlock-Rollout (PR #40) und Paket 4a (PR #49) haben keinen der sechs
-> Kern-Titles verändert.
+> abgeglichen: **31.08.2026** gegen `main` (`63519ac`) — doppelt bestätigt: der
+> `--self-test` prüft die sechs Soll-Titles maschinell gegen den Quelltext, und der
+> Live-Lauf vom 31.08. (§9) hat alle sechs auch in der Server-Antwort exakt so
+> vorgefunden. Seit dem letzten Abgleich haben GSC-Meta-3 (PR #56) und die
+> Schema-/Terminologie-Hygiene (PR #61) zwar Titles bzw. JSON-LD angefasst, aber
+> **keinen der sechs Kern-Titles**.
 
 | URL | Soll-`<title>` | Stand |
 |---|---|---|
@@ -163,6 +165,13 @@ Erwartung: route-spezifischer Title **und** `application/ld+json` erscheinen.
 > Auslöser: beide crawlen mit `Google-InspectionTool` und rendern JavaScript (§3). Erst das
 > Skript entscheidet.
 
+> **Wenn er zutrifft, ist er dringend (Zusatz 31.08.2026).** Zeigt die *rohe Serverantwort*
+> die Shell, gibt es **keine zweite Verteidigungslinie**: Googles Renderer bringt die SPA
+> nicht zuverlässig zum Laufen — bei zwei Livetests am 31.08. blieb `#root` leer, Screenshot
+> weiß, kein JSON-LD, kein H1 (Befund und Beleg in §9). Ein echter Prerender-Ausfall wäre
+> also kein Qualitätsverlust, sondern Totalausfall der Sichtbarkeit. Deshalb sind die
+> Schritte unten sofort abzuarbeiten und nicht bei Gelegenheit.
+
 Prerender liegt **nicht im Repo/`netlify.toml`**, sondern im Netlify-Dashboard → Fix passiert dort:
 
 1. **Netlify-Dashboard** → Site `leafy-sprite-bbbfd6` → *Extensions/Integrations* → **Prerender** →
@@ -180,6 +189,11 @@ Prerender liegt **nicht im Repo/`netlify.toml`**, sondern im Netlify-Dashboard �
 
 ## 6. Protokoll
 
+> **Ab 31.08.2026 führt die GitHub Action das Protokoll.** Jeder Lauf steht mit Datum,
+> Commit und Ausgabe in der Actions-Historie — diese Tabelle muss dafür **nicht** mehr von
+> Hand gepflegt werden. Hier gehören ab jetzt nur noch Einträge hinein, die dort nicht
+> auftauchen: Läufe von Hand, Stufe-1-Prüfungen und alles Auffällige mit Befund.
+
 | Datum | Methode | `/` | Sanierung | Flachdach | Steildach | Dachfenster | Reparatur | llms/sitemap/robots | Ergebnis |
 |---|---|---|---|---|---|---|---|---|---|
 | 11.08.2026 | Netlify-API (Stufe 1, s. u.) | — | — | — | — | — | — | — | **Infrastruktur OK, HTML-Ebene offen** |
@@ -191,16 +205,26 @@ Prerender liegt **nicht im Repo/`netlify.toml`**, sondern im Netlify-Dashboard �
 | 26.08.2026 | Netlify-API (Stufe 1) + GitHub Actions | — | — | — | — | — | — | — | **Infrastruktur OK, HTML-Ebene offen** — Deploy `6a8efc52…`, `commit_ref b461b18` (Paket 6, PR #58), `state ready`, `plugin_state success`, Prerender-Function `nf-prerender-ext_prerender` vorhanden, Secret-Scan 669/0, IndexNow #28 HTTP 200 (30 URLs) · **Stufe 2 offen — bei Tim** |
 | 28.08.2026 | Netlify-API (Stufe 1) + GitHub Actions | — | — | — | — | — | — | — | **Infrastruktur OK, HTML-Ebene offen** — Deploy `6a919fdb…`, `commit_ref db0dbdf` (GSC-Meta-3, PR #56), `state ready`, `plugin_state success`, Prerender-Function vorhanden, Secret-Scan 671/0, IndexNow #30 HTTP 200 (30 URLs) · **Stufe 2 offen — bei Tim** |
 | 30.08.2026 | Netlify-API (Stufe 1) + GitHub Actions | — | — | — | — | — | — | — | **Infrastruktur OK, HTML-Ebene offen** — Deploy `6a944355…`, `commit_ref 60550bf` (Schema-/Terminologie-Hygiene, PR #61), `state ready`, `plugin_state success`, Prerender-Function vorhanden, Secret-Scan 673/0, IndexNow #32 HTTP 200 (30 URLs) · **Stufe 2 offen — bei Tim** |
+| **31.08.2026** | **`npm run prerender:check` (Stufe 2)** | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | — | **BESTANDEN** — 6/6 PASS gegen Deploy `6a95312e…`, `commit_ref 63519ac`; deckt Paket 6, GSC-Meta-3 und die Schema-/Terminologie-Hygiene ab. Protokoll §9 |
+| 31.08.2026 | GSC-Livetest (Methode 1), nur `/dachsanierung-bochum` | — | ⚠️ | — | — | — | — | — | **Indexierung zulässig, aber CSR-Ausfall im Renderer** — Prüftool bekam die Shell, 6 von 21 Skripten nicht geladen, Screenshot leer. Kein Deploy-Defekt. Befund in §9 |
+| 31.08.2026 | **GitHub Action, Lauf 1** (`prerender-check.yml`) | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | — | **BESTANDEN** — erster automatischer Lauf nach dem Merge von PR #66, `head_sha b9d2229`. Selbsttest < 1 s, 3 min Wartezeit, Check 12 s **im ersten Versuch** (keine Wiederholung nötig) |
 
-> **Nachtrag 30.08.2026 — jetzt drei Deploys ohne Stufe-2-Lauf.** Nach der
-> Schema-/Terminologie-Hygiene (PR #61) ist Stufe 1 wieder grün, Stufe 2 scheiterte erneut
-> mit **6× HTTP 403 am Proxy**. Betroffen sind `FAQ.tsx`, `DachsanierungBochum`,
-> `VeluxAustausch`, `GruendachBochum`, `VeluxPreisrechnerBochum` und
-> `WannLohntSichDachsanierung` — **keine der sechs Kern-URLs aus §1**, die Soll-Titles in §4
-> und §7 bleiben unverändert gültig. Der Deploy ändert allerdings **JSON-LD** auf drei
-> Seiten, und JSON-LD ist eines der vier Pass-Kriterien aus §2. Ein Lauf von
-> `npm run prerender:check` deckt inzwischen drei Deploys auf einmal ab und wäre langsam
-> fällig.
+> **Nachtrag 30.08.2026 — jetzt drei Deploys ohne Stufe-2-Lauf.** ✅ **Erledigt am
+> 31.08.2026, siehe §9.** Nach der Schema-/Terminologie-Hygiene (PR #61) ist Stufe 1 wieder
+> grün, Stufe 2 scheiterte erneut mit **6× HTTP 403 am Proxy**. Betroffen sind `FAQ.tsx`,
+> `DachsanierungBochum`, `VeluxAustausch`, `GruendachBochum`, `VeluxPreisrechnerBochum` und
+> `WannLohntSichDachsanierung`; die Soll-Titles in §4 und §7 bleiben unverändert gültig. Der
+> Deploy ändert **JSON-LD** auf drei Seiten, und JSON-LD ist eines der vier Pass-Kriterien
+> aus §2. Ein Lauf von `npm run prerender:check` deckt inzwischen drei Deploys auf einmal ab
+> und wäre langsam fällig.
+>
+> **Korrektur (31.08.2026):** Der Satz „keine der sechs Kern-URLs aus §1" stand hier
+> ursprünglich und war **falsch**. `DachsanierungBochum.tsx` ist die Komponente hinter
+> `/dachsanierung-bochum` (`App.tsx`, Route `/dachsanierung-bochum`) — Kern-URL **#2**. PR #61
+> hat also sehr wohl JSON-LD auf einer der sechs geprüften URLs verändert, und zwar auf dem
+> Hub. Für den Pass/Fail ändert das nichts (Kriterium 4 verlangt „mindestens ein JSON-LD-Block",
+> `FAQPage` und `HowTo` stehen weiter drin), aber die Begründung war zu entspannt: Der Lauf
+> vom 31.08. ist der erste, der eine JSON-LD-Änderung **auf einer Kern-URL** gegenprüft.
 
 > **Nachtrag 28.08.2026 — Stufe 2 nach GSC-Meta-3 steht ebenfalls aus.** Stufe 1 ist nach
 > dem Merge von PR #56 grün (Zeile oben), Stufe 2 scheiterte erneut mit **6× HTTP 403 am
@@ -495,3 +519,210 @@ GSC-Indexierungsabdeckung bzw. ein GSC-Live-Test auf einer beliebigen Unterseite
 `npm run prerender:check` nach jedem funktionalen Deploy. Ergebnis als Zeile in §6
 eintragen. Bei einem `FAIL` gilt weiterhin die Eskalation nach §5 — ein Fehlschlag betrifft
 potenziell alle Routen, nicht nur die gemeldete.
+
+---
+
+## 9. Protokoll Stufe 2 — 31.08.2026 · **BESTANDEN**
+
+Durchgeführt von Tim Rex in PowerShell mit `npm run prerender:check` — dem automatisierten
+Methode-4-Lauf gegen die **rohe Server-Antwort** mit Googlebot-User-Agent. Repo-Stand des
+Checkouts `63519ac`, live war Netlify-Deploy `6a95312e…` auf demselben `commit_ref`
+(published 07:46 UTC; PR #62 war reine Doku, das ausgelieferte HTML entspricht dem Stand
+nach PR #61).
+
+```
+PASS  /                        – title  ✓ description  ✓ h1  ✓ json-ld
+PASS  /dachsanierung-bochum    ✓ title  ✓ description  ✓ h1  ✓ json-ld
+PASS  /flachdach-bochum        ✓ title  ✓ description  ✓ h1  ✓ json-ld
+PASS  /steildach-bochum        ✓ title  ✓ description  ✓ h1  ✓ json-ld
+PASS  /dachfenster-bochum      ✓ title  ✓ description  ✓ h1  ✓ json-ld
+PASS  /dachreparatur-bochum    ✓ title  ✓ description  ✓ h1  ✓ json-ld
+```
+
+**6 von 6 Kern-URLs bestehen alle vier Kriterien aus §2.** Alle fünf bewertbaren Soll-Titles
+aus §4 stimmen exakt; auf `/` zählen wie vorgesehen nur H1 und JSON-LD — beide vorhanden, es
+ist also nicht die leere Shell.
+
+### Was dieser Lauf abdeckt
+
+Er schließt die drei seit dem 24.08. aufgelaufenen Deploys auf einmal:
+
+| Deploy | Was daran über Prerender ankommen muss | Nachweis |
+|---|---|---|
+| Paket 6 (26.08., PR #58) | interne Linkkarten im gerenderten Body | Body wird geliefert (H1 + Description je URL) |
+| GSC-Meta-3 (28.08., PR #56) | fünf neue Titles — keiner davon auf einer Kern-URL | indirekt: Title-Auslieferung funktioniert weiter |
+| **Schema-/Terminologie-Hygiene (30.08., PR #61)** | **JSON-LD auf `/dachsanierung-bochum`** | **direkt: json-ld ✓ auf Kern-URL #2** |
+
+Die letzte Zeile ist der eigentliche Zugewinn gegenüber dem Lauf vom 24.08.: Damals war
+belegt, dass ein frisch deployter **Title** beim Bot ankommt. Jetzt ist zusätzlich belegt,
+dass eine frisch deployte **JSON-LD-Änderung** auf einer geprüften URL ausgeliefert wird —
+und genau das war die Annahme, auf der die drei ungeprüften Deploys standen.
+
+### Was weiterhin offen bleibt
+
+Unverändert der Restzweifel aus §8: Der Test zeigt, was der **Server** einem
+Googlebot-User-Agent liefert, nicht ob Google die Seiten auch so **indexiert**. Das
+beantwortet nur die GSC-URL-Prüfung (Methode 1) — einmalig, auf einer beliebigen Unterseite.
+`/dachsanierung-bochum` wäre dafür der beste Kandidat, weil dort das neue Schema steht.
+
+### Nächster fälliger Lauf
+
+Nach dem Merge des Folgepakets zu §8 (Fenster ab **01.09.2026 ~14:51 UTC**). Das Paket
+ändert JSON-LD unter anderem auf `/dachreparatur-bochum` — Kern-URL **#6**. Die Soll-Titles
+bleiben unberührt, §4 und §7 brauchen dafür keine Pflege (per `--self-test` geprüft).
+
+### Gegenprobe per GSC-URL-Prüfung am 31.08.2026 — und der eigentliche Fund
+
+Direkt nach dem Skript-Lauf hat Tim zusätzlich die **GSC-URL-Prüfung** auf
+`/dachsanierung-bochum` laufen lassen, um die Indexierungsfrage zu klären. Ergebnis auf den
+ersten Blick gut, auf den zweiten alarmierend.
+
+> **Einordnung (nachgetragen nach PR #64):** Dieser Abschnitt hieß zunächst „Gegenprobe
+> Methode 1" und nannte die GSC-URL-Prüfung „die autoritativste". Das ist seit der
+> Methodenkorrektur in §3 überholt: Die URL-Prüfung zeigt den **gerenderten** DOM und belegt
+> Indexierbarkeit, **nicht** den Prerender. Für die Prerender-Frage zählt allein die rohe
+> Serverantwort. Der Befund unten wird dadurch nicht schwächer, im Gegenteil — er ist der
+> Beleg dafür, warum die Unterscheidung nötig war.
+
+**Was der Bericht meldet (Livetest, 31.08.2026 10:12, „Google-Prüftool (Smartphone)"):**
+
+| Feld | Wert |
+|---|---|
+| URL ist für Google verfügbar | ✅ |
+| Seitenabruf | Erfolgreich |
+| Crawling erlaubt / Indexierung zulässig | Ja / Ja |
+| Vom Nutzer angegebene kanonische URL | **Keine** ⚠️ |
+| Verbesserungen | **URL hat keine Verbesserungen** ⚠️ |
+| Screenshot | **leere Seite** ❌ |
+| Seitenressourcen | **6 von 21 konnten nicht geladen werden** ❌ |
+
+**Die Konsolenmeldung ist der Kern:**
+
+```
+TypeError: Failed to fetch dynamically imported module:
+https://www.rex-bedachung.de/assets/DachsanierungBochum-ChMWskWi.js
+  at https://www.rex-bedachung.de/assets/index-CEEBKbaG.js:41
+```
+
+Nicht geladen wurden sechs JS-Chunks — `AuthorSchema`, `chevron-up`, `clipboard-check`,
+`layers`, `sun`, `wrench` —, also genau die Module, die im HTML als `modulepreload` für diese
+Route stehen. Weil eine Abhängigkeit fehlte, scheiterte der dynamische Import der Route, und
+`<div id="root">` blieb leer.
+
+#### Die Kette, sauber getrennt
+
+1. Das Prüftool crawlt mit **`Google-InspectionTool`**, nicht mit `Googlebot`. Es bekam die
+   **rohe SPA-Shell** — die Prerender-Extension bedient diesen User-Agent offenbar nicht.
+2. Danach scheiterte das clientseitige Rendering in Googles Renderer (Chunks s. o.).
+3. Ergebnis: kein Title der Route, kein Canonical, keine Description, kein `<h1>`, kein JSON-LD.
+
+> **Warum Punkt 1 belegt ist und nicht nur vermutet:** Ein gescheitertes React-Mount räumt
+> ausschließlich `#root` leer — es entfernt nichts aus dem `<head>`. Hätte der Prerender
+> geliefert, stünden Title, Canonical und JSON-LD weiterhin im `<head>`. Dort stand aber der
+> Fallback-Title aus `client/index.html` und sonst nichts. Also war schon die Server-Antwort
+> die Shell. Umgekehrt ist belegt, dass es sich um die **gerenderte** Seite handelt: Die
+> Ausgabe enthält `<div class="pe-richsnippets"> <!-- error - wrong plan(1003)--></div>` und
+> ein per JS angehängtes ProvenExpert-`<script>` — im Repo steht der Container leer und ohne
+> Script-Tag (`client/index.html:110`).
+
+#### Was ausgeschlossen ist
+
+- **Kein robots.txt-Problem.** `/assets/` ist nicht gesperrt (geprüft).
+- **Kein 404, keine veraltete `index.html`.** Zwei der gemeldeten Chunks direkt im Browser
+  abgerufen (`sun-DdrG4UjD.js`, `wrench-Bz32aHVy.js`) — beide liefern gültiges JavaScript.
+  Die Dateien existieren; Googles Renderer hat sie nicht geholt (Ressourcenbudget/Abbruch).
+- **Kein Deploy-Defekt.** Der Stufe-2-Lauf desselben Tages war auf derselben URL grün.
+
+#### Was das bedeutet
+
+**Es gibt keine zweite Verteidigungslinie.** Bisher stand die stillschweigende Annahme im
+Raum, dass Google die Seite notfalls selbst rendert, wenn der Prerender einmal aussetzt. Das
+ist widerlegt: Fällt der Prerender aus, sieht Google eine **leere Seite** — nicht eine
+Seite mit weniger Schema, sondern nichts. Die Extension ist damit nicht Optimierung, sondern
+**tragende Infrastruktur**. §5 ist entsprechend verschärft.
+
+Für den laufenden Betrieb ist das **kein Notfall**: Googlebot mit echtem User-Agent bekommt
+vollständiges HTML (heute auf allen sechs Kern-URLs gemessen), die Property hat 29 indexierte
+Seiten und 37.000 Impressionen, und am 24.08. lieferte `/steildach-bochum` einen Stunden alten
+Title an den Bot aus. Die reale Indexierung läuft über den Prerender-Pfad und funktioniert.
+
+Die Zeile „URL hat keine Verbesserungen" ist nach diesem Befund erklärt (die Seite war für den
+Renderer leer) und braucht keine eigene Untersuchung.
+
+#### Zwei Folgepunkte
+
+1. ~~**`Google-InspectionTool` in die Bot-Liste der Prerender-Extension**~~ — **erledigt,
+   nicht umsetzbar (PR #64).** Die Extension bietet keine editierbare Bot-Liste; einziger
+   User-Agent-Schalter ist „Skip user-agents supporting JavaScript", eine Ausschluss- statt
+   Einschlussliste. Die Bot-Erkennung steckt fest in der Edge-Function. Praktische Folge: Die
+   GSC-URL-Prüfung wird für die Prerender-Frage **dauerhaft** nicht aussagekräftig — sie
+   bleibt das Werkzeug für die Indexierungsfrage, mehr nicht (§3).
+2. **Chunk-Granularität prüfen.** Die Seite lädt über 20 Einzel-Chunks, viele davon winzige
+   Icon-Module (`sun`, `wrench`, `layers` …). Weniger, größere Chunks verkleinern die
+   Angriffsfläche für genau diesen Fehler. Das ist eine Änderung an der Build-Konfiguration →
+   eigenes Paket, eigener Deploy, **nicht** nebenbei. **Offen, nicht dringend.**
+
+**Zum Restzweifel aus §8** („liefert der Server ≠ indexiert Google"): Er ist mit diesem Test
+beantwortet, soweit er beantwortbar ist. Die URL-Prüfung meldet „URL ist für Google
+verfügbar", Crawling erlaubt, Indexierung zulässig — genau die Frage, für die sie das
+richtige Werkzeug ist. Die Prerender-Frage beantwortet sie nicht und kann sie nicht
+beantworten (§3); dafür stehen die bestandenen Skript-Läufe vom 24.08. und 31.08.
+
+#### Zweiter Lauf am 31.08.2026, 10:41 — Ursache eingekreist, Befund verschärft
+
+Wiederholung desselben Livetests eine halbe Stunde später:
+
+| | 1. Lauf (10:12) | 2. Lauf (10:41) |
+|---|---|---|
+| Nicht geladene Ressourcen | 6 von 21 | **2 von 21** |
+| Welche | `AuthorSchema`, `chevron-up`, `clipboard-check`, `layers`, `sun`, `wrench` | `chevron-up`, `file-text` |
+| Konsolenfehler | Route-Import gescheitert | **identisch** |
+| Screenshot | leer | **leer** |
+
+**Eine andere, kleinere Teilmenge — und trotzdem dasselbe Ergebnis.** Damit ist zweierlei klar:
+
+1. **Keine defekte Datei.** Der Ausfall wandert; Googles Renderer bricht Requests willkürlich
+   ab (Ressourcenbudget). Die Dateien selbst sind erreichbar (stichprobenartig mit 200
+   abgerufen).
+2. **Die Seite ist gegen diesen Ausfall nicht robust.** Schon **zwei** fehlende Chunks — beides
+   winzige Icon-Module — genügen für eine komplett leere Seite.
+
+**Warum ein Icon die ganze Route killt:** `App.tsx` lädt Seiten per `React.lazy()`. Vite
+wickelt jeden dynamischen Import in seinen `__vitePreload`-Helfer, der auf **alle** Preloads
+der Route wartet und den Import ablehnt, sobald einer davon scheitert — exakt die Meldung
+`Failed to fetch dynamically imported module`. In `vite.config.ts` ist **kein** `manualChunks`
+konfiguriert, also erzeugt Vites Default-Splitting rund zwanzig Mini-Chunks pro Route. Jeder
+davon ist ein einzelner Ausfallpunkt für die gesamte Seite.
+
+**Das betrifft nicht nur Google.** Ein Besucher mit wackliger Mobilverbindung, der einen
+einzigen Chunk verliert, sieht dasselbe: eine weiße Seite, ohne Fehlermeldung, ohne
+Wiederholung. Der Befund ist damit nicht nur ein SEO-, sondern ein UX- und Conversion-Thema.
+
+**Zusätzlicher Beleg aus der HTTP-Antwort** (Reiter „Weitere Informationen" → HTTP-Antwort):
+
+```
+HTTP/1.1 200 OK
+Content-Type: text/html; charset=UTF-8
+Content-Length: 1721
+Cache-Control: public,max-age=0,must-revalidate
+Cache-Status: "Netlify Edge"; fwd=stale; fwd-status=200; stored
+Server: Netlify
+```
+
+1.721 Byte (brotli) ist die nackte Shell — eine geprerenderte Seite wäre ein Vielfaches davon.
+Damit ist auch von der Transportseite bestätigt, dass für `Google-InspectionTool` kein
+Prerender greift.
+
+#### Folgepunkt 2 wird damit konkreter — und wichtiger
+
+Statt „Chunk-Granularität prüfen" lautet die Aufgabe jetzt: **die Seite gegen den Verlust
+einzelner Chunks robust machen.** Zwei Hebel, kombinierbar:
+
+- **`manualChunks` in `vite.config.ts`** — Icons und kleine geteilte Module in wenige größere
+  Bündel zusammenfassen statt zwanzig Einzeldateien. Weniger Requests, weniger Ausfallpunkte.
+- **Retry beim Chunk-Load-Fehler** — den `lazy()`-Import einmal wiederholen, bevor die Route
+  aufgibt. Fängt genau den beobachteten Fall ab (Datei existiert, Request abgebrochen).
+
+Beides ist eine Änderung an der Build-Konfiguration bzw. am Routing-Einstieg, also ein
+**eigenes Paket mit eigenem Deploy** — nicht nebenbei in einem Content-Deploy. Priorität nach
+diesem Befund: **vor** den offenen Content-Funden aus `GSC-AUDIT-2026-08.md` §8.4.
