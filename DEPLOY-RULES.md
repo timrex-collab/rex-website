@@ -302,10 +302,15 @@ Paket 6 · GSC-Meta-3 · Schema-/Terminologie-Hygiene · Folgepaket §8.
 > `npm run build` und `npm run faq:check` auf dem exakten Head nachgefahren. Merge um
 > 15:02 UTC, **48 h 11 min** nach #61, also im regulären Fenster und ohne Gate-Ausnahme nach
 > Abschnitt 4.
-> **Reichweite:** Die Aussetzung gilt jeweils **pro PR** und wurde bisher für #56, #61 und
-> #63 erteilt. Sie ist keine Dauerregel — für jeden weiteren Deploy gilt §5.5 unverändert,
-> Merge durch Tim, solange Tim nicht erneut ausdrücklich etwas anderes sagt. Insbesondere
-> deckt sie **nicht** PR #65 (Chunk-Robustheit).
+> **Ebenfalls am 01.09.2026 erteilt: #67 und #68.** Beide sind **keine Deploys** — #68 ist
+> diese Nachdokumentation, #67 die CI-Checks-Action. Sie verändern `dist/public` nicht und
+> sind nicht gate-relevant; die Aussetzung betrifft hier also nur den Merge-Vorgang selbst,
+> nicht das 48-h-Gate. Der Vollständigkeit halber vermerkt, weil §5.5 nicht zwischen Deploy-
+> und Doku-PRs unterscheidet.
+> **Reichweite:** Die Aussetzung gilt jeweils **pro PR** und wurde bisher für #56, #61, #63,
+> #67 und #68 erteilt. Sie ist keine Dauerregel — für jeden weiteren Deploy gilt §5.5
+> unverändert, Merge durch Tim, solange Tim nicht erneut ausdrücklich etwas anderes sagt.
+> Insbesondere deckt sie **nicht** PR #65 (Chunk-Robustheit).
 
 > **⏱ Gate-Unterschreitung (20.08.2026) — Deploy Paket 4a, PR #49:** Nachgemessen betrug
 > der Abstand zum letzten funktionalen Merge **46 h 24 min** statt der geforderten 48 h —
