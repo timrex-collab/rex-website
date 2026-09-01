@@ -213,19 +213,23 @@ SSR-/Framework-Migration · Stadtteil-Seiten · separate Kosten-Seiten · Gewerb
 D-IndexNow · D-Sitemap-Refresh (1+2) · Repo-Fix · B1/B2 · Meta-Fix · P2.1–P2.4 ·
 D-IndexNow-CI · Innung-Trust · BEG-1 bis BEG-4 · GSC-Meta-1 · GSC-Schema-1 ·
 Interne Verlinkung · GEO-Pflege · ExpertenBlock-Rollout · Paket 4a · Paket 5 · GSC-Meta-2 ·
-Paket 6 · GSC-Meta-3 · Schema-/Terminologie-Hygiene.
+Paket 6 · GSC-Meta-3 · Schema-/Terminologie-Hygiene · Folgepaket §8.
 
 > **Stand 20.08.2026:** Die Tabelle hatte Lücken — von PR #18 bis PR #47 waren nur BEG-1,
 > BEG-2, BEG-4 und GSC-Meta-1 eingetragen; 18 weitere Deploy-Zeilen (20 gemergte PRs)
 > fehlten. Sie ist seit PR #48 vollständig aus der Merge-Historie von `main` rekonstruiert
 > und wird ab jetzt bei jedem Deploy mitgeführt.
-> Letzter funktionaler Merge: **PR #61 am 30.08.2026 14:51 UTC** → nächstes 48-h-Fenster
-> öffnet **01.09.2026 ~14:51 UTC**. Damit sind der Deploy-Backlog aus `GSC-AUDIT-2026-08.md`
-> §6 **und** die Hygiene aus §8 abgearbeitet; als Nächstes steht das Folgepaket zu §8 an
-> (fünf Seiten mit weicher Schema-Drift, siehe dort). Reine Doku-/Tooling-PRs (#14–#17,
-> #22–#24, #45, #46, #48, #50, #51, #53, #54, #57, #59, #60) sind bewusst nicht als
-> Deploy-Zeilen geführt — sie berühren den
+> Letzter funktionaler Merge: **PR #63 am 01.09.2026 15:02 UTC** → nächstes 48-h-Fenster
+> öffnet **03.09.2026 ~15:02 UTC**. Damit ist `GSC-AUDIT-2026-08.md` §8 **vollständig**
+> abgearbeitet — Backlog §6, Hygiene §8 und das Folgepaket. Als Nächstes steht PR #65
+> (Chunk-Robustheit) an, kein Audit-Punkt, sondern der Befund aus `PRERENDER-CHECK.md` §9.
+> Reine Doku-/Tooling-PRs (#14–#17, #22–#24, #45, #46, #48, #50, #51, #53, #54, #57, #59,
+> #60, #62, #64, #66) sind bewusst nicht als Deploy-Zeilen geführt — sie berühren den
 > Build (`dist/public`) nicht und sind nicht gate-relevant.
+>
+> **Zwei Post-Deploy-Schritte laufen seit 31.08.2026 automatisch:** IndexNow (seit 07/2026)
+> und der Prerender-Check (Action `prerender-check.yml`, siehe unten). Nach diesem Deploy
+> waren beide grün, ohne Handarbeit.
 
 | Deploy | Inhalt | Status |
 |---|---|---|
@@ -267,6 +271,7 @@ Paket 6 · GSC-Meta-3 · Schema-/Terminologie-Hygiene.
 | **Paket 6** | Interne Verlinkung der zehn unterverlinkten Money-Pages: kontextuelle Linkkarten aus zehn Quellseiten (`SturmschadenDach`, `Dachreparatur`, `SteildachBochum`, `DachsanierungBochum`, `DachwartungBochum`, `DachPhotovoltaikBochum`, `Foerderung`, `DachfensterBochum`, `VeluxAustausch`, `VeluxRolllaeden`), drei davon mit neuer Link-Section. Danach hat **keine** Money-Page mehr unter drei eingehende kontextuelle Links; die impressionsstärksten Nachzügler `/dachrinne-bochum` (2.571 Impr.) und `/dachgaube-bochum` (1.773 Impr.) gehen von 2 auf 5. Null neue Dubletten; Grid-Spalten auf `DachsanierungBochum` und `DachPhotovoltaikBochum` an die neue Kartenzahl angepasst. Letztes offenes Paket aus `GSC-AUDIT-2026-08.md` §6 | ✅ live (PR #58, gemergt 26.08.2026 14:46 UTC / 16:46 CEST; Stufe A, 10 Dateien; Gate eingehalten: 48 h 13 min nach #55; Netlify `6a8efc52…`, `commit_ref b461b18`, `state ready`, `plugin_state success`, Secret-Scan 669/0; IndexNow-Run #28 HTTP 200, 30 URLs) |
 | **GSC-Meta-3** | Abschluss der Meta-Offensive: `<title>` und `<meta name="description">` auf den letzten fünf Seiten mit Überlängen neu gefasst (`BitumenVsPvc` T70/D173 → T46/D148, `DachLexikon` T67/D145 → T47/D151, `DachPhotovoltaikBochum` T74/D171 → T48/D144, `VeluxRolllaeden` T66/D165 → T49/D149). Dazu `VeluxAustausch` ohne Überlänge, aber mit 22 von 55 Titelzeichen für den Firmennamen — neu gefasst und die Schreibweise auf **VELUX** vereinheitlicht (zwei Seiten schrieben „Velux“). **Danach liegt keine Seite im Repo mehr über 60/155.** | ✅ live (PR #56, gemergt 28.08.2026 14:49 UTC / 16:49 CEST; Stufe A, 5 Dateien; Gate eingehalten: 48 h 2 min nach #58; Netlify `6a919fdb…`, `commit_ref db0dbdf`, `state ready`, `plugin_state success`, Secret-Scan 671/0; IndexNow-Run #30 HTTP 200, 30 URLs) — **Merge durch Claude, siehe Hinweis unten** |
 | **Schema-/Terminologie-Hygiene** | Umsetzung von `GSC-AUDIT-2026-08.md` §8. **FAQPage (§7):** Das Audit nannte `FAQ.tsx` als letzte Seite mit hartcodiertem Schema — nachgemessen waren es **acht**. Dieses Paket nimmt die drei mit harten Verstößen (Schema-Frage steht nicht auf der Seite): `FAQ.tsx` (14 Einträge, 0 wortgleich, 1 Frage nicht vorhanden) erhält ein `schema`-Flag im `faqCategories`-Array, aus dem das Schema erzeugt wird; `DachsanierungBochum` (8 Einträge, 3 Fragen nicht vorhanden) und `VeluxAustausch` (3 Einträge, 2 nicht vorhanden, danach 7) beziehen `mainEntity` aus `faqItems` — wie `SturmschadenDach`, `DachwartungBochum`, `DachrinnenBochum`. **Terminologie (§6):** „förderfähig“ → „förderrelevant“ an den vier Stellen, die eine Leistung betreffen (`GruendachBochum`, `VeluxPreisrechnerBochum` 2×, `WannLohntSichDachsanierung`); der amtliche Richtlinienbegriff für die Kostenbasis bleibt | ✅ live (PR #61, gemergt 30.08.2026 14:51 UTC / 16:51 CEST; Stufe B, 6 Dateien; Gate eingehalten: 48 h 2 min nach #56; Netlify `6a944355…`, `commit_ref 60550bf`, `state ready`, `plugin_state success`, Secret-Scan 673/0; IndexNow-Run #32 HTTP 200, 30 URLs) — **Merge durch Claude, siehe Hinweis unten** |
+| **Folgepaket §8** | Abschluss von `GSC-AUDIT-2026-08.md` §8. **FAQPage (§7):** Die fünf verbliebenen Seiten mit weichen Verstößen (Fragen stimmen, Antworten paraphrasiert) beziehen `mainEntity` jetzt aus dem gerenderten Array — `BauklempnereiBochum` 5/5, `Dachreparatur` 5/5, `DachPhotovoltaikBochum` 6/6, `BitumenVsPvc` 3 von 6 sichtbaren (danach alle 6), `VeluxRolllaeden` 5/5 mit 4 bereits wortgleichen. **Danach führt keine Seite im Repo mehr ein hartcodiertes `FAQPage`-Schema: 23 Seiten, alle generiert.** Nebenwirkung auf `BauklempnereiBochum`: Ein nur im Schema stehender Satz („Kupfer hält am längsten mit bis zu 30 Jahren") entfällt — er widersprach der eigenen Seite. **Terminologie (§6):** die fünfte, in der Audit-Liste fehlende Stelle — `DachsanierungBochum` „automatisch förderfähig" → „förderrelevant". **Tooling:** `npm run faq:check` macht die §7-Konvention maschinell prüfbar | ✅ live (PR #63, gemergt 01.09.2026 15:02 UTC / 17:02 CEST; Stufe B, 6 Dateien; Gate eingehalten: **48 h 11 min** nach #61; Netlify `6a96e8f5…`, `commit_ref b5e6656`, `state ready`, `plugin_state success`, Prerender-Function vorhanden, Secret-Scan 679/0; IndexNow-Run #36 grün; **Prerender-Check-Action Lauf #3 grün** — erster automatischer Lauf gegen einen echten Deploy) — **Merge durch Claude, siehe Hinweis unten** |
 
 > **👤 Abweichung von §5.5 (28. und 30.08.2026) — PR #56 und #61 von Claude gemergt:**
 > Abschnitt 5, Punkt 5 lautet „Merge ausschließlich durch Tim. Kein Direct-Push auf `main`,
@@ -287,9 +292,20 @@ Paket 6 · GSC-Meta-3 · Schema-/Terminologie-Hygiene.
 > Vorprüfung 14 min vor Fensteröffnung (main unverändert seit #60, Head `dc812bb`,
 > `mergeable_state: clean`, Test-Merge sauber, Netlify-Preview grün), Merge um 14:51 UTC,
 > **48 h 2 min** nach #56, also im regulären Fenster und ohne Gate-Ausnahme nach Abschnitt 4.
-> **Reichweite:** Die Aussetzung gilt jeweils **pro PR** und wurde bisher für #56 und #61
-> erteilt. Sie ist keine Dauerregel — für jeden weiteren Deploy gilt §5.5 unverändert,
-> Merge durch Tim, solange Tim nicht erneut ausdrücklich etwas anderes sagt.
+> **Wiederholung am 01.09.2026 für PR #63** (Folgepaket §8): Tim hat die Aussetzung am
+> Vortag ausdrücklich erteilt, zusammen mit dem Auftrag, das Fenster selbst abzuwarten.
+> Umgesetzt als terminierte Selbstweckung um 15:00 UTC — **kein** GitHub-Auto-Merge, der
+> hätte schon am Vorabend gemergt und das Gate um rund 20 Stunden unterschritten.
+> Vorprüfung vor dem Merge (protokolliert): Gate nachgerechnet und die drei Merges seit #61
+> (#62, #64, #66) einzeln daraufhin geprüft, dass sie `client/` nicht anfassen und den Anker
+> nicht verschieben; Branch auf `main`-Spitze, Netlify-Preview grün, `npm run check`,
+> `npm run build` und `npm run faq:check` auf dem exakten Head nachgefahren. Merge um
+> 15:02 UTC, **48 h 11 min** nach #61, also im regulären Fenster und ohne Gate-Ausnahme nach
+> Abschnitt 4.
+> **Reichweite:** Die Aussetzung gilt jeweils **pro PR** und wurde bisher für #56, #61 und
+> #63 erteilt. Sie ist keine Dauerregel — für jeden weiteren Deploy gilt §5.5 unverändert,
+> Merge durch Tim, solange Tim nicht erneut ausdrücklich etwas anderes sagt. Insbesondere
+> deckt sie **nicht** PR #65 (Chunk-Robustheit).
 
 > **⏱ Gate-Unterschreitung (20.08.2026) — Deploy Paket 4a, PR #49:** Nachgemessen betrug
 > der Abstand zum letzten funktionalen Merge **46 h 24 min** statt der geforderten 48 h —

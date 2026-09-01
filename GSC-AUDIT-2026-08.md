@@ -499,10 +499,16 @@ Content-Arbeit, kein Hygiene-Fix.
 
 ### 8.4 Folgepaket vorbereitet (31.08.2026) — und drei Funde daneben
 
-Das in §8.3 benannte Folgepaket ist umgesetzt und wartet auf das Deployfenster
-(**ab 01.09.2026 ~14:51 UTC**, gerechnet ab PR #61). Ein Deploy, Stufe B, 6 Dateien:
+**Live seit 01.09.2026 15:02 UTC** (PR #63, Netlify `6a96e8f5…`, `commit_ref b5e6656`,
+IndexNow-Run #36, Prerender-Check-Action Lauf #3 grün). Ein Deploy, Stufe B, 6 Dateien:
 die fünf Seiten mit weicher `FAQPage`-Drift auf `faqItems.map()` plus die fünfte
-„förderfähig"-Stelle auf `DachsanierungBochum`.
+„förderfähig"-Stelle auf `DachsanierungBochum`. Gate eingehalten: 48 h 11 min nach PR #61.
+
+> **Damit ist §8 abgeschlossen — und mit ihm das gesamte Audit-Dokument.** §6-Backlog,
+> §8-Hygiene und §8-Folgepaket sind live. Offen bleiben nur die drei Content-Funde unten
+> (fachliche Entscheidungen, kein Deploy-Anlass) und die Wirkungsmessung: GSC ab ~08.09.2026
+> erneut auswerten und die CTR der zehn Seiten aus GSC-Meta-1 gegen die Baseline in
+> Abschnitt 4 halten.
 
 Nachgemessen vor der Umstellung — die Tabelle aus §8.3, um die Antwortseite ergänzt:
 
