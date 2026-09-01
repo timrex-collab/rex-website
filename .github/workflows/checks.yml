@@ -1,0 +1,51 @@
+name: Checks
+
+# Typecheck, Build und Schema-Hygiene bei jedem PR und jedem Merge auf main.
+#
+# Warum: Bisher liefen `npm run check` und `npm run build` nur lokal vor dem Push.
+# Das haelt, solange jemand daran denkt - eine gruene Kachel am PR ist die
+# verlaesslichere Fassung, und sie ersetzt kein einziges bestehendes Ritual.
+#
+# Ausdruecklich KEIN Deploy-Schritt: Netlify baut weiterhin selbst, Merge weiterhin
+# durch Tim (DEPLOY-RULES §5). Diese Action prueft nur.
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  # Pro Branch serialisieren und aeltere Laeufe abbrechen - bei Checks ist nur
+  # der letzte Stand interessant.
+  group: checks-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  checks:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v5
+      - name: Setup Node
+        uses: actions/setup-node@v5
+        with:
+          node-version: 22
+          cache: npm
+      - name: Abhaengigkeiten installieren
+        run: npm ci
+      - name: Typecheck
+        run: npm run check
+      - name: Build
+        run: npm run build
+      # Prueft die FAQPage-Konvention aus DEPLOY-RULES §7: mainEntity muss aus dem
+      # Array kommen, das die Seite auch rendert. Zwei Fehlmessungen des Audits
+      # gingen darauf zurueck, dass das nur von Hand geprueft wurde
+      # (GSC-AUDIT-2026-08.md §8.1 und §8.3).
+      - name: FAQPage-Schema (Drift-Check)
+        run: npm run faq:check
+      - name: Selbsttest des FAQ-Checks
+        run: npm run faq:check -- --self-test
