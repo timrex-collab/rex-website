@@ -313,10 +313,15 @@ Paket 6 · GSC-Meta-3 · Schema-/Terminologie-Hygiene · Folgepaket §8 · Chunk
 > sind nicht gate-relevant; die Aussetzung betrifft hier also nur den Merge-Vorgang selbst,
 > nicht das 48-h-Gate. Der Vollständigkeit halber vermerkt, weil §5.5 nicht zwischen Deploy-
 > und Doku-PRs unterscheidet.
+> **Bewährungsprobe bestanden — PR #65 hat Tim selbst gemergt (03.09.2026 17:39 MESZ).**
+> Die Aussetzung war für #65 ausdrücklich **nicht** erteilt, und so ist es auch gelaufen: Der
+> letzte funktionale Deploy lag wieder beim Menschen. Das ist der Beleg, dass die Regel nicht
+> stillschweigend erodiert.
+> **Ebenfalls erteilt: #69** — diese Nachdokumentation, kein Deploy, nicht gate-relevant.
 > **Reichweite:** Die Aussetzung gilt jeweils **pro PR** und wurde bisher für #56, #61, #63,
-> #67 und #68 erteilt. Sie ist keine Dauerregel — für jeden weiteren Deploy gilt §5.5
-> unverändert, Merge durch Tim, solange Tim nicht erneut ausdrücklich etwas anderes sagt.
-> Insbesondere deckt sie **nicht** PR #65 (Chunk-Robustheit).
+> #67, #68 und #69 erteilt — **fünf davon Doku- oder Tooling-PRs, ein einziger ein echter
+> Deploy** (#63). Sie ist keine Dauerregel; für jeden weiteren Deploy gilt §5.5 unverändert,
+> Merge durch Tim, solange Tim nicht erneut ausdrücklich etwas anderes sagt.
 
 > **⏱ Gate-Unterschreitung (20.08.2026) — Deploy Paket 4a, PR #49:** Nachgemessen betrug
 > der Abstand zum letzten funktionalen Merge **46 h 24 min** statt der geforderten 48 h —
