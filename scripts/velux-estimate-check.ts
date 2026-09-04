@@ -30,6 +30,8 @@ import {
 } from "../client/src/lib/velux/estimate";
 import { LEGACY_SIZES, WINDOW_TYPES, findLegacySize } from "../client/src/lib/velux/legacyCatalog";
 import { resolveExistingWindow, type ResolveResult, type WindowObservation } from "../client/src/lib/velux/resolve";
+import { validateEstimateInput, validateObservationInput, validateOptionsInput } from "../client/src/lib/velux/validate";
+import { buildVeluxTools, estimateFingerprint, presentEstimate, TOOL_NAMES, type VeluxUiBridge } from "../client/src/lib/velux/tools";
 import {
   evaluateBeg, evaluateTax35c, RULES,
   type BegScenario, type FundingAnswers, type FundingEvaluation, type TaxScenario,
@@ -144,6 +146,7 @@ const GOLDENS: Golden[] = [
 
 let failures = 0;
 const fail = (msg: string) => { failures++; console.error(`  ✗ ${msg}`); };
+const pendingAsync: Promise<void>[] = [];
 const dump = process.argv.includes("--dump");
 
 function compare(label: string, actual: Record<string, unknown>, expected: Record<string, unknown>) {
@@ -328,6 +331,134 @@ console.log("Resolver");
   console.log(`  ${cases.length} Fälle, ${fuzzed} Fuzz-Kombinationen`);
 }
 
+// ── WebMCP-Vertrag: Validator, Presenter, Tools ───────────────────────
+console.log("WebMCP-Validator");
+{
+  const good = { positions: [{ model: "GGU", size: "MK08", glazing: "ENERGIE", quantity: 1 }], funding: { buildingAge: "over_10", energyRenovation: "yes", ownerOccupied: "yes", hasIsfp: "no" } };
+  const expectErr = (name: string, input: unknown, code: string, extra?: (e: { path?: string; allowedValues?: string[]; allowedSizes?: string[] }) => boolean) => {
+    const v = validateEstimateInput(input);
+    if (v.ok) { fail(`${name}: Fehler ${code} erwartet, Eingabe akzeptiert`); return; }
+    if (v.error.code !== code) fail(`${name}: ${v.error.code} statt ${code} (${v.error.message})`);
+    else if (extra && !extra(v.error)) fail(`${name}: Zusatzprüfung fehlgeschlagen (${JSON.stringify(v.error)})`);
+  };
+  const v0 = validateEstimateInput(good);
+  if (!v0.ok) fail(`Gültige Eingabe abgelehnt: ${v0.error.message}`);
+  else {
+    const p = v0.value.positions[0];
+    if (p.glazing !== "E" || p.qty !== 1 || p.shutter !== "none" || p.shutterQty !== 0) fail("Gültige Eingabe falsch normalisiert");
+  }
+  const v1 = validateEstimateInput({ ...good, positions: [{ model: " ggu ", size: "mk08", glazing: "Energie Plus", quantity: 2, shutter: "ssl" }] });
+  if (!v1.ok) fail(`Normalisierung: ${v1.error.message}`);
+  else if (v1.value.positions[0].glazing !== "P" || v1.value.positions[0].shutter !== "SSL" || v1.value.positions[0].shutterQty !== 2) fail("Normalisierung/Default shutterQuantity falsch");
+  expectErr("GPU CK02", { ...good, positions: [{ model: "GPU", size: "CK02", glazing: "ENERGIE", quantity: 1 }] }, "INVALID_SIZE_FOR_MODEL", (e) => e.allowedSizes?.length === 15);
+  expectErr("unbekannter Schlüssel", { ...good, foo: 1 }, "UNKNOWN_FIELD");
+  expectErr("unbekannter Positionsschlüssel", { ...good, positions: [{ ...good.positions[0], price: 1 }] }, "UNKNOWN_FIELD");
+  expectErr("ungültige Verglasung", { ...good, positions: [{ ...good.positions[0], glazing: "STANDARD" }] }, "INVALID_ENUM", (e) => e.allowedValues?.includes("ENERGIE_PLUS") === true);
+  expectErr("quantity 0", { ...good, positions: [{ ...good.positions[0], quantity: 0 }] }, "INVALID_INPUT");
+  expectErr("quantity 11", { ...good, positions: [{ ...good.positions[0], quantity: 11 }] }, "INVALID_INPUT");
+  expectErr("shutterQuantity > quantity", { ...good, positions: [{ ...good.positions[0], shutter: "SML", shutterQuantity: 3 }] }, "ACCESSORY_QTY_EXCEEDS_WINDOWS");
+  expectErr("shutterQuantity ohne shutter", { ...good, positions: [{ ...good.positions[0], shutterQuantity: 1 }] }, "INVALID_INPUT");
+  expectErr("Förderung fehlt", { positions: good.positions }, "INVALID_INPUT");
+  expectErr("Förderung Boolean statt Enum", { ...good, funding: { ...good.funding, hasIsfp: true } }, "INVALID_ENUM", (e) => e.path === "funding.hasIsfp");
+  expectErr("leere Positionen", { ...good, positions: [] }, "INVALID_INPUT");
+  expectErr("11 Positionen", { ...good, positions: Array(11).fill(good.positions[0]) }, "INVALID_INPUT");
+  expectErr("null", null, "INVALID_INPUT");
+  expectErr("Array", [good], "INVALID_INPUT");
+  expectErr("existingWindow unbekannt", { ...good, existingWindow: { windowType: "XXX" } }, "INVALID_ENUM");
+  const o1 = validateOptionsInput(undefined); if (!o1.ok || o1.value.includePrices) fail("Options: leere Eingabe muss gültig sein");
+  const o2 = validateOptionsInput({ model: "gpu", includePrices: true }); if (!o2.ok || o2.value.model !== "GPU") fail("Options: model-Normalisierung");
+  const o3 = validateOptionsInput({ model: "ABC" }); if (o3.ok || o3.error.code !== "INVALID_ENUM") fail("Options: ungültiges Modell");
+  const r1 = validateObservationInput({ windowType: "GGL", sizeCode: { value: "M08", alternatives: ["MO8"] }, source: "agent_image_recognition" }); if (!r1.ok) fail(`Observation gültig: ${r1.error.message}`);
+  const r2 = validateObservationInput({ source: "user_typed" }); if (r2.ok) fail("Observation ohne Typ/Größe muss abgelehnt werden");
+  const r3 = validateObservationInput({ windowType: "GGL", source: "photo" }); if (r3.ok || r3.error.code !== "INVALID_ENUM") fail("Observation ungültige source");
+  const r4 = validateObservationInput({ windowType: { value: "GGL", extra: 1 }, source: "user_typed" }); if (r4.ok || r4.error.code !== "UNKNOWN_FIELD") fail("Observation unbekanntes Feld");
+  // Fuzz auf jeder Ebene: nie werfen
+  const junk: unknown[] = [null, 0, -1, 1.5, "", "x".repeat(1000), [], {}, { a: 1 }, true, Symbol.for("s"), () => 1];
+  let fuzzed = 0;
+  for (const a of junk) for (const b of junk) {
+    for (const input of [a, { positions: a, funding: b }, { positions: [a], funding: good.funding }, { positions: [{ ...good.positions[0], quantity: a, shutter: b }], funding: good.funding }, { positions: good.positions, funding: { ...good.funding, buildingAge: a } }]) {
+      try { validateEstimateInput(input); validateOptionsInput(input); validateObservationInput(input); fuzzed++; }
+      catch (e) { fail(`Validator wirft: ${String(e)}`); }
+    }
+  }
+  console.log(`  Validator-Fälle geprüft, ${fuzzed} Fuzz-Eingaben ohne Exception`);
+}
+
+console.log("WebMCP-Presenter und Tools");
+{
+  const noBridge: VeluxUiBridge = { hasUserDraft: () => false, apply: async () => ({ applied: true }) };
+  const tools = buildVeluxTools(noBridge);
+  const names = Object.values(TOOL_NAMES);
+  for (const n of names) if (!/^[a-z0-9_]{1,64}$/.test(n)) fail(`Toolname ${n} verletzt [a-z0-9_]{1,64}`);
+  for (const t of Object.values(tools)) {
+    if (!t.description || t.description.length < 80) fail(`${t.name}: Beschreibung zu kurz`);
+    if (!t.inputSchema || (t.inputSchema as { type?: string }).type !== "object") fail(`${t.name}: inputSchema fehlt`);
+  }
+  if (tools.calculate.annotations?.readOnlyHint !== true || tools.options.annotations?.readOnlyHint !== true || tools.resolve.annotations?.readOnlyHint !== true) fail("read-only Tools müssen readOnlyHint=true tragen");
+  if (tools.apply.annotations?.readOnlyHint !== false) fail("Apply-Tool muss readOnlyHint=false tragen");
+
+  const input = { positions: [{ model: "GGU", size: "PK08", glazing: "ENERGIE_PLUS", quantity: 2, shutter: "SML", shutterQuantity: 1, blind: "DSL", blindQuantity: 2 }, { model: "GGL", size: "MK08", glazing: "THERMO", quantity: 1 }, { model: "GPU", size: "SK06", glazing: "ENERGIE", quantity: 1 }], funding: { buildingAge: "over_10", energyRenovation: "yes", ownerOccupied: "unknown", hasIsfp: "no" } };
+  const signal = new AbortController().signal;
+  const res = tools.calculate.execute(input, { signal }) as Record<string, unknown>;
+  if (res.ok !== true) fail(`calculate: ${JSON.stringify(res)}`);
+  else {
+    const text = JSON.stringify(res);
+    if (text.length > 5000) fail(`calculate: Antwort ${text.length} Zeichen > 5.000 (3 Positionen, zwei Szenarien, kompakt)`);
+    const totals = res.totals as { grossFrom: number; netFrom: number };
+    if (totals.grossFrom !== Math.round(totals.netFrom * 1.19) && Math.abs(totals.grossFrom - totals.netFrom * 1.19) > 1) fail("calculate: brutto ≠ netto × 1,19");
+    const fp = res.estimateFingerprint as string;
+    if (!/^VX-[0-9A-F]{8}$/.test(fp)) fail(`Fingerprint-Format: ${fp}`);
+    const again = tools.calculate.execute(input, { signal }) as Record<string, unknown>;
+    if (again.estimateFingerprint !== fp) fail("Fingerprint nicht deterministisch");
+    const varied = tools.calculate.execute({ ...input, funding: { ...input.funding, hasIsfp: "yes" } }, { signal }) as Record<string, unknown>;
+    if (varied.estimateFingerprint === fp) fail("Fingerprint ändert sich nicht mit der Eingabe");
+    if (JSON.stringify(JSON.parse(text)) !== text) fail("calculate: nicht JSON-stabil");
+    if (text.includes("Empfehlung:") || /"recommended"/.test(text)) fail("calculate: Antwort enthält eine Empfehlung");
+    if ((res.breakdown ?? null) !== null) fail("calculate: breakdown ohne includeBreakdown");
+    const withBreakdown = tools.calculate.execute({ ...input, includeBreakdown: true }, { signal }) as Record<string, unknown>;
+    if (!Array.isArray(withBreakdown.breakdown) || withBreakdown.breakdown.length !== 3) fail("calculate: breakdown fehlt");
+    if (JSON.stringify(withBreakdown).length > 7000) fail("calculate: Antwort mit breakdown zu groß");
+  }
+  const small = tools.calculate.execute({ positions: [{ model: "GGU", size: "MK08", glazing: "ENERGIE", quantity: 1 }], funding: { buildingAge: "over_10", energyRenovation: "yes", ownerOccupied: "yes", hasIsfp: "no" } }, { signal }) as Record<string, unknown>;
+  if (small.ok !== true) fail("calculate small");
+  else {
+    const t = small.totals as { grossFrom: number };
+    if (t.grossFrom !== 2104) fail(`calculate: Goldwert 2104 erwartet, ${t.grossFrom}`);
+    const f = small.funding as { begGrant: { amountMax: number } | null; taxBonus35c: { totalMax: number } | null };
+    if (f.begGrant?.amountMax !== 316 || f.taxBonus35c?.totalMax !== 421) fail("calculate: Förderwerte weichen von den Goldwerten ab");
+    if (!(small.summary as string).startsWith("1 VELUX Fenster: ab 2.104 € brutto")) fail(`Summary: ${small.summary}`);
+    const smallLen = JSON.stringify(small).length;
+    if (smallLen > 3200) fail(`calculate: Standardantwort (1 Position) ${smallLen} Zeichen > 3.200`);
+    console.log(`  Antwortgröße 1 Position: ${smallLen} Zeichen`);
+  }
+  const bad = tools.calculate.execute({ positions: [{ model: "GPU", size: "CK02", glazing: "ENERGIE", quantity: 1 }], funding: input.funding }, { signal }) as Record<string, unknown>;
+  if (bad.ok !== false || (bad.error as { code: string }).code !== "INVALID_SIZE_FOR_MODEL") fail("calculate: Fehlerpfad");
+  const opts = tools.options.execute({}, { signal }) as Record<string, unknown>;
+  if (opts.ok !== true || JSON.stringify(opts).length > 3000) fail(`options: kompakt erwartet (${JSON.stringify(opts).length} Zeichen)`);
+  console.log(`  Antwortgröße options: ${JSON.stringify(opts).length} Zeichen`);
+  if (JSON.stringify(opts).includes("unitPricesNet")) fail("options: Preise ohne includePrices");
+  const optsP = tools.options.execute({ model: "GGU", includePrices: true }, { signal }) as Record<string, unknown>;
+  if (optsP.ok !== true || !JSON.stringify(optsP).includes("unitPricesNet")) fail("options: Preise mit includePrices+model fehlen");
+  const resolved = tools.resolve.execute({ windowType: "GGL", sizeCode: "308", productionCode: "306621 03BF01N", source: "user_typed" }, { signal }) as Record<string, unknown>;
+  if (resolved.ok !== true || resolved.status !== "confirmation_required" || JSON.stringify(resolved).includes("306621")) fail("resolve-Tool: Status oder Echo falsch");
+  console.log("  Presenter, Fingerprint, Antwortgrößen, Tool-Metadaten geprüft");
+
+  // Apply-Tool: DRAFT_EXISTS / BUSY / ABORTED / Erfolg über eine Fake-Bridge
+  pendingAsync.push((async () => {
+    const draftBridge: VeluxUiBridge = { hasUserDraft: () => true, apply: async () => ({ applied: true }) };
+    const a1 = await buildVeluxTools(draftBridge).apply.execute({ positions: input.positions.slice(0, 1), funding: input.funding }, { signal }) as Record<string, unknown>;
+    if (a1.ok !== false || (a1.error as { code: string }).code !== "DRAFT_EXISTS") fail("apply: DRAFT_EXISTS erwartet");
+    const a2 = await buildVeluxTools(draftBridge).apply.execute({ positions: input.positions.slice(0, 1), funding: input.funding, replaceExisting: true }, { signal }) as Record<string, unknown>;
+    if (a2.ok !== true || a2.uiApplied !== true) fail("apply: replaceExisting muss überschreiben");
+    const busyBridge: VeluxUiBridge = { hasUserDraft: () => false, apply: async () => ({ applied: false, code: "BUSY" }) };
+    const a3 = await buildVeluxTools(busyBridge).apply.execute({ positions: input.positions.slice(0, 1), funding: input.funding }, { signal }) as Record<string, unknown>;
+    if (a3.ok !== false || (a3.error as { code: string }).code !== "BUSY") fail("apply: BUSY erwartet");
+    const a4 = await buildVeluxTools(noBridge).apply.execute({ positions: input.positions.slice(0, 1), funding: input.funding, replaceExisting: "ja" }, { signal }) as Record<string, unknown>;
+    if (a4.ok !== false || (a4.error as { code: string }).code !== "INVALID_INPUT") fail("apply: replaceExisting muss boolean sein");
+  })().catch((e) => fail(`apply async: ${String(e)}`)));
+  void presentEstimate; void estimateFingerprint;
+}
+
 // ── Determinismus + JSON-Roundtrip ────────────────────────────────────
 {
   const g = GOLDENS[1];
@@ -337,9 +468,11 @@ console.log("Resolver");
   if (JSON.stringify(JSON.parse(a)) !== a) fail("Ergebnis nicht verlustfrei JSON-serialisierbar");
 }
 
-console.log("");
-if (failures > 0) {
-  console.error(`${failures} Abweichung(en). Preislogik NICHT freigeben.`);
-  process.exit(1);
-}
-console.log(dump ? "Live-Werte ausgegeben (kein Vergleich)." : "Alle Prüfungen bestanden.");
+void Promise.all(pendingAsync).then(() => {
+  console.log("");
+  if (failures > 0) {
+    console.error(`${failures} Abweichung(en). Preislogik NICHT freigeben.`);
+    process.exit(1);
+  }
+  console.log(dump ? "Live-Werte ausgegeben (kein Vergleich)." : "Alle Prüfungen bestanden.");
+});

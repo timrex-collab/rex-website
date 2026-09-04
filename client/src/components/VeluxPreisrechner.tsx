@@ -1,5 +1,5 @@
 // @ts-nocheck
-import { useState, useCallback } from "react";
+import { useState, useCallback, useMemo } from "react";
 import { ChevronRight, ChevronLeft, Calculator, Home, Sun, Phone, Mail, Check, Info, ArrowRight, Shield, Droplets, Eye, Plus, Trash2, User, FileDown } from "lucide-react";
 
 
@@ -9,6 +9,11 @@ import { DIMS, WINDOWS, EDW, SHUTTERS, BLINDS, LABOR, GL, fmt, sizesForModel, sh
 import { calcDetails, buildEstimate } from "@/lib/velux/estimate";
 import { EMPTY_FUNDING_ANSWERS, isFundingComplete, RULES } from "@/lib/velux/funding";
 import { ASSUMPTIONS, COMPANY, DISCLAIMER, EXCLUSIONS, FUNDING_NOTES, PRICE_BASIS_NOTE, SCOPE_NOTE } from "@/lib/velux/content";
+// WebMCP (PR-2a): Tools sind nur bei aktivem Flag + Origin-Allowlist registriert; ohne WebMCP läuft der Rechner unverändert.
+import { buildVeluxTools } from "@/lib/velux/tools";
+import { APPLIED_SESSION_KEY, RESULT_ANCHOR_ID, useVeluxBridge } from "@/lib/velux/bridge";
+import { useWebMCPTool } from "@/hooks/useWebMCPTool";
+import { emitWebMCPEvent, isWebMCPEnabled } from "@/lib/webmcp";
 const deDate=(iso)=>iso.split("-").reverse().join(".");
 let _id = 0;
 const uid = () => ++_id;
@@ -413,6 +418,7 @@ function Step3({positions,foerderung}){
     setSubmitting(true);
     setSubmitError(false);
 
+    try{if(sessionStorage.getItem(APPLIED_SESSION_KEY)==="1")emitWebMCPEvent({event:"cta_transition"});}catch{}
     const formData = new URLSearchParams();
     formData.append("form-name", "velux-preisrechner");
     formData.append("bot-field", "");
@@ -456,7 +462,7 @@ function Step3({positions,foerderung}){
   return(
     <div className="space-y-5">
       {/* Config Summary */}
-      <div className="bg-gradient-to-br from-slate-800 to-slate-900 rounded-2xl p-5 text-white">
+      <div id={RESULT_ANCHOR_ID} tabIndex={-1} className="bg-gradient-to-br from-slate-800 to-slate-900 rounded-2xl p-5 text-white outline-none focus-visible:ring-2 focus-visible:ring-white/60">
         <div className="flex items-center gap-2 text-slate-300 text-xs font-medium uppercase tracking-wider mb-4"><Calculator className="w-4 h-4"/> Ihre Konfiguration — {totalFenster} Fenster</div>
         <div className="space-y-2.5">{details.map((d,i)=>(
           <div key={i} className="flex flex-wrap items-center gap-x-3 gap-y-1 text-sm">
@@ -623,6 +629,16 @@ export default function VeluxPreisrechner(){
   const canStep1=positions.length>0&&positions.every(p=>p.model&&p.size&&p.glazing);
   const canStep2=isFundingComplete(foerderung);
 
+  // WebMCP-Verdrahtung (kein Effekt ohne Flag): Bridge + vier Tools, Lebensdauer = diese Komponente
+  const [announce,setAnnounce]=useState("");
+  const bridge=useVeluxBridge({positions,funding:foerderung,step,setPositions,setFunding:setFoerderung,setStep,announce:setAnnounce,makeId:uid});
+  const tools=useMemo(()=>buildVeluxTools(bridge),[bridge]);
+  const webmcpOn=useMemo(()=>isWebMCPEnabled(),[]);
+  useWebMCPTool(tools.options,webmcpOn);
+  useWebMCPTool(tools.resolve,webmcpOn);
+  useWebMCPTool(tools.calculate,webmcpOn);
+  useWebMCPTool(tools.apply,webmcpOn);
+
   return(
     <div className="min-h-screen bg-gradient-to-b from-slate-50 to-white">
       <style>{`@keyframes fadeIn{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:translateY(0)}}.animate-fadeIn{animation:fadeIn .25s ease-out}`}</style>
@@ -632,6 +648,7 @@ export default function VeluxPreisrechner(){
         <p className="text-slate-300 mt-2 text-sm">Kosten, Eindeckrahmen und Fördermöglichkeiten berechnen</p>
       </div></div>
       <div className="max-w-3xl mx-auto px-4 py-8">
+        <div aria-live="polite" className="sr-only">{announce}</div>
         <Steps step={step}/>
         {step===1&&<Step1 positions={positions} setPositions={setPositions}/>}
         {step===2&&<Step2 foerderung={foerderung} setFoerderung={setFoerderung}/>}
