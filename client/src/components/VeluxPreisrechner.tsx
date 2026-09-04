@@ -7,6 +7,9 @@ import { ChevronRight, ChevronLeft, Calculator, Home, Sun, Phone, Mail, Check, I
 // (eine Preislogik für UI, PDF, Anfrage-Text und WebMCP).
 import { DIMS, WINDOWS, EDW, SHUTTERS, BLINDS, LABOR, GL, fmt, sizesForModel, shuttersForSize, blindsForSize } from "@/lib/velux/catalog";
 import { calcDetails, buildEstimate } from "@/lib/velux/estimate";
+import { EMPTY_FUNDING_ANSWERS, isFundingComplete, RULES } from "@/lib/velux/funding";
+import { ASSUMPTIONS, COMPANY, DISCLAIMER, EXCLUSIONS, FUNDING_NOTES, PRICE_BASIS_NOTE, SCOPE_NOTE } from "@/lib/velux/content";
+const deDate=(iso)=>iso.split("-").reverse().join(".");
 let _id = 0;
 const uid = () => ++_id;
 
@@ -16,7 +19,7 @@ const emptyPos = () => ({id:uid(),model:"",size:"",glazing:"",qty:1,shutter:"non
    PDF GENERATION
    ═══════════════════════════════════════════════════════════════════════ */
 
-function buildPdfHtml(details, totals, foerderung, kunde) {
+function buildPdfHtml(details, totals, funding, kunde) {
   const today = new Date().toLocaleDateString("de-DE", {day:"2-digit",month:"2-digit",year:"numeric"});
 
   const posRows = details.map((d, i) => {
@@ -45,39 +48,49 @@ function buildPdfHtml(details, totals, foerderung, kunde) {
       <tr class="subtotal"><td>Einbau Position ${i+1}</td><td class="r">ab ${fmt(d.labPos)} €</td></tr>`;
   }).join("");
 
-  const foerderSection = totals.eligible && totals.bafaFoerder > 0 ? `
+  const rows = (r) => r.map(([a, b]) => `<tr><td>${a}</td><td class="r">${b}</td></tr>`).join("");
+  const begBox = funding.beg ? `
     <div class="foerder-box">
-      <h3>BAFA-Förderung (BEG Einzelmaßnahme)</h3>
+      <h3>Alternative A – BEG EM (BAFA-Zuschuss)</h3>
       <table>
-        <tr><td>Förderfähige Kosten (brutto)</td><td class="r"><strong>${fmt(totals.foerderBrutto)} €</strong></td></tr>
-        ${totals.foerderBrutto>totals.bafaMaxBrutto?`<tr class="muted"><td>Förderhöchstbetrag pro WE/Jahr</td><td class="r">${fmt(totals.bafaMaxBrutto)} €</td></tr>`:""}
-        <tr><td>Fördersatz</td><td class="r"><strong>${totals.bafaRateLabel}</strong></td></tr>
-        <tr><td><strong>Geschätzter BAFA-Zuschuss</strong></td><td class="r foerder-amount">− ${fmt(totals.bafaFoerder)} €</td></tr>
+        ${rows([["Förderrelevante Kosten (brutto, nur Uw ≤ 1,0)", `<strong>${fmt(funding.beg.eligibleCostsGross)} €</strong>`], ...(funding.beg.capApplied ? [["Höchstgrenze je Wohneinheit und Jahr", `${fmt(funding.beg.cap)} €`]] : []), ["Fördersatz", `<strong>${funding.beg.rateLabel}</strong>`]])}
+        <tr><td><strong>Möglicher Zuschuss (Maximalwert unter Annahmen)</strong></td><td class="r foerder-amount">bis zu ${fmt(funding.beg.amountMax)} €</td></tr>
+        <tr class="muted"><td>Rechnerisch verbleibend nach maximalem Zuschuss</td><td class="r">ab ${fmt(totals.totalBrutto - funding.beg.amountMax)} €</td></tr>
       </table>
-      <p class="small" style="margin-top:8px"><strong>KfW Ergänzungskredit 358/359:</strong> Nach BAFA-Zusage ist zusätzlich ein zinsvergünstigter Kredit bis 120.000 € pro WE möglich.</p>
-      <p class="small"><strong>Fachplanung:</strong> 50% Zuschuss für den Energieeffizienz-Experten auf förderrelevante Kosten bis 5.000 € bei EFH/ZFH (max. 2.500 €) — separater Fördertopf.</p>
-      ${!totals.hasIsfp?`<p class="small"><strong>Hinweis zum iSFP:</strong> Seit 21.07.2026 hebt der individuelle Sanierungsfahrplan die Obergrenze der förderrelevanten Kosten auf 60.000 € an. Der Bonus von 5 Prozentpunkten greift jedoch nur auf den Kostenanteil über 30.000 € — bei diesem Vorhabensvolumen bringt er beim Fördersatz keinen Vorteil.</p>`:""}
-      ${totals.hasIneligible?`<p class="small" style="color:#92400e"><strong>Hinweis:</strong> Positionen mit THERMO-Verglasung (Uw 1,3) sind nicht förderrelevant. Die BEG-Förderung erfordert Uw ≤ 1,0 W/m²K.</p>`:""}
-      <table class="total-table" style="margin-top:10px;border-top:1px solid #a7f3d0;padding-top:8px">
-        <tr><td>Gesamtkosten brutto (inkl. MwSt.)</td><td class="r">${fmt(totals.totalBrutto)} €</td></tr>
-        <tr><td>BAFA-Zuschuss</td><td class="r"><strong>− ${fmt(totals.bafaFoerder)} €</strong></td></tr>
-        <tr><td><strong>Ihre tatsächliche Investition</strong></td><td class="r"><strong>ab ${fmt(totals.investitionBrutto)} €</strong></td></tr>
-      </table>
-    </div>
-    ${totals.steuerBonus>totals.bafaFoerder?`
-    <div class="foerder-box" style="background:#eff6ff;border-color:#bfdbfe;margin-top:12px">
-      <h3 style="color:#1d4ed8">Empfehlung: Steuerbonus §35c EStG</h3>
-      <p style="font-size:10px;color:#1e40af;margin-bottom:8px">Seit der BEG-Reform vom 21.07.2026 greift der iSFP-Bonus nur noch oberhalb von 30.000 €. Bei diesem Vorhabensvolumen liegt der Steuerbonus mit <strong>20% Steuerermäßigung</strong> über dem BAFA-Zuschuss — und kommt ohne Energieeffizienz-Experten und ohne Antragsverfahren aus.</p>
-      <table>
-        <tr><td>Steuerermäßigung gesamt (20%)</td><td class="r"><strong>${fmt(totals.steuerBonus)} €</strong></td></tr>
-        <tr class="muted"><td>Jahr 1 (7%) / Jahr 2 (7%) / Jahr 3 (6%)</td><td class="r">${fmt(totals.steuerJahr1)} / ${fmt(totals.steuerJahr2)} / ${fmt(totals.steuerJahr3)} €</td></tr>
-        <tr><td><strong>Effektive Investition mit Steuerbonus</strong></td><td class="r"><strong>ab ${fmt(totals.investitionSteuer)} €</strong></td></tr>
-      </table>
-      <p class="small" style="margin-top:6px;color:#1e40af"><strong>Voraussetzungen:</strong> Selbstgenutztes Wohneigentum, Gebäude ≥ 10 Jahre alt, Fachunternehmen. Nicht kombinierbar mit BAFA für dieselbe Maßnahme.</p>
-    </div>`:""}` : totals.eligible ? `
+      <p class="small" style="margin-top:8px"><strong>Annahmen:</strong> ${funding.beg.assumptions.join("; ")}.</p>
+      <p class="small">${FUNDING_NOTES.kfw}</p>
+      <p class="small">${FUNDING_NOTES.fachplanung}</p>
+      ${funding.beg.isfpBonus === 0 ? `<p class="small"><strong>Hinweis zum iSFP:</strong> ${FUNDING_NOTES.isfp}</p>` : ""}
+    </div>` : `
     <div class="foerder-box" style="background:#f8fafc;border-color:#e2e8f0">
-      <p style="font-size:10px;color:#475569">Keine förderrelevanten Positionen vorhanden. Für die BEG-Förderung (BEG EM) ist eine Verglasung mit Uw ≤ 1,0 W/m²K erforderlich (ENERGIE oder ENERGIE PLUS).</p>
-    </div>` : "";
+      <h3 style="color:#475569">Alternative A – BEG EM (BAFA-Zuschuss)</h3>
+      <p class="small" style="color:#475569">Nicht ausgewiesen: ${funding.begReason}</p>
+    </div>`;
+  const taxBox = funding.tax35c ? `
+    <div class="foerder-box" style="background:#eff6ff;border-color:#bfdbfe;margin-top:12px">
+      <h3 style="color:#1d4ed8">Alternative B – Steuerermäßigung §35c EStG</h3>
+      <table>
+        ${rows([["Bemessungsgrundlage (brutto, nur Uw ≤ 1,0)", `<strong>${fmt(funding.tax35c.base)} €</strong>`], ...(funding.tax35c.capApplied ? [["Höchstbetrag je Objekt", "40.000 €"]] : []), ["Jahr 1 (7 %) / Jahr 2 (7 %) / Jahr 3 (6 %)", `${fmt(funding.tax35c.year1)} / ${fmt(funding.tax35c.year2)} / ${fmt(funding.tax35c.year3)} €`]])}
+        <tr><td><strong>Mögliche Steuerermäßigung gesamt (Maximalwert unter Annahmen)</strong></td><td class="r foerder-amount" style="color:#1d4ed8">bis zu ${fmt(funding.tax35c.totalMax)} €</td></tr>
+        <tr class="muted"><td>Rechnerisch verbleibend nach maximaler Ermäßigung</td><td class="r">ab ${fmt(totals.totalBrutto - funding.tax35c.totalMax)} €</td></tr>
+      </table>
+      <p class="small" style="margin-top:8px;color:#1e40af"><strong>Annahmen:</strong> ${funding.tax35c.assumptions.join("; ")}.</p>
+      <p class="small" style="color:#1e40af">${FUNDING_NOTES.taxRequirements}</p>
+    </div>` : `
+    <div class="foerder-box" style="background:#f8fafc;border-color:#e2e8f0;margin-top:12px">
+      <h3 style="color:#475569">Alternative B – Steuerermäßigung §35c EStG</h3>
+      <p class="small" style="color:#475569">Nicht ausgewiesen: ${funding.tax35cReason}</p>
+    </div>`;
+  const foerderSection = `
+    <div style="margin-top:16px">
+      <div class="doc-title" style="font-size:12px">Fördermöglichkeiten – zwei Alternativen, nicht kombinierbar</div>
+      <p class="small" style="color:#475569;margin-bottom:4px">${SCOPE_NOTE} ${FUNDING_NOTES.noRecommendation}</p>
+      ${funding.ineligibleThermoPositions > 0 ? `<p class="small" style="color:#92400e"><strong>Hinweis:</strong> ${FUNDING_NOTES.thermo}</p>` : ""}
+      ${begBox}
+      ${taxBox}
+      <p class="small" style="color:#64748b;margin-top:8px">${FUNDING_NOTES.notCombinable}</p>
+      <p class="small" style="color:#94a3b8">Regelstand: ${RULES.beg.label} (Richtlinie ab ${deDate(RULES.beg.effectiveFrom)}) · ${RULES.tax35c.label} · geprüft am ${deDate(RULES.beg.lastReviewedAt)}</p>
+    </div>`;
 
   const kundeSection = kunde.name ? `
     <div class="kunde-box">
@@ -126,28 +139,30 @@ function buildPdfHtml(details, totals, foerderung, kunde) {
     Klicken Sie auf <strong>"Als PDF speichern"</strong> im Druckdialog, um das Dokument herunterzuladen.
   </div>
   <div class="header">
-    <div class="header-left"><h1>Rex Bedachungs GmbH</h1><p>Dachdecker-Meisterbetrieb · autorisierter VELUX-Partner · Seit 1984</p></div>
-    <div class="header-right"><strong>Rex Bedachungs GmbH</strong><br>Paulinenstraße 22<br>44799 Bochum<br>Tel: 0234 / 58 31 00<br>info@rex-bedachung.de</div>
+    <div class="header-left"><h1>${COMPANY.name}</h1><p>${COMPANY.claim}</p></div>
+    <div class="header-right"><strong>${COMPANY.name}</strong><br>${COMPANY.street}<br>${COMPANY.city}<br>Tel: ${COMPANY.phone}<br>${COMPANY.email}</div>
   </div>
   <div class="doc-title">VELUX Dachfenster — Unverbindliche Kostenschätzung</div>
-  <div class="doc-meta">Erstellt am ${today} · Einzelpreise netto, Bruttobeträge separat ausgewiesen · Materialpreise = VELUX UVP 2026</div>
+  <div class="doc-meta">Erstellt am ${today} · ${PRICE_BASIS_NOTE}</div>
   ${kundeSection}
   <table style="margin-top:16px">${posRows}</table>
   <div class="total-section">
     <table class="total-table">
       <tr><td>Material gesamt (UVP netto)</td><td class="r">${fmt(totals.totalMat)} €</td></tr>
       <tr><td>Einbaukosten gesamt (netto)</td><td class="r">ab ${fmt(totals.totalLab)} €</td></tr>
-      <tr class="grand"><td>Gesamtkosten netto</td><td class="r">ab ${fmt(totals.totalNetto)} €</td></tr>
-      <tr class="mwst"><td>zzgl. 19% MwSt.</td><td class="r">${fmt(totals.mwst)} €</td></tr>
-      <tr class="brutto"><td>Gesamtkosten brutto (inkl. MwSt.)</td><td class="r">ab ${fmt(totals.totalBrutto)} €</td></tr>
+      <tr class="brutto"><td>Kostenschätzung netto</td><td class="r">ab ${fmt(totals.totalNetto)} €</td></tr>
+      <tr class="mwst"><td>zzgl. 19 % MwSt.</td><td class="r">${fmt(totals.mwst)} €</td></tr>
+      <tr class="grand"><td>Kostenschätzung brutto (inkl. MwSt.)</td><td class="r">ab ${fmt(totals.totalBrutto)} €</td></tr>
     </table>
   </div>
   ${foerderSection}
   <div class="disclaimer">
     <strong>Hinweis zu den angegebenen Preisen:</strong>
-    Alle Material- und Einbaupreise in dieser Kostenschätzung sind Nettopreise (ohne MwSt.). Die Gesamtübersicht weist zusätzlich die Bruttobeträge inkl. 19% MwSt. aus. Unverbindliche Kostenschätzung auf Basis der VELUX UVP 2026. Einbaukosten sind Mindestpreise und variieren je nach baulichen Gegebenheiten. Fördermittel vorbehaltlich Bewilligung durch BAFA bzw. KfW. Ihr persönliches Angebot kann abweichen.
+    ${DISCLAIMER}<br>
+    <strong>Enthalten / angenommen:</strong> ${ASSUMPTIONS.join("; ")}.<br>
+    <strong>Nicht enthalten:</strong> ${EXCLUSIONS.join(", ")}.
   </div>
-  <div class="footer"><strong>Rex Bedachungs GmbH</strong> · Paulinenstraße 22 · 44799 Bochum · Tel: 0234 / 58 31 00 · www.rex-bedachung.de</div>
+  <div class="footer"><strong>${COMPANY.name}</strong> · ${COMPANY.street} · ${COMPANY.city} · Tel: ${COMPANY.phone} · ${COMPANY.web}</div>
   <button class="no-print print-btn" onclick="window.print()">PDF speichern / Drucken</button>
 </div></body></html>`;
 }
@@ -300,14 +315,43 @@ function Step1({positions,setPositions}){
 }
 
 function Step2({foerderung,setFoerderung}){
-  const qs=[{key:"altbau",label:"Ist das Gebäude älter als 5 Jahre?",hint:"Grundvoraussetzung für BAFA- und KfW-Förderung"},{key:"sanierung",label:"Erfolgt der Einbau im Rahmen einer energetischen Sanierung?",hint:"Fensteraustausch mit verbessertem Uw-Wert"},{key:"isfp",label:"Liegt ein individueller Sanierungsfahrplan (iSFP) vor?",hint:"Hebt die Obergrenze der förderrelevanten Kosten auf 60.000 €; +5 Prozentpunkte nur auf den Anteil über 30.000 €"}];
+  const YNU=[["yes","Ja"],["no","Nein"],["unknown","Weiß ich nicht"]];
+  const qs=[
+    {key:"buildingAge",label:"Wie alt ist das Gebäude (Bauantrag)?",hint:"BEG EM setzt mindestens 5 Jahre voraus, die Steuerermäßigung nach §35c EStG mehr als 10 Jahre",options:[["under_5","Jünger als 5 Jahre"],["5_to_10","5 bis 10 Jahre"],["over_10","Älter als 10 Jahre"],["unknown","Weiß ich nicht"]]},
+    {key:"energyRenovation",label:"Erfolgt der Einbau als Fenstertausch mit verbessertem Uw-Wert?",hint:"Energetische Einzelmaßnahme an der Gebäudehülle (BEG EM)",options:YNU},
+    {key:"ownerOccupied",label:"Ist es selbstgenutztes Wohneigentum?",hint:"Voraussetzung für die Steuerermäßigung nach §35c EStG",options:YNU},
+    {key:"hasIsfp",label:"Liegt ein individueller Sanierungsfahrplan (iSFP) vor?",hint:"Hebt die Obergrenze der förderrelevanten Kosten auf 60.000 €; +5 Prozentpunkte nur auf den Anteil über 30.000 €",options:YNU},
+  ];
+  const cls=(active,v)=>active?(v==="no"?"border-slate-400 bg-slate-50 text-slate-700":v==="unknown"?"border-amber-500 bg-amber-50 text-amber-800":"border-emerald-600 bg-emerald-50 text-emerald-800"):"border-slate-200 text-slate-500 hover:border-slate-300";
   return(<div className="space-y-5">
-    <div className="bg-blue-50 border border-blue-200 rounded-xl p-4 flex gap-3"><Info className="w-5 h-5 text-blue-600 shrink-0 mt-0.5"/><div className="text-sm text-blue-800"><span className="font-semibold">Fördermittel-Check:</span> Wir prüfen BAFA-Einzelmaßnahme (BEG EM) und KfW-Ergänzungskredit und zeigen Ihnen die beste Option.</div></div>
+    <div className="bg-blue-50 border border-blue-200 rounded-xl p-4 flex gap-3"><Info className="w-5 h-5 text-blue-600 shrink-0 mt-0.5"/><div className="text-sm text-blue-800"><span className="font-semibold">Fördermittel-Check:</span> Wir zeigen den BAFA-Zuschuss (BEG EM) und die Steuerermäßigung nach §35c EStG als zwei Alternativen – ohne Empfehlung. Unsichere Angaben einfach mit „Weiß ich nicht" beantworten; wir rechnen dann mit ausgewiesenen Annahmen. <span className="block mt-1 text-xs text-blue-700">{SCOPE_NOTE}</span></div></div>
     {qs.map((q,i)=>(<div key={q.key} className="bg-white border border-slate-200 rounded-xl p-5">
       <div className="font-semibold text-slate-800 mb-1">{i+1}. {q.label}</div><div className="text-xs text-slate-500 mb-4">{q.hint}</div>
-      <div className="flex gap-3">{["ja","nein"].map(v=>(<button key={v} onClick={()=>setFoerderung(f=>({...f,[q.key]:v}))}
-        className={`px-6 py-2.5 rounded-lg border-2 font-semibold text-sm transition-all ${foerderung[q.key]===v?v==="ja"?"border-emerald-600 bg-emerald-50 text-emerald-800":"border-slate-400 bg-slate-50 text-slate-700":"border-slate-200 text-slate-500 hover:border-slate-300"}`}>{v==="ja"?"Ja":"Nein"}</button>))}</div>
+      <div className="flex flex-wrap gap-3">{q.options.map(([v,l])=>(<button key={v} onClick={()=>setFoerderung(f=>({...f,[q.key]:v}))}
+        className={`px-5 py-2.5 rounded-lg border-2 font-semibold text-sm transition-all ${cls(foerderung[q.key]===v,v)}`}>{l}</button>))}</div>
     </div>))}
+  </div>);
+}
+
+function FundingCard({title,tone,scenario,reason,rows,amountLabel,amount,remaining,notes}){
+  const c=tone==="emerald"
+    ?{box:"bg-emerald-50 border-emerald-200",head:"text-emerald-700",text:"text-emerald-700",strong:"text-emerald-800",amount:"text-emerald-700",note:"bg-emerald-100/60 text-emerald-700",line:"border-emerald-200"}
+    :{box:"bg-blue-50 border-blue-200",head:"text-blue-700",text:"text-blue-700",strong:"text-blue-800",amount:"text-blue-700",note:"bg-blue-100/60 text-blue-700",line:"border-blue-200"};
+  if(!scenario){
+    return(<div className="bg-slate-50 border border-slate-200 rounded-xl p-4">
+      <div className="text-xs font-semibold text-slate-500 uppercase tracking-wider mb-2">{title}</div>
+      <p className="text-xs text-slate-600"><span className="font-semibold">Nicht ausgewiesen:</span> {reason}</p>
+    </div>);
+  }
+  return(<div className={`border rounded-xl p-4 ${c.box}`}>
+    <div className={`text-xs font-semibold uppercase tracking-wider mb-3 ${c.head}`}>{title}</div>
+    <div className="space-y-1.5 text-sm mb-3">{rows.map(([a,b],i)=>(<div key={i} className="flex justify-between gap-3"><span className={c.text}>{a}</span><span className={`font-semibold text-right ${c.strong}`}>{b}</span></div>))}</div>
+    <div className={`flex justify-between items-center gap-3 py-2 border-t border-b ${c.line}`}><span className={`font-bold ${c.strong}`}>{amountLabel}</span><span className={`text-xl font-bold whitespace-nowrap ${c.amount}`}>bis zu {fmt(amount)} €</span></div>
+    <div className={`flex justify-between gap-3 text-xs mt-2 ${c.text}`}><span>Rechnerisch verbleibend (Maximalwert unter Annahmen)</span><span className="whitespace-nowrap">ab {fmt(remaining)} €</span></div>
+    <div className={`text-xs rounded-lg p-2.5 mt-3 space-y-1 ${c.note}`}>
+      <p><span className="font-semibold">Annahmen:</span> {scenario.assumptions.join("; ")}.</p>
+      {notes.map((n,i)=><p key={i}>{n}</p>)}
+    </div>
   </div>);
 }
 
@@ -321,16 +365,17 @@ function Step3({positions,foerderung}){
   const [submitError, setSubmitError] = useState(false);
   const setK=(k,v)=>setKunde(c=>({...c,[k]:v}));
 
-  const {details,totals}=buildEstimate(positions,foerderung);
-  const {totalMat,totalLab,totalNetto,mwst,totalBrutto,totalFenster,eligible,hasIsfp,bafaMaxBrutto,hasIneligible,ineligibleCount,foerderBrutto,bafaFoerder,bafaRateLabel,steuerBonus,steuerJahr1,steuerJahr2,steuerJahr3,investitionBrutto,investitionSteuer}=totals;
+  const {details,totals,funding}=buildEstimate(positions,foerderung);
+  const {totalMat,totalLab,totalNetto,mwst,totalBrutto,totalFenster,hasIneligible,ineligibleCount}=totals;
+  const {beg,tax35c,begReason,tax35cReason}=funding;
   const kundeValid=kunde.name.trim().length>1&&(kunde.email.trim().includes("@")||kunde.telefon.trim().length>5);
 
   const handlePdf=useCallback(()=>{
-    const html=buildPdfHtml(details,totals,foerderung,kunde);
+    const html=buildPdfHtml(details,totals,funding,kunde);
     const w=window.open("","_blank");
     if(w){w.document.write(html);w.document.close();}
     setPdfGenerated(true);
-  },[details,totals,foerderung,kunde]);
+  },[details,totals,funding,kunde]);
 
   const buildMailto=useCallback(()=>{
     const posText=details.map((d,i)=>{
@@ -339,13 +384,15 @@ function Step3({positions,foerderung}){
       if(d.blindQty>0)t+=` + ${d.blindQty}x ${BLINDS[d.blind].short}`;
       t+=`\n  Material: ${fmt(d.matPos)} EUR | Einbau: ab ${fmt(d.labPos)} EUR`;
       return t;}).join("");
-    const ft=eligible&&bafaFoerder>0?`\n\nMoegl. BAFA-Foerderung (BEG EM, Stand 21.07.2026): ca. ${fmt(bafaFoerder)} EUR\nFoerderrelevante Bruttokosten: ${fmt(foerderBrutto)} EUR\nIhre tatsaechliche Investition: ab ${fmt(investitionBrutto)} EUR`:"";
+    const ft=(beg?`\n\nAlternative A – BEG EM (BAFA): moeglicher Zuschuss bis zu ${fmt(beg.amountMax)} EUR (Maximalwert unter Annahmen; foerderrelevante Bruttokosten ${fmt(beg.eligibleCostsGross)} EUR)`:"")
+      +(tax35c?`\nAlternative B – §35c EStG: moegliche Steuerermaessigung bis zu ${fmt(tax35c.totalMax)} EUR ueber drei Jahre`:"")
+      +(beg||tax35c?`\nBeide Wege sind nicht kombinierbar.`:"");
     const ad=kunde.strasse?`\nStrasse: ${kunde.strasse}`:"";
     const po=(kunde.plz||kunde.ort)?`\nPLZ/Ort: ${kunde.plz} ${kunde.ort}`:"";
     const subject=encodeURIComponent(`Angebotsanfrage VELUX Dachfenster – ${kunde.name.trim()}`);
     const body=encodeURIComponent(`Guten Tag,\n\nich moechte ein unverbindliches Angebot anfragen.\nDie detaillierte Kostenschaetzung ist als PDF beigefuegt.\n${posText}\n\nGesamt: ab ${fmt(totalNetto)} EUR netto (${fmt(totalBrutto)} EUR brutto inkl. MwSt.)${ft}\n\nKontaktdaten:\nName: ${kunde.name}${ad}${po}\nE-Mail: ${kunde.email}\nTelefon: ${kunde.telefon}${kunde.nachricht?`\nAnmerkung: ${kunde.nachricht}`:""}\n\nMit freundlichen Gruessen\n${kunde.name}`);
     return`mailto:info@rex-bedachung.de?subject=${subject}&body=${body}`;
-  },[details,totals,eligible,bafaFoerder,foerderBrutto,investitionBrutto,totalNetto,totalBrutto,kunde]);
+  },[details,beg,tax35c,totalNetto,totalBrutto,kunde]);
 
   const buildKonfigText = () => {
     return details.map((d, i) =>
@@ -354,11 +401,12 @@ function Step3({positions,foerderung}){
       (d.blindQty > 0 ? ` + ${d.blindQty}× ${BLINDS[d.blind].short}` : "") +
       ` → ab ${fmt(d.matPos + d.labPos)} € netto`
     ).join("\n") +
-    `\n\nGesamt netto: ab ${fmt(totalNetto)} €` +
-    `\nGesamt brutto: ab ${fmt(totalBrutto)} €` +
-    (bafaFoerder > 0 ? `\nBAFA-Zuschuss: −${fmt(bafaFoerder)} € (${hasIsfp ? "20%" : "15%"})` : "") +
-    (bafaFoerder > 0 ? `\nInvestition nach Förderung: ab ${fmt(investitionBrutto)} €` : "") +
-    `\nFörder-Check: Altbau=${foerderung.altbau}, Sanierung=${foerderung.sanierung}, iSFP=${foerderung.isfp}`;
+    `\n\nKostenschätzung netto: ab ${fmt(totalNetto)} €` +
+    `\nKostenschätzung brutto: ab ${fmt(totalBrutto)} €` +
+    (beg ? `\nBEG EM (BAFA): bis zu ${fmt(beg.amountMax)} € (${beg.rateLabel}; förderrelevant brutto ${fmt(beg.eligibleCostsGross)} €)` : `\nBEG EM (BAFA): nicht ausgewiesen – ${begReason}`) +
+    (tax35c ? `\n§35c EStG: bis zu ${fmt(tax35c.totalMax)} € (${fmt(tax35c.year1)} / ${fmt(tax35c.year2)} / ${fmt(tax35c.year3)} €)` : `\n§35c EStG: nicht ausgewiesen – ${tax35cReason}`) +
+    `\nFörder-Check: Gebäudealter=${foerderung.buildingAge}, Fenstertausch=${foerderung.energyRenovation}, Selbstnutzung=${foerderung.ownerOccupied}, iSFP=${foerderung.hasIsfp}` +
+    `\nRegelstand: ${RULES.beg.rulesVersion} / ${RULES.tax35c.rulesVersion}, geprüft ${RULES.beg.lastReviewedAt}`;
   };
 
   const handleSubmitAndPdf = async () => {
@@ -447,80 +495,35 @@ function Step3({positions,foerderung}){
         <div className="p-5 bg-slate-50 border-t-2 border-slate-200 space-y-2 text-sm">
           <div className="flex justify-between"><span className="text-slate-600">Material gesamt (UVP netto)</span><span className="font-semibold">{fmt(totalMat)} €</span></div>
           <div className="flex justify-between"><span className="text-slate-600">Einbaukosten gesamt (netto)</span><span className="font-semibold">ab {fmt(totalLab)} €</span></div>
-          <div className="border-t border-slate-300 pt-2.5 mt-2.5 flex justify-between items-baseline">
-            <span className="font-bold text-slate-900">Gesamtkosten netto</span><span className="text-xl font-bold text-slate-900">ab {fmt(totalNetto)} €</span></div>
-          <div className="flex justify-between text-slate-500 text-xs"><span>zzgl. 19% MwSt.</span><span>{fmt(mwst)} €</span></div>
-          <div className="flex justify-between items-baseline pb-1"><span className="font-semibold text-slate-700">Gesamtkosten brutto (inkl. MwSt.)</span><span className="text-lg font-bold text-slate-700">ab {fmt(totalBrutto)} €</span></div>
+          <div className="flex justify-between pt-1"><span className="text-slate-600">Kostenschätzung netto</span><span className="font-semibold text-slate-700">ab {fmt(totalNetto)} €</span></div>
+          <div className="flex justify-between text-slate-500 text-xs"><span>zzgl. 19 % MwSt.</span><span>{fmt(mwst)} €</span></div>
+          <div className="border-t border-slate-300 pt-2.5 mt-2.5 flex justify-between items-baseline pb-1">
+            <span className="font-bold text-slate-900">Kostenschätzung brutto (inkl. MwSt.)</span><span className="text-xl font-bold text-slate-900">ab {fmt(totalBrutto)} €</span></div>
 
-          {eligible&&(
-            <div className="mt-4 space-y-3">
-              {/* THERMO-Hinweis */}
-              {hasIneligible&&(
-                <div className="bg-amber-50 border border-amber-200 rounded-lg p-3 flex gap-2">
-                  <Info className="w-4 h-4 text-amber-600 shrink-0 mt-0.5"/>
-                  <div className="text-xs text-amber-800">
-                    <span className="font-semibold">Nicht förderrelevant:</span> {ineligibleCount} Position(en) mit THERMO-Verglasung (Uw 1,3 W/m²K). Die BEG-Förderung erfordert Uw ≤ 1,0 W/m²K — nur ENERGIE und ENERGIE PLUS Verglasungen sind förderrelevant.
-                  </div>
+          <div className="mt-4 space-y-3">
+            <div className="text-xs font-semibold text-slate-500 uppercase tracking-wider">Fördermöglichkeiten — zwei Alternativen, nicht kombinierbar</div>
+            <p className="text-xs text-slate-500">{SCOPE_NOTE} {FUNDING_NOTES.noRecommendation}</p>
+            {hasIneligible&&(
+              <div className="bg-amber-50 border border-amber-200 rounded-lg p-3 flex gap-2">
+                <Info className="w-4 h-4 text-amber-600 shrink-0 mt-0.5"/>
+                <div className="text-xs text-amber-800">
+                  <span className="font-semibold">Nicht förderrelevant:</span> {ineligibleCount} Position(en) mit THERMO-Verglasung. {FUNDING_NOTES.thermo}
                 </div>
-              )}
-
-              {bafaFoerder>0?(
-                <div className="bg-emerald-50 border border-emerald-200 rounded-xl p-4">
-                  <div className="text-xs font-semibold text-emerald-700 uppercase tracking-wider mb-3">BAFA-Förderung (BEG Einzelmaßnahme)</div>
-                  <div className="space-y-1.5 text-sm mb-3">
-                    <div className="flex justify-between"><span className="text-emerald-700">Förderfähige Kosten (brutto)</span><span className="font-semibold text-emerald-800">{fmt(foerderBrutto)} €</span></div>
-                    {foerderBrutto>bafaMaxBrutto&&<div className="flex justify-between text-xs text-emerald-600"><span>Förderhöchstbetrag pro WE/Jahr</span><span>{fmt(bafaMaxBrutto)} €</span></div>}
-                    <div className="flex justify-between gap-3"><span className="text-emerald-700 flex-shrink-0">Fördersatz</span><span className="font-semibold text-emerald-800 text-right">{bafaRateLabel}</span></div>
-                  </div>
-                  <div className="flex justify-between items-center py-2 border-t border-b border-emerald-200">
-                    <span className="font-bold text-emerald-900">Geschätzter BAFA-Zuschuss</span>
-                    <span className="text-xl font-bold text-emerald-700">− {fmt(bafaFoerder)} €</span>
-                  </div>
-                  <div className="text-xs text-emerald-600 bg-emerald-100/60 rounded-lg p-2.5 mt-3 space-y-1">
-                    <p><span className="font-semibold">KfW Ergänzungskredit 358/359:</span> Nach BAFA-Zusage ist zusätzlich ein zinsvergünstigter Kredit bis 120.000 € pro WE möglich. Bei Haushaltseinkommen ≤ 90.000 € besonders günstige Konditionen.</p>
-                    <p><span className="font-semibold">Fachplanung:</span> 50% Zuschuss für den Energieeffizienz-Experten auf förderrelevante Kosten bis 5.000 € bei EFH/ZFH (max. 2.500 €) — separater Fördertopf.</p>
-                    {!hasIsfp&&<p><span className="font-semibold">Hinweis zum iSFP:</span> Seit 21.07.2026 hebt der individuelle Sanierungsfahrplan nur noch die Obergrenze der förderrelevanten Kosten auf 60.000 € an. Der Bonus von 5 Prozentpunkten greift ausschließlich auf den Kostenanteil über 30.000 € — bei diesem Vorhabensvolumen bringt er beim Fördersatz keinen Vorteil.</p>}
-                  </div>
-                  <div className="border-t border-emerald-200 pt-3 mt-3">
-                    <div className="flex justify-between items-center mb-1"><span className="text-sm text-emerald-700">Gesamtkosten brutto (inkl. MwSt.)</span><span className="text-sm text-emerald-700">{fmt(totalBrutto)} €</span></div>
-                    <div className="flex justify-between items-center mb-2"><span className="text-sm text-emerald-700">BAFA-Zuschuss</span><span className="text-sm font-semibold text-emerald-700">− {fmt(bafaFoerder)} €</span></div>
-                    <div className="flex justify-between items-baseline pt-2 border-t border-emerald-300">
-                      <span className="font-bold text-emerald-900">Ihre tatsächliche Investition</span>
-                      <span className="text-xl font-bold text-emerald-800">ab {fmt(investitionBrutto)} €</span>
-                    </div>
-                  </div>
-
-                  {/* §35c Steuerbonus — Empfehlung wenn kein iSFP */}
-                  {steuerBonus>bafaFoerder&&(
-                    <div className="mt-4 bg-blue-50 border border-blue-200 rounded-xl p-4">
-                      <div className="text-xs font-semibold text-blue-700 uppercase tracking-wider mb-2">Empfehlung: Steuerbonus §35c EStG</div>
-                      <p className="text-sm text-blue-800 mb-3">
-                        Seit der BEG-Reform vom 21.07.2026 greift der iSFP-Bonus nur noch auf Kosten oberhalb von 30.000 €. Bei diesem Vorhabensvolumen ist der <strong>Steuerbonus nach §35c EStG rechnerisch die stärkere Variante</strong>: 20% Steuerermäßigung statt 15% BAFA-Zuschuss, ohne Energieeffizienz-Experten und ohne BAFA-Antrag. Er wirkt allerdings erst über drei Steuerjahre und setzt eine ausreichende Steuerschuld voraus.
-                      </p>
-                      <div className="space-y-1.5 text-sm mb-3">
-                        <div className="flex justify-between"><span className="text-blue-700">Steuerermäßigung gesamt (20%)</span><span className="font-bold text-blue-800">{fmt(steuerBonus)} €</span></div>
-                        <div className="flex justify-between text-xs text-blue-600"><span>Jahr 1 (7%)</span><span>{fmt(steuerJahr1)} €</span></div>
-                        <div className="flex justify-between text-xs text-blue-600"><span>Jahr 2 (7%)</span><span>{fmt(steuerJahr2)} €</span></div>
-                        <div className="flex justify-between text-xs text-blue-600"><span>Jahr 3 (6%)</span><span>{fmt(steuerJahr3)} €</span></div>
-                      </div>
-                      <div className="flex justify-between items-baseline pt-2 border-t border-blue-200">
-                        <span className="font-bold text-blue-900">Effektive Investition mit Steuerbonus</span>
-                        <span className="text-lg font-bold text-blue-800">ab {fmt(investitionSteuer)} €</span>
-                      </div>
-                      <div className="mt-3 bg-blue-100/60 rounded-lg p-2.5 text-xs text-blue-700 space-y-1">
-                        <p><span className="font-semibold">Voraussetzungen:</span> Selbstgenutztes Wohneigentum, Gebäude mindestens 10 Jahre alt, Ausführung durch Fachunternehmen, unbare Bezahlung.</p>
-                        <p><span className="font-semibold">Nicht kombinierbar</span> mit BAFA-Förderung für dieselbe Maßnahme — eine der beiden Optionen wählen.</p>
-                      </div>
-                    </div>
-                  )}
-                </div>
-              ):(
-                <div className="bg-slate-50 border border-slate-200 rounded-lg p-3 text-xs text-slate-600">
-                  Keine förderrelevanten Positionen vorhanden. Für die BEG-Förderung ist eine Verglasung mit Uw ≤ 1,0 W/m²K erforderlich (ENERGIE oder ENERGIE PLUS).
-                </div>
-              )}
+              </div>
+            )}
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-3 items-start">
+              <FundingCard title="Alternative A – BEG EM (BAFA-Zuschuss)" tone="emerald" scenario={beg} reason={begReason}
+                rows={beg?[["Förderrelevante Kosten (brutto, nur Uw ≤ 1,0)",`${fmt(beg.eligibleCostsGross)} €`],...(beg.capApplied?[["Höchstgrenze je Wohneinheit und Jahr",`${fmt(beg.cap)} €`]]:[]),["Fördersatz",beg.rateLabel]]:[]}
+                amountLabel="Möglicher BAFA-Zuschuss" amount={beg?beg.amountMax:0} remaining={beg?totalBrutto-beg.amountMax:0}
+                notes={beg?[FUNDING_NOTES.kfw,FUNDING_NOTES.fachplanung,...(beg.isfpBonus===0?[`Hinweis zum iSFP: ${FUNDING_NOTES.isfp}`]:[])]:[]}/>
+              <FundingCard title="Alternative B – Steuerermäßigung §35c EStG" tone="blue" scenario={tax35c} reason={tax35cReason}
+                rows={tax35c?[["Bemessungsgrundlage (brutto, nur Uw ≤ 1,0)",`${fmt(tax35c.base)} €`],...(tax35c.capApplied?[["Höchstbetrag je Objekt","40.000 €"]]:[]),["Jahr 1 (7 %) / Jahr 2 (7 %) / Jahr 3 (6 %)",`${fmt(tax35c.year1)} / ${fmt(tax35c.year2)} / ${fmt(tax35c.year3)} €`]]:[]}
+                amountLabel="Mögliche Steuerermäßigung gesamt" amount={tax35c?tax35c.totalMax:0} remaining={tax35c?totalBrutto-tax35c.totalMax:0}
+                notes={tax35c?[FUNDING_NOTES.taxRequirements]:[]}/>
             </div>
-          )}
+            <p className="text-xs text-slate-500">{FUNDING_NOTES.notCombinable}</p>
+            <p className="text-[10px] text-slate-400">Regelstand: {RULES.beg.label} (Richtlinie ab {deDate(RULES.beg.effectiveFrom)}) · {RULES.tax35c.label} · geprüft am {deDate(RULES.beg.lastReviewedAt)}</p>
+          </div>
         </div>
       </div>
 
@@ -529,7 +532,9 @@ function Step3({positions,foerderung}){
         <Info className="w-5 h-5 text-amber-600 shrink-0 mt-0.5"/>
         <div className="text-xs text-amber-800 space-y-1">
           <p className="font-semibold">Hinweis zu den angegebenen Preisen:</p>
-          <p>Alle Material- und Einbaupreise in dieser Kostenschätzung sind Nettopreise (ohne MwSt.). Die Gesamtübersicht weist zusätzlich die Bruttobeträge inkl. 19% MwSt. aus. Unverbindliche Kostenschätzung auf Basis der VELUX UVP 2026. Einbaukosten sind Mindestpreise und variieren je nach baulichen Gegebenheiten. Fördermittel vorbehaltlich Bewilligung durch BAFA bzw. KfW.</p>
+          <p>{DISCLAIMER}</p>
+          <p><span className="font-semibold">Enthalten / angenommen:</span> {ASSUMPTIONS.join("; ")}.</p>
+          <p><span className="font-semibold">Nicht enthalten:</span> {EXCLUSIONS.join(", ")}.</p>
         </div>
       </div>
 
@@ -614,9 +619,9 @@ function Step3({positions,foerderung}){
 export default function VeluxPreisrechner(){
   const [step,setStep]=useState(1);
   const [positions,setPositions]=useState([emptyPos()]);
-  const [foerderung,setFoerderung]=useState({altbau:"",sanierung:"",isfp:""});
+  const [foerderung,setFoerderung]=useState(EMPTY_FUNDING_ANSWERS);
   const canStep1=positions.length>0&&positions.every(p=>p.model&&p.size&&p.glazing);
-  const canStep2=foerderung.altbau&&foerderung.sanierung&&foerderung.isfp;
+  const canStep2=isFundingComplete(foerderung);
 
   return(
     <div className="min-h-screen bg-gradient-to-b from-slate-50 to-white">
@@ -636,7 +641,7 @@ export default function VeluxPreisrechner(){
           {step<3&&(<button onClick={()=>setStep(s=>s+1)} disabled={step===1?!canStep1:!canStep2}
             className={`flex items-center gap-2 px-6 py-3 rounded-xl font-semibold text-sm transition-all ${(step===1?canStep1:canStep2)?"bg-slate-800 text-white hover:bg-slate-700 shadow-md":"bg-slate-200 text-slate-400 cursor-not-allowed"}`}>
             {step===1?"Weiter zur Förderung":"Kosten berechnen"}<ChevronRight className="w-4 h-4"/></button>)}
-          {step===3&&(<button onClick={()=>{setStep(1);setPositions([emptyPos()]);setFoerderung({altbau:"",sanierung:"",isfp:""});}}
+          {step===3&&(<button onClick={()=>{setStep(1);setPositions([emptyPos()]);setFoerderung(EMPTY_FUNDING_ANSWERS);}}
             className="flex items-center gap-2 px-6 py-3 rounded-xl font-semibold text-sm bg-slate-100 text-slate-700 hover:bg-slate-200 transition-all"><Calculator className="w-4 h-4"/>Neue Berechnung</button>)}
         </div>
       </div>

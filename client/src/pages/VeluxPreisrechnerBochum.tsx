@@ -20,7 +20,7 @@ const faqData = [
   },
   {
     q: "Was ist der Unterschied zwischen BAFA-Zuschuss und Steuerbonus §35c?",
-    a: "Der BAFA-Zuschuss (15 %, mit iSFP anteilig mehr) wird direkt ausgezahlt, erfordert aber einen Energieeffizienz-Experten und einen Antrag vor Umsetzung. Der Steuerbonus nach §35c EStG bietet 20 % Steuerermäßigung über drei Jahre (7 %/7 %/6 %), braucht keinen Energieberater, gilt aber nur für selbstgenutztes Wohneigentum ab 10 Jahren Gebäudealter. Seit der Deckelung des iSFP-Bonus am 21.07.2026 ist §35c bei einem Dachfenstertausch meist der rechnerisch stärkere Weg. Beide Wege sind nicht für dieselbe Maßnahme kombinierbar."
+    a: "Der BAFA-Zuschuss (15 %, mit iSFP anteilig mehr) wird direkt ausgezahlt, erfordert aber einen Energieeffizienz-Experten und einen Antrag vor Umsetzung. Der Steuerbonus nach §35c EStG bietet 20 % Steuerermäßigung über drei Jahre (7 %/7 %/6 %), braucht keinen Energieberater, gilt aber nur für selbstgenutztes Wohneigentum ab 10 Jahren Gebäudealter. Seit der Deckelung des iSFP-Bonus am 21.07.2026 kann §35c bei einem Dachfenstertausch rechnerisch die stärkere Variante sein – das hängt von der persönlichen Steuersituation ab. Beide Wege sind nicht für dieselbe Maßnahme kombinierbar."
   },
   {
     q: "Was ist im Einbaupreis für ein VELUX Dachfenster enthalten?",
