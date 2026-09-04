@@ -28,6 +28,8 @@ import {
   buildEstimate, toValidatedPositions,
   type PositionDetail, type QuoteTotals, type ValidatedPosition,
 } from "../client/src/lib/velux/estimate";
+import { LEGACY_SIZES, WINDOW_TYPES, findLegacySize } from "../client/src/lib/velux/legacyCatalog";
+import { resolveExistingWindow, type ResolveResult, type WindowObservation } from "../client/src/lib/velux/resolve";
 import {
   evaluateBeg, evaluateTax35c, RULES,
   type BegScenario, type FundingAnswers, type FundingEvaluation, type TaxScenario,
@@ -248,6 +250,82 @@ console.log("Förder-Grenzwerte");
     if (new Date(m.validThrough) < new Date()) fail(`RULES.${k}: validThrough ${m.validThrough} abgelaufen – Regelwerk erneut prüfen und Datum nachziehen`);
   }
   console.log(`  ${cases.length + 2} Grenzfälle, Regel-Metadaten geprüft`);
+}
+
+// ── Typenschild-Katalog + Resolver ────────────────────────────────────
+console.log("Typenschild-Katalog");
+{
+  const codes = new Set<string>();
+  for (const e of LEGACY_SIZES) {
+    if (codes.has(e.observedCode)) fail(`Legacy-Katalog: Code ${e.observedCode} doppelt`);
+    codes.add(e.observedCode);
+    if (!SIZE_CODES.includes(e.currentEquivalent)) fail(`Legacy-Katalog: ${e.observedCode} → unbekanntes Äquivalent ${e.currentEquivalent}`);
+    if (e.mapping === "exact" && e.observedCode !== e.currentEquivalent) fail(`Legacy-Katalog: exact-Eintrag ${e.observedCode} ≠ ${e.currentEquivalent}`);
+    if (e.mapping !== "exact" && e.verification === "verified") fail(`Legacy-Katalog: ${e.observedCode} als verified markiert – nur nach Prüfung durch den Betrieb`);
+    if (!e.sourceRef) fail(`Legacy-Katalog: ${e.observedCode} ohne Quelle`);
+  }
+  for (const size of SIZE_CODES) {
+    if (findLegacySize(size)?.mapping !== "exact") fail(`Legacy-Katalog: ${size} fehlt als exact`);
+    if (findLegacySize(`${size[0]}${size.slice(2)}`)?.currentEquivalent !== size) fail(`Legacy-Katalog: Buchstabencode für ${size} fehlt`);
+  }
+  if (findLegacySize("308")?.currentEquivalent !== "MK08") fail("308 → MK08 erwartet");
+  if (findLegacySize("047")?.currentEquivalent !== "MK08") fail("047 → MK08 erwartet");
+  const typeCodes = new Set<string>();
+  for (const t of WINDOW_TYPES) { if (typeCodes.has(t.code)) fail(`WINDOW_TYPES: ${t.code} doppelt`); typeCodes.add(t.code); }
+  for (const m of MODEL_CODES) if (!WINDOW_TYPES.find((t) => t.code === m && t.supported)) fail(`WINDOW_TYPES: ${m} nicht als supported hinterlegt`);
+  console.log(`  ${LEGACY_SIZES.length} Größencodes, ${WINDOW_TYPES.length} Typen geprüft`);
+}
+
+console.log("Resolver");
+{
+  type Case = { name: string; input: WindowObservation; status: ResolveResult["status"]; existing?: [string, string] | null; candidateCount?: number; noEcho?: string };
+  const cases: Case[] = [
+    { name: "MK08 getippt → resolved", input: { brand: "VELUX", windowType: "GGU", sizeCode: "MK08", source: "user_typed" }, status: "resolved", existing: ["GGU", "MK08"] },
+    { name: "Kleinschreibung/Leerzeichen normalisiert", input: { windowType: " ggl ", sizeCode: "mk 08", source: "user_typed" }, status: "resolved", existing: ["GGL", "MK08"] },
+    { name: "M08 (2001–2013) → confirmation, Kandidat MK08", input: { windowType: "GGL", sizeCode: "M08", source: "user_typed" }, status: "confirmation_required", existing: ["GGL", "MK08"], candidateCount: 1 },
+    { name: "308 (1991–2001) → confirmation", input: { windowType: "GGL", sizeCode: "308", source: "user_typed" }, status: "confirmation_required", existing: ["GGL", "MK08"] },
+    { name: "047 (vor 1991) → confirmation", input: { windowType: "GGL", sizeCode: "047", source: "user_typed" }, status: "confirmation_required", existing: ["GGL", "MK08"] },
+    { name: "Bild-Quelle MK08 → nie resolved", input: { brand: "VELUX", windowType: "GGU", sizeCode: "MK08", source: "agent_image_recognition" }, status: "confirmation_required", existing: ["GGU", "MK08"] },
+    { name: "Website-Foto MK08 → nie resolved", input: { windowType: "GGU", sizeCode: "MK08", source: "site_recognition" }, status: "confirmation_required", existing: ["GGU", "MK08"] },
+    { name: "Alternative Lesart (MO8) → confirmation", input: { windowType: "GGU", sizeCode: { value: "M08", alternatives: ["MO8"], reason: "0/O unsicher" }, source: "user_typed" }, status: "confirmation_required", existing: ["GGU", "MK08"] },
+    { name: "Unlesbar aus Bild → new_photo_required", input: { windowType: "GGU", sizeCode: "??", source: "site_recognition" }, status: "new_photo_required", existing: null },
+    { name: "Unlesbar, aber OCR-Variante trifft (MK0B → MK08) → confirmation", input: { windowType: "GGU", sizeCode: "MK0B", source: "site_recognition" }, status: "confirmation_required", existing: null, candidateCount: 1 },
+    { name: "Fehlende Größe getippt → confirmation", input: { windowType: "GGU", source: "user_typed" }, status: "confirmation_required", existing: null },
+    { name: "GHL (Alttyp) → manual_review", input: { windowType: "GHL", sizeCode: "M08", source: "user_typed" }, status: "manual_review", existing: null },
+    { name: "GPU CK02 (Kombination nicht kalkulierbar) → manual_review", input: { windowType: "GPU", sizeCode: "CK02", source: "user_typed" }, status: "manual_review", existing: null },
+    { name: "Sondergröße MK12 → manual_review", input: { windowType: "GGU", sizeCode: "MK12", source: "user_typed" }, status: "manual_review", existing: null },
+    { name: "Rollladen-Typenschild SSL → unsupported_product", input: { windowType: "SSL", sizeCode: "MK08", source: "user_typed" }, status: "unsupported_product", existing: null },
+    { name: "Eindeckrahmen EDW → unsupported_product", input: { windowType: "EDW", sizeCode: "MK08", source: "user_typed" }, status: "unsupported_product", existing: null },
+    { name: "Fremdhersteller ROTO → unsupported_product", input: { brand: "Roto", windowType: "R4", sizeCode: "7/11", source: "user_typed" }, status: "unsupported_product", existing: null },
+    { name: "Unbekannter Typ XYZ getippt → manual_review", input: { windowType: "XYZ", sizeCode: "MK08", source: "user_typed" }, status: "manual_review", existing: null },
+    { name: "Produktionscode wird nie zurückgegeben", input: { windowType: "GGL", sizeCode: "MK04", productionCode: "306621 03BF01N", source: "user_typed" }, status: "resolved", existing: ["GGL", "MK04"], noEcho: "306621" },
+  ];
+  for (const c of cases) {
+    const r = resolveExistingWindow(c.input);
+    const before = failures;
+    if (r.status !== c.status) fail(`${c.name}: Status ${r.status} statt ${c.status} (${r.nextStep})`);
+    if (c.existing === null && r.existingWindow) fail(`${c.name}: existingWindow erwartet null`);
+    if (c.existing && (!r.existingWindow || r.existingWindow.windowType !== c.existing[0] || r.existingWindow.sizeCode !== c.existing[1])) fail(`${c.name}: existingWindow ${JSON.stringify(r.existingWindow)}`);
+    if (c.candidateCount !== undefined && r.candidates.length !== c.candidateCount) fail(`${c.name}: ${r.candidates.length} Kandidaten statt ${c.candidateCount}`);
+    if (c.noEcho && JSON.stringify(r).includes(c.noEcho)) fail(`${c.name}: Produktionscode im Ergebnis`);
+    if (r.status === "resolved" && r.source !== "user_typed") fail(`${c.name}: resolved nur bei user_typed erlaubt`);
+    if (r.status === "resolved" && r.existingWindow?.mapping !== "exact") fail(`${c.name}: resolved nur bei exact-Mapping erlaubt`);
+    if (!r.nextStep || !r.catalogVersion) fail(`${c.name}: nextStep/catalogVersion fehlt`);
+    console.log(`  ${failures === before ? "✓" : "✗"} ${c.name}`);
+  }
+  // Fuzz: darf nie werfen, Status immer gültig
+  const statuses = new Set(["resolved", "confirmation_required", "new_photo_required", "manual_review", "unsupported_product"]);
+  const junk = ["", " ", "\u0000", "€€€", "a".repeat(500), "<script>", "GGL MK08 306621", "МК08", "GGU\nMK08", "null", "undefined", "0", "MK", "K08", "GG", "8", "Y47"];
+  let fuzzed = 0;
+  for (const a of junk) for (const b of junk) for (const src of ["user_typed", "agent_image_recognition"] as const) {
+    let r: ResolveResult;
+    try { r = resolveExistingWindow({ brand: a, windowType: a, sizeCode: { value: b, alternatives: [a, b] }, variantCode: b, source: src }); }
+    catch (e) { fail(`Resolver wirft bei ${JSON.stringify([a, b])}: ${String(e)}`); continue; }
+    if (!statuses.has(r.status)) fail(`Resolver: ungültiger Status ${r.status}`);
+    if (JSON.stringify(JSON.parse(JSON.stringify(r))) !== JSON.stringify(r)) fail("Resolver: Ergebnis nicht JSON-stabil");
+    fuzzed++;
+  }
+  console.log(`  ${cases.length} Fälle, ${fuzzed} Fuzz-Kombinationen`);
 }
 
 // ── Determinismus + JSON-Roundtrip ────────────────────────────────────

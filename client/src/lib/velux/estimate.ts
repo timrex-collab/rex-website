@@ -57,6 +57,17 @@ export interface ValidatedPosition {
 /** Position im Wizard-State (mit React-Key). */
 export type UiPosition = ValidatedPosition & { id: number };
 
+/**
+ * Zielkonfiguration für den Austausch — bewusst getrennt vom Bestandsfenster
+ * (resolve.ts: ResolvedExistingWindow). Der Bestand liefert Typ/Größe als
+ * Vorschlag; Zielmodell, neue Verglasung und Zubehör werden immer ausdrücklich
+ * gewählt. Eine alte Verglasung wird nie als neue übernommen.
+ */
+export interface ReplacementConfiguration {
+  positions: ValidatedPosition[];
+  funding: FundingAnswers;
+}
+
 export interface PositionDetail extends ValidatedPosition {
   /** Fensterpreis je Stück (UVP netto) */
   wp: number;
