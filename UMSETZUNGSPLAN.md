@@ -141,7 +141,10 @@ Damit wir nichts doppelt machen. Diese Audit-Punkte sind abgehakt oder per Regel
 > Action automatisch. *Stand 01.09.2026:* Auch das Folgepaket zu §8 ist live (PR #63) —
 > damit ist `GSC-AUDIT-2026-08.md` vollständig abgearbeitet. Der nächste Deploy stammt
 > erstmals nicht mehr aus einem Audit, sondern aus dem Betrieb: PR #65 (Chunk-Robustheit)
-> behebt den Befund aus `PRERENDER-CHECK.md` §9. Fenster ab **03.09.2026 ~15:02 UTC**.
+> behebt den Befund aus `PRERENDER-CHECK.md` §9. *Stand 03.09.2026:* **live** (PR #65,
+> 17:39 MESZ). Damit ist der Repo-Backlog leer — kein weiterer Deploy steht an. Nächster
+> Termin ist die GSC-Wirkungsmessung ab ~08.09.2026; danach entscheiden die Zahlen, was
+> als Nächstes dran ist.
 >
 > Das ursprünglich erstplatzierte Paket 4 (`/dachreinigung-bochum`) ist am 18.08.2026
 > **gestrichen**: Dachflächenreinigung und Algenentfernung gehören nicht zum

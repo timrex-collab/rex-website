@@ -208,6 +208,7 @@ Prerender liegt **nicht im Repo/`netlify.toml`**, sondern im Netlify-Dashboard �
 | **31.08.2026** | **`npm run prerender:check` (Stufe 2)** | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | — | **BESTANDEN** — 6/6 PASS gegen Deploy `6a95312e…`, `commit_ref 63519ac`; deckt Paket 6, GSC-Meta-3 und die Schema-/Terminologie-Hygiene ab. Protokoll §9 |
 | 31.08.2026 | GSC-Livetest (Methode 1), nur `/dachsanierung-bochum` | — | ⚠️ | — | — | — | — | — | **Indexierung zulässig, aber CSR-Ausfall im Renderer** — Prüftool bekam die Shell, 6 von 21 Skripten nicht geladen, Screenshot leer. Kein Deploy-Defekt. Befund in §9 |
 | 31.08.2026 | **GitHub Action, Lauf 1** (`prerender-check.yml`) | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | — | **BESTANDEN** — erster automatischer Lauf nach dem Merge von PR #66, `head_sha b9d2229`. Selbsttest < 1 s, 3 min Wartezeit, Check 12 s **im ersten Versuch** (keine Wiederholung nötig) |
+| 03.09.2026 | GitHub Action, Lauf 5 | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | — | **BESTANDEN** — nach dem Deploy der Chunk-Robustheit (PR #65, `commit_ref 47cf218`). Erster Lauf nach einer Änderung am Routing-Einstieg (`App.tsx`, `main.tsx`); dass die sechs Kern-URLs weiter gerendertes HTML liefern, war hier die eigentliche Frage |
 
 > **Nachtrag 30.08.2026 — jetzt drei Deploys ohne Stufe-2-Lauf.** ✅ **Erledigt am
 > 31.08.2026, siehe §9.** Nach der Schema-/Terminologie-Hygiene (PR #61) ist Stufe 1 wieder
@@ -726,3 +727,32 @@ einzelner Chunks robust machen.** Zwei Hebel, kombinierbar:
 Beides ist eine Änderung an der Build-Konfiguration bzw. am Routing-Einstieg, also ein
 **eigenes Paket mit eigenem Deploy** — nicht nebenbei in einem Content-Deploy. Priorität nach
 diesem Befund: **vor** den offenen Content-Funden aus `GSC-AUDIT-2026-08.md` §8.4.
+
+##### ✅ Erledigt am 03.09.2026 (PR #65) — aber anders als hier vorgeschlagen
+
+Beide oben genannten Hebel wurden gebaut und nach der Messung im echten Chromium **wieder
+verworfen**. Das gehört hierher, weil dieser Abschnitt sie sonst als offene Empfehlung
+stehen lässt:
+
+- **Retry im `lazy()`-Import: wirkungslos.** Beim Wiederholungsversuch ging **kein einziger
+  weiterer Request** raus. Der Browser merkt sich einen fehlgeschlagenen Modulabruf in seiner
+  Module-Map; ein erneutes `import()` derselben URL scheitert sofort ohne Netzwerkversuch.
+  Nur ein vollständiger Seitenneustart verwirft diese Map.
+- **`manualChunks`: ein Rückschritt.** Die Zahlen sahen gut aus (65 → 36 Chunks, 47
+  Icon-Dateien zu einer gebündelt, Money-Page von 17 auf 4 Requests). Aber der gebündelte
+  Chunk wird vom **Entry statisch** importiert. Fällt er aus, startet die App gar nicht
+  erst — keine Boundary, kein Recovery, `#root` leer. Aus einem Ausfallpunkt beim Booten
+  wären drei geworden.
+
+**Umgesetzt wurde stattdessen:** Vites `vite:preloadError` mit einem einmaligen Neustart
+(`client/src/lib/chunkRecovery.ts`, Schleifenschutz über `sessionStorage`) plus eine
+`ChunkErrorBoundary`, die bei dauerhaftem Ausfall eine bedienbare Fehlerseite mit
+Telefonnummer zeigt statt einer weißen Fläche. Verifiziert im echten Chromium gegen den
+gebauten Stand: Ein einmaliger Chunk-Ausfall wird per Neustart geheilt (H1 der Route da, genau
+ein zusätzlicher Ladevorgang), ein dauerhafter führt zur Fehlerseite ohne Reload-Schleife.
+
+**Was das nicht behebt:** Die Ursache liegt bei Googles Renderer und bei Netzverbindungen —
+beides außerhalb unseres Zugriffs. Und **die Prerender-Extension bleibt tragende
+Infrastruktur**: Ein Prerender-Ausfall führt weiterhin dazu, dass Crawler die SPA-Shell
+bekommen. Neu ist nur, dass ein *einzelner verlorener Chunk* nicht mehr das ganze Bild
+zerstört. §5 bleibt damit unverändert dringlich.
