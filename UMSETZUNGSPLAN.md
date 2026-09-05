@@ -28,6 +28,14 @@ gesperrte Configs ≤5) · `attached_assets/` nie committen · Merge nur durch T
 > Letzter funktionaler Merge: **PR #40 am 18.08.2026 10:11 UTC** → nächstes Fenster
 > ab **20.08.2026 ~10:11 UTC**.
 
+> ## Stand 05.09.2026 — abgelöst durch [`UMSETZUNGSPLAN-2026-09.md`](./UMSETZUNGSPLAN-2026-09.md)
+>
+> Das externe Audit vom 05.09.2026 hat den Satz „Repo-Backlog leer" überholt: Fünf
+> WebMCP-Branches liegen unveröffentlicht vor, und es gibt zwei P0-Faktenbefunde (VELUX-
+> Steuerlogik, Solarpflicht-Begriffe). Der neue Plan führt Audit-Pakete und WebMCP-Ausbau in
+> einer Deploy-Kette zusammen. Die hier noch offenen Punkte P1.2 (NAP), P1.3 (Fachreview)
+> und P3.1 (Dachreport) laufen dort als D-A00, D-A05 und D-A13 weiter.
+
 **Legende:** 🧑‍💻 = Claude im Repo · 🌐 = Tim extern (außerhalb Repo) · 🔁 = Prozess/Routine ·
 Aufwand/Wirkung jeweils niedrig/mittel/hoch.
 
