@@ -10,6 +10,7 @@
     "indexnow:submit": "node scripts/indexnow-submit.mjs",
     "prerender:check": "node scripts/prerender-check.mjs",
     "faq:check": "node scripts/faq-schema-check.mjs",
+    "estimate:check": "tsx scripts/velux-estimate-check.ts",
     "check": "tsc",
     "db:push": "drizzle-kit push"
   },
