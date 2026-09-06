@@ -49,3 +49,7 @@ jobs:
         run: npm run faq:check
       - name: Selbsttest des FAQ-Checks
         run: npm run faq:check -- --self-test
+      # Regressions-Check der zentralen VELUX-Preislogik (client/src/lib/velux):
+      # Goldwerte, Katalog-Invarianten, Determinismus. Siehe scripts/velux-estimate-check.ts.
+      - name: VELUX-Preislogik (Goldwerte)
+        run: npm run estimate:check

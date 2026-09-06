@@ -2,34 +2,11 @@
 import { useState, useCallback } from "react";
 import { ChevronRight, ChevronLeft, Calculator, Home, Sun, Phone, Mail, Check, Info, ArrowRight, Shield, Droplets, Eye, Plus, Trash2, User, FileDown } from "lucide-react";
 
-/* ═══════════════════════════════════════════════════════════════════════
-   PRICE DATA — VELUX UVP 2026 (alle Preise netto)
-   ═══════════════════════════════════════════════════════════════════════ */
 
-const DIMS = {CK02:"55×78",CK04:"55×98",CK06:"55×118",FK04:"66×98",FK06:"66×118",FK08:"66×140",MK04:"78×98",MK06:"78×118",MK08:"78×140",MK10:"78×160",PK06:"94×118",PK08:"94×140",PK10:"94×160",SK06:"114×118",SK08:"114×140",SK10:"114×160",UK04:"134×98",UK08:"134×140",UK10:"134×160"};
-
-const WINDOWS = {
-  GGU:{name:"Kunststoff-Schwingfenster",short:"Kunststoff Schwing",desc:"Feuchtraumgeeignet, pflegeleicht",icon:"droplets",prices:{CK02:{T:550,E:647,P:686},CK04:{T:594,E:716,P:765},CK06:{T:616,E:763,P:822},FK04:{T:616,E:763,P:822},FK06:{T:696,E:873,P:944},FK08:{T:733,E:941,P:1026},MK04:{T:667,E:839,P:909},MK06:{T:733,E:941,P:1026},MK08:{T:792,E:1038,P:1138},MK10:{T:887,E:1169,P:1284},PK06:{T:821,E:1072,P:1174},PK08:{T:894,E:1193,P:1314},PK10:{T:975,E:1316,P:1455},SK06:{T:916,E:1219,P:1342},SK08:{T:990,E:1349,P:1495},SK10:{T:1078,E:1489,P:1656},UK04:{T:916,E:1212,P:1333},UK08:{T:1085,E:1507,P:1680},UK10:{T:1261,E:1744,P:1941}}},
-  GGL:{name:"Holz-Schwingfenster",short:"Holz Schwing",desc:"Natürliches Holz, weiß/klar lackiert",icon:"home",prices:{CK02:{T:423,E:520,P:560},CK04:{T:457,E:579,P:629},CK06:{T:474,E:621,P:681},FK04:{T:474,E:621,P:681},FK06:{T:536,E:712,P:784},FK08:{T:564,E:772,P:857},MK04:{T:514,E:685,P:755},MK06:{T:564,E:772,P:857},MK08:{T:610,E:856,P:956},MK10:{T:683,E:965,P:1080},PK06:{T:632,E:883,P:985},PK08:{T:689,E:987,P:1108},PK10:{T:751,E:1092,P:1231},SK06:{T:706,E:1008,P:1132},SK08:{T:762,E:1121,P:1268},SK10:{T:830,E:1241,P:1408},UK04:{T:706,E:1002,P:1122},UK08:{T:835,E:1258,P:1430},UK10:{T:971,E:1454,P:1651}}},
-  GPU:{name:"Kunststoff-Klapp-Schwingfenster",short:"Kunststoff Klapp-Schwing",desc:"Panoramablick, feuchtraumgeeignet",icon:"eye",prices:{CK04:{T:877,E:999,P:1048},CK06:{T:899,E:1046,P:1105},FK06:{T:979,E:1156,P:1227},FK08:{T:1016,E:1224,P:1309},MK04:{T:950,E:1122,P:1192},MK06:{T:1016,E:1224,P:1309},MK08:{T:1075,E:1321,P:1421},MK10:{T:1170,E:1452,P:1567},PK06:{T:1104,E:1355,P:1457},PK08:{T:1177,E:1476,P:1597},PK10:{T:1258,E:1599,P:1738},SK06:{T:1199,E:1502,P:1625},SK08:{T:1273,E:1632,P:1778},SK10:{T:1361,E:1772,P:1939},UK08:{T:1368,E:1790,P:1963}}},
-  GPL:{name:"Holz-Klapp-Schwingfenster",short:"Holz Klapp-Schwing",desc:"Panoramablick, natürliches Holz",icon:"sun",prices:{CK04:{T:740,E:862,P:912},CK06:{T:757,E:904,P:964},FK06:{T:819,E:995,P:1067},FK08:{T:847,E:1055,P:1140},MK04:{T:797,E:968,P:1038},MK06:{T:847,E:1055,P:1140},MK08:{T:893,E:1139,P:1239},MK10:{T:966,E:1248,P:1363},PK06:{T:915,E:1166,P:1268},PK08:{T:972,E:1270,P:1391},PK10:{T:1034,E:1375,P:1514},SK06:{T:989,E:1291,P:1415},SK08:{T:1045,E:1404,P:1551},SK10:{T:1113,E:1524,P:1691},UK04:{T:989,E:1285,P:1405},UK08:{T:1118,E:1541,P:1713}}}
-};
-
-const EDW = {CK02:139,CK04:148,CK06:153,FK04:153,FK06:167,FK08:172,MK04:163,MK06:172,MK08:180,MK10:206,PK06:196,PK08:206,PK10:218,SK06:206,SK08:211,SK10:234,UK04:206,UK08:223,UK10:249};
-
-const SHUTTERS = {
-  SSL:{name:"Solar-Rollladen",short:"SSL Solar",prices:{CK02:627,CK04:648,CK06:664,FK04:675,FK06:702,FK08:707,MK04:696,MK06:723,MK08:750,MK10:793,PK06:771,PK08:803,PK10:846,SK06:825,SK08:862,SK10:900,UK04:873,UK08:927,UK10:970}},
-  SML:{name:"Elektro-Rollladen",short:"SML Elektro",prices:{CK02:440,CK04:461,CK06:477,FK04:488,FK06:515,FK08:520,MK04:509,MK06:536,MK08:563,MK10:606,PK06:584,PK08:616,PK10:659,SK06:638,SK08:675,SK10:713,UK04:686,UK08:740,UK10:783}}
-};
-
-const BLINDS = {
-  DKL:{name:"Verdunkelungsrollo manuell",short:"DKL Manuell",prices:{CK02:82,CK04:94,CK06:104,FK04:103,FK06:113,FK08:117,MK04:108,MK06:117,MK08:121,MK10:128,PK06:125,PK08:135,PK10:146,SK06:142,SK08:150,SK10:168,UK04:150,UK08:163,UK10:180}},
-  DSL:{name:"Verdunkelungsrollo solar",short:"DSL Solar",prices:{CK02:217,CK04:229,CK06:239,FK04:238,FK06:248,FK08:252,MK04:243,MK06:252,MK08:256,MK10:263,PK06:260,PK08:270,PK10:281,SK06:277,SK08:285,SK10:303,UK04:285,UK08:298,UK10:315}}
-};
-
-const LABOR = { demontage:100, einbau:300, eindeckrahmen:150, rollladen:120, rollo:50 };
-const GL = { T:{l:"THERMO",code:"-70",uw:"1,3",g:"0,46"},E:{l:"ENERGIE",code:"-84",uw:"1,0",g:"0,46"},P:{l:"ENERGIE PLUS",code:"-66",uw:"1,0",g:"0,44"} };
-const fmt = (n) => new Intl.NumberFormat("de-DE").format(n);
+// Preistabellen und Berechnung liegen seit PR-1a zentral in client/src/lib/velux/
+// (eine Preislogik für UI, PDF, Anfrage-Text und WebMCP).
+import { DIMS, WINDOWS, EDW, SHUTTERS, BLINDS, LABOR, GL, fmt, sizesForModel, shuttersForSize, blindsForSize } from "@/lib/velux/catalog";
+import { calcDetails, buildEstimate } from "@/lib/velux/estimate";
 let _id = 0;
 const uid = () => ++_id;
 
@@ -211,20 +188,15 @@ function QtyPicker({value,max,onChange,label}){
 
 function PosCard({pos,onChange,onRemove,index,canRemove}){
   const {model,size,glazing,qty,shutter,shutterQty,blind,blindQty}=pos;
-  const sizes=model?Object.keys(WINDOWS[model].prices):[];
+  const sizes=model?sizesForModel(model):[];
   const glazings=model&&size?Object.keys(WINDOWS[model].prices[size]||{}):[];
-  const shutterOpts=size?Object.keys(SHUTTERS).filter(s=>size in SHUTTERS[s].prices):[];
-  const blindOpts=size?Object.keys(BLINDS).filter(b=>size in BLINDS[b].prices):[];
+  const shutterOpts=size?shuttersForSize(size):[];
+  const blindOpts=size?blindsForSize(size):[];
 
   let sub=0;
   if(model&&size&&glazing){
-    const wp=WINDOWS[model].prices[size]?.[glazing]||0;
-    const edw=EDW[size]||0;
-    const sp=shutter!=="none"&&shutterQty>0?SHUTTERS[shutter]?.prices[size]||0:0;
-    const bp=blind!=="none"&&blindQty>0?BLINDS[blind]?.prices[size]||0:0;
-    const matFenster=(wp+edw)*qty + sp*shutterQty + bp*blindQty;
-    const labFenster=(LABOR.demontage+LABOR.einbau+LABOR.eindeckrahmen)*qty + (sp?LABOR.rollladen*shutterQty:0) + (bp?LABOR.rollo*blindQty:0);
-    sub=matFenster+labFenster;
+    const d=calcDetails([pos])[0];
+    sub=d.matPos+d.labPos;
   }
 
   return(
@@ -339,20 +311,6 @@ function Step2({foerderung,setFoerderung}){
   </div>);
 }
 
-/* ─── Calc ────────────────────────────────────────────────────── */
-
-function calcDetails(positions){
-  return positions.map(p=>{
-    const wp=WINDOWS[p.model].prices[p.size][p.glazing];
-    const edw=EDW[p.size]||0;
-    const sp=p.shutter!=="none"&&p.shutterQty>0?SHUTTERS[p.shutter]?.prices[p.size]||0:0;
-    const bp=p.blind!=="none"&&p.blindQty>0?BLINDS[p.blind]?.prices[p.size]||0:0;
-    const matPos=(wp+edw)*p.qty + sp*p.shutterQty + bp*p.blindQty;
-    const labPos=(LABOR.demontage+LABOR.einbau+LABOR.eindeckrahmen)*p.qty + (sp?LABOR.rollladen*p.shutterQty:0) + (bp?LABOR.rollo*p.blindQty:0);
-    return {...p,wp,edw,sp,bp,matPos,labPos};
-  });
-}
-
 /* ─── Step 3 ──────────────────────────────────────────────────── */
 
 function Step3({positions,foerderung}){
@@ -363,53 +321,9 @@ function Step3({positions,foerderung}){
   const [submitError, setSubmitError] = useState(false);
   const setK=(k,v)=>setKunde(c=>({...c,[k]:v}));
 
-  const details=calcDetails(positions);
-  const totalMat=details.reduce((s,d)=>s+d.matPos,0);
-  const totalLab=details.reduce((s,d)=>s+d.labPos,0);
-  const totalNetto=totalMat+totalLab;
-  const mwst=Math.round(totalNetto*0.19);
-  const totalBrutto=totalNetto+mwst;
-  const totalFenster=details.reduce((s,d)=>s+d.qty,0);
-
-  // ─── Förderung nach BEG EM (BAFA Einzelmaßnahme) ─────────────────
-  // Nur Fenster mit Uw ≤ 1,0 W/(m²·K) sind förderrelevant → ENERGIE + ENERGIE PLUS, NICHT THERMO
-  const eligible=foerderung.altbau==="ja"&&foerderung.sanierung==="ja";
-  const hasIsfp=foerderung.isfp==="ja";
-  const bafaMaxBrutto=hasIsfp?60000:30000; // Cap pro WE/Jahr auf Bruttokosten
-
-  // Förderfähige Positionen: nur ENERGIE (E) oder ENERGIE PLUS (P)
-  const eligibleDetails=details.filter(d=>d.glazing==="E"||d.glazing==="P");
-  const ineligibleDetails=details.filter(d=>d.glazing==="T");
-  const hasIneligible=ineligibleDetails.length>0;
-  const foerderNetto=eligibleDetails.reduce((s,d)=>s+d.matPos+d.labPos,0);
-  const foerderBrutto=Math.round(foerderNetto*1.19);
-  const bafaBasis=Math.min(foerderBrutto,bafaMaxBrutto);
-
-  // BEG EM seit 21.07.2026: 15 % Grundförderung; der iSFP-Bonus von 5 Prozentpunkten
-  // greift nur auf den Kostenanteil oberhalb von 30.000 €.
-  const ISFP_SCHWELLE=30000;
-  const isfpBonusBasis=hasIsfp?Math.max(0,bafaBasis-ISFP_SCHWELLE):0;
-  const isfpBonus=Math.round(isfpBonusBasis*0.05);
-  const bafaFoerder=eligible&&foerderBrutto>0?Math.round(bafaBasis*0.15)+isfpBonus:0;
-  // Effektiver Mischsatz für die Anzeige (z. B. 15,0 % / 17,5 %)
-  const bafaRateEffektiv=bafaBasis>0?bafaFoerder/bafaBasis:0;
-  const bafaRateLabel=isfpBonus>0
-    ? `${(bafaRateEffektiv*100).toLocaleString("de-DE",{maximumFractionDigits:1})} % (15 % + 5 % iSFP-Bonus auf den Anteil über ${fmt(ISFP_SCHWELLE)} €)`
-    : "15 %";
-
-  // §35c EStG: 20% Steuerermäßigung über 3 Jahre (7%+7%+6%), kein Energieberater nötig
-  // Voraussetzung: selbstgenutztes Wohneigentum, Gebäude ≥ 10 Jahre alt
-  const steuerBasis=Math.min(totalBrutto,200000);
-  const steuerBonus=eligible?Math.round(steuerBasis*0.20):0;
-  const steuerJahr1=eligible?Math.round(steuerBasis*0.07):0;
-  const steuerJahr2=eligible?Math.round(steuerBasis*0.07):0;
-  const steuerJahr3=eligible?Math.round(steuerBasis*0.06):0;
-
-  // BAFA-Zuschuss ist Direktzahlung an Kunden — wird vom Brutto abgezogen, MwSt ändert sich nicht
-  const investitionBrutto=totalBrutto-bafaFoerder;
-  const investitionSteuer=totalBrutto-steuerBonus;
+  const {details,totals}=buildEstimate(positions,foerderung);
+  const {totalMat,totalLab,totalNetto,mwst,totalBrutto,totalFenster,eligible,hasIsfp,bafaMaxBrutto,hasIneligible,ineligibleCount,foerderBrutto,bafaFoerder,bafaRateLabel,steuerBonus,steuerJahr1,steuerJahr2,steuerJahr3,investitionBrutto,investitionSteuer}=totals;
   const kundeValid=kunde.name.trim().length>1&&(kunde.email.trim().includes("@")||kunde.telefon.trim().length>5);
-  const totals={totalMat,totalLab,totalNetto,mwst,totalBrutto,eligible,hasIsfp,bafaRateEffektiv,bafaRateLabel,isfpBonus,bafaMaxBrutto,bafaFoerder,foerderBrutto,foerderNetto,hasIneligible,investitionBrutto,steuerBonus,steuerJahr1,steuerJahr2,steuerJahr3,investitionSteuer};
 
   const handlePdf=useCallback(()=>{
     const html=buildPdfHtml(details,totals,foerderung,kunde);
@@ -545,7 +459,7 @@ function Step3({positions,foerderung}){
                 <div className="bg-amber-50 border border-amber-200 rounded-lg p-3 flex gap-2">
                   <Info className="w-4 h-4 text-amber-600 shrink-0 mt-0.5"/>
                   <div className="text-xs text-amber-800">
-                    <span className="font-semibold">Nicht förderrelevant:</span> {ineligibleDetails.length} Position(en) mit THERMO-Verglasung (Uw 1,3 W/m²K). Die BEG-Förderung erfordert Uw ≤ 1,0 W/m²K — nur ENERGIE und ENERGIE PLUS Verglasungen sind förderrelevant.
+                    <span className="font-semibold">Nicht förderrelevant:</span> {ineligibleCount} Position(en) mit THERMO-Verglasung (Uw 1,3 W/m²K). Die BEG-Förderung erfordert Uw ≤ 1,0 W/m²K — nur ENERGIE und ENERGIE PLUS Verglasungen sind förderrelevant.
                   </div>
                 </div>
               )}
