@@ -164,3 +164,7 @@ Bei Fragen zum Projekt wenden Sie sich an Ihren Webentwickler oder konsultieren 
 ## 📄 Lizenz
 
 © 2025 Rex Bedachungs GmbH. Alle Rechte vorbehalten.
+
+## WebMCP-Pilot (KI-Agenten)
+
+Der VELUX-Preisrechner stellt KI-Agenten vier WebMCP-Tools bereit (Optionen, Typenschild-Auflösung, Kostenschätzung, Übernahme in den Rechner). Produktion ist standardmäßig aus (Feature-Flag, Origin-Allowlist, Origin Trial). Vertrag, Tests, Aktivierung: `WEBMCP.md`; Typenschild-Katalog: `VELUX-TYPENSCHILD.md`; Preis- und Förderlogik: `client/src/lib/velux/`, geprüft mit `npm run estimate:check`.
