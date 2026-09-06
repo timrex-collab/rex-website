@@ -90,7 +90,7 @@ function buildPdfHtml(details, totals, funding, kunde) {
       <p class="small" style="color:#475569">Nicht ausgewiesen: ${funding.tax35cReason}</p>
     </div>`;
   const foerderSection = `
-    <div style="margin-top:16px">
+    <div style="margin-top:16px;break-before:page;page-break-before:always">
       <div class="doc-title" style="font-size:12px;break-after:avoid">Fördermöglichkeiten – zwei Alternativen, nicht kombinierbar</div>
       <p class="small" style="color:#475569;margin-bottom:4px;break-after:avoid">${SCOPE_NOTE} ${FUNDING_NOTES.noRecommendation}</p>
       ${funding.ineligibleThermoPositions > 0 ? `<p class="small" style="color:#92400e"><strong>Hinweis:</strong> ${FUNDING_NOTES.thermo}</p>` : ""}
