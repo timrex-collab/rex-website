@@ -213,17 +213,20 @@ SSR-/Framework-Migration · Stadtteil-Seiten · separate Kosten-Seiten · Gewerb
 D-IndexNow · D-Sitemap-Refresh (1+2) · Repo-Fix · B1/B2 · Meta-Fix · P2.1–P2.4 ·
 D-IndexNow-CI · Innung-Trust · BEG-1 bis BEG-4 · GSC-Meta-1 · GSC-Schema-1 ·
 Interne Verlinkung · GEO-Pflege · ExpertenBlock-Rollout · Paket 4a · Paket 5 · GSC-Meta-2 ·
-Paket 6 · GSC-Meta-3 · Schema-/Terminologie-Hygiene · Folgepaket §8 · Chunk-Robustheit.
+Paket 6 · GSC-Meta-3 · Schema-/Terminologie-Hygiene · Folgepaket §8 · Chunk-Robustheit ·
+VELUX D1.
 
 > **Stand 20.08.2026:** Die Tabelle hatte Lücken — von PR #18 bis PR #47 waren nur BEG-1,
 > BEG-2, BEG-4 und GSC-Meta-1 eingetragen; 18 weitere Deploy-Zeilen (20 gemergte PRs)
 > fehlten. Sie ist seit PR #48 vollständig aus der Merge-Historie von `main` rekonstruiert
 > und wird ab jetzt bei jedem Deploy mitgeführt.
-> Letzter funktionaler Merge: **PR #65 am 03.09.2026 17:39 MESZ** → nächstes 48-h-Fenster
-> öffnet **05.09.2026 ~17:39 MESZ**. Damit ist `GSC-AUDIT-2026-08.md` §8 **vollständig**
-> abgearbeitet — Backlog §6, Hygiene §8 und das Folgepaket — und dazu der Betriebsbefund
-> aus `PRERENDER-CHECK.md` §9 behoben. **Es liegt derzeit kein weiterer Deploy an;** der
-> nächste Termin ist die GSC-Wirkungsmessung ab ~08.09.2026.
+> Letzter funktionaler Merge: **PR #70 (VELUX D1) am 06.09.2026 13:53 MESZ**, Netlify
+> `published_at` 13:54:23 MESZ → nächstes 48-h-Fenster öffnet **08.09.2026 13:54 MESZ**
+> (gemessen am tatsächlichen Produktionsdeploy, nicht am Merge). `GSC-AUDIT-2026-08.md` §8
+> ist vollständig abgearbeitet, der Betriebsbefund aus `PRERENDER-CHECK.md` §9 behoben.
+> **Nächster Deploy in Vorbereitung: VELUX D2** (Förderbasis/Leistungsumfang/UI-PDF) nach
+> dem Einzelcommit-Verfahren aus `VELUX-HANDOFF.md` auf `codex/velux-20260906-d6-checks`;
+> Freigabe und Merge durch Tim. Parallel: GSC-Wirkungsmessung ab ~08.09.2026.
 >
 > *(Zeitangaben ab hier in MESZ, auf Wunsch von Tim. Ältere Einträge behalten ihre
 > ursprüngliche Schreibweise, meist UTC mit CEST daneben — nicht nachträglich umgerechnet,
@@ -278,6 +281,7 @@ Paket 6 · GSC-Meta-3 · Schema-/Terminologie-Hygiene · Folgepaket §8 · Chunk
 | **Schema-/Terminologie-Hygiene** | Umsetzung von `GSC-AUDIT-2026-08.md` §8. **FAQPage (§7):** Das Audit nannte `FAQ.tsx` als letzte Seite mit hartcodiertem Schema — nachgemessen waren es **acht**. Dieses Paket nimmt die drei mit harten Verstößen (Schema-Frage steht nicht auf der Seite): `FAQ.tsx` (14 Einträge, 0 wortgleich, 1 Frage nicht vorhanden) erhält ein `schema`-Flag im `faqCategories`-Array, aus dem das Schema erzeugt wird; `DachsanierungBochum` (8 Einträge, 3 Fragen nicht vorhanden) und `VeluxAustausch` (3 Einträge, 2 nicht vorhanden, danach 7) beziehen `mainEntity` aus `faqItems` — wie `SturmschadenDach`, `DachwartungBochum`, `DachrinnenBochum`. **Terminologie (§6):** „förderfähig“ → „förderrelevant“ an den vier Stellen, die eine Leistung betreffen (`GruendachBochum`, `VeluxPreisrechnerBochum` 2×, `WannLohntSichDachsanierung`); der amtliche Richtlinienbegriff für die Kostenbasis bleibt | ✅ live (PR #61, gemergt 30.08.2026 14:51 UTC / 16:51 CEST; Stufe B, 6 Dateien; Gate eingehalten: 48 h 2 min nach #56; Netlify `6a944355…`, `commit_ref 60550bf`, `state ready`, `plugin_state success`, Secret-Scan 673/0; IndexNow-Run #32 HTTP 200, 30 URLs) — **Merge durch Claude, siehe Hinweis unten** |
 | **Folgepaket §8** | Abschluss von `GSC-AUDIT-2026-08.md` §8. **FAQPage (§7):** Die fünf verbliebenen Seiten mit weichen Verstößen (Fragen stimmen, Antworten paraphrasiert) beziehen `mainEntity` jetzt aus dem gerenderten Array — `BauklempnereiBochum` 5/5, `Dachreparatur` 5/5, `DachPhotovoltaikBochum` 6/6, `BitumenVsPvc` 3 von 6 sichtbaren (danach alle 6), `VeluxRolllaeden` 5/5 mit 4 bereits wortgleichen. **Danach führt keine Seite im Repo mehr ein hartcodiertes `FAQPage`-Schema: 23 Seiten, alle generiert.** Nebenwirkung auf `BauklempnereiBochum`: Ein nur im Schema stehender Satz („Kupfer hält am längsten mit bis zu 30 Jahren") entfällt — er widersprach der eigenen Seite. **Terminologie (§6):** die fünfte, in der Audit-Liste fehlende Stelle — `DachsanierungBochum` „automatisch förderfähig" → „förderrelevant". **Tooling:** `npm run faq:check` macht die §7-Konvention maschinell prüfbar | ✅ live (PR #63, gemergt 01.09.2026 15:02 UTC / 17:02 CEST; Stufe B, 6 Dateien; Gate eingehalten: **48 h 11 min** nach #61; Netlify `6a96e8f5…`, `commit_ref b5e6656`, `state ready`, `plugin_state success`, Prerender-Function vorhanden, Secret-Scan 679/0; IndexNow-Run #36 grün; **Prerender-Check-Action Lauf #3 grün** — erster automatischer Lauf gegen einen echten Deploy) — **Merge durch Claude, siehe Hinweis unten** |
 | **Chunk-Robustheit** | Behebt den Befund aus `PRERENDER-CHECK.md` §9: Bricht der Transport eines einzigen JS-Chunks ab, blieb die ganze Seite leer — weißer Bildschirm, kein Hinweis, kein zweiter Versuch. Ursache ist nicht im Repo (Dateien liefern HTTP 200), aber Vites `__vitePreload` lehnt den Routen-Import ab, sobald **eine** Abhängigkeit fehlt. **1/2** `client/src/lib/chunkRecovery.ts` hängt sich an Vites `vite:preloadError` und lädt die Seite einmal neu; Zeitstempel in `sessionStorage` (60 s) gegen Schleifen. **2/2** `ChunkErrorBoundary` um den Routenbereich zeigt bei dauerhaftem Ausfall Erklärung, „Seite neu laden" und die Telefonnummer statt einer leeren Fläche. Betrifft auch echte Besucher mit instabiler Mobilverbindung, nicht nur Crawler. Zwei gebaute Ansätze wurden nach Messung verworfen (Retry im `lazy()`-Import — wirkungslos wegen der Module-Map des Browsers; `manualChunks` — machte den Entry-Chunk zum Single Point of Failure), siehe PR-Text | ✅ live (PR #65, gemergt 03.09.2026 17:39 MESZ; Stufe B, 4 Dateien; Gate eingehalten: **48 h 37 min** nach #63; Netlify `6a99949d…`, `commit_ref 47cf218`, `state ready`, `plugin_state success`, Prerender-Function vorhanden, Secret-Scan 685/0; IndexNow-Lauf #39 grün; Prerender-Check-Lauf #5 grün; Checks-Lauf #6 grün) |
+| **VELUX D1** | Erstes von sechs Paketen der VELUX-Überarbeitung (Quellreihe `codex/velux-20260906-d1…d6`, Verfahren und Manifest in `VELUX-HANDOFF.md` auf dem D6-Branch). Preistabellen, Katalog-Metadaten (Preisgültigkeit 01.07.2026, Katalogrevision 03.09.2026, SHA-256 des Herstellerkatalogs) und der Berechnungskern wandern aus `VeluxPreisrechner.tsx` nach `client/src/lib/velux/catalog.ts` + `estimate.ts`; die Komponente importiert nur noch. Formeln wörtlich übernommen, **keine sichtbare Zahl ändert sich**; bekannte Altcode-Schwächen (§35c auf THERMO, Alters-Gate) als `LEGACY-QUIRK` markiert und D2 vorbehalten. Neu: `npm run estimate:check` (5 Goldwerte, 207 Fensterpreise, Katalog-Invarianten, Determinismus) als CI-Schritt in `checks.yml`; `scripts/**/*.ts` im Typecheck. Release-Weg: frischer Branch von `main`, genau ein Cherry-Pick des Quellcommits `5dab9ea`, Baum identisch | ✅ live (PR #70, gemergt 06.09.2026 13:53 MESZ; Stufe B, 7 Dateien; Gate eingehalten: **53 h 48 min** nach dem letzten Produktionsdeploy (#69, Doku) bzw. **68 h 14 min** nach dem letzten funktionalen Merge #65; Netlify `6a9d5451…`, `commit_ref b4ef9b2`, `published_at 13:54:23 MESZ`, `state ready`, `plugin_state success`, Prerender-Function vorhanden, Secret-Scan 689/0; IndexNow-Lauf #41 grün; Checks-Lauf #14 grün; Prerender-Check-Lauf #6 grün) — **Merge durch Tim**; WebMCP nicht aktiviert; **nächste Freigabe (D2) frühestens 08.09.2026 13:54 MESZ** |
 
 > **👤 Abweichung von §5.5 (28. und 30.08.2026) — PR #56 und #61 von Claude gemergt:**
 > Abschnitt 5, Punkt 5 lautet „Merge ausschließlich durch Tim. Kein Direct-Push auf `main`,
@@ -313,7 +317,8 @@ Paket 6 · GSC-Meta-3 · Schema-/Terminologie-Hygiene · Folgepaket §8 · Chunk
 > sind nicht gate-relevant; die Aussetzung betrifft hier also nur den Merge-Vorgang selbst,
 > nicht das 48-h-Gate. Der Vollständigkeit halber vermerkt, weil §5.5 nicht zwischen Deploy-
 > und Doku-PRs unterscheidet.
-> **Bewährungsprobe bestanden — PR #65 hat Tim selbst gemergt (03.09.2026 17:39 MESZ).**
+> **Bewährungsprobe bestanden — PR #65 hat Tim selbst gemergt (03.09.2026 17:39 MESZ),**
+> **ebenso PR #70 (VELUX D1, 06.09.2026 13:53 MESZ).**
 > Die Aussetzung war für #65 ausdrücklich **nicht** erteilt, und so ist es auch gelaufen: Der
 > letzte funktionale Deploy lag wieder beim Menschen. Das ist der Beleg, dass die Regel nicht
 > stillschweigend erodiert.
