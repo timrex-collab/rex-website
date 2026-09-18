@@ -1,0 +1,415 @@
+{
+  "schemaVersion": 1,
+  "asOf": "2026-09-06",
+  "repository": "timrex-collab/rex-website",
+  "historicalBaseMain": "8b79926a74b8e84f75fea266c22ad265b4199e38",
+  "historicalStatus": {
+    "pullRequestsOpened": false,
+    "merged": false,
+    "productionWebMcpActivated": false
+  },
+  "statusNote": "Historical handoff snapshot. Query current GitHub and Netlify before acting.",
+  "deployment": {
+    "strategy": "fresh branch from current main, cherry-pick only the next source commit",
+    "minimumHoursBetweenProductionDeploys": 48,
+    "minimumHoursSinceLastMainMerge": 48,
+    "mergeDecision": "Tim",
+    "autoMerge": false,
+    "activateWebMcpWithCodePackages": false
+  },
+  "d6Resolution": "Resolve sourceRef after fetch; require expectedSourceParent, one source commit, expectedFiles and successful CI for that resolved SHA. No self-referential commit SHA is embedded in its own tree.",
+  "stages": [
+    {
+      "id": "D1",
+      "branch": "codex/velux-20260906-d1-core",
+      "sourceRef": "refs/remotes/origin/codex/velux-20260906-d1-core",
+      "pinnedSourceCommit": "5dab9eaa4957cfe730f708c1b972c977d5011006",
+      "expectedSourceParent": "8b79926a74b8e84f75fea266c22ad265b4199e38",
+      "sourceCommitCountAgainstParent": 1,
+      "riskClass": "B",
+      "maximumFiles": 8,
+      "expectedFiles": [
+        ".github/workflows/checks.yml",
+        "client/src/components/VeluxPreisrechner.tsx",
+        "client/src/lib/velux/catalog.ts",
+        "client/src/lib/velux/estimate.ts",
+        "package.json",
+        "scripts/velux-estimate-check.ts",
+        "tsconfig.json"
+      ],
+      "prerequisites": [],
+      "localValidatedCodeCommit": "5dab9eaa4957cfe730f708c1b972c977d5011006",
+      "localChecks": [
+        {
+          "command": "npm run check",
+          "exitCode": 0
+        },
+        {
+          "command": "npm run build",
+          "exitCode": 0
+        },
+        {
+          "command": "npm run faq:check",
+          "exitCode": 0
+        },
+        {
+          "command": "npm run faq:check -- --self-test",
+          "exitCode": 0
+        },
+        {
+          "command": "npm run estimate:check",
+          "exitCode": 0
+        }
+      ]
+    },
+    {
+      "id": "D2",
+      "branch": "codex/velux-20260906-d2-funding",
+      "sourceRef": "refs/remotes/origin/codex/velux-20260906-d2-funding",
+      "pinnedSourceCommit": "41ebd1dae26ae36816767f0b19f4ceb4681219e0",
+      "expectedSourceParent": "5dab9eaa4957cfe730f708c1b972c977d5011006",
+      "sourceCommitCountAgainstParent": 1,
+      "riskClass": "B",
+      "maximumFiles": 8,
+      "expectedFiles": [
+        "client/public/llms-full.txt",
+        "client/public/llms.txt",
+        "client/src/components/VeluxPreisrechner.tsx",
+        "client/src/lib/velux/content.ts",
+        "client/src/lib/velux/estimate.ts",
+        "client/src/lib/velux/funding.ts",
+        "client/src/pages/VeluxPreisrechnerBochum.tsx",
+        "scripts/velux-estimate-check.ts"
+      ],
+      "prerequisites": [
+        "D1"
+      ],
+      "localValidatedCodeCommit": "41ebd1dae26ae36816767f0b19f4ceb4681219e0",
+      "localChecks": [
+        {
+          "command": "npm run check",
+          "exitCode": 0
+        },
+        {
+          "command": "npm run build",
+          "exitCode": 0
+        },
+        {
+          "command": "npm run faq:check",
+          "exitCode": 0
+        },
+        {
+          "command": "npm run faq:check -- --self-test",
+          "exitCode": 0
+        },
+        {
+          "command": "npm run estimate:check",
+          "exitCode": 0
+        }
+      ]
+    },
+    {
+      "id": "D3",
+      "branch": "codex/velux-20260906-d3-resolver",
+      "sourceRef": "refs/remotes/origin/codex/velux-20260906-d3-resolver",
+      "pinnedSourceCommit": "34cc0e2ee1cf3227f31f8ab0815648c064f6cb23",
+      "expectedSourceParent": "41ebd1dae26ae36816767f0b19f4ceb4681219e0",
+      "sourceCommitCountAgainstParent": 1,
+      "riskClass": "B",
+      "maximumFiles": 8,
+      "expectedFiles": [
+        "VELUX-TYPENSCHILD.md",
+        "client/src/lib/velux/estimate.ts",
+        "client/src/lib/velux/legacyCatalog.ts",
+        "client/src/lib/velux/resolve.ts",
+        "scripts/velux-estimate-check.ts"
+      ],
+      "prerequisites": [
+        "D1",
+        "D2"
+      ],
+      "localValidatedCodeCommit": "34cc0e2ee1cf3227f31f8ab0815648c064f6cb23",
+      "localChecks": [
+        {
+          "command": "npm run check",
+          "exitCode": 0
+        },
+        {
+          "command": "npm run build",
+          "exitCode": 0
+        },
+        {
+          "command": "npm run faq:check",
+          "exitCode": 0
+        },
+        {
+          "command": "npm run faq:check -- --self-test",
+          "exitCode": 0
+        },
+        {
+          "command": "npm run estimate:check",
+          "exitCode": 0
+        }
+      ]
+    },
+    {
+      "id": "D4",
+      "branch": "codex/velux-20260906-d4-webmcp-core",
+      "sourceRef": "refs/remotes/origin/codex/velux-20260906-d4-webmcp-core",
+      "pinnedSourceCommit": "6b43ee6bd859827b9c6766bead92b7359854b516",
+      "expectedSourceParent": "34cc0e2ee1cf3227f31f8ab0815648c064f6cb23",
+      "sourceCommitCountAgainstParent": 1,
+      "riskClass": "B",
+      "maximumFiles": 8,
+      "expectedFiles": [
+        "client/.env.example",
+        "client/src/hooks/useWebMCPTool.ts",
+        "client/src/lib/webmcp.ts",
+        "client/src/types/webmcp-compat.d.ts",
+        "package-lock.json",
+        "package.json",
+        "tsconfig.json"
+      ],
+      "prerequisites": [
+        "D1",
+        "D2",
+        "D3"
+      ],
+      "localValidatedCodeCommit": "6b43ee6bd859827b9c6766bead92b7359854b516",
+      "localChecks": [
+        {
+          "command": "npm run check",
+          "exitCode": 0
+        },
+        {
+          "command": "npm run build",
+          "exitCode": 0
+        },
+        {
+          "command": "npm run faq:check",
+          "exitCode": 0
+        },
+        {
+          "command": "npm run faq:check -- --self-test",
+          "exitCode": 0
+        },
+        {
+          "command": "npm run estimate:check",
+          "exitCode": 0
+        }
+      ]
+    },
+    {
+      "id": "D5",
+      "branch": "codex/velux-20260906-d5-webmcp-tools",
+      "sourceRef": "refs/remotes/origin/codex/velux-20260906-d5-webmcp-tools",
+      "pinnedSourceCommit": "2148fef4be6a0fb1daecabda5121538be21c513e",
+      "expectedSourceParent": "6b43ee6bd859827b9c6766bead92b7359854b516",
+      "sourceCommitCountAgainstParent": 1,
+      "riskClass": "B",
+      "maximumFiles": 8,
+      "expectedFiles": [
+        "README.md",
+        "WEBMCP.md",
+        "client/src/components/VeluxPreisrechner.tsx",
+        "client/src/lib/velux/bridge.ts",
+        "client/src/lib/velux/tools.ts",
+        "client/src/lib/velux/validate.ts",
+        "scripts/velux-estimate-check.ts",
+        "scripts/webmcp-smoke.mjs"
+      ],
+      "prerequisites": [
+        "D1",
+        "D2",
+        "D3",
+        "D4"
+      ],
+      "localValidatedCodeCommit": "2148fef4be6a0fb1daecabda5121538be21c513e",
+      "localChecks": [
+        {
+          "command": "npm run check",
+          "exitCode": 0
+        },
+        {
+          "command": "npm run build",
+          "exitCode": 0
+        },
+        {
+          "command": "npm run faq:check",
+          "exitCode": 0
+        },
+        {
+          "command": "npm run faq:check -- --self-test",
+          "exitCode": 0
+        },
+        {
+          "command": "npm run estimate:check",
+          "exitCode": 0
+        }
+      ]
+    },
+    {
+      "id": "D6",
+      "branch": "codex/velux-20260906-d6-checks",
+      "sourceRef": "refs/remotes/origin/codex/velux-20260906-d6-checks",
+      "pinnedSourceCommit": null,
+      "expectedSourceParent": "2148fef4be6a0fb1daecabda5121538be21c513e",
+      "sourceCommitCountAgainstParent": 1,
+      "riskClass": "B",
+      "maximumFiles": 8,
+      "expectedFiles": [
+        ".github/workflows/checks.yml",
+        ".gitignore",
+        "CLAUDE.md",
+        "VELUX-HANDOFF-MANIFEST.json",
+        "VELUX-HANDOFF.md",
+        "VELUX-REVIEW-2026-09-06.md",
+        "client/src/components/VeluxPreisrechner.tsx",
+        "scripts/velux-ui-smoke.mjs"
+      ],
+      "prerequisites": [
+        "D1",
+        "D2",
+        "D3",
+        "D4",
+        "D5"
+      ],
+      "localValidatedCodeCommit": "c61fcb84dfa394eb02f25e2f0065332db2ebaab4",
+      "localChecks": [
+        {
+          "command": "npm run check",
+          "exitCode": 0
+        },
+        {
+          "command": "npm run build",
+          "exitCode": 0
+        },
+        {
+          "command": "npm run faq:check",
+          "exitCode": 0
+        },
+        {
+          "command": "npm run faq:check -- --self-test",
+          "exitCode": 0
+        },
+        {
+          "command": "npm run estimate:check",
+          "exitCode": 0
+        }
+      ]
+    }
+  ],
+  "validation": {
+    "baselineCodeCi": {
+      "commit": "c61fcb84dfa394eb02f25e2f0065332db2ebaab4",
+      "url": "https://github.com/timrex-collab/rex-website/actions/runs/34016397270",
+      "conclusion": "success"
+    },
+    "currentCiLookup": {
+      "workflow": "checks.yml",
+      "branch": "codex/velux-20260906-d6-checks",
+      "requireHeadShaMatch": true
+    },
+    "d6UnchangedExecutableGitBlobs": {
+      ".github/workflows/checks.yml": "092b2634b5c0df77d91264d63e77425764a2f94e",
+      ".gitignore": "bf202c33647650bd0770ed0a914ca4c45f3f24df",
+      "client/src/components/VeluxPreisrechner.tsx": "723b0e882983f166802897ba2de764f210b23e54",
+      "scripts/velux-ui-smoke.mjs": "3f0ce36b05c9898134b5c99ab9d59f858c154ec7"
+    },
+    "nativeWebMcp": {
+      "browser": "Chrome",
+      "version": "152.0.7977.77",
+      "environment": "isolated local browser",
+      "flag": "--enable-features=WebMCP",
+      "result": "passed",
+      "provesProductionTrialToken": false,
+      "provesAiApplicationCompatibility": false
+    },
+    "counts": {
+      "referenceConfigurations": 9,
+      "legacySizeCodes": 54,
+      "windowTypes": 39,
+      "resolverCases": 24,
+      "resolverFuzzCombinations": 578,
+      "validatorFuzzInputs": 720
+    },
+    "browserChecks": [
+      "four native tools",
+      "same totals in tool and UI",
+      "draft protection",
+      "unregister on navigation",
+      "no tool-triggered network",
+      "mobile 390px",
+      "anonymous PDF",
+      "HTML escaping",
+      "no POST during PDF test",
+      "flag off",
+      "origin denied",
+      "draft-object shim"
+    ],
+    "notTested": [
+      "production Origin Trial without browser flag",
+      "real AI applications",
+      "Netlify form delivery",
+      "live conversion rates"
+    ]
+  },
+  "catalogEvidence": {
+    "file": "260903_kat 5_VELUX_Gesamtkatalog_Juli_2026_DE.pdf",
+    "pdfPages": 306,
+    "validFrom": "2026-07-01",
+    "documentRevision": "2026-09-03",
+    "sha256": "dc218ff67e61abf7a9f85b1c9ba202a9ae4a15d0b4c69714ce99ef3c6ef1586f",
+    "manufacturerDownload": "https://contenthub.velux.com/api/public/content/60a96-ceb73-2f4c8_downloadOriginal?v=8747b9ff",
+    "manufacturerLanding": "https://www.velux.de/fachkunden/tools-technik/broschueren",
+    "manufacturerDownloadMatchesUserFile": true,
+    "publicPriceComparison": {
+      "windows": 207,
+      "flashing": 19,
+      "exteriorShutters": 38,
+      "interiorBlinds": 38,
+      "total": 302,
+      "matches": 302,
+      "differences": 0,
+      "sourceWorkbook": "VELUX Komplett-Datei Excel 01.07.2026.xlsx"
+    },
+    "rawDocumentsCommitted": false,
+    "detailReferences": [
+      "VELUX-REVIEW-2026-09-06.md",
+      "VELUX-TYPENSCHILD.md"
+    ]
+  },
+  "fundingReview": {
+    "reviewedAt": "2026-09-06",
+    "reviewDueNoLaterThan": "2026-12-31",
+    "deadlineMeaning": "internal review deadline, not the statutory program expiry",
+    "primarySources": [
+      "https://www.kfw.de/523-richtlinie",
+      "https://www.gesetze-im-internet.de/estg/__35c.html",
+      "https://www.gesetze-im-internet.de/esanmv/BJNR000300020.html"
+    ]
+  },
+  "deferred": [
+    "production activation D7",
+    "website photo recognition PR-P2",
+    "lead service PR-3",
+    "telemetry sink PR-2b"
+  ],
+  "deployRecordTemplate": {
+    "package": null,
+    "sourceSha": null,
+    "releaseBranch": null,
+    "releaseHeadSha": null,
+    "pullRequestUrl": null,
+    "mergedMainSha": null,
+    "ciUrl": null,
+    "netlifyDeployId": null,
+    "netlifyCommitRef": null,
+    "netlifyPublishedAtUtc": null,
+    "lastMainMergeAtUtc": null,
+    "nextEarliestMergeAtUtc": null,
+    "rollbackDeployId": null,
+    "approvedBy": null,
+    "verificationResult": null
+  }
+}

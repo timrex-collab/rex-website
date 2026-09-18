@@ -14,6 +14,9 @@ on:
   push:
     branches: [main]
   workflow_dispatch:
+  schedule:
+    # Wiedervorlage: auch ohne Codeänderung abgelaufene Förderprüfung erkennen.
+    - cron: '15 7 * * 1'
 
 permissions:
   contents: read
@@ -41,6 +44,9 @@ jobs:
         run: npm run check
       - name: Build
         run: npm run build
+        env:
+          VITE_WEBMCP_ENABLED: 'false'
+          VITE_WEBMCP_OT_TOKEN: rex-ci-inert-test-token
       # Prueft die FAQPage-Konvention aus DEPLOY-RULES §7: mainEntity muss aus dem
       # Array kommen, das die Seite auch rendert. Zwei Fehlmessungen des Audits
       # gingen darauf zurueck, dass das nur von Hand geprueft wurde
@@ -53,3 +59,44 @@ jobs:
       # Goldwerte, Katalog-Invarianten, Determinismus. Siehe scripts/velux-estimate-check.ts.
       - name: VELUX-Preislogik (Goldwerte)
         run: npm run estimate:check
+      - name: Testbrowser installieren
+        run: npx playwright install --with-deps chromium
+      - name: Lokale Vorschau starten
+        run: |
+          npx vite preview --host 0.0.0.0 --port 4179 --strictPort > /tmp/rex-preview.log 2>&1 &
+          for attempt in $(seq 1 30); do
+            if curl --silent --fail http://127.0.0.1:4179/ > /dev/null; then exit 0; fi
+            sleep 1
+          done
+          cat /tmp/rex-preview.log
+          exit 1
+      - name: UI, mobile Ansicht und Druckausgabe (kein Versand)
+        run: node scripts/velux-ui-smoke.mjs http://127.0.0.1:4179
+      - name: WebMCP ausgeschaltet (inklusive Token-Gegenprobe)
+        run: node scripts/webmcp-smoke.mjs http://127.0.0.1:4179
+        env:
+          SHIM: '1'
+          EXPECTED_WEBMCP: 'off'
+      - name: Ausschließlich lokalen WebMCP-Testbuild erstellen
+        run: npm run build
+        env:
+          VITE_WEBMCP_ENABLED: 'true'
+          VITE_WEBMCP_ORIGINS: http://127.0.0.1:4179
+          VITE_WEBMCP_OT_TOKEN: rex-ci-inert-test-token
+      - name: WebMCP-Vertrag im Shim (kein nativer Browsernachweis)
+        run: node scripts/webmcp-smoke.mjs http://127.0.0.1:4179
+        env:
+          SHIM: '1'
+          WEBMCP_INPUT_FORMAT: object
+      - name: Fremde Origin bleibt ausgeschaltet
+        run: node scripts/webmcp-smoke.mjs http://localhost:4179
+        env:
+          SHIM: '1'
+          EXPECTED_WEBMCP: 'off'
+      - name: Prüfbilder und Druck-PDF
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: velux-browser-results
+          path: test-results/velux
+          retention-days: 14
