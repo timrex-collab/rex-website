@@ -110,6 +110,17 @@ Diese Dateien sind für normale Codearbeit/Tests nicht notwendig. Für eine neue
 
 ## 6. Aktivierung und bewusst offene Pakete
 
+> **Nachtrag 18.09.2026 — Umnummerierung.** Der in diesem Abschnitt als „D7“
+> bezeichnete Aktivierungsdeploy heißt inzwischen **D8**. Tim hat am 09.09.2026
+> entschieden, das PDF-Export-Gate als eigenes Paket **D7** nach D6 einzuordnen
+> (siehe `VELUX-EXPORT-GATE.md`). Der Text unten bleibt im Stand vom 06.09.2026
+> stehen; maßgeblich ist diese Zuordnung:
+>
+> | Paket | Inhalt |
+> |---|---|
+> | D7 | PDF-Export an die abgesendete Anfrage koppeln (`VELUX-EXPORT-GATE.md`) |
+> | D8 | WebMCP-Aktivierung — der unten beschriebene Env-Deploy |
+
 D1–D6 aktivieren WebMCP nicht. D7 ist später ein eigener Env-Deploy: exakte Produktionsorigin, tatsächlich gültiges Trial-Token samt Ablaufdatum, nativer Test ohne Flag, zehn Agentenfälle laut WEBMCP.md, Rollback-Ziel und weitere 48 Stunden Pause. Nur Production-Context; reguläre Previews bleiben aus. Kein Token, Konto oder Anbieter muss für die jetzige Codeweiterarbeit eingerichtet werden.
 
 Foto-MVP/PR-P2, Lead-Service/PR-3 und Telemetrie/PR-2b sind vorbereitet, aber nicht implementiert. Vor deren Umsetzung gelten die konkreten Entscheidungen zu Anbieter/Modell, Datenhaltung, Kostenlimit, atomarem Rate-Limit, Nutzerbestätigung und Zustellung aus dem Review. Nicht mit D1–D6 vermischen. Kein zugesagter universeller KI-/SEO-Effekt.
