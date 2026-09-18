@@ -177,3 +177,107 @@ Vermerk reden beide Dokumente unter demselben Namen über verschiedene Dinge.
 | D6 | CI-Browserprüfungen |
 | **D7** | **PDF-Export an die Anfrage koppeln (dieses Dokument)** |
 | D8 | WebMCP-Aktivierung (in `VELUX-HANDOFF.md` §6 noch „D7") |
+
+---
+
+## 7. Umsetzung (18.09.2026)
+
+Gebaut auf Branch `claude/exciting-hypatia-1tq39w`, Basis `main` `be34af8` (nach PR #78).
+Stufe B, **8 Dateien — die Obergrenze ist damit ausgeschöpft**:
+
+| Datei | Änderung |
+|---|---|
+| `client/src/lib/velux/export-gate.ts` | **neu** — normalisierte Signatur, Wartescreen, Fenster-Handling, Gate-Texte. Keine Preis- oder Förderlogik |
+| `client/src/components/VeluxPreisrechner.tsx` | Gate-Zustand, umgedrehte Popup-Reihenfolge, „Nur PDF erstellen" ersetzt, Datenschutzhinweis, sichtbarer mailto-Ersatzweg |
+| `client/src/pages/VeluxPreisrechnerBochum.tsx` | Print-CSS: Ergebnis aus, Hinweis an |
+| `scripts/velux-ui-smoke.mjs` | D6-Test strukturell umgebaut, sieben Gate-Fälle |
+| `scripts/velux-estimate-check.ts` | Signatur- und Freischaltungsregel als Direkttest |
+| `.github/workflows/checks.yml` | Schrittname an die neue Prüfung angepasst |
+| `DEPLOY-RULES.md`, `VELUX-EXPORT-GATE.md` | Deploy-Log und dieses Protokoll |
+
+### Die Signatur ist normalisiert, nicht roh serialisiert
+
+Der Entwurf in §3.1 schlug `JSON.stringify({ positions, foerderung })` vor. Umgesetzt ist
+eine normalisierte Fassung: Sie greift ausschließlich die preisbestimmenden Felder ab
+(`model`, `size`, `glazing`, `qty`, `shutter`, `shutterQty`, `blind`, `blindQty`) und
+sortiert die Förderantworten nach Schlüssel. Die interne Laufnummer `id` und künftige
+UI-Metadaten gehen damit nicht ein — sonst würde die Freischaltung an Feldern hängen, die
+mit Preis und Förderung nichts zu tun haben. `estimate:check` prüft das direkt:
+Determinismus, Unempfindlichkeit gegen `id` und Schlüsselreihenfolge, und dass Verglasung,
+Menge, Zubehör, eine zweite Position sowie jede geänderte Förderantwort die Signatur
+tatsächlich verändern.
+
+### Reichweite der Freischaltung — bewusstes Verhalten
+
+Die Freischaltung lebt im lokalen Zustand von `Step3`. Diese Komponente wird nur bei
+`step === 3` gerendert; wer zurück in den Wizard geht, hängt sie aus und verliert die
+Freischaltung. „Nach Freischaltung beliebig oft zu öffnen" (§2.4) gilt also **innerhalb der
+Ergebnisansicht**, nicht über einen Wizard-Rücksprung hinweg. Das ist gewollt: Wer
+zurückgeht, ändert in aller Regel die Konfiguration, und dann müsste die Signatur das Gate
+ohnehin schließen. Die Signatur bleibt die fachliche Regel, der Remount nur ihr Nebeneffekt
+— eine spätere Zustandshaltung oberhalb von `Step3` würde nichts am Verhalten ändern.
+
+### Weitere Abweichungen vom Entwurf
+
+1. **`handlePdf` ist ganz entfallen**, nicht nur der Button. Es gibt keinen Codepfad mehr,
+   der ohne Freischaltung ein PDF schreibt — `writePdfInto(window)` wird ausschließlich
+   nach `res.ok` oder über „PDF erneut öffnen" aufgerufen.
+2. **mailto-Fallback zusätzlich sichtbar.** Der Entwurf sah nur `window.location.href` vor.
+   Da der Sprung am Browser scheitern kann und der Export jetzt am Versand hängt, steht
+   derselbe Link auch in der Fehlermeldung. Dabei ersetzt der bereits vorhandene, aber
+   nirgends benutzte `buildMailto()` den zweiten Mailtext im `catch`-Zweig — bisher wurden
+   zwei Fassungen desselben Textes parallel gepflegt.
+3. **Popup-Blocker im Test simuliert**, nicht erzwungen: ein eigener Browserkontext legt
+   `window.open` stumm. Chromiums Blocker-Heuristik ist unter Playwright nicht verlässlich
+   auslösbar; das Startargument `--block-new-web-contents` griff im Versuch nicht.
+
+### Umbau des Browsertests
+
+Der D6-Test wurde nicht an zwei Klickstellen umgedreht, sondern strukturell umgebaut. Der
+Route-Handler beantwortet den Versand jetzt lokal — `200` oder `500`, steuerbar pro Fall —
+statt jeden Nicht-GET abzubrechen; kein Byte verlässt den Testlauf, fremde Origins bleiben
+gesperrt. Die Schlussprüfung `posts === 0` ist durch `posts === 2` ersetzt: genau die zwei
+Versandversuche, keine weitere Übertragung. Die alten PDF-Prüfungen bleiben erhalten, nur
+hinter dem bestätigten Versand — HTML-Escaping der Kundeneingabe, UI/PDF-Parität und das
+A4-Rendering der Druckansicht.
+
+| # | Fall | Erwartung |
+|---|---|---|
+| 1 | vor dem Versand | kein Export-Button, gesperrter Zustand sichtbar, Datenschutzlink vorhanden |
+| 2 | Direktdruck der Seite | Ergebnis verborgen, Hinweis sichtbar, keine Beträge im Hinweis |
+| 3 | Versand schlägt fehl | Wartefenster geschlossen, Gate zu, mailto-Ersatzweg sichtbar und mit Kalkulation |
+| 4 | Versand bestätigt | Wartefenster wird zum vollständigen PDF, `opener` null, kein injiziertes HTML, A4-PDF erzeugt |
+| 5 | erneut öffnen | identisches Dokument, kein weiterer POST |
+| 6 | Konfiguration geändert | Freischaltung gilt nicht mehr |
+| 7 | Popup blockiert | Freischaltung greift trotzdem, Hinweis auf „PDF erneut öffnen" |
+
+### Prüfungen (lokal, vor der Übergabe)
+
+| Prüfung | Ergebnis |
+|---|---|
+| `npm run check` | grün |
+| `npm run build` | grün |
+| `npm run faq:check` (+ `--self-test`) | 23 Seiten, 0 beanstandet |
+| `npm run estimate:check` | alle Prüfungen bestanden — Goldwert 2.104 € brutto unverändert, Signaturregel grün |
+| `velux-ui-smoke.mjs` | sieben Gate-Fälle grün |
+| `webmcp-smoke.mjs` (aus, Vertrag im Shim, fremde Origin) | grün |
+
+Die Preislogik wurde nicht angefasst; die sichtbaren Beträge ändern sich nicht. WebMCP
+bleibt ausgeschaltet — kein Tool exportiert ein PDF, das Gate ist dort also nicht umgehbar.
+
+### Offen — vor der Freigabe zu klären
+
+1. **Rechtliche Einordnung des Datenschutzhinweises.** §3.5 hält fest, eine Vorab-Checkbox
+   sei nicht nötig. Das ist eine rechtliche Bewertung, keine technische. Der Hinweis mit
+   Link auf `/datenschutz` steht und ist gegenüber dem bisherigen Zustand in jedem Fall die
+   bessere Ausgangslage; ob es dabei bleibt, gehört vor der Veröffentlichung bestätigt.
+2. **Redaktionelle Restschuld in `VELUX-HANDOFF.md` §6.** Der historische Text vom
+   06.09.2026 nennt den Aktivierungsdeploy weiterhin „D7"; der Nachtrag vom 18.09.2026
+   davor stellt klar, dass damit D8 gemeint ist. Bewusst nicht angefasst — die Datei gehört
+   nicht zu diesem Paket, und die Dateigrenze der Stufe B ist ausgeschöpft.
+
+### Nicht erledigt
+
+Serverseitige PDF-Erzeugung (Abschnitt 4, „Ausbaustufe für dichten Schutz") bleibt
+außerhalb von D7. Die Grenze der Lösung steht im Kopfkommentar von `export-gate.ts` und
+darf im PR nicht als dichter Schutz beschrieben werden.

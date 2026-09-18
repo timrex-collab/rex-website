@@ -70,7 +70,9 @@ jobs:
           done
           cat /tmp/rex-preview.log
           exit 1
-      - name: UI, mobile Ansicht und Druckausgabe (kein Versand)
+      # D7: prüft das Export-Gate — PDF nur nach bestätigtem Versand. Der Versand wird im
+      # Browser lokal beantwortet, es verlässt kein Byte den Testlauf.
+      - name: UI, mobile Ansicht und Export-Gate
         run: node scripts/velux-ui-smoke.mjs http://127.0.0.1:4179
       - name: WebMCP ausgeschaltet (inklusive Token-Gegenprobe)
         run: node scripts/webmcp-smoke.mjs http://127.0.0.1:4179

@@ -28,6 +28,7 @@ import {
   buildEstimate, toValidatedPositions,
   type PositionDetail, type QuoteTotals, type ValidatedPosition,
 } from "../client/src/lib/velux/estimate";
+import { configSignature, isExportUnlocked } from "../client/src/lib/velux/export-gate";
 import { LEGACY_SIZES, WINDOW_TYPES, findLegacySize } from "../client/src/lib/velux/legacyCatalog";
 import { resolveExistingWindow, type ResolveResult, type WindowObservation } from "../client/src/lib/velux/resolve";
 import { validateEstimateInput, validateObservationInput, validateOptionsInput } from "../client/src/lib/velux/validate";
@@ -482,6 +483,38 @@ console.log("WebMCP-Presenter und Tools");
     if (a4.ok !== false || (a4.error as { code: string }).code !== "INVALID_INPUT") fail("apply: replaceExisting muss boolean sein");
   })().catch((e) => fail(`apply async: ${String(e)}`)));
   void presentEstimate; void estimateFingerprint;
+}
+
+// ── Export-Gate: Signatur der freigeschalteten Konfiguration (D7) ──────
+console.log("Export-Gate");
+{
+  const pos = (over: Record<string, unknown> = {}) => ({
+    id: 1, model: "GGU", size: "MK08", glazing: "ENERGIE",
+    qty: 1, shutter: "none", shutterQty: 0, blind: "none", blindQty: 0, ...over,
+  });
+  const funding = { buildingAge: "over_10", energyRenovation: "yes", ownerOccupied: "yes", hasIsfp: "no" };
+  const base = configSignature([pos()], funding);
+
+  if (base !== configSignature([pos()], funding)) fail("Signatur nicht deterministisch");
+  // Interne Laufnummer und künftige UI-Metadaten dürfen die Freischaltung nicht kippen.
+  if (base !== configSignature([pos({ id: 99, hovered: true })], funding))
+    fail("Signatur hängt an internen Feldern");
+  // Reihenfolge der Förderantworten im Objekt ist egal, ihr Inhalt nicht.
+  if (base !== configSignature([pos()], { hasIsfp: "no", ownerOccupied: "yes", energyRenovation: "yes", buildingAge: "over_10" }))
+    fail("Signatur hängt an der Schlüsselreihenfolge");
+  for (const [name, changed] of [
+    ["Verglasung", configSignature([pos({ glazing: "THERMO" })], funding)],
+    ["Menge", configSignature([pos({ qty: 2 })], funding)],
+    ["Zubehör", configSignature([pos({ blind: "DKL", blindQty: 1 })], funding)],
+    ["zweite Position", configSignature([pos(), pos({ id: 2 })], funding)],
+    ["Förderantwort", configSignature([pos()], { ...funding, hasIsfp: "yes" })],
+  ] as const) if (changed === base) fail(`Signatur ignoriert geänderte ${name}`);
+
+  if (isExportUnlocked(null, base)) fail("Gate ohne Versand offen");
+  if (!isExportUnlocked(base, base)) fail("Gate nach Versand nicht offen");
+  if (isExportUnlocked(base, configSignature([pos({ qty: 2 })], funding)))
+    fail("Gate bleibt nach Konfigurationsänderung offen");
+  console.log("  Signatur normalisiert, Freischaltung an die abgesendete Konfiguration gebunden");
 }
 
 // ── Determinismus + JSON-Roundtrip ────────────────────────────────────
