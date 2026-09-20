@@ -12,6 +12,8 @@ import { ASSUMPTIONS, COMPANY, DISCLAIMER, EXCLUSIONS, FUNDING_NOTES, PRICE_BASI
 // WebMCP (PR-2a): Tools sind nur bei aktivem Flag + Origin-Allowlist registriert; ohne WebMCP läuft der Rechner unverändert.
 import { buildVeluxTools } from "@/lib/velux/tools";
 import { APPLIED_SESSION_KEY, RESULT_ANCHOR_ID, useVeluxBridge } from "@/lib/velux/bridge";
+// D7: PDF-Export erst nach bestaetigt versendeter Anfrage (VELUX-EXPORT-GATE.md).
+import { EXPORT_GATE_TEXT, closeWindow, configSignature, isExportUnlocked, openWaitWindow, writeDocument } from "@/lib/velux/export-gate";
 import { useWebMCPTool } from "@/hooks/useWebMCPTool";
 import { emitWebMCPEvent, isWebMCPEnabled } from "@/lib/webmcp";
 const deDate=(iso)=>iso.split("-").reverse().join(".");
@@ -370,6 +372,9 @@ function FundingCard({title,tone,scenario,reason,rows,amountLabel,amount,remaini
 function Step3({positions,foerderung}){
   const [kunde,setKunde]=useState({name:"",email:"",telefon:"",strasse:"",plz:"",ort:"",nachricht:""});
   const [pdfGenerated,setPdfGenerated]=useState(false);
+  // Freigeschaltet ist immer nur die Konfiguration, die tatsaechlich abgesendet wurde.
+  const [unlockedFor,setUnlockedFor]=useState(null);
+  const [popupBlocked,setPopupBlocked]=useState(false);
   const [submitting, setSubmitting] = useState(false);
   const [submitSuccess, setSubmitSuccess] = useState(false);
   const [submitError, setSubmitError] = useState(false);
@@ -380,12 +385,21 @@ function Step3({positions,foerderung}){
   const {beg,tax35c,begReason,tax35cReason}=funding;
   const kundeValid=kunde.name.trim().length>1&&(kunde.email.trim().includes("@")||kunde.telefon.trim().length>5);
 
-  const handlePdf=useCallback(()=>{
-    const html=buildPdfHtml(details,totals,funding,kunde);
-    const w=window.open("","_blank");
-    if(w){w.opener=null;w.document.write(html);w.document.close();}
-    setPdfGenerated(Boolean(w));
+  const signature=useMemo(()=>configSignature(positions,foerderung),[positions,foerderung]);
+  const exportUnlocked=isExportUnlocked(unlockedFor,signature);
+
+  const writePdfInto=useCallback((w)=>{
+    const ok=writeDocument(w,buildPdfHtml(details,totals,funding,kunde));
+    setPdfGenerated(ok);
+    setPopupBlocked(!ok);
+    return ok;
   },[details,totals,funding,kunde]);
+
+  // Nachtraeglich oeffnen: nur fuer die freigeschaltete Konfiguration, beliebig oft.
+  const handleReopenPdf=useCallback(()=>{
+    if(!exportUnlocked)return;
+    writePdfInto(openWaitWindow());
+  },[exportUnlocked,writePdfInto]);
 
   const buildMailto=useCallback(()=>{
     const posText=details.map((d,i)=>{
@@ -421,10 +435,12 @@ function Step3({positions,foerderung}){
 
   const handleSubmitAndPdf = async () => {
     if(submitting||!kundeValid)return;
-    // Druckfenster innerhalb der Nutzeraktion öffnen, vor dem asynchronen POST.
-    handlePdf();
+    // Fenster im Nutzerklick oeffnen, sonst greift der Popup-Blocker. Es zeigt zunaechst
+    // nur einen Wartescreen; das PDF kommt erst nach bestaetigtem Versand.
+    const printWindow=openWaitWindow();
     setSubmitting(true);
     setSubmitError(false);
+    setPopupBlocked(false);
 
     try{if(sessionStorage.getItem(APPLIED_SESSION_KEY)==="1")emitWebMCPEvent({event:"cta_transition"});}catch{}
     const formData = new URLSearchParams();
@@ -445,20 +461,19 @@ function Step3({positions,foerderung}){
         headers: { "Content-Type": "application/x-www-form-urlencoded" },
         body: formData.toString(),
       });
-      if (res.ok) {
-        setSubmitSuccess(true);
-      } else {
-        throw new Error("Submit failed");
-      }
+      if (!res.ok) throw new Error("Submit failed");
+      setSubmitSuccess(true);
+      setUnlockedFor(signature);
+      if (printWindow) writePdfInto(printWindow);
+      else { setPdfGenerated(false); setPopupBlocked(true); }
     } catch {
       setSubmitError(true);
-      const subject = encodeURIComponent("VELUX Preisrechner – Anfrage von " + kunde.name);
-      const body = encodeURIComponent(
-        `Name: ${kunde.name}\nE-Mail: ${kunde.email}\nTelefon: ${kunde.telefon}\n` +
-        `Adresse: ${kunde.strasse}, ${kunde.plz} ${kunde.ort}\n\n` +
-        `Konfiguration:\n${buildKonfigText()}\n\nNachricht: ${kunde.nachricht}`
-      );
-      window.location.href = `mailto:info@rex-bedachung.de?subject=${subject}&body=${body}`;
+      // Kein PDF bei fehlgeschlagenem Versand.
+      closeWindow(printWindow);
+      setPdfGenerated(false);
+      // Ersatzweg anbieten. Der Sprung kann am Browser scheitern, deshalb steht derselbe
+      // Link zusaetzlich sichtbar in der Fehlermeldung.
+      window.location.href = buildMailto();
     } finally {
       setSubmitting(false);
     }
@@ -466,8 +481,8 @@ function Step3({positions,foerderung}){
 
   const inputCls="w-full px-3.5 py-2.5 rounded-lg border border-slate-300 text-sm text-slate-900 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-slate-800/20 focus:border-slate-800 transition-all";
 
-  return(
-    <div className="space-y-5">
+  return(<>
+    <div className="rechner-ergebnis space-y-5">
       {/* Config Summary */}
       <div id={RESULT_ANCHOR_ID} tabIndex={-1} className="bg-gradient-to-br from-slate-800 to-slate-900 rounded-2xl p-5 text-white outline-none focus-visible:ring-2 focus-visible:ring-white/60">
         <div className="flex items-center gap-2 text-slate-300 text-xs font-medium uppercase tracking-wider mb-4"><Calculator className="w-4 h-4"/> Ihre Konfiguration — {totalFenster} Fenster</div>
@@ -590,11 +605,23 @@ function Step3({positions,foerderung}){
               <Mail className="w-5 h-5"/>Bitte zuerst Kontaktdaten ausfüllen
             </div>
           )}
-          <button onClick={handlePdf}
-            className="inline-flex items-center gap-2 bg-white text-slate-700 border-2 border-slate-300 px-6 py-3.5 rounded-xl font-semibold text-sm hover:bg-slate-50 hover:border-slate-400 transition-all">
-            <FileDown className="w-4 h-4"/>Nur PDF erstellen
-          </button>
+          {exportUnlocked ? (
+            <button onClick={handleReopenPdf}
+              className="inline-flex items-center gap-2 bg-white text-slate-700 border-2 border-slate-300 px-6 py-3.5 rounded-xl font-semibold text-sm hover:bg-slate-50 hover:border-slate-400 transition-all">
+              <FileDown className="w-4 h-4"/>{EXPORT_GATE_TEXT.unlockedButton}
+            </button>
+          ) : (
+            <div className="max-w-sm text-left bg-slate-50 border border-slate-200 rounded-xl px-5 py-3.5">
+              <div className="flex items-center gap-2 text-sm font-semibold text-slate-700">
+                <FileDown className="w-4 h-4 text-slate-400"/>{EXPORT_GATE_TEXT.lockedTitle}
+              </div>
+              <p className="text-xs text-slate-500 mt-1">{EXPORT_GATE_TEXT.lockedBody}</p>
+            </div>
+          )}
         </div>
+        <p className="text-[10px] text-slate-400 text-center">
+          {EXPORT_GATE_TEXT.privacy} <a href="/datenschutz" className="underline hover:text-slate-600">Datenschutzhinweise</a>
+        </p>
         {submitSuccess && (
           <div className="text-center animate-fadeIn">
             <p className="text-xs text-emerald-700 bg-emerald-50 inline-block px-4 py-2 rounded-lg">
@@ -605,14 +632,22 @@ function Step3({positions,foerderung}){
         {submitError && (
           <div className="text-center animate-fadeIn">
             <p className="text-xs text-red-700 bg-red-50 inline-block px-4 py-2 rounded-lg">
-              Senden fehlgeschlagen. Bitte rufen Sie uns direkt an: 0234 / 58 31 00
+              Senden fehlgeschlagen. Bitte rufen Sie uns direkt an: 0234 / 58 31 00 — oder{" "}
+              <a href={buildMailto()} className="underline font-semibold">per E-Mail senden</a>.
             </p>
           </div>
         )}
-        {pdfGenerated && !submitSuccess && (
+        {pdfGenerated && exportUnlocked && (
           <div className="text-center animate-fadeIn">
             <p className="text-xs text-emerald-700 bg-emerald-50 inline-block px-4 py-2 rounded-lg">
               <Check className="w-3.5 h-3.5 inline mr-1"/>Druckansicht geöffnet — dort als PDF speichern.
+            </p>
+          </div>
+        )}
+        {popupBlocked && exportUnlocked && (
+          <div className="text-center animate-fadeIn">
+            <p className="text-xs text-amber-800 bg-amber-50 inline-block px-4 py-2 rounded-lg">
+              {EXPORT_GATE_TEXT.popupBlocked}
             </p>
           </div>
         )}
@@ -623,7 +658,12 @@ function Step3({positions,foerderung}){
           </div>
         </div>
       </div>
-    </div>);
+    </div>
+    {/* Nur im Druck sichtbar: entwertet Strg+P auf der Ergebnisseite. */}
+    <div className="rechner-print-hinweis" aria-hidden="true">
+      <p>{EXPORT_GATE_TEXT.printHint}</p>
+    </div>
+  </>);
 }
 
 /* ═══════════════════════════════════════════════════════════════════════

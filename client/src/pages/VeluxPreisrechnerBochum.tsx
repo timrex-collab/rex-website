@@ -208,6 +208,14 @@ export default function VeluxPreisrechnerBochum() {
         </div>
       </section>
 
+      {/* D7: Direktdruck der Seite entwerten — die Zahlen bleiben am Bildschirm sichtbar,
+          die PDF-Zusammenfassung gibt es nur nach abgesendeter Anfrage. */}
+      <style>{`.rechner-print-hinweis{display:none}
+@media print{
+  .rechner-ergebnis{display:none!important}
+  .rechner-print-hinweis{display:block!important;padding:24px;font-size:13px;line-height:1.6;color:#1a1a1a}
+}`}</style>
+
       {/* Rechner-Komponente */}
       <div id="preisrechner">
         <VeluxPreisrechner />
