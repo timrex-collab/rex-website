@@ -180,10 +180,16 @@ Vermerk reden beide Dokumente unter demselben Namen über verschiedene Dinge.
 
 ---
 
-## 7. Umsetzung (18.09.2026)
+## 7. Umsetzung (18.09.2026) — **live seit 20.09.2026**
 
 Gebaut auf Branch `claude/exciting-hypatia-1tq39w`, Basis `main` `be34af8` (nach PR #78).
-Stufe B, **8 Dateien — die Obergrenze ist damit ausgeschöpft**:
+Stufe B, **8 Dateien — die Obergrenze ist damit ausgeschöpft**.
+
+> **Status: umgesetzt und live.** PR #79, gemergt am 20.09.2026 um 21:17:08 MESZ, Netlify
+> `6ab03136…`, `commit_ref 682a888`, `published_at 21:17:45 MESZ`, `state ready`,
+> Secret-Scan 720/0. Gate eingehalten mit 53 h 33 min. Checks-Lauf #33, IndexNow-Lauf #50
+> und Prerender-Check-Lauf #12 grün. Details im Deploy-Log von `DEPLOY-RULES.md` §10.
+
 
 | Datei | Änderung |
 |---|---|
@@ -265,12 +271,13 @@ A4-Rendering der Druckansicht.
 Die Preislogik wurde nicht angefasst; die sichtbaren Beträge ändern sich nicht. WebMCP
 bleibt ausgeschaltet — kein Tool exportiert ein PDF, das Gate ist dort also nicht umgehbar.
 
-### Offen — vor der Freigabe zu klären
+### Offen — durch den Deploy nicht erledigt
 
 1. **Rechtliche Einordnung des Datenschutzhinweises.** §3.5 hält fest, eine Vorab-Checkbox
    sei nicht nötig. Das ist eine rechtliche Bewertung, keine technische. Der Hinweis mit
    Link auf `/datenschutz` steht und ist gegenüber dem bisherigen Zustand in jedem Fall die
-   bessere Ausgangslage; ob es dabei bleibt, gehört vor der Veröffentlichung bestätigt.
+   bessere Ausgangslage; ob es dabei bleibt, gehört bestätigt. Der Punkt stand vor dem
+   Merge offen und steht es weiterhin — der Deploy hat ihn nicht beantwortet.
 2. **Redaktionelle Restschuld in `VELUX-HANDOFF.md` §6.** Der historische Text vom
    06.09.2026 nennt den Aktivierungsdeploy weiterhin „D7"; der Nachtrag vom 18.09.2026
    davor stellt klar, dass damit D8 gemeint ist. Bewusst nicht angefasst — die Datei gehört
