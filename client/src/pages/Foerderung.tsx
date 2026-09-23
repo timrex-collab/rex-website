@@ -69,15 +69,15 @@ const steps = [
   },
   {
     title: "BAFA-Antrag",
-    desc: "Der Antrag wird online bei der BAFA gestellt – vor jeder Vertragsunterschrift und vor jeder Anzahlung.",
+    desc: "Der Antrag wird online beim BAFA gestellt. Dafür muss bereits ein Vertrag vorliegen, der unter der Bedingung der Förderzusage steht – ein unbedingter Vertrag oder eine Anzahlung vor dem Antrag kostet die Förderung.",
   },
   {
     title: "Zuwendungsbescheid",
-    desc: "Die BAFA bestätigt die Förderung. Erst jetzt ist der Auftrag rechtssicher planbar.",
+    desc: "Das BAFA bewilligt die Förderung. Damit tritt die Bedingung im Vertrag ein – jetzt kann die Ausführung beginnen.",
   },
   {
-    title: "Auftrag & Umsetzung",
-    desc: "Vertrag mit Rex Bedachung, Ausführung, Technischer Projektnachweis und Verwendungsnachweis. Der BAFA-Zuschuss wird nach Prüfung ausgezahlt; KfW- oder NRW.BANK-Bausteine laufen separat über die Hausbank.",
+    title: "Umsetzung & Nachweis",
+    desc: "Ausführung durch Rex Bedachung, Technischer Projektnachweis und Verwendungsnachweis. Der BAFA-Zuschuss wird nach Prüfung ausgezahlt; KfW- oder NRW.BANK-Bausteine laufen separat über die Hausbank.",
   },
 ];
 
@@ -88,11 +88,11 @@ const faqItems = [
   },
   {
     question: "Wann lohnt sich ein individueller Sanierungsfahrplan (iSFP)?",
-    answer: "Der iSFP verdoppelt die Obergrenze der förderrelevanten Kosten von 30.000 € auf 60.000 € je Wohneinheit und Kalenderjahr. Das ist seit der BEG-Reform vom 21.07.2026 sein eigentlicher Hebel: Der 5-Prozentpunkte-Bonus wird nur noch auf den Kostenanteil oberhalb von 30.000 € gewährt. Bei einem Vorhaben unter 30.000 € bringt der iSFP beim Fördersatz nichts mehr – es bleiben 15 %. Bei größeren Dachsanierungen bleibt er wirtschaftlich sinnvoll: Aus 60.000 € förderrelevanten Kosten werden 10.500 € Zuschuss statt 4.500 €. Der Energieeffizienz-Experte prüft vor Antragstellung, ob der iSFP für den Bonus anerkannt wird.",
+    answer: "Der iSFP verdoppelt die Obergrenze der förderrelevanten Kosten von 30.000 € auf 60.000 € für die erste Wohneinheit und das Kalenderjahr. Das ist seit der BEG-Reform vom 21.07.2026 sein eigentlicher Hebel: Der 5-Prozentpunkte-Bonus wird nur noch auf den Kostenanteil oberhalb von 30.000 € gewährt. Bei einem Vorhaben unter 30.000 € bringt der iSFP beim Fördersatz nichts mehr – es bleiben 15 %. Bei größeren Dachsanierungen bleibt er wirtschaftlich sinnvoll: Aus 60.000 € förderrelevanten Kosten werden 10.500 € Zuschuss statt 4.500 €. Der Energieeffizienz-Experte prüft vor Antragstellung, ob der iSFP für den Bonus anerkannt wird.",
   },
   {
     question: "Was hat sich bei der BEG-Förderung zum 21. Juli 2026 geändert?",
-    answer: "Die BEG wird in gewohnter Struktur fortgeführt – das BAFA bleibt für Einzelmaßnahmen zuständig, die Richtlinie gilt bis 31.12.2030. Für die Gebäudehülle bleibt die Grundförderung bei 15 %, die Kostenobergrenzen bleiben bei 30.000 € bzw. 60.000 € für die erste Wohneinheit, und die technischen Mindestanforderungen (U ≤ 0,14 W/(m²·K) am Dach, Uw ≤ 1,0 für Dachflächenfenster) sind unverändert. Neu ist die Deckelung des iSFP-Bonus nach Nummer 8.4.2 der Richtlinie: Er setzt ein förderrelevantes Mindestinvestitionsvolumen von 30.000 € brutto voraus und wird nur auf die Ausgaben oberhalb der Höchstgrenze ohne iSFP gewährt. Beim Ein- und Zweifamilienhaus sinkt der maximale Zuschuss dadurch von 12.000 € auf 10.500 € je Wohneinheit und Jahr. Bereits bewilligte und vor dem 21.07.2026 beantragte Vorhaben behalten die alten Konditionen.",
+    answer: "Die BEG wird in gewohnter Struktur fortgeführt – das BAFA bleibt für Einzelmaßnahmen zuständig, die Richtlinie gilt bis 31.12.2030. Für die Gebäudehülle bleibt die Grundförderung bei 15 %, die Kostenobergrenzen bleiben bei 30.000 € bzw. 60.000 € für die erste Wohneinheit, und die technischen Mindestanforderungen (U ≤ 0,14 W/(m²·K) am Dach, Uw ≤ 1,0 für Dachflächenfenster) sind unverändert. Neu ist die Deckelung des iSFP-Bonus nach Nummer 8.4.2 der Richtlinie: Er setzt ein förderrelevantes Mindestinvestitionsvolumen von 30.000 € brutto voraus und wird nur auf die Ausgaben oberhalb der Höchstgrenze ohne iSFP gewährt. Für die erste Wohneinheit sinkt der maximale Zuschuss dadurch von 12.000 € auf 10.500 € je Kalenderjahr; ab der zweiten Wohneinheit gelten niedrigere Höchstgrenzen. Bereits bewilligte und vor dem 21.07.2026 beantragte Vorhaben behalten die alten Konditionen.",
   },
   {
     question: "Was ist der neue Bonus für Worst Performing Buildings (WPB)?",
@@ -120,7 +120,7 @@ const faqItems = [
   },
   {
     question: "Was ist der Unterschied zwischen BEG EM und §35c EStG?",
-    answer: "BEG EM ist ein direkter Zuschuss von 15 % (plus iSFP-Bonus auf den Kostenanteil über 30.000 €), der nach Maßnahmenende ausgezahlt wird. § 35c EStG ist eine Steuerermäßigung von 20 %, verteilt über drei Jahre, maximal 40.000 € je Objekt. Seit der Deckelung des iSFP-Bonus am 21.07.2026 ist § 35c bei kleineren Vorhaben unter 30.000 € rechnerisch oft die stärkere Variante – 20 % statt 15 %, ohne Energieeffizienz-Experten und ohne Antragsverfahren. Dafür wirkt die Steuerermäßigung erst über drei Veranlagungszeiträume und setzt eine ausreichende Steuerschuld voraus. § 35c kann nicht für dieselbe energetische Maßnahme parallel zur BEG-Förderung genutzt werden; für unterschiedliche Maßnahmen am selben Objekt sind verschiedene Förderwege möglich.",
+    answer: "BEG EM ist ein direkter Zuschuss von 15 % (plus iSFP-Bonus auf den Kostenanteil über 30.000 €), der nach Maßnahmenende ausgezahlt wird. § 35c EStG ist eine Steuerermäßigung von 20 %, verteilt über drei Jahre, maximal 40.000 € je Objekt. Die BEG EM setzt einen Energieeffizienz-Experten und einen Antrag vor Vorhabenbeginn voraus. § 35c braucht keinen Antrag vorab, sondern eine Bescheinigung des Fachunternehmens; die Steuerermäßigung wirkt über drei Veranlagungszeiträume und setzt Selbstnutzung, ein Gebäude älter als 10 Jahre und eine ausreichende Steuerschuld voraus. Welcher Weg im Einzelfall günstiger ist, hängt von Kosten, iSFP und Steuersituation ab. § 35c kann nicht für dieselbe energetische Maßnahme parallel zur BEG-Förderung genutzt werden; für unterschiedliche Maßnahmen am selben Objekt sind verschiedene Förderwege möglich.",
   },
   {
     question: "Was zählt als vorzeitiger Maßnahmenbeginn?",
@@ -409,7 +409,7 @@ export default function Foerderung() {
             <span className="text-blue-400">Staatliche Zuschüsse clever nutzen</span>
           </h1>
           <p className="text-xl text-slate-300 max-w-2xl mx-auto leading-relaxed mb-8">
-            15 % BAFA-Grundförderung auf die energetische Dachsanierung, bis zu 10.500 € Zuschuss je Wohneinheit. Wir begleiten Sie als Meisterbetrieb durch den Förderdschungel – nach der neuen BEG-Richtlinie seit 21.07.2026.
+            15 % BAFA-Grundförderung auf die energetische Dachsanierung, bis zu 10.500 € Zuschuss für die erste Wohneinheit. Wir begleiten Sie als Meisterbetrieb durch den Förderdschungel – nach der neuen BEG-Richtlinie seit 21.07.2026.
           </p>
         </div>
       </header>
@@ -551,7 +551,7 @@ export default function Foerderung() {
               </div>
             </div>
             <p className="text-blue-100 leading-relaxed text-sm">
-              Seit dem 21.07.2026 liegt der Hebel des individuellen Sanierungsfahrplans fast vollständig in der verdoppelten Kostenobergrenze: Der 5-Prozentpunkte-Bonus greift erst ab 30.000 € förderrelevanten Kosten und nur auf den darüber liegenden Anteil. Für eine Komplettsanierung von Dach und Dämmung bleibt der iSFP damit klar wirtschaftlich, für einen reinen Dachfenstertausch in der Regel nicht mehr – dort ist häufig die Steuerermäßigung nach § 35c EStG der bessere Weg. Die iSFP-Erstellung wird über die Energieberatung für Wohngebäude (EBW) mit 50 % gefördert, gedeckelt bei 650 € (Ein- und Zweifamilienhaus) bzw. 850 € (ab drei Wohneinheiten). Der Energieeffizienz-Experte prüft vor Antragstellung, ob der iSFP für den Bonus anerkannt wird.
+              Seit dem 21.07.2026 liegt der Hebel des individuellen Sanierungsfahrplans fast vollständig in der verdoppelten Kostenobergrenze: Der 5-Prozentpunkte-Bonus greift erst ab 30.000 € förderrelevanten Kosten und nur auf den darüber liegenden Anteil. Für eine Komplettsanierung von Dach und Dämmung bleibt der iSFP damit klar wirtschaftlich, für einen reinen Dachfenstertausch in der Regel nicht mehr – dort lohnt der Vergleich der BEG EM mit der Steuerermäßigung nach § 35c EStG als Alternative. Die iSFP-Erstellung wird über die Energieberatung für Wohngebäude (EBW) mit 50 % gefördert, gedeckelt bei 650 € (Ein- und Zweifamilienhaus) bzw. 850 € (ab drei Wohneinheiten). Der Energieeffizienz-Experte prüft vor Antragstellung, ob der iSFP für den Bonus anerkannt wird.
             </p>
           </div>
         </div>
@@ -573,7 +573,7 @@ export default function Foerderung() {
           </p>
           <div className="bg-blue-50 border-l-4 border-blue-700 p-4 rounded-r-md mb-8 max-w-3xl mx-auto">
             <p className="text-sm text-blue-800 font-medium">
-              Wichtigste Regel: Vertrag nur mit aufschiebender oder auflösender Bedingung zur Förderzusage → BAFA-Antrag stellen → Zuwendungsbescheid abwarten → erst dann Ausführung beauftragen oder Anzahlung leisten.
+              Wichtigste Regel: Vertrag nur mit aufschiebender oder auflösender Bedingung zur Förderzusage unterschreiben → BAFA-Antrag stellen → Zuwendungsbescheid abwarten → erst dann mit der Ausführung beginnen oder eine Anzahlung leisten.
             </p>
           </div>
           <div className="overflow-x-auto">
@@ -591,12 +591,12 @@ export default function Foerderung() {
                   { n: 2, step: "Erstberatung", desc: "Förderfähigkeit prüfen: Gebäudealter ≥ 5 Jahre? Eigentümer?", zeit: "Tag 1–7", highlight: false },
                   { n: 3, step: "Energieberater (EEE) einbinden", desc: "Sofort starten – größter Engpass mit 3–8 Wochen Wartezeit", zeit: "Tag 7–14", highlight: true },
                   { n: 4, step: "iSFP / Energieberatung", desc: "EEE erstellt Sanierungsfahrplan – hebt die Kostenobergrenze auf 60.000 €; der +5 %-Bonus greift nur oberhalb von 30.000 €", zeit: "Woche 3–8", highlight: false },
-                  { n: 5, step: "BEG-konformes Angebot", desc: "Rex erstellt Angebot mit Trennung förderfähig / nicht förderfähig, U-Wert-Nachweis, auflösender Bedingung", zeit: "Woche 4–9", highlight: false },
+                  { n: 5, step: "BEG-konformes Angebot", desc: "Rex erstellt Angebot mit Trennung förderfähig / nicht förderfähig, U-Wert-Nachweis und Förderbedingung (aufschiebend oder auflösend)", zeit: "Woche 4–9", highlight: false },
                   { n: 6, step: "Technische Projektbeschreibung (TPB)", desc: "EEE erstellt TPB mit allen technischen Daten für den Antrag. Seit 21.07.2026 ist eine neue TPB-ID nach der aktuellen Richtlinie erforderlich", zeit: "Woche 5–10", highlight: false },
-                  { n: 7, step: "BAFA-Antrag stellen", desc: "Eigentümer beantragt online unter bafa.de – TPB-ID eingeben. Der Vertrag muss zu diesem Zeitpunkt bereits vorliegen, aber unter Förderzusage-Vorbehalt stehen", zeit: "Woche 6–11", highlight: true },
-                  { n: 8, step: "Eingangsbestätigung", desc: "BAFA bestätigt Eingang des Antrags", zeit: "1–2 Wochen", highlight: false },
-                  { n: 9, step: "Zuwendungsbescheid", desc: "BAFA genehmigt Förderung – ab jetzt kann der Vertrag rechtssicher unterzeichnet werden", zeit: "6–8 Wochen", highlight: true },
-                  { n: 10, step: "Auftragserteilung", desc: "Formaler Vertrag mit Rex Bedachungs GmbH", zeit: "Nach Bescheid", highlight: false },
+                  { n: 7, step: "Vertrag mit Förderbedingung", desc: "Eigentümer unterschreibt den Vertrag mit Rex Bedachungs GmbH unter der Bedingung der Förderzusage – er ist Pflichtunterlage für den Antrag", zeit: "Woche 5–10", highlight: true },
+                  { n: 8, step: "BAFA-Antrag stellen", desc: "Eigentümer beantragt online unter bafa.de – TPB-ID eingeben; der bedingte Vertrag liegt bereits vor", zeit: "Woche 6–11", highlight: true },
+                  { n: 9, step: "Eingangsbestätigung", desc: "BAFA bestätigt Eingang des Antrags", zeit: "1–2 Wochen", highlight: false },
+                  { n: 10, step: "Zuwendungsbescheid", desc: "BAFA bewilligt die Förderung – die Bedingung im Vertrag tritt ein, die Ausführung kann beginnen", zeit: "6–8 Wochen", highlight: true },
                   { n: 11, step: "Ausführung", desc: "Baumaßnahme durch Rex – Rechnung mit Trennung förderfähig / nicht förderfähig", zeit: "1–4 Wochen", highlight: false },
                   { n: 12, step: "Technischer Projektnachweis (TPN)", desc: "EEE erstellt TPN nach Abschluss der Maßnahme", zeit: "Nach Abschluss", highlight: false },
                   { n: 13, step: "Verwendungsnachweis", desc: "Eigentümer reicht Rechnungen und TPN beim BAFA ein – unbare Bezahlung Pflicht", zeit: "Nach TPN", highlight: false },
@@ -632,7 +632,7 @@ export default function Foerderung() {
           </div>
           <div className="mt-6 bg-amber-50 border-l-4 border-amber-500 p-4 rounded-r-md max-w-3xl mx-auto">
             <p className="text-sm text-amber-800">
-              <strong>Häufigster Fehler:</strong> Vertrag oder Anzahlung <em>vor</em> BAFA-Antragstellung = vorzeitiger Maßnahmenbeginn = vollständiger Förderverlust.
+              <strong>Häufigster Fehler:</strong> Vertrag ohne Förderbedingung, Baubeginn oder Anzahlung <em>vor</em> BAFA-Antragstellung = vorzeitiger Maßnahmenbeginn = vollständiger Förderverlust.
             </p>
           </div>
         </div>
@@ -644,13 +644,13 @@ export default function Foerderung() {
           <div className="bg-blue-50 border-l-4 border-blue-900 p-6 rounded-r-md mb-12 flex items-start gap-4">
             <AlertTriangle className="w-10 h-10 text-blue-900 flex-shrink-0" />
             <div>
-              <h3 className="text-xl font-bold text-blue-900 mb-2">Die wichtigste Regel: Erst Antrag, dann Auftrag!</h3>
-              <p className="text-blue-800">Unterschreiben Sie keinen Handwerkervertrag, bevor der Förderantrag genehmigt ist. Wer zu früh unterschreibt, verliert den Anspruch auf Förderung!</p>
+              <h3 className="text-xl font-bold text-blue-900 mb-2">Die wichtigste Regel: Erst Antrag, dann Ausführung!</h3>
+              <p className="text-blue-800">Vor dem Förderantrag unterschreiben Sie nur einen Vertrag mit Förderbedingung – ohne Anzahlung und ohne Baubeginn. Ein unbedingter Vertrag vor Antragstellung kostet den Anspruch auf Förderung!</p>
             </div>
           </div>
           <h2 className="text-3xl md:text-4xl font-bold text-center mb-4">In 4 Schritten zum geförderten Dach</h2>
           <p className="text-muted-foreground text-center mb-12 max-w-3xl mx-auto">
-            Der Förderprozess folgt einer festen Reihenfolge — wer sie verletzt, verliert den Anspruch. Wir koordinieren die Schritte mit Ihrem Energieeffizienz-Experten und stellen sicher, dass der Antrag steht, bevor der erste Vertrag unterschrieben wird.
+            Der Förderprozess folgt einer festen Reihenfolge — wer sie verletzt, verliert den Anspruch. Wir koordinieren die Schritte mit Ihrem Energieeffizienz-Experten und stellen sicher, dass vor dem Antrag kein Vertrag ohne Förderbedingung unterschrieben wird.
           </p>
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
             {steps.map((step, idx) => (
@@ -693,10 +693,10 @@ export default function Foerderung() {
             <div className="bg-blue-50 border border-blue-100 rounded-md p-8">
               <h3 className="text-2xl font-bold mb-4 text-blue-900">Steuervorteil nach § 35c EStG</h3>
               <p className="text-blue-800/70 mb-4 leading-relaxed">
-                Alternativ zur BAFA-Förderung kann die steuerliche Förderung nach § 35c EStG genutzt werden: 20 % der Sanierungskosten als Steuerermäßigung, verteilt über drei Jahre (7 % / 7 % / 6 %), maximal 40.000 € je Objekt. Seit der Deckelung des iSFP-Bonus am 21.07.2026 ist dieser Weg bei Vorhaben unter 30.000 € rechnerisch häufig attraktiver als die BEG EM – vorausgesetzt, die Steuerschuld reicht aus.
+                Alternativ zur BAFA-Förderung kann die steuerliche Förderung nach § 35c EStG genutzt werden: 20 % der Sanierungskosten als Steuerermäßigung, verteilt über drei Jahre (7 % / 7 % / 6 %), maximal 40.000 € je Objekt. Welche der beiden Alternativen günstiger ist, hängt von Kosten, iSFP und Ihrer Steuersituation ab.
               </p>
               <p className="text-blue-800/70 mb-6 leading-relaxed text-sm">
-                § 35c kann nicht für dieselbe energetische Maßnahme parallel zur BEG-Förderung genutzt werden. Für unterschiedliche Maßnahmen am selben Objekt können verschiedene Förderwege getrennt geprüft werden – etwa Dachdämmung über BEG EM und Fassadendämmung über § 35c. Voraussetzung: Gebäude mindestens 10 Jahre alt, Selbstnutzung, unbare Bezahlung und Fachunternehmer-Bescheinigung nach amtlichem Muster.
+                § 35c kann nicht für dieselbe energetische Maßnahme parallel zur BEG-Förderung genutzt werden. Für unterschiedliche Maßnahmen am selben Objekt können verschiedene Förderwege getrennt geprüft werden – etwa Dachdämmung über BEG EM und Fassadendämmung über § 35c. Voraussetzung: Gebäude älter als 10 Jahre (ab Herstellungsbeginn), Selbstnutzung, unbare Bezahlung und Fachunternehmer-Bescheinigung nach amtlichem Muster.
               </p>
               <div className="p-4 bg-white rounded-md border border-blue-200">
                 <h4 className="font-bold text-blue-900 mb-2 flex items-center gap-2">
