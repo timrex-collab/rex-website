@@ -76,9 +76,9 @@ const foerderungen = [
     hinweis: "Antrag vor Baubeginn!",
   },
   {
-    Icon: Shield, title: "KfW Bundesförderung (BEG)",
-    text: "Gründächer sind im Rahmen der KfW-BEG förderrelevant, wenn sie Teil einer Sanierungsmaßnahme sind. Beantragung über die Hausbank vor Baubeginn.",
-    hinweis: "Vor Baubeginn über Hausbank",
+    Icon: Shield, title: "BAFA-Förderung (BEG EM)",
+    text: "Wird das Gründach im Zuge einer energetischen Dachsanierung mit Dämmung gebaut, kann die Maßnahme über die BEG Einzelmaßnahmen beim BAFA gefördert werden. Ob die Begrünung selbst als Umfeldmaßnahme anerkannt wird, prüft der Energieeffizienz-Experte.",
+    hinweis: "Antrag beim BAFA vor Maßnahmenbeginn",
   },
   {
     Icon: Leaf, title: "NRW Klimabonus",

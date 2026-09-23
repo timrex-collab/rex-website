@@ -139,7 +139,7 @@ const faqItems = [
   {
     question: "Was ist der iSFP und warum ist er wichtig?",
     answer:
-      "Der individuelle Sanierungsfahrplan wird von einem Energieeffizienz-Experten erstellt und zeigt sinnvolle Sanierungsschritte für das Gebäude. Bei förderfähigen Einzelmaßnahmen kann er den Zuschuss um 5 Prozentpunkte erhöhen und die förderfähige Obergrenze verbessern.",
+      "Der individuelle Sanierungsfahrplan wird von einem Energieeffizienz-Experten erstellt und zeigt sinnvolle Sanierungsschritte für das Gebäude. Bei Einzelmaßnahmen hebt er die Obergrenze der förderrelevanten Kosten für die erste Wohneinheit von 30.000 € auf 60.000 €. Den Bonus von 5 Prozentpunkten gibt es seit dem 21.07.2026 nur noch auf den Kostenanteil über 30.000 €.",
   },
   {
     question: "Muss ich beim neuen Dach eine PV-Anlage einplanen?",
@@ -359,8 +359,8 @@ export default function WannLohntSichDachsanierung() {
             </h3>
             <p className="text-slate-700 leading-relaxed">
               Eine Dachsanierung mit Dämmung kann über die BEG EM förderrelevant sein. Für Maßnahmen an der Gebäudehülle liegt der
-              Basiszuschuss bei 15 Prozent. Mit individuellem Sanierungsfahrplan sind zusätzlich 5 Prozentpunkte möglich.
-              Dadurch steigt auch die förderfähige Obergrenze pro Wohneinheit. Fachplanung und Baubegleitung werden separat
+              Basiszuschuss bei 15 Prozent. Ein individueller Sanierungsfahrplan hebt die Obergrenze der förderrelevanten Kosten für die
+              erste Wohneinheit von 30.000 auf 60.000 Euro; die zusätzlichen 5 Prozentpunkte gibt es nur auf den Anteil über 30.000 Euro. Fachplanung und Baubegleitung werden separat
               betrachtet. Entscheidend sind Dämmstandard, technischer Zustand und Antragstellung vor Maßnahmenbeginn.
             </p>
           </div>

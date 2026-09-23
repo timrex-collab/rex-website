@@ -28,7 +28,7 @@ const faqItems = [
   {
     question: "Muss ich den Antrag selbst stellen?",
     answer:
-      "Den BAFA-Antrag stellt der Eigentümer über das BAFA-Portal. Rex Bedachung bereitet alle notwendigen Unterlagen vor und begleitet Sie durch den Prozess. Wichtig: Antrag vor Auftragsvergabe stellen.",
+      "Den BAFA-Antrag stellt der Eigentümer über das BAFA-Portal. Rex Bedachung bereitet alle notwendigen Unterlagen vor und begleitet Sie durch den Prozess. Wichtig: Vor dem Antrag nur einen Vertrag mit Förderbedingung unterschreiben und erst nach der Zusage mit der Ausführung beginnen.",
   },
   {
     question: "Welche Dämmmaßnahmen am Steildach sind förderrelevant?",
@@ -43,7 +43,7 @@ const faqItems = [
   {
     question: "Gilt die Förderung auch für ältere Häuser?",
     answer:
-      "Ja – die BEG-Förderung gilt für bestehende Wohngebäude unabhängig vom Baujahr. Entscheidend ist, dass die technischen Mindestanforderungen der BEG ans Dämmniveau eingehalten werden.",
+      "Ja – die BEG-Förderung gilt für bestehende Wohngebäude, deren Bauantrag oder Bauanzeige bei Antragstellung mindestens fünf Jahre zurückliegt. Ein altes Baujahr ist also kein Hindernis. Entscheidend ist außerdem, dass die technischen Mindestanforderungen der BEG ans Dämmniveau eingehalten werden.",
   },
 ];
 
@@ -60,8 +60,8 @@ const bafaCards = [
   },
   {
     icon: <AlertTriangle className="w-6 h-6 text-primary" />,
-    title: "Antrag vor Auftragsvergabe",
-    text: "Der BAFA-Antrag muss zwingend vor Beginn der Maßnahme gestellt werden – Rex Bedachung begleitet Sie dabei.",
+    title: "Antrag vor Maßnahmenbeginn",
+    text: "Der BAFA-Antrag muss zwingend vor Beginn der Maßnahme gestellt werden. Vorher darf nur ein Vertrag mit Förderbedingung unterschrieben sein – Rex Bedachung formuliert sie im Angebot mit.",
   },
   {
     icon: <Users className="w-6 h-6 text-primary" />,
@@ -83,8 +83,8 @@ const kfwItems = [
   },
   {
     icon: <Award className="w-6 h-6 text-primary" />,
-    title: "Tilgungszuschuss möglich",
-    text: "Bei Erreichen bestimmter Effizienzstandards ist ein zusätzlicher Tilgungszuschuss möglich.",
+    title: "Antrag nach der BAFA-Zusage",
+    text: "Der Ergänzungskredit wird nach der Zuschusszusage beantragt, bevor der BAFA-Zuschuss ausgezahlt ist.",
   },
 ];
 
@@ -92,7 +92,7 @@ const ablaufSchritte = [
   { nr: 1, text: "Kostenloses Beratungsgespräch vor Ort" },
   { nr: 2, text: "Prüfung der Förderfähigkeit Ihrer Maßnahme" },
   { nr: 3, text: "Vorbereitung der BAFA-/KfW-Unterlagen" },
-  { nr: 4, text: "Antragstellung vor Auftragsvergabe" },
+  { nr: 4, text: "Vertrag mit Förderbedingung, dann Antragstellung vor Maßnahmenbeginn" },
   { nr: 5, text: "Ausführung und Fachunternehmererklärung" },
 ];
 

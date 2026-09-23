@@ -81,7 +81,7 @@ const faqItems = [
   { q: "Was ist der genaue Stichtag für Bestandsgebäude?", a: "Entscheidend ist der Beginn der Baumaßnahme. Wer vor dem 1. Januar 2026 angefangen hat, ist nicht betroffen – auch wenn Arbeiten ins Jahr 2026 hineinreichen. Für Neubauten gilt das Datum der Bauantragseinreichung." },
   { q: "Was ist der Unterschied zwischen Brutto- und Nettodachfläche?", a: "Bei Neubauten ist die Bruttodachfläche (inkl. Dachüberstände) die Basis für die 30%-Regel. Bei Sanierungen im Bestand zählt die Nettodachfläche – abzüglich ungeeigneter Flächen (Verschattung, Gauben, reine Nordseiten)." },
   { q: "Was passiert, wenn ich die Solarpflicht ignoriere?", a: "Die Bauaufsichtsbehörden kontrollieren die Einhaltung. Bei Verstößen droht ein Bußgeld von bis zu 5.000 €. Bei Neubauten erfolgt die Prüfung bei der Bauabnahme, bei Bestandsgebäuden durch stichprobenartige Kontrollen." },
-  { q: "Gibt es Förderungen, die ich kombinieren kann?", a: "Ja! Die BAFA-Förderung (15 % Grundförderung), der KfW-Ergänzungskredit 358/359 sowie der Steuerbonus nach § 35c EStG lassen sich nutzen. Die Kombination aus Pflicht und Förderung macht die Investition in den meisten Fällen wirtschaftlich sehr attraktiv." },
+  { q: "Gibt es Förderungen, die ich kombinieren kann?", a: "Teilweise. Für die energetische Dachsanierung gibt es entweder den BAFA-Zuschuss (15 % Grundförderung) oder alternativ die Steuerermäßigung nach § 35c EStG – für dieselbe Maßnahme nicht beides. Zum BAFA-Zuschuss kann der KfW-Ergänzungskredit 358/359 hinzukommen. Die PV-Anlage selbst ist nicht Teil der BEG-Einzelmaßnahmen. Welche Kombination passt, prüfen wir im Einzelfall." },
   { q: "Gilt die Pflicht auch für Denkmalschutzgebäude?", a: "Nur wenn die PV-Installation den denkmalschutzrechtlichen Auflagen nicht widerspricht. Andernfalls entfällt die Pflicht. Dies muss im Einzelfall mit der unteren Denkmalbehörde geprüft werden." },
   { q: "Was ist das Optimierungsgebot bei Neubauten?", a: "Bei Neubauten schreibt das Gesetz ein Optimierungsgebot vor: Schon bei der Planung soll das Dach möglichst gut für eine PV-Anlage geeignet sein. Das beeinflusst Dachneigung, -ausrichtung und Konstruktion." },
 ];
@@ -588,8 +588,8 @@ export default function Solarpflicht() {
               <h3 className="text-2xl font-bold mb-4 text-blue-900">Förderung nicht vergessen!</h3>
               <p className="text-blue-800/80 mb-6 leading-relaxed">
                 Die Solarpflicht und staatliche Förderungen schließen sich nicht aus – im Gegenteil. Wer sowieso saniert,
-                kann zusätzlich <strong>15 % BAFA-Grundförderung</strong> beantragen, KfW-Kredite nutzen und den Steuerbonus
-                nach § 35c EStG in Anspruch nehmen.
+                kann für die energetische Dachsanierung <strong>15 % BAFA-Grundförderung</strong> beantragen und den KfW-Ergänzungskredit
+                nutzen. Alternativ zum BAFA-Zuschuss kommt die Steuerermäßigung nach § 35c EStG in Frage – für dieselbe Maßnahme aber nicht beides.
               </p>
               <div className="bg-white p-4 rounded-md border border-blue-200 mb-6">
                 <div className="font-bold text-blue-900 flex items-center gap-2 mb-2">

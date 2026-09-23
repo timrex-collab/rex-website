@@ -88,7 +88,7 @@ const faqItems = [
   {
     question: "Gibt es Förderung für den Einbau von Dachfenstern?",
     answer:
-      "Ja — Dachfenster mit Uw ≤ 1,0 W/m²K werden über BAFA (BEG Einzelmaßnahme) mit 15 % Grundförderung bezuschusst. Mit einem individuellen Sanierungsfahrplan (iSFP) steigt die Obergrenze der förderrelevanten Kosten auf 60.000 € pro Wohneinheit; der Bonus von 5 Prozentpunkten greift allerdings nur oberhalb von 30.000 €. Bei einem reinen Fenstertausch ist deshalb oft die Steuerermäßigung nach § 35c EStG mit 20 % der bessere Weg. Zusätzlich ist der KfW-Ergänzungskredit 358/359 kombinierbar. Rex Bedachungs GmbH berät kostenlos zu allen aktuellen Fördermöglichkeiten.",
+      "Ja — Dachfenster mit Uw ≤ 1,0 W/m²K werden über BAFA (BEG Einzelmaßnahme) mit 15 % Grundförderung bezuschusst. Mit einem individuellen Sanierungsfahrplan (iSFP) steigt die Obergrenze der förderrelevanten Kosten auf 60.000 € für die erste Wohneinheit; der Bonus von 5 Prozentpunkten greift allerdings nur oberhalb von 30.000 €. Alternativ zum BAFA-Zuschuss kommt die Steuerermäßigung nach § 35c EStG in Frage (20 % über drei Jahre, für selbstgenutztes Wohneigentum in Gebäuden älter als 10 Jahre) – für dieselbe Maßnahme nicht beides. Zusätzlich ist der KfW-Ergänzungskredit 358/359 kombinierbar. Rex Bedachungs GmbH berät kostenlos zu allen aktuellen Fördermöglichkeiten.",
   },
   {
     question: "Kann ein altes VELUX-Fenster 1:1 ersetzt werden?",
@@ -372,7 +372,7 @@ export default function DachfensterBochum() {
               15 % Grundförderung durch BAFA
             </h3>
             <p className="mb-4 text-sm leading-relaxed" data-testid="text-foerderung">
-              Der Austausch alter Dachfenster gegen energieeffiziente Modelle mit Uw ≤ 1,0 W/m²K wird über BAFA (BEG Einzelmaßnahme) mit 15 % Grundförderung bezuschusst. Der iSFP-Bonus von 5 Prozentpunkten greift seit 21.07.2026 nur oberhalb von 30.000 € förderrelevanten Kosten — bei einem reinen Fenstertausch ist daher oft die Steuerermäßigung nach § 35c EStG mit 20 % der bessere Weg. Zusätzlich ist der KfW-Ergänzungskredit (358/359) bis 120.000 € kombinierbar.
+              Der Austausch alter Dachfenster gegen energieeffiziente Modelle mit Uw ≤ 1,0 W/m²K wird über BAFA (BEG Einzelmaßnahme) mit 15 % Grundförderung bezuschusst. Der iSFP-Bonus von 5 Prozentpunkten greift seit 21.07.2026 nur oberhalb von 30.000 € förderrelevanten Kosten. Alternativ zum BAFA-Zuschuss kommt die Steuerermäßigung nach § 35c EStG in Frage – welcher Weg günstiger ist, hängt von den Kosten und Ihrer Steuersituation ab. Zusätzlich ist der KfW-Ergänzungskredit (358/359) bis 120.000 € kombinierbar.
             </p>
             <a
               href="/kontakt"
