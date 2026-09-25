@@ -11,6 +11,7 @@ import {
   DIMS, MODEL_CODES, SIZE_CODES, WINDOWS, blindsForSize, shuttersForSize, sizesForModel,
   type BlindCode, type GlazingCode, type ModelCode, type ShutterCode, type SizeCode,
 } from "./catalog";
+import { FUNDING_QUESTION_HINTS } from "./content";
 import type { ValidatedPosition } from "./estimate";
 import type { BuildingAge, FundingAnswers, TriState } from "./funding";
 import type { ObservationSource, WindowObservation } from "./resolve";
@@ -67,9 +68,9 @@ export const FUNDING_SCHEMA = {
   required: ["buildingAge", "energyRenovation", "ownerOccupied", "hasIsfp"],
   description: "Antworten des Förder-Checks. Unbekannte Angaben als \"unknown\" übergeben, nicht raten – das Ergebnis weist Annahmen dann aus.",
   properties: {
-    buildingAge: { type: "string", enum: AGES, description: "Alter: under_5, 5_to_10, over_10 oder unknown. BEG: mindestens 5 Jahre seit Bauantrag/Bauanzeige. §35c: mehr als 10 Jahre seit Herstellungsbeginn. Bei abweichenden Altersklassen unknown wählen." },
+    buildingAge: { type: "string", enum: AGES, description: `Alter: under_5, 5_to_10, over_10 oder unknown. ${FUNDING_QUESTION_HINTS.buildingAge} Bei abweichenden Altersklassen unknown wählen.` },
     energyRenovation: { type: "string", enum: TRI, description: "Fenstertausch mit verbessertem Uw-Wert (energetische Einzelmaßnahme)? yes / no / unknown." },
-    ownerOccupied: { type: "string", enum: TRI, description: "Selbstgenutztes Wohneigentum? yes / no / unknown. Voraussetzung für §35c EStG." },
+    ownerOccupied: { type: "string", enum: TRI, description: `Selbstgenutztes Wohneigentum? yes / no / unknown. ${FUNDING_QUESTION_HINTS.ownerOccupied}.` },
     hasIsfp: { type: "string", enum: TRI, description: "Liegt ein individueller Sanierungsfahrplan (iSFP) vor? yes / no / unknown." },
   },
 } as const;

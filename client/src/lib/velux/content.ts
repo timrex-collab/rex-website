@@ -4,7 +4,8 @@
  * („förderrelevant", „BEG-Anforderung", „Autorisierter VELUX-Partner").
  */
 
-import { CATALOG } from "./catalog";
+import { CATALOG, fmt } from "./catalog";
+import { BEG, RULES, TAX35C, type FundingAnswers, type FundingEvaluation } from "./funding";
 
 export const COMPANY = {
   name: "Rex Bedachungs GmbH",
@@ -50,7 +51,7 @@ export const DISCLAIMER =
 
 export const FUNDING_NOTES = {
   thermo:
-    "Positionen mit THERMO-Verglasung (Uw 1,3 W/m²K) sind nicht förderrelevant. Die BEG-Anforderung für Dachflächenfenster ist Uw ≤ 1,0 W/m²K – nur ENERGIE und ENERGIE PLUS erfüllen sie.",
+    "Positionen mit THERMO-Verglasung (Uw 1,3 W/m²K) sind nicht förderrelevant. Die BEG-Anforderung für Dachflächenfenster ist Uw ≤ 1,0 W/m²K – im Rechner erfüllen sie die Verglasungen ENERGIE und ENERGIE PLUS.",
   kfw:
     "KfW-Ergänzungskredit 358/359: Nach BAFA-Zusage ist zusätzlich ein zinsvergünstigter Kredit bis 120.000 € pro Wohneinheit möglich.",
   fachplanung:
@@ -70,3 +71,63 @@ export const NEXT_STEPS: readonly string[] = [
   "Für ein verbindliches Festangebot Kontaktdaten eintragen und „Anfrage senden“ klicken – wir kommen zur Vor-Ort-Begehung.",
   `Oder direkt anrufen: ${COMPANY.phone}`,
 ];
+
+// ── Förder-Labels und Förder-Check (eine Quelle für UI, PDF, Anfrage und WebMCP) ──
+
+const pct = (r: number) => `${(r * 100).toLocaleString("de-DE", { maximumFractionDigits: 1 })} %`;
+
+export const FUNDING_LABELS = {
+  begCap: "Höchstgrenze erste Wohneinheit/Jahr",
+  taxCap: "Höchstbetrag je Objekt",
+  taxCapValue: `${fmt(TAX35C.maxBase * TAX35C.rate)} €`,
+  taxYears: TAX35C.years.map((r, i) => `Jahr ${i + 1} (${pct(r)})`).join(" / "),
+} as const;
+
+/** Hinweise zu den Fragen des Förder-Checks (Wizard und WebMCP-Schema). */
+export const FUNDING_QUESTION_HINTS = {
+  buildingAge: "BEG: mindestens 5 Jahre seit Bauantrag/Bauanzeige. §35c: mehr als 10 Jahre seit Herstellungsbeginn.",
+  energyRenovation: "Energetische Einzelmaßnahme an der Gebäudehülle (BEG EM)",
+  ownerOccupied: "Voraussetzung für die Steuerermäßigung nach §35c EStG",
+  hasIsfp: `Hebt die Obergrenze der förderrelevanten Kosten auf ${fmt(BEG.capWithIsfp)} €; +${pct(BEG.isfpBonusRate).replace(" %", "")} Prozentpunkte nur auf den Anteil über ${fmt(BEG.capWithoutIsfp)} €`,
+} as const;
+
+export const FUNDING_QUESTIONS: Record<keyof FundingAnswers, string> = {
+  buildingAge: "Gebäudealter",
+  energyRenovation: "Fenstertausch mit verbessertem Uw-Wert",
+  ownerOccupied: "Selbstgenutztes Wohneigentum",
+  hasIsfp: "iSFP vorhanden",
+};
+
+const ANSWER_LABELS: Record<string, string> = {
+  under_5: "jünger als 5 Jahre", "5_to_10": "5 bis 10 Jahre", over_10: "älter als 10 Jahre",
+  yes: "ja", no: "nein", unknown: "weiß ich nicht", "": "keine Angabe",
+};
+
+/** Lesbare Antworten des Förder-Checks, z. B. „Gebäudealter: älter als 10 Jahre“. */
+export function fundingAnswerLines(a: FundingAnswers): string[] {
+  return (Object.keys(FUNDING_QUESTIONS) as Array<keyof FundingAnswers>).map(
+    (k) => `${FUNDING_QUESTIONS[k]}: ${ANSWER_LABELS[a[k]] ?? a[k]}`,
+  );
+}
+
+/**
+ * Förderteil für Anfrage-Formular und mailto-Ersatzweg: beide Alternativen mit
+ * Betrag oder Grund, Antworten, Annahmen und Regelstand. Reiner Text, keine Rechnung.
+ * Der mailto-Ersatzweg lässt die langen Annahmen weg (Längengrenzen der Mailprogramme).
+ */
+export function fundingSummaryLines(f: FundingEvaluation, a: FundingAnswers, opts: { withAssumptions?: boolean } = {}): string[] {
+  const withAssumptions = opts.withAssumptions ?? true;
+  const lines: string[] = ["Förderung (zwei Alternativen, nicht kombinierbar; Maximalwerte unter Annahmen):"];
+  lines.push(f.beg
+    ? `A) BEG EM (BAFA): bis zu ${fmt(f.beg.amountMax)} € (${f.beg.rateLabel}; förderrelevant brutto ${fmt(f.beg.eligibleCostsGross)} €)`
+    : `A) BEG EM (BAFA): nicht ausgewiesen – ${f.begReason}`);
+  lines.push(f.tax35c
+    ? `B) §35c EStG: bis zu ${fmt(f.tax35c.totalMax)} € über drei Jahre (${fmt(f.tax35c.year1)} / ${fmt(f.tax35c.year2)} / ${fmt(f.tax35c.year3)} €)`
+    : `B) §35c EStG: nicht ausgewiesen – ${f.tax35cReason}`);
+  lines.push("Angaben im Förder-Check:", ...fundingAnswerLines(a).map((l) => `- ${l}`));
+  if (withAssumptions && f.beg) lines.push(`Annahmen BEG: ${f.beg.assumptions.join("; ")}`);
+  if (withAssumptions && f.tax35c) lines.push(`Annahmen §35c: ${f.tax35c.assumptions.join("; ")}`);
+  if (!withAssumptions && (f.beg || f.tax35c)) lines.push("Annahmen und Voraussetzungen: siehe Preisrechner und Beratung.");
+  lines.push(`Regelstand: ${RULES.beg.rulesVersion} / ${RULES.tax35c.rulesVersion}, geprüft ${RULES.beg.lastReviewedAt}`);
+  return lines;
+}
