@@ -399,7 +399,7 @@ export default function AufsparrendaemmungBochum() {
               <span className="text-muted-foreground font-medium">Lösung</span>
               <span>18 cm PUR/PIR Aufsparrendämmung, neue Tondachziegel, BAFA-Antrag mit iSFP</span>
               <span className="text-muted-foreground font-medium">Ergebnis</span>
-              <span>U-Wert 0,13 W/(m²·K), Zuschuss 7.600 €, Heizkosten um ca. 25 % reduziert</span>
+              <span>U-Wert 0,13 W/(m²·K), Zuschuss 7.600 € (Antrag nach der bis 20.07.2026 geltenden Richtlinie), Heizkosten um ca. 25 % reduziert</span>
             </div>
           </div>
         </div>

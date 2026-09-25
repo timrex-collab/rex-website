@@ -219,7 +219,7 @@ function FoerderdetailsBlock() {
             </div>
           </div>
           <p className="text-xs text-blue-800/70 mt-4 leading-relaxed">
-            Angaben für die erste Wohneinheit nach Richtlinie BEG EM vom 17.07.2026 (gültig 21.07.2026 bis 31.12.2030). Ab der zweiten Wohneinheit gelten gestaffelt niedrigere Höchstgrenzen. Vorher beantragte und bereits bewilligte Vorhaben behalten die alten Konditionen. Ab dem ersten Quartal 2027 kommen für Worst Performing Buildings 5 Prozentpunkte hinzu.
+            Angaben für die erste Wohneinheit nach Richtlinie BEG EM vom 17.08.2026 (gültig 21.07.2026 bis 31.12.2030). Ab der zweiten Wohneinheit gelten gestaffelt niedrigere Höchstgrenzen. Vorher beantragte und bereits bewilligte Vorhaben behalten die alten Konditionen. Ab dem ersten Quartal 2027 kommen für Dämmmaßnahmen an Worst Performing Buildings 5 Prozentpunkte hinzu; für Fenster gilt dieser Bonus nicht.
           </p>
         </div>
 
@@ -834,7 +834,7 @@ export default function Foerderung() {
       {/* ── Disclaimer (Gemini hatte den vollständigeren) ── */}
       <div className="bg-muted border-t border-border py-8 px-4">
         <div className="max-w-4xl mx-auto text-xs text-muted-foreground text-center leading-relaxed">
-          Stand: 31.07.2026 · Grundlage: Richtlinie BEG Einzelmaßnahmen vom 17.07.2026 (gültig ab 21.07.2026). Hinweis: Alle Angaben zu Förderungen dienen der Information und stellen keine Rechts- oder Steuerberatung dar. Förderbedingungen können sich kurzfristig ändern. Die Einbindung eines Statikers sowie eines zertifizierten Energieeffizienz-Experten ist je nach Maßnahme gesetzlich vorgeschrieben.
+          Stand: September 2026 · Grundlage: Richtlinie BEG Einzelmaßnahmen vom 17.08.2026 (BAnz AT 27.08.2026 B1, gültig ab 21.07.2026). Hinweis: Alle Angaben zu Förderungen dienen der Information und stellen keine Rechts- oder Steuerberatung dar. Förderbedingungen können sich kurzfristig ändern. Die Einbindung eines Statikers sowie eines zertifizierten Energieeffizienz-Experten ist je nach Maßnahme gesetzlich vorgeschrieben.
         </div>
       </div>
     </>

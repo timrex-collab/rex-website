@@ -207,7 +207,7 @@ export default function BitumenVsPvc() {
             <h3 className="font-bold text-foreground mb-3 text-sm">Technische Grenzwerte (BEG)</h3>
             <div className="grid sm:grid-cols-3 gap-3 text-sm text-muted-foreground">
               <div><span className="font-medium text-foreground">Flachdach BEG:</span> U ≤ 0,14 W/(m²·K)</div>
-              <div><span className="font-medium text-foreground">GEG-Mindest:</span> 0,20 W/(m²·K)</div>
+              <div><span className="font-medium text-foreground">GModG-Mindest:</span> 0,20 W/(m²·K)</div>
               <div><span className="font-medium text-foreground">PIR 14 cm:</span> ca. U 0,14 erreicht</div>
             </div>
           </div>

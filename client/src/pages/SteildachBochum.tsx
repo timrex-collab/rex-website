@@ -624,7 +624,7 @@ export default function SteildachBochum() {
               <span className="text-muted-foreground font-medium">Lösung</span>
               <span>Komplette Neueindeckung mit Tondachziegeln, Aufsparrendämmung 16 cm PUR, neue Dachrinnen</span>
               <span className="text-muted-foreground font-medium">Ergebnis</span>
-              <span>Gesetzeskonformes Dach, BAFA-Zuschuss 15 % gesichert</span>
+              <span>Gesetzeskonformes Dach, Dämmung auf BEG-Niveau und damit förderrelevant</span>
             </div>
           </div>
         </div>

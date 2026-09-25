@@ -333,7 +333,7 @@ export default function SteildachUndichtBochum() {
                     "Dach älter als 30–40 Jahre",
                     "Mehrere Schadenstellen gleichzeitig",
                     "Lattung oder Dachstuhl beschädigt",
-                    "Gleichzeitig Dämmung geplant (GEG/Förderung)",
+                    "Gleichzeitig Dämmung geplant (GModG/Förderung)",
                   ].map((punkt, i) => (
                     <li key={i} className="text-sm text-muted-foreground flex items-start gap-2">
                       <span className="text-primary font-bold shrink-0">–</span>

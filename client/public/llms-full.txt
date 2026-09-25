@@ -1,9 +1,9 @@
 # Rex Bedachungs GmbH — Vollständige Informationsdatei
 
-> Stand: August 2026 (BEG-Richtlinie vom 17.07.2026, gültig ab 21.07.2026) | Verantwortlich: Rex Bedachungs GmbH, info@rex-bedachung.de
+> Stand: September 2026 (BEG-EM-Richtlinie vom 17.08.2026, gültig ab 21.07.2026) | Verantwortlich: Rex Bedachungs GmbH, info@rex-bedachung.de
 > Dies ist die ausführliche Version (llms-full.txt). Die kompakte Index-Version
 > liegt unter https://www.rex-bedachung.de/llms.txt
-> Alle Förder- und Fördersatzangaben beziehen sich auf den Stand Juli 2026 und
+> Alle Förder- und Fördersatzangaben beziehen sich auf den Stand September 2026 und
 > stellen keine Förderzusage dar. Endkundenpreise werden bewusst nicht ausgewiesen.
 
 Rex Bedachungs GmbH ist ein Dachdecker-Meisterbetrieb in Bochum, gegründet 1984.
@@ -144,7 +144,7 @@ BEG-EM-Förderung der energetischen Maßnahmen.
 
 ## VELUX und Dachfenster im Detail
 
-Stand: Juli 2026. Diese Angaben sind keine Förderzusage.
+Stand: September 2026. Diese Angaben sind keine Förderzusage.
 
 Rex Bedachungs GmbH ist autorisierter VELUX-Partner und führt Einbau, Austausch und
 Reparatur von VELUX Dachfenstern in Bochum und im Ruhrgebiet durch. Der
@@ -163,17 +163,18 @@ werden.
 
 ## Förderung im Detail
 
-Stand: Juli 2026. Diese Angaben sind keine Förderzusage.
+Stand: September 2026. Diese Angaben sind keine Förderzusage.
 
 - BAFA BEG EM (Bundesförderung für effiziente Gebäude – Einzelmaßnahmen),
-  Richtlinie vom 17.07.2026, gültig seit 21.07.2026: Einzelmaßnahmen wie Dämmung
+  Richtlinie vom 17.08.2026, gültig seit 21.07.2026: Einzelmaßnahmen wie Dämmung
   und förderrelevante Dachfenster (Uw ≤ 1,0) erhalten 15 % Grundförderung.
 - iSFP-Bonus: 5 Prozentpunkte, seit 21.07.2026 nur noch ab 30.000 €
   förderrelevanten Kosten und ausschließlich auf den darüber liegenden Anteil.
   Unterhalb von 30.000 € bleibt es bei 15 %.
-- Förderhöchstgrenzen pro Wohneinheit und Kalenderjahr: 30.000 € förderrelevante
+- Förderhöchstgrenzen für die erste Wohneinheit und das Kalenderjahr: 30.000 € förderrelevante
   Kosten ohne iSFP (max. 4.500 € Zuschuss), 60.000 € mit iSFP (max. 10.500 €
-  Zuschuss = 15 % auf 60.000 € plus 5 % auf 30.000 €).
+  Zuschuss = 15 % auf 60.000 € plus 5 % auf 30.000 €). Ab der zweiten Wohneinheit
+  gelten niedrigere Höchstgrenzen.
 - Technische Mindestanforderungen unverändert: Dach und oberste Geschossdecke
   U ≤ 0,14 W/(m²·K), Gauben U ≤ 0,20, Dachfenster Uw ≤ 1,0, senkrechte
   Gaubenfenster Uw ≤ 0,95.
@@ -190,8 +191,7 @@ Stand: Juli 2026. Diese Angaben sind keine Förderzusage.
   Projektbeschreibung (TPB-ID) nach aktueller Richtlinie erforderlich.
 - KfW-Ergänzungskredit 358/359: zinsgünstiger Ergänzungskredit, kombinierbar mit
   der BAFA BEG EM-Förderung.
-- §35c EStG: alternative Steuerermäßigung von 20 %, verteilt über drei Jahre (7/7/6 %); seit der Deckelung des iSFP-Bonus bei Vorhaben unter 30.000 € rechnerisch meist günstiger als BEG EM. Voraussetzung:
-  selbstgenutztem Wohneigentum.
+- §35c EStG: alternative Steuerermäßigung von 20 %, verteilt über drei Jahre (7/7/6 %, max. 40.000 € je Objekt); nur für selbstgenutztes Wohneigentum in Gebäuden, die älter als 10 Jahre sind. Für dieselbe Maßnahme nicht mit BEG EM kombinierbar. Welcher Weg günstiger ist, hängt vom Einzelfall ab.
 - NRW.BANK.Gebäudesanierung sowie städtische Förderprogramme der Stadt Bochum
   können ergänzend in Frage kommen.
 
@@ -370,6 +370,6 @@ Quelle: https://www.rex-bedachung.de/referenzen
 - Stadt- und Stadtteilnennungen sind regionale Einsatzhinweise und keine
   eigenständigen Landingpages.
 - Förderbeträge, Fördersätze und Pflichten (BEG, §35c, NRW-Solardachpflicht, GModG)
-  beziehen sich auf den Stand Juli 2026 und stellen keine Rechts- oder
+  beziehen sich auf den Stand September 2026 und stellen keine Rechts- oder
   Förderberatung und keine Förderzusage dar.
 - Es gibt genau einen Unternehmenssitz: Paulinenstraße 22, 44799 Bochum.
