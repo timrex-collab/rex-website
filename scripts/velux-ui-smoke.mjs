@@ -31,12 +31,14 @@ const browser = await chromium.launch({ executablePath });
 try {
   const ctx = await browser.newContext({ viewport: { width: 390, height: 844 } });
   let posts = 0;
+  let lastPostBody = '';
   // 'fail' beantwortet den Versand mit 500, 'ok' mit 200 — kein Byte verlässt den Browser.
   let submitMode = 'fail';
   await ctx.route('**/*', route => {
     const request = route.request();
     if (request.method() !== 'GET') {
       posts++;
+      lastPostBody = request.postData() || '';
       if (new URL(request.url()).origin !== url.origin) return route.abort();
       return submitMode === 'ok'
         ? route.fulfill({ status: 200, contentType: 'text/html', body: 'ok' })
@@ -92,12 +94,17 @@ try {
   const mailtoHref = await calc.locator('a[href^="mailto:"]').first().getAttribute('href');
   assert.match(decodeURIComponent(mailtoHref), /info@rex-bedachung\.de/, 'mailto-Rückfallebene sichtbar erreichbar');
   assert.match(decodeURIComponent(mailtoHref), /2\.104/, 'Ersatzweg trägt die Kalkulation');
+  assert.doesNotMatch(decodeURIComponent(mailtoHref), /PDF beigef/i, 'Ersatzweg behauptet keinen PDF-Anhang');
+  assert.match(decodeURIComponent(mailtoHref), /Selbstgenutztes Wohneigentum: ja/, 'Ersatzweg trägt die Förder-Angaben');
 
   /* ── D7, Fall 4: bestätigter Versand schaltet das PDF frei ────────────────── */
   submitMode = 'ok';
   const popupPromise = page.waitForEvent('popup');
   await calc.getByRole('button', { name: /Anfrage senden/ }).click();
   const popup = await popupPromise;
+  const sentKonfig = new URLSearchParams(lastPostBody).get('konfiguration') || '';
+  for (const text of ['Angaben im Förder-Check:', 'Gebäudealter: älter als 10 Jahre', 'Annahmen BEG:', 'Annahmen §35c:', 'Regelstand:'])
+    assert.ok(sentKonfig.includes(text), `Anfrage enthält ${text}`);
   await popup.waitForLoadState();
   await popup.waitForFunction(() => document.body.innerText.includes('2.104'));
   assert.equal(await popup.evaluate(() => opener), null);
