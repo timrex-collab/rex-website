@@ -37,7 +37,7 @@ const faqItems = [
   },
   {
     question: "Wird Flachdachdämmung staatlich gefördert?",
-    answer: "Ja – wenn der U-Wert auf ≤ 0,14 W/(m²·K) verbessert wird, fördert die BAFA 15 % der Bruttokosten. Mit individuellem Sanierungsfahrplan (iSFP) steigt die Obergrenze der förderrelevanten Kosten auf 60.000 € pro Wohneinheit; der iSFP-Bonus von 5 Prozentpunkten greift seit 21.07.2026 nur auf den Anteil über 30.000 €, maximal 10.500 € Zuschuss. Wir beraten Sie dazu bei der Vor-Ort-Besichtigung. Details unter /foerderung.",
+    answer: "Ja – wenn der U-Wert auf ≤ 0,14 W/(m²·K) verbessert wird, fördert die BAFA 15 % der Bruttokosten. Mit individuellem Sanierungsfahrplan (iSFP) steigt die Obergrenze der förderrelevanten Kosten auf 60.000 € für die erste Wohneinheit; der iSFP-Bonus von 5 Prozentpunkten greift seit 21.07.2026 nur auf den Anteil über 30.000 €, maximal 10.500 € Zuschuss. Wir beraten Sie dazu bei der Vor-Ort-Besichtigung. Details unter /foerderung.",
   },
   {
     question: "Kann Bitumen direkt auf PVC verlegt werden oder umgekehrt?",

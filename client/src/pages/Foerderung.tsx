@@ -418,7 +418,7 @@ export default function Foerderung() {
       <section className="py-12 bg-background border-b border-border">
         <div className="max-w-4xl mx-auto px-4 md:px-6 lg:px-8">
           <p className="text-lg md:text-xl leading-relaxed text-foreground">
-            Die BEG-Einzelmaßnahmen-Förderung (BEG EM) bezuschusst die energetische Dachsanierung mit 15 % der förderrelevanten Kosten. Seit der Reform vom 21.07.2026 wird der iSFP-Bonus von 5 Prozentpunkten nur noch auf den Kostenanteil oberhalb von 30.000 € gewährt: Bis 30.000 € bleiben es 15 %, mit individuellem Sanierungsfahrplan sind bei 60.000 € förderrelevanten Kosten maximal 10.500 € Zuschuss je Wohneinheit und Jahr möglich. Förderrelevant sind Dachdämmung, Dachfenster mit Uw ≤ 1,0 W/(m²·K) und außenliegender Sonnenschutz mit optimierter Tageslichtversorgung. Bei Gebäudehüllen-Maßnahmen ist ein Energieeffizienz-Experte Pflicht. Der Antrag muss vor der Umsetzung gestellt werden.
+            Die BEG-Einzelmaßnahmen-Förderung (BEG EM) bezuschusst die energetische Dachsanierung mit 15 % der förderrelevanten Kosten. Seit der Reform vom 21.07.2026 wird der iSFP-Bonus von 5 Prozentpunkten nur noch auf den Kostenanteil oberhalb von 30.000 € gewährt: Bis 30.000 € bleiben es 15 %, mit individuellem Sanierungsfahrplan sind bei 60.000 € förderrelevanten Kosten maximal 10.500 € Zuschuss für die erste Wohneinheit und Jahr möglich. Förderrelevant sind Dachdämmung, Dachfenster mit Uw ≤ 1,0 W/(m²·K) und außenliegender Sonnenschutz mit optimierter Tageslichtversorgung. Bei Gebäudehüllen-Maßnahmen ist ein Energieeffizienz-Experte Pflicht. Der Antrag muss vor der Umsetzung gestellt werden.
           </p>
         </div>
       </section>
