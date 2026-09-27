@@ -29,7 +29,8 @@ export const TOOL_NAMES = {
   apply: "rex_velux_apply_configuration_v1",
 } as const;
 
-export const SCOPE = "single_owner_occupied_dwelling";
+/** Erste Wohneinheit im Ein-/Zweifamilienhaus; Selbstnutzung ist nur für §35c Voraussetzung (SCOPE_NOTE). */
+export const SCOPE = "first_dwelling_unit";
 
 export type ApplyOutcome = { applied: true } | { applied: false; code: "DRAFT_EXISTS" | "BUSY" | "ABORTED" };
 
@@ -182,7 +183,7 @@ export function buildCalculateTool(): WebMCPTool {
   return {
     name: TOOL_NAMES.calculate,
     title: "VELUX-Kostenschätzung berechnen",
-    description: "Berechnet eine unverbindliche Kostenschätzung für den Austausch von VELUX-Dachfenstern durch Rex Bedachungs GmbH (Bochum): Material (VELUX UVP netto) inkl. Eindeckrahmen EDW 2000, Einbau-Mindestpreise, MwSt., sowie BEG-Zuschuss (BAFA) und Steuerermäßigung §35c EStG als zwei nicht kombinierbare Alternativen mit ausgewiesenen Annahmen – ohne Empfehlung. Reine Berechnung ohne Wirkung auf die Seite. Rohdaten des Nutzers übergeben, nicht selbst rechnen; unbekannte Förderangaben als unknown übergeben; die Verglasung des Altfensters nie als neue übernehmen. Geltungsbereich: erste, selbstgenutzte Wohneinheit.",
+    description: "Berechnet eine unverbindliche Kostenschätzung für den Austausch von VELUX-Dachfenstern durch Rex Bedachungs GmbH (Bochum): Material (VELUX UVP netto) inkl. Eindeckrahmen EDW 2000, Einbau-Mindestpreise, MwSt., sowie BEG-Zuschuss (BAFA) und Steuerermäßigung §35c EStG als zwei nicht kombinierbare Alternativen mit ausgewiesenen Annahmen – ohne Empfehlung. Reine Berechnung ohne Wirkung auf die Seite. Rohdaten des Nutzers übergeben, nicht selbst rechnen; unbekannte Förderangaben als unknown übergeben; die Verglasung des Altfensters nie als neue übernehmen. Geltungsbereich: erste Wohneinheit im Ein-/Zweifamilienhaus; §35c nur bei Selbstnutzung.",
     inputSchema: ESTIMATE_INPUT_SCHEMA,
     annotations: { readOnlyHint: true },
     execute: (input) => {

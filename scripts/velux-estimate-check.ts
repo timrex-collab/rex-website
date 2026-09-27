@@ -28,6 +28,7 @@ import {
   buildEstimate, toValidatedPositions,
   type PositionDetail, type QuoteTotals, type ValidatedPosition,
 } from "../client/src/lib/velux/estimate";
+import { FUNDING_LABELS, fundingSummaryLines } from "../client/src/lib/velux/content";
 import { configSignature, isExportUnlocked } from "../client/src/lib/velux/export-gate";
 import { LEGACY_SIZES, WINDOW_TYPES, findLegacySize } from "../client/src/lib/velux/legacyCatalog";
 import { resolveExistingWindow, type ResolveResult, type WindowObservation } from "../client/src/lib/velux/resolve";
@@ -149,6 +150,8 @@ const GOLDENS: Golden[] = [
 
 let failures = 0;
 const fail = (msg: string) => { failures++; console.error(`  ✗ ${msg}`); };
+/** Ab so vielen Tagen vor validThrough warnt der Check (ohne Abbruch). */
+const REVIEW_WARN_DAYS = 45;
 const pendingAsync: Promise<void>[] = [];
 const dump = process.argv.includes("--dump");
 
@@ -265,8 +268,29 @@ console.log("Förder-Grenzwerte");
     const m = RULES[k];
     if (!(m.rulesVersion && m.effectiveFrom && m.lastReviewedAt && m.validThrough)) fail(`RULES.${k}: Metadaten unvollständig`);
     if (m.validThrough < new Date().toISOString().slice(0, 10)) fail(`RULES.${k}: validThrough ${m.validThrough} abgelaufen – Regelwerk erneut prüfen und Datum nachziehen`);
+    // Vorwarnung ohne Abbruch: GitHub zeigt ::warning als Hinweis am Lauf (Wochenlauf montags).
+    const daysLeft = Math.floor((Date.parse(m.validThrough) - Date.parse(new Date().toISOString().slice(0, 10))) / 86400000);
+    if (daysLeft >= 0 && daysLeft <= REVIEW_WARN_DAYS) console.log(`::warning title=Förderprüfung fällig::RULES.${k}: validThrough ${m.validThrough} in ${daysLeft} Tagen – Primärquellen prüfen, danach lastReviewedAt/validThrough nachziehen`);
   }
   console.log(`  ${cases.length + 2} Grenzfälle, Regel-Metadaten geprüft`);
+}
+
+// ── Zentrale Förder-Labels und Anfrage-Text (content.ts) ──────────────
+console.log("Förder-Labels und Anfrage-Text");
+{
+  if (FUNDING_LABELS.taxYears !== "Jahr 1 (7 %) / Jahr 2 (7 %) / Jahr 3 (6 %)") fail(`§35c-Jahreslabel: ${FUNDING_LABELS.taxYears}`);
+  if (FUNDING_LABELS.taxCapValue !== "40.000 €") fail(`§35c-Höchstbetrag: ${FUNDING_LABELS.taxCapValue}`);
+  const g = GOLDENS[1];
+  const { funding } = buildEstimate(g.positions, g.funding);
+  const full = fundingSummaryLines(funding, g.funding).join("\n");
+  const short = fundingSummaryLines(funding, g.funding, { withAssumptions: false }).join("\n");
+  for (const t of ["nicht kombinierbar", "Angaben im Förder-Check:", "Gebäudealter:", "Selbstgenutztes Wohneigentum:", "iSFP vorhanden:", "Regelstand:"])
+    if (!full.includes(t) || !short.includes(t)) fail(`Anfrage-Text ohne „${t}“`);
+  if (funding.beg && !full.includes("Annahmen BEG:")) fail("Anfrage-Text ohne BEG-Annahmen");
+  if (funding.tax35c && !full.includes("Annahmen §35c:")) fail("Anfrage-Text ohne §35c-Annahmen");
+  if (short.includes("Annahmen BEG:") || short.includes("Annahmen §35c:")) fail("mailto-Text enthält Annahmen-Langtext");
+  if (/=(yes|no|unknown|over_10|under_5|5_to_10)\b/.test(full)) fail("Anfrage-Text enthält Rohcodes statt lesbarer Antworten");
+  console.log("  Labels aus funding.ts abgeleitet, Anfrage-Text vollständig, mailto-Variante kompakt");
 }
 
 // ── Typenschild-Katalog + Resolver ────────────────────────────────────

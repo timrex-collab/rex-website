@@ -8,7 +8,7 @@ import { ChevronRight, ChevronLeft, Calculator, Home, Sun, Phone, Mail, Check, I
 import { DIMS, WINDOWS, EDW, SHUTTERS, BLINDS, LABOR, GL, fmt, sizesForModel, shuttersForSize, blindsForSize } from "@/lib/velux/catalog";
 import { calcDetails, buildEstimate } from "@/lib/velux/estimate";
 import { EMPTY_FUNDING_ANSWERS, isFundingComplete, RULES } from "@/lib/velux/funding";
-import { ASSUMPTIONS, COMPANY, DISCLAIMER, EXCLUSIONS, FUNDING_NOTES, PRICE_BASIS_NOTE, SCOPE_NOTE } from "@/lib/velux/content";
+import { ASSUMPTIONS, COMPANY, DISCLAIMER, EXCLUSIONS, FUNDING_LABELS, FUNDING_NOTES, FUNDING_QUESTION_HINTS, PRICE_BASIS_NOTE, SCOPE_NOTE, fundingSummaryLines } from "@/lib/velux/content";
 // WebMCP (PR-2a): Tools sind nur bei aktivem Flag + Origin-Allowlist registriert; ohne WebMCP läuft der Rechner unverändert.
 import { buildVeluxTools } from "@/lib/velux/tools";
 import { APPLIED_SESSION_KEY, RESULT_ANCHOR_ID, useVeluxBridge } from "@/lib/velux/bridge";
@@ -63,7 +63,7 @@ function buildPdfHtml(details, totals, funding, kunde) {
     <div class="foerder-box">
       <h3>Alternative A – BEG EM (BAFA-Zuschuss)</h3>
       <table>
-        ${rows([["Förderrelevante Kosten (brutto, nur Uw ≤ 1,0)", `<strong>${fmt(funding.beg.eligibleCostsGross)} €</strong>`], ...(funding.beg.capApplied ? [["Höchstgrenze je Wohneinheit und Jahr", `${fmt(funding.beg.cap)} €`]] : []), ["Fördersatz", `<strong>${funding.beg.rateLabel}</strong>`]])}
+        ${rows([["Förderrelevante Kosten (brutto, nur Uw ≤ 1,0)", `<strong>${fmt(funding.beg.eligibleCostsGross)} €</strong>`], ...(funding.beg.capApplied ? [[FUNDING_LABELS.begCap, `${fmt(funding.beg.cap)} €`]] : []), ["Fördersatz", `<strong>${funding.beg.rateLabel}</strong>`]])}
         <tr><td><strong>Möglicher Zuschuss (Maximalwert unter Annahmen)</strong></td><td class="r foerder-amount">bis zu ${fmt(funding.beg.amountMax)} €</td></tr>
         <tr class="muted"><td>Rechnerisch verbleibend nach maximalem Zuschuss</td><td class="r">ab ${fmt(totals.totalBrutto - funding.beg.amountMax)} €</td></tr>
       </table>
@@ -80,7 +80,7 @@ function buildPdfHtml(details, totals, funding, kunde) {
     <div class="foerder-box" style="background:#eff6ff;border-color:#bfdbfe;margin-top:12px">
       <h3 style="color:#1d4ed8">Alternative B – Steuerermäßigung §35c EStG</h3>
       <table>
-        ${rows([["Bemessungsgrundlage (brutto, nur Uw ≤ 1,0)", `<strong>${fmt(funding.tax35c.base)} €</strong>`], ...(funding.tax35c.capApplied ? [["Höchstbetrag je Objekt", "40.000 €"]] : []), ["Jahr 1 (7 %) / Jahr 2 (7 %) / Jahr 3 (6 %)", `${fmt(funding.tax35c.year1)} / ${fmt(funding.tax35c.year2)} / ${fmt(funding.tax35c.year3)} €`]])}
+        ${rows([["Bemessungsgrundlage (brutto, nur Uw ≤ 1,0)", `<strong>${fmt(funding.tax35c.base)} €</strong>`], ...(funding.tax35c.capApplied ? [[FUNDING_LABELS.taxCap, FUNDING_LABELS.taxCapValue]] : []), [FUNDING_LABELS.taxYears, `${fmt(funding.tax35c.year1)} / ${fmt(funding.tax35c.year2)} / ${fmt(funding.tax35c.year3)} €`]])}
         <tr><td><strong>Mögliche Steuerermäßigung gesamt (Maximalwert unter Annahmen)</strong></td><td class="r foerder-amount" style="color:#1d4ed8">bis zu ${fmt(funding.tax35c.totalMax)} €</td></tr>
         <tr class="muted"><td>Rechnerisch verbleibend nach maximaler Ermäßigung</td><td class="r">ab ${fmt(totals.totalBrutto - funding.tax35c.totalMax)} €</td></tr>
       </table>
@@ -329,10 +329,10 @@ function Step1({positions,setPositions}){
 function Step2({foerderung,setFoerderung}){
   const YNU=[["yes","Ja"],["no","Nein"],["unknown","Weiß ich nicht"]];
   const qs=[
-    {key:"buildingAge",label:"Wie alt ist das Gebäude?",hint:"BEG: mindestens 5 Jahre seit Bauantrag/Bauanzeige. §35c: mehr als 10 Jahre seit Herstellungsbeginn. Bei unterschiedlichen Altersklassen bitte „Weiß ich nicht“ wählen.",options:[["under_5","Jünger als 5 Jahre"],["5_to_10","5 bis 10 Jahre"],["over_10","Älter als 10 Jahre"],["unknown","Weiß ich nicht"]]},
-    {key:"energyRenovation",label:"Erfolgt der Einbau als Fenstertausch mit verbessertem Uw-Wert?",hint:"Energetische Einzelmaßnahme an der Gebäudehülle (BEG EM)",options:YNU},
-    {key:"ownerOccupied",label:"Ist es selbstgenutztes Wohneigentum?",hint:"Voraussetzung für die Steuerermäßigung nach §35c EStG",options:YNU},
-    {key:"hasIsfp",label:"Liegt ein individueller Sanierungsfahrplan (iSFP) vor?",hint:"Hebt die Obergrenze der förderrelevanten Kosten auf 60.000 €; +5 Prozentpunkte nur auf den Anteil über 30.000 €",options:YNU},
+    {key:"buildingAge",label:"Wie alt ist das Gebäude?",hint:`${FUNDING_QUESTION_HINTS.buildingAge} Bei unterschiedlichen Altersklassen bitte „Weiß ich nicht“ wählen.`,options:[["under_5","Jünger als 5 Jahre"],["5_to_10","5 bis 10 Jahre"],["over_10","Älter als 10 Jahre"],["unknown","Weiß ich nicht"]]},
+    {key:"energyRenovation",label:"Erfolgt der Einbau als Fenstertausch mit verbessertem Uw-Wert?",hint:FUNDING_QUESTION_HINTS.energyRenovation,options:YNU},
+    {key:"ownerOccupied",label:"Ist es selbstgenutztes Wohneigentum?",hint:FUNDING_QUESTION_HINTS.ownerOccupied,options:YNU},
+    {key:"hasIsfp",label:"Liegt ein individueller Sanierungsfahrplan (iSFP) vor?",hint:FUNDING_QUESTION_HINTS.hasIsfp,options:YNU},
   ];
   const cls=(active,v)=>active?(v==="no"?"border-slate-400 bg-slate-50 text-slate-700":v==="unknown"?"border-amber-500 bg-amber-50 text-amber-800":"border-emerald-600 bg-emerald-50 text-emerald-800"):"border-slate-200 text-slate-500 hover:border-slate-300";
   return(<div className="space-y-5">
@@ -408,15 +408,14 @@ function Step3({positions,foerderung}){
       if(d.blindQty>0)t+=` + ${d.blindQty}x ${BLINDS[d.blind].short}`;
       t+=`\n  Material: ${fmt(d.matPos)} EUR | Einbau: ab ${fmt(d.labPos)} EUR`;
       return t;}).join("");
-    const ft=(beg?`\n\nAlternative A – BEG EM (BAFA): moeglicher Zuschuss bis zu ${fmt(beg.amountMax)} EUR (Maximalwert unter Annahmen; foerderrelevante Bruttokosten ${fmt(beg.eligibleCostsGross)} EUR)`:"")
-      +(tax35c?`\nAlternative B – §35c EStG: moegliche Steuerermaessigung bis zu ${fmt(tax35c.totalMax)} EUR ueber drei Jahre`:"")
-      +(beg||tax35c?`\nBeide Wege sind nicht kombinierbar.`:"");
+    // Ohne Annahmen-Langtext: mailto-Links sind in manchen Mailprogrammen längenbegrenzt.
+    const ft=`\n\n${fundingSummaryLines(funding,foerderung,{withAssumptions:false}).join("\n")}`;
     const ad=kunde.strasse?`\nStrasse: ${kunde.strasse}`:"";
     const po=(kunde.plz||kunde.ort)?`\nPLZ/Ort: ${kunde.plz} ${kunde.ort}`:"";
     const subject=encodeURIComponent(`Angebotsanfrage VELUX Dachfenster – ${kunde.name.trim()}`);
-    const body=encodeURIComponent(`Guten Tag,\n\nich moechte ein unverbindliches Angebot anfragen.\nDie detaillierte Kostenschaetzung ist als PDF beigefuegt.\n${posText}\n\nGesamt: ab ${fmt(totalNetto)} EUR netto (${fmt(totalBrutto)} EUR brutto inkl. MwSt.)${ft}\n\nKontaktdaten:\nName: ${kunde.name}${ad}${po}\nE-Mail: ${kunde.email}\nTelefon: ${kunde.telefon}${kunde.nachricht?`\nAnmerkung: ${kunde.nachricht}`:""}\n\nMit freundlichen Gruessen\n${kunde.name}`);
+    const body=encodeURIComponent(`Guten Tag,\n\nich moechte ein unverbindliches Angebot anfragen. Meine Konfiguration aus dem VELUX-Preisrechner:\n${posText}\n\nGesamt: ab ${fmt(totalNetto)} EUR netto (${fmt(totalBrutto)} EUR brutto inkl. MwSt.)${ft}\n\nKontaktdaten:\nName: ${kunde.name}${ad}${po}\nE-Mail: ${kunde.email}\nTelefon: ${kunde.telefon}${kunde.nachricht?`\nAnmerkung: ${kunde.nachricht}`:""}\n\nMit freundlichen Gruessen\n${kunde.name}`);
     return`mailto:info@rex-bedachung.de?subject=${subject}&body=${body}`;
-  },[details,beg,tax35c,totalNetto,totalBrutto,kunde]);
+  },[details,funding,foerderung,totalNetto,totalBrutto,kunde]);
 
   const buildKonfigText = () => {
     return details.map((d, i) =>
@@ -427,10 +426,7 @@ function Step3({positions,foerderung}){
     ).join("\n") +
     `\n\nKostenschätzung netto: ab ${fmt(totalNetto)} €` +
     `\nKostenschätzung brutto: ab ${fmt(totalBrutto)} €` +
-    (beg ? `\nBEG EM (BAFA): bis zu ${fmt(beg.amountMax)} € (${beg.rateLabel}; förderrelevant brutto ${fmt(beg.eligibleCostsGross)} €)` : `\nBEG EM (BAFA): nicht ausgewiesen – ${begReason}`) +
-    (tax35c ? `\n§35c EStG: bis zu ${fmt(tax35c.totalMax)} € (${fmt(tax35c.year1)} / ${fmt(tax35c.year2)} / ${fmt(tax35c.year3)} €)` : `\n§35c EStG: nicht ausgewiesen – ${tax35cReason}`) +
-    `\nFörder-Check: Gebäudealter=${foerderung.buildingAge}, Fenstertausch=${foerderung.energyRenovation}, Selbstnutzung=${foerderung.ownerOccupied}, iSFP=${foerderung.hasIsfp}` +
-    `\nRegelstand: ${RULES.beg.rulesVersion} / ${RULES.tax35c.rulesVersion}, geprüft ${RULES.beg.lastReviewedAt}`;
+    `\n\n${fundingSummaryLines(funding, foerderung).join("\n")}`;
   };
 
   const handleSubmitAndPdf = async () => {
@@ -541,11 +537,11 @@ function Step3({positions,foerderung}){
             )}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-3 items-start">
               <FundingCard title="Alternative A – BEG EM (BAFA-Zuschuss)" tone="emerald" scenario={beg} reason={begReason}
-                rows={beg?[["Förderrelevante Kosten (brutto, nur Uw ≤ 1,0)",`${fmt(beg.eligibleCostsGross)} €`],...(beg.capApplied?[["Höchstgrenze je Wohneinheit und Jahr",`${fmt(beg.cap)} €`]]:[]),["Fördersatz",beg.rateLabel]]:[]}
+                rows={beg?[["Förderrelevante Kosten (brutto, nur Uw ≤ 1,0)",`${fmt(beg.eligibleCostsGross)} €`],...(beg.capApplied?[[FUNDING_LABELS.begCap,`${fmt(beg.cap)} €`]]:[]),["Fördersatz",beg.rateLabel]]:[]}
                 amountLabel="Möglicher BAFA-Zuschuss" amount={beg?beg.amountMax:0} remaining={beg?totalBrutto-beg.amountMax:0}
                 notes={beg?[FUNDING_NOTES.kfw,FUNDING_NOTES.fachplanung,...(beg.isfpBonus===0?[`Hinweis zum iSFP: ${FUNDING_NOTES.isfp}`]:[])]:[]}/>
               <FundingCard title="Alternative B – Steuerermäßigung §35c EStG" tone="blue" scenario={tax35c} reason={tax35cReason}
-                rows={tax35c?[["Bemessungsgrundlage (brutto, nur Uw ≤ 1,0)",`${fmt(tax35c.base)} €`],...(tax35c.capApplied?[["Höchstbetrag je Objekt","40.000 €"]]:[]),["Jahr 1 (7 %) / Jahr 2 (7 %) / Jahr 3 (6 %)",`${fmt(tax35c.year1)} / ${fmt(tax35c.year2)} / ${fmt(tax35c.year3)} €`]]:[]}
+                rows={tax35c?[["Bemessungsgrundlage (brutto, nur Uw ≤ 1,0)",`${fmt(tax35c.base)} €`],...(tax35c.capApplied?[[FUNDING_LABELS.taxCap,FUNDING_LABELS.taxCapValue]]:[]),[FUNDING_LABELS.taxYears,`${fmt(tax35c.year1)} / ${fmt(tax35c.year2)} / ${fmt(tax35c.year3)} €`]]:[]}
                 amountLabel="Mögliche Steuerermäßigung gesamt" amount={tax35c?tax35c.totalMax:0} remaining={tax35c?totalBrutto-tax35c.totalMax:0}
                 notes={tax35c?[FUNDING_NOTES.taxRequirements]:[]}/>
             </div>
