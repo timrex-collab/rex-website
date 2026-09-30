@@ -69,6 +69,11 @@ const RULES = [
     test: (l) => /KfW-BEG/.test(l),
   },
   {
+    id: "gruendach-kfw",
+    why: "Ein Gründach wird nicht pauschal über die KfW gefördert; in Frage kommt BEG EM (BAFA) im Rahmen einer energetischen Sanierung",
+    test: (l) => /(Gründach|Dachbegrünung|Wurzelschutz)/i.test(l) && /(?<!BAFA\/)KfW[- ]?(gefördert|Förderung|-Programm)|mit KfW gefördert/i.test(l),
+  },
+  {
     id: "neubauprogramm",
     why: "KfW 297/298 ist ein Neubauprogramm und passt nicht zu Sanierungsleistungen",
     test: (l) => /297\s?\/\s?298/.test(l),
@@ -128,6 +133,9 @@ if (SELF_TEST) {
     ["kfw-tilgungszuschuss", "Ergänzungskredit 358/359 mit Tilgungszuschuss", true],
     ["kfw-tilgungszuschuss", "BEG WG über die KfW mit Tilgungszuschüssen", false],
     ["beg-ueber-kfw", "im Rahmen der KfW-BEG förderrelevant", true],
+    ["gruendach-kfw", "Gründach & Dachbegrünung: Wurzelschutz, Drainage, KfW-gefördert", true],
+    ["gruendach-kfw", "Gründach: im Rahmen einer energetischen Dachsanierung ggf. BEG-förderrelevant (BAFA)", false],
+    ["gruendach-kfw", "Flachdach & Gründach Bochum ✓ Alle Abdichtungssysteme ✓ BAFA/KfW-Förderung", false],
     ["neubauprogramm", "über das KfW-Programm 297/298 (Klimafreundlicher Neubau)", true],
     ["richtlinie-entwurf", "Richtlinie BEG EM vom 17.07.2026", true],
     ["richtlinie-entwurf", "Richtlinie BEG EM vom 17.08.2026", false],

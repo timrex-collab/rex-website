@@ -10,7 +10,16 @@ Willkommen beim Website-Projekt für Rex Bedachungs GmbH. Diese moderne, respons
 npm run dev
 ```
 
-Die Website ist dann unter `http://localhost:5000` erreichbar.
+Die Website ist dann unter `http://localhost:5000` erreichbar. `npm run dev` startet den
+Express-Server und setzt `NODE_ENV` in Unix-Syntax; unter Windows stattdessen:
+
+```bash
+npm run dev:web
+```
+
+Das startet nur den Vite-Entwicklungsserver (Standard: `http://localhost:5173`). Für die
+Website reicht das, einen eigenen Server braucht sie nicht; das Anfrageformular läuft
+produktiv über Netlify Forms.
 
 ### Produktionsbuild erstellen
 
