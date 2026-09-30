@@ -59,6 +59,12 @@ jobs:
       # Goldwerte, Katalog-Invarianten, Determinismus. Siehe scripts/velux-estimate-check.ts.
       - name: VELUX-Preislogik (Goldwerte)
         run: npm run estimate:check
+      # Findet Förderaussagen auf Seiten und in llms*.txt, die der zentralen Logik in
+      # client/src/lib/velux widersprechen (Befunde der Förderaudits 09/2026, R1–R3).
+      - name: Förderaussagen (Drift-Check)
+        run: npm run foerder:check
+      - name: Selbsttest des Förder-Checks
+        run: npm run foerder:check -- --self-test
       - name: Testbrowser installieren
         run: npx playwright install --with-deps chromium
       - name: Lokale Vorschau starten

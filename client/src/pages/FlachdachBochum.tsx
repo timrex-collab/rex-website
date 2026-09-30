@@ -62,7 +62,7 @@ const services = [
   {
     icon: <Leaf className="w-8 h-8 text-primary" />,
     title: "Gründach & Dachbegrünung Bochum",
-    text: "Verwandeln Sie Ihr Flachdach in ein Gründach – extensiv (pflegeleicht, Sedum & Moos) oder intensiv (Dachgarten, begehbar). Inklusive Wurzelschutzfolie, Drainageschicht und fachgerechter Abdichtung. Gründächer verbessern die Dämmung, verlängern die Dachabdichtung und werden mit KfW gefördert.",
+    text: "Verwandeln Sie Ihr Flachdach in ein Gründach – extensiv (pflegeleicht, Sedum & Moos) oder intensiv (Dachgarten, begehbar). Inklusive Wurzelschutzfolie, Drainageschicht und fachgerechter Abdichtung. Gründächer verbessern die Dämmung, verlängern die Dachabdichtung und können im Rahmen einer energetischen Sanierung förderrelevant sein.",
     testId: "card-gruendach",
     highlight: true,
   },
@@ -172,7 +172,7 @@ const faqItems = [
   {
     question: "Wird ein Gründach in Bochum gefördert?",
     answer:
-      "Ja! Gründächer werden über KfW-Programme sowie teilweise durch städtische Förderprogramme der Stadt Bochum unterstützt. Zusätzlich senkt ein Gründach langfristig die Niederschlagswassergebühren. Wir beraten Sie kostenlos zu allen Fördermöglichkeiten.",
+      "Teilweise. Wird das Gründach im Zuge einer energetischen Dachsanierung mit Dämmung gebaut, kann die BEG-Einzelmaßnahmen-Förderung (BAFA) greifen; dazu kommen teilweise städtische Förderprogramme der Stadt Bochum. Zusätzlich senkt ein Gründach langfristig die Niederschlagswassergebühren. Wir beraten Sie kostenlos zu allen Fördermöglichkeiten.",
   },
   {
     question: "Was gehört zur Wartung eines Flachdachs?",
@@ -232,7 +232,7 @@ const schemaJson = JSON.stringify({
             "itemOffered": {
               "@type": "Service",
               "name": "Gründach & Dachbegrünung Bochum – extensiv und intensiv",
-              "description": "Fachgerechte Dachbegrünung in Bochum – extensiv und intensiv, inklusive Wurzelschutz, Drainage und KfW-Förderberatung",
+              "description": "Fachgerechte Dachbegrünung in Bochum – extensiv und intensiv, inklusive Wurzelschutz, Drainage und Förderberatung",
             },
           },
         ],
@@ -533,8 +533,9 @@ export default function FlachdachBochum() {
               kostenlos zu allen Fördermöglichkeiten und übernehmen auf Wunsch die komplette Antragstellung.
             </p>
             <p className="text-slate-300 leading-relaxed mb-8 max-w-2xl mx-auto" data-testid="text-foerderung-gruendach">
-              Gründächer werden zusätzlich über das KfW-Programm 297/298 (Klimafreundlicher Neubau) sowie durch
-              städtische Förderprogramme der Stadt Bochum bezuschusst. Wir informieren Sie kostenlos über alle
+              Wird das Gründach im Zuge einer energetischen Sanierung mit Dämmung gebaut, kommt die BEG-Einzelmaßnahmen-Förderung
+              (BAFA) in Frage; ob die Begrünung selbst anerkannt wird, prüft der Energieeffizienz-Experte. Dazu kommen teilweise
+              städtische Förderprogramme der Stadt Bochum. Wir informieren Sie kostenlos über alle
               aktuellen Möglichkeiten.
             </p>
             <Button

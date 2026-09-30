@@ -83,7 +83,7 @@ const foerderungBlocks = [
   {
     icon: <ScrollText className="w-7 h-7 text-primary" />,
     title: "iSFP-Bonus",
-    text: "Der individuelle Sanierungsfahrplan, erstellt von einem zugelassenen Energieeffizienz-Experten, verdoppelt die Obergrenze der förderrelevanten Kosten von 30.000 € auf 60.000 € je Wohneinheit. Der Bonus von 5 Prozentpunkten greift seit der BEG-Reform vom 21.07.2026 nur noch auf den Kostenanteil oberhalb von 30.000 €. Für eine größere Komplettsanierung bleibt der iSFP damit wirtschaftlich, für kleine Einzelmaßnahmen lohnt er sich nicht mehr.",
+    text: "Der individuelle Sanierungsfahrplan, erstellt von einem zugelassenen Energieeffizienz-Experten, verdoppelt die Obergrenze der förderrelevanten Kosten von 30.000 € auf 60.000 € für die erste Wohneinheit. Der Bonus von 5 Prozentpunkten greift seit der BEG-Reform vom 21.07.2026 nur noch auf den Kostenanteil oberhalb von 30.000 €. Für eine größere Komplettsanierung bleibt der iSFP damit wirtschaftlich, für kleine Einzelmaßnahmen lohnt er sich nicht mehr.",
   },
   {
     icon: <Building className="w-7 h-7 text-primary" />,
@@ -134,7 +134,7 @@ const faqItems = [
   {
     question: "Wie viel Förderung gibt es 2026 für eine Dachsanierung?",
     answer:
-      "Über die BEG EM 15 Prozent Grundförderung vom BAFA. Mit individuellem Sanierungsfahrplan steigt die Obergrenze der förderrelevanten Kosten auf 60.000 Euro pro Wohneinheit und Kalenderjahr; der iSFP-Bonus von 5 Prozentpunkten greift seit 21.07.2026 nur auf den Anteil über 30.000 Euro. Maximal sind damit 10.500 Euro Zuschuss möglich.",
+      "Über die BEG EM 15 Prozent Grundförderung vom BAFA. Mit individuellem Sanierungsfahrplan steigt die Obergrenze der förderrelevanten Kosten auf 60.000 Euro für die erste Wohneinheit und das Kalenderjahr; der iSFP-Bonus von 5 Prozentpunkten greift seit 21.07.2026 nur auf den Anteil über 30.000 Euro. Maximal sind damit 10.500 Euro Zuschuss möglich.",
   },
   {
     question: "Was ist der iSFP und warum ist er wichtig?",
