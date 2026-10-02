@@ -15,6 +15,14 @@
   command = "npm run build"
   publish = "dist/public"
 
+# NUR TEST-PR, NICHT MERGEN (D8-Vorabtest, siehe WEBMCP.md):
+# WebMCP ausschließlich auf der Deploy-Preview genau dieses PRs aktivieren, damit die
+# zehn Agentenfälle in ChatGPT Desktop vor der Produktionsaktivierung laufen können.
+# Die Origin-Allowlist enthält nur diese eine Preview-Adresse; Produktion bleibt aus.
+[context.deploy-preview.environment]
+  VITE_WEBMCP_ENABLED = "true"
+  VITE_WEBMCP_ORIGINS = "https://deploy-preview-86--leafy-sprite-bbbfd6.netlify.app"
+
 [[headers]]
   for = "/danke"
   [headers.values]
