@@ -15,6 +15,16 @@
   command = "npm run build"
   publish = "dist/public"
 
+# WebMCP-Aktivierung (D8, siehe WEBMCP.md). Gilt NUR im Production-Kontext (Branch main);
+# Deploy-Previews und Branch-Deploys bleiben aus. Fail-closed im Code: aktiv nur bei
+# exakt "true" UND exakt dieser Origin. Kein Chrome-Origin-Trial-Token (Entscheidung Tim,
+# 04.10.2026): Tools registrieren sich nur in Browsern mit eigener WebMCP-Unterstützung.
+# Abschalten: Block entfernen oder ENABLED auf "false" und neu deployen, oder in Netlify
+# auf den vorherigen Deploy zurückrollen.
+[context.production.environment]
+  VITE_WEBMCP_ENABLED = "true"
+  VITE_WEBMCP_ORIGINS = "https://www.rex-bedachung.de"
+
 [[headers]]
   for = "/danke"
   [headers.values]
