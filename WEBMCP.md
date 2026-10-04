@@ -122,6 +122,18 @@ ChatGPT Desktop auf der Live-Seite.
 3. Eine andere Seite der Website darf keine Tools zeigen.
 4. **Keine echte Anfrage** zu Testzwecken absenden.
 
+**Ergebnis der Live-Nachprüfung (04.10.2026, Tim):**
+- **Umgebung:** ChatGPT Desktop für Windows, Modus „Arbeiten“ (Browser Use gibt es nur dort),
+  Modell GPT-5.6 Sol (Hoch), Seite im eingebauten Browser.
+- **Tools:** Die KI nannte alle vier `rex_velux_*`-Tools und rief `rex_velux_calculate_estimate_v1` auf.
+- **Werte:** Für die vorher nicht genannte Konfiguration 2 × GGL SK06 ENERGIE PLUS mit SSL, Haus von
+  1985, selbst bewohnt, kein iSFP, lieferte sie exakt die Werte der zentralen Logik: 6.743 € brutto,
+  BEG bis 1.011 €, §35c bis 1.349 € (472/472/405 €), nicht kombinierbar.
+- **Oberfläche:** Die Rechner-Oberfläche blieb unverändert.
+- **Erster Durchlauf:** Mit GPT-6 Astra (Hoch) kamen die Goldwerte von Fall 1, die Erwartungswerte
+  standen aber im Prompt; das zählt nur als Indiz.
+- **Nicht dokumentiert:** die Gegenprobe auf einer anderen Seite; lokal ist sie geprüft.
+
 **Rücknahme:**
 - Bei falschen Zahlen, UI-Abweichung oder unbeabsichtigtem Versand in Netlify auf den vorherigen
   Deploy zurückrollen.
