@@ -56,11 +56,20 @@ export default function Datenschutz() {
             <section>
               <h2 className="text-2xl font-semibold mb-4">3. Hosting</h2>
               <p>
-                Diese Website wird extern gehostet. Die personenbezogenen Daten, die auf dieser 
-                Website erfasst werden, werden auf den Servern des Hosters gespeichert. Hierbei kann 
-                es sich v. a. um IP-Adressen, Kontaktanfragen, Meta- und Kommunikationsdaten, 
-                Vertragsdaten, Kontaktdaten, Namen, Websitezugriffe und sonstige Daten, die über eine 
-                Website generiert werden, handeln.
+                Diese Website wird bei Netlify, Inc., USA, gehostet. Die personenbezogenen Daten, 
+                die auf dieser Website erfasst werden, werden auf den Servern von Netlify gespeichert. 
+                Hierbei kann es sich v. a. um IP-Adressen, Kontaktanfragen, Meta- und 
+                Kommunikationsdaten, Kontaktdaten, Namen und Websitezugriffe handeln. Über den 
+                Dienst Netlify Forms nimmt Netlify auch die Eingaben aus unseren Formularen 
+                entgegen und speichert sie.
+              </p>
+              <p>
+                Netlify verarbeitet diese Daten in unserem Auftrag auf Grundlage eines Vertrags zur 
+                Auftragsverarbeitung nach Art. 28 DSGVO. Dabei werden Daten in die USA übermittelt. 
+                Die Übermittlung stützt sich auf den Angemessenheitsbeschluss der Europäischen 
+                Kommission zum EU-US Data Privacy Framework (Art. 45 DSGVO); ergänzend sieht der 
+                Vertrag mit Netlify Standardvertragsklauseln der Europäischen Kommission vor 
+                (Art. 46 Abs. 2 lit. c DSGVO).
               </p>
             </section>
 
@@ -71,6 +80,15 @@ export default function Datenschutz() {
                 Die Betreiber dieser Seiten nehmen den Schutz Ihrer persönlichen Daten sehr ernst. 
                 Wir behandeln Ihre personenbezogenen Daten vertraulich und entsprechend den 
                 gesetzlichen Datenschutzvorschriften sowie dieser Datenschutzerklärung.
+              </p>
+              <h3 className="text-xl font-semibold mb-3 mt-6">Hinweis zur verantwortlichen Stelle</h3>
+              <p>
+                Verantwortlich für die Datenverarbeitung auf dieser Website ist:<br />
+                Rex Bedachungs GmbH<br />
+                Paulinenstraße 22<br />
+                44799 Bochum<br />
+                Telefon: 0234 / 58 31 00<br />
+                E-Mail: info@rex-bedachung.de
               </p>
             </section>
 
@@ -91,15 +109,47 @@ export default function Datenschutz() {
                 <li>IP-Adresse</li>
               </ul>
               <p className="mt-4">
-                Eine Zusammenführung dieser Daten mit anderen Datenquellen wird nicht vorgenommen.
+                Eine Zusammenführung dieser Daten mit anderen Datenquellen wird nicht vorgenommen. 
+                Rechtsgrundlage ist Art. 6 Abs. 1 lit. f DSGVO; unser berechtigtes Interesse liegt 
+                im sicheren und fehlerfreien Betrieb der Website.
               </p>
 
               <h3 className="text-xl font-semibold mb-3 mt-6">Kontaktformular</h3>
               <p>
-                Wenn Sie uns per Kontaktformular Anfragen zukommen lassen, werden Ihre Angaben aus 
-                dem Anfrageformular inklusive der von Ihnen dort angegebenen Kontaktdaten zwecks 
-                Bearbeitung der Anfrage und für den Fall von Anschlussfragen bei uns gespeichert. 
-                Diese Daten geben wir nicht ohne Ihre Einwilligung weiter.
+                Wenn Sie uns per Kontaktformular Anfragen zukommen lassen, verarbeiten wir Ihre 
+                Angaben aus dem Formular inklusive der angegebenen Kontaktdaten zur Bearbeitung der 
+                Anfrage und für Anschlussfragen. Rechtsgrundlage ist Art. 6 Abs. 1 lit. b DSGVO, 
+                soweit Ihre Anfrage auf einen Vertrag oder vorvertragliche Maßnahmen zielt, im 
+                Übrigen Art. 6 Abs. 1 lit. f DSGVO (Beantwortung Ihrer Anfrage). Die Eingaben werden 
+                über Netlify Forms verarbeitet (siehe Abschnitt 3) und uns per E-Mail zugestellt. 
+                Darüber hinaus geben wir Ihre Daten nicht ohne Ihre Einwilligung weiter.
+              </p>
+
+              <h3 className="text-xl font-semibold mb-3 mt-6">VELUX-Preisrechner und Angebotsanfragen</h3>
+              <p>
+                Wenn Sie über unseren VELUX-Preisrechner ein Angebot anfragen, verarbeiten wir Ihren 
+                Namen, Ihre E-Mail-Adresse und/oder Telefonnummer sowie freiwillig mitgeteilte 
+                Adressdaten und Anmerkungen. Zusätzlich werden Ihre Fensterkonfiguration, die 
+                berechnete Kostenschätzung und Ihre Antworten zu den Fördervoraussetzungen 
+                übermittelt. Diese Angaben verwenden wir zur Bearbeitung Ihrer Anfrage, zur 
+                Rückmeldung, zur Angebotserstellung und zur Berücksichtigung möglicher Förderwege. 
+                Rechtsgrundlage ist Art. 6 Abs. 1 lit. b DSGVO, soweit die Verarbeitung für diese 
+                vorvertraglichen Maßnahmen erforderlich ist.
+              </p>
+              <p>
+                Für die Angebotsanfrage benötigen wir Ihren Namen und mindestens eine 
+                Kontaktmöglichkeit (E-Mail oder Telefon). Adresse und Anmerkung sind freiwillig. Die 
+                Eingaben werden über Netlify Forms verarbeitet (siehe Abschnitt 3). Die 
+                PDF-Kostenschätzung erstellt Ihr Browser lokal; die PDF-Datei selbst wird nicht an 
+                uns übertragen.
+              </p>
+
+              <h3 className="text-xl font-semibold mb-3 mt-6">Speicherdauer von Anfragen</h3>
+              <p>
+                Formulareingaben löschen wir bei Netlify spätestens drei Monate nach Eingang. 
+                Anfragen in unserem E-Mail-Postfach, aus denen kein Auftrag entsteht, löschen wir 
+                spätestens zwölf Monate nach Eingang. Entsteht ein Auftrag, bewahren wir die 
+                Unterlagen so lange auf, wie gesetzliche Aufbewahrungspflichten es vorschreiben.
               </p>
             </section>
 
@@ -133,6 +183,11 @@ export default function Datenschutz() {
               </ul>
               <p className="mt-4">
                 Für diese Anliegen wenden Sie sich bitte an: info@rex-bedachung.de
+              </p>
+              <p className="mt-4">
+                Außerdem haben Sie das Recht, sich bei einer Datenschutz-Aufsichtsbehörde zu 
+                beschweren. Für uns zuständig ist die Landesbeauftragte für Datenschutz und 
+                Informationsfreiheit Nordrhein-Westfalen.
               </p>
             </section>
           </div>

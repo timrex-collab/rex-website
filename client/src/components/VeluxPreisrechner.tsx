@@ -569,16 +569,16 @@ function Step3({positions,foerderung}){
         <div className="p-5 space-y-4">
           <div><label className="block text-xs font-semibold text-slate-600 mb-1">Name *</label><input type="text" value={kunde.name} onChange={e=>setK("name",e.target.value)} placeholder="Vor- und Nachname" className={inputCls}/></div>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-            <div><label className="block text-xs font-semibold text-slate-600 mb-1">E-Mail *</label><input type="email" value={kunde.email} onChange={e=>setK("email",e.target.value)} placeholder="ihre@email.de" className={inputCls}/></div>
+            <div><label className="block text-xs font-semibold text-slate-600 mb-1">E-Mail</label><input type="email" value={kunde.email} onChange={e=>setK("email",e.target.value)} placeholder="ihre@email.de" className={inputCls}/></div>
             <div><label className="block text-xs font-semibold text-slate-600 mb-1">Telefon</label><input type="tel" value={kunde.telefon} onChange={e=>setK("telefon",e.target.value)} placeholder="0234 / ..." className={inputCls}/></div>
           </div>
-          <div><label className="block text-xs font-semibold text-slate-600 mb-1">Straße + Hausnummer</label><input type="text" value={kunde.strasse} onChange={e=>setK("strasse",e.target.value)} placeholder="Musterstraße 1" className={inputCls}/></div>
+          <div><label className="block text-xs font-semibold text-slate-600 mb-1">Straße + Hausnummer <span className="font-normal text-slate-400">(optional)</span></label><input type="text" value={kunde.strasse} onChange={e=>setK("strasse",e.target.value)} placeholder="Musterstraße 1" className={inputCls}/></div>
           <div className="grid grid-cols-3 gap-4">
-            <div><label className="block text-xs font-semibold text-slate-600 mb-1">PLZ</label><input type="text" value={kunde.plz} onChange={e=>setK("plz",e.target.value)} placeholder="44799" className={inputCls} maxLength={5}/></div>
-            <div className="col-span-2"><label className="block text-xs font-semibold text-slate-600 mb-1">Ort</label><input type="text" value={kunde.ort} onChange={e=>setK("ort",e.target.value)} placeholder="Bochum" className={inputCls}/></div>
+            <div><label className="block text-xs font-semibold text-slate-600 mb-1">PLZ <span className="font-normal text-slate-400">(optional)</span></label><input type="text" value={kunde.plz} onChange={e=>setK("plz",e.target.value)} placeholder="44799" className={inputCls} maxLength={5}/></div>
+            <div className="col-span-2"><label className="block text-xs font-semibold text-slate-600 mb-1">Ort <span className="font-normal text-slate-400">(optional)</span></label><input type="text" value={kunde.ort} onChange={e=>setK("ort",e.target.value)} placeholder="Bochum" className={inputCls}/></div>
           </div>
           <div><label className="block text-xs font-semibold text-slate-600 mb-1">Anmerkung <span className="font-normal text-slate-400">(optional)</span></label><textarea value={kunde.nachricht} onChange={e=>setK("nachricht",e.target.value)} rows={2} placeholder="z.B. Dachneigung, besondere Einbausituation, Wunschtermin ..." className={inputCls+" resize-none"}/></div>
-          <p className="text-[10px] text-slate-400">* Pflichtfelder. Name und mindestens E-Mail oder Telefon erforderlich.</p>
+          <p className="text-[10px] text-slate-400">* Pflichtfeld. Zusätzlich E-Mail oder Telefon – mindestens eine Angabe erforderlich.</p>
         </div>
       </div>
 
