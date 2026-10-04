@@ -1,7 +1,7 @@
 # Umsetzungsplan 09/2026: Förderung vor WebMCP-Aktivierung
 
-Stand 30.09.2026. **R1–R4 sind live**, D8 (WebMCP-Aktivierung) wartet auf die Go/No-Go-Entscheidung
-von Tim. Grundlagen:
+Stand 04.10.2026. **R1–R4 und D8 sind live.** D8 schaltet WebMCP im Production-Kontext ohne
+Chrome-Token ein (PR #87). Grundlagen:
 - das Förderaudit vom 17.09.2026 (Befunde F01–F09) und das WebMCP-/Förder-Audit vom 21.09.2026,
   beide nur lokal bei Tim, hier nach ihren Zusammenfassungen eingearbeitet;
 - eine Codeprüfung aller Förderaussagen;
@@ -55,9 +55,10 @@ Entscheidungen von Tim (23.09.2026):
 
 ## 4. Offen
 
-- **D8 WebMCP-Aktivierung:** Go/No-Go nach Prüfung im Chrome-Origin-Trial-Dashboard. Laut
-  Sekundärquellen läuft der Trial bis M156, Token bis ca. 17.11.2026; primär nicht verifiziert.
-  Voraussetzungen und zehn Agentenfälle stehen in `WEBMCP.md`.
+- **D8 Nachprüfung:** Sichtprüfung in ChatGPT Desktop auf der Live-Seite (vier Tools, Fall 1 mit
+  Goldwerten). Fall 4 mit echtem Typenschildfoto steht ebenfalls noch aus.
+- **Chrome-Origin-Trial, optional:** Token-Ablauf 17.11.2026, Verlängerung bis M162 beantragt. Ein
+  Token kommt nur bei Bedarf und als eigener Deploy dazu.
 - **Förder-Wiedervorlage vor dem 31.12.2026:** Richtlinie, Haushalt 2027 und §35c an den
   Primärquellen prüfen und erst danach `lastReviewedAt`/`validThrough` in `funding.ts`
   verschieben. `estimate:check` meldet ab dem 16.11.2026 im Wochenlauf einen Hinweis.
