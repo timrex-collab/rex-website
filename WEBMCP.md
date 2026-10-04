@@ -1,6 +1,6 @@
 # WebMCP für den VELUX-Preisrechner
 
-Stand: 06.09.2026. Implementiert, standardmäßig ausgeschaltet. Nativer lokaler Nachweis mit Chrome 152.0.7977.77 hinter --enable-features=WebMCP; noch kein Produktions-Origin-Trial- oder KI-Anwendungsnachweis.
+Stand: 06.09.2026, Aktivierung 04.10.2026 siehe unten. Implementiert, im Standardbuild ausgeschaltet, im Production-Kontext per `netlify.toml` aktiviert (ohne Chrome-Token). Nativer lokaler Nachweis mit Chrome 152.0.7977.77 hinter --enable-features=WebMCP; noch kein Produktions-Origin-Trial- oder KI-Anwendungsnachweis.
 
 WebMCP ist ein [Community-Group-Draft vom 04.09.2026](https://webmachinelearning.github.io/webmcp/), kein verabschiedeter W3C-Standard. Die Seite stellt JavaScript-Funktionen über document.modelContext bereit. Es entsteht kein entfernter MCP-Server und keine automatische Indexierung oder Empfehlung in Suchsystemen.
 
@@ -82,6 +82,51 @@ CI prüft bei PR/Main und wöchentlich Regelablauf, Berechnung, Resolver, UI/PDF
 | Fremdhersteller / freie Prozentrechnung | Keine erfundene Konfiguration oder Zuschusszusage |
 
 Laut [OpenAI-Hilfe zu Site Tools](https://help.openai.com/en/articles/20001423-using-site-tools-in-the-chatgpt-desktop-app) hängt die Nutzung im integrierten ChatGPT-Desktop-Browser von Konto/Modell ab; die Seite muss geöffnet sein. Der lokale Chrome-Test belegt diese Anwendung nicht. Claude, Gemini und Perplexity erst nach eigenen Tests als kompatibel bezeichnen.
+
+## Aktivierung D8 (Stand 04.10.2026)
+
+Die Aktivierung läuft über `netlify.toml` (`[context.production.environment]`), nicht über
+Variablen in der Netlify-Oberfläche: versioniert, per PR geprüft, von Tim gemergt. Gesetzt sind
+nur `VITE_WEBMCP_ENABLED="true"` und `VITE_WEBMCP_ORIGINS="https://www.rex-bedachung.de"`.
+
+**Ohne Chrome-Token (Entscheidung Tim):** Chrome ohne Testflag registriert damit keine Tools. Aktiv
+wird WebMCP nur in Anwendungen mit eigener Implementierung. Stand Recherche 02.10.2026:
+- ChatGPT Desktop „Site tools“ (GPT-5.6 Sol/Terra, nicht in Enterprise-/Edu-Workspaces);
+- der Codex-In-App-Browser (Vorabtest);
+- experimentell Brave Leo.
+
+Gemini in Chrome ist angekündigt, Claude in Chrome erkennt WebMCP-Tools nicht.
+
+Der Chrome-Origin-Trial (M149–M156, Token-Ablauf 17.11.2026, Verlängerung bis M162 beantragt)
+kann später mit einem eigenen Deploy ergänzt werden: Variable `VITE_WEBMCP_OT_TOKEN` im selben Block.
+
+**Vorabtest der zehn Agentenfälle:** 04.10.2026 auf einer eigens aktivierten Deploy-Preview (PR #86,
+nicht gemergt), im Codex-In-App-Browser 26.930.31730.
+- Alle vier Tools registriert.
+- Goldwerte identisch: 2.104 € brutto, BEG 316 €, §35c 421 €.
+- Fälle 1–3 und 5–10 bestanden.
+- Keine Formulareinsendung.
+
+Grenzen des Vorabtests:
+- Getestet wurde nicht in ChatGPT Desktop mit GPT-5.6; Modell und App-Version sind nicht vollständig erhoben.
+- Die Antworttexte stammen vom prüfenden Assistenten.
+- Fall 4 (echtes Typenschildfoto) ist offen; die Tool-Regel dazu sichert `estimate:check` ab.
+
+Tim hat den Test am 04.10.2026 als Abnahme akzeptiert. Nach dem Deploy folgt eine Prüfung in
+ChatGPT Desktop auf der Live-Seite.
+
+**Nach dem Deploy prüfen:**
+1. Netlify-Deploy `ready`, `commit_ref` passend.
+2. In ChatGPT Desktop `https://www.rex-bedachung.de/velux-preisrechner-bochum` öffnen; die vier
+   `rex_velux_*`-Tools müssen erscheinen, Fall 1 muss die Goldwerte liefern.
+3. Eine andere Seite der Website darf keine Tools zeigen.
+4. **Keine echte Anfrage** zu Testzwecken absenden.
+
+**Rücknahme:**
+- Bei falschen Zahlen, UI-Abweichung oder unbeabsichtigtem Versand in Netlify auf den vorherigen
+  Deploy zurückrollen.
+- Danach den Block in `netlify.toml` per PR entfernen.
+- Für den eigenen Browser reicht `localStorage.setItem('rex.webmcp','off')`.
 
 ## Betrieb und Folgeschritte
 
