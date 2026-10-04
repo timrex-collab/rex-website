@@ -11,6 +11,6 @@ Lies zuerst [DEPLOY-RULES.md](DEPLOY-RULES.md). Für die vorbereitete VELUX-Übe
 - Keine neuen Preise/Kosten ergänzen. VELUX ausschließlich als autorisierter oder anerkannter VELUX-Partner bezeichnen. Keine Stadtteil-, separaten Kosten-, Gewerbe- oder Roto-Clusterseiten; kein SearchAction und kein on-site AggregateRating.
 - robots.txt nur bei zwingender, separat begründeter Notwendigkeit; Redirects ausschließlich in netlify.toml; neue Routen nur mit lazy()-Import in App.tsx. Keine attached_assets-Dateien committen.
 - Förderung und Preislogik ausschließlich zentral in client/src/lib/velux pflegen. Keine eigenen Rechenwege in UI, PDF oder WebMCP. Förder-Prüffristen nicht ohne Quellenprüfung verlängern.
-- WebMCP bleibt bis zum eigenen freigegebenen Aktivierungsdeploy aus. Native Browserprüfung, Origin-Trial-Tokenprüfung und Tests mit einer KI-Anwendung sind drei verschiedene Nachweise.
+- WebMCP ist seit D8 (PR #87, 04.10.2026) im Production-Kontext aktiv, geschaltet in `netlify.toml`, ohne Chrome-Token. Weitere Änderungen daran (Token, Origins, Abschalten) nur als eigener, freigegebener Deploy. Native Browserprüfung, Origin-Trial-Tokenprüfung und Tests mit einer KI-Anwendung sind drei verschiedene Nachweise.
 
 Vor der Übergabe bzw. PR-Freigabe die im Hand-off genannten Prüfungen ausführen. Keine Kundenanfrage versenden, Anbieter buchen, Fotos übertragen oder Produktionsvariablen setzen, solange dies nicht gesondert beauftragt ist.

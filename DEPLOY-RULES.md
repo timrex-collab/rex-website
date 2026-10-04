@@ -214,7 +214,7 @@ D-IndexNow · D-Sitemap-Refresh (1+2) · Repo-Fix · B1/B2 · Meta-Fix · P2.1�
 D-IndexNow-CI · Innung-Trust · BEG-1 bis BEG-4 · GSC-Meta-1 · GSC-Schema-1 ·
 Interne Verlinkung · GEO-Pflege · ExpertenBlock-Rollout · Paket 4a · Paket 5 · GSC-Meta-2 ·
 Paket 6 · GSC-Meta-3 · Schema-/Terminologie-Hygiene · Folgepaket §8 · Chunk-Robustheit ·
-VELUX D1–D7 · Förder-Bereinigung R1–R4.
+VELUX D1–D8 · Förder-Bereinigung R1–R4 · Doku/llms nach R1–R4.
 
 > **Stand 20.08.2026:** Die Tabelle hatte Lücken — von PR #18 bis PR #47 waren nur BEG-1,
 > BEG-2, BEG-4 und GSC-Meta-1 eingetragen; 18 weitere Deploy-Zeilen (20 gemergte PRs)
@@ -284,6 +284,21 @@ VELUX D1–D7 · Förder-Bereinigung R1–R4.
 > durch Tim. Förder-Wiedervorlage vor dem 31.12.2026: `estimate:check` meldet ab dem
 > 16.11.2026 einen Hinweis im Wochenlauf.
 >
+> **Stand 04.10.2026 (nach PR #87, VELUX D8):** WebMCP ist im Production-Kontext aktiv,
+> geschaltet über `netlify.toml` (`[context.production.environment]`), **ohne
+> Chrome-Origin-Trial-Token** (Entscheidung Tim, 04.10.2026). Die vier Tools registrieren
+> sich nur auf `https://www.rex-bedachung.de/velux-preisrechner-bochum` und nur in
+> Anwendungen mit eigener WebMCP-Implementierung (u. a. ChatGPT Desktop „Site tools“);
+> Chrome ohne Testflag, Deploy-Previews und Branch-Deploys bleiben aus. Vorabtest auf einer
+> eigens aktivierten Preview (PR #86, nicht gemergt) im Codex-In-App-Browser, von Tim als
+> Abnahme akzeptiert; Grenzen in `WEBMCP.md`. **Offen:** Sichtprüfung in ChatGPT Desktop
+> auf der Live-Seite (Tim). Gemessen wird die Nutzung nicht (keine Telemetrie).
+> Die Doku-PR #85 trug die Gründach-Korrektur in `llms*.txt` und lief deshalb als Deploy.
+> **Nächstes 48-h-Fenster:** ab **06.10.2026 11:01 MESZ**.
+> **Als Nächstes vorgesehen:** kein funktionales Paket. Wiedervorlagen: Förderprüfung vor dem
+> 31.12.2026 (Hinweis ab 16.11.2026), Chrome-Origin-Trial (Token-Ablauf 17.11.2026,
+> Verlängerung bis M162 beantragt) nur bei Bedarf als eigener Deploy.
+>
 > **Zwei Post-Deploy-Schritte laufen seit 31.08.2026 automatisch:** IndexNow (seit 07/2026)
 > und der Prerender-Check (Action `prerender-check.yml`, siehe unten). Nach diesem Deploy
 > waren beide grün, ohne Handarbeit.
@@ -341,6 +356,8 @@ VELUX D1–D7 · Förder-Bereinigung R1–R4.
 | **R2 Förderung** | Richtlinie BEG EM vom **17.08.2026** (BAnz AT 27.08.2026 B1, rückwirkend ab 21.07.2026) statt Entwurfsstand 17.07.2026; Stand September 2026 auf Förderseite und in `llms*.txt`; `llms*.txt` mit erster Wohneinheit und neutralem, vollständigem §35c; FAQ mit erster Wohneinheit und Vertrag mit Förderbedingung; WPB-Bonus ab 2027 nur für Dämmung, nicht für Fenster; Fallstudie 7.600 € als Antrag nach alter Richtlinie gekennzeichnet (Altfall, Bestätigung Tim); Steildach-Fallstudie ohne „Zuschuss gesichert“; GModG statt GEG auf zwei Seiten | ✅ live (PR #82, gemergt 25.09.2026 23:13:37 MESZ; Stufe B, 8 Dateien; Gate eingehalten: **54 h 24 min** nach R1; Netlify `6ab6e402…`, `commit_ref 5d874b2`, `published_at 23:14:15 MESZ`, `state ready`, `plugin_state success`, Secret-Scan 723/0; IndexNow-Lauf #53 grün; Checks-Lauf #40 grün; Prerender-Check-Lauf #14 grün) — **Merge durch Tim** |
 | **R3 Förderung** | Rechnercode, Förderregeln unverändert (Goldwert 2.104 € brutto): Anfrage (Netlify-Formular) trägt beide Alternativen, lesbare Förder-Check-Antworten, Annahmen und Regelstand statt Rohcodes; mailto-Ersatzweg behauptet keinen PDF-Anhang mehr; „Höchstgrenze erste Wohneinheit/Jahr“ und §35c-Labels aus `TAX35C` statt hartcodiert; Förder-Check-Hinweise zentral in `content.ts` (gemeinsam mit dem WebMCP-Schema); WebMCP-Geltungsbereich „erste Wohneinheit; §35c nur bei Selbstnutzung“ (`scope: first_dwelling_unit`); `estimate:check` meldet ab 45 Tagen vor `validThrough` einen GitHub-Hinweis; UI-Smoke prüft Anfrage- und mailto-Text | ✅ live (PR #83, gemergt 27.09.2026 23:49:34 MESZ; Stufe B, 6 Dateien; Gate eingehalten: **48 h 35 min** nach R2; Netlify `6ab98f6f…`, `commit_ref 9f15133`, `published_at 23:50:10 MESZ`, `state ready`, `plugin_state success`, Secret-Scan 723/0; IndexNow-Lauf #54 grün; Checks-Lauf #42 grün; Prerender-Check-Lauf #15 grün) — **Merge durch Tim**; WebMCP nicht aktiviert |
 | **R4 Förderung** | Neuer CI-Schritt `npm run foerder:check` samt Selbsttest: zwölf Regeln gegen die belegten Falschformulierungen, geprüft über Seiten, Komponenten und `llms*.txt`. Der erste Lauf fand fünf weitere Stellen (Höchstbeträge „je Wohneinheit“ auf vier Seiten, „doppelt förderbar“ und KfW 270 auf der Photovoltaik-Seite, KfW 297/298 als Neubauprogramm auf der Flachdach-Seite), hier korrigiert. `npm run dev:web` (Vite direkt, läuft unter Windows) und `npm run preview` ergänzt | ✅ live (PR #84, gemergt 30.09.2026 07:25:10 MESZ; Stufe B, 8 Dateien; Gate eingehalten: **55 h 35 min** nach R3; Netlify `6abc9d3d…`, `commit_ref 3681374`, `published_at 07:25:50 MESZ`, `state ready`, `plugin_state success`, Secret-Scan 726/0; IndexNow-Lauf #55 grün; Checks-Lauf #45 grün, erstmals mit Förder-Check; Prerender-Check-Lauf #16 grün) — **Merge durch Tim** |
+| **Doku/llms nach R1–R4** | Deploy-Log und Plandokument zu R1–R4, README (`dev:web`); in `llms.txt`/`llms-full.txt` das Gründach nicht mehr pauschal „KfW-gefördert“, sondern BEG EM (BAFA) im Rahmen einer energetischen Sanierung; neue `foerder:check`-Regel `gruendach-kfw` (13 Regeln). Wegen der `llms*.txt` als Deploy geführt | ✅ live (PR #85, gemergt 02.10.2026 10:58:33 MESZ; Stufe A, 6 Dateien; Gate eingehalten: **51 h 33 min** nach R4; Netlify `6abf723b…`, `commit_ref d1629ea`, `published_at 10:59:10 MESZ`, `state ready`, `plugin_state success`, Secret-Scan 728/0; IndexNow-Lauf #56 grün; Checks-Lauf #47 grün; Prerender-Check-Lauf #18 grün) — **Merge durch Tim**. Netlify lud 66 Dateien neu, weil das Builddatum im `ExpertenBlock` in den Oktober wechselte |
+| **VELUX D8** | WebMCP-Aktivierung ohne Codeänderung: `netlify.toml` setzt nur im Production-Kontext `VITE_WEBMCP_ENABLED="true"` und `VITE_WEBMCP_ORIGINS="https://www.rex-bedachung.de"`. Kein Chrome-Origin-Trial-Token (Entscheidung Tim). Vorabtest der zehn Agentenfälle auf einer eigens aktivierten Deploy-Preview (PR #86, geschlossen) im Codex-In-App-Browser 26.930.31730: alle vier Tools registriert, Goldwerte identisch (2.104 € / 316 € / 421 €), Fälle 1–3 und 5–10 bestanden, Fall 4 (echtes Foto) offen; von Tim als Abnahme akzeptiert. Lokal geprüft: Tools nur auf `www…/velux-preisrechner-bochum`, nicht auf der Apex-Domain, fremden Previews oder anderen Seiten; kein Origin-Trial-Meta-Tag | ✅ live (PR #87, gemergt 04.10.2026 11:00:43 MESZ; Stufe C, 2 Dateien; Gate eingehalten: **48 h 2 min** nach #85; Netlify `6ac215bc…`, `commit_ref bf608e0`, `published_at 11:01:23 MESZ`, `state ready`, `plugin_state success`, Secret-Scan 729/0; IndexNow-Lauf #57 grün; Checks-Lauf #50 grün; Prerender-Check-Lauf #19 grün) — **Merge durch Tim**. Netlify lud 66 Dateien neu, der Production-Build unterscheidet sich vom Preview-Build durch das Flag. **Offen:** Sichtprüfung in ChatGPT Desktop auf der Live-Seite |
 
 > **👤 Abweichung von §5.5 (28. und 30.08.2026) — PR #56 und #61 von Claude gemergt:**
 > Abschnitt 5, Punkt 5 lautet „Merge ausschließlich durch Tim. Kein Direct-Push auf `main`,
