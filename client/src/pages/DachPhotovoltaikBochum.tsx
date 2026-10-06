@@ -55,7 +55,7 @@ const faqItems = [
   },
   {
     question: "Kann ich Dachsanierung und PV-Förderung kombinieren?",
-    answer: "Ja. Die Dachsanierung wird über BEG EM (BAFA) mit 15 % Zuschuss gefördert (mit iSFP bis zu 10.500 € für die erste Wohneinheit). Die PV-Anlage läuft separat über den KfW-Förderkredit 270 und die EEG-Einspeisevergütung. Beide Wege betreffen unterschiedliche Maßnahmen und sind kombinierbar – nur das PV-Pflichtmaß der NRW-Solardachpflicht wird nicht zusätzlich bezuschusst.",
+    answer: "Ja. Die Dachsanierung wird über BEG EM (BAFA) mit 15 % Zuschuss gefördert (mit iSFP bis zu 10.500 € für die erste Wohneinheit). Die PV-Anlage läuft separat über den KfW-Förderkredit 270 und die EEG-Einspeisevergütung. Beide Wege betreffen unterschiedliche Maßnahmen und sind kombinierbar. Die NRW-Solardachpflicht schließt die EEG-Einspeisevergütung und eine Finanzierung über KfW 270 nicht grundsätzlich aus. Ob zusätzliche Zuschüsse möglich sind, hängt vom jeweiligen Förderprogramm ab.",
   },
   {
     question: "Was unterscheidet Braas PV Premium von einer normalen Aufdach-Anlage?",
@@ -373,7 +373,7 @@ export default function DachPhotovoltaikBochum() {
           <div className="bg-gradient-to-br from-blue-900 to-blue-700 text-white rounded-xl p-7">
             <h3 className="text-lg font-bold mb-3">Dachsanierung + PV: zwei getrennte Förderwege</h3>
             <p className="text-blue-100 text-sm leading-relaxed mb-3">Die energetische Dachsanierung ist über BEG EM (BAFA) als Einzelmaßnahme förderrelevant – 15 % Grundförderung, mit iSFP maximal 10.500 € für die erste Wohneinheit und Jahr. Die PV-Anlage selbst wird separat gefördert: über den KfW-Förderkredit 270 und die EEG-Einspeisevergütung. Beide Wege betreffen unterschiedliche Maßnahmen und sind kombinierbar.</p>
-            <p className="text-blue-200 text-sm leading-relaxed mb-4">Das PV-Pflichtmaß der NRW-Solardachpflicht wird als gesetzliche Vorgabe grundsätzlich nicht zusätzlich bezuschusst.</p>
+            <p className="text-blue-200 text-sm leading-relaxed mb-4">Die NRW-Solardachpflicht schließt die EEG-Einspeisevergütung und eine Finanzierung über KfW 270 nicht grundsätzlich aus. Ob zusätzliche Zuschüsse möglich sind, hängt vom jeweiligen Förderprogramm ab. In der NRW-Modernisierungsförderung ist nur der PV-Anteil oberhalb des gesetzlichen Mindestmaßes förderrelevant.</p>
             <Link href="/foerderung" className="inline-flex items-center gap-1 text-blue-200 hover:text-white text-sm underline">
               Alle Fördermöglichkeiten im Überblick <ArrowRight className="w-3 h-3" />
             </Link>

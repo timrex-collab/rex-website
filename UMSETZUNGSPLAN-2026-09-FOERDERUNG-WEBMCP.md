@@ -62,6 +62,11 @@ Entscheidungen von Tim (23.09.2026):
 - **Förder-Wiedervorlage vor dem 31.12.2026:** Richtlinie, Haushalt 2027 und §35c an den
   Primärquellen prüfen und erst danach `lastReviewedAt`/`validThrough` in `funding.ts`
   verschieben. `estimate:check` meldet ab dem 16.11.2026 im Wochenlauf einen Hinweis.
-- **Fachlich unbestätigt:** Auf `DachPhotovoltaikBochum` steht, dass das PV-Pflichtmaß der
-  NRW-Solardachpflicht nicht zusätzlich bezuschusst wird.
+- **Geprüft am 04.10.2026, Korrektur vorbereitet:** Der Satz auf `DachPhotovoltaikBochum`, das
+  PV-Pflichtmaß der NRW-Solardachpflicht werde nicht zusätzlich bezuschusst, war zu pauschal.
+  Die Pflicht selbst (§ 42a BauO NRW, SAN-VO) enthält kein Förderverbot; Ausschlüsse stehen in
+  den einzelnen Richtlinien (NRW-Modernisierungsförderung Nr. 4.4.5.1: nur oberhalb des
+  gesetzlichen Maßes; progres.nrw Nr. 4.4; kommunal z. B. Solares Bonn Nr. 3.3.2). EEG-Vergütung
+  und KfW 270 sind nicht grundsätzlich ausgeschlossen. Förderabsatz und FAQ wurden präzisiert;
+  live erst nach Merge durch Tim.
 - **Rechtliche Einordnung** des Datenschutzhinweises aus `VELUX-EXPORT-GATE.md` §3.5.
