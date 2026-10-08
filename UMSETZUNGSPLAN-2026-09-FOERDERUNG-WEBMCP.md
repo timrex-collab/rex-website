@@ -67,6 +67,8 @@ Entscheidungen von Tim (23.09.2026):
   Die Pflicht selbst (§ 42a BauO NRW, SAN-VO) enthält kein Förderverbot; Ausschlüsse stehen in
   den einzelnen Richtlinien (NRW-Modernisierungsförderung Nr. 4.4.5.1: nur oberhalb des
   gesetzlichen Maßes; progres.nrw Nr. 4.4; kommunal z. B. Solares Bonn Nr. 3.3.2). EEG-Vergütung
-  und KfW 270 sind nicht grundsätzlich ausgeschlossen. Förderabsatz und FAQ wurden präzisiert;
-  live erst nach Merge durch Tim.
-- **Rechtliche Einordnung** des Datenschutzhinweises aus `VELUX-EXPORT-GATE.md` §3.5.
+  und KfW 270 sind nicht grundsätzlich ausgeschlossen. Förderabsatz und FAQ präzisiert, live seit
+  PR #90 (06.10.2026).
+- **Rechtliche Einordnung** des Datenschutzhinweises aus `VELUX-EXPORT-GATE.md` §3.5: geprüft
+  04.10.2026 (KI-gestützt), umgesetzt mit PR #91, live seit 08.10.2026. Offen nur die
+  Aufbewahrungsdauer der Netlify-Server-Logs.
