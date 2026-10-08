@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="de">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="robots" content="noindex, nofollow" />
+    <title>Formulardefinitionen</title>
+  </head>
+  <body>
+    <!--
+      Nur fuer die Formularerkennung von Netlify beim Deploy. Wird nirgends verlinkt.
+      Die Definitionen standen frueher in index.html und damit in jeder SPA-Antwort,
+      auch fuer unbekannte Pfade wie /wp-login.php. Scanner haben dort das versteckte
+      Formular gefunden und leer abgeschickt. Die echten Formulare rendert React.
+      Felder muessen mit ContactForm.tsx und VeluxPreisrechner.tsx uebereinstimmen.
+    -->
+    <form name="kontakt" method="POST" data-netlify="true" netlify-honeypot="bot-field" hidden>
+      <input type="hidden" name="form-name" value="kontakt" />
+      <input name="bot-field" />
+      <input type="text" name="name" />
+      <input type="email" name="email" />
+      <input type="tel" name="telefon" />
+      <textarea name="nachricht"></textarea>
+    </form>
+
+    <form name="velux-preisrechner" method="POST" data-netlify="true" netlify-honeypot="bot-field" hidden>
+      <input type="hidden" name="form-name" value="velux-preisrechner" />
+      <input name="bot-field" />
+      <input type="text" name="name" />
+      <input type="email" name="email" />
+      <input type="tel" name="telefon" />
+      <input type="text" name="strasse" />
+      <input type="text" name="plz" />
+      <input type="text" name="ort" />
+      <textarea name="nachricht"></textarea>
+      <textarea name="konfiguration"></textarea>
+    </form>
+  </body>
+</html>
