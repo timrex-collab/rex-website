@@ -70,7 +70,7 @@ try {
   assert.equal(await calc.getByRole('button', { name: 'Nur PDF erstellen', exact: true }).count(), 0, 'Anonymer Export ist entfallen');
   assert.equal(await calc.getByRole('button', { name: /PDF erneut öffnen/ }).count(), 0, 'Gate ist vor dem Versand zu');
   assert.match(await calc.innerText(), /Verfügbar, sobald Sie Ihre Anfrage abgeschickt haben/);
-  assert.match(await calc.innerText(), /Keine Weitergabe an Dritte/);
+  assert.match(await calc.innerText(), /Hosting- und Formulardienstleister Netlify/);
   assert.equal(await calc.locator('a[href="/datenschutz"]').count(), 1, 'Datenschutzhinweis verlinkt');
 
   /* ── D7, Fall 2: Direktdruck der Seite zeigt keine Zahlen ─────────────────── */

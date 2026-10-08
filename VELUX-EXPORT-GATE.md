@@ -273,11 +273,16 @@ bleibt ausgeschaltet — kein Tool exportiert ein PDF, das Gate ist dort also ni
 
 ### Offen — durch den Deploy nicht erledigt
 
-1. **Rechtliche Einordnung des Datenschutzhinweises.** §3.5 hält fest, eine Vorab-Checkbox
-   sei nicht nötig. Das ist eine rechtliche Bewertung, keine technische. Der Hinweis mit
-   Link auf `/datenschutz` steht und ist gegenüber dem bisherigen Zustand in jedem Fall die
-   bessere Ausgangslage; ob es dabei bleibt, gehört bestätigt. Der Punkt stand vor dem
-   Merge offen und steht es weiterhin — der Deploy hat ihn nicht beantwortet.
+1. **Rechtliche Einordnung des Datenschutzhinweises — geprüft 04.10.2026.** KI-gestützte
+   vorläufige Einschätzung (Codex, keine Rechtsberatung), Unterlage „Datenschutz-Prüfung
+   VELUX-Preisrechner“: Eine Checkbox ist nicht nötig (Art. 6 Abs. 1 lit. b DSGVO). Änderungsbedarf
+   bei Hinweistext (Netlify nennen), Datenschutzerklärung (Netlify, USA-Transfer, Rechtsgrundlagen,
+   Speicherdauer, verantwortliche Stelle, Beschwerderecht) und Pflichtfeldkennzeichnung — umgesetzt
+   im Paket „Datenschutz Preisrechner“. Die Einschätzung empfahl zusätzlich, das PDF von der
+   Anfrage zu entkoppeln. **Entscheidung Tim (04.10.2026): Kopplung bleibt wie live.**
+   Löschfristen (Entscheidung Tim): Netlify Forms 3 Monate, Anfragen ohne Auftrag im Postfach
+   12 Monate, Aufträge nach gesetzlichen Aufbewahrungspflichten. Das Löschen bei Netlify ist
+   Handarbeit; Netlify löscht nicht automatisch.
 2. **Redaktionelle Restschuld in `VELUX-HANDOFF.md` §6.** Der historische Text vom
    06.09.2026 nennt den Aktivierungsdeploy weiterhin „D7"; der Nachtrag vom 18.09.2026
    davor stellt klar, dass damit D8 gemeint ist. Bewusst nicht angefasst — die Datei gehört

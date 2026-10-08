@@ -24,8 +24,10 @@ export const EXPORT_GATE_TEXT = {
     "Ihre Anfrage ist eingegangen. Das Druckfenster wurde vom Browser blockiert — " +
     "öffnen Sie es über „PDF erneut öffnen“.",
   privacy:
-    "Ihre Angaben verwenden wir ausschließlich zur Bearbeitung dieser Anfrage und zur " +
-    "Angebotserstellung. Keine Weitergabe an Dritte.",
+    "Mit dem Absenden erhält Rex Bedachungs GmbH Ihre Kontaktdaten, Konfiguration, " +
+    "Kostenschätzung und Antworten zur Förderung zur Bearbeitung Ihrer Angebotsanfrage. " +
+    "Das Formular wird über unseren Hosting- und Formulardienstleister Netlify verarbeitet. " +
+    "Empfänger, Datenübermittlung in die USA, Speicherdauer und Ihre Rechte:",
   printHint:
     "Die Kostenschätzung erhalten Sie als PDF, sobald Sie Ihre Anfrage im Preisrechner " +
     "abgeschickt haben. Fragen beantworten wir auch telefonisch unter 0234 / 58 31 00.",
