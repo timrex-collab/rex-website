@@ -340,6 +340,25 @@ VELUX D1–D8 · Förder-Bereinigung R1–R4 · Doku/llms nach R1–R4.
 > `published_at 20:39:22 MESZ`. Wirkung wird bei der Löschprüfung am 01.01.2027 mitgeprüft.
 > **Nächstes 48-h-Fenster:** ab **12.10.2026 20:40 MESZ**.
 > **Als Nächstes vorgesehen:** kein funktionales Paket.
+>
+> **Stand 12.10.2026 (nach PR #97, Indach-PV und BEG):** PV-Seite: Produktkarten Braas
+> Turmalin/Tegalit korrigiert (PV-Module anstelle der Ziegel/Dachsteine statt „Dachziegel mit
+> integrierter PV-Technologie“), Förderblock und FAQ um den Sonderfall Indach-PV ergänzt
+> (BEG EM als Teil der Gebäudehülle bei geförderter Dachdämmung, nur ohne EEG-Einspeisevergütung
+> für diese Anlage); Förderseite: FAQ Neueindeckung und Linkkarte präzisiert. Grundlage:
+> BEG-Infoblatt Version 11.0 Nr. 2/7/9.3, Richtlinie BEG EM vom 17.08.2026, Braas BMI 1596 und
+> BMI 1160 (Recherche Codex 12.10.2026, Bewertung Claude). Netlify `6acc1614…`,
+> `commit_ref dde516b`, `published_at 01:05:24 MESZ`.
+> **⚠️ 48-h-Gate verletzt:** nur **28 h 26 min** nach dem Produktionsdeploy von #94
+> (10.10.2026 20:39:22 MESZ). Ursache: Claude hat im PR „Frühester Merge: sofort“ angegeben,
+> ohne die aktuelle Uhrzeit zu prüfen; das Fenster öffnete erst am 12.10.2026 20:40 MESZ.
+> Tim hat sich auf diese Angabe verlassen. Keine Notfall-Korrektur im Sinne von §4 (keine
+> falsche Zahl). Entscheidung: kein Rollback, weil ein Rollback ein weiterer Produktionsdeploy
+> wäre. Gegenmaßnahme: Claude prüft vor jeder Merge-Angabe die Uhrzeit (`date`) und nennt das
+> Fenster nur noch als festes Datum mit Uhrzeit.
+> **Nächstes 48-h-Fenster:** ab **14.10.2026 01:06 MESZ** (volle Kadenz ab diesem Deploy).
+> **Als Nächstes vorgesehen:** kein funktionales Paket. Neuere Fassung des BEG-Infoblatts wird
+> mit der Wiedervorlage am 16.11.2026 geprüft.
 
 | Deploy | Inhalt | Status |
 |---|---|---|
@@ -399,6 +418,7 @@ VELUX D1–D8 · Förder-Bereinigung R1–R4 · Doku/llms nach R1–R4.
 | **PV-Förderaussage** | `DachPhotovoltaikBochum`: Förderabsatz und FAQ „Kann ich Dachsanierung und PV-Förderung kombinieren?“ präzisiert. Die NRW-Solardachpflicht schließt EEG-Vergütung und KfW 270 nicht grundsätzlich aus; Zuschüsse hängen vom jeweiligen Programm ab; in der NRW-Modernisierungsförderung ist nur der PV-Anteil oberhalb des gesetzlichen Mindestmaßes förderrelevant (FRL Nr. 4.4.5.1). Geprüft 04.10.2026 an Förderrichtlinie Öffentliches Wohnen NRW, progres.nrw Nr. 4.4, BauO NRW / SAN-VO, KfW-270-Merkblatt, BEG-Infoblatt 11.0 und Solares Bonn Nr. 3.3.2. Keine Notfall-Korrektur (Aussage zu pauschal, keine falsche Zahl) | ✅ live (PR #90, gemergt 06.10.2026 11:34:53 MESZ; Stufe A, 2 Dateien; Gate eingehalten: **48 h 34 min** nach dem letzten Produktionsdeploy (#87; das Doku-Deploy #89 lud keine neuen Dateien); Netlify `6ac4c0bf…`, `commit_ref 3e92b3c`, `published_at 11:35:36 MESZ`, `state ready`, `plugin_state success`, Prerender-Function vorhanden, Secret-Scan 731/0; IndexNow-Lauf #60 grün; Checks-Lauf #58 grün; Prerender-Check-Lauf #20 grün) — **Merge durch Tim** |
 | **Datenschutz Preisrechner** | Umsetzung der Datenschutz-Prüfung vom 04.10.2026 (KI-gestützt, keine Rechtsberatung). `export-gate.ts`: Hinweis am Anfragebutton nennt Kontaktdaten, Konfiguration, Kostenschätzung, Förderantworten und Netlify als Hosting- und Formulardienstleister („Keine Weitergabe an Dritte“ entfällt). `VeluxPreisrechner.tsx`: „E-Mail“ ohne Stern, Mindestangabe „E-Mail oder Telefon“, Adresse optional. `Datenschutz.tsx`: Netlify/Netlify Forms, AVV, USA-Transfer (DPF, ergänzend SCC), verantwortliche Stelle (behebt toten Verweis), Rechtsgrundlagen Logs/Kontaktformular, Abschnitte Preisrechner und Speicherdauer (Netlify 3 Monate, Postfach ohne Auftrag 12 Monate), Beschwerderecht LDI NRW. `velux-ui-smoke.mjs` an neuen Hinweistext angepasst. PDF-Kopplung bewusst unverändert (Entscheidung Tim) | ✅ live (PR #91, gemergt 08.10.2026 13:38:36 MESZ; Stufe B, 5 Dateien; Gate eingehalten: **50 h 3 min** nach #90 (#92 Doku ohne neue Dateien); Netlify `6ac780be…`, `commit_ref 5c7114d`, `published_at 13:39:14 MESZ`, `state ready`, `plugin_state success`, Prerender-Function vorhanden, Secret-Scan 734/0; IndexNow-Lauf #62 grün; Checks-Lauf #61 grün; Prerender-Check-Lauf #21 grün) — **Merge durch Tim** |
 | **Spamschutz Formulare** | `client/index.html`: versteckte Formulardefinitionen `kontakt` und `velux-preisrechner` entfernt. `client/public/formulare.html` (neu, `noindex`, nirgends verlinkt): dieselben Definitionen mit identischen Feldern plus `bot-field`, von Netlify beim Deploy erkannt. Ursache: WordPress-Scanner riefen `/wp-login.php` auf, erhielten die SPA-`index.html` mit Status 200 und schickten das versteckte Formular leer ab (7 von 11 Preisrechner-Einträgen). React-Formulare unverändert. Vorsorglich Stufe C (neue öffentlich erreichbare Datei) | ✅ live (PR #94, gemergt 10.10.2026 20:38:47 MESZ; Stufe C, 2 Dateien; Gate eingehalten: **55 h** nach #91 (#93 Doku ohne neue Dateien); Netlify `6aca8639…`, `commit_ref eb433b4`, `published_at 20:39:22 MESZ`, `state ready`, `plugin_state success`, Prerender-Function vorhanden, Secret-Scan 737/0; IndexNow-Lauf #64 grün; Checks-Lauf #65 grün; Prerender-Check-Lauf #22 grün; Formulartests Preview 08.10. und www 12.10. bestanden, Testeinträge gelöscht) — **Merge durch Tim** |
+| **Indach-PV und BEG** | `DachPhotovoltaikBochum`: Produktkarten Turmalin/Tegalit korrigiert (Braas PV Premium = PV-Module anstelle der Ziegel/Dachsteine; „Keramikoptik“ und unbelegtes „Bewährt für großflächige Satteldächer“ entfernt); Förderblock um „Sonderfall Indach-PV“ und FAQ um die Ausnahme ergänzt (BEG EM förderrelevant als Teil der Gebäudehülle bei geförderter Dachdämmung, nur ohne EEG-Einspeisevergütung für diese Anlage). `Foerderung`: FAQ Neueindeckung um Indach-PV ergänzt, Linkkarte „Dach & Photovoltaik“ präzisiert. Quellen: BEG-Infoblatt Version 11.0 (Nr. 2, 7, 9.3), Richtlinie BEG EM vom 17.08.2026 (Nr. 8.6, TMA 1.1), Braas BMI 1596 und BMI 1160 | ✅ live (PR #97, gemergt 12.10.2026 01:04:51 MESZ; Stufe A, 2 Dateien; **⚠️ Gate verletzt: 28 h 26 min nach #94** — falsche Fensterangabe von Claude im PR, kein Rollback, siehe Stand 12.10.2026; Netlify `6acc1614…`, `commit_ref dde516b`, `published_at 01:05:24 MESZ`, `state ready`, `plugin_state success`, Prerender-Function vorhanden, Secret-Scan 739/0; IndexNow-Lauf #67 grün; Checks-Lauf #71 grün; Prerender-Check-Lauf #23 grün) — **Merge durch Tim** |
 
 > **👤 Abweichung von §5.5 (28. und 30.08.2026) — PR #56 und #61 von Claude gemergt:**
 > Abschnitt 5, Punkt 5 lautet „Merge ausschließlich durch Tim. Kein Direct-Push auf `main`,
