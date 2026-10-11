@@ -104,7 +104,7 @@ const faqItems = [
   },
   {
     question: "Kann eine Neueindeckung des Dachs förderrelevant sein?",
-    answer: "Wenn die Neueindeckung technisch notwendig für die Dämmmaßnahme ist – etwa bei einer Aufsparrendämmung – kann sie als Umfeldmaßnahme förderrelevant sein. Eine reine optische Neueindeckung ohne energetische Verbesserung wird nicht gefördert.",
+    answer: "Wenn die Neueindeckung technisch notwendig für die Dämmmaßnahme ist – etwa bei einer Aufsparrendämmung – kann sie als Umfeldmaßnahme förderrelevant sein. Das kann auch eine Indach-PV-Eindeckung sein, sofern für sie keine EEG-Vergütung bezogen wird. Eine reine optische Neueindeckung ohne energetische Verbesserung wird nicht gefördert.",
   },
   {
     question: "Welche Dachfenster sind förderrelevant?",
@@ -789,7 +789,7 @@ export default function Foerderung() {
             </a>
             <a href="/dach-photovoltaik-bochum" className="block p-5 bg-white rounded-xl border border-gray-200 hover:border-primary hover:shadow-md transition-all">
               <div className="font-semibold text-gray-900 mb-1">Dach &amp; Photovoltaik</div>
-              <div className="text-sm text-gray-500">PV-Vorbereitung – mit BEG EM und KfW kombinierbar.</div>
+              <div className="text-sm text-gray-500">Dachsanierung mit PV – Indach-PV kann zur geförderten Gebäudehülle zählen.</div>
             </a>
             <a href="/solarpflicht" className="block p-5 bg-white rounded-xl border border-gray-200 hover:border-primary hover:shadow-md transition-all">
               <div className="font-semibold text-gray-900 mb-1">NRW-Solarpflicht</div>

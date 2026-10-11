@@ -55,7 +55,7 @@ const faqItems = [
   },
   {
     question: "Kann ich Dachsanierung und PV-Förderung kombinieren?",
-    answer: "Ja. Die Dachsanierung wird über BEG EM (BAFA) mit 15 % Zuschuss gefördert (mit iSFP bis zu 10.500 € für die erste Wohneinheit). Die PV-Anlage läuft separat über den KfW-Förderkredit 270 und die EEG-Einspeisevergütung. Beide Wege betreffen unterschiedliche Maßnahmen und sind kombinierbar. Die NRW-Solardachpflicht schließt die EEG-Einspeisevergütung und eine Finanzierung über KfW 270 nicht grundsätzlich aus. Ob zusätzliche Zuschüsse möglich sind, hängt vom jeweiligen Förderprogramm ab.",
+    answer: "Ja. Die Dachsanierung wird über BEG EM (BAFA) mit 15 % Zuschuss gefördert (mit iSFP bis zu 10.500 € für die erste Wohneinheit). Die PV-Anlage läuft separat über den KfW-Förderkredit 270 und die EEG-Einspeisevergütung. Beide Wege betreffen unterschiedliche Maßnahmen und sind kombinierbar. Die NRW-Solardachpflicht schließt die EEG-Einspeisevergütung und eine Finanzierung über KfW 270 nicht grundsätzlich aus. Ob zusätzliche Zuschüsse möglich sind, hängt vom jeweiligen Förderprogramm ab. Ausnahme: Ersetzt eine Indach-PV wie Braas PV Premium die Dachdeckung bei einer geförderten Dachdämmung, kann sie über BEG EM förderrelevant sein. Dann allerdings ohne EEG-Einspeisevergütung für diese Anlage.",
   },
   {
     question: "Was unterscheidet Braas PV Premium von einer normalen Aufdach-Anlage?",
@@ -248,14 +248,14 @@ export default function DachPhotovoltaikBochum() {
               <img src="/images/braas-pv-premium-turmalin-dachintegrierte-photovoltaik-bochum.webp" alt="Braas PV Premium Turmalin Dachziegel" className="w-full h-52 object-cover" />
               <div className="p-5">
                 <h3 className="text-lg font-bold mb-2">Braas Turmalin</h3>
-                <p className="text-sm text-muted-foreground">Dachziegel mit integrierter PV-Technologie. Hochwertige Keramikoptik, gleichzeitig Stromerzeugung. Ideal für sichtbare Dachflächen.</p>
+                <p className="text-sm text-muted-foreground">PV-Module anstelle der Dachziegel, eingebunden in eine Eindeckung mit Braas Turmalin. Ruhige Dachfläche, gleichzeitig Stromerzeugung.</p>
               </div>
             </div>
             <div className="bg-card border border-border rounded-xl overflow-hidden">
               <img src="/images/braas-pv-premium-tegalit-dachintegrierte-photovoltaik-bochum.webp" alt="Braas PV Premium Tegalit Dachstein" className="w-full h-52 object-cover" />
               <div className="p-5">
                 <h3 className="text-lg font-bold mb-2">Braas Tegalit</h3>
-                <p className="text-sm text-muted-foreground">Dachstein mit integrierter PV-Technologie. Flache, moderne Optik. Bewährt für großflächige Satteldächer.</p>
+                <p className="text-sm text-muted-foreground">PV-Module anstelle der Dachsteine, eingebunden in eine Eindeckung mit Braas Tegalit. Flache, moderne Optik.</p>
               </div>
             </div>
           </div>
@@ -374,6 +374,7 @@ export default function DachPhotovoltaikBochum() {
             <h3 className="text-lg font-bold mb-3">Dachsanierung + PV: zwei getrennte Förderwege</h3>
             <p className="text-blue-100 text-sm leading-relaxed mb-3">Die energetische Dachsanierung ist über BEG EM (BAFA) als Einzelmaßnahme förderrelevant – 15 % Grundförderung, mit iSFP maximal 10.500 € für die erste Wohneinheit und Jahr. Die PV-Anlage selbst wird separat gefördert: über den KfW-Förderkredit 270 und die EEG-Einspeisevergütung. Beide Wege betreffen unterschiedliche Maßnahmen und sind kombinierbar.</p>
             <p className="text-blue-200 text-sm leading-relaxed mb-4">Die NRW-Solardachpflicht schließt die EEG-Einspeisevergütung und eine Finanzierung über KfW 270 nicht grundsätzlich aus. Ob zusätzliche Zuschüsse möglich sind, hängt vom jeweiligen Förderprogramm ab. In der NRW-Modernisierungsförderung ist nur der PV-Anteil oberhalb des gesetzlichen Mindestmaßes förderrelevant.</p>
+            <p className="text-blue-200 text-sm leading-relaxed mb-4">Sonderfall Indach-PV: Ersetzen PV-Elemente wie Braas PV Premium die Dachdeckung im Rahmen einer geförderten Dachdämmung, können sie als Teil der Gebäudehülle über BEG EM förderrelevant sein. Voraussetzung ist unter anderem, dass für diese Anlage keine EEG-Einspeisevergütung in Anspruch genommen wird. Ob sich das im Einzelfall lohnt, klären wir gemeinsam mit Ihrem Energieeffizienz-Experten.</p>
             <Link href="/foerderung" className="inline-flex items-center gap-1 text-blue-200 hover:text-white text-sm underline">
               Alle Fördermöglichkeiten im Überblick <ArrowRight className="w-3 h-3" />
             </Link>
