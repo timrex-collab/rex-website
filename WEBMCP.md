@@ -110,7 +110,7 @@ nicht gemergt), im Codex-In-App-Browser 26.930.31730.
 Grenzen des Vorabtests:
 - Getestet wurde nicht in ChatGPT Desktop mit GPT-5.6; Modell und App-Version sind nicht vollständig erhoben.
 - Die Antworttexte stammen vom prüfenden Assistenten.
-- Fall 4 (echtes Typenschildfoto) ist offen; die Tool-Regel dazu sichert `estimate:check` ab.
+- Fall 4 (echtes Typenschildfoto) war offen; nachgeholt am 08.10.2026, siehe unten.
 
 Tim hat den Test am 04.10.2026 als Abnahme akzeptiert. Nach dem Deploy folgt eine Prüfung in
 ChatGPT Desktop auf der Live-Seite.
@@ -133,6 +133,26 @@ ChatGPT Desktop auf der Live-Seite.
 - **Erster Durchlauf:** Mit GPT-6 Astra (Hoch) kamen die Goldwerte von Fall 1, die Erwartungswerte
   standen aber im Prompt; das zählt nur als Indiz.
 - **Nicht dokumentiert:** die Gegenprobe auf einer anderen Seite; lokal ist sie geprüft.
+
+**Fall 4: echtes Typenschildfoto (08.10.2026, Tim, ChatGPT Desktop):**
+- **Ablauf:** Tim gab der KI einen früheren Chatverlauf und ein Foto des Typenschilds eines
+  vorhandenen Fensters. Die KI las „GGL S10 3059“, nutzte auf der Live-Seite die Tools für
+  Bestandszuordnung, Kostenschätzung und Übernahme und trug danach auf Tims ausdrücklichen
+  Wunsch Kontaktdaten und Nachricht ins Formular ein und schickte die Anfrage ab.
+- **Resolver:** Die Bildquelle führte wie vorgesehen zu `confirmation_required` mit dem Kandidaten
+  SK10 (114 × 160 cm), nicht zu `resolved`. Das Bestehenskriterium für die Website ist erfüllt.
+- **Werte:** GGU SK10 THERMO ohne Zubehör, ab 1.862 € netto / 2.216 € brutto; für THERMO kein
+  BEG- und kein §35c-Betrag, Förderangaben als „weiß ich nicht“ übergeben. Werte aus der
+  zentralen Logik, keine eigene Rechnung der KI.
+- **Versand:** Kein Tool hat versendet; die KI hat den Button der Oberfläche bedient, ausgelöst
+  durch Tims Anweisung. Eingang bei Netlify am 08.10.2026 14:07 MESZ mit Referrer
+  `www.rex-bedachung.de/velux-preisrechner-bochum` über den Netlify-Connector bestätigt;
+  der Testeintrag wurde danach auf Tims Anweisung gelöscht. Eingang im Postfach nicht geprüft.
+- **Befund auf Seiten der KI:** Sie hat `confirmation_required` nicht an Tim zurückgegeben,
+  sondern die Zuordnung selbst übernommen. Die Website kann das nicht erzwingen; sie liefert den
+  Status korrekt. Folgeidee, nicht umgesetzt: den Bestätigungsbedarf in der Tool-Antwort
+  deutlicher als Anweisung an die KI formulieren (eigener Deploy).
+- **Ergebnis:** Fall 4 für die Website bestanden. Damit sind alle zehn Agentenfälle geprüft.
 
 **Rücknahme:**
 - Bei falschen Zahlen, UI-Abweichung oder unbeabsichtigtem Versand in Netlify auf den vorherigen

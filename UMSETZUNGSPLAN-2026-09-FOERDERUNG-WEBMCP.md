@@ -56,7 +56,8 @@ Entscheidungen von Tim (23.09.2026):
 ## 4. Offen
 
 - **D8:** Live-Nachprüfung am 04.10.2026 in ChatGPT Desktop (GPT-5.6 Sol) bestanden, Details in
-  `WEBMCP.md`. Fall 4 mit echtem Typenschildfoto steht noch aus.
+  `WEBMCP.md`. Fall 4 mit echtem Typenschildfoto am 08.10.2026 nachgeholt und für die Website
+  bestanden (Resolver `confirmation_required`); Befund: die KI hat die Bestätigung nicht eingeholt.
 - **Chrome-Origin-Trial, optional:** Token-Ablauf 17.11.2026, Verlängerung bis M162 beantragt. Ein
   Token kommt nur bei Bedarf und als eigener Deploy dazu.
 - **Förder-Wiedervorlage vor dem 31.12.2026:** Richtlinie, Haushalt 2027 und §35c an den
