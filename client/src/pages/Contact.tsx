@@ -236,12 +236,36 @@ export default function Contact() {
               </div>
 
               <Card className="p-6">
-                <div className="relative w-full" style={{ paddingBottom: '66.67%' }}>
-                  {!mapLoaded ? (
-                    <div className="absolute top-0 left-0 w-full h-full flex flex-col items-center justify-center rounded-md px-6 text-center" style={{ backgroundColor: '#f3f4f6' }}>
+                {/* Google Maps nur nach Einwilligung; Freigabe gilt nur für diesen Aufruf (Datenschutzerklärung §7) */}
+                {!mapLoaded ? (
+                    <div className="flex flex-col items-center rounded-md px-6 py-8 text-center" style={{ backgroundColor: '#f3f4f6' }} data-testid="map-consent">
                       <MapPin className="w-12 h-12 text-gray-400 mb-4" />
-                      <p className="text-sm text-gray-600 mb-4 max-w-sm">
-                        Karte wird von Google Maps geladen. Mit dem Laden akzeptieren Sie die Datenschutzerklärung von Google.
+                      <p className="text-sm text-gray-600 mb-4 max-w-md text-left">
+                        Mit „Google Maps laden“ willigen Sie ein, dass wir zur Anzeige unseres Standorts
+                        Google Maps von Google Ireland Limited einbinden. Dabei werden insbesondere Ihre
+                        IP-Adresse und Browserdaten an Google übermittelt; Google kann Cookies oder ähnliche
+                        Technologien verwenden und Daten in die USA übertragen. Die Nutzung ist freiwillig.
+                        Widerrufen können Sie jederzeit über „Karte deaktivieren / Einwilligung widerrufen“
+                        unter der Karte. Mehr dazu in unserer{" "}
+                        <a
+                          href="/datenschutz#google-maps"
+                          target="_blank"
+                          rel="noopener"
+                          className="text-primary underline"
+                          data-testid="link-datenschutz-google-maps"
+                        >
+                          Datenschutzerklärung, Abschnitt 7
+                        </a>{" "}
+                        und in der{" "}
+                        <a
+                          href="https://policies.google.com/privacy?hl=de"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="text-primary underline"
+                        >
+                          Datenschutzerklärung von Google
+                        </a>
+                        .
                       </p>
                       <Button
                         onClick={() => setMapLoaded(true)}
@@ -262,19 +286,34 @@ export default function Contact() {
                         In Google Maps öffnen <ExternalLink className="w-3 h-3" />
                       </a>
                     </div>
-                  ) : (
-                    <iframe
-                      src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2483.8971234567!2d7.2420155!3d51.4623595!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47b8e00fdd91a96d%3A0xb0e424e0f275f1b6!2sRex%20Bedachungs%20GmbH!5e0!3m2!1sde!2sde!4v1234567890123!5m2!1sde!2sde"
-                      className="absolute top-0 left-0 w-full h-full rounded-md"
-                      style={{ border: 0 }}
-                      allowFullScreen
-                      loading="lazy"
-                      referrerPolicy="no-referrer-when-downgrade"
-                      title="Standort Rex Bedachungs GmbH - Paulinenstraße 22, 44799 Bochum"
-                      data-testid="map-location"
-                    />
-                  )}
-                </div>
+                ) : (
+                  <>
+                    <div className="relative w-full" style={{ paddingBottom: '66.67%' }}>
+                      <iframe
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2483.8971234567!2d7.2420155!3d51.4623595!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47b8e00fdd91a96d%3A0xb0e424e0f275f1b6!2sRex%20Bedachungs%20GmbH!5e0!3m2!1sde!2sde!4v1234567890123!5m2!1sde!2sde"
+                        className="absolute top-0 left-0 w-full h-full rounded-md"
+                        style={{ border: 0 }}
+                        allowFullScreen
+                        loading="lazy"
+                        referrerPolicy="no-referrer-when-downgrade"
+                        title="Standort Rex Bedachungs GmbH - Paulinenstraße 22, 44799 Bochum"
+                        data-testid="map-location"
+                      />
+                    </div>
+                    {/* Widerruf ohne Neuladen: entfernt nur die Karte, das Kontaktformular bleibt unberührt */}
+                    <div className="mt-4 flex justify-center">
+                      <Button
+                        onClick={() => setMapLoaded(false)}
+                        variant="outline"
+                        size="sm"
+                        className="whitespace-normal text-center py-2"
+                        data-testid="button-revoke-map"
+                      >
+                        Karte deaktivieren / Einwilligung widerrufen
+                      </Button>
+                    </div>
+                  </>
+                )}
               </Card>
             </div>
 

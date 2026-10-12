@@ -1,4 +1,3 @@
-import { useEffect } from "react";
 import { Helmet } from "react-helmet";
 import OrganizationSchema from "@/components/OrganizationSchema";
 import Hero from "@/components/Hero";
@@ -22,45 +21,6 @@ const dachfensterImageFallback = "/images/velux-dachfenster-einbau-bochum-fachbe
 const reparaturenImage = "/images/dachreparatur-bochum-rex-bedachung.webp";
 
 export default function Home() {
-  useEffect(() => {
-    (window as any).loadProSeal = function () {
-      (window as any).provenExpert.proSeal({
-        widgetId: "0294238a-1e71-4d0d-a711-160b1a355db3",
-        language: "de-DE",
-        usePageLanguage: false,
-        bannerColor: "#097E92",
-        textColor: "#FFFFFF",
-        showBackPage: true,
-        showReviews: true,
-        hideDate: true,
-        hideName: false,
-        googleStars: true,
-        displayReviewerLastName: false,
-        embeddedSelector: "#proSealWidget",
-      });
-    };
-
-    const element = document.getElementById("proSealWidget");
-    if (!element) return;
-
-    const observer = new IntersectionObserver((entries) => {
-      if (entries[0].isIntersecting) {
-        const script = document.createElement("script");
-        script.src = "https://s.provenexpert.net/seals/proseal-v2.js";
-        script.async = true;
-        script.onload = (window as any).loadProSeal;
-        document.body.appendChild(script);
-        observer.disconnect();
-      }
-    });
-
-    observer.observe(element);
-
-    return () => {
-      observer.disconnect();
-    };
-  }, []);
-
   const services = [
     {
       title: "Steildach",
@@ -304,22 +264,6 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="py-12 md:py-16">
-        <div className="max-w-4xl mx-auto px-4 md:px-6 lg:px-8 flex justify-center">
-          <noscript>
-            <a
-              href="https://www.provenexpert.com/rex-bedachung/?utm_source=seals&utm_campaign=embedded-proseal&utm_medium=profile&utm_content=0294238a-1e71-4d0d-a711-160b1a355db3"
-              target="_blank"
-              rel="noopener noreferrer"
-              title="Customer reviews &amp; experiences for Rex Bedachung"
-            >
-              More info
-            </a>
-          </noscript>
-          <div id="proSealWidget"></div>
-        </div>
-      </section>
-
       {/* Bewertungen */}
       <section className="py-16 md:py-20 bg-slate-50">
         <div className="max-w-7xl mx-auto px-4 md:px-6 lg:px-8">
@@ -371,7 +315,7 @@ export default function Home() {
             </div>
 
           </div>
-          <div className="text-center mt-8">
+          <div className="mt-8 flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-8">
             <a
               href="https://www.google.com/maps/place/Rex+Bedachungs+GmbH/@51.4623584,7.2428438,519m/data=!3m2!1e3!4b1!4m6!3m5!1s0x47b8e00fdd91a96d:0xb0e424e0f275f1b6!8m2!3d51.4623584!4d7.2428438!16s%2Fg%2F1tfqkgvg"
               target="_blank"
@@ -379,6 +323,16 @@ export default function Home() {
               className="inline-flex items-center gap-2 text-primary font-medium hover:underline"
             >
               Alle Bewertungen auf Google ansehen →
+            </a>
+            {/* Reiner Link statt ProSeal-Widget: kein Fremdskript, keine Datenübertragung beim Seitenaufruf */}
+            <a
+              href="https://www.provenexpert.com/rex-bedachung/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 text-primary font-medium hover:underline"
+              data-testid="link-provenexpert-profile"
+            >
+              Bewertungen auf ProvenExpert ansehen →
             </a>
           </div>
         </div>
