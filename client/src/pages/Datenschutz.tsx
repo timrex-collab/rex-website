@@ -1,7 +1,17 @@
+import { useEffect } from "react";
 import { Helmet } from "react-helmet";
 import OrganizationSchema from "@/components/OrganizationSchema";
 
 export default function Datenschutz() {
+  // Direktsprung auf einen Abschnitt, z. B. /datenschutz#google-maps aus dem Kartenhinweis auf
+  // /kontakt. ScrollToTop setzt beim Seitenwechsel nach oben, deshalb erst nach dem Rendern springen.
+  useEffect(() => {
+    const id = window.location.hash.slice(1);
+    if (!id) return;
+    const frame = requestAnimationFrame(() => document.getElementById(id)?.scrollIntoView());
+    return () => cancelAnimationFrame(frame);
+  }, []);
+
   return (
     <>
       <Helmet>
@@ -164,9 +174,82 @@ export default function Datenschutz() {
 
             <section>
               <h2 className="text-2xl font-semibold mb-4">7. Plugins und Tools</h2>
+              <h3 id="google-maps" className="text-xl font-semibold mb-3 scroll-mt-28">
+                Google Maps (erst nach Klick)
+              </h3>
               <p>
-                Diese Website bindet derzeit keine externen Plugins oder Tools ein, die 
-                personenbezogene Daten verarbeiten.
+                Auf unserer Kontaktseite können Sie eine Karte von Google Maps einblenden. Wir
+                verwenden Google Maps, um unseren Standort darzustellen und Ihnen die Anfahrt zu
+                erleichtern. Anbieter ist die Google Ireland Limited, Gordon House, Barrow Street,
+                Dublin 4, Irland („Google“).
+              </p>
+              <p>
+                Die Nutzung ist freiwillig und für eine Kontaktaufnahme nicht erforderlich. Die Karte
+                wird erst geladen, wenn Sie auf „Google Maps laden“ klicken. Ohne Ihre Aktivierung
+                werden über diese Karteneinbindung keine Daten an Google übertragen; unsere
+                Kontaktdaten und das Kontaktformular können Sie trotzdem nutzen.
+              </p>
+              <p>
+                Mit der Aktivierung stellt Ihr Browser eine Verbindung zu Servern von Google her.
+                Dabei erhält Google insbesondere Ihre IP-Adresse, Angaben zu Browser und Endgerät,
+                Informationen über die aufgerufene Seite sowie Datum und Uhrzeit. Google kann
+                außerdem Cookies oder ähnliche Technologien auf Ihrem Endgerät einsetzen. Über die
+                weitere Verarbeitung der an Google übermittelten Daten informiert Google in seiner{" "}
+                <a
+                  href="https://policies.google.com/privacy?hl=de"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-primary hover:underline"
+                >
+                  Datenschutzerklärung
+                </a>
+                .
+              </p>
+              <p>
+                Die Verarbeitung im Zusammenhang mit unserer Karteneinbindung erfolgt auf Grundlage
+                Ihrer Einwilligung nach Art. 6 Abs. 1 lit. a DSGVO. Soweit dabei Informationen auf
+                Ihrem Endgerät gespeichert oder ausgelesen werden und eine Einwilligung erforderlich
+                ist, erfolgt dies auf Grundlage von § 25 Abs. 1 TDDDG.
+              </p>
+              <p>
+                Sie können Ihre Einwilligung in die Karteneinbindung jederzeit über „Karte
+                deaktivieren / Einwilligung widerrufen“ mit Wirkung für die Zukunft widerrufen.
+                Dadurch wird die Karte entfernt und die weitere Datenübertragung durch diese
+                Einbindung beendet. Bereits an Google übermittelte Daten oder dort gesetzte Cookies
+                werden dadurch nicht automatisch gelöscht. Die Rechtmäßigkeit der bis zum Widerruf
+                erfolgten Verarbeitung bleibt unberührt.
+              </p>
+              <p>
+                Wir speichern Ihre Kartenfreigabe nicht über den aktuellen Aufruf der Kontaktseite
+                hinaus. Google kann übermittelte Daten darüber hinaus speichern; die Dauer hängt
+                insbesondere von Datenart, Verarbeitungszweck, Ihren Einstellungen und gesetzlichen
+                Aufbewahrungspflichten ab. Einzelheiten erläutert Google in seinen{" "}
+                <a
+                  href="https://policies.google.com/technologies/retention?hl=de"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-primary hover:underline"
+                >
+                  Informationen zur Datenspeicherung
+                </a>
+                .
+              </p>
+              <p>
+                Google kann Daten auch an die Google LLC in den USA übermitteln. Die Übermittlung
+                stützt sich auf den Angemessenheitsbeschluss der Europäischen Kommission zum EU-US
+                Data Privacy Framework (Art. 45 DSGVO), unter dem die Google LLC zertifiziert ist.
+              </p>
+
+              <h3 className="text-xl font-semibold mb-3 mt-6">Links zu anderen Anbietern</h3>
+              <p>
+                Unsere Website enthält einfache Links zu anderen Anbietern, etwa zu unserem Eintrag
+                bei Google Maps, zu unserem Bewertungsprofil bei ProvenExpert und zu unseren Seiten
+                bei Facebook und Instagram. Beim Aufruf unserer Website werden über diese Links keine
+                Daten an die Anbieter übertragen. Erst wenn Sie einen Link anklicken, öffnet sich die
+                Seite des Anbieters; dort gilt dessen Datenschutzerklärung.
+              </p>
+              <p>
+                Darüber hinaus bindet diese Website keine externen Plugins oder Tools ein.
               </p>
             </section>
 
