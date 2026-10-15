@@ -359,6 +359,29 @@ VELUX D1–D8 · Förder-Bereinigung R1–R4 · Doku/llms nach R1–R4.
 > **Nächstes 48-h-Fenster:** ab **14.10.2026 01:06 MESZ** (volle Kadenz ab diesem Deploy).
 > **Als Nächstes vorgesehen:** kein funktionales Paket. Neuere Fassung des BEG-Infoblatts wird
 > mit der Wiedervorlage am 16.11.2026 geprüft.
+>
+> **Stand 15.10.2026 (nach PR #99, Datenschutz B1):** ProvenExpert-Rich-Snippet (`index.html`)
+> und ProSeal-Widget (`Home.tsx`) entfernt; auf der Startseite steht nur noch der Link
+> „Bewertungen auf ProvenExpert ansehen“, beim Seitenaufruf gehen keine Daten mehr an
+> ProvenExpert. `/kontakt`: Hinweis vor „Google Maps laden“ nennt Zweck, Anbieter, Daten,
+> USA-Übermittlung, Freiwilligkeit und Widerrufsweg; neuer Button „Karte deaktivieren /
+> Einwilligung widerrufen“. Datenschutzerklärung §7 statt „keine externen Plugins“: Google Maps
+> als 2-Klick-Lösung (Art. 6 Abs. 1 lit. a DSGVO, § 25 Abs. 1 TDDDG, Widerruf, Speicherdauer,
+> DPF) und einfache Links zu anderen Anbietern. Grundlage: Paket B1 aus
+> `UMSETZUNGSPLAN-2026-10-KI-ANFRAGEN.md` (Branch `claude/zealous-brown-c1mq00`, kommt mit D1
+> nach `main`); Codex-Gegenlesung vom 12.10.2026 (keine Rechtsberatung), Korrekturen umgesetzt;
+> Google LLC im DPF-Verzeichnis **Active** (amtliche Liste, geprüft 12.10.2026, nächste
+> Rezertifizierung 13.09.2027). Netlify `6ad0a7ee…`, `commit_ref 95a088a`,
+> `published_at 12:16:51 MESZ`.
+> **Lösch-Routine seit 12.10.2026 monatlich** (am 1. jedes Monats, 07:52 Uhr): Einträge älter als
+> zwei Monate zählen, Spam-Bereich prüfen, gelöscht wird nur nach Freigabe durch Tim. Erster
+> Lauf 01.11.2026; die Wirkungsprüfung aus dem Stand 10.10.2026 rückt damit vom 01.01.2027 auf
+> den 01.11.2026 vor.
+> **Nächstes 48-h-Fenster:** ab **17.10.2026 12:17 MESZ**.
+> **Als Nächstes vorgesehen:** B2 (überzählige `_redirects`-Dateien und verstecktes JSX-Formular
+> entfernen, Stufe C). Offen: Herkunft der Kennzahl „4,48 ★ ProvenExpert Bewertung“ (Profil
+> zeigte am 12.10.2026 5,00 bei einer Bewertung); Header am Desktop zwischen 1024 und 1600 px zu
+> breit; H1 auf `/datenschutz` bei 390 px 19 px zu breit.
 
 | Deploy | Inhalt | Status |
 |---|---|---|
@@ -419,6 +442,7 @@ VELUX D1–D8 · Förder-Bereinigung R1–R4 · Doku/llms nach R1–R4.
 | **Datenschutz Preisrechner** | Umsetzung der Datenschutz-Prüfung vom 04.10.2026 (KI-gestützt, keine Rechtsberatung). `export-gate.ts`: Hinweis am Anfragebutton nennt Kontaktdaten, Konfiguration, Kostenschätzung, Förderantworten und Netlify als Hosting- und Formulardienstleister („Keine Weitergabe an Dritte“ entfällt). `VeluxPreisrechner.tsx`: „E-Mail“ ohne Stern, Mindestangabe „E-Mail oder Telefon“, Adresse optional. `Datenschutz.tsx`: Netlify/Netlify Forms, AVV, USA-Transfer (DPF, ergänzend SCC), verantwortliche Stelle (behebt toten Verweis), Rechtsgrundlagen Logs/Kontaktformular, Abschnitte Preisrechner und Speicherdauer (Netlify 3 Monate, Postfach ohne Auftrag 12 Monate), Beschwerderecht LDI NRW. `velux-ui-smoke.mjs` an neuen Hinweistext angepasst. PDF-Kopplung bewusst unverändert (Entscheidung Tim) | ✅ live (PR #91, gemergt 08.10.2026 13:38:36 MESZ; Stufe B, 5 Dateien; Gate eingehalten: **50 h 3 min** nach #90 (#92 Doku ohne neue Dateien); Netlify `6ac780be…`, `commit_ref 5c7114d`, `published_at 13:39:14 MESZ`, `state ready`, `plugin_state success`, Prerender-Function vorhanden, Secret-Scan 734/0; IndexNow-Lauf #62 grün; Checks-Lauf #61 grün; Prerender-Check-Lauf #21 grün) — **Merge durch Tim** |
 | **Spamschutz Formulare** | `client/index.html`: versteckte Formulardefinitionen `kontakt` und `velux-preisrechner` entfernt. `client/public/formulare.html` (neu, `noindex`, nirgends verlinkt): dieselben Definitionen mit identischen Feldern plus `bot-field`, von Netlify beim Deploy erkannt. Ursache: WordPress-Scanner riefen `/wp-login.php` auf, erhielten die SPA-`index.html` mit Status 200 und schickten das versteckte Formular leer ab (7 von 11 Preisrechner-Einträgen). React-Formulare unverändert. Vorsorglich Stufe C (neue öffentlich erreichbare Datei) | ✅ live (PR #94, gemergt 10.10.2026 20:38:47 MESZ; Stufe C, 2 Dateien; Gate eingehalten: **55 h** nach #91 (#93 Doku ohne neue Dateien); Netlify `6aca8639…`, `commit_ref eb433b4`, `published_at 20:39:22 MESZ`, `state ready`, `plugin_state success`, Prerender-Function vorhanden, Secret-Scan 737/0; IndexNow-Lauf #64 grün; Checks-Lauf #65 grün; Prerender-Check-Lauf #22 grün; Formulartests Preview 08.10. und www 12.10. bestanden, Testeinträge gelöscht) — **Merge durch Tim** |
 | **Indach-PV und BEG** | `DachPhotovoltaikBochum`: Produktkarten Turmalin/Tegalit korrigiert (Braas PV Premium = PV-Module anstelle der Ziegel/Dachsteine; „Keramikoptik“ und unbelegtes „Bewährt für großflächige Satteldächer“ entfernt); Förderblock um „Sonderfall Indach-PV“ und FAQ um die Ausnahme ergänzt (BEG EM förderrelevant als Teil der Gebäudehülle bei geförderter Dachdämmung, nur ohne EEG-Einspeisevergütung für diese Anlage). `Foerderung`: FAQ Neueindeckung um Indach-PV ergänzt, Linkkarte „Dach & Photovoltaik“ präzisiert. Quellen: BEG-Infoblatt Version 11.0 (Nr. 2, 7, 9.3), Richtlinie BEG EM vom 17.08.2026 (Nr. 8.6, TMA 1.1), Braas BMI 1596 und BMI 1160 | ✅ live (PR #97, gemergt 12.10.2026 01:04:51 MESZ; Stufe A, 2 Dateien; **⚠️ Gate verletzt: 28 h 26 min nach #94** — falsche Fensterangabe von Claude im PR, kein Rollback, siehe Stand 12.10.2026; Netlify `6acc1614…`, `commit_ref dde516b`, `published_at 01:05:24 MESZ`, `state ready`, `plugin_state success`, Prerender-Function vorhanden, Secret-Scan 739/0; IndexNow-Lauf #67 grün; Checks-Lauf #71 grün; Prerender-Check-Lauf #23 grün) — **Merge durch Tim** |
+| **Datenschutz B1** | `client/index.html`: ProvenExpert-Rich-Snippet (`pe-richsnippets`, `richsnippet.js`) entfernt; es lieferte nur „wrong plan(1003)“, übertrug aber die Besucher-IP. `Home.tsx`: ProSeal-Widget (`proseal-v2.js`, `googleStars`) entfernt, stattdessen reiner Link „Bewertungen auf ProvenExpert ansehen“; Kennzahl „4,48 ★“ bleibt als Text. `Contact.tsx`: Einwilligungshinweis vor „Google Maps laden“ mit Links auf §7 und Googles Datenschutzerklärung; Button „Karte deaktivieren / Einwilligung widerrufen“ (Formulareingaben bleiben erhalten). `Datenschutz.tsx` §7: Google Maps als 2-Klick-Lösung (Zweck, Freiwilligkeit, Daten, Art. 6 Abs. 1 lit. a DSGVO und § 25 Abs. 1 TDDDG, Widerruf, Speicherdauer, DPF), Links zu anderen Anbietern, Anker `#google-maps`. Codex-Gegenlesung 12.10.2026 (keine Rechtsberatung) umgesetzt; Google LLC im DPF-Verzeichnis Active | ✅ live (PR #99, gemergt 15.10.2026 12:16:12 MESZ; Stufe B, 4 Dateien; Gate eingehalten: **83 h 11 min** nach #97 (#98 Doku ohne neue Dateien); Netlify `6ad0a7ee…`, `commit_ref 95a088a`, `published_at 12:16:51 MESZ`, `state ready`, `plugin_state success`, Prerender-Function vorhanden, Secret-Scan 741/0; IndexNow-Lauf #69 grün; Checks-Lauf #79 grün; Prerender-Check-Lauf #24 grün; lokaler Browsertest: ohne Klick 0 Requests an fremde Hosts) — **Merge durch Tim** |
 
 > **👤 Abweichung von §5.5 (28. und 30.08.2026) — PR #56 und #61 von Claude gemergt:**
 > Abschnitt 5, Punkt 5 lautet „Merge ausschließlich durch Tim. Kein Direct-Push auf `main`,
@@ -610,7 +634,7 @@ VELUX D1–D8 · Förder-Bereinigung R1–R4 · Doku/llms nach R1–R4.
 | Google Search Console | URL-Prefix `https://www.rex-bedachung.de/` |
 | Bing Webmaster Tools | CNAME verifiziert; Sitemap eingereicht (Success, 30 URLs, 26.06.2026) |
 | Rich Results Test | Schema-Verifikation |
-| ProvenExpert | Review-Widget (4,48★, 13 Bewertungen), deferred seit D35 |
+| ProvenExpert | Review-Widget und Rich Snippet seit B1 entfernt (PR #99, 15.10.2026); nur noch Profil-Link auf der Startseite, kein Fremdskript. Kennzahl „4,48 ★“ auf der Startseite: Herkunft offen (Profil am 12.10.2026: 5,00 bei 1 Bewertung; früherer Stand hier: 4,48★, 13 Bewertungen) |
 | IndexNow | Key-Datei + Submit-Skript; **automatisiert** via GitHub Action `.github/workflows/indexnow.yml` (Push auf `main`), Fallback `npm run indexnow:submit` |
 | `rex-bedachungen.de` | 301-Redirect via `.htaccess` (separate Infra) |
 
