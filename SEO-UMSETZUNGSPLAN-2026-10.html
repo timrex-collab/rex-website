@@ -1,0 +1,776 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Rex SEO-Umsetzungsplan</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Semi+Condensed:wght@600;700&family=IBM+Plex+Mono:wght@400;500&family=Source+Sans+3:wght@400;600;700&display=swap">
+<style>
+  /* Layout: einspaltiges Arbeitsdokument; Überblickstabelle und Takt-Zeitleiste oben, Paketkarten darunter. */
+  :root {
+    --bg: #f4f6fa;
+    --surface: #ffffff;
+    --ink: #141b2d;
+    --muted: #586179;
+    --line: #dde2ec;
+    --accent: #223fb4;
+    --accent-soft: #e7ebfa;
+    --hoch: #b42318;
+    --hoch-soft: #fdecea;
+    --mittel: #9a5505;
+    --mittel-soft: #fdf1df;
+    --niedrig: #475467;
+    --niedrig-soft: #eceff4;
+    --ok: #067647;
+    --ok-soft: #e3f3ea;
+    --tim: #6b3fa0;
+    --tim-soft: #f1eafa;
+    --font-display: "Barlow Semi Condensed", "Arial Narrow", "Helvetica Neue", sans-serif;
+    --font-body: "Source Sans 3", "Segoe UI", system-ui, -apple-system, sans-serif;
+    --font-mono: "IBM Plex Mono", ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #0e1320;
+      --surface: #151c2c;
+      --ink: #e5e9f3;
+      --muted: #9aa4bb;
+      --line: #273149;
+      --accent: #97a9ff;
+      --accent-soft: #1c2548;
+      --hoch: #ff9e93;
+      --hoch-soft: #3b1714;
+      --mittel: #f3b55c;
+      --mittel-soft: #33230c;
+      --niedrig: #b6bfd0;
+      --niedrig-soft: #222a3b;
+      --ok: #72d4a4;
+      --ok-soft: #0f2c20;
+      --tim: #cfaaf3;
+      --tim-soft: #2a1d3d;
+      color-scheme: dark;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #0e1320;
+    --surface: #151c2c;
+    --ink: #e5e9f3;
+    --muted: #9aa4bb;
+    --line: #273149;
+    --accent: #97a9ff;
+    --accent-soft: #1c2548;
+    --hoch: #ff9e93;
+    --hoch-soft: #3b1714;
+    --mittel: #f3b55c;
+    --mittel-soft: #33230c;
+    --niedrig: #b6bfd0;
+    --niedrig-soft: #222a3b;
+    --ok: #72d4a4;
+    --ok-soft: #0f2c20;
+    --tim: #cfaaf3;
+    --tim-soft: #2a1d3d;
+    color-scheme: dark;
+  }
+
+  * { box-sizing: border-box; }
+  body {
+    background: var(--bg);
+    color: var(--ink);
+    font-family: var(--font-body);
+    font-size: 16px;
+    line-height: 1.55;
+    margin: 0;
+  }
+  .page {
+    max-width: 1060px;
+    margin: 0 auto;
+    padding-left: max(16px, env(safe-area-inset-left, 0px));
+    padding-right: max(16px, env(safe-area-inset-right, 0px));
+    padding-block: 40px 64px;
+    display: grid;
+    gap: 56px;
+  }
+  h1, h2, h3 { font-family: var(--font-display); text-wrap: balance; margin: 0; line-height: 1.1; }
+  h1 { font-size: clamp(2rem, 5vw, 2.9rem); font-weight: 700; letter-spacing: -0.005em; }
+  h2 { font-size: 1.65rem; font-weight: 700; }
+  h3 { font-size: 1.3rem; font-weight: 600; }
+  p { margin: 0; max-width: 70ch; }
+  a { color: var(--accent); }
+  a:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; border-radius: 2px; }
+  code, .mono { font-family: var(--font-mono); font-size: 0.86em; }
+  code { background: var(--niedrig-soft); padding: 1px 5px; border-radius: 4px; overflow-wrap: anywhere; }
+  .eyebrow {
+    font-family: var(--font-body); font-size: 0.78rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted);
+  }
+  section { display: grid; gap: 18px; min-width: 0; }
+  .section-head { display: grid; gap: 6px; }
+  .section-head p { color: var(--muted); }
+
+  /* Kopf */
+  header.top { display: grid; gap: 14px; border-bottom: 2px solid var(--accent); padding-bottom: 26px; }
+  header.top .lead { font-size: 1.12rem; }
+  .facts {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 10px 24px; margin: 6px 0 0;
+  }
+  .facts div { display: grid; gap: 2px; min-width: 0; }
+  .facts dt { font-size: 0.78rem; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted); }
+  .facts dd { margin: 0; font-variant-numeric: tabular-nums; }
+  .toc { display: flex; flex-wrap: wrap; gap: 6px 18px; font-size: 0.95rem; }
+
+  /* Kernaussagen */
+  .keypoints { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 16px; }
+  .keypoint { background: var(--surface); border: 1px solid var(--line); border-radius: 8px; padding: 18px; display: grid; gap: 6px; align-content: start; }
+  .keypoint strong { font-family: var(--font-display); font-size: 1.15rem; font-weight: 600; }
+
+  /* Chips */
+  .chips { display: flex; flex-wrap: wrap; gap: 6px; }
+  .chip {
+    display: inline-flex; align-items: center; gap: 4px; white-space: nowrap;
+    font-size: 0.78rem; font-weight: 600; letter-spacing: 0.02em; line-height: 1;
+    padding: 5px 9px; border-radius: 999px; border: 1px solid transparent;
+  }
+  .p-hoch { background: var(--hoch-soft); color: var(--hoch); }
+  .p-mittel { background: var(--mittel-soft); color: var(--mittel); }
+  .p-niedrig { background: var(--niedrig-soft); color: var(--niedrig); }
+  .p-bedingt { background: transparent; color: var(--niedrig); border-color: var(--line); border-style: dashed; }
+  .p-pr { background: var(--accent-soft); color: var(--accent); }
+  .p-ok { background: var(--ok-soft); color: var(--ok); }
+  .stage { background: var(--surface); color: var(--ink); border-color: var(--line); font-family: var(--font-mono); font-weight: 500; }
+  .role { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.05em; text-transform: uppercase; padding: 3px 7px; border-radius: 4px; }
+  .role-claude { background: var(--accent-soft); color: var(--accent); }
+  .role-tim { background: var(--tim-soft); color: var(--tim); }
+
+  /* Nächste Schritte */
+  ol.steps { list-style: none; margin: 0; padding: 0; display: grid; gap: 10px; counter-reset: step; }
+  ol.steps li {
+    counter-increment: step; display: grid; grid-template-columns: 2rem auto 1fr; gap: 12px; align-items: start;
+    background: var(--surface); border: 1px solid var(--line); border-radius: 8px; padding: 12px 14px;
+  }
+  ol.steps li::before {
+    content: counter(step); font-family: var(--font-display); font-weight: 700; font-size: 1.3rem; color: var(--accent); line-height: 1.2;
+  }
+  ol.steps li > div { min-width: 0; display: grid; gap: 2px; }
+  ol.steps .role { margin-top: 3px; }
+  .hint { color: var(--muted); font-size: 0.92rem; }
+
+  /* Tabellen */
+  .table-wrap { overflow-x: auto; border: 1px solid var(--line); border-radius: 8px; background: var(--surface); }
+  table { width: 100%; border-collapse: collapse; min-width: 760px; font-size: 0.95rem; }
+  th, td { text-align: left; vertical-align: top; padding: 10px 12px; border-bottom: 1px solid var(--line); }
+  tbody tr:last-child td { border-bottom: 0; }
+  th { font-size: 0.75rem; letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted); font-weight: 600; background: var(--bg); }
+  td.id { font-family: var(--font-mono); font-weight: 500; white-space: nowrap; }
+  td.num { font-variant-numeric: tabular-nums; white-space: nowrap; }
+  tr.is-pr td { background: color-mix(in srgb, var(--accent-soft) 45%, transparent); }
+
+  /* Zeitleiste */
+  .timeline { list-style: none; margin: 0; padding: 0; display: grid; }
+  .timeline li {
+    display: grid; grid-template-columns: 7.2rem 18px minmax(0, 1fr); column-gap: 14px; align-items: start; position: relative; padding-bottom: 14px;
+  }
+  .timeline li::after {
+    content: ""; position: absolute; left: calc(7.2rem + 14px + 8px); top: 18px; bottom: -2px; width: 2px; background: var(--line);
+  }
+  .timeline li:last-child::after { display: none; }
+  .t-date { font-family: var(--font-mono); font-size: 0.88rem; font-variant-numeric: tabular-nums; text-align: right; padding-top: 2px; }
+  .t-date span { display: block; color: var(--muted); font-size: 0.78rem; }
+  .t-dot { position: relative; width: 18px; height: 18px; border-radius: 50%; border: 3px solid var(--accent); background: var(--surface); margin-top: 3px; z-index: 1; }
+  .t-dot.pr { background: var(--accent); }
+  .t-dot.bedingt { border-style: dashed; border-color: var(--niedrig); }
+  .t-dot.reserve { border-color: var(--mittel); }
+  .t-body { display: grid; gap: 4px; min-width: 0; }
+  .t-body .slot { font-size: 0.78rem; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted); }
+  .t-body strong { font-weight: 600; }
+
+  /* Paketkarten */
+  .packages { display: grid; gap: 22px; }
+  article.pkg { background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: 22px; display: grid; gap: 16px; min-width: 0; scroll-margin-top: 16px; }
+  .pkg-head { display: grid; grid-template-columns: auto minmax(0, 1fr); gap: 4px 16px; align-items: center; }
+  .pkg-code { font-family: var(--font-display); font-weight: 700; font-size: 2.1rem; color: var(--accent); line-height: 1; grid-row: span 2; }
+  .pkg-head .chips { grid-column: 2; }
+  dl.spec { display: grid; grid-template-columns: 11.5rem minmax(0, 1fr); margin: 0; border-top: 1px solid var(--line); }
+  dl.spec dt, dl.spec dd { padding: 10px 0; border-bottom: 1px solid var(--line); margin: 0; }
+  dl.spec dt { font-size: 0.82rem; font-weight: 600; color: var(--muted); padding-right: 14px; }
+  dl.spec dd { min-width: 0; }
+  dl.spec dd > * + * { margin-top: 6px; }
+  dl.spec ul { margin: 0; padding-left: 1.1rem; display: grid; gap: 3px; }
+  .files { font-family: var(--font-mono); font-size: 0.82rem; overflow-wrap: anywhere; }
+  .result { display: grid; grid-template-columns: minmax(0, 1fr) auto auto; max-width: 30rem; gap: 2px 14px; font-variant-numeric: tabular-nums; font-size: 0.92rem; }
+  .result span { overflow-wrap: anywhere; }
+  .result b { font-weight: 600; }
+
+  /* Rollen-Spalten */
+  .twocol { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 16px; }
+  .panel { background: var(--surface); border: 1px solid var(--line); border-radius: 8px; padding: 18px; display: grid; gap: 10px; align-content: start; min-width: 0; }
+  .panel ol, .panel ul { margin: 0; padding-left: 1.2rem; display: grid; gap: 6px; }
+
+  footer { color: var(--muted); font-size: 0.9rem; border-top: 1px solid var(--line); padding-top: 18px; display: grid; gap: 6px; }
+
+  @media (max-width: 640px) {
+    .page { gap: 44px; padding-block: 24px 48px; }
+    dl.spec { grid-template-columns: 1fr; }
+    dl.spec dt { border-bottom: 0; padding-bottom: 0; }
+    .timeline li { grid-template-columns: 4.6rem 16px minmax(0, 1fr); column-gap: 10px; }
+    .timeline li::after { left: calc(4.6rem + 10px + 7px); }
+    .t-dot { width: 16px; height: 16px; }
+    ol.steps li { grid-template-columns: 1.6rem minmax(0, 1fr); }
+    ol.steps li .role { grid-column: 2; justify-self: start; }
+    ol.steps li > div { grid-column: 2; }
+    article.pkg { padding: 16px; }
+    .pkg-code { font-size: 1.7rem; }
+  }
+  @media (prefers-reduced-motion: reduce) { * { scroll-behavior: auto !important; } }
+  .t-dot.done { background: var(--ok); border-color: var(--ok); }
+  tr.same td { color: var(--muted); }
+  #datumstabelle td code { white-space: nowrap; overflow-wrap: normal; }
+</style>
+
+</head>
+<body>
+<main class="page">
+
+  <header class="top">
+    <div class="eyebrow">Rex Bedachungs GmbH · www.rex-bedachung.de</div>
+    <h1>SEO-Umsetzungsplan Oktober 2026</h1>
+    <p class="lead">Acht Arbeitspakete (S1 bis S8) aus dem SEO-Audit vom 14.10.2026, verteilt auf einzelne Deploys nach DEPLOY-RULES und abgestimmt mit dem KI-Anfragen-Plan. Claude bereitet jedes Paket als PR vor, Tim prüft die Vorschau und merged.</p>
+    <dl class="facts">
+      <div><dt>Stand dieser Seite</dt><dd>15.10.2026, 12:35 MESZ</dd></div>
+      <div><dt>Stand main</dt><dd><span class="mono">95a088a</span> (PR #99)</dd></div>
+      <div><dt>Letzter Produktionsdeploy</dt><dd>15.10.2026, 12:16:51 MESZ (#99)</dd></div>
+      <div><dt>Nächstes 48-h-Fenster</dt><dd>ab 17.10.2026, 12:17 MESZ</dd></div>
+      <div><dt>Grundlage</dt><dd><code>SEO-AUDIT-2026-10.md</code></dd></div>
+      <div><dt>Abgestimmt mit</dt><dd><code>UMSETZUNGSPLAN-2026-10-KI-ANFRAGEN.md</code></dd></div>
+    </dl>
+    <nav class="toc" aria-label="Inhalt">
+      <a href="#naechste-schritte">Nächste Schritte</a>
+      <a href="#erledigt">Erledigt</a>
+      <a href="#ueberblick">Überblick</a>
+      <a href="#takt">Deploy-Takt</a>
+      <a href="#pakete">Arbeitspakete</a>
+      <a href="#entscheidungen">Entscheidungen</a>
+      <a href="#datumstabelle">Datumstabelle (E2)</a>
+      <a href="#messpunkte">Messpunkte</a>
+      <a href="#ablauf">Ablauf je Paket</a>
+      <a href="#nicht">Bewusst nicht umgesetzt</a>
+      <a href="#korrekturen">Korrekturen</a>
+    </nav>
+  </header>
+
+  <section aria-labelledby="kurz">
+    <h2 id="kurz" class="eyebrow">Auf einen Blick</h2>
+    <div class="keypoints">
+      <div class="keypoint">
+        <strong>S1 liegt als PR bereit</strong>
+        <p>Eine Zeile in <code>App.tsx</code> behebt den Layout-Shift auf allen Unterseiten. Auf dem Stand nach #99 gemessen: Performance 54–58 → 82–85, CLS 0,922 → höchstens 0,022. Merge ab 17.10.2026, 12:17 MESZ.</p>
+      </div>
+      <div class="keypoint">
+        <strong>Zwei Pläne, ein Takt</strong>
+        <p>Die SEO-Pakete und der KI-Anfragen-Plan (B2, Typenschild-Foto, W1, D1) teilen sich die Deploy-Fenster. Empfehlung: S1 vor B2, weil S1 mehr bringt und B2 keine Eile hat.</p>
+      </div>
+      <div class="keypoint">
+        <strong>Zeitrahmen</strong>
+        <p>Bei Merge jeweils zur Fensteröffnung sind S1 bis S6 frühestens am 06.11.2026 live. Jedes eingeschobene KI-Paket und jeder spätere Merge verschiebt die Folgetermine.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="naechste-schritte" aria-labelledby="h-steps">
+    <div class="section-head">
+      <h2 id="h-steps">Nächste Schritte</h2>
+      <p>In dieser Reihenfolge. Die Baseline muss vor dem S1-Merge stehen, sonst lässt sich der Effekt live nicht belegen.</p>
+    </div>
+    <ol class="steps">
+      <li>
+        <span class="role role-tim">Tim</span>
+        <div>
+          <strong>PageSpeed-Baseline messen, bevor S1 live geht</strong>
+          <span class="hint">PageSpeed Insights, Mobil: Startseite, <code>/flachdach-bochum</code>, <code>/dachreparatur-bochum</code>, <code>/referenzen</code>, <code>/velux-preisrechner-bochum</code>. CLS, LCP und Performance-Wert notieren.</span>
+        </div>
+      </li>
+      <li>
+        <span class="role role-tim">Tim</span>
+        <div>
+          <strong>E1 entscheiden: S1 oder B2 im Fenster ab 17.10., 12:17 MESZ</strong>
+          <span class="hint">Empfehlung S1; B2 hat keine Eile.</span>
+        </div>
+      </li>
+      <li>
+        <span class="role role-tim">Tim</span>
+        <div>
+          <strong>S1-PR prüfen und mergen</strong>
+          <span class="hint">Branch <code>claude/bold-noether-3vrutv</code>. Im Netlify-Preview eine Unterseite direkt aufrufen: Der Footer darf beim Laden nicht nach unten springen.</span>
+        </div>
+      </li>
+      <li>
+        <span class="role role-tim">Tim</span>
+        <div>
+          <strong>Datumstabelle prüfen (E2)</strong>
+          <span class="hint">Abschnitt <a href="#datumstabelle">Datumstabelle</a>: Vorschlag je URL bestätigen oder ändern. Danach bereitet Claude S2 vor.</span>
+        </div>
+      </li>
+      <li>
+        <span class="role role-claude">Claude</span>
+        <div>
+          <strong>Nach dem S1-Merge: Nachlauf prüfen, S2 vorbereiten</strong>
+          <span class="hint">Netlify, Checks, IndexNow und Prerender-Check; dann S2 vom aktuellen main mit den bestätigten Daten.</span>
+        </div>
+      </li>
+    </ol>
+  </section>
+
+  <section id="erledigt" aria-labelledby="h-done">
+    <div class="section-head">
+      <h2 id="h-done">Erledigt am 15.10.2026</h2>
+    </div>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Was</th><th>Ergebnis</th></tr></thead>
+        <tbody>
+          <tr><td>PR #99 nach dem Merge geprüft</td><td>Netlify <span class="mono">6ad0a7ee…</span>, <code>commit_ref 95a088a</code>, <code>state ready</code>, <code>plugin_state success</code>, Prerender-Function vorhanden, Secret-Scan 741/0. Checks #79, IndexNow #69 und Prerender-Check #24 grün. Gate eingehalten: 83 h 11 min nach #97.</td></tr>
+          <tr><td>Deploy-Log zu #99</td><td>Auf <code>main</code> seit PR #102: Stand-Absatz 15.10.2026, Tabellenzeile „Datenschutz B1“ und §14 ProvenExpert. #102 lief ohne neue Dateien und zählt nicht fürs Fenster.</td></tr>
+          <tr><td>S1 umgesetzt und geprüft</td><td><code>npm run check</code>, Build, <code>faq:check</code>, <code>estimate:check</code>, <code>foerder:check</code> samt Selbsttests, Preisrechner-Smoketest und alle drei WebMCP-Schritte aus der CI grün. Lighthouse vorher/nachher siehe S1.</td></tr>
+          <tr><td>Audit-Befund N1</td><td>Durch #99 erledigt (ProvenExpert-Skripte entfernt).</td></tr>
+          <tr><td>Datumstabelle für S2 und S5</td><td>Aus der vollständigen Git-Historie erstellt, unten zur Freigabe.</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section id="ueberblick" aria-labelledby="h-overview">
+    <div class="section-head">
+      <h2 id="h-overview">Überblick</h2>
+      <p>SEO-Pakete und die Pakete aus dem KI-Anfragen-Plan in einer Liste. Dateizahlen ohne Doku-Dateien im Repo-Root.</p>
+    </div>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr><th>Paket</th><th>Inhalt</th><th>Status</th><th>Stufe · Dateien</th><th>Frühester Slot</th><th>Voraussetzung</th></tr>
+        </thead>
+        <tbody>
+          <tr><td class="id">#99</td><td>Datenschutz B1 (KI-Plan)</td><td><span class="chip p-ok">live</span></td><td class="num">B · 4</td><td class="num">15.10.</td><td>erledigt</td></tr>
+          <tr class="is-pr"><td class="id"><a href="#s1">S1</a></td><td>Layout-Shift auf Unterseiten beheben</td><td><span class="chip p-pr">PR offen</span></td><td class="num">A · 1</td><td class="num">ab 17.10.</td><td>Baseline, E1</td></tr>
+          <tr><td class="id">B2</td><td>Redirect-Dateien und verstecktes Formular (KI-Plan)</td><td><span class="chip p-niedrig">KI-Plan</span></td><td class="num">C · 4</td><td class="num">ab 19.10.</td><td>E1</td></tr>
+          <tr class="is-pr"><td class="id">#100</td><td>Navigation erst ab xl, kein horizontaler Überlauf</td><td><span class="chip p-pr">PR offen</span></td><td class="num">A · 1</td><td class="num">ab 21.10.</td><td>fertig vorbereitet</td></tr>
+          <tr><td class="id"><a href="#s2">S2</a></td><td>Sitemap: <code>lastmod</code> auf echte Änderungsdaten</td><td><span class="chip p-mittel">Mittel</span></td><td class="num">B · 1</td><td class="num">ab 23.10.</td><td>E2</td></tr>
+          <tr><td class="id"><a href="#s3">S3</a></td><td>Kontrast der Anfrage-Buttons, H1-Schreibweise</td><td><span class="chip p-mittel">Mittel</span></td><td class="num">A · 9</td><td class="num">ab 25.10.</td><td>E3</td></tr>
+          <tr><td class="id"><a href="#s4">S4</a></td><td>Vorschaubilder für <code>/referenzen</code></td><td><span class="chip p-mittel">Mittel</span></td><td class="num">B · 7</td><td class="num">ab 27.10.</td><td>keine</td></tr>
+          <tr><td class="id"><a href="#s5">S5a–d</a></td><td>Schema je Seite zu einem <code>@graph</code>, Article-Daten</td><td><span class="chip p-mittel">Mittel</span></td><td class="num">B · je bis 7</td><td class="num">ab 29.10. – 04.11.</td><td>E2, E4</td></tr>
+          <tr><td class="id"><a href="#s6">S6</a></td><td>Interne Verlinkung schwacher Seiten</td><td><span class="chip p-mittel">Mittel</span></td><td class="num">A · 5–6</td><td class="num">ab 06.11.</td><td>E5, S5 fertig</td></tr>
+          <tr><td class="id"><a href="#s7">S7</a></td><td>Hero-Bilder früher laden (LCP)</td><td><span class="chip p-bedingt">bedingt</span></td><td class="num">A · 10</td><td class="num">ab 08.11.</td><td>PSI nach S1</td></tr>
+          <tr><td class="id"><a href="#s8">S8</a></td><td>Langes Caching für <code>/assets/*</code></td><td><span class="chip p-bedingt">bedingt</span></td><td class="num">C · 1</td><td class="num">ab 10.11.</td><td>Header-Prüfung</td></tr>
+          <tr><td class="id">P1, W1, D1</td><td>Typenschild-Foto, WebMCP-Korrektur, Doku (KI-Plan)</td><td><span class="chip p-niedrig">KI-Plan</span></td><td class="num">laut KI-Plan</td><td class="num">eingeschoben</td><td>V1 Netlify-Kontingent, Codex-Gegenlesung</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section id="takt" aria-labelledby="h-takt">
+    <div class="section-head">
+      <h2 id="h-takt">Deploy-Takt</h2>
+      <p>Frühestmögliche Termine bei je 48 Stunden Abstand, gemessen am Produktionsdeploy mit geänderten Dateien. Reine Doku-Deploys ohne neue Dateien zählen nicht. Sobald Typenschild-Foto (P1) oder W1 aus dem KI-Plan fertig sind, werden sie eingeschoben und die SEO-Pakete rücken je einen Slot nach.</p>
+    </div>
+    <ol class="timeline">
+      <li><div class="t-date">15.10.<span>Do</span></div><div class="t-dot done" aria-hidden="true"></div><div class="t-body"><span class="slot">Erledigt</span><strong>PR #99 · Datenschutz B1</strong><div class="chips"><span class="chip p-ok">live 12:16 MESZ</span></div></div></li>
+      <li><div class="t-date">17.10.<span>Sa · 12:17</span></div><div class="t-dot pr" aria-hidden="true"></div><div class="t-body"><span class="slot">Slot 1 · Empfehlung</span><strong>S1 · Layout-Shift beheben</strong><div class="chips"><span class="chip p-hoch">Hoch</span><span class="chip p-pr">PR offen</span></div></div></li>
+      <li><div class="t-date">19.10.<span>Mo</span></div><div class="t-dot" aria-hidden="true"></div><div class="t-body"><span class="slot">Slot 2</span><strong>B2 · Redirect-Dateien und verstecktes Formular</strong><span class="hint">KI-Plan</span></div></li>
+      <li><div class="t-date">21.10.<span>Mi</span></div><div class="t-dot pr" aria-hidden="true"></div><div class="t-body"><span class="slot">Slot 3</span><strong>PR #100 · Navigation</strong></div></li>
+      <li><div class="t-date">23.10.<span>Fr</span></div><div class="t-dot" aria-hidden="true"></div><div class="t-body"><span class="slot">Slot 4</span><strong>S2 · Sitemap-Daten</strong></div></li>
+      <li><div class="t-date">25.10.<span>So</span></div><div class="t-dot" aria-hidden="true"></div><div class="t-body"><span class="slot">Slot 5</span><strong>S3 · Kontrast und H1-Text</strong></div></li>
+      <li><div class="t-date">27.10.<span>Di</span></div><div class="t-dot" aria-hidden="true"></div><div class="t-body"><span class="slot">Slot 6</span><strong>S4 · Vorschaubilder Referenzen</strong></div></li>
+      <li><div class="t-date">29.10.<span>Do</span></div><div class="t-dot" aria-hidden="true"></div><div class="t-body"><span class="slot">Slot 7</span><strong>S5a · Schema, doppelte Services</strong></div></li>
+      <li><div class="t-date">31.10.<span>Sa</span></div><div class="t-dot" aria-hidden="true"></div><div class="t-body"><span class="slot">Slot 8</span><strong>S5b · Schema, Ratgeber und Steildach</strong></div></li>
+      <li><div class="t-date">01.11.<span>So</span></div><div class="t-dot reserve" aria-hidden="true"></div><div class="t-body"><span class="slot">Routine, kein Deploy</span><strong>Erste monatliche Löschprüfung Netlify-Formulare</strong></div></li>
+      <li><div class="t-date">02.11.<span>Mo</span></div><div class="t-dot" aria-hidden="true"></div><div class="t-body"><span class="slot">Slot 9</span><strong>S5c · Schema, VELUX und Förderung</strong></div></li>
+      <li><div class="t-date">04.11.<span>Mi</span></div><div class="t-dot" aria-hidden="true"></div><div class="t-body"><span class="slot">Slot 10</span><strong>S5d · Schema, Article-Felder</strong></div></li>
+      <li><div class="t-date">06.11.<span>Fr</span></div><div class="t-dot" aria-hidden="true"></div><div class="t-body"><span class="slot">Slot 11</span><strong>S6 · Interne Verlinkung</strong></div></li>
+      <li><div class="t-date">08.11.<span>So</span></div><div class="t-dot bedingt" aria-hidden="true"></div><div class="t-body"><span class="slot">Slot 12 · nur bei Bedarf</span><strong>S7 · Hero-Bilder früher laden</strong></div></li>
+      <li><div class="t-date">10.11.<span>Di</span></div><div class="t-dot bedingt" aria-hidden="true"></div><div class="t-body"><span class="slot">Slot 13 · nur bei Bedarf</span><strong>S8 · Caching für /assets/*</strong></div></li>
+      <li><div class="t-date">ab 16.11.<span>Mo</span></div><div class="t-dot reserve" aria-hidden="true"></div><div class="t-body"><span class="slot">Reserve</span><strong>Förder-Wiedervorlage</strong><span class="hint"><code>estimate:check</code> meldet ab hier; Prüfung vor dem 31.12.2026. Slot freihalten.</span></div></li>
+      <li><div class="t-date">17.11.<span>Di</span></div><div class="t-dot reserve" aria-hidden="true"></div><div class="t-body"><span class="slot">Reserve</span><strong>Chrome-Origin-Trial-Token läuft ab</strong><span class="hint">Nur bei Bedarf ein eigener, freigegebener Deploy.</span></div></li>
+    </ol>
+  </section>
+
+  <section id="pakete" aria-labelledby="h-pakete">
+    <div class="section-head">
+      <h2 id="h-pakete">Arbeitspakete</h2>
+      <p>Jedes Paket ist ein PR mit genau einem Commit. Befund-Kürzel (H1, M1 …) verweisen auf <code>SEO-AUDIT-2026-10.md</code>.</p>
+    </div>
+    <div class="packages">
+
+      <article class="pkg" id="s1">
+        <div class="pkg-head">
+          <div class="pkg-code">S1</div>
+          <h3>Layout-Shift auf Unterseiten beheben</h3>
+          <div class="chips"><span class="chip p-hoch">Hoch</span><span class="chip stage">Stufe A · 1 Datei + Doku</span><span class="chip p-pr">PR offen</span></div>
+        </div>
+        <dl class="spec">
+          <dt>Befund</dt>
+          <dd>H1: CLS 0,922 auf allen lazy geladenen Unterseiten. Der Footer steht beim Laden kurz unter der Navigation und springt dann um rund 11.000 px nach unten. Das trifft den typischen Einstieg aus Google direkt auf einer Unterseite.</dd>
+          <dt>Änderung</dt>
+          <dd><code>client/src/App.tsx</code>: Suspense-Platzhalter <code>flex-1</code> → <code>min-h-screen</code>, mit kurzem Kommentar. Im selben PR: Audit-Bericht und dieser Plan als Root-Doku ohne Einfluss auf den Build.</dd>
+          <dt>Dateien</dt>
+          <dd class="files">client/src/App.tsx · SEO-AUDIT-2026-10.md · SEO-UMSETZUNGSPLAN-2026-10.html</dd>
+          <dt>Messung (Stand nach #99)</dt>
+          <dd>
+            <div class="result">
+              <b>Seite</b><b>CLS</b><b>Performance</b>
+              <span>/flachdach-bochum</span><span>0,922 → 0,022</span><span>54 → 85</span>
+              <span>/dachreparatur-bochum</span><span>0,922 → 0</span><span>55 → 83</span>
+              <span>/referenzen</span><span>0,922 → 0</span><span>56 → 82</span>
+              <span>/velux-preisrechner-bochum</span><span>0,922 → 0</span><span>58 → 84</span>
+              <span>Startseite</span><span>0 → 0</span><span>94 → 93</span>
+            </div>
+            <p class="hint">Lighthouse 12.8.2 mobil gegen den lokalen Produktionsbuild. Startseite unverändert im Rahmen des Messrauschens.</p>
+          </dd>
+          <dt>Lokal geprüft</dt>
+          <dd><code>npm run check</code>, Build, <code>faq:check</code>, <code>estimate:check</code>, <code>foerder:check</code> samt Selbsttests, Preisrechner-Smoketest und die drei WebMCP-Schritte aus der CI: grün. Der WebMCP-Vertragstest schlug einmal fehl, im ersten Lauf nach abgebrochenen Vorläufen. Danach je 8 von 8 Läufen grün mit und ohne Änderung.</dd>
+          <dt>Nach dem Deploy</dt>
+          <dd><span class="role role-tim">Tim</span> PageSpeed Insights mobil auf denselben Seiten wie die Baseline. <span class="role role-claude">Claude</span> Netlify, Checks, IndexNow, Prerender-Check.</dd>
+          <dt>Abnahme</dt>
+          <dd>CLS unter 0,1 in PageSpeed Insights mobil auf <code>/flachdach-bochum</code>, <code>/dachreparatur-bochum</code> und <code>/referenzen</code>.</dd>
+          <dt>Wirkung</dt>
+          <dd>Ruhiger Seitenaufbau für Besucher und bessere PageSpeed-Werte. Core Web Vitals sind ein kleiner Rankingfaktor; der Gewinn liegt vor allem bei Nutzern und Anfragen.</dd>
+        </dl>
+      </article>
+
+      <article class="pkg" id="s2">
+        <div class="pkg-head">
+          <div class="pkg-code">S2</div>
+          <h3>Sitemap-Daten auf echte Änderungen setzen</h3>
+          <div class="chips"><span class="chip p-mittel">Mittel</span><span class="chip stage">Stufe B · 1 Datei</span></div>
+        </div>
+        <dl class="spec">
+          <dt>Befund</dt>
+          <dd>M1: 29 von 30 <code>lastmod</code>-Werten liegen vor der letzten Veröffentlichung der Seite, z. B. <code>/foerderung</code> 02.08. gegenüber 12.10. Nur <code>/referenzen</code> stimmt. Google nutzt das Feld nur, solange es verlässlich ist.</dd>
+          <dt>Vorbereitung</dt>
+          <dd>Erledigt: Vorschlag je URL in der <a href="#datumstabelle">Datumstabelle</a>. <span class="role role-tim">Tim</span> bestätigt oder ändert (E2).</dd>
+          <dt>Änderung</dt>
+          <dd><code>client/public/sitemap.xml</code>: <code>lastmod</code> je URL auf das bestätigte Datum. URLs bleiben unverändert.</dd>
+          <dt>Daueraufgabe</dt>
+          <dd>Ab dann zieht jeder Content- oder Schema-Deploy die <code>lastmod</code> der geänderten Seiten mit; das ist in S5 und S6 eingeplant.</dd>
+          <dt>Abnahme</dt>
+          <dd>Jeder Wert deckt sich mit der bestätigten Tabelle; XML valide; Search Console zeigt die Sitemap als neu gelesen.</dd>
+          <dt>Aufwand</dt>
+          <dd>Claude ca. 30 Min. nach der Freigabe, Tim ca. 15 Min. für die Tabelle.</dd>
+        </dl>
+      </article>
+
+      <article class="pkg" id="s3">
+        <div class="pkg-head">
+          <div class="pkg-code">S3</div>
+          <h3>Kontrast der Anfrage-Buttons und H1-Schreibweise</h3>
+          <div class="chips"><span class="chip p-mittel">Mittel</span><span class="chip stage">Stufe A · 9 Dateien</span></div>
+        </div>
+        <dl class="spec">
+          <dt>Befund</dt>
+          <dd>M5: Weiße Schrift auf Hellblau (2,54 : 1) und Hellgrün (1,92 : 1) an Buttons wie „Förderung anfragen“ und „Versicherung anfragen“. Nötig sind 4,5 : 1. N5: Startseiten-H1 „rund um's Dach“, richtig ist „ums“.</dd>
+          <dt>Änderung</dt>
+          <dd>11 Button-Stellen (<code>bg-blue-400</code>/<code>bg-emerald-400</code> mit weißer Schrift) auf dunklere Töne derselben Farbe. H1 in <code>Home.tsx</code> korrigieren.</dd>
+          <dt>Dateien</dt>
+          <dd class="files">SteildachBochum · FlachdachBochum · BauklempnereiBochum · DachfensterBochum · Dachreparatur · DachsanierungBochum · DachwartungBochum · WannLohntSichDachsanierung · Home</dd>
+          <dt>Preisrechner</dt>
+          <dd>Die Kontrastfehler im Rechner (Hilfetexte 2,71 : 1, rotes Kennzeichen 3,6 : 1) gehören nicht in S3. Typenschild-Foto und W1 aus dem KI-Plan ändern dieselben Dateien; die Korrektur läuft mit dem ersten dieser Pakete mit.</dd>
+          <dt>Abnahme</dt>
+          <dd>Lighthouse meldet auf den betroffenen Seiten keinen Kontrastfehler an den Buttons mehr; Tim gibt die Farben im Preview frei (E3).</dd>
+          <dt>Aufwand</dt>
+          <dd>Claude ca. 1 Std., Tim ca. 20 Min.</dd>
+        </dl>
+      </article>
+
+      <article class="pkg" id="s4">
+        <div class="pkg-head">
+          <div class="pkg-code">S4</div>
+          <h3>Vorschaubilder für die Referenzen</h3>
+          <div class="chips"><span class="chip p-mittel">Mittel</span><span class="chip stage">Stufe B · 7 Dateien</span></div>
+        </div>
+        <dl class="spec">
+          <dt>Befund</dt>
+          <dd>M6: Kacheln laden Bilder mit bis zu 2.600 px Breite für ca. 400 px Anzeige. Die Seite hat eine Lightbox, die die Bilder groß zeigt; die Originale müssen deshalb bleiben.</dd>
+          <dt>Änderung</dt>
+          <dd>Sechs neue Vorschaubilder (<code>…-800w.webp</code>, 800 px breit). <code>References.tsx</code>: Kachel lädt das Vorschaubild, die Lightbox weiter das Original.</dd>
+          <dt>Betroffene Bilder</dt>
+          <dd>
+            <ul>
+              <li>gruendach-extensiv-sedum-neubau-mehrfamilienhaus-bochum (690 KB)</li>
+              <li>fensterbank-zinkblech-dachfenster-anschluss-steildach-bochum (281 KB)</li>
+              <li>velux-dachfenster-doppelanlage-einbau-tonziegel-bochum (279 KB)</li>
+              <li>dacheindeckung-tonziegel-velux-dachfenster-bungalow-bochum (175 KB)</li>
+              <li>velux-dachfenster-3er-kombination-steildach-bochum (169 KB)</li>
+              <li>tondach-dachziegel-bochum-typ4 (146 KB)</li>
+            </ul>
+          </dd>
+          <dt>Geprüft</dt>
+          <dd>Die WebP-Dateien tragen keine GPS-Geotags (das Geotag-Skript bearbeitet nur JPGs), beim Neuexport geht nichts verloren.</dd>
+          <dt>Abnahme</dt>
+          <dd>Lighthouse meldet für diese sechs Bilder keine Einsparung mehr; Lightbox bleibt scharf. Erwartete Ersparnis rund 1,3 MB beim Seitenaufruf (Schätzung).</dd>
+          <dt>Aufwand</dt>
+          <dd>Claude ca. 1,5 Std., Tim ca. 20 Min.</dd>
+        </dl>
+      </article>
+
+      <article class="pkg" id="s5">
+        <div class="pkg-head">
+          <div class="pkg-code">S5</div>
+          <h3>Schema konsolidieren und Article-Daten ergänzen</h3>
+          <div class="chips"><span class="chip p-mittel">Mittel</span><span class="chip stage">Stufe B · 4 Tranchen, je bis 7 Dateien</span></div>
+        </div>
+        <dl class="spec">
+          <dt>Befund</dt>
+          <dd>M2: Die eigene Regel aus DEPLOY-RULES §7 (ein <code>@graph</code> pro Seite mit <code>@id</code>) ist auf vielen Seiten nicht umgesetzt; vier Seiten haben zwei verschiedene <code>Service</code>-Einträge. M3: 14 von 19 Article-Einträgen fehlt <code>dateModified</code>.</dd>
+          <dt>Ziel je Seite</dt>
+          <dd>Ein <code>@graph</code> mit <code>#webpage</code>, <code>#breadcrumb</code>, <code>#service</code>, <code>#faq</code>, <code>#article</code>; doppelte Services zusammengeführt; Article mit <code>datePublished</code>, <code>dateModified</code>, <code>image</code>, <code>mainEntityOfPage</code>. Sichtbarer Inhalt bleibt unverändert.</dd>
+          <dt>S5a</dt>
+          <dd class="files">Dachreparatur · DachwartungBochum · BauklempnereiBochum · GruendachBochum (doppelte Services) · SturmschadenDach · DachPhotovoltaikBochum</dd>
+          <dt>S5b</dt>
+          <dd class="files">DachrinnenBochum · BitumenVsPvc · AufsparrendaemmungBochum · DachgaubeBochum · SteildachFoerderungBochum · SteildachUndichtBochum</dd>
+          <dt>S5c</dt>
+          <dd class="files">VeluxAustausch · VeluxRolllaeden · VeluxPreisrechnerBochum · Foerderung · Solarpflicht · WannLohntSichDachsanierung</dd>
+          <dt>S5d</dt>
+          <dd class="files">FAQ · SteildachBochum · DachfensterBochum</dd>
+          <dt>Je Tranche zusätzlich</dt>
+          <dd><code>sitemap.xml</code>, weil geänderte strukturierte Daten für Google als wesentliche Änderung zählen: höchstens 6 + 1 = 7 Dateien.</dd>
+          <dt>Regeln</dt>
+          <dd>
+            <ul>
+              <li>Datumswerte nur aus der bestätigten Tabelle, nie das Builddatum. Dieselbe Falle wie F09 beim ExpertenBlock.</li>
+              <li>VELUX-Seiten: keine Preis- oder Förderlogik anfassen; <code>WebApplication</code>-Schema und WebMCP bleiben unberührt. S5c erst nach B2, das <code>VeluxPreisrechnerBochum.tsx</code> ebenfalls ändert.</li>
+              <li>Kein AggregateRating, kein SearchAction, kein „Notdienst“.</li>
+              <li><code>HowTo</code> nach E4 behandeln.</li>
+            </ul>
+          </dd>
+          <dt>Prüfung</dt>
+          <dd><span class="role role-claude">Claude</span> <code>npm run faq:check</code>, Schema-Validator, Vergleich alt/neu je Seite (dieselben Fakten). <span class="role role-tim">Tim</span> Rich-Results-Test auf der Netlify-Preview-URL.</dd>
+          <dt>Abnahme</dt>
+          <dd>Pro Seite ein Graph mit eindeutigen <code>@id</code>; keine doppelten Services; in der Search Console unter „Verbesserungen“ nach ein bis zwei Wochen keine neuen Fehler.</dd>
+          <dt>Nicht nötig</dt>
+          <dd>Karriere, Kontakt, Leistungen, Referenzen, Lexikon, Über uns: dort steht nur eine BreadcrumbList ohne <code>@id</code>. Das ist unkritisch.</dd>
+          <dt>Aufwand</dt>
+          <dd>Je Tranche Claude 2–3 Std., Tim ca. 30 Min.</dd>
+        </dl>
+      </article>
+
+      <article class="pkg" id="s6">
+        <div class="pkg-head">
+          <div class="pkg-code">S6</div>
+          <h3>Interne Verlinkung schwacher Seiten</h3>
+          <div class="chips"><span class="chip p-mittel">Mittel</span><span class="chip stage">Stufe A · 5–6 Dateien</span></div>
+        </div>
+        <dl class="spec">
+          <dt>Befund</dt>
+          <dd>M4: Sechs Seiten erhalten nur 3–4 interne Links: <code>/leistungen</code>, <code>/velux-dachfenster-austausch-bochum</code>, <code>/velux-dachfenster-rolllaeden-bochum</code>, <code>/steildach-foerderung-bochum</code>, <code>/steildach-undicht-bochum</code>, <code>/bitumen-vs-pvc-flachdach-bochum</code>.</dd>
+          <dt>Vorbereitung</dt>
+          <dd><span class="role role-claude">Claude</span> Vorschlagsliste: Quellseite, Zielseite, Absatz, Ankertext. <span class="role role-tim">Tim</span> gibt frei (E5). Schwerpunkt VELUX-Austausch (Money-Page) und Leistungsübersicht.</dd>
+          <dt>Änderung</dt>
+          <dd>Je Zielseite mindestens drei zusätzliche Links aus passenden Absätzen. Beschreibende Ankertexte, keine Keyword-Häufung, keine neuen Seiten.</dd>
+          <dt>Dateien</dt>
+          <dd>4–5 Quellseiten und <code>sitemap.xml</code>.</dd>
+          <dt>Abhängigkeit</dt>
+          <dd>Nach #100 und S5, weil dieselben Seitendateien betroffen sind.</dd>
+          <dt>Aufwand</dt>
+          <dd>Claude ca. 1,5 Std., Tim ca. 30 Min.</dd>
+        </dl>
+      </article>
+
+      <article class="pkg" id="s7">
+        <div class="pkg-head">
+          <div class="pkg-code">S7</div>
+          <h3>Hero-Bilder früher laden</h3>
+          <div class="chips"><span class="chip p-bedingt">bedingt</span><span class="chip stage">Stufe A · 10 Dateien</span></div>
+        </div>
+        <dl class="spec">
+          <dt>Bedingung</dt>
+          <dd>Nur wenn PageSpeed Insights nach S1 auf Unterseiten weiterhin einen LCP über 2,5 s zeigt. Die lokalen Laborwerte (4,1–4,8 s) sind gegen das Netlify-CDN nicht belastbar.</dd>
+          <dt>Befund</dt>
+          <dd>M7 und N6: Auf zehn Seiten ist das Hero-Bild ein CSS-Hintergrund und wird erst spät entdeckt. Einige Bilder haben keine festen Maße.</dd>
+          <dt>Änderung</dt>
+          <dd>Hero als <code>&lt;img fetchpriority="high"&gt;</code> mit <code>width</code>/<code>height</code>, wie auf der Startseite (dort LCP 2,9–3,0 s). Bilder bleiben dekorativ.</dd>
+          <dt>Dateien</dt>
+          <dd class="files">AufsparrendaemmungBochum · BauklempnereiBochum · DachgaubeBochum · Dachreparatur · DachrinnenBochum · DachwartungBochum · Foerderung · GruendachBochum · SturmschadenDach · VeluxPreisrechnerBochum</dd>
+          <dt>Abnahme</dt>
+          <dd>LCP in PageSpeed Insights mobil auf drei Stichproben spürbar niedriger als vorher.</dd>
+          <dt>Aufwand</dt>
+          <dd>Claude ca. 2 Std., Tim ca. 20 Min.</dd>
+        </dl>
+      </article>
+
+      <article class="pkg" id="s8">
+        <div class="pkg-head">
+          <div class="pkg-code">S8</div>
+          <h3>Langes Caching für /assets/*</h3>
+          <div class="chips"><span class="chip p-bedingt">bedingt</span><span class="chip stage">Stufe C · 1 Datei</span></div>
+        </div>
+        <dl class="spec">
+          <dt>Bedingung</dt>
+          <dd>Nur wenn Tims Header-Prüfung zeigt, dass die gehashten Dateien unter <code>/assets/</code> ohne lange Cache-Dauer ausgeliefert werden (N7).</dd>
+          <dt>Änderung</dt>
+          <dd><code>netlify.toml</code>: Header-Regel <code>Cache-Control: public, max-age=31536000, immutable</code> nur für <code>/assets/*</code>. Nicht für <code>index.html</code>. Der WebMCP-Abschnitt bleibt unberührt.</dd>
+          <dt>Abnahme</dt>
+          <dd>Eine <code>/assets/…js</code>-Datei zeigt live den neuen Header; nach einem weiteren Deploy lädt die Seite die neuen Dateinamen.</dd>
+          <dt>Aufwand</dt>
+          <dd>Claude ca. 30 Min., Tim ca. 15 Min. Eigener Deploy, weil gesperrte Konfiguration.</dd>
+        </dl>
+      </article>
+
+    </div>
+  </section>
+
+  <section id="entscheidungen" aria-labelledby="h-dec">
+    <div class="section-head">
+      <h2 id="h-dec">Entscheidungen für Tim</h2>
+      <p>Ohne diese Antworten bleiben die genannten Pakete stehen. Die Empfehlung ist jeweils die erste Option.</p>
+    </div>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Nr.</th><th>Frage</th><th>Empfehlung</th><th>Begründung</th><th>Für</th></tr></thead>
+        <tbody>
+          <tr><td class="id">E1</td><td>Welches Paket im Fenster ab 17.10.2026, 12:17 MESZ?</td><td>S1, danach B2</td><td>S1 hat den größeren Nutzen. B2 räumt doppelte Redirect-Dateien auf und hat keine Eile.</td><td class="num">Slot 1–2</td></tr>
+          <tr><td class="id">E2</td><td>Stimmen die vorgeschlagenen Änderungsdaten?</td><td>Tabelle unten bestätigen</td><td>Grundlage für <code>lastmod</code> und <code>dateModified</code>; ohne Freigabe keine Datumswerte.</td><td class="num">S2, S5</td></tr>
+          <tr><td class="id">E3</td><td>Farben der Anfrage-Buttons</td><td>Dunklere Töne derselben Farbe (-700)</td><td>Bleibt im bisherigen Farbschema und erfüllt den Kontrast. Freigabe im Preview.</td><td class="num">S3</td></tr>
+          <tr><td class="id">E4</td><td>HowTo-Schema auf fünf Seiten</td><td>Behalten und in den Graph aufnehmen</td><td>Gültiges Schema.org ohne Nachteil; Google zeigt dafür nur keine Rich Results mehr.</td><td class="num">S5</td></tr>
+          <tr><td class="id">E5</td><td>Linkvorschläge für sechs Seiten</td><td>Kontextuelle Links in Fließtexten</td><td>Stärkeres Signal als Footer-Links und ohne seitenweite Änderung.</td><td class="num">S6</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section id="datumstabelle" aria-labelledby="h-dates">
+    <div class="section-head">
+      <h2 id="h-dates">Datumstabelle zur Freigabe (E2)</h2>
+      <p>Vorschlag für <code>lastmod</code> je URL: der Tag, an dem die letzte Änderung der Seite über einen PR auf <code>main</code> kam und damit live ging. Gezählt sind Inhalt, Titel und Beschreibung, Schema und Links; beim Preisrechner auch Komponente und Rechenlogik. Das automatische Prüfdatum im ExpertenBlock zählt nicht. Bitte nur Abweichungen melden.</p>
+    </div>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>URL</th><th>Sitemap heute</th><th>Vorschlag</th><th>Grundlage</th></tr></thead>
+        <tbody>
+          <tr><td><code>/</code></td><td class="num">31.07.2026</td><td class="num"><strong>15.10.2026</strong></td><td>#99 Datenschutz: ProvenExpert-Skripte entfernt, Google-Maps-Einwilligung und §7 berichtigt (B1) <span class="hint">Nur der Bewertungsbereich geändert (ProSeal → Link). Alternative: 02.08.2026, #36.</span></td></tr>
+          <tr><td><code>/dachfenster-bochum</code></td><td class="num">02.08.2026</td><td class="num"><strong>23.09.2026</strong></td><td>#81 R1 Förderung: Falschaussagen auf acht Seiten korrigieren</td></tr>
+          <tr><td><code>/flachdach-bochum</code></td><td class="num">02.08.2026</td><td class="num"><strong>30.09.2026</strong></td><td>#84 R4 Förderung: Drift-Check in der CI, Resttexte, lokaler Start unter Windows</td></tr>
+          <tr><td><code>/dachreparatur-bochum</code></td><td class="num">20.07.2026</td><td class="num"><strong>01.09.2026</strong></td><td>#63 Folgepaket zu §8: FAQPage-Schema generieren, letzte „förderfähig&quot;-Stelle, faq:check</td></tr>
+          <tr><td><code>/steildach-bochum</code></td><td class="num">02.08.2026</td><td class="num"><strong>25.09.2026</strong></td><td>#82 R2 Förderung: Richtlinienstand, llms-Dateien und Resttexte angleichen</td></tr>
+          <tr><td><code>/bauklempnerei-bochum</code></td><td class="num">20.07.2026</td><td class="num"><strong>01.09.2026</strong></td><td>#63 Folgepaket zu §8: FAQPage-Schema generieren, letzte „förderfähig&quot;-Stelle, faq:check</td></tr>
+          <tr><td><code>/dachwartung-bochum</code></td><td class="num">20.07.2026</td><td class="num"><strong>26.08.2026</strong></td><td>#58 Paket 6: interne Verlinkung der unterverlinkten Money-Pages</td></tr>
+          <tr><td><code>/velux-dachfenster-austausch-bochum</code></td><td class="num">02.08.2026</td><td class="num"><strong>30.08.2026</strong></td><td>#61 Schema- und Terminologie-Hygiene: FAQPage-Drift beenden, förderfähig bereinigen</td></tr>
+          <tr><td><code>/velux-dachfenster-rolllaeden-bochum</code></td><td class="num">20.07.2026</td><td class="num"><strong>01.09.2026</strong></td><td>#63 Folgepaket zu §8: FAQPage-Schema generieren, letzte „förderfähig&quot;-Stelle, faq:check</td></tr>
+          <tr><td><code>/gruendach-dachbegrunung-bochum</code></td><td class="num">20.07.2026</td><td class="num"><strong>23.09.2026</strong></td><td>#81 R1 Förderung: Falschaussagen auf acht Seiten korrigieren</td></tr>
+          <tr><td><code>/leistungen</code></td><td class="num">31.07.2026</td><td class="num"><strong>24.08.2026</strong></td><td>#55 GSC-Meta-2: Titles und Descriptions der 10 Seite-1-Nullklicker neu fassen</td></tr>
+          <tr><td><code>/lexikon</code></td><td class="num">02.08.2026</td><td class="num"><strong>28.08.2026</strong></td><td>#56 GSC-Meta-3: die letzten fünf Seiten mit Meta-Überlängen neu fassen</td></tr>
+          <tr><td><code>/foerderung</code></td><td class="num">02.08.2026</td><td class="num"><strong>12.10.2026</strong></td><td>#97 PV/Förderung: Indach-PV in der BEG und Braas-Produktbeschreibung korrigiert</td></tr>
+          <tr><td><code>/solarpflicht</code></td><td class="num">31.07.2026</td><td class="num"><strong>23.09.2026</strong></td><td>#81 R1 Förderung: Falschaussagen auf acht Seiten korrigieren</td></tr>
+          <tr><td><code>/faq</code></td><td class="num">17.05.2026</td><td class="num"><strong>25.09.2026</strong></td><td>#82 R2 Förderung: Richtlinienstand, llms-Dateien und Resttexte angleichen</td></tr>
+          <tr class="same"><td><code>/referenzen</code></td><td class="num">14.07.2026</td><td class="num">unverändert</td><td>#25 SEO/GEO-Audit Juli 2026: Plan, Prerender-Check, Referenzen-Case-Studies &amp; Flachdach-FAQ</td></tr>
+          <tr><td><code>/ueber-uns</code></td><td class="num">02.08.2026</td><td class="num"><strong>10.08.2026</strong></td><td>#39 Interne Verlinkung: vier Lücken im Linkgraph schließen</td></tr>
+          <tr><td><code>/karriere</code></td><td class="num">17.05.2026</td><td class="num"><strong>24.08.2026</strong></td><td>#55 GSC-Meta-2: Titles und Descriptions der 10 Seite-1-Nullklicker neu fassen</td></tr>
+          <tr><td><code>/kontakt</code></td><td class="num">17.05.2026</td><td class="num"><strong>15.10.2026</strong></td><td>#99 Datenschutz: ProvenExpert-Skripte entfernt, Google-Maps-Einwilligung und §7 berichtigt (B1)</td></tr>
+          <tr><td><code>/steildach-foerderung-bochum</code></td><td class="num">31.07.2026</td><td class="num"><strong>23.09.2026</strong></td><td>#81 R1 Förderung: Falschaussagen auf acht Seiten korrigieren</td></tr>
+          <tr><td><code>/dachgaube-bochum</code></td><td class="num">02.08.2026</td><td class="num"><strong>11.08.2026</strong></td><td>#44 BEG-4 (Förderzahlen-Korrektur) + GSC-Meta-1 (Meta-Offensive I)</td></tr>
+          <tr><td><code>/aufsparrendaemmung-bochum</code></td><td class="num">31.07.2026</td><td class="num"><strong>25.09.2026</strong></td><td>#82 R2 Förderung: Richtlinienstand, llms-Dateien und Resttexte angleichen</td></tr>
+          <tr><td><code>/steildach-undicht-bochum</code></td><td class="num">23.07.2026</td><td class="num"><strong>25.09.2026</strong></td><td>#82 R2 Förderung: Richtlinienstand, llms-Dateien und Resttexte angleichen</td></tr>
+          <tr><td><code>/dachsanierung-bochum</code></td><td class="num">02.08.2026</td><td class="num"><strong>23.09.2026</strong></td><td>#81 R1 Förderung: Falschaussagen auf acht Seiten korrigieren</td></tr>
+          <tr><td><code>/sturmschaden-dach-bochum</code></td><td class="num">23.07.2026</td><td class="num"><strong>26.08.2026</strong></td><td>#58 Paket 6: interne Verlinkung der unterverlinkten Money-Pages</td></tr>
+          <tr><td><code>/bitumen-vs-pvc-flachdach-bochum</code></td><td class="num">25.07.2026</td><td class="num"><strong>30.09.2026</strong></td><td>#84 R4 Förderung: Drift-Check in der CI, Resttexte, lokaler Start unter Windows</td></tr>
+          <tr><td><code>/dachrinne-bochum</code></td><td class="num">23.07.2026</td><td class="num"><strong>22.08.2026</strong></td><td>#52 Paket 5: Dachrinnenreinigung entflechten — Verhältnis von 7:1 auf 2:11 gedreht</td></tr>
+          <tr><td><code>/velux-preisrechner-bochum</code></td><td class="num">31.07.2026</td><td class="num"><strong>08.10.2026</strong></td><td>#91 Datenschutz Preisrechner: Hinweis, Pflichtfelder und Datenschutzerklärung</td></tr>
+          <tr><td><code>/wann-lohnt-sich-dachsanierung</code></td><td class="num">02.08.2026</td><td class="num"><strong>30.09.2026</strong></td><td>#84 R4 Förderung: Drift-Check in der CI, Resttexte, lokaler Start unter Windows</td></tr>
+          <tr><td><code>/dach-photovoltaik-bochum</code></td><td class="num">31.07.2026</td><td class="num"><strong>12.10.2026</strong></td><td>#97 PV/Förderung: Indach-PV in der BEG und Braas-Produktbeschreibung korrigiert</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section id="messpunkte" aria-labelledby="h-mess">
+    <div class="section-head">
+      <h2 id="h-mess">Messpunkte im Browser</h2>
+      <p>Die Live-Domain ist aus der Claude-Umgebung gesperrt. Diese Prüfungen laufen deshalb bei Tim.</p>
+    </div>
+    <div class="twocol">
+      <div class="panel">
+        <h3>Vor dem S1-Merge</h3>
+        <ul>
+          <li><strong>Baseline PageSpeed Insights mobil</strong> für fünf URLs (siehe Nächste Schritte).</li>
+          <li><strong>Response-Header</strong>: DevTools → Netzwerk → eine Datei unter <code>/assets/</code> → <code>cache-control</code> und <code>strict-transport-security</code> notieren. Entscheidet über S8.</li>
+          <li><strong>Prerender für KI-Abrufe</strong>: wie in <code>PRERENDER-CHECK.md</code>, zusätzlich mit den User-Agents ChatGPT-User, Claude-User und Perplexity-User.</li>
+        </ul>
+      </div>
+      <div class="panel">
+        <h3>Während der Umsetzung</h3>
+        <ul>
+          <li><strong>Nach S1</strong>: PageSpeed Insights auf denselben URLs. Entscheidet über S7.</li>
+          <li><strong>Nach S4</strong>: PageSpeed Insights <code>/referenzen</code>.</li>
+          <li><strong>Vor jedem S5-Merge</strong>: Rich-Results-Test auf der Preview-URL.</li>
+          <li><strong>Zwei Wochen nach S5d</strong>: Search Console, Bereiche „Verbesserungen“ und „Sitemaps“.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section id="ablauf" aria-labelledby="h-ablauf">
+    <div class="section-head">
+      <h2 id="h-ablauf">Ablauf je Paket</h2>
+      <p>Gilt für jedes Paket gleich. Kein Direct-Push auf main, kein Auto-Merge.</p>
+    </div>
+    <div class="twocol">
+      <div class="panel">
+        <h3><span class="role role-claude">Claude</span></h3>
+        <ol>
+          <li>Aktuellen Stand prüfen: Uhrzeit mit <code>date</code>, main, offene PRs, Deploy-Log, Netlify, beide Pläne.</li>
+          <li>Branch vom aktuellen main, nur die geplanten Dateien ändern, ein Commit.</li>
+          <li>Prüfen wie in der CI: <code>npm run check</code>, Build, <code>faq:check</code>, <code>estimate:check</code>, <code>foerder:check</code>, Browser-Smoketests; Lighthouse vorher/nachher.</li>
+          <li>PR mit Stufe, Dateizahl, Messwerten und frühestem Merge als festes Datum mit Uhrzeit.</li>
+        </ol>
+      </div>
+      <div class="panel">
+        <h3><span class="role role-tim">Tim</span></h3>
+        <ol>
+          <li>Netlify-Preview ansehen; bei Schema-Paketen Rich-Results-Test.</li>
+          <li>Mergen, wenn das Fenster offen ist (48 Stunden seit dem letzten Produktionsdeploy mit geänderten Dateien).</li>
+          <li>PageSpeed-Stichprobe, wo im Paket genannt. Den Nachlauf (Netlify, Checks, IndexNow, Prerender-Check) prüft Claude und trägt ihn ins Deploy-Log ein.</li>
+        </ol>
+      </div>
+    </div>
+  </section>
+
+  <section id="nicht" aria-labelledby="h-nicht">
+    <div class="section-head">
+      <h2 id="h-nicht">Bewusst nicht umgesetzt</h2>
+    </div>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Punkt</th><th>Grund</th></tr></thead>
+        <tbody>
+          <tr><td>N1 ProvenExpert-Widget entfernen</td><td>Erledigt durch PR #99, live seit 15.10.2026.</td></tr>
+          <tr><td>N2 robots.txt: Datenschutz und Impressum freigeben</td><td>Geringe Wirkung; <code>robots.txt</code> nur bei zwingender, separat begründeter Notwendigkeit. Bei einer ohnehin nötigen Änderung mit aufnehmen.</td></tr>
+          <tr><td>N3 Echter 404-Status für unbekannte URLs</td><td>Bräuchte 33 explizite Rewrites in <code>netlify.toml</code>. Die 404-Seite setzt bereits <code>noindex</code>.</td></tr>
+          <tr><td>Server-Rendering oder eigener Prerender</td><td>In DEPLOY-RULES §6 ausgeschlossen; Crawler bekommen den Netlify-Prerender.</td></tr>
+          <tr><td><code>/.well-known</code>-Dateien, Markdown-Auslieferung, Content-Signal</td><td>Junge Standards ohne belegten Nutzen für einen lokalen Handwerksbetrieb.</td></tr>
+          <tr><td>Bewertungs-Markup (AggregateRating)</td><td>On-site ausgeschlossen (DEPLOY-RULES §6).</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section id="korrekturen" aria-labelledby="h-korr">
+    <div class="section-head">
+      <h2 id="h-korr">Korrekturen gegenüber der Fassung vom 14.10.2026</h2>
+    </div>
+    <div class="panel">
+      <ul>
+        <li><strong>Paketnamen:</strong> P1–P8 heißen jetzt S1–S8, damit sie nicht mit P1 (Typenschild-Foto) und P4/P5 aus dem KI-Plan verwechselt werden.</li>
+        <li><strong>E6 entfällt:</strong> Ich hatte empfohlen, den Deploy-Log immer im nächsten Paket-PR mitzuführen, weil Doku-PRs das Fenster verschieben. Laut Deploy-Log zählen reine Doku-Deploys ohne neue Dateien aber nicht (#92, #93, #95, #98). Eigene Doku-PRs sind also ohne Nachteil möglich.</li>
+        <li><strong>M1 Sitemap:</strong> 29 von 30 veraltete Einträge statt 30 von 30. Die erste Zählung beruhte auf einem flachen Git-Klon; <code>/referenzen</code> ist korrekt.</li>
+        <li><strong>S3 ohne Preisrechner:</strong> Die Rechner-Dateien ändern auch Typenschild-Foto und W1 aus dem KI-Plan; die Kontrastkorrektur dort läuft mit diesen Paketen.</li>
+        <li><strong>Termine:</strong> neu berechnet ab dem tatsächlichen Deploy von #99 und mit B2 aus dem KI-Plan im Takt.</li>
+      </ul>
+    </div>
+  </section>
+
+  <footer>
+    <p>Stand 15.10.2026. Quellen: <code>SEO-AUDIT-2026-10.md</code>, <code>DEPLOY-RULES.md</code> §10, <code>UMSETZUNGSPLAN-2026-10-KI-ANFRAGEN.md</code> (Branch <code>claude/zealous-brown-c1mq00</code>), Netlify-Deploy <span class="mono">6ad0a7ee…</span>, offene PRs, vollständige Git-Historie von <code>main</code>.</p>
+    <p>Aufwandsangaben sind Schätzungen. Termine sind frühestmögliche Daten und keine Zusage; über jeden Merge entscheidet Tim.</p>
+  </footer>
+
+</main>
+</body>
+</html>
