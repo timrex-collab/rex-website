@@ -294,7 +294,7 @@
         <span class="role role-tim">Tim</span>
         <div>
           <strong>E1 entscheiden: S1 oder B2 im Fenster ab 17.10., 12:17 MESZ</strong>
-          <span class="hint">Empfehlung S1. Der S1-PR trägt auch den Deploy-Log-Eintrag zu #99.</span>
+          <span class="hint">Empfehlung S1; B2 hat keine Eile.</span>
         </div>
       </li>
       <li>
@@ -330,7 +330,7 @@
         <thead><tr><th>Was</th><th>Ergebnis</th></tr></thead>
         <tbody>
           <tr><td>PR #99 nach dem Merge geprüft</td><td>Netlify <span class="mono">6ad0a7ee…</span>, <code>commit_ref 95a088a</code>, <code>state ready</code>, <code>plugin_state success</code>, Prerender-Function vorhanden, Secret-Scan 741/0. Checks #79, IndexNow #69 und Prerender-Check #24 grün. Gate eingehalten: 83 h 11 min nach #97.</td></tr>
-          <tr><td>Deploy-Log zu #99</td><td>In <code>DEPLOY-RULES.md</code> §10 eingetragen (Stand-Absatz und Tabellenzeile), läuft mit dem S1-PR.</td></tr>
+          <tr><td>Deploy-Log zu #99</td><td>Auf <code>main</code> seit PR #102: Stand-Absatz 15.10.2026, Tabellenzeile „Datenschutz B1“ und §14 ProvenExpert. #102 lief ohne neue Dateien und zählt nicht fürs Fenster.</td></tr>
           <tr><td>S1 umgesetzt und geprüft</td><td><code>npm run check</code>, Build, <code>faq:check</code>, <code>estimate:check</code>, <code>foerder:check</code> samt Selbsttests, Preisrechner-Smoketest und alle drei WebMCP-Schritte aus der CI grün. Lighthouse vorher/nachher siehe S1.</td></tr>
           <tr><td>Audit-Befund N1</td><td>Durch #99 erledigt (ProvenExpert-Skripte entfernt).</td></tr>
           <tr><td>Datumstabelle für S2 und S5</td><td>Aus der vollständigen Git-Historie erstellt, unten zur Freigabe.</td></tr>
@@ -410,9 +410,9 @@
           <dt>Befund</dt>
           <dd>H1: CLS 0,922 auf allen lazy geladenen Unterseiten. Der Footer steht beim Laden kurz unter der Navigation und springt dann um rund 11.000 px nach unten. Das trifft den typischen Einstieg aus Google direkt auf einer Unterseite.</dd>
           <dt>Änderung</dt>
-          <dd><code>client/src/App.tsx</code>: Suspense-Platzhalter <code>flex-1</code> → <code>min-h-screen</code>, mit kurzem Kommentar. Im selben PR: Deploy-Log zu #99, Audit-Bericht und dieser Plan als Root-Doku ohne Einfluss auf den Build.</dd>
+          <dd><code>client/src/App.tsx</code>: Suspense-Platzhalter <code>flex-1</code> → <code>min-h-screen</code>, mit kurzem Kommentar. Im selben PR: Audit-Bericht und dieser Plan als Root-Doku ohne Einfluss auf den Build.</dd>
           <dt>Dateien</dt>
-          <dd class="files">client/src/App.tsx · DEPLOY-RULES.md · SEO-AUDIT-2026-10.md · SEO-UMSETZUNGSPLAN-2026-10.html</dd>
+          <dd class="files">client/src/App.tsx · SEO-AUDIT-2026-10.md · SEO-UMSETZUNGSPLAN-2026-10.html</dd>
           <dt>Messung (Stand nach #99)</dt>
           <dd>
             <div class="result">
@@ -626,7 +626,7 @@
       <table>
         <thead><tr><th>Nr.</th><th>Frage</th><th>Empfehlung</th><th>Begründung</th><th>Für</th></tr></thead>
         <tbody>
-          <tr><td class="id">E1</td><td>Welches Paket im Fenster ab 17.10.2026, 12:17 MESZ?</td><td>S1, danach B2</td><td>S1 hat den größeren Nutzen und trägt den Deploy-Log zu #99. B2 räumt doppelte Redirect-Dateien auf und hat keine Eile.</td><td class="num">Slot 1–2</td></tr>
+          <tr><td class="id">E1</td><td>Welches Paket im Fenster ab 17.10.2026, 12:17 MESZ?</td><td>S1, danach B2</td><td>S1 hat den größeren Nutzen. B2 räumt doppelte Redirect-Dateien auf und hat keine Eile.</td><td class="num">Slot 1–2</td></tr>
           <tr><td class="id">E2</td><td>Stimmen die vorgeschlagenen Änderungsdaten?</td><td>Tabelle unten bestätigen</td><td>Grundlage für <code>lastmod</code> und <code>dateModified</code>; ohne Freigabe keine Datumswerte.</td><td class="num">S2, S5</td></tr>
           <tr><td class="id">E3</td><td>Farben der Anfrage-Buttons</td><td>Dunklere Töne derselben Farbe (-700)</td><td>Bleibt im bisherigen Farbschema und erfüllt den Kontrast. Freigabe im Preview.</td><td class="num">S3</td></tr>
           <tr><td class="id">E4</td><td>HowTo-Schema auf fünf Seiten</td><td>Behalten und in den Graph aufnehmen</td><td>Gültiges Schema.org ohne Nachteil; Google zeigt dafür nur keine Rich Results mehr.</td><td class="num">S5</td></tr>
