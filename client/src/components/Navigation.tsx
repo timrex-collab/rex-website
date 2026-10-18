@@ -52,7 +52,7 @@ export default function Navigation() {
     <nav className="sticky top-0 z-50 bg-background/90 backdrop-blur-md border-b border-border">
       <div className="max-w-7xl mx-auto px-4 md:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
-          <Link href="/" aria-label="Rex Bedachungs GmbH – Zur Startseite" className="flex items-center space-x-3" data-testid="link-home">
+          <Link href="/" aria-label="Rex Bedachungs GmbH – Zur Startseite" className="flex shrink-0 items-center space-x-3" data-testid="link-home">
             <Picture
               src={logoPath}
               fallback={logoFallback}
@@ -62,12 +62,12 @@ export default function Navigation() {
               height={114}
               data-testid="img-header-logo"
             />
-            <div className="hidden sm:block">
+            <div className="hidden sm:block xl:hidden">
               <div className="font-bold text-base text-foreground whitespace-nowrap">Rex Bedachungs GmbH</div>
             </div>
           </Link>
 
-          <div className="hidden lg:flex items-center space-x-1">
+          <div className="hidden xl:flex items-center">
             {mainNav.map((item) => (
               <div key={item.path} className="relative">
                 {item.hasDropdown ? (
@@ -87,7 +87,7 @@ export default function Navigation() {
                     }}
                   >
                     <button
-                      className={`px-4 py-2 rounded-md text-sm font-medium transition-colors flex items-center gap-1 ${
+                      className={`px-2 py-2 rounded-md text-sm font-medium transition-colors flex items-center gap-1 ${
                         location.startsWith("/leistungen")
                           ? "text-primary"
                           : "text-foreground hover:text-primary"
@@ -125,7 +125,7 @@ export default function Navigation() {
                 ) : (
                   <Link
                     href={item.path}
-                    className={`px-4 py-2 rounded-md text-sm font-medium transition-colors whitespace-nowrap ${
+                    className={`px-2 py-2 rounded-md text-sm font-medium transition-colors whitespace-nowrap ${
                       location === item.path
                         ? "text-primary"
                         : "text-foreground hover:text-primary"
@@ -139,7 +139,7 @@ export default function Navigation() {
             ))}
           </div>
 
-          <div className="hidden lg:flex items-center gap-2">
+          <div className="hidden lg:flex shrink-0 items-center gap-2 ml-auto xl:ml-0">
             <Button
               asChild
               variant="outline"
@@ -163,7 +163,7 @@ export default function Navigation() {
           </div>
 
           <button
-            className="lg:hidden p-2 min-h-[44px] min-w-[44px] flex items-center justify-center"
+            className="xl:hidden ml-2 p-2 min-h-[44px] min-w-[44px] flex items-center justify-center"
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
             aria-label={mobileMenuOpen ? "Menu schließen" : "Menu öffnen"}
             aria-expanded={mobileMenuOpen}
@@ -175,7 +175,7 @@ export default function Navigation() {
       </div>
 
       {mobileMenuOpen && (
-        <div className="lg:hidden bg-card border-t border-card-border">
+        <div className="xl:hidden bg-card border-t border-card-border">
           <div className="px-4 py-4 space-y-1">
             {mainNav.map((item) => (
               <div key={item.path}>
@@ -231,7 +231,7 @@ export default function Navigation() {
                 )}
               </div>
             ))}
-            <div className="pt-4 space-y-2">
+            <div className="pt-4 space-y-2 lg:hidden">
               <Button
                 asChild
                 variant="outline"
