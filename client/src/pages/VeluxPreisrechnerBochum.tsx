@@ -150,19 +150,6 @@ export default function VeluxPreisrechnerBochum() {
         { label: "VELUX Preisrechner" }
       ]} />
 
-      {/* Hidden form for Netlify detection at build time */}
-      <form name="velux-preisrechner" data-netlify="true" netlify-honeypot="bot-field" hidden>
-        <input name="bot-field" />
-        <input name="name" />
-        <input name="email" />
-        <input name="telefon" />
-        <input name="strasse" />
-        <input name="plz" />
-        <input name="ort" />
-        <input name="nachricht" />
-        <input name="konfiguration" />
-      </form>
-
       {/* Hero */}
       <section className="relative text-white py-24 px-4 overflow-hidden">
         <div
