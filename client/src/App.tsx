@@ -99,7 +99,9 @@ function App() {
           <Navigation />
           <main className="flex-1">
             <ChunkErrorBoundary key={location}>
-              <Suspense fallback={<div className="flex-1" />}>
+              {/* Platzhalter mit Bildschirmhoehe: Waehrend der Routen-Chunk laedt, bleibt der
+                  Footer unterhalb des sichtbaren Bereichs und springt nicht (CLS). */}
+              <Suspense fallback={<div className="min-h-screen" />}>
                 <Router />
               </Suspense>
             </ChunkErrorBoundary>
