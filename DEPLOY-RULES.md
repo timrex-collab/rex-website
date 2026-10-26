@@ -424,6 +424,27 @@ VELUX D1–D8 · Förder-Bereinigung R1–R4 · Doku/llms nach R1–R4.
 > **Als Nächstes vorgesehen:** W1 (WebMCP-Korrektur und Rechner-Link, Stufe B, in Vorbereitung).
 > Offen bzw. wartend: S2 (Freigabe der Datumstabelle durch Tim), P1 (V1, Netlify-Kontingent),
 > PR #105 (Sicherheitsupdates der Abhängigkeiten, andere Sitzung).
+>
+> *(Zeitangaben ab 25.10.2026 in MEZ; das Gate ist über die Zeitumstellung hinweg in UTC gerechnet.)*
+> **Stand 26.10.2026 (nach PR #107, W1 WebMCP-Bestätigung und Rechner-Link):** Befund Fall 4 aus
+> `WEBMCP.md` behoben. `rex_velux_resolve_existing_window_v1` liefert bei `confirmation_required`
+> zusätzlich `userConfirmationRequired` und `agentInstruction` (Nutzer ausdrücklich fragen);
+> `rex_velux_apply_configuration_v1` lehnt Größen aus einer unbestätigten Zuordnung ohne
+> `existingWindowConfirmed=true` mit `CONFIRMATION_REQUIRED` ab, der Rechner bleibt dann unverändert.
+> Neu ist der Rechner-Link im Fragment ohne Kontaktdaten (`client/src/lib/velux/deeplink.ts`,
+> `#rechner=1&p=…[&f=…]`); `calculate` und `apply` liefern `calculatorUrl`, der Rechner liest den Link
+> beim Laden, entfernt das Fragment aus der Adresszeile und zeigt einen Hinweis. Toolnamen bleiben
+> `v1`. Netlify `6adf6899…`, `commit_ref 8b83e44`, `published_at 15:50:45 MEZ`. In den Checks-Läufen
+> #95 und #97 hing „Testbrowser installieren“ erneut (12 min 15 s bzw. 11 min 16 s, wie schon #92).
+> Ursache sind die apt-Systempakete von `--with-deps` (im Lauf #97 24,3 MB mit 37 kB/s vom
+> Ubuntu-Mirror), nicht der Browser-Download (12 s). Korrektur in `checks.yml` im selben PR wie dieser
+> Eintrag. Offen: Abnahme durch Tim (Fall 4 live wiederholen, die KI muss nachfragen; Rechner-Link auf
+> Handy und PC); Doku zu Vertrag und Linkformat (`WEBMCP.md`, `llms.txt`, `llms-full.txt`) mit D1;
+> Test der Weiterleitung `firma.rex-bedachung.de/…` → www durch Tim.
+> **Nächstes 48-h-Fenster:** ab **28.10.2026 15:51 MEZ**.
+> **Als Nächstes vorgesehen:** PR #105 (Sicherheitsupdates der Abhängigkeiten, andere Sitzung; vor dem
+> Merge „Update branch“ und grüne Checks auf dem aktuellen `main`), danach D1.
+> Offen bzw. wartend: S2 (Freigabe der Datumstabelle durch Tim), P1 (V1, Netlify-Kontingent).
 
 | Deploy | Inhalt | Status |
 |---|---|---|
@@ -488,6 +509,7 @@ VELUX D1–D8 · Förder-Bereinigung R1–R4 · Doku/llms nach R1–R4.
 | **Header Desktop** | `Navigation.tsx` (nur Tailwind-Klassen): horizontale Navigation ab `xl` statt `lg`, Innenabstand der Punkte `px-4` → `px-2`; zwischen 1024 und 1279 px Telefonnummer und „Angebot anfragen“ sichtbar plus Menü-Button, im Menü dort keine doppelten Buttons; ab 1280 px Logo-Bild statt Schriftzug; `shrink-0` an Logo und Button-Block. Behebt den horizontalen Überlauf (469/213/133/53 px bei 1024/1280/1440/1600 px) und das auf 0 px gedrückte Logo. Unter 1024 px unverändert | ✅ live (PR #100, gemergt 18.10.2026 19:23:53 MESZ; Stufe A, 1 Datei; Gate eingehalten: **79 h 7 min** nach #99 (#102 Doku ohne neue Dateien); Netlify `6ad500aa…`, `commit_ref 768dabc`, `published_at 19:24:30 MESZ`, `state ready`, `plugin_state success`, Prerender-Function vorhanden, Secret-Scan 743/0; IndexNow-Lauf #71 grün; Checks-Lauf #85 grün; Prerender-Check-Lauf #25 grün; vor dem Merge mit B1 kombiniert geprüft: kein Überlauf 390–1920 px) — **Merge durch Tim** |
 | **S1 Layout-Shift** | `App.tsx`: Suspense-Platzhalter `<div className="flex-1" />` → `<div className="min-h-screen" />` mit Kommentar. Ursache: Beim Direktaufruf lazy geladener Unterseiten war der Platzhalter leer, der Footer sprang nach dem Laden des Routen-Chunks um rund 11.000 px nach unten. Lab-Messung Lighthouse 12.8.2 mobil (lokal): CLS 0,922 → 0 bis 0,022 auf `/flachdach-bochum`, `/dachreparatur-bochum`, `/referenzen`, `/velux-preisrechner-bochum`; Startseite unverändert. Neu im Repo-Root: `SEO-AUDIT-2026-10.md`, `SEO-UMSETZUNGSPLAN-2026-10.html` | ✅ live (PR #101, gemergt 20.10.2026 22:16:29 MESZ; Stufe A, 1 Code-Datei plus 2 Doku-Dateien im Repo-Root; Gate eingehalten: **50 h 52 min** nach #100 (#103 Doku ohne neue Dateien); Netlify `6ad7cc1f…`, `commit_ref 396d9f9`, `published_at 22:17:05 MESZ`, `state ready`, `plugin_state success`, Prerender-Function vorhanden, Secret-Scan 747/0; IndexNow-Lauf #73 grün; Checks-Lauf #89 grün; Prerender-Check-Lauf #26 grün) — **Merge durch Tim** |
 | **B2 Aufräumen** | Redirects nur noch in `netlify.toml`: `client/public/_redirects` (ausgeliefert, verdoppelte die `firma.`-Regel), `public/_redirects` (veraltet, nicht ausgeliefert) und `netlify/public/_redirects` (leer) gelöscht. `VeluxPreisrechnerBochum.tsx`: verstecktes Formular `velux-preisrechner` entfernt; maßgeblich für die Formularerkennung ist seit #94 `client/public/formulare.html`. Dazu im selben Commit der Deploy-Log zu #101 | ✅ live (PR #104, gemergt 22.10.2026 23:05:38 MESZ; Stufe C, 5 Dateien inkl. Root-Doku; Gate eingehalten: **48 h 49 min** nach #101; Netlify `6ada7aa4…`, `commit_ref 547565f`, `published_at 23:06:14 MESZ`, `state ready`, `plugin_state success`, Prerender-Function vorhanden, Secret-Scan 745/0, **31 redirect rules** (vorher 32); Formulare `kontakt` und `velux-preisrechner` erkannt; IndexNow-Lauf #74 grün; Checks-Lauf #92 grün; Prerender-Check-Lauf #27 grün) — **Merge durch Tim** |
+| **W1 WebMCP/Rechner-Link** | WebMCP-Bestätigungspflicht (Befund Fall 4 aus `WEBMCP.md`): `resolve` liefert bei `confirmation_required` `userConfirmationRequired` und `agentInstruction`; `apply` hat das Feld `existingWindowConfirmed` und lehnt Größen aus einer unbestätigten Zuordnung ohne Bestätigung mit `CONFIRMATION_REQUIRED` ab (gemerkt werden nur Größencodes, für die Lebensdauer der Seite). Rechner-Link im Fragment ohne Kontaktdaten (`client/src/lib/velux/deeplink.ts`, Version 1, höchstens 10 Positionen und 1.000 Zeichen, dieselben Validatoren wie WebMCP; ungültiger Link oder andere Version → leerer Rechner mit Hinweis); `calculate` und `apply` liefern `calculatorUrl`. Texte zentral in `content.ts`, Fehlercode in `validate.ts`; keine eigene Preis- oder Förderlogik. Tests in `estimate:check`, `webmcp-smoke` und `velux-ui-smoke` | ✅ live (PR #107, gemergt 26.10.2026 15:49:59 MEZ; Stufe B, 8 Dateien; eigener WebMCP-Deploy, Freigabe durch Tims Merge; Gate eingehalten: **89 h 44 min** nach #104 (#106 Doku ohne neue Dateien); Netlify `6adf6899…`, `commit_ref 8b83e44`, `published_at 15:50:45 MEZ`, `state ready`, `plugin_state success`, Prerender-Function vorhanden, Secret-Scan 748/0, 31 redirect rules; IndexNow-Lauf #76 grün; Checks-Lauf #97 grün; Prerender-Check-Lauf #28 grün) — **Merge durch Tim** |
 
 > **👤 Abweichung von §5.5 (28. und 30.08.2026) — PR #56 und #61 von Claude gemergt:**
 > Abschnitt 5, Punkt 5 lautet „Merge ausschließlich durch Tim. Kein Direct-Push auf `main`,
