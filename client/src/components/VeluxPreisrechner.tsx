@@ -8,7 +8,9 @@ import { ChevronRight, ChevronLeft, Calculator, Home, Sun, Phone, Mail, Check, I
 import { DIMS, WINDOWS, EDW, SHUTTERS, BLINDS, LABOR, GL, fmt, sizesForModel, shuttersForSize, blindsForSize } from "@/lib/velux/catalog";
 import { calcDetails, buildEstimate } from "@/lib/velux/estimate";
 import { EMPTY_FUNDING_ANSWERS, isFundingComplete, RULES } from "@/lib/velux/funding";
-import { ASSUMPTIONS, COMPANY, DISCLAIMER, EXCLUSIONS, FUNDING_LABELS, FUNDING_NOTES, FUNDING_QUESTION_HINTS, PRICE_BASIS_NOTE, SCOPE_NOTE, fundingSummaryLines } from "@/lib/velux/content";
+import { ASSUMPTIONS, CALCULATOR_LINK_TEXT, COMPANY, DISCLAIMER, EXCLUSIONS, FUNDING_LABELS, FUNDING_NOTES, FUNDING_QUESTION_HINTS, PRICE_BASIS_NOTE, SCOPE_NOTE, fundingSummaryLines } from "@/lib/velux/content";
+// W1: Rechner-Link im Fragment (ohne Kontaktdaten), geprüft über dieselben Validatoren wie WebMCP.
+import { parseCalculatorFragment } from "@/lib/velux/deeplink";
 // WebMCP (PR-2a): Tools sind nur bei aktivem Flag + Origin-Allowlist registriert; ohne WebMCP läuft der Rechner unverändert.
 import { buildVeluxTools } from "@/lib/velux/tools";
 import { APPLIED_SESSION_KEY, RESULT_ANCHOR_ID, useVeluxBridge } from "@/lib/velux/bridge";
@@ -684,6 +686,24 @@ export default function VeluxPreisrechner(){
   useWebMCPTool(tools.calculate,webmcpOn);
   useWebMCPTool(tools.apply,webmcpOn);
 
+  // Rechner-Link: einmal beim Laden lesen, Fragment sofort aus der Adresszeile entfernen.
+  const [linkNotice,setLinkNotice]=useState(null);
+  useEffect(()=>{
+    const link=parseCalculatorFragment(window.location.hash);
+    if(link.status==="none")return;
+    try{history.replaceState(history.state,"",window.location.pathname+window.location.search);}catch{}
+    if(link.status==="ok"){
+      setPositions(link.positions.map(p=>({...p,id:uid()})));
+      if(link.funding){setFoerderung(link.funding);setStep(3);setLinkNotice({tone:"ok",text:CALCULATOR_LINK_TEXT.applied});}
+      else{setStep(2);setLinkNotice({tone:"ok",text:CALCULATOR_LINK_TEXT.appliedNeedsFunding});}
+    }else{
+      setLinkNotice({tone:"warn",text:link.status==="unsupported_version"?CALCULATOR_LINK_TEXT.unsupportedVersion:CALCULATOR_LINK_TEXT.invalid});
+    }
+    // Nach dem Seitenwechsel setzt ScrollToTop nach oben; danach zum Rechner springen.
+    const t=setTimeout(()=>document.getElementById("preisrechner")?.scrollIntoView({block:"start"}),50);
+    return()=>clearTimeout(t);
+  },[]);
+
   return(
     <div className="min-h-screen bg-gradient-to-b from-slate-50 to-white">
       <style>{`@keyframes fadeIn{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:translateY(0)}}.animate-fadeIn{animation:fadeIn .25s ease-out}`}</style>
@@ -694,6 +714,7 @@ export default function VeluxPreisrechner(){
       </div></div>
       <div className="max-w-3xl mx-auto px-4 py-8">
         <div aria-live="polite" className="sr-only">{announce}</div>
+        {linkNotice&&(<div role="status" data-testid="calculator-link-notice" className={`mb-6 flex gap-2 rounded-xl border p-3 text-sm ${linkNotice.tone==="ok"?"border-emerald-200 bg-emerald-50 text-emerald-900":"border-amber-200 bg-amber-50 text-amber-900"}`}><Info className="w-4 h-4 mt-0.5 shrink-0"/><span>{linkNotice.text}</span></div>)}
         <Steps step={step}/>
         {step===1&&<Step1 positions={positions} setPositions={setPositions}/>}
         {step===2&&<Step2 foerderung={foerderung} setFoerderung={setFoerderung}/>}
@@ -703,7 +724,7 @@ export default function VeluxPreisrechner(){
           {step<3&&(<button onClick={()=>setStep(s=>s+1)} disabled={step===1?!canStep1:!canStep2}
             className={`flex items-center gap-2 px-6 py-3 rounded-xl font-semibold text-sm transition-all ${(step===1?canStep1:canStep2)?"bg-slate-800 text-white hover:bg-slate-700 shadow-md":"bg-slate-200 text-slate-400 cursor-not-allowed"}`}>
             {step===1?"Weiter zur Förderung":"Kosten berechnen"}<ChevronRight className="w-4 h-4"/></button>)}
-          {step===3&&(<button onClick={()=>{setStep(1);setPositions([emptyPos()]);setFoerderung(EMPTY_FUNDING_ANSWERS);}}
+          {step===3&&(<button onClick={()=>{setStep(1);setPositions([emptyPos()]);setFoerderung(EMPTY_FUNDING_ANSWERS);setLinkNotice(null);}}
             className="flex items-center gap-2 px-6 py-3 rounded-xl font-semibold text-sm bg-slate-100 text-slate-700 hover:bg-slate-200 transition-all"><Calculator className="w-4 h-4"/>Neue Berechnung</button>)}
         </div>
       </div>

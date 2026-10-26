@@ -161,5 +161,47 @@ try {
   assert.match(await blockedCalc.innerText(), /Druckfenster wurde vom Browser blockiert/);
   await blockedCtx.close();
 
-  console.log('PASS: manueller Wizard, 390-px-Layout, ein H1, UI/PDF-Parität, PDF nur nach bestätigtem Versand, erneutes Öffnen ohne Versand, Fehlversand ohne PDF, Druckansicht entwertet, Popup-Rückfallebene, HTML-Escaping');
+  /* ── W1: Rechner-Link im Fragment (ohne Kontaktdaten) ──────────────────────── */
+  // Gleicher Goldwert wie die manuelle Eingabe oben, auf Handy- und Desktop-Breite.
+  const linkCtx = await browser.newContext();
+  let linkPosts = 0;
+  await linkCtx.route('**/*', route => {
+    if (route.request().method() !== 'GET') { linkPosts++; return route.abort(); }
+    return new URL(route.request().url()).origin === url.origin ? route.continue() : route.abort();
+  });
+  const linkPage = await linkCtx.newPage();
+  linkPage.on('pageerror', error => errors.push(String(error)));
+  const linkCalc = linkPage.locator('#preisrechner');
+  const notice = linkCalc.getByTestId('calculator-link-notice');
+  // Nur das Fragment zu ändern lädt die Seite nicht neu; ein echter Aufruf startet frisch.
+  const openFresh = async target => { await linkPage.goto('about:blank'); await linkPage.goto(target); };
+  for (const viewport of [{ width: 390, height: 844 }, { width: 1440, height: 1000 }]) {
+    await linkPage.setViewportSize(viewport);
+    await openFresh(`${base}/velux-preisrechner-bochum#rechner=1&p=GGU.MK08.ENERGIE.1&f=over_10.yes.yes.no`);
+    await notice.waitFor();
+    assert.match(await notice.innerText(), /aus dem Link übernommen/);
+    assert.match(await linkCalc.innerText(), /2\.104/, `Link ergibt bei ${viewport.width} px denselben Betrag wie die manuelle Eingabe`);
+    assert.equal(await linkPage.evaluate(() => location.hash), '', 'Fragment nach dem Lesen entfernt');
+  }
+  assert.equal(await linkPage.evaluate(() => document.documentElement.scrollWidth > innerWidth), false, 'Kein horizontaler Überlauf mit Link-Hinweis');
+  await openFresh(`${base}/velux-preisrechner-bochum#rechner=1&p=GGU.MK08.ENERGIE.1`);
+  await notice.waitFor();
+  assert.match(await notice.innerText(), /Fragen zur Förderung/);
+  await linkCalc.getByRole('group', { name: 'Wie alt ist das Gebäude?' }).waitFor();
+  assert.doesNotMatch(await linkCalc.innerText(), /2\.104/, 'Ohne Förderangaben noch keine Kostenschätzung');
+  for (const [hash, text] of [['#rechner=2&p=GGU.MK08.ENERGIE.1', /anderen Version/], ['#rechner=1&p=GPU.CK02.ENERGIE.1', /keine gültige Konfiguration/]]) {
+    await openFresh(`${base}/velux-preisrechner-bochum${hash}`);
+    await notice.waitFor();
+    assert.match(await notice.innerText(), text);
+    assert.equal(await linkCalc.getByRole('button', { name: 'Weiter zur Förderung', exact: true }).isDisabled(), true, 'Ungültiger Link: leerer Rechner in Schritt 1');
+    assert.equal(await linkPage.evaluate(() => location.hash), '', 'Auch ungültiges Fragment wird entfernt');
+  }
+  await openFresh(`${base}/velux-preisrechner-bochum`);
+  await linkCalc.waitFor();
+  assert.equal(await notice.count(), 0, 'Ohne Link kein Hinweis');
+  assert.equal(linkPosts, 0, 'Der Link sendet nichts');
+  await linkCtx.close();
+  assert.deepEqual(errors, []);
+
+  console.log('PASS: manueller Wizard, 390-px-Layout, ein H1, UI/PDF-Parität, PDF nur nach bestätigtem Versand, erneutes Öffnen ohne Versand, Fehlversand ohne PDF, Druckansicht entwertet, Popup-Rückfallebene, HTML-Escaping, Rechner-Link (Handy/Desktop, ohne Förderung, Version, ungültig)');
 } finally { await browser.close(); }

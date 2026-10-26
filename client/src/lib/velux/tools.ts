@@ -12,7 +12,8 @@ import {
   BLINDS, CATALOG, DIMS, EDW, GL, LABOR, MODEL_CODES, SHUTTERS, SIZE_CODES, WINDOWS, blindsForSize, fmt,
   isEligibleGlazing, shuttersForSize, sizesForModel, type ModelCode, type SizeCode,
 } from "./catalog";
-import { ASSUMPTIONS, DISCLAIMER, EXCLUSIONS, FUNDING_NOTES, NEXT_STEPS, PAGE_URL, SCOPE_NOTE } from "./content";
+import { AGENT_TEXT, ASSUMPTIONS, DISCLAIMER, EXCLUSIONS, FUNDING_NOTES, NEXT_STEPS, PAGE_URL, SCOPE_NOTE } from "./content";
+import { buildCalculatorUrl } from "./deeplink";
 import { buildEstimate, type CanonicalEstimate, type ValidatedPosition } from "./estimate";
 import { RULES, type FundingAnswers } from "./funding";
 import { resolveExistingWindow } from "./resolve";
@@ -42,6 +43,14 @@ export interface VeluxUiBridge {
 
 export interface ToolFailure { ok: false; error: ToolError; pageUrl: string }
 export const failure = (error: ToolError): ToolFailure => ({ ok: false, error, pageUrl: PAGE_URL });
+
+/**
+ * Gedächtnis zwischen Resolve und Apply für die Lebensdauer der Seite (W1):
+ * Größen aus einer Zuordnung mit Status confirmation_required, die der Nutzer
+ * noch nicht bestätigt hat. Nur Größencodes, keine Nutzerdaten.
+ */
+export interface ResolutionMemory { unconfirmedSizes: Set<SizeCode> }
+export const createResolutionMemory = (): ResolutionMemory => ({ unconfirmedSizes: new Set() });
 
 // ── Fingerprint (deterministisch, ohne Speicherung) ──────────────────
 
@@ -113,6 +122,8 @@ export function presentEstimate(input: EstimateInput, estimate: CanonicalEstimat
     disclaimer: DISCLAIMER,
     nextStep: NEXT_STEPS[0],
     pageUrl: PAGE_URL,
+    // Link in den vorbefüllten Rechner; Erläuterung steht in der Tool-Beschreibung (Antwortgröße).
+    calculatorUrl: buildCalculatorUrl(input.positions, input.funding),
     breakdown: input.includeBreakdown
       ? details.map((d, i) => ({ index: i + 1, unitPricesNet: { window: d.wp, flashingEdw2000: d.edw, shutter: d.sp || null, blind: d.bp || null }, laborNetFrom: { removal: LABOR.demontage, installation: LABOR.einbau, flashing: LABOR.eindeckrahmen, shutter: d.sp ? LABOR.rollladen : null, blind: d.bp ? LABOR.rollo : null }, materialNet: d.matPos, laborNetFrom_total: d.labPos, positionNetFrom: d.matPos + d.labPos }))
       : null,
@@ -162,11 +173,11 @@ export function buildOptionsTool(): WebMCPTool {
   };
 }
 
-export function buildResolveTool(): WebMCPTool {
+export function buildResolveTool(memory: ResolutionMemory = createResolutionMemory()): WebMCPTool {
   return {
     name: TOOL_NAMES.resolve,
     title: "VELUX-Bestandsfenster vom Typenschild bestimmen",
-    description: "Prüft Angaben vom Typenschild eines vorhandenen VELUX-Dachfensters (Fenstertyp, Größencode – auch Alt-Codes wie M08 oder 308) gegen den versionierten Katalog und liefert Status, Kandidaten und den nächsten Schritt. Kein Bild übergeben: die Codes einzeln als Text, unsichere Zeichen als alternatives, nicht raten. Alt-Codes werden nie stillschweigend umgeschlüsselt; aus Fotos erkannte Angaben müssen vom Nutzer bestätigt werden. Das Ergebnis liefert nur den Bestand – Zielmodell, neue Verglasung und Zubehör wählt der Nutzer danach ausdrücklich.",
+    description: "Prüft Angaben vom Typenschild eines vorhandenen VELUX-Dachfensters (Fenstertyp, Größencode – auch Alt-Codes wie M08 oder 308) gegen den versionierten Katalog und liefert Status, Kandidaten und den nächsten Schritt. Kein Bild übergeben: die Codes einzeln als Text, unsichere Zeichen als alternatives, nicht raten. Alt-Codes werden nie stillschweigend umgeschlüsselt; aus Fotos erkannte Angaben müssen vom Nutzer bestätigt werden. Bei status confirmation_required enthält die Antwort agentInstruction: den Nutzer fragen und erst nach seiner Bestätigung übernehmen. Das Ergebnis liefert nur den Bestand – Zielmodell, neue Verglasung und Zubehör wählt der Nutzer danach ausdrücklich.",
     inputSchema: OBSERVATION_INPUT_SCHEMA,
     // Lesarten und Unsicherheitsgründe stammen aus Nutzereingaben.
     annotations: { readOnlyHint: true, untrustedContentHint: true },
@@ -174,7 +185,22 @@ export function buildResolveTool(): WebMCPTool {
       const v = validateObservationInput(input);
       if (!v.ok) return failure(v.error);
       const r = resolveExistingWindow(v.value);
-      return { ok: true as const, contractVersion: CONTRACT_VERSION, ...r, pageUrl: PAGE_URL, existingGlazingNote: "Die Verglasung des Altfensters ist nie die neue Verglasung und begründet keine Förderung. Neue Verglasung immer mit dem Nutzer wählen." };
+      const needsConfirmation = r.status === "confirmation_required";
+      if (needsConfirmation) {
+        for (const c of r.candidates) memory.unconfirmedSizes.add(c.sizeCode);
+        if (r.existingWindow) memory.unconfirmedSizes.add(r.existingWindow.sizeCode);
+      } else if (r.status === "resolved" && r.existingWindow) {
+        memory.unconfirmedSizes.delete(r.existingWindow.sizeCode);
+      }
+      return {
+        ok: true as const,
+        contractVersion: CONTRACT_VERSION,
+        // Anweisung vor den Details, damit sie nicht überlesen wird (Befund Fall 4).
+        ...(needsConfirmation ? { userConfirmationRequired: true, agentInstruction: AGENT_TEXT.confirmExistingWindow(r.candidates.map((c) => c.label)) } : {}),
+        ...r,
+        pageUrl: PAGE_URL,
+        existingGlazingNote: "Die Verglasung des Altfensters ist nie die neue Verglasung und begründet keine Förderung. Neue Verglasung immer mit dem Nutzer wählen.",
+      };
     },
   };
 }
@@ -183,7 +209,7 @@ export function buildCalculateTool(): WebMCPTool {
   return {
     name: TOOL_NAMES.calculate,
     title: "VELUX-Kostenschätzung berechnen",
-    description: "Berechnet eine unverbindliche Kostenschätzung für den Austausch von VELUX-Dachfenstern durch Rex Bedachungs GmbH (Bochum): Material (VELUX UVP netto) inkl. Eindeckrahmen EDW 2000, Einbau-Mindestpreise, MwSt., sowie BEG-Zuschuss (BAFA) und Steuerermäßigung §35c EStG als zwei nicht kombinierbare Alternativen mit ausgewiesenen Annahmen – ohne Empfehlung. Reine Berechnung ohne Wirkung auf die Seite. Rohdaten des Nutzers übergeben, nicht selbst rechnen; unbekannte Förderangaben als unknown übergeben; die Verglasung des Altfensters nie als neue übernehmen. Geltungsbereich: erste Wohneinheit im Ein-/Zweifamilienhaus; §35c nur bei Selbstnutzung.",
+    description: "Berechnet eine unverbindliche Kostenschätzung für den Austausch von VELUX-Dachfenstern durch Rex Bedachungs GmbH (Bochum): Material (VELUX UVP netto) inkl. Eindeckrahmen EDW 2000, Einbau-Mindestpreise, MwSt., sowie BEG-Zuschuss (BAFA) und Steuerermäßigung §35c EStG als zwei nicht kombinierbare Alternativen mit ausgewiesenen Annahmen – ohne Empfehlung. Reine Berechnung ohne Wirkung auf die Seite. Rohdaten des Nutzers übergeben, nicht selbst rechnen; unbekannte Förderangaben als unknown übergeben; die Verglasung des Altfensters nie als neue übernehmen. Die Antwort enthält calculatorUrl: einen Link in den vorbefüllten Preisrechner (ohne Kontaktdaten), den der Nutzer selbst öffnet. Geltungsbereich: erste Wohneinheit im Ein-/Zweifamilienhaus; §35c nur bei Selbstnutzung.",
     inputSchema: ESTIMATE_INPUT_SCHEMA,
     annotations: { readOnlyHint: true },
     execute: (input) => {
@@ -199,32 +225,45 @@ const APPLY_INPUT_SCHEMA = {
   properties: {
     ...ESTIMATE_INPUT_SCHEMA.properties,
     replaceExisting: { type: "boolean", default: false, description: "true = einen bereits begonnenen Entwurf des Nutzers im Rechner überschreiben. Ohne true wird bei vorhandenem Entwurf DRAFT_EXISTS zurückgegeben – dann den Nutzer fragen." },
+    existingWindowConfirmed: { type: "boolean", default: false, description: "true NUR, wenn der Nutzer die Zuordnung seines Bestandsfensters (Status confirmation_required von rex_velux_resolve_existing_window_v1) ausdrücklich bestätigt hat. Ohne Bestätigung werden Größen aus einer unbestätigten Zuordnung mit CONFIRMATION_REQUIRED abgelehnt." },
   },
 } as const;
 
-export function buildApplyTool(bridge: VeluxUiBridge): WebMCPTool {
+/** Entfernt ein optionales Boolean-Steuerfeld aus der Eingabe (vor validateEstimateInput). */
+function takeFlag(raw: unknown, key: string): { ok: true; value: boolean } | { ok: false; failure: ToolFailure } {
+  if (!raw || typeof raw !== "object" || !(key in raw)) return { ok: true, value: false };
+  const v = (raw as Record<string, unknown>)[key];
+  if (typeof v !== "boolean") return { ok: false, failure: failure({ code: "INVALID_INPUT", message: `${key} muss true oder false sein.`, path: key }) };
+  delete (raw as Record<string, unknown>)[key];
+  return { ok: true, value: v };
+}
+
+export function buildApplyTool(bridge: VeluxUiBridge, memory: ResolutionMemory = createResolutionMemory()): WebMCPTool {
   return {
     name: TOOL_NAMES.apply,
     title: "Konfiguration im sichtbaren Preisrechner anzeigen",
-    description: "Übernimmt eine validierte Konfiguration in den Preisrechner auf der Seite und zeigt das Ergebnis (Schritt 3) sichtbar an, damit der Nutzer Zahlen, Annahmen und das Anfrageformular sieht. Ändert den Zustand der Seite; sendet nichts ab. Überschreibt einen begonnenen Nutzerentwurf nur mit replaceExisting=true. Vorher rex_velux_calculate_estimate_v1 für die reine Berechnung nutzen.",
+    description: "Übernimmt eine validierte Konfiguration in den Preisrechner auf der Seite und zeigt das Ergebnis (Schritt 3) sichtbar an, damit der Nutzer Zahlen, Annahmen und das Anfrageformular sieht. Ändert den Zustand der Seite; sendet nichts ab. Überschreibt einen begonnenen Nutzerentwurf nur mit replaceExisting=true. Stammt die Größe aus rex_velux_resolve_existing_window_v1 mit Status confirmation_required: zuerst den Nutzer fragen und nur nach seiner ausdrücklichen Bestätigung mit existingWindowConfirmed=true übernehmen. Vorher rex_velux_calculate_estimate_v1 für die reine Berechnung nutzen.",
     inputSchema: APPLY_INPUT_SCHEMA,
     annotations: { readOnlyHint: false },
     execute: async (input, options) => {
       const raw = input && typeof input === "object" && !Array.isArray(input) ? { ...(input as Record<string, unknown>) } : input;
-      let replaceExisting = false;
-      if (raw && typeof raw === "object" && "replaceExisting" in raw) {
-        if (typeof raw.replaceExisting !== "boolean") return failure({ code: "INVALID_INPUT", message: "replaceExisting muss true oder false sein.", path: "replaceExisting" });
-        replaceExisting = raw.replaceExisting;
-        delete (raw as Record<string, unknown>).replaceExisting;
-      }
+      const replace = takeFlag(raw, "replaceExisting");
+      if (!replace.ok) return replace.failure;
+      const confirmed = takeFlag(raw, "existingWindowConfirmed");
+      if (!confirmed.ok) return confirmed.failure;
       const v = validateEstimateInput(raw);
       if (!v.ok) return failure(v.error);
-      if (bridge.hasUserDraft() && !replaceExisting) return failure({ code: "DRAFT_EXISTS", message: "Im Preisrechner ist bereits ein Entwurf des Nutzers vorhanden. Nutzer fragen und mit replaceExisting=true überschreiben." });
+      // Befund Fall 4: eine unbestätigte Typenschild-Zuordnung nie stillschweigend übernehmen.
+      const sizes = [...v.value.positions.map((p) => p.size), ...(v.value.existingWindow ? [v.value.existingWindow.sizeCode] : [])];
+      const unconfirmed = Array.from(new Set(sizes.filter((s) => memory.unconfirmedSizes.has(s))));
+      if (unconfirmed.length > 0 && !confirmed.value) return failure({ code: "CONFIRMATION_REQUIRED", message: AGENT_TEXT.confirmationMissing, path: "existingWindowConfirmed", allowedSizes: unconfirmed });
+      if (bridge.hasUserDraft() && !replace.value) return failure({ code: "DRAFT_EXISTS", message: "Im Preisrechner ist bereits ein Entwurf des Nutzers vorhanden. Nutzer fragen und mit replaceExisting=true überschreiben." });
       const outcome = await bridge.apply(v.value.positions, v.value.funding, options?.signal);
       if (!outcome.applied) {
         const messages = { DRAFT_EXISTS: "Entwurf vorhanden.", BUSY: "Der Preisrechner verarbeitet gerade eine andere Übernahme – kurz warten und erneut versuchen.", ABORTED: "Übernahme abgebrochen." } as const;
         return failure({ code: outcome.code, message: messages[outcome.code] });
       }
+      if (confirmed.value) memory.unconfirmedSizes.clear();
       const estimate = presentEstimate(v.value, buildEstimate(v.value.positions, v.value.funding));
       return { ...estimate, uiApplied: true, uiNote: "Ergebnis ist im Preisrechner unter Schritt 3 sichtbar. Für ein Festangebot füllt der Nutzer dort Kontaktdaten aus und klickt selbst auf „Anfrage senden“." };
     },
@@ -232,5 +271,6 @@ export function buildApplyTool(bridge: VeluxUiBridge): WebMCPTool {
 }
 
 export function buildVeluxTools(bridge: VeluxUiBridge) {
-  return { options: buildOptionsTool(), resolve: buildResolveTool(), calculate: buildCalculateTool(), apply: buildApplyTool(bridge) };
+  const memory = createResolutionMemory();
+  return { options: buildOptionsTool(), resolve: buildResolveTool(memory), calculate: buildCalculateTool(), apply: buildApplyTool(bridge, memory) };
 }

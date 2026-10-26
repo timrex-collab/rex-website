@@ -72,6 +72,28 @@ export const NEXT_STEPS: readonly string[] = [
   `Oder direkt anrufen: ${COMPANY.phone}`,
 ];
 
+// ── Anweisungen an die KI des Kunden (WebMCP, W1) ────────────────────
+
+/** Befund Fall 4 (WEBMCP.md): Bestätigungsbedarf als ausdrückliche Anweisung, nicht nur als Status. */
+export const AGENT_TEXT = {
+  confirmExistingWindow: (labels: string[]) =>
+    (labels.length === 0
+      ? "Zuordnung NICHT bestätigt. Frage den Nutzer nach den fehlenden oder unklaren Angaben vom Typenschild (siehe nextStep). Nichts annehmen, nicht raten."
+      : `Zuordnung NICHT bestätigt. ${labels.length === 1 ? `Frage den Nutzer ausdrücklich, ob sein vorhandenes Fenster ${labels[0]} ist.` : `Frage den Nutzer ausdrücklich, welches dieser Fenster sein vorhandenes ist: ${labels.join(", ")}.`} Nicht selbst bestätigen, nicht raten.`)
+    + " Erst nach seiner ausdrücklichen Bestätigung übernehmen: rex_velux_apply_configuration_v1 dann mit existingWindowConfirmed=true aufrufen. Eine Kostenschätzung vorher nur als „unter Vorbehalt der Bestätigung“ nennen.",
+  confirmationMissing:
+    "Mindestens eine Größe stammt aus einer noch nicht bestätigten Typenschild-Zuordnung (rex_velux_resolve_existing_window_v1, Status confirmation_required). Zuerst den Nutzer fragen; nur nach seiner ausdrücklichen Bestätigung erneut mit existingWindowConfirmed=true aufrufen.",
+} as const;
+
+// ── Rechner-Link (Fragment, ohne Kontaktdaten) ───────────────────────
+
+export const CALCULATOR_LINK_TEXT = {
+  applied: "Konfiguration aus dem Link übernommen. Bitte prüfen Sie Fenster und Förderangaben – die Kostenschätzung wird hier im Browser berechnet und ist unverbindlich.",
+  appliedNeedsFunding: "Fenster aus dem Link übernommen. Bitte beantworten Sie noch die Fragen zur Förderung.",
+  unsupportedVersion: "Dieser Link stammt aus einer anderen Version des Preisrechners und konnte nicht übernommen werden. Bitte geben Sie Ihre Fenster hier neu ein.",
+  invalid: "Der Link enthält keine gültige Konfiguration und wurde nicht übernommen. Bitte geben Sie Ihre Fenster hier ein.",
+} as const;
+
 // ── Förder-Labels und Förder-Check (eine Quelle für UI, PDF, Anfrage und WebMCP) ──
 
 const pct = (r: number) => `${(r * 100).toLocaleString("de-DE", { maximumFractionDigits: 1 })} %`;

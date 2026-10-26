@@ -25,7 +25,7 @@ export const CODE_TO_GLAZING: Record<GlazingCode, PublicGlazing> = { T: "THERMO"
 
 export type ErrorCode =
   | "INVALID_INPUT" | "UNKNOWN_FIELD" | "INVALID_ENUM" | "INVALID_SIZE_FOR_MODEL" | "ACCESSORY_QTY_EXCEEDS_WINDOWS"
-  | "SCOPE_NOT_SUPPORTED" | "DRAFT_EXISTS" | "BUSY" | "ABORTED" | "INTERNAL_ERROR";
+  | "SCOPE_NOT_SUPPORTED" | "DRAFT_EXISTS" | "CONFIRMATION_REQUIRED" | "BUSY" | "ABORTED" | "INTERNAL_ERROR";
 
 export interface ToolError {
   code: ErrorCode;

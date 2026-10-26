@@ -15,9 +15,10 @@
  *   SHIM=1 node scripts/webmcp-smoke.mjs http://localhost:4174   # Adapter-Test mit Shim (kein Browser-Nachweis)
  *
  * Prüft: Tools nur auf der Rechner-Route, Abmeldung bei Routenwechsel, keine
- * Duplikate, Promise-Verhalten von registerTool, calculate-Roundtrip (Goldwert),
- * Fehlerpfad, Apply mit bestätigtem UI-Commit, DRAFT_EXISTS, und dass kein Tool
- * Netzwerkverkehr auslöst.
+ * Duplikate, Promise-Verhalten von registerTool, calculate-Roundtrip (Goldwert)
+ * mit calculatorUrl, Fehlerpfad, Bestätigungsanweisung bei confirmation_required,
+ * CONFIRMATION_REQUIRED ohne Nutzerbestätigung (W1, Befund Fall 4), Apply mit
+ * bestätigtem UI-Commit, DRAFT_EXISTS, und dass kein Tool Netzwerkverkehr auslöst.
  */
 import { chromium } from "playwright";
 
@@ -110,14 +111,20 @@ if (est?.skipped) console.log("… " + est.skipped);
 else {
   check(est?.ok === true && est.totals?.grossFrom === 2104 && est.funding?.begGrant?.amountMax === 316 && est.funding?.taxBonus35c?.totalMax === 421, `calculate: Goldwert 2.104 € brutto / BEG 316 € / §35c 421 € (${JSON.stringify(est?.totals)})`);
   console.log(`… calculate: Antwortgröße ${JSON.stringify(est).length} Zeichen`);
+  check(est?.calculatorUrl === "https://www.rex-bedachung.de/velux-preisrechner-bochum#rechner=1&p=GGU.MK08.ENERGIE.1&f=over_10.yes.yes.no", `calculate: calculatorUrl für den vorbefüllten Rechner (${est?.calculatorUrl})`);
   const bad = await call("rex_velux_calculate_estimate_v1", { positions: [{ model: "GPU", size: "CK02", glazing: "ENERGIE", quantity: 1 }], funding: { buildingAge: "unknown", energyRenovation: "unknown", ownerOccupied: "unknown", hasIsfp: "unknown" } });
   check(bad?.ok === false && bad.error?.code === "INVALID_SIZE_FOR_MODEL" && Array.isArray(bad.error.allowedSizes), "calculate: ungültige Kombination liefert INVALID_SIZE_FOR_MODEL mit allowedSizes");
   const resolved = await call("rex_velux_resolve_existing_window_v1", { windowType: "GGL", sizeCode: "M08", source: "agent_image_recognition" });
   check(resolved?.status === "confirmation_required" && resolved.existingWindow?.sizeCode === "MK08", "resolve: M08 aus Bild → confirmation_required mit MK08");
+  check(resolved?.userConfirmationRequired === true && /Frage den Nutzer/.test(resolved?.agentInstruction ?? "") && /existingWindowConfirmed=true/.test(resolved?.agentInstruction ?? ""), "resolve: confirmation_required trägt eine ausdrückliche Anweisung an die KI");
   const stillNoNetwork = requests.slice(before).filter((u) => !/\.(js|css|woff2?|png|webp|svg|ico)(\?|$)/.test(u));
   check(stillNoNetwork.length === 0, `Tools lösen keinen Netzwerkverkehr aus (${stillNoNetwork.length} Requests)`);
-  const applied = await call("rex_velux_apply_configuration_v1", { positions: [{ model: "GGU", size: "MK08", glazing: "ENERGIE", quantity: 1 }], funding: { buildingAge: "over_10", energyRenovation: "yes", ownerOccupied: "yes", hasIsfp: "no" } });
-  check(applied?.ok === true && applied.uiApplied === true, "apply: Konfiguration übernommen (bestätigter Commit)");
+  const mk08 = { positions: [{ model: "GGU", size: "MK08", glazing: "ENERGIE", quantity: 1 }], funding: { buildingAge: "over_10", energyRenovation: "yes", ownerOccupied: "yes", hasIsfp: "no" } };
+  const unconfirmed = await call("rex_velux_apply_configuration_v1", mk08);
+  check(unconfirmed?.ok === false && unconfirmed.error?.code === "CONFIRMATION_REQUIRED", "apply: unbestätigte Typenschild-Zuordnung → CONFIRMATION_REQUIRED");
+  check(!/Kostenschätzung brutto/.test(await page.locator("#preisrechner").innerText()), "apply: ohne Bestätigung bleibt der Rechner unverändert");
+  const applied = await call("rex_velux_apply_configuration_v1", { ...mk08, existingWindowConfirmed: true });
+  check(applied?.ok === true && applied.uiApplied === true, "apply: nach Nutzerbestätigung übernommen (bestätigter Commit)");
   const shown = await page.locator("#preisrechner").innerText();
   check(/Kostenschätzung brutto \(inkl\. MwSt\.\)\s+ab 2\.104 €/.test(shown.replace(/\s+/g, " ")), "apply: Schritt 3 zeigt 2.104 € brutto");
   const draft = await call("rex_velux_apply_configuration_v1", { positions: [{ model: "GGL", size: "MK08", glazing: "ENERGIE", quantity: 1 }], funding: { buildingAge: "over_10", energyRenovation: "yes", ownerOccupied: "yes", hasIsfp: "no" } });
