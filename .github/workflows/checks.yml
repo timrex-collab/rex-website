@@ -65,8 +65,18 @@ jobs:
         run: npm run foerder:check
       - name: Selbsttest des Förder-Checks
         run: npm run foerder:check -- --self-test
+      # Nur den Browser laden (rund 12 s). `--with-deps` holte bei jedem Lauf per apt
+      # Schriften und Bibliotheks-Updates, die der Ubuntu-Runner nicht braucht (die
+      # Seite nutzt den System-Font-Stack, gerendert mit dem vorinstallierten Liberation
+      # Sans), und hing dabei zeitweise am Ubuntu-Mirror (Checks #92, #95, #97: jeweils
+      # über 10 min). Systempakete nur nachinstallieren, wenn Chromium ohne sie nicht startet.
       - name: Testbrowser installieren
-        run: npx playwright install --with-deps chromium
+        run: |
+          npx playwright install chromium
+          if ! node -e "require('playwright').chromium.launch().then((b) => b.close())"; then
+            echo "Chromium startet ohne Systempakete nicht - installiere sie nach."
+            npx playwright install-deps chromium
+          fi
       - name: Lokale Vorschau starten
         run: |
           npx vite preview --host 0.0.0.0 --port 4179 --strictPort > /tmp/rex-preview.log 2>&1 &
