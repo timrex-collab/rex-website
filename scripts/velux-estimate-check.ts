@@ -34,6 +34,8 @@ import { LEGACY_SIZES, WINDOW_TYPES, findLegacySize } from "../client/src/lib/ve
 import { resolveExistingWindow, type ResolveResult, type WindowObservation } from "../client/src/lib/velux/resolve";
 import { validateEstimateInput, validateObservationInput, validateOptionsInput } from "../client/src/lib/velux/validate";
 import { buildVeluxTools, estimateFingerprint, presentEstimate, TOOL_NAMES, type VeluxUiBridge } from "../client/src/lib/velux/tools";
+import { CALCULATOR_LINK_MAX_LENGTH, buildCalculatorFragment, buildCalculatorUrl, parseCalculatorFragment } from "../client/src/lib/velux/deeplink";
+import { PAGE_URL } from "../client/src/lib/velux/content";
 import {
   evaluateBeg, evaluateTax35c, evaluateFunding, RULES,
   type BegScenario, type FundingAnswers, type FundingEvaluation, type TaxScenario,
@@ -507,6 +509,116 @@ console.log("WebMCP-Presenter und Tools");
     if (a4.ok !== false || (a4.error as { code: string }).code !== "INVALID_INPUT") fail("apply: replaceExisting muss boolean sein");
   })().catch((e) => fail(`apply async: ${String(e)}`)));
   void presentEstimate; void estimateFingerprint;
+
+  // W1: Bestätigungsbedarf als Anweisung (Befund Fall 4) und calculatorUrl
+  const conf = tools.resolve.execute({ windowType: "GGL", sizeCode: "S10", source: "agent_image_recognition" }, { signal }) as Record<string, unknown>;
+  if (conf.status !== "confirmation_required" || conf.userConfirmationRequired !== true || typeof conf.agentInstruction !== "string" || !(conf.agentInstruction as string).includes("SK10") || !(conf.agentInstruction as string).includes("existingWindowConfirmed=true"))
+    fail(`resolve: confirmation_required ohne ausdrückliche Anweisung (${JSON.stringify(conf).slice(0, 200)})`);
+  const typed = buildVeluxTools(noBridge).resolve.execute({ brand: "VELUX", windowType: "GGU", sizeCode: "MK08", source: "user_typed" }, { signal }) as Record<string, unknown>;
+  if (typed.status !== "resolved" || "agentInstruction" in typed || "userConfirmationRequired" in typed) fail("resolve: resolved darf keine Bestätigungsanweisung tragen");
+  const urlRes = tools.calculate.execute(input, { signal }) as Record<string, unknown>;
+  const url = urlRes.calculatorUrl as string;
+  if (typeof url !== "string" || !url.startsWith(`${PAGE_URL}#rechner=1&`)) fail(`calculate: calculatorUrl fehlt oder falsch (${url})`);
+  else {
+    const back = parseCalculatorFragment(url.slice(url.indexOf("#")));
+    const v = validateEstimateInput(input);
+    if (back.status !== "ok" || !v.ok || JSON.stringify(back.positions) !== JSON.stringify(v.value.positions) || JSON.stringify(back.funding) !== JSON.stringify(v.value.funding))
+      fail(`calculatorUrl: Rückweg liefert nicht dieselbe Konfiguration (${JSON.stringify(back)})`);
+  }
+  console.log("  Bestätigungsanweisung und calculatorUrl geprüft");
+
+  // W1: Apply übernimmt eine unbestätigte Zuordnung nur mit existingWindowConfirmed=true
+  pendingAsync.push((async () => {
+    const t = buildVeluxTools(noBridge);
+    const funding = input.funding;
+    t.resolve.execute({ windowType: "GGL", sizeCode: "S10", source: "agent_image_recognition" }, { signal });
+    const sk10 = { positions: [{ model: "GGU", size: "SK10", glazing: "THERMO", quantity: 1 }], funding };
+    const c1 = await t.apply.execute(sk10, { signal }) as Record<string, unknown>;
+    if (c1.ok !== false || (c1.error as { code: string }).code !== "CONFIRMATION_REQUIRED" || !JSON.stringify(c1.error).includes("SK10")) fail(`apply: unbestätigte Zuordnung muss CONFIRMATION_REQUIRED liefern (${JSON.stringify(c1).slice(0, 200)})`);
+    const c2 = await t.apply.execute({ ...sk10, positions: [{ ...sk10.positions[0], size: "MK08" }] }, { signal }) as Record<string, unknown>;
+    if (c2.ok !== true) fail("apply: andere Größe als die unbestätigte darf ohne Bestätigung übernommen werden");
+    const c3 = await t.apply.execute({ ...sk10, existingWindowConfirmed: "ja" }, { signal }) as Record<string, unknown>;
+    if (c3.ok !== false || (c3.error as { code: string }).code !== "INVALID_INPUT") fail("apply: existingWindowConfirmed muss boolean sein");
+    const c4 = await t.apply.execute({ ...sk10, existingWindowConfirmed: true }, { signal }) as Record<string, unknown>;
+    if (c4.ok !== true || c4.uiApplied !== true) fail("apply: bestätigte Zuordnung muss übernommen werden");
+    const c5 = await t.apply.execute(sk10, { signal }) as Record<string, unknown>;
+    if (c5.ok !== true) fail("apply: nach Bestätigung keine erneute Rückfrage für dieselbe Größe");
+    const t2 = buildVeluxTools(noBridge);
+    t2.resolve.execute({ windowType: "GGL", sizeCode: "M08", source: "user_typed" }, { signal });
+    const viaExisting = await t2.apply.execute({ positions: [{ model: "GGU", size: "PK08", glazing: "ENERGIE", quantity: 1 }], funding, existingWindow: { windowType: "GGL", sizeCode: "MK08" } }, { signal }) as Record<string, unknown>;
+    if (viaExisting.ok !== false || (viaExisting.error as { code: string }).code !== "CONFIRMATION_REQUIRED") fail("apply: unbestätigtes existingWindow muss CONFIRMATION_REQUIRED liefern");
+    t2.resolve.execute({ brand: "VELUX", windowType: "GGL", sizeCode: "MK08", source: "user_typed" }, { signal });
+    const afterTyped = await t2.apply.execute({ positions: [{ model: "GGL", size: "MK08", glazing: "ENERGIE", quantity: 1 }], funding }, { signal }) as Record<string, unknown>;
+    if (afterTyped.ok !== true) fail("apply: vom Nutzer getippte, eindeutige Größe (resolved) hebt die Rückfrage auf");
+  })().catch((e) => fail(`apply-Bestätigung async: ${String(e)}`)));
+}
+
+// ── Rechner-Link (W1): Format, Grenzen, Rückweg, nie werfen ──────────
+console.log("Rechner-Link");
+{
+  const funding = answers("over_10", "yes", "yes", "no");
+  const gold = buildCalculatorFragment([pos("GGU", "MK08", "E")], funding);
+  if (gold !== "rechner=1&p=GGU.MK08.ENERGIE.1&f=over_10.yes.yes.no") fail(`Linkformat Goldwert: ${gold}`);
+  const g = parseCalculatorFragment(`#${gold}`);
+  if (g.status !== "ok" || buildEstimate(g.positions, g.funding!).totals.totalBrutto !== 2104) fail("Link-Rückweg: Goldwert 2.104 € brutto");
+  for (const golden of GOLDENS) {
+    const fragment = buildCalculatorFragment(golden.positions, golden.funding);
+    const back = parseCalculatorFragment(fragment);
+    if (back.status !== "ok") { fail(`${golden.name}: Link nicht lesbar (${JSON.stringify(back)})`); continue; }
+    if (JSON.stringify(back.positions) !== JSON.stringify(golden.positions)) fail(`${golden.name}: Positionen weichen nach dem Rückweg ab`);
+    const complete = Boolean(golden.funding.buildingAge && golden.funding.energyRenovation && golden.funding.ownerOccupied && golden.funding.hasIsfp);
+    if (complete ? JSON.stringify(back.funding) !== JSON.stringify(golden.funding) : back.funding !== null) fail(`${golden.name}: Förderangaben weichen nach dem Rückweg ab`);
+    if (complete && JSON.stringify(buildEstimate(back.positions, back.funding!).totals) !== JSON.stringify(buildEstimate(golden.positions, golden.funding).totals)) fail(`${golden.name}: Beträge über den Link weichen ab`);
+  }
+  const ok = (name: string, hash: string, check: (r: Extract<ReturnType<typeof parseCalculatorFragment>, { status: "ok" }>) => boolean) => {
+    const r = parseCalculatorFragment(hash);
+    if (r.status !== "ok") fail(`${name}: ok erwartet, ${JSON.stringify(r)}`);
+    else if (!check(r)) fail(`${name}: Inhalt falsch (${JSON.stringify(r)})`);
+  };
+  const status = (name: string, hash: unknown, expected: string) => {
+    const r = parseCalculatorFragment(hash);
+    if (r.status !== expected) fail(`${name}: ${expected} erwartet, ${JSON.stringify(r)}`);
+  };
+  ok("Zubehör ohne Anzahl → eine je Fenster", "#rechner=1&p=GGU.PK08.ENERGIE_PLUS.2.SML", (r) => r.positions[0].shutter === "SML" && r.positions[0].shutterQty === 2 && r.funding === null);
+  ok("Rollladen und Rollo mit Anzahl", "#rechner=1&p=GGU.PK08.ENERGIE_PLUS.2.SML.1.DSL.2", (r) => r.positions[0].shutterQty === 1 && r.positions[0].blind === "DSL" && r.positions[0].blindQty === 2);
+  ok("Nur Rollo", "#rechner=1&p=GGL.MK08.THERMO.1.DKL", (r) => r.positions[0].shutter === "none" && r.positions[0].blind === "DKL" && r.positions[0].blindQty === 1);
+  ok("Kleinschreibung", "#rechner=1&p=ggu.mk08.energie_plus.1", (r) => r.positions[0].model === "GGU" && r.positions[0].glazing === "P");
+  ok("Zwei Positionen", "#rechner=1&p=GGU.MK08.ENERGIE.1&p=GPU.SK06.THERMO.3", (r) => r.positions.length === 2 && r.positions[1].qty === 3);
+  ok("Fremde Parameter werden ignoriert", "#rechner=1&p=GGU.MK08.ENERGIE.1&utm_source=chatgpt", (r) => r.positions.length === 1);
+  ok("Förderangabe unknown", "#rechner=1&p=GGU.MK08.ENERGIE.1&f=unknown.unknown.unknown.unknown", (r) => r.funding?.buildingAge === "unknown");
+  status("kein Fragment", "", "none");
+  status("fremder Anker", "#rechner-ergebnis", "none");
+  status("unbekannte Version", "#rechner=2&p=GGU.MK08.ENERGIE.1", "unsupported_version");
+  status("Version leer", "#rechner=&p=GGU.MK08.ENERGIE.1", "unsupported_version");
+  status("ohne Position", "#rechner=1", "invalid");
+  status("11 Positionen", `#rechner=1${"&p=GGU.MK08.ENERGIE.1".repeat(11)}`, "invalid");
+  status("Anzahl 0", "#rechner=1&p=GGU.MK08.ENERGIE.0", "invalid");
+  status("Anzahl 11", "#rechner=1&p=GGU.MK08.ENERGIE.11", "invalid");
+  status("Zubehör > Fenster", "#rechner=1&p=GGU.MK08.ENERGIE.1.SSL.2", "invalid");
+  status("Größe passt nicht zum Modell", "#rechner=1&p=GPU.CK02.ENERGIE.1", "invalid");
+  status("Alt-Code statt Größe", "#rechner=1&p=GGL.M08.ENERGIE.1", "invalid");
+  status("unbekannte Verglasung", "#rechner=1&p=GGU.MK08.STANDARD.1", "invalid");
+  status("unerwartetes Zusatzfeld", "#rechner=1&p=GGU.MK08.ENERGIE.1.XYZ", "invalid");
+  status("zu wenige Felder", "#rechner=1&p=GGU.MK08", "invalid");
+  status("Förderangabe unvollständig", "#rechner=1&p=GGU.MK08.ENERGIE.1&f=over_10.yes.yes", "invalid");
+  status("Förderangabe ungültig", "#rechner=1&p=GGU.MK08.ENERGIE.1&f=over_10.yes.vielleicht.no", "invalid");
+  status("zu lang", `#rechner=1&p=GGU.MK08.ENERGIE.1&x=${"a".repeat(CALCULATOR_LINK_MAX_LENGTH)}`, "invalid");
+  // Größte zulässige Konfiguration passt unter die Längengrenze und geht verlustfrei hin und zurück.
+  const big = Array.from({ length: 10 }, () => pos("GPL", "UK08", "P", 10, { shutter: "SML", shutterQty: 10, blind: "DSL", blindQty: 10 }));
+  const bigUrl = buildCalculatorUrl(big, funding);
+  const bigBack = parseCalculatorFragment(bigUrl.slice(bigUrl.indexOf("#")));
+  if (bigUrl.length - bigUrl.indexOf("#") > CALCULATOR_LINK_MAX_LENGTH || bigBack.status !== "ok" || bigBack.positions.length !== 10) fail(`Größte Konfiguration: Link zu lang oder nicht lesbar (${bigUrl.length} Zeichen)`);
+  // Fuzz: nie werfen, unabhängig vom Eingabetyp
+  const junk: unknown[] = [null, undefined, 0, {}, [], "#", "#rechner=1&p=", "#rechner=1&p=....", "#rechner=1&p=%E0%A4%A", "#rechner=1&p=GGU.MK08.ENERGIE.1&f=....", "#rechner=1&p=GGU.MK08.ENERGIE.99999999999999999999", "#" + "rechner=1&p=GGU.MK08.ENERGIE.1&".repeat(60), "#rechner=1&p=GGU.MK08.ENERGIE.1&p=" + "\u0000".repeat(50)];
+  let fuzzed = 0;
+  for (const j of junk) { try { parseCalculatorFragment(j); fuzzed++; } catch (e) { fail(`Link-Parser wirft: ${String(e)}`); } }
+  for (let i = 0; i < 2000; i++) {
+    const chars = "rechnp=&.#1GUMK08ENRITHOSLDPCF_x%-";
+    let s = "#rechner=1&p=";
+    for (let k = 0; k < (i % 40); k++) s += chars[(i * 7 + k * 13) % chars.length];
+    try { parseCalculatorFragment(s); fuzzed++; } catch (e) { fail(`Link-Parser wirft bei ${s}: ${String(e)}`); }
+  }
+  console.log(`  Format, Grenzen und Rückweg geprüft, ${fuzzed} Fuzz-Eingaben ohne Exception`);
 }
 
 // ── Export-Gate: Signatur der freigeschalteten Konfiguration (D7) ──────
