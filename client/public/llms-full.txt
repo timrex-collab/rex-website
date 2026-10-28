@@ -4,7 +4,8 @@
 > Dies ist die ausführliche Version (llms-full.txt). Die kompakte Index-Version
 > liegt unter https://www.rex-bedachung.de/llms.txt
 > Alle Förder- und Fördersatzangaben beziehen sich auf den Stand September 2026 und
-> stellen keine Förderzusage dar. Endkundenpreise werden bewusst nicht ausgewiesen.
+> stellen keine Förderzusage dar. Endkundenpreise werden in dieser Datei bewusst nicht
+> ausgewiesen; eine unverbindliche Kostenschätzung zeigt der VELUX-Preisrechner.
 
 Rex Bedachungs GmbH ist ein Dachdecker-Meisterbetrieb in Bochum, gegründet 1984.
 Spezialisiert auf Steildach, Flachdach, Gründach, Dachfenster (autorisierter
@@ -159,9 +160,38 @@ Verglasungsstufen und Förderkontext (BAFA BEG EM):
 - VELUX ENERGIE (Uw 1,0 W/m²K, g 0,46): BEG-förderrelevant (Uw ≤ 1,0).
 - VELUX ENERGIE PLUS (Uw 1,0 W/m²K, g 0,44): BEG-förderrelevant; besserer sommerlicher Hitzeschutz durch niedrigeren g-Wert.
 
-Pauschale Endkundenpreise werden bewusst nicht ausgewiesen, da sie von Modell,
-Größe, Verglasung, Zubehör und Einbausituation abhängen und im Angebot ermittelt
-werden.
+Pauschale Endkundenpreise werden in dieser Datei bewusst nicht ausgewiesen, da sie
+von Modell, Größe, Verglasung, Zubehör und Einbausituation abhängen. Eine
+unverbindliche Kostenschätzung zeigt der VELUX-Preisrechner.
+
+### Rechner-Link
+
+Eine Konfiguration lässt sich als Link weitergeben; der VELUX-Preisrechner öffnet sich
+damit vorbefüllt. Beispiel:
+https://www.rex-bedachung.de/velux-preisrechner-bochum#rechner=1&p=GGU.MK08.ENERGIE.1&f=over_10.yes.yes.no
+
+- Je Fensterposition ein p=Modell.Größe.Verglasung.Anzahl, optional gefolgt von
+  Rollladen (.SSL oder .SML) und Rollo (.DKL oder .DSL), jeweils mit eigener Anzahl;
+  ohne Anzahl gilt eines je Fenster. Beispiel für zwei Fenster mit Elektro-Rollladen:
+  https://www.rex-bedachung.de/velux-preisrechner-bochum#rechner=1&p=GGU.PK08.ENERGIE_PLUS.2.SML.2
+- Modell GGU, GGL, GPU oder GPL. Größe als aktueller VELUX-Größencode (z. B. MK08,
+  SK10), keine Alt-Codes vom Typenschild. Verglasung THERMO, ENERGIE oder ENERGIE_PLUS.
+- Höchstens 10 Positionen, Anzahl je Position 1 bis 10, Zubehör höchstens so viele wie
+  Fenster. Der Link darf höchstens 1.000 Zeichen lang sein.
+- Optional f=Gebäudealter.Fenstertausch-mit-verbessertem-Uw-Wert.Selbstnutzung.iSFP,
+  nur wenn alle vier Angaben vorliegen. Gebäudealter: under_5, 5_to_10, over_10 oder
+  unknown; die drei übrigen: yes, no oder unknown. Ohne f beantwortet der Nutzer die
+  Förderfragen im Rechner.
+- Der Link enthält keine Kontaktdaten und sendet nichts ab. Die Kostenschätzung
+  berechnet der Rechner im Browser des Nutzers; sie ist unverbindlich. Eine Anfrage
+  sendet der Nutzer selbst im Rechner ab.
+- Ungültige Links oder Links einer anderen Version öffnen den leeren Rechner mit einem
+  Hinweis.
+- In Anwendungen mit WebMCP-Unterstützung (z. B. Site tools in ChatGPT Desktop) stellt
+  die Seite zusätzlich die Tools rex_velux_* bereit. Sie liefern denselben Link als
+  calculatorUrl. Ordnet ein Tool ein Typenschild nur unter Vorbehalt zu
+  (confirmation_required), muss der Nutzer die Größe ausdrücklich bestätigen, bevor sie
+  übernommen wird.
 
 ## Förderung im Detail
 
