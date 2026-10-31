@@ -24,7 +24,7 @@ und Deploys ist `DEPLOY-RULES.md` §10.
 | B2 Aufräumen | live mit PR #104 (22.10.2026) |
 | P1 Typenschild-Foto | wartet auf V1 |
 | W1 WebMCP und Rechner-Link | live mit PR #107 (26.10.2026); am selben Tag von Tim abgenommen: Fall 4 bestanden, Links auf Handy und PC geprüft (`WEBMCP.md`) |
-| D1 Doku | PR mit dieser Datei |
+| D1 Doku | live mit PR #109 (31.10.2026) |
 | P4a, P4b, P5 | offen |
 
 Außerhalb des Plans dazwischen live: PR #100 (Header am Desktop), PR #101 (S1 Layout-Shift) und
