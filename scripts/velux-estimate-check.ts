@@ -19,6 +19,7 @@
  * (Katalog-Revision, Datum, Grund). Es gibt bewusst keinen "Update"-Modus.
  */
 
+import { readFileSync } from "node:fs";
 import {
   BLINDS, DIMS, EDW, MODEL_CODES, SHUTTERS, SIZE_CODES, WINDOWS, GL,
   blindsForSize, dimsCm, shuttersForSize, sizesForModel,
@@ -619,6 +620,17 @@ console.log("Rechner-Link");
     try { parseCalculatorFragment(s); fuzzed++; } catch (e) { fail(`Link-Parser wirft bei ${s}: ${String(e)}`); }
   }
   console.log(`  Format, Grenzen und Rückweg geprüft, ${fuzzed} Fuzz-Eingaben ohne Exception`);
+  // Beispiel-Links in llms*.txt (D1) müssen zum aktuellen Format passen.
+  let documented = 0;
+  for (const file of ["client/public/llms.txt", "client/public/llms-full.txt"]) {
+    for (const m of Array.from(readFileSync(file, "utf8").matchAll(/https:\/\/www\.rex-bedachung\.de\/velux-preisrechner-bochum(#rechner=\S+)/g))) {
+      documented++;
+      const r = parseCalculatorFragment(m[1]);
+      if (r.status !== "ok") fail(`${file}: Beispiel-Link nicht gültig (${m[1]}: ${JSON.stringify(r)})`);
+    }
+  }
+  if (documented === 0) fail("llms*.txt: kein Beispiel für den Rechner-Link gefunden");
+  console.log(`  ${documented} Beispiel-Links in llms*.txt geprüft`);
 }
 
 // ── Export-Gate: Signatur der freigeschalteten Konfiguration (D7) ──────

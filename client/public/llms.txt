@@ -139,6 +139,25 @@ Pillar-Seite für Dachfenster in Bochum. Autorisierter VELUX-Partner seit 1984. 
 ## /velux-preisrechner-bochum
 Interaktiver VELUX Dachfenster Preisrechner, Cluster-Seite unter /dachfenster-bochum. Konfigurator für alle VELUX Fenstertypen (GGU, GGL, GPU, GPL), 19 Größen (CK02 bis UK10), drei Verglasungsstufen (THERMO Uw 1,3 / ENERGIE Uw 1,0 g 0,46 / ENERGIE PLUS Uw 1,0 g 0,44), Eindeckrahmen EDW 2000, Rollläden (SSL Solar, SML Elektro), Verdunkelungsrollos (DKL Manuell, DSL Solar). Rex Bedachungs GmbH, autorisierter VELUX-Partner, Bochum, seit 1984.
 
+Rechner-Link: Eine Konfiguration lässt sich als Link weitergeben; der Rechner öffnet sich damit
+vorbefüllt. Beispiel:
+https://www.rex-bedachung.de/velux-preisrechner-bochum#rechner=1&p=GGU.MK08.ENERGIE.1&f=over_10.yes.yes.no
+- Je Fensterposition ein p=Modell.Größe.Verglasung.Anzahl, optional gefolgt von Rollladen
+  (.SSL oder .SML) und Rollo (.DKL oder .DSL), jeweils mit eigener Anzahl; ohne Anzahl gilt
+  eines je Fenster. Beispiel: p=GGU.PK08.ENERGIE_PLUS.2.SML.2
+- Modell GGU, GGL, GPU oder GPL. Größe als aktueller VELUX-Größencode (z. B. MK08, SK10), keine
+  Alt-Codes vom Typenschild. Verglasung THERMO, ENERGIE oder ENERGIE_PLUS.
+- Höchstens 10 Positionen, Anzahl je Position 1 bis 10, Zubehör höchstens so viele wie Fenster.
+- Optional f=Gebäudealter.Fenstertausch-mit-verbessertem-Uw-Wert.Selbstnutzung.iSFP, nur wenn
+  alle vier Angaben vorliegen. Gebäudealter: under_5, 5_to_10, over_10 oder unknown; die drei
+  übrigen: yes, no oder unknown. Ohne f beantwortet der Nutzer die Förderfragen im Rechner.
+- Der Link enthält keine Kontaktdaten und sendet nichts ab. Die Kostenschätzung berechnet der
+  Rechner im Browser des Nutzers; sie ist unverbindlich. Eine Anfrage sendet der Nutzer selbst
+  im Rechner ab.
+- Ungültige Links oder Links einer anderen Version öffnen den leeren Rechner mit einem Hinweis.
+- In Anwendungen mit WebMCP-Unterstützung (z. B. Site tools in ChatGPT Desktop) stellt die Seite
+  zusätzlich die Tools rex_velux_* bereit; sie liefern denselben Link als calculatorUrl.
+
 ## VELUX und Dachfenster
 
 Stand: September 2026. Diese Angaben sind keine Förderzusage.
@@ -154,7 +173,8 @@ Verglasungsstufen und Förderkontext (BAFA BEG EM):
 - VELUX ENERGIE PLUS (Uw 1,0 W/m²K, g 0,44): BEG-förderrelevant; besserer sommerlicher Hitzeschutz durch niedrigeren g-Wert.
 
 Pauschale Endkundenpreise werden in dieser Datei bewusst nicht ausgewiesen, da
-sie von Modell, Größe, Verglasung, Zubehör und Einbausituation abhängen.
+sie von Modell, Größe, Verglasung, Zubehör und Einbausituation abhängen. Eine
+unverbindliche Kostenschätzung zeigt der VELUX-Preisrechner.
 
 ## Förderinformationen
 
