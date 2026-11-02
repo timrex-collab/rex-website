@@ -25,7 +25,8 @@ export const EXPORT_GATE_TEXT = {
     "öffnen Sie es über „PDF erneut öffnen“.",
   privacy:
     "Mit dem Absenden erhält Rex Bedachungs GmbH Ihre Kontaktdaten, Konfiguration, " +
-    "Kostenschätzung und Antworten zur Förderung zur Bearbeitung Ihrer Angebotsanfrage. " +
+    "Kostenschätzung, Antworten zur Förderung, die Angabe zur Herkunft der Konfiguration und – " +
+    "falls hochgeladen – das Foto des Typenschilds zur Bearbeitung Ihrer Angebotsanfrage. " +
     "Das Formular wird über unseren Hosting- und Formulardienstleister Netlify verarbeitet. " +
     "Empfänger, Datenübermittlung in die USA, Speicherdauer und Ihre Rechte:",
   printHint:
@@ -61,6 +62,40 @@ export function configSignature(positions: unknown, funding: unknown): string {
   const answers = funding && typeof funding === "object" ? (funding as Record<string, unknown>) : {};
   const normalizedFunding = Object.keys(answers).sort().map((key) => [key, answers[key]]);
   return JSON.stringify({ positions: normalizedPositions, funding: normalizedFunding });
+}
+
+/**
+ * Herkunft der Konfiguration (P1): per KI (WebMCP-Apply) oder per Rechner-Link übernommen.
+ *
+ * Gebunden an die Signatur, nicht an den Session-Marker `rex.webmcp.applied` (bridge.ts):
+ * Der bleibt für die ganze Sitzung gesetzt und sagt nichts darüber, ob der Kunde danach
+ * etwas geändert hat. Positionen und Förderantworten werden getrennt verglichen; kam die
+ * Übernahme ohne Förderantworten (Link ohne `f`), zählen nur die Positionen.
+ */
+export interface ConfigOrigin {
+  source: "ki" | "link";
+  positions: string;
+  funding: string | null;
+}
+
+export function makeConfigOrigin(source: ConfigOrigin["source"], positions: unknown, funding: unknown): ConfigOrigin {
+  const answers = funding && typeof funding === "object" ? Object.values(funding as Record<string, unknown>) : [];
+  const complete = answers.length > 0 && answers.every((v) => typeof v === "string" && v !== "");
+  return {
+    source,
+    positions: configSignature(positions, {}),
+    funding: complete ? configSignature([], funding) : null,
+  };
+}
+
+/** Text für das Feld `quelle`, z. B. „per KI übernommen, unverändert“. */
+export function describeConfigOrigin(origin: ConfigOrigin | null, positions: unknown, funding: unknown): string {
+  if (!origin) return "im Rechner eingegeben";
+  const unchanged =
+    origin.positions === configSignature(positions, {}) &&
+    (origin.funding === null || origin.funding === configSignature([], funding));
+  const via = origin.source === "ki" ? "per KI übernommen" : "per Rechner-Link übernommen";
+  return `${via}, ${unchanged ? "unverändert" : "geändert"}`;
 }
 
 /**

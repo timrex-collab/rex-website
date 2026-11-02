@@ -150,8 +150,26 @@ export default function Datenschutz() {
                 Für die Angebotsanfrage benötigen wir Ihren Namen und mindestens eine 
                 Kontaktmöglichkeit (E-Mail oder Telefon). Adresse und Anmerkung sind freiwillig. Die 
                 Eingaben werden über Netlify Forms verarbeitet (siehe Abschnitt 3). Die 
-                PDF-Kostenschätzung erstellt Ihr Browser lokal; die PDF-Datei selbst wird nicht an 
+                PDF-Kostenschätzung erstellt Ihr Browser lokal; die PDF-Datei selbst wird nicht an
                 uns übertragen.
+              </p>
+              <p>
+                Freiwillig können Sie ein Foto des Typenschilds Ihres vorhandenen Fensters
+                mitsenden. Es dient ausschließlich dazu, das vorhandene Fenster zu bestimmen. Bitte
+                fotografieren Sie nur das Typenschild – keine Personen, Hausnummern oder Innenräume.
+                Ihr Browser verkleinert das Foto vor dem Senden; dabei werden eingebettete
+                Metadaten wie Standort- und Kameradaten (EXIF/GPS) entfernt. Das Foto wird mit Ihrer
+                Anfrage über Netlify Forms übermittelt und dort gespeichert (siehe Abschnitt 3); wir
+                rufen es über unser Netlify-Konto ab. Es gilt dieselbe Speicherdauer wie für die
+                übrigen Formulareingaben. Rechtsgrundlage ist Art. 6 Abs. 1 lit. b DSGVO.
+              </p>
+              <p>
+                Mit der Anfrage übermitteln wir außerdem, ob Sie die Konfiguration selbst eingegeben
+                oder über einen KI-Assistenten bzw. einen Rechner-Link übernommen und danach
+                verändert haben, sowie – falls angegeben – wie Sie auf uns aufmerksam geworden sind.
+                Diese Angaben nutzen wir, um zu erkennen, über welche Wege uns Anfragen erreichen.
+                Rechtsgrundlage ist Art. 6 Abs. 1 lit. f DSGVO; unser berechtigtes Interesse liegt
+                darin, unsere Anfragewege zu verbessern.
               </p>
 
               <h3 className="text-xl font-semibold mb-3 mt-6">Speicherdauer von Anfragen</h3>

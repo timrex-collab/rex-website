@@ -14,6 +14,64 @@ const output = process.env.VELUX_TEST_OUTPUT ?? 'test-results/velux';
 await mkdir(output, { recursive: true });
 const executablePath = process.env.CHROME_PATH || undefined;
 
+/** Zerlegt einen abgefangenen Multipart-Body (nur lokale Testanfragen). */
+function parseMultipart(buffer, contentType) {
+  const m = /boundary=(?:"([^"]+)"|([^;]+))/i.exec(contentType || '');
+  assert.ok(m, `Multipart erwartet, erhalten: ${contentType}`);
+  const boundary = Buffer.from(`--${m[1] || m[2]}`);
+  const parts = [];
+  for (let start = buffer.indexOf(boundary); start !== -1;) {
+    const next = buffer.indexOf(boundary, start + boundary.length);
+    if (next === -1) break;
+    const part = buffer.subarray(start + boundary.length + 2, next - 2);
+    const headEnd = part.indexOf('\r\n\r\n');
+    const head = part.subarray(0, headEnd).toString('utf8');
+    parts.push({
+      name: /name="([^"]*)"/.exec(head)?.[1],
+      filename: /filename="([^"]*)"/.exec(head)?.[1],
+      type: /Content-Type:\s*([^\r\n]+)/i.exec(head)?.[1],
+      data: part.subarray(headEnd + 4),
+    });
+    start = next;
+  }
+  return {
+    // Multipart überträgt Zeilenumbrüche in Textfeldern als CRLF (HTML-Standard).
+    field: name => parts.find(p => p.name === name && p.filename === undefined)?.data.toString('utf8').replace(/\r\n/g, '\n'),
+    file: name => parts.find(p => p.name === name && p.filename !== undefined),
+  };
+}
+
+/** Breite und Höhe aus dem SOF-Segment eines JPEG. */
+function jpegSize(buf) {
+  for (let i = 2; i + 9 < buf.length;) {
+    if (buf[i] !== 0xff) return null;
+    const marker = buf[i + 1];
+    const length = buf.readUInt16BE(i + 2);
+    if (marker >= 0xc0 && marker <= 0xc3) return { height: buf.readUInt16BE(i + 5), width: buf.readUInt16BE(i + 7) };
+    i += 2 + length;
+  }
+  return null;
+}
+
+/** JPEG 3000 × 1500 mit EXIF-Drehung 90° (Orientation 6) und einer Kennung im Kommentar. */
+async function makeTestJpeg(page) {
+  const dataUrl = await page.evaluate(() => {
+    const c = document.createElement('canvas');
+    c.width = 3000; c.height = 1500;
+    const g = c.getContext('2d');
+    g.fillStyle = '#d0d0d0'; g.fillRect(0, 0, 3000, 1500);
+    g.fillStyle = '#202020'; g.font = 'bold 160px sans-serif'; g.fillText('GGL SK10 3059', 200, 800);
+    return c.toDataURL('image/jpeg', 0.9);
+  });
+  const jpeg = Buffer.from(dataUrl.split(',')[1], 'base64');
+  const tiff = Buffer.from([0x4d, 0x4d, 0x00, 0x2a, 0, 0, 0, 8, 0, 1, 0x01, 0x12, 0, 3, 0, 0, 0, 1, 0, 6, 0, 0, 0, 0, 0, 0]);
+  const exifPayload = Buffer.concat([Buffer.from('Exif\0\0', 'latin1'), tiff]);
+  const app1 = Buffer.concat([Buffer.from([0xff, 0xe1]), Buffer.from([0, exifPayload.length + 2]), exifPayload]);
+  const note = Buffer.from('GPS-TESTMARKE 51.48N 7.21E', 'latin1');
+  const com = Buffer.concat([Buffer.from([0xff, 0xfe, 0, note.length + 2]), note]);
+  return Buffer.concat([jpeg.subarray(0, 2), app1, com, jpeg.subarray(2)]);
+}
+
 /** Wizard bis zur Ergebnisseite: Fenster wählen, Förderfragen beantworten, berechnen. */
 async function runWizard(page, calc) {
   await calc.getByRole('button', { name: /^GGU / }).click();
@@ -31,14 +89,14 @@ const browser = await chromium.launch({ executablePath });
 try {
   const ctx = await browser.newContext({ viewport: { width: 390, height: 844 } });
   let posts = 0;
-  let lastPostBody = '';
+  let lastPost = null;
   // 'fail' beantwortet den Versand mit 500, 'ok' mit 200 — kein Byte verlässt den Browser.
   let submitMode = 'fail';
   await ctx.route('**/*', route => {
     const request = route.request();
     if (request.method() !== 'GET') {
       posts++;
-      lastPostBody = request.postData() || '';
+      lastPost = { buffer: request.postDataBuffer() || Buffer.alloc(0), contentType: request.headers()['content-type'] };
       if (new URL(request.url()).origin !== url.origin) return route.abort();
       return submitMode === 'ok'
         ? route.fulfill({ status: 200, contentType: 'text/html', body: 'ok' })
@@ -102,7 +160,11 @@ try {
   const popupPromise = page.waitForEvent('popup');
   await calc.getByRole('button', { name: /Anfrage senden/ }).click();
   const popup = await popupPromise;
-  const sentKonfig = new URLSearchParams(lastPostBody).get('konfiguration') || '';
+  const sent = parseMultipart(lastPost.buffer, lastPost.contentType);
+  const sentKonfig = sent.field('konfiguration') || '';
+  assert.equal(sent.field('form-name'), 'velux-preisrechner');
+  assert.equal(sent.file('typenschild'), undefined, 'Ohne Foto kein Dateiteil');
+  assert.match(sent.field('quelle') || '', /Aufmerksam geworden: keine Angabe\nKonfiguration: im Rechner eingegeben/);
   for (const text of ['Angaben im Förder-Check:', 'Gebäudealter: älter als 10 Jahre', 'Annahmen BEG:', 'Annahmen §35c:', 'Regelstand:'])
     assert.ok(sentKonfig.includes(text), `Anfrage enthält ${text}`);
   await popup.waitForLoadState();
@@ -161,6 +223,103 @@ try {
   assert.match(await blockedCalc.innerText(), /Druckfenster wurde vom Browser blockiert/);
   await blockedCtx.close();
 
+  /* ── P1: Foto des Typenschilds und Herkunft der Konfiguration ─────────────── */
+  const forms = await (await page.request.get(`${base}/formulare.html`)).text();
+  assert.match(forms, /enctype="multipart\/form-data"/, 'Formulardefinition für Multipart');
+  assert.match(forms, /type="file" name="typenschild"/, 'Formulardefinition kennt das Fotofeld');
+  assert.match(forms, /name="quelle"/, 'Formulardefinition kennt das Herkunftsfeld');
+
+  const photoCtx = await browser.newContext({ viewport: { width: 390, height: 844 } });
+  await photoCtx.addInitScript(() => { window.open = () => null; });
+  let photoPost = null;
+  let photoSubmitMode = 'ok';
+  let photoPosts = 0;
+  await photoCtx.route('**/*', route => {
+    const request = route.request();
+    if (new URL(request.url()).origin !== url.origin) return route.abort();
+    if (request.method() === 'GET') return route.continue();
+    photoPosts++;
+    photoPost = parseMultipart(request.postDataBuffer() || Buffer.alloc(0), request.headers()['content-type']);
+    return route.fulfill({ status: photoSubmitMode === 'ok' ? 200 : 500, contentType: 'text/html', body: 'ok' });
+  });
+  const photoPage = await photoCtx.newPage();
+  photoPage.on('pageerror', error => errors.push(String(error)));
+  const photoCalc = photoPage.locator('#preisrechner');
+  const fileInput = photoCalc.locator('#typenschild-foto');
+  const submitPhoto = async () => {
+    const before = photoPosts;
+    await photoCalc.getByRole('button', { name: /Anfrage senden/ }).click();
+    await photoCalc.getByText(photoSubmitMode === 'ok' ? 'Anfrage erfolgreich gesendet' : 'Senden fehlgeschlagen', { exact: false }).waitFor();
+    assert.equal(photoPosts, before + 1, 'Genau ein Versand');
+    return photoPost;
+  };
+
+  // Herkunft per Rechner-Link, unverändert, mit Foto und Herkunftsangabe
+  await photoPage.goto(`${base}/velux-preisrechner-bochum#rechner=1&p=GGU.MK08.ENERGIE.1&f=over_10.yes.yes.no`);
+  await photoCalc.getByTestId('calculator-link-notice').waitFor();
+  await photoCalc.getByPlaceholder('Vor- und Nachname').fill('Testfall Foto');
+  await photoCalc.getByPlaceholder('ihre@email.de').fill('local-test@example.invalid');
+  await photoCalc.locator('#herkunft').selectOption('KI-Assistent (z. B. ChatGPT)');
+  const testJpeg = await makeTestJpeg(photoPage);
+  assert.ok(testJpeg.includes(Buffer.from('Exif')) && testJpeg.includes(Buffer.from('GPS-TESTMARKE')), 'Testbild trägt EXIF und Kennung');
+  await fileInput.setInputFiles({ name: 'IMG_0001.jpg', mimeType: 'image/jpeg', buffer: testJpeg });
+  await photoCalc.getByTestId('photo-selected').waitFor();
+  assert.match(await photoCalc.getByTestId('photo-selected').innerText(), /1000 × 2000 px/, 'Gedreht und auf 2.000 px verkleinert');
+  assert.equal(await photoPage.evaluate(() => document.documentElement.scrollWidth > innerWidth), false, 'Fotofeld ohne Überlauf bei 390 px');
+  let sentP1 = await submitPhoto();
+  const photoPart = sentP1.file('typenschild');
+  assert.ok(photoPart, 'Foto im Multipart-Versand');
+  assert.equal(photoPart.type, 'image/jpeg');
+  assert.equal(photoPart.filename, 'typenschild.jpg');
+  assert.deepEqual(jpegSize(photoPart.data), { width: 1000, height: 2000 }, 'Gesendetes Foto gedreht und verkleinert');
+  assert.ok(photoPart.data.length < 5 * 1024 * 1024, 'Foto unter 5 MB');
+  assert.equal(photoPart.data.includes(Buffer.from('Exif')), false, 'Keine EXIF-Daten im gesendeten Foto');
+  assert.equal(photoPart.data.includes(Buffer.from('GPS-TESTMARKE')), false, 'Keine Metadaten-Kennung im gesendeten Foto');
+  assert.equal(sentP1.field('quelle'), 'Aufmerksam geworden: KI-Assistent (z. B. ChatGPT)\nKonfiguration: per Rechner-Link übernommen, unverändert');
+  assert.match(sentP1.field('konfiguration') || '', /GGU MK08/);
+
+  // Geändert: Förderantwort umstellen, erneut senden (Foto bleibt angehängt)
+  await photoPage.getByRole('button', { name: 'Zurück', exact: true }).click();
+  await photoCalc.getByRole('group', { name: 'Liegt ein individueller Sanierungsfahrplan (iSFP) vor?' }).getByRole('button', { name: 'Ja', exact: true }).click();
+  await photoCalc.getByRole('button', { name: /Kosten berechnen|Weiter/i }).last().click();
+  await photoCalc.getByPlaceholder('Vor- und Nachname').fill('Testfall Foto');
+  await photoCalc.getByPlaceholder('ihre@email.de').fill('local-test@example.invalid');
+  sentP1 = await submitPhoto();
+  assert.match(sentP1.field('quelle') || '', /Konfiguration: per Rechner-Link übernommen, geändert$/);
+  assert.equal(sentP1.file('typenschild'), undefined, 'Nach Rücksprung kein altes Foto mehr angehängt');
+
+  // Fehlversand mit Foto: Hinweis im Fehlertext und im mailto-Ersatzweg
+  await fileInput.setInputFiles({ name: 'IMG_0002.jpg', mimeType: 'image/jpeg', buffer: testJpeg });
+  await photoCalc.getByTestId('photo-selected').waitFor();
+  photoSubmitMode = 'fail';
+  sentP1 = await submitPhoto();
+  assert.ok(sentP1.file('typenschild'), 'Auch der fehlgeschlagene Versuch trug das Foto');
+  assert.match(await photoCalc.innerText(), /Das Foto wird nicht automatisch mitgeschickt – bitte selbst anhängen oder nachreichen/);
+  const photoMailto = decodeURIComponent(await photoCalc.locator('a[href^="mailto:"]').first().getAttribute('href'));
+  assert.match(photoMailto, /Foto des Typenschilds: Das Foto wird nicht automatisch mitgeschickt/);
+  photoSubmitMode = 'ok';
+
+  // Foto entfernen, Übergröße, HEIC und Nicht-Bild verständlich abgelehnt
+  await photoCalc.getByRole('button', { name: 'Foto entfernen', exact: true }).click();
+  await fileInput.setInputFiles({ name: 'gross.jpg', mimeType: 'image/jpeg', buffer: Buffer.alloc(21 * 1024 * 1024, 1) });
+  assert.match(await photoCalc.getByTestId('photo-error').innerText(), /zu groß \(über 20 MB\)/);
+  await fileInput.setInputFiles({ name: 'IMG_0003.HEIC', mimeType: 'image/heic', buffer: Buffer.from('keine echten Bilddaten') });
+  assert.match(await photoCalc.getByTestId('photo-error').innerText(), /HEIC/);
+  await fileInput.setInputFiles({ name: 'notiz.txt', mimeType: 'text/plain', buffer: Buffer.from('kein Bild') });
+  assert.match(await photoCalc.getByTestId('photo-error').innerText(), /JPEG, PNG oder HEIC/);
+  assert.equal(await photoCalc.getByTestId('photo-selected').count(), 0, 'Nach Fehler kein Foto angehängt');
+
+  // Neue Berechnung setzt die Herkunft zurück
+  await photoCalc.getByRole('button', { name: 'Neue Berechnung', exact: true }).click();
+  await runWizard(photoPage, photoCalc);
+  await photoCalc.getByPlaceholder('Vor- und Nachname').fill('Testfall Foto');
+  await photoCalc.getByPlaceholder('ihre@email.de').fill('local-test@example.invalid');
+  sentP1 = await submitPhoto();
+  assert.equal(sentP1.field('quelle'), 'Aufmerksam geworden: keine Angabe\nKonfiguration: im Rechner eingegeben');
+  assert.equal(sentP1.file('typenschild'), undefined);
+  await photoCtx.close();
+  assert.deepEqual(errors, []);
+
   /* ── W1: Rechner-Link im Fragment (ohne Kontaktdaten) ──────────────────────── */
   // Gleicher Goldwert wie die manuelle Eingabe oben, auf Handy- und Desktop-Breite.
   const linkCtx = await browser.newContext();
@@ -203,5 +362,5 @@ try {
   await linkCtx.close();
   assert.deepEqual(errors, []);
 
-  console.log('PASS: manueller Wizard, 390-px-Layout, ein H1, UI/PDF-Parität, PDF nur nach bestätigtem Versand, erneutes Öffnen ohne Versand, Fehlversand ohne PDF, Druckansicht entwertet, Popup-Rückfallebene, HTML-Escaping, Rechner-Link (Handy/Desktop, ohne Förderung, Version, ungültig)');
+  console.log('PASS: manueller Wizard, 390-px-Layout, ein H1, UI/PDF-Parität, PDF nur nach bestätigtem Versand, erneutes Öffnen ohne Versand, Fehlversand ohne PDF, Druckansicht entwertet, Popup-Rückfallebene, HTML-Escaping, Typenschild-Foto (gedreht, verkleinert, ohne EXIF, Multipart, Fehlversand-Hinweis, Übergröße, HEIC), Herkunft (Link unverändert/geändert, Reset), Rechner-Link (Handy/Desktop, ohne Förderung, Version, ungültig)');
 } finally { await browser.close(); }

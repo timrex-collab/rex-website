@@ -1,6 +1,6 @@
 // @ts-nocheck
 import { useState, useCallback, useMemo, useEffect } from "react";
-import { ChevronRight, ChevronLeft, Calculator, Home, Sun, Phone, Mail, Check, Info, ArrowRight, Shield, Droplets, Eye, Plus, Trash2, User, FileDown } from "lucide-react";
+import { ChevronRight, ChevronLeft, Calculator, Home, Sun, Phone, Mail, Check, Info, ArrowRight, Shield, Droplets, Eye, Plus, Trash2, User, FileDown, Camera } from "lucide-react";
 
 
 // Preistabellen und Berechnung liegen seit PR-1a zentral in client/src/lib/velux/
@@ -15,7 +15,9 @@ import { parseCalculatorFragment } from "@/lib/velux/deeplink";
 import { buildVeluxTools } from "@/lib/velux/tools";
 import { APPLIED_SESSION_KEY, RESULT_ANCHOR_ID, useVeluxBridge } from "@/lib/velux/bridge";
 // D7: PDF-Export erst nach bestaetigt versendeter Anfrage (VELUX-EXPORT-GATE.md).
-import { EXPORT_GATE_TEXT, closeWindow, configSignature, isExportUnlocked, openWaitWindow, writeDocument } from "@/lib/velux/export-gate";
+import { EXPORT_GATE_TEXT, closeWindow, configSignature, describeConfigOrigin, isExportUnlocked, makeConfigOrigin, openWaitWindow, writeDocument } from "@/lib/velux/export-gate";
+// P1: Foto des Typenschilds, im Browser verkleinert und ohne EXIF/GPS.
+import { PHOTO_TEXT, formatPhotoSize, prepareTypenschildPhoto } from "@/lib/imageUpload";
 import { useWebMCPTool } from "@/hooks/useWebMCPTool";
 import { emitWebMCPEvent, isWebMCPEnabled } from "@/lib/webmcp";
 const deDate=(iso)=>iso.split("-").reverse().join(".");
@@ -371,8 +373,18 @@ function FundingCard({title,tone,scenario,reason,rows,amountLabel,amount,remaini
 
 /* ─── Step 3 ──────────────────────────────────────────────────── */
 
-function Step3({positions,foerderung}){
+// P1: optionale Angabe, wie der Kunde auf uns aufmerksam wurde.
+const HERKUNFT_OPTIONS=["Google oder andere Suchmaschine","KI-Assistent (z. B. ChatGPT)","Empfehlung","Bereits Kunde","Sonstiges"];
+// Netlify bricht Uploads nach 30 Sekunden ab; danach greift der mailto-Ersatzweg.
+const SUBMIT_TIMEOUT_MS=45000;
+
+function Step3({positions,foerderung,origin}){
   const [kunde,setKunde]=useState({name:"",email:"",telefon:"",strasse:"",plz:"",ort:"",nachricht:""});
+  const [herkunft,setHerkunft]=useState("");
+  const [photo,setPhoto]=useState(null);
+  const [photoPreview,setPhotoPreview]=useState(null);
+  const [photoBusy,setPhotoBusy]=useState(false);
+  const [photoError,setPhotoError]=useState(null);
   const [pdfGenerated,setPdfGenerated]=useState(false);
   // Freigeschaltet ist immer nur die Konfiguration, die tatsaechlich abgesendet wurde.
   const [unlockedFor,setUnlockedFor]=useState(null);
@@ -381,6 +393,25 @@ function Step3({positions,foerderung}){
   const [submitSuccess, setSubmitSuccess] = useState(false);
   const [submitError, setSubmitError] = useState(false);
   const setK=(k,v)=>setKunde(c=>({...c,[k]:v}));
+
+  useEffect(()=>{
+    if(!photo){setPhotoPreview(null);return;}
+    const u=URL.createObjectURL(photo.blob);
+    setPhotoPreview(u);
+    return()=>URL.revokeObjectURL(u);
+  },[photo]);
+
+  const handlePhoto=async(e)=>{
+    const file=e.target.files?.[0];
+    e.target.value="";
+    if(!file)return;
+    setPhotoError(null);
+    setPhotoBusy(true);
+    const res=await prepareTypenschildPhoto(file);
+    setPhotoBusy(false);
+    if(res.ok)setPhoto(res.photo);
+    else{setPhoto(null);setPhotoError(PHOTO_TEXT.errors[res.error]);}
+  };
 
   const {details,totals,funding}=buildEstimate(positions,foerderung);
   const {totalMat,totalLab,totalNetto,mwst,totalBrutto,totalFenster,hasIneligible,ineligibleCount}=totals;
@@ -415,9 +446,13 @@ function Step3({positions,foerderung}){
     const ad=kunde.strasse?`\nStrasse: ${kunde.strasse}`:"";
     const po=(kunde.plz||kunde.ort)?`\nPLZ/Ort: ${kunde.plz} ${kunde.ort}`:"";
     const subject=encodeURIComponent(`Angebotsanfrage VELUX Dachfenster – ${kunde.name.trim()}`);
-    const body=encodeURIComponent(`Guten Tag,\n\nich moechte ein unverbindliches Angebot anfragen. Meine Konfiguration aus dem VELUX-Preisrechner:\n${posText}\n\nGesamt: ab ${fmt(totalNetto)} EUR netto (${fmt(totalBrutto)} EUR brutto inkl. MwSt.)${ft}\n\nKontaktdaten:\nName: ${kunde.name}${ad}${po}\nE-Mail: ${kunde.email}\nTelefon: ${kunde.telefon}${kunde.nachricht?`\nAnmerkung: ${kunde.nachricht}`:""}\n\nMit freundlichen Gruessen\n${kunde.name}`);
+    const ph=photo?`\n\nFoto des Typenschilds: ${PHOTO_TEXT.notSentWithMail}`:"";
+    const body=encodeURIComponent(`Guten Tag,\n\nich moechte ein unverbindliches Angebot anfragen. Meine Konfiguration aus dem VELUX-Preisrechner:\n${posText}\n\nGesamt: ab ${fmt(totalNetto)} EUR netto (${fmt(totalBrutto)} EUR brutto inkl. MwSt.)${ft}\n\nKontaktdaten:\nName: ${kunde.name}${ad}${po}\nE-Mail: ${kunde.email}\nTelefon: ${kunde.telefon}${kunde.nachricht?`\nAnmerkung: ${kunde.nachricht}`:""}${ph}\n\nMit freundlichen Gruessen\n${kunde.name}`);
     return`mailto:info@rex-bedachung.de?subject=${subject}&body=${body}`;
-  },[details,funding,foerderung,totalNetto,totalBrutto,kunde]);
+  },[details,funding,foerderung,totalNetto,totalBrutto,kunde,photo]);
+
+  const buildQuelle=()=>
+    `Aufmerksam geworden: ${herkunft||"keine Angabe"}\nKonfiguration: ${describeConfigOrigin(origin,positions,foerderung)}`;
 
   const buildKonfigText = () => {
     return details.map((d, i) =>
@@ -441,7 +476,8 @@ function Step3({positions,foerderung}){
     setPopupBlocked(false);
 
     try{if(sessionStorage.getItem(APPLIED_SESSION_KEY)==="1")emitWebMCPEvent({event:"cta_transition"});}catch{}
-    const formData = new URLSearchParams();
+    // Multipart (P1): Netlify Forms nimmt so auch das Foto entgegen.
+    const formData = new FormData();
     formData.append("form-name", "velux-preisrechner");
     formData.append("bot-field", "");
     formData.append("name", kunde.name);
@@ -452,13 +488,14 @@ function Step3({positions,foerderung}){
     formData.append("ort", kunde.ort);
     formData.append("nachricht", kunde.nachricht);
     formData.append("konfiguration", buildKonfigText());
+    formData.append("quelle", buildQuelle());
+    if (photo) formData.append("typenschild", photo.blob, photo.fileName);
 
+    const controller = new AbortController();
+    const timeout = setTimeout(() => controller.abort(), SUBMIT_TIMEOUT_MS);
     try {
-      const res = await fetch("/", {
-        method: "POST",
-        headers: { "Content-Type": "application/x-www-form-urlencoded" },
-        body: formData.toString(),
-      });
+      // Ohne Content-Type-Header: der Browser setzt die Multipart-Grenze selbst.
+      const res = await fetch("/", { method: "POST", body: formData, signal: controller.signal });
       if (!res.ok) throw new Error("Submit failed");
       setSubmitSuccess(true);
       setUnlockedFor(signature);
@@ -473,6 +510,7 @@ function Step3({positions,foerderung}){
       // Link zusaetzlich sichtbar in der Fehlermeldung.
       window.location.href = buildMailto();
     } finally {
+      clearTimeout(timeout);
       setSubmitting(false);
     }
   };
@@ -580,6 +618,34 @@ function Step3({positions,foerderung}){
             <div className="col-span-2"><label className="block text-xs font-semibold text-slate-600 mb-1">Ort <span className="font-normal text-slate-400">(optional)</span></label><input type="text" value={kunde.ort} onChange={e=>setK("ort",e.target.value)} placeholder="Bochum" className={inputCls}/></div>
           </div>
           <div><label className="block text-xs font-semibold text-slate-600 mb-1">Anmerkung <span className="font-normal text-slate-400">(optional)</span></label><textarea value={kunde.nachricht} onChange={e=>setK("nachricht",e.target.value)} rows={2} placeholder="z.B. Dachneigung, besondere Einbausituation, Wunschtermin ..." className={inputCls+" resize-none"}/></div>
+          <div>
+            <p className="text-xs font-semibold text-slate-600 mb-1">{PHOTO_TEXT.label} <span className="font-normal text-slate-400">(optional)</span></p>
+            <p id="typenschild-hinweis" className="text-[11px] text-slate-500 mb-2">{PHOTO_TEXT.hint}</p>
+            {photo?(
+              <div data-testid="photo-selected" className="flex items-center gap-3 rounded-lg border border-slate-200 p-2.5">
+                {photoPreview&&<img src={photoPreview} alt="Vorschau des Typenschild-Fotos" className="w-14 h-14 object-cover rounded-md shrink-0"/>}
+                <div className="min-w-0 flex-1 text-xs text-slate-600">
+                  <p className="font-semibold text-slate-700">Foto angehängt</p>
+                  <p>{photo.width} × {photo.height} px · {formatPhotoSize(photo.blob.size)}</p>
+                </div>
+                <button type="button" onClick={()=>{setPhoto(null);setPhotoError(null);}} disabled={submitting} className="shrink-0 text-xs font-semibold text-slate-600 underline hover:text-slate-900">{PHOTO_TEXT.remove}</button>
+              </div>
+            ):(
+              <label className={`inline-flex items-center gap-2 rounded-lg bg-slate-100 px-3.5 py-2 text-sm font-semibold text-slate-700 focus-within:ring-2 focus-within:ring-slate-800/30 ${photoBusy||submitting?"opacity-50 cursor-wait":"cursor-pointer hover:bg-slate-200"}`}>
+                <Camera className="w-4 h-4"/>{PHOTO_TEXT.choose}
+                <input id="typenschild-foto" type="file" accept="image/*,.heic,.heif" onChange={handlePhoto} disabled={photoBusy||submitting} aria-describedby="typenschild-hinweis" className="sr-only"/>
+              </label>
+            )}
+            {photoBusy&&<p role="status" className="text-xs text-slate-500 mt-1.5">{PHOTO_TEXT.processing}</p>}
+            {photoError&&<p role="alert" data-testid="photo-error" className="text-xs text-red-700 mt-1.5">{photoError}</p>}
+            <p className="text-[10px] text-slate-400 mt-1.5">{PHOTO_TEXT.privacy}</p>
+          </div>
+          <div><label htmlFor="herkunft" className="block text-xs font-semibold text-slate-600 mb-1">Wie sind Sie auf uns aufmerksam geworden? <span className="font-normal text-slate-400">(optional)</span></label>
+            <select id="herkunft" value={herkunft} onChange={e=>setHerkunft(e.target.value)} className={inputCls+" bg-white"}>
+              <option value="">Bitte wählen</option>
+              {HERKUNFT_OPTIONS.map(o=><option key={o} value={o}>{o}</option>)}
+            </select>
+          </div>
           <p className="text-[10px] text-slate-400">* Pflichtfeld. Zusätzlich E-Mail oder Telefon – mindestens eine Angabe erforderlich.</p>
         </div>
       </div>
@@ -617,6 +683,7 @@ function Step3({positions,foerderung}){
             </div>
           )}
         </div>
+        {submitting&&photo&&<p role="status" className="text-xs text-slate-500 text-center">{PHOTO_TEXT.uploading}</p>}
         <p className="text-[10px] text-slate-400 text-center">
           {EXPORT_GATE_TEXT.privacy} <a href="/datenschutz" className="underline hover:text-slate-600">Datenschutzhinweise</a>
         </p>
@@ -632,6 +699,7 @@ function Step3({positions,foerderung}){
             <p className="text-xs text-red-700 bg-red-50 inline-block px-4 py-2 rounded-lg">
               Senden fehlgeschlagen. Bitte rufen Sie uns direkt an: 0234 / 58 31 00 — oder{" "}
               <a href={buildMailto()} className="underline font-semibold">per E-Mail senden</a>.
+              {photo&&<><br/>{PHOTO_TEXT.notSentWithMail}</>}
             </p>
           </div>
         )}
@@ -677,7 +745,10 @@ export default function VeluxPreisrechner(){
 
   // WebMCP-Verdrahtung (kein Effekt ohne Flag): Bridge + vier Tools, Lebensdauer = diese Komponente
   const [announce,setAnnounce]=useState("");
-  const bridge=useVeluxBridge({positions,funding:foerderung,step,setPositions,setFunding:setFoerderung,setStep,announce:setAnnounce,makeId:uid});
+  // P1: Herkunft der Konfiguration (KI oder Rechner-Link), bei „Neue Berechnung“ zurückgesetzt.
+  const [origin,setOrigin]=useState(null);
+  const bridge=useVeluxBridge({positions,funding:foerderung,step,setPositions,setFunding:setFoerderung,setStep,announce:setAnnounce,makeId:uid,
+    onApplied:(p,f)=>setOrigin(makeConfigOrigin("ki",p,f))});
   const tools=useMemo(()=>buildVeluxTools(bridge),[bridge]);
   const webmcpOn=useMemo(()=>isWebMCPEnabled(),[]);
   useEffect(()=>()=>{document.querySelector('meta[data-rex-webmcp]')?.remove();},[]);
@@ -694,6 +765,7 @@ export default function VeluxPreisrechner(){
     try{history.replaceState(history.state,"",window.location.pathname+window.location.search);}catch{}
     if(link.status==="ok"){
       setPositions(link.positions.map(p=>({...p,id:uid()})));
+      setOrigin(makeConfigOrigin("link",link.positions,link.funding));
       if(link.funding){setFoerderung(link.funding);setStep(3);setLinkNotice({tone:"ok",text:CALCULATOR_LINK_TEXT.applied});}
       else{setStep(2);setLinkNotice({tone:"ok",text:CALCULATOR_LINK_TEXT.appliedNeedsFunding});}
     }else{
@@ -718,13 +790,13 @@ export default function VeluxPreisrechner(){
         <Steps step={step}/>
         {step===1&&<Step1 positions={positions} setPositions={setPositions}/>}
         {step===2&&<Step2 foerderung={foerderung} setFoerderung={setFoerderung}/>}
-        {step===3&&<Step3 positions={positions} foerderung={foerderung}/>}
+        {step===3&&<Step3 positions={positions} foerderung={foerderung} origin={origin}/>}
         <div className="flex justify-between items-center mt-8 pt-6 border-t border-slate-200">
           {step>1?<button onClick={()=>setStep(s=>s-1)} className="flex items-center gap-2 text-sm text-slate-600 hover:text-slate-900 font-medium"><ChevronLeft className="w-4 h-4"/>Zurück</button>:<div/>}
           {step<3&&(<button onClick={()=>setStep(s=>s+1)} disabled={step===1?!canStep1:!canStep2}
             className={`flex items-center gap-2 px-6 py-3 rounded-xl font-semibold text-sm transition-all ${(step===1?canStep1:canStep2)?"bg-slate-800 text-white hover:bg-slate-700 shadow-md":"bg-slate-200 text-slate-400 cursor-not-allowed"}`}>
             {step===1?"Weiter zur Förderung":"Kosten berechnen"}<ChevronRight className="w-4 h-4"/></button>)}
-          {step===3&&(<button onClick={()=>{setStep(1);setPositions([emptyPos()]);setFoerderung(EMPTY_FUNDING_ANSWERS);setLinkNotice(null);}}
+          {step===3&&(<button onClick={()=>{setStep(1);setPositions([emptyPos()]);setFoerderung(EMPTY_FUNDING_ANSWERS);setLinkNotice(null);setOrigin(null);}}
             className="flex items-center gap-2 px-6 py-3 rounded-xl font-semibold text-sm bg-slate-100 text-slate-700 hover:bg-slate-200 transition-all"><Calculator className="w-4 h-4"/>Neue Berechnung</button>)}
         </div>
       </div>
