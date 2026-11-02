@@ -467,7 +467,8 @@ function Step3({positions,foerderung,origin}){
   };
 
   const handleSubmitAndPdf = async () => {
-    if(submitting||!kundeValid)return;
+    // Erst senden, wenn ein gewähltes Foto fertig vorbereitet ist (sonst fehlt es in der Anfrage).
+    if(submitting||photoBusy||!kundeValid)return;
     // Fenster im Nutzerklick oeffnen, sonst greift der Popup-Blocker. Es zeigt zunaechst
     // nur einen Wartescreen; das PDF kommt erst nach bestaetigtem Versand.
     const printWindow=openWaitWindow();
@@ -658,11 +659,11 @@ function Step3({positions,foerderung,origin}){
         </div>
         <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
           {kundeValid ? (<>
-            <button onClick={handleSubmitAndPdf} disabled={submitting}
+            <button data-testid="submit-inquiry" onClick={handleSubmitAndPdf} disabled={submitting||photoBusy}
               className="inline-flex items-center gap-2 bg-slate-800 text-white px-7 py-3.5 rounded-xl font-semibold text-sm hover:bg-slate-700 transition-all shadow-lg hover:shadow-xl group disabled:opacity-50 disabled:cursor-wait">
               <Mail className="w-5 h-5"/>
-              {submitting ? "Wird gesendet..." : "Anfrage senden & PDF erstellen"}
-              {!submitting && <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform"/>}
+              {submitting ? "Wird gesendet..." : photoBusy ? PHOTO_TEXT.processing : "Anfrage senden & PDF erstellen"}
+              {!submitting && !photoBusy && <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform"/>}
             </button>
           </>) : (
             <div className="inline-flex items-center gap-2 bg-slate-200 text-slate-400 px-8 py-3.5 rounded-xl font-semibold text-sm cursor-not-allowed">

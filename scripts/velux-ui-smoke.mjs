@@ -242,6 +242,13 @@ try {
     photoPost = parseMultipart(request.postDataBuffer() || Buffer.alloc(0), request.headers()['content-type']);
     return route.fulfill({ status: photoSubmitMode === 'ok' ? 200 : 500, contentType: 'text/html', body: 'ok' });
   });
+  // Test-Haken: hält die Fotodekodierung an, solange window.__decodeGate gesetzt ist.
+  await photoCtx.addInitScript(() => {
+    const original = window.createImageBitmap?.bind(window);
+    if (!original) return;
+    window.__decodeGate = null;
+    window.createImageBitmap = async (...args) => { if (window.__decodeGate) await window.__decodeGate; return original(...args); };
+  });
   const photoPage = await photoCtx.newPage();
   photoPage.on('pageerror', error => errors.push(String(error)));
   const photoCalc = photoPage.locator('#preisrechner');
@@ -262,7 +269,17 @@ try {
   await photoCalc.locator('#herkunft').selectOption('KI-Assistent (z. B. ChatGPT)');
   const testJpeg = await makeTestJpeg(photoPage);
   assert.ok(testJpeg.includes(Buffer.from('Exif')) && testJpeg.includes(Buffer.from('GPS-TESTMARKE')), 'Testbild trägt EXIF und Kennung');
+  // Codex P2: Solange das Foto vorbereitet wird, bleibt das Absenden gesperrt.
+  await photoPage.evaluate(() => { window.__decodeGate = new Promise(resolve => { window.__releaseDecode = resolve; }); });
   await fileInput.setInputFiles({ name: 'IMG_0001.jpg', mimeType: 'image/jpeg', buffer: testJpeg });
+  await photoCalc.getByRole('status').filter({ hasText: 'Foto wird vorbereitet …' }).waitFor();
+  const busyButton = photoCalc.getByTestId('submit-inquiry');
+  assert.equal(await busyButton.isDisabled(), true, 'Absenden gesperrt, solange das Foto vorbereitet wird');
+  assert.match(await busyButton.innerText(), /Foto wird vorbereitet/, 'Schaltfläche nennt den Grund');
+  const postsWhileBusy = photoPosts;
+  await busyButton.click({ force: true, timeout: 2000 }).catch(() => {});
+  assert.equal(photoPosts, postsWhileBusy, 'Kein Versand während der Fotovorbereitung');
+  await photoPage.evaluate(() => { window.__decodeGate = null; window.__releaseDecode(); });
   await photoCalc.getByTestId('photo-selected').waitFor();
   assert.match(await photoCalc.getByTestId('photo-selected').innerText(), /1000 × 2000 px/, 'Gedreht und auf 2.000 px verkleinert');
   assert.equal(await photoPage.evaluate(() => document.documentElement.scrollWidth > innerWidth), false, 'Fotofeld ohne Überlauf bei 390 px');
@@ -362,5 +379,5 @@ try {
   await linkCtx.close();
   assert.deepEqual(errors, []);
 
-  console.log('PASS: manueller Wizard, 390-px-Layout, ein H1, UI/PDF-Parität, PDF nur nach bestätigtem Versand, erneutes Öffnen ohne Versand, Fehlversand ohne PDF, Druckansicht entwertet, Popup-Rückfallebene, HTML-Escaping, Typenschild-Foto (gedreht, verkleinert, ohne EXIF, Multipart, Fehlversand-Hinweis, Übergröße, HEIC), Herkunft (Link unverändert/geändert, Reset), Rechner-Link (Handy/Desktop, ohne Förderung, Version, ungültig)');
+  console.log('PASS: manueller Wizard, 390-px-Layout, ein H1, UI/PDF-Parität, PDF nur nach bestätigtem Versand, erneutes Öffnen ohne Versand, Fehlversand ohne PDF, Druckansicht entwertet, Popup-Rückfallebene, HTML-Escaping, Typenschild-Foto (gedreht, verkleinert, ohne EXIF, Senden erst nach Vorbereitung, Multipart, Fehlversand-Hinweis, Übergröße, HEIC), Herkunft (Link unverändert/geändert, Reset), Rechner-Link (Handy/Desktop, ohne Förderung, Version, ungültig)');
 } finally { await browser.close(); }
