@@ -30,7 +30,8 @@ export const PHOTO_TEXT = {
     "fotografieren – keine Personen, Hausnummern oder Innenräume.",
   privacy:
     "Ihr Browser verkleinert das Foto vor dem Senden; Standort- und Kameradaten (EXIF/GPS) " +
-    "werden dabei entfernt.",
+    "werden dabei entfernt. Bei Netlify ist das Foto über einen nicht veröffentlichten Link " +
+    "ohne Anmeldung abrufbar – Einzelheiten in den Datenschutzhinweisen.",
   choose: "Foto auswählen oder aufnehmen",
   processing: "Foto wird vorbereitet …",
   remove: "Foto entfernen",

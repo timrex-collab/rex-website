@@ -159,9 +159,14 @@ export default function Datenschutz() {
                 fotografieren Sie nur das Typenschild – keine Personen, Hausnummern oder Innenräume.
                 Ihr Browser verkleinert das Foto vor dem Senden; dabei werden eingebettete
                 Metadaten wie Standort- und Kameradaten (EXIF/GPS) entfernt. Das Foto wird mit Ihrer
-                Anfrage über Netlify Forms übermittelt und dort gespeichert (siehe Abschnitt 3); wir
-                rufen es über unser Netlify-Konto ab. Es gilt dieselbe Speicherdauer wie für die
-                übrigen Formulareingaben. Rechtsgrundlage ist Art. 6 Abs. 1 lit. b DSGVO.
+                Anfrage über Netlify Forms übermittelt und dort gespeichert (siehe Abschnitt 3).
+                Abrufbar ist es über einen Datei-Link, den wir in unserem Netlify-Konto und in der
+                E-Mail-Benachrichtigung über Ihre Anfrage erhalten. Wir veröffentlichen diesen Link
+                nicht; wer ihn kennt, kann das Foto jedoch ohne Anmeldung öffnen. Wir löschen das
+                Foto zusammen mit Ihrer Anfrage (siehe „Speicherdauer von Anfragen“). Nach dem
+                Löschen kann der Datei-Link technisch bedingt noch eine Zeit lang erreichbar bleiben;
+                wie lange, bestimmt Netlify. Bitte senden Sie deshalb nur ein Foto des Typenschilds.
+                Rechtsgrundlage ist Art. 6 Abs. 1 lit. b DSGVO.
               </p>
               <p>
                 Mit der Anfrage übermitteln wir außerdem, ob Sie die Konfiguration selbst eingegeben
@@ -174,7 +179,9 @@ export default function Datenschutz() {
 
               <h3 className="text-xl font-semibold mb-3 mt-6">Speicherdauer von Anfragen</h3>
               <p>
-                Formulareingaben löschen wir bei Netlify spätestens drei Monate nach Eingang. 
+                Formulareingaben löschen wir bei Netlify spätestens drei Monate nach Eingang; das
+                gilt auch für mitgesendete Fotos (zur Erreichbarkeit des Datei-Links nach dem Löschen
+                siehe oben).
                 Anfragen in unserem E-Mail-Postfach, aus denen kein Auftrag entsteht, löschen wir 
                 spätestens zwölf Monate nach Eingang. Entsteht ein Auftrag, bewahren wir die 
                 Unterlagen so lange auf, wie gesetzliche Aufbewahrungspflichten es vorschreiben.

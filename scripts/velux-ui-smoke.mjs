@@ -264,6 +264,7 @@ try {
   // Herkunft per Rechner-Link, unverändert, mit Foto und Herkunftsangabe
   await photoPage.goto(`${base}/velux-preisrechner-bochum#rechner=1&p=GGU.MK08.ENERGIE.1&f=over_10.yes.yes.no`);
   await photoCalc.getByTestId('calculator-link-notice').waitFor();
+  assert.match(await photoCalc.innerText(), /nicht veröffentlichten Link ohne Anmeldung abrufbar/, 'Fotofeld nennt den Abruf ohne Anmeldung');
   await photoCalc.getByPlaceholder('Vor- und Nachname').fill('Testfall Foto');
   await photoCalc.getByPlaceholder('ihre@email.de').fill('local-test@example.invalid');
   await photoCalc.locator('#herkunft').selectOption('KI-Assistent (z. B. ChatGPT)');
