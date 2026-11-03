@@ -6,7 +6,8 @@
  *
  * Prüft: Sperre außerhalb der Previews, MCP-Handshake, Tool-Liste, Goldwert über
  * dieselbe Fachlogik (2.104 € brutto), Bestätigungsbedarf beim Typenschild,
- * Fehlerpfade und dass der Fototest keine Links oder Inhalte zurückgibt.
+ * Fehlerpfade, das Dateischema des Fototests und dass der Fototest weder Links noch
+ * Datei-IDs, Dateinamen oder Inhalte zurückgibt.
  */
 import handler, { PHOTO_PROBE_TOOL } from "../netlify/functions/mcp.mts";
 
@@ -59,6 +60,11 @@ async function main() {
   check(!names.includes("rex_velux_apply_configuration_v1"), "tools/list: kein Apply-Tool (keine Seite, nichts zu übernehmen)");
   const probeDef = (list.body?.result?.tools ?? []).find((t: any) => t.name === PHOTO_PROBE_TOOL);
   check(JSON.stringify(probeDef?._meta?.["openai/fileParams"]) === JSON.stringify(["image"]), "Fototest: image als Dateiparameter gekennzeichnet");
+  const imageSchema = probeDef?.inputSchema?.properties?.image;
+  const fileFields = ["download_url", "file_id", "mime_type", "file_name"];
+  check(imageSchema?.type === "object" && fileFields.every((f) => imageSchema.properties?.[f]?.type === "string"),
+    "Fototest: image als Objekt mit vier String-Feldern (download_url, file_id, mime_type, file_name)");
+  check(JSON.stringify(imageSchema?.required) === JSON.stringify(["download_url", "file_id"]), "Fototest: download_url und file_id sind Pflicht");
 
   // Fachlogik
   const funding = { buildingAge: "over_10", energyRenovation: "yes", ownerOccupied: "yes", hasIsfp: "no" };
@@ -84,10 +90,29 @@ async function main() {
 
   // Fototest: Form melden, nichts zurückgeben
   const secretUrl = "https://files.example.invalid/typenschild.jpg?token=GEHEIM";
-  const probe = await callTool(PHOTO_PROBE_TOOL, { image: { download_url: secretUrl, file_id: "file_123", mime_type: "image/jpeg" } });
+  const probe = await callTool(PHOTO_PROBE_TOOL, {
+    image: { download_url: secretUrl, file_id: "file_GEHEIMID", mime_type: "image/jpeg", file_name: "GEHEIMNAME.jpg" },
+  });
   const p = probe?.structuredContent?.image;
-  check(p?.received === true && p.hasDownloadUrl === true && p.hasFileId === true && p.mimeType === "image/jpeg", "Fototest: Objekt mit Link und Datei-ID erkannt");
-  check(!JSON.stringify(probe).includes("GEHEIM") && !JSON.stringify(probe).includes("files.example"), "Fototest: gibt den Link nicht zurück");
+  check(p?.received === true && p.kind === "object" && p.hasDownloadUrl === true && p.downloadUrlIsHttps === true &&
+    p.hasFileId === true && p.fileIdLooksLikeFileId === true && p.mimeType === "image/jpeg" && p.hasFileName === true,
+    "Fototest: Objekt mit Link, Datei-ID, Medientyp und Dateiname erkannt");
+  const probeText = JSON.stringify(probe);
+  check(!/GEHEIM|files\.example/.test(probeText), "Fototest: gibt Link, Datei-ID und Dateinamen nicht zurück");
+
+  const onlyId = await callTool(PHOTO_PROBE_TOOL, { image: { file_id: "file_abc" } });
+  check(onlyId?.structuredContent?.image?.hasDownloadUrl === false && onlyId.structuredContent.image.hasFileId === true,
+    "Fototest: Objekt ohne download_url → hasDownloadUrl false");
+
+  const idString = await callTool(PHOTO_PROBE_TOOL, { image: "file-GEHEIM123" });
+  const s1 = idString?.structuredContent?.image;
+  check(s1?.kind === "string" && s1.looksLikeFileId === true && s1.looksLikeImageFileName === false && !JSON.stringify(idString).includes("GEHEIM"),
+    "Fototest (diagnostisch): Zeichenfolge als Datei-ID erkannt, nicht zurückgegeben");
+  const nameString = await callTool(PHOTO_PROBE_TOOL, { image: "GEHEIM_IMG_1234.JPEG" });
+  const s2 = nameString?.structuredContent?.image;
+  check(s2?.kind === "string" && s2.looksLikeFileId === false && s2.looksLikeImageFileName === true && !JSON.stringify(nameString).includes("GEHEIM"),
+    "Fototest (diagnostisch): Zeichenfolge als Bild-Dateiname erkannt, nicht zurückgegeben");
+
   const none = await callTool(PHOTO_PROBE_TOOL, {});
   check(none?.structuredContent?.image?.received === false, "Fototest: ohne Foto → received false");
 
