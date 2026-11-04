@@ -29,6 +29,8 @@ interface BridgeArgs {
   setStep: (s: number) => void;
   announce: (message: string) => void;
   makeId: () => number;
+  /** Nach bestätigtem Commit: übernommene Konfiguration, z. B. für die Herkunftsmarke (P1). */
+  onApplied?: (positions: DraftPosition[], funding: FundingAnswers) => void;
 }
 
 interface Pending {
@@ -78,6 +80,7 @@ export function useVeluxBridge(args: BridgeArgs): VeluxUiBridge {
     if (pending.signal?.aborted) { pending.resolve({ applied: false, code: "ABORTED" }); return; }
     emitWebMCPEvent({ event: "ui_apply_committed" });
     try { sessionStorage.setItem(APPLIED_SESSION_KEY, "1"); } catch { /* privat/blockiert */ }
+    args.onApplied?.(args.positions, args.funding);
     args.announce("Konfiguration aus der KI-Anfrage übernommen. Das Ergebnis wird unter Schritt 3 angezeigt.");
     const raf = typeof requestAnimationFrame === "function" ? requestAnimationFrame : (cb: () => void) => setTimeout(cb, 0);
     raf(() => focusResult(pending.signal));

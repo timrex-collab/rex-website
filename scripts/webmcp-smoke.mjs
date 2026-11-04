@@ -18,7 +18,9 @@
  * Duplikate, Promise-Verhalten von registerTool, calculate-Roundtrip (Goldwert)
  * mit calculatorUrl, Fehlerpfad, Bestätigungsanweisung bei confirmation_required,
  * CONFIRMATION_REQUIRED ohne Nutzerbestätigung (W1, Befund Fall 4), Apply mit
- * bestätigtem UI-Commit, DRAFT_EXISTS, und dass kein Tool Netzwerkverkehr auslöst.
+ * bestätigtem UI-Commit, DRAFT_EXISTS, dass kein Tool Netzwerkverkehr auslöst, und
+ * dass eine Anfrage nach der KI-Übernahme die Herkunft „per KI übernommen“ trägt (P1).
+ * Der Absendeversuch wird im Browser abgebrochen; es verlässt kein Formular den Test.
  */
 import { chromium } from "playwright";
 
@@ -61,7 +63,13 @@ const browser = await chromium.launch({
   args: useShim || flag === 'none' ? [] : [flag],
 });
 const ctx = await browser.newContext({ viewport: { width: 1200, height: 2000 } });
-await ctx.route('**/*', route => route.request().method() === 'GET' ? route.continue() : route.abort());
+// Nicht-GET wird immer abgebrochen; der Body bleibt für die Herkunftsprüfung (P1) lesbar.
+let lastSubmitBody = null;
+await ctx.route('**/*', route => {
+  if (route.request().method() === 'GET') return route.continue();
+  lastSubmitBody = route.request().postDataBuffer()?.toString('utf8') ?? '';
+  return route.abort();
+});
 if (useShim) await ctx.addInitScript(SHIM);
 const page = await ctx.newPage();
 console.log(`Browser ${await browser.version()}, ${useShim ? "SHIM (kein nativer Nachweis)" : "NATIV"}, Eingabeformat ${inputFormat}`);
@@ -131,6 +139,12 @@ else {
   check(draft?.ok === false && draft.error?.code === "DRAFT_EXISTS", "apply: zweiter Aufruf ohne replaceExisting → DRAFT_EXISTS");
   const postAppliedNetwork = requests.slice(before).filter((u) => !/\.(js|css|woff2?|png|webp|svg|ico)(\?|$)/.test(u));
   check(postAppliedNetwork.length === 0, "apply: weiterhin kein Netzwerkverkehr (kein Formular-Submit)");
+  const calcEl = page.locator("#preisrechner");
+  await calcEl.getByPlaceholder("Vor- und Nachname").fill("Testfall KI");
+  await calcEl.getByPlaceholder("ihre@email.de").fill("local-test@example.invalid");
+  await calcEl.getByRole("button", { name: /Anfrage senden/ }).click();
+  await page.waitForFunction(() => document.body.innerText.includes("Senden fehlgeschlagen"));
+  check(/Konfiguration: per KI übernommen, unverändert/.test(lastSubmitBody ?? ""), "Anfrage nach KI-Übernahme: Herkunft „per KI übernommen, unverändert“ (abgebrochen, nichts versendet)");
 }
 
 await page.getByRole("link", { name: /Startseite|Rex Bedachung/i }).first().click().catch(() => page.goto(`${base}/`));
