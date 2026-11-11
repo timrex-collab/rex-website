@@ -59,6 +59,9 @@ jobs:
       # Goldwerte, Katalog-Invarianten, Determinismus. Siehe scripts/velux-estimate-check.ts.
       - name: VELUX-Preislogik (Goldwerte)
         run: npm run estimate:check
+      # P4b: MCP-Endpunkt /mcp – Freischaltung, Größengrenze, Rate-Limit-Regel, Tools, Goldwert.
+      - name: MCP-Endpunkt (P4b)
+        run: npx tsx scripts/mcp-check.ts
       # Findet Förderaussagen auf Seiten und in llms*.txt, die der zentralen Logik in
       # client/src/lib/velux widersprechen (Befunde der Förderaudits 09/2026, R1–R3).
       - name: Förderaussagen (Drift-Check)
