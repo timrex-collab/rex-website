@@ -9,26 +9,27 @@ Jedes Paket ist ein eigener Auftrag mit eigenem PR. Vor jedem Paket den aktuelle
 ausdrückliche Anweisungen von Tim haben Vorrang. Die Regeln aus `CLAUDE.md` und
 `DEPLOY-RULES.md` gelten unverändert.
 
-## Umsetzungsstand (28.10.2026)
+## Umsetzungsstand (11.11.2026)
 
-Nachgetragen mit D1. Die Abschnitte unten bleiben im Stand vom 12.10.2026; maßgeblich für Termine
+Nachgetragen mit D1, fortgeschrieben nach P1 und P4a. Die Abschnitte unten bleiben im Stand vom 12.10.2026; maßgeblich für Termine
 und Deploys ist `DEPLOY-RULES.md` §10.
 
 | Paket | Stand |
 |---|---|
-| V1 Netlify-Kontingent | offen (Tim), Bedingung für P1 |
+| V1 Netlify-Kontingent | erledigt 02.11.2026: Forms im Credit-Tarif frei und unbegrenzt; Uploads 1 Datei pro Feld, 8 MB pro Einsendung, 30 s Zeitlimit |
 | V2 Lösch-Routine | erledigt: monatlich, Inhalt von Tim gesetzt (Einträge älter als zwei Monate, Spam-Bereich), von Claude geprüft; erster Lauf 01.11.2026 |
-| V3 Persönliches Plugin | offen (Tim), Voraussetzung für P4 |
-| V4 Postfach-Eingang | offen bis zur nächsten TEST-Anfrage |
+| V3 Persönliches Plugin | erledigt mit P4a: eigener MCP-Endpunkt ohne Authentifizierung in ChatGPT Web, ChatGPT Classic (Windows) und iPhone-App nutzbar |
+| V4 Postfach-Eingang | erledigt 02.11.2026 (P1-Abnahme: Benachrichtigung mit Herkunft und Foto-Link im Postfach) |
 | B1 Datenschutz | live mit PR #99 (15.10.2026) |
 | B2 Aufräumen | live mit PR #104 (22.10.2026) |
-| P1 Typenschild-Foto | wartet auf V1 |
+| P1 Typenschild-Foto | live mit PR #111 (04.11.2026) |
 | W1 WebMCP und Rechner-Link | live mit PR #107 (26.10.2026); am selben Tag von Tim abgenommen: Fall 4 bestanden, Links auf Handy und PC geprüft (`WEBMCP.md`) |
 | D1 Doku | live mit PR #109 (31.10.2026) |
-| P4a, P4b, P5 | offen |
+| P4a Machbarkeit Server-Plugin | abgeschlossen 11.11.2026 (PR #112, ohne Merge geschlossen): Go auf allen drei Oberflächen, Ergebnis siehe P4 |
+| P4b, P5 | offen; P4b nach Variante A (Entscheidung Tim 11.11.2026) |
 
 Außerhalb des Plans dazwischen live: PR #100 (Header am Desktop), PR #101 (S1 Layout-Shift) und
-PR #105 (Sicherheitsupdates der Abhängigkeiten). PR #108 hat die CI beschleunigt (Testbrowser ohne
+PR #105 und PR #113 (Sicherheitsupdates der Abhängigkeiten). PR #108 hat die CI beschleunigt (Testbrowser ohne
 apt-Systempakete).
 
 ## Auftrag und Ziel
@@ -134,13 +135,16 @@ Der Plan vom 04.10.2026 liegt nicht im Repo; hier steht nur das Ergebnis der Bew
    und der Connector zeigt keine Abrechnungsdaten. (Connector am 12.10.2026: Projekt auf Plan
    `nf_team_dev`, Forms aktiviert; Kontingente nicht sichtbar.)
 
-   **Ergebnis V1:** _offen_
+   **Ergebnis V1 (02.11.2026, Netlify-Doku „Forms setup“, von Tim geprüft):** „For credit-based
+   plans, Forms are free and unlimited.“ Rex läuft auf dem Personal-Plan (Credit-Tarif). Für Uploads
+   gilt: eine Datei pro Feld, höchstens 8 MB pro Einsendung, 30 Sekunden Zeitlimit. P1 begrenzt das
+   Foto deshalb auf 5 MB.
 2. **Lösch-Routine auf monatlich (Claude):** Name und Zeitplan am 12.10.2026 umgestellt. Den
    Inhalt hat Tim danach in der Routinen-Unterhaltung gesetzt; Claude hat ihn geprüft.
 3. **ChatGPT, persönliches Plugin (Tim; für P4):** Lässt sich ein eigener MCP-Endpunkt ohne
    Authentifizierung verbinden? Gilt das für Web, Desktop und die Handy-App?
 
-   **Ergebnis V3:** _offen_
+   **Ergebnis V3:** siehe P4a im Abschnitt P4 (Go auf Web, Classic und iPhone-App).
 4. **Postfach-Eingang (Tim):** Bei der nächsten TEST-Anfrage auch die Mail im Postfach prüfen.
 
 ### B1 – Datenschutz-Bereinigung vor P1 (Stufe B, 3 Dateien; Codex-Gegenlesung)
@@ -316,6 +320,20 @@ Der Plan vom 04.10.2026 liegt nicht im Repo; hier steht nur das Ergebnis der Bew
   - Außerdem prüft Tim, ob ein im Chat hochgeladenes Foto über Dateiparameter beim Werkzeug
     ankommt.
   - Ergebnis: Go/No-Go je Oberfläche.
+- **Ergebnis P4a (11.11.2026, Tabelle in PR #112):**
+  - Connector, Kostenschätzung (Goldwert 2.104 €, BEG 316 €, §35c 421 €, Rechner-Link) und
+    Typenschild-Rückfrage (GGL S10 → SK10) funktionieren in ChatGPT Web, ChatGPT Classic (Windows)
+    und der iPhone-App.
+  - Fotoübergabe: Mit `image` als Objekt (`download_url`, `file_id`, optional `mime_type`,
+    `file_name`) und `_meta["openai/fileParams"]` kommt ein Dateiobjekt an; mit `image` ohne Typ
+    nur eine Zeichenfolge. Ob `download_url` die Datei liefert, ist nicht geprüft (kein Abruf).
+  - ChatGPT ergänzt eigene Angaben (Uw-Wert, MwSt. auf den Cent) und fragt vor dem Rechnen nicht
+    überall nach. In eine Anfrage gehört deshalb nur die serverseitig neu berechnete
+    Zusammenfassung, mit Vermerk, ob die Fensterzuordnung bestätigt oder nur vermutet ist.
+  - **Entscheidung Tim (11.11.2026): Variante A.** P4b ohne Fotoübertragung über ChatGPT. ChatGPT
+    liest das Typenschild selbst, das Tool fragt bei unsicherer Zuordnung nach; ein Foto lädt der
+    Kunde über den Rechner-Link hoch (P1). Foto über ChatGPT frühestens als eigenes Paket (Abruftest,
+    EXIF/GPS serverseitig entfernen, Datenschutztext, Codex-Gegenlesung, gesonderter Auftrag).
 - **P4b, nur nach Go:**
   - Werkzeuge: `prepare` und `submit` mit `summaryId`.
   - Pflicht: Neuberechnung auf dem Server; Weiterleitung serverseitig an Netlify Forms
@@ -323,7 +341,7 @@ Der Plan vom 04.10.2026 liegt nicht im Repo; hier steht nur das Ergebnis der Bew
   - Missbrauch: Aufruflimit pro IP und gesamt, Längengrenzen, keine Personendaten in Logs,
     Testmodus außerhalb von Production.
   - Doppelübermittlung nach Timeout: Idempotenz-Hash 24 h in Netlify Blobs.
-  - Foto über Dateiparameter, falls P4a das bestätigt.
+  - ~~Foto über Dateiparameter, falls P4a das bestätigt.~~ Entfällt nach Variante A.
   - Datenschutztext für den Kanal, von Codex gegengelesen.
   - Stufe C, 2–3 Deploys.
 - **Aufwand:** P4a 1–2 Arbeitstage, Tims Zeit 1–2 h. P4b 3–5 Arbeitstage, Tims Zeit 1–2 h.
