@@ -105,6 +105,20 @@ die Ausnahme.
 > Site-Ausgabe (`dist/public`) nicht und tragen kein Ranking-Risiko; sie sollten
 > dennoch als sauberer PR laufen.
 
+### Gate-Zählung und Formular-Registrierung (seit 11.11.2026)
+- **Was als Produktionsdeploy zählt:** jeder Merge, der `dist/public` ändert. Die Netlify-Meldung
+  „All files already uploaded“ belegt das Gegenteil nicht, weil ein Deploy-Preview die Dateien schon
+  hochgeladen haben kann (#109). Änderungen an `package.json` oder `package-lock.json` zählen immer
+  (#113).
+- **Monatswechsel:** `__BUILD_DATE__` (`vite.config.ts`, „Monat Jahr“ im `ExpertenBlock`) ändert
+  sich mit dem ersten Build eines neuen Monats. Netlify lädt dann rund 66 Dateien neu (#85, #113),
+  auch ohne Codeänderung. Auch ein reiner Doku-PR kann so zum Produktionsdeploy werden.
+- **Formular-Registrierung:** Netlify übernimmt die Felddefinition der Formulare vom **zuletzt
+  gebauten Deploy, auch von Deploy-Previews**. Ändert ein Merge `client/public/formulare.html`,
+  nimmt jeder offene Branch erst `main` auf, bevor er neu gepusht wird. Sonst entfernt sein Preview
+  die neuen Felder wieder, und Netlify verwirft sie bei echten Anfragen. Nach jedem solchen Merge
+  `get-forms-for-project` prüfen.
+
 ---
 
 ## 5. Pre-Push-/Pre-Merge-Protokoll  *(für Claude Code angepasst)*
@@ -479,6 +493,31 @@ VELUX D1–D8 · Förder-Bereinigung R1–R4 · Doku/llms nach R1–R4.
 > MCP-Endpunkt ohne Authentifizierung in ChatGPT möglich?, Tim).
 > Offen bzw. wartend: S2 (Freigabe der Datumstabelle durch Tim); H1-Überlauf auf `/datenschutz` bei
 > 390 px (19 px, Befund aus B1).
+>
+> **Stand 11.11.2026 (nach PR #113 und #111, P1 Typenschild-Foto; P4a abgeschlossen):**
+> - **#113 (Sicherheitsupdates, 02.11.2026):** `npm audit --omit=dev` wieder ohne Befund. Netlify lud
+>   66 Dateien neu, obwohl der lokale Build mit `main` übereinstimmte. Ursache: erster Produktionsbuild
+>   im November, `__BUILD_DATE__` wechselte von „Oktober 2026“ auf „November 2026“ (wie bei #85). Als
+>   Produktionsdeploy gezählt; Regeln dazu in §4 „Gate-Zählung und Formular-Registrierung“.
+> - **#111 (P1, 04.11.2026):** Typenschild-Foto und Herkunft der Konfiguration (Feld `quelle`) in der
+>   Preisrechner-Anfrage. Gemergt per Merge-Commit statt „Squash and merge“; auf `main` liegen
+>   deshalb die drei Einzelcommits (`ecfecae`, `7e3e87c`, `ad34fc8`), ausgeliefert in **einem**
+>   Deploy. Formular `velux-preisrechner` danach mit `quelle` (Textfeld) und `typenschild` (Datei).
+> - **Foto-Link nach dem Löschen (P1-Abnahme):** Der Link aus der Netlify-Benachrichtigung öffnet ohne
+>   Anmeldung (CloudFront). Nach dem Löschen der TEST-Einsendung (vor 02.11.2026 18:22:54 MEZ) war das
+>   Foto sofort und **nach rund 24 Stunden** (03.11.2026 18:25 MEZ, 1.500 × 2.000 px) weiter abrufbar.
+>   Die 48-Stunden-Messung fiel aus (Aufruf zu früh). Wann der Link unbrauchbar wird, ist offen. Der
+>   Datenschutztext sagt bereits, dass der Link nach dem Löschen noch eine Zeit lang erreichbar bleiben
+>   kann und Netlify die Dauer bestimmt; von Tim als Restrisiko akzeptiert (PR #111).
+> - **P4a (PR #112, ohne Merge geschlossen am 11.11.2026):** Eigener MCP-Endpunkt nur auf dem
+>   Deploy-Preview. Go in ChatGPT Web, ChatGPT Classic (Windows) und iPhone-App für Kostenschätzung,
+>   Typenschild-Rückfrage und Fotoübergabe (Dateiobjekt mit `download_url`). **Entscheidung Tim:
+>   Variante A**, P4b ohne Fotoübertragung über ChatGPT. Ergebnistabelle in #112, Plan-Datei
+>   fortgeschrieben.
+> **Nächstes 48-h-Fenster:** seit **06.11.2026 18:27 MEZ** offen.
+> **Als Nächstes vorgesehen:** P4b nach Variante A (zuerst Plan zur Freigabe; Stufe C, 2–3 Deploys).
+> Offen bzw. wartend: S2 (Freigabe der Datumstabelle durch Tim); H1-Überlauf auf `/datenschutz` bei
+> 390 px; Entscheidung zum Express-Dev-Server.
 
 | Deploy | Inhalt | Status |
 |---|---|---|
@@ -546,6 +585,8 @@ VELUX D1–D8 · Förder-Bereinigung R1–R4 · Doku/llms nach R1–R4.
 | **W1 WebMCP/Rechner-Link** | WebMCP-Bestätigungspflicht (Befund Fall 4 aus `WEBMCP.md`): `resolve` liefert bei `confirmation_required` `userConfirmationRequired` und `agentInstruction`; `apply` hat das Feld `existingWindowConfirmed` und lehnt Größen aus einer unbestätigten Zuordnung ohne Bestätigung mit `CONFIRMATION_REQUIRED` ab (gemerkt werden nur Größencodes, für die Lebensdauer der Seite). Rechner-Link im Fragment ohne Kontaktdaten (`client/src/lib/velux/deeplink.ts`, Version 1, höchstens 10 Positionen und 1.000 Zeichen, dieselben Validatoren wie WebMCP; ungültiger Link oder andere Version → leerer Rechner mit Hinweis); `calculate` und `apply` liefern `calculatorUrl`. Texte zentral in `content.ts`, Fehlercode in `validate.ts`; keine eigene Preis- oder Förderlogik. Tests in `estimate:check`, `webmcp-smoke` und `velux-ui-smoke` | ✅ live (PR #107, gemergt 26.10.2026 15:49:59 MEZ; Stufe B, 8 Dateien; eigener WebMCP-Deploy, Freigabe durch Tims Merge; Gate eingehalten: **89 h 44 min** nach #104 (#106 Doku ohne neue Dateien); Netlify `6adf6899…`, `commit_ref 8b83e44`, `published_at 15:50:45 MEZ`, `state ready`, `plugin_state success`, Prerender-Function vorhanden, Secret-Scan 748/0, 31 redirect rules; IndexNow-Lauf #76 grün; Checks-Lauf #97 grün; Prerender-Check-Lauf #28 grün) — **Merge durch Tim** |
 | **Abhängigkeiten** | `npm audit fix` ohne `--force` (nur Lockfile; u. a. `express` 4.22.3 mit `proxy-addr` 2.0.8, `vite` 5.4.21, `rollup` 4.64.12, `postcss` 8.5.31, `browserslist` 4.29.4), `drizzle-orm` ^0.39.1 → ^0.45.4, `sharp` und `tailwindcss-animate` nach `devDependencies`. `npm audit --omit=dev`: 30 → 0 Meldungen; gesamt 39 → 15 (nur Build- und Dev-Werkzeuge, nur per Major-Sprung lösbar). `dist/public`: gleiche Dateiliste, Abweichungen nur durch Rollup-Codegen, CSS-Präfixe und entfernte, ungenutzte Eigenschaften (Details in #105). Erstellt in einer anderen Sitzung | ✅ live (PR #105, gemergt 28.10.2026 16:33:34 MEZ; Stufe C (vorsorglich), 2 Dateien; Gate eingehalten: **48 h 43 min** nach #107 (#108 Doku und CI ohne neue Dateien); ohne „Update branch“ gemergt, Kombination mit W1 durch Checks-Lauf #100 und lokal geprüft; Netlify `6ae215d0…`, `commit_ref 54ac8f4`, `published_at 16:34:11 MEZ`, `state ready`, `plugin_state success`, Prerender-Function vorhanden, Secret-Scan 750/0, 31 redirect rules; Formulare erkannt; IndexNow-Lauf #78 grün; Checks-Lauf #100 grün; Prerender-Check-Lauf #30 grün) — **Merge durch Tim** |
 | **D1 Doku zu W1** | `llms.txt`/`llms-full.txt`: Rechner-Link (Format, Grenzen, Werte; keine Kontaktdaten, kein Versand, unverbindliche Schätzung im Browser), Hinweis auf `rex_velux_*` und `calculatorUrl`, Preis-Satz angeglichen. `WEBMCP.md`: Bestätigungspflicht und Rechner-Link, Kompatibilitätstabelle, Nachtest Fall 4 (26.10.2026, bestanden). `estimate:check` prüft die Beispiel-Links in `llms*.txt`. Deploy-Log zu #105, Plan-Datei nach `main` | ✅ live (PR #109, gemergt 31.10.2026 10:19:54 MEZ; Stufe A, 6 Dateien; Gate eingehalten: **65 h 46 min** nach #105; Netlify `6ae5b2bb…`, `commit_ref 0fc6a03`, `published_at 10:20:35 MEZ`, `state ready`, `plugin_state success`, Prerender-Function vorhanden, Secret-Scan 752/0, 31 redirect rules, „All files already uploaded“ trotz geänderter `llms*.txt` (vom Deploy-Preview hochgeladen, siehe Stand 31.10.2026); IndexNow-Lauf #79 grün; Checks-Lauf #102 grün; Prerender-Check-Lauf #31 grün) — **Merge durch Tim** |
+| **Abhängigkeiten (Sicherheit)** | `body-parser` 2.4.0 / 1.20.9, `multer` 2.5.0, `zod` ^4.6.7, `drizzle-zod` ^0.8.3, `zod-validation-error` entfernt; `npm audit --omit=dev`: 4 hohe Meldungen → 0 | ✅ live (PR #113, gemergt 02.11.2026 18:23:03 MEZ; 2 Dateien; Gate eingehalten: **56 h 3 min** nach #109; Netlify `6ae8c6fa…`, `commit_ref 6229990`, `published_at 18:23:42 MEZ`, `state ready`, `plugin_state success`, Secret-Scan 754/0, **66 neue Dateien** (Monatswechsel `__BUILD_DATE__`); IndexNow-Lauf #81 grün; Checks-Lauf #110 grün) — **Merge durch Tim** |
+| **P1 Typenschild-Foto** | Optionales Foto des Typenschilds (im Browser gedreht, auf 2.000 px verkleinert, neu als JPEG ohne EXIF/GPS, ≤ 5 MB), Versand als Multipart mit 45 s Zeitlimit, Herkunftsfeld `quelle` (Aufmerksam geworden / im Rechner eingegeben, per KI oder per Rechner-Link übernommen, unverändert/geändert), Datenschutztext (Codex gegengelesen), Tests in `velux-ui-smoke` und `webmcp-smoke` | ✅ live (PR #111, gemergt 04.11.2026 18:25:17 MEZ als Merge-Commit; Stufe B, 8 Dateien; Gate eingehalten: **48 h 1 min** nach #113; Netlify `6aeb6a80…`, `commit_ref c0417de`, `published_at 18:26:12 MEZ`, `state ready`, `plugin_state success`, Secret-Scan 756/0, 66 neue Dateien, 31 redirect rules; Formular `velux-preisrechner` mit `quelle` und `typenschild`; IndexNow-Lauf #82, Checks-Lauf #112 und Prerender-Check-Lauf #34 grün, rund 15 min in der GitHub-Warteschlange) — **Merge durch Tim** |
 
 > **👤 Abweichung von §5.5 (28. und 30.08.2026) — PR #56 und #61 von Claude gemergt:**
 > Abschnitt 5, Punkt 5 lautet „Merge ausschließlich durch Tim. Kein Direct-Push auf `main`,
