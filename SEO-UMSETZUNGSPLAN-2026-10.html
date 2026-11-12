@@ -227,7 +227,6 @@
   tr.same td { color: var(--muted); }
   #datumstabelle td code { white-space: nowrap; overflow-wrap: normal; }
 </style>
-
 </head>
 <body>
 <main class="page">
@@ -237,16 +236,16 @@
     <h1>SEO-Umsetzungsplan Oktober 2026</h1>
     <p class="lead">Acht Arbeitspakete (S1 bis S8) aus dem SEO-Audit vom 14.10.2026, verteilt auf einzelne Deploys nach DEPLOY-RULES und abgestimmt mit dem KI-Anfragen-Plan. Claude bereitet jedes Paket als PR vor, Tim prüft die Vorschau und merged.</p>
     <dl class="facts">
-      <div><dt>Stand dieser Seite</dt><dd>15.10.2026, 12:35 MESZ</dd></div>
-      <div><dt>Stand main</dt><dd><span class="mono">95a088a</span> (PR #99)</dd></div>
-      <div><dt>Letzter Produktionsdeploy</dt><dd>15.10.2026, 12:16:51 MESZ (#99)</dd></div>
-      <div><dt>Nächstes 48-h-Fenster</dt><dd>ab 17.10.2026, 12:17 MESZ</dd></div>
+      <div><dt>Stand dieser Seite</dt><dd>12.11.2026, 01:17 MEZ</dd></div>
+      <div><dt>Stand main</dt><dd><span class="mono">18f0c38</span> (PR #115)</dd></div>
+      <div><dt>Letzter Produktionsdeploy</dt><dd>11.11.2026, 21:33:31 MEZ (#115, P4b Deploy 1)</dd></div>
+      <div><dt>Nächstes 48-h-Fenster</dt><dd>ab 13.11.2026, 21:34 MEZ</dd></div>
       <div><dt>Grundlage</dt><dd><code>SEO-AUDIT-2026-10.md</code></dd></div>
       <div><dt>Abgestimmt mit</dt><dd><code>UMSETZUNGSPLAN-2026-10-KI-ANFRAGEN.md</code></dd></div>
     </dl>
     <nav class="toc" aria-label="Inhalt">
       <a href="#naechste-schritte">Nächste Schritte</a>
-      <a href="#erledigt">Erledigt</a>
+      <a href="#seit">Seit dem 15.10.</a>
       <a href="#ueberblick">Überblick</a>
       <a href="#takt">Deploy-Takt</a>
       <a href="#pakete">Arbeitspakete</a>
@@ -255,6 +254,7 @@
       <a href="#messpunkte">Messpunkte</a>
       <a href="#ablauf">Ablauf je Paket</a>
       <a href="#nicht">Bewusst nicht umgesetzt</a>
+      <a href="#ausserhalb">Außerhalb des Plans</a>
       <a href="#korrekturen">Korrekturen</a>
     </nav>
   </header>
@@ -263,16 +263,16 @@
     <h2 id="kurz" class="eyebrow">Auf einen Blick</h2>
     <div class="keypoints">
       <div class="keypoint">
-        <strong>S1 liegt als PR bereit</strong>
-        <p>Eine Zeile in <code>App.tsx</code> behebt den Layout-Shift auf allen Unterseiten. Auf dem Stand nach #99 gemessen: Performance 54–58 → 82–85, CLS 0,922 → höchstens 0,022. Merge ab 17.10.2026, 12:17 MESZ.</p>
+        <strong>S1 ist live und wirkt</strong>
+        <p>Seit 20.10.2026. Auf dem heutigen Stand nachgemessen: CLS auf den Unterseiten 0 bis 0,022 statt 0,922. Die Live-Messung mit PageSpeed Insights steht noch aus.</p>
       </div>
       <div class="keypoint">
-        <strong>Zwei Pläne, ein Takt</strong>
-        <p>Die SEO-Pakete und der KI-Anfragen-Plan (B2, Typenschild-Foto, W1, D1) teilen sich die Deploy-Fenster. Empfehlung: S1 vor B2, weil S1 mehr bringt und B2 keine Eile hat.</p>
+        <strong>Seitdem kein SEO-Paket</strong>
+        <p>Die Fenster gingen an den KI-Anfragen-Plan (B2, W1, D1, P1, P4b Deploy 1) und zwei Sicherheitsupdates. S2 wartet seit vier Wochen auf die Freigabe der Datumstabelle.</p>
       </div>
       <div class="keypoint">
-        <strong>Zeitrahmen</strong>
-        <p>Bei Merge jeweils zur Fensteröffnung sind S1 bis S6 frühestens am 06.11.2026 live. Jedes eingeschobene KI-Paket und jeder spätere Merge verschiebt die Folgetermine.</p>
+        <strong>Nächstes Fenster ab 13.11., 21:34 MEZ</strong>
+        <p>Mit Freigabe der Datumstabelle kann S2 hinein, sonst S4, das keine Entscheidung braucht. Bei bisherigem Takt sind S2 bis S6 etwa bis Weihnachten durch.</p>
       </div>
     </div>
   </section>
@@ -280,69 +280,76 @@
   <section id="naechste-schritte" aria-labelledby="h-steps">
     <div class="section-head">
       <h2 id="h-steps">Nächste Schritte</h2>
-      <p>In dieser Reihenfolge. Die Baseline muss vor dem S1-Merge stehen, sonst lässt sich der Effekt live nicht belegen.</p>
+      <p>In dieser Reihenfolge. Die ersten drei kosten zusammen etwa eine halbe Stunde.</p>
     </div>
     <ol class="steps">
       <li>
         <span class="role role-tim">Tim</span>
         <div>
-          <strong>PageSpeed-Baseline messen, bevor S1 live geht</strong>
-          <span class="hint">PageSpeed Insights, Mobil: Startseite, <code>/flachdach-bochum</code>, <code>/dachreparatur-bochum</code>, <code>/referenzen</code>, <code>/velux-preisrechner-bochum</code>. CLS, LCP und Performance-Wert notieren.</span>
+          <strong>Datumstabelle freigeben (E2)</strong>
+          <span class="hint">Abschnitt <a href="#datumstabelle">Datumstabelle</a>. Neu gegenüber dem 15.10. ist nur der Preisrechner (04.11., P1). Bitte nur Abweichungen melden.</span>
         </div>
       </li>
       <li>
         <span class="role role-tim">Tim</span>
         <div>
-          <strong>E1 entscheiden: S1 oder B2 im Fenster ab 17.10., 12:17 MESZ</strong>
-          <span class="hint">Empfehlung S1; B2 hat keine Eile.</span>
+          <strong>PageSpeed Insights nach S1 messen</strong>
+          <span class="hint">Mobil: Startseite, <code>/flachdach-bochum</code>, <code>/dachreparatur-bochum</code>, <code>/referenzen</code>, <code>/velux-preisrechner-bochum</code>. CLS, LCP und Performance notieren; falls die Baseline vom Oktober vorliegt, daneben. Entscheidet über S7.</span>
         </div>
       </li>
       <li>
         <span class="role role-tim">Tim</span>
         <div>
-          <strong>S1-PR prüfen und mergen</strong>
-          <span class="hint">Branch <code>claude/bold-noether-3vrutv</code>. Im Netlify-Preview eine Unterseite direkt aufrufen: Der Footer darf beim Laden nicht nach unten springen.</span>
-        </div>
-      </li>
-      <li>
-        <span class="role role-tim">Tim</span>
-        <div>
-          <strong>Datumstabelle prüfen (E2)</strong>
-          <span class="hint">Abschnitt <a href="#datumstabelle">Datumstabelle</a>: Vorschlag je URL bestätigen oder ändern. Danach bereitet Claude S2 vor.</span>
+          <strong>Button-Farben freigeben (E3)</strong>
+          <span class="hint">Vorschlag: dunklere Töne derselben Farbe. Ohne Antwort zeige ich im S3-Preview einen Vorschlag.</span>
         </div>
       </li>
       <li>
         <span class="role role-claude">Claude</span>
         <div>
-          <strong>Nach dem S1-Merge: Nachlauf prüfen, S2 vorbereiten</strong>
-          <span class="hint">Netlify, Checks, IndexNow und Prerender-Check; dann S2 vom aktuellen main mit den bestätigten Daten.</span>
+          <strong>S2 als PR vorbereiten, sonst S4</strong>
+          <span class="hint">Merge frühestens ab 13.11.2026, 21:34 MEZ. Vor der Merge-Angabe Uhrzeit mit <code>date</code> und Netlify prüfen.</span>
+        </div>
+      </li>
+      <li>
+        <span class="role role-tim">Tim</span>
+        <div>
+          <strong>Förder-Wiedervorlage ab 16.11. einplanen</strong>
+          <span class="hint"><code>estimate:check</code> meldet ab dann; Prüfung vor dem 31.12.2026. Ein Fenster für einen möglichen Förder-Deploy bleibt frei (siehe Deploy-Takt).</span>
         </div>
       </li>
     </ol>
   </section>
 
-  <section id="erledigt" aria-labelledby="h-done">
+  <section id="seit" aria-labelledby="h-done">
     <div class="section-head">
-      <h2 id="h-done">Erledigt am 15.10.2026</h2>
+      <h2 id="h-done">Seit dem 15.10.2026</h2>
+      <p>Alle Produktionsdeploys laut <code>DEPLOY-RULES.md</code> §10 und Netlify. Doku-PRs ohne Änderung an <code>dist/public</code> sind nicht aufgeführt.</p>
     </div>
     <div class="table-wrap">
       <table>
-        <thead><tr><th>Was</th><th>Ergebnis</th></tr></thead>
+        <thead><tr><th>Datum</th><th>PR</th><th>Inhalt</th><th>Plan</th></tr></thead>
         <tbody>
-          <tr><td>PR #99 nach dem Merge geprüft</td><td>Netlify <span class="mono">6ad0a7ee…</span>, <code>commit_ref 95a088a</code>, <code>state ready</code>, <code>plugin_state success</code>, Prerender-Function vorhanden, Secret-Scan 741/0. Checks #79, IndexNow #69 und Prerender-Check #24 grün. Gate eingehalten: 83 h 11 min nach #97.</td></tr>
-          <tr><td>Deploy-Log zu #99</td><td>Auf <code>main</code> seit PR #102: Stand-Absatz 15.10.2026, Tabellenzeile „Datenschutz B1“ und §14 ProvenExpert. #102 lief ohne neue Dateien und zählt nicht fürs Fenster.</td></tr>
-          <tr><td>S1 umgesetzt und geprüft</td><td><code>npm run check</code>, Build, <code>faq:check</code>, <code>estimate:check</code>, <code>foerder:check</code> samt Selbsttests, Preisrechner-Smoketest und alle drei WebMCP-Schritte aus der CI grün. Lighthouse vorher/nachher siehe S1.</td></tr>
-          <tr><td>Audit-Befund N1</td><td>Durch #99 erledigt (ProvenExpert-Skripte entfernt).</td></tr>
-          <tr><td>Datumstabelle für S2 und S5</td><td>Aus der vollständigen Git-Historie erstellt, unten zur Freigabe.</td></tr>
+          <tr><td class="num">15.10.</td><td class="id">#99</td><td>Datenschutz B1: ProvenExpert-Skripte entfernt, Google-Maps-Einwilligung</td><td>KI-Plan; erledigt Audit-Befund N1</td></tr>
+          <tr><td class="num">18.10.</td><td class="id">#100</td><td>Header: Desktop-Navigation erst ab xl</td><td>außerhalb</td></tr>
+          <tr class="is-pr"><td class="num">20.10.</td><td class="id">#101</td><td><strong>S1: Layout-Shift auf Unterseiten behoben</strong>, dazu Audit und dieser Plan. Gate 50 h 52 min nach #100; Netlify <span class="mono">6ad7cc1f…</span>, Prerender-Check, Checks und IndexNow grün</td><td>SEO-Plan</td></tr>
+          <tr><td class="num">22.10.</td><td class="id">#104</td><td>B2: Redirects nur noch in <code>netlify.toml</code>, verstecktes JSX-Formular entfernt</td><td>KI-Plan</td></tr>
+          <tr><td class="num">26.10.</td><td class="id">#107</td><td>W1: WebMCP-Bestätigung und Rechner-Link</td><td>KI-Plan</td></tr>
+          <tr><td class="num">28.10.</td><td class="id">#105</td><td>Sicherheitsupdates der Abhängigkeiten</td><td>außerhalb</td></tr>
+          <tr><td class="num">31.10.</td><td class="id">#109</td><td>D1: Doku zu W1, <code>llms*.txt</code></td><td>KI-Plan</td></tr>
+          <tr><td class="num">02.11.</td><td class="id">#113</td><td>Sicherheitsupdates (zählte auch wegen Monatswechsel des Build-Datums)</td><td>außerhalb</td></tr>
+          <tr><td class="num">04.11.</td><td class="id">#111</td><td>P1: Typenschild-Foto und Herkunft der Konfiguration im Preisrechner</td><td>KI-Plan</td></tr>
+          <tr><td class="num">11.11.</td><td class="id">#115</td><td>P4b Deploy 1: lesender MCP-Endpunkt <code>/mcp</code></td><td>KI-Plan</td></tr>
         </tbody>
       </table>
     </div>
+    <p class="hint">Zehn Produktionsdeploys in 27 Tagen, im Schnitt rund drei Tage Abstand. Auf diesem Takt beruht die Schätzung „bis Weihnachten“.</p>
   </section>
 
   <section id="ueberblick" aria-labelledby="h-overview">
     <div class="section-head">
       <h2 id="h-overview">Überblick</h2>
-      <p>SEO-Pakete und die Pakete aus dem KI-Anfragen-Plan in einer Liste. Dateizahlen ohne Doku-Dateien im Repo-Root.</p>
+      <p>SEO-Pakete und die noch offenen Pakete anderer Pläne in einer Liste. Dateizahlen ohne Doku-Dateien im Repo-Root.</p>
     </div>
     <div class="table-wrap">
       <table>
@@ -350,18 +357,16 @@
           <tr><th>Paket</th><th>Inhalt</th><th>Status</th><th>Stufe · Dateien</th><th>Frühester Slot</th><th>Voraussetzung</th></tr>
         </thead>
         <tbody>
-          <tr><td class="id">#99</td><td>Datenschutz B1 (KI-Plan)</td><td><span class="chip p-ok">live</span></td><td class="num">B · 4</td><td class="num">15.10.</td><td>erledigt</td></tr>
-          <tr class="is-pr"><td class="id"><a href="#s1">S1</a></td><td>Layout-Shift auf Unterseiten beheben</td><td><span class="chip p-pr">PR offen</span></td><td class="num">A · 1</td><td class="num">ab 17.10.</td><td>Baseline, E1</td></tr>
-          <tr><td class="id">B2</td><td>Redirect-Dateien und verstecktes Formular (KI-Plan)</td><td><span class="chip p-niedrig">KI-Plan</span></td><td class="num">C · 4</td><td class="num">ab 19.10.</td><td>E1</td></tr>
-          <tr class="is-pr"><td class="id">#100</td><td>Navigation erst ab xl, kein horizontaler Überlauf</td><td><span class="chip p-pr">PR offen</span></td><td class="num">A · 1</td><td class="num">ab 21.10.</td><td>fertig vorbereitet</td></tr>
-          <tr><td class="id"><a href="#s2">S2</a></td><td>Sitemap: <code>lastmod</code> auf echte Änderungsdaten</td><td><span class="chip p-mittel">Mittel</span></td><td class="num">B · 1</td><td class="num">ab 23.10.</td><td>E2</td></tr>
-          <tr><td class="id"><a href="#s3">S3</a></td><td>Kontrast der Anfrage-Buttons, H1-Schreibweise</td><td><span class="chip p-mittel">Mittel</span></td><td class="num">A · 9</td><td class="num">ab 25.10.</td><td>E3</td></tr>
-          <tr><td class="id"><a href="#s4">S4</a></td><td>Vorschaubilder für <code>/referenzen</code></td><td><span class="chip p-mittel">Mittel</span></td><td class="num">B · 7</td><td class="num">ab 27.10.</td><td>keine</td></tr>
-          <tr><td class="id"><a href="#s5">S5a–d</a></td><td>Schema je Seite zu einem <code>@graph</code>, Article-Daten</td><td><span class="chip p-mittel">Mittel</span></td><td class="num">B · je bis 7</td><td class="num">ab 29.10. – 04.11.</td><td>E2, E4</td></tr>
-          <tr><td class="id"><a href="#s6">S6</a></td><td>Interne Verlinkung schwacher Seiten</td><td><span class="chip p-mittel">Mittel</span></td><td class="num">A · 5–6</td><td class="num">ab 06.11.</td><td>E5, S5 fertig</td></tr>
-          <tr><td class="id"><a href="#s7">S7</a></td><td>Hero-Bilder früher laden (LCP)</td><td><span class="chip p-bedingt">bedingt</span></td><td class="num">A · 10</td><td class="num">ab 08.11.</td><td>PSI nach S1</td></tr>
-          <tr><td class="id"><a href="#s8">S8</a></td><td>Langes Caching für <code>/assets/*</code></td><td><span class="chip p-bedingt">bedingt</span></td><td class="num">C · 1</td><td class="num">ab 10.11.</td><td>Header-Prüfung</td></tr>
-          <tr><td class="id">P1, W1, D1</td><td>Typenschild-Foto, WebMCP-Korrektur, Doku (KI-Plan)</td><td><span class="chip p-niedrig">KI-Plan</span></td><td class="num">laut KI-Plan</td><td class="num">eingeschoben</td><td>V1 Netlify-Kontingent, Codex-Gegenlesung</td></tr>
+          <tr><td class="id"><a href="#s1">S1</a></td><td>Layout-Shift auf Unterseiten beheben</td><td><span class="chip p-ok">live 20.10.</span></td><td class="num">A · 1</td><td class="num">–</td><td>Live-Messung durch Tim offen</td></tr>
+          <tr><td class="id"><a href="#s2">S2</a></td><td>Sitemap: <code>lastmod</code> auf echte Änderungsdaten</td><td><span class="chip p-mittel">Mittel</span></td><td class="num">B · 1</td><td class="num">ab 13.11.</td><td>E2</td></tr>
+          <tr><td class="id"><a href="#s3">S3</a></td><td>Kontrast der Anfrage-Buttons und im Preisrechner, H1-Schreibweise</td><td><span class="chip p-mittel">Mittel</span></td><td class="num">A · 11</td><td class="num">ab 15.11.</td><td>E3</td></tr>
+          <tr><td class="id"><a href="#s4">S4</a></td><td>Vorschaubilder für <code>/referenzen</code></td><td><span class="chip p-mittel">Mittel</span></td><td class="num">B · 7</td><td class="num">ab 19.11.</td><td>keine</td></tr>
+          <tr><td class="id"><a href="#s5">S5a–d</a></td><td>Schema je Seite zu einem <code>@graph</code>, Article-Daten</td><td><span class="chip p-mittel">Mittel</span></td><td class="num">B · je bis 7</td><td class="num">ab 21.11. – 29.11.</td><td>E2, E4</td></tr>
+          <tr><td class="id"><a href="#s6">S6</a></td><td>Interne Verlinkung schwacher Seiten</td><td><span class="chip p-mittel">Mittel</span></td><td class="num">A · 5–6</td><td class="num">ab 01.12.</td><td>E5, S5 fertig</td></tr>
+          <tr><td class="id"><a href="#s7">S7</a></td><td>Hero-Bilder früher laden (LCP)</td><td><span class="chip p-bedingt">bedingt</span></td><td class="num">A · 10</td><td class="num">ab 03.12.</td><td>Live-Messung nach S1</td></tr>
+          <tr><td class="id"><a href="#s8">S8</a></td><td>Langes Caching für <code>/assets/*</code></td><td><span class="chip p-bedingt">bedingt</span></td><td class="num">C · 1</td><td class="num">ab 05.12.</td><td>Header-Prüfung, nach P4b</td></tr>
+          <tr><td class="id">P4b 2–3</td><td><code>prepare</code>/<code>submit</code> im MCP-Endpunkt, Datenschutztext (KI-Plan)</td><td><span class="chip p-niedrig">KI-Plan</span></td><td class="num">C · laut Plan</td><td class="num">eingeschoben</td><td>Plan-Freigabe, Codex-Gegenlesung</td></tr>
+          <tr><td class="id">Förderung</td><td>Förder-Wiedervorlage, ggf. Deploy</td><td><span class="chip p-niedrig">Pflicht</span></td><td class="num">laut Prüfung</td><td class="num">vor 31.12.</td><td>Prüfung ab 16.11.</td></tr>
         </tbody>
       </table>
     </div>
@@ -370,33 +375,32 @@
   <section id="takt" aria-labelledby="h-takt">
     <div class="section-head">
       <h2 id="h-takt">Deploy-Takt</h2>
-      <p>Frühestmögliche Termine bei je 48 Stunden Abstand, gemessen am Produktionsdeploy mit geänderten Dateien. Reine Doku-Deploys ohne neue Dateien zählen nicht. Sobald Typenschild-Foto (P1) oder W1 aus dem KI-Plan fertig sind, werden sie eingeschoben und die SEO-Pakete rücken je einen Slot nach.</p>
+      <p>Frühestmögliche Termine bei je 48 Stunden Abstand. Es zählt jeder Merge, der <code>dist/public</code> ändert; Änderungen an <code>package.json</code> zählen immer, ebenso der erste Build eines neuen Monats (DEPLOY-RULES §4). Zwei Fenster sind für P4b und die Förderprüfung reserviert; wird eines nicht gebraucht, rücken die SEO-Pakete vor.</p>
     </div>
     <ol class="timeline">
-      <li><div class="t-date">15.10.<span>Do</span></div><div class="t-dot done" aria-hidden="true"></div><div class="t-body"><span class="slot">Erledigt</span><strong>PR #99 · Datenschutz B1</strong><div class="chips"><span class="chip p-ok">live 12:16 MESZ</span></div></div></li>
-      <li><div class="t-date">17.10.<span>Sa · 12:17</span></div><div class="t-dot pr" aria-hidden="true"></div><div class="t-body"><span class="slot">Slot 1 · Empfehlung</span><strong>S1 · Layout-Shift beheben</strong><div class="chips"><span class="chip p-hoch">Hoch</span><span class="chip p-pr">PR offen</span></div></div></li>
-      <li><div class="t-date">19.10.<span>Mo</span></div><div class="t-dot" aria-hidden="true"></div><div class="t-body"><span class="slot">Slot 2</span><strong>B2 · Redirect-Dateien und verstecktes Formular</strong><span class="hint">KI-Plan</span></div></li>
-      <li><div class="t-date">21.10.<span>Mi</span></div><div class="t-dot pr" aria-hidden="true"></div><div class="t-body"><span class="slot">Slot 3</span><strong>PR #100 · Navigation</strong></div></li>
-      <li><div class="t-date">23.10.<span>Fr</span></div><div class="t-dot" aria-hidden="true"></div><div class="t-body"><span class="slot">Slot 4</span><strong>S2 · Sitemap-Daten</strong></div></li>
-      <li><div class="t-date">25.10.<span>So</span></div><div class="t-dot" aria-hidden="true"></div><div class="t-body"><span class="slot">Slot 5</span><strong>S3 · Kontrast und H1-Text</strong></div></li>
-      <li><div class="t-date">27.10.<span>Di</span></div><div class="t-dot" aria-hidden="true"></div><div class="t-body"><span class="slot">Slot 6</span><strong>S4 · Vorschaubilder Referenzen</strong></div></li>
-      <li><div class="t-date">29.10.<span>Do</span></div><div class="t-dot" aria-hidden="true"></div><div class="t-body"><span class="slot">Slot 7</span><strong>S5a · Schema, doppelte Services</strong></div></li>
-      <li><div class="t-date">31.10.<span>Sa</span></div><div class="t-dot" aria-hidden="true"></div><div class="t-body"><span class="slot">Slot 8</span><strong>S5b · Schema, Ratgeber und Steildach</strong></div></li>
-      <li><div class="t-date">01.11.<span>So</span></div><div class="t-dot reserve" aria-hidden="true"></div><div class="t-body"><span class="slot">Routine, kein Deploy</span><strong>Erste monatliche Löschprüfung Netlify-Formulare</strong></div></li>
-      <li><div class="t-date">02.11.<span>Mo</span></div><div class="t-dot" aria-hidden="true"></div><div class="t-body"><span class="slot">Slot 9</span><strong>S5c · Schema, VELUX und Förderung</strong></div></li>
-      <li><div class="t-date">04.11.<span>Mi</span></div><div class="t-dot" aria-hidden="true"></div><div class="t-body"><span class="slot">Slot 10</span><strong>S5d · Schema, Article-Felder</strong></div></li>
-      <li><div class="t-date">06.11.<span>Fr</span></div><div class="t-dot" aria-hidden="true"></div><div class="t-body"><span class="slot">Slot 11</span><strong>S6 · Interne Verlinkung</strong></div></li>
-      <li><div class="t-date">08.11.<span>So</span></div><div class="t-dot bedingt" aria-hidden="true"></div><div class="t-body"><span class="slot">Slot 12 · nur bei Bedarf</span><strong>S7 · Hero-Bilder früher laden</strong></div></li>
-      <li><div class="t-date">10.11.<span>Di</span></div><div class="t-dot bedingt" aria-hidden="true"></div><div class="t-body"><span class="slot">Slot 13 · nur bei Bedarf</span><strong>S8 · Caching für /assets/*</strong></div></li>
-      <li><div class="t-date">ab 16.11.<span>Mo</span></div><div class="t-dot reserve" aria-hidden="true"></div><div class="t-body"><span class="slot">Reserve</span><strong>Förder-Wiedervorlage</strong><span class="hint"><code>estimate:check</code> meldet ab hier; Prüfung vor dem 31.12.2026. Slot freihalten.</span></div></li>
-      <li><div class="t-date">17.11.<span>Di</span></div><div class="t-dot reserve" aria-hidden="true"></div><div class="t-body"><span class="slot">Reserve</span><strong>Chrome-Origin-Trial-Token läuft ab</strong><span class="hint">Nur bei Bedarf ein eigener, freigegebener Deploy.</span></div></li>
+      <li><div class="t-date">20.10.<span>Di</span></div><div class="t-dot done" aria-hidden="true"></div><div class="t-body"><span class="slot">Erledigt</span><strong>S1 · Layout-Shift beheben</strong><div class="chips"><span class="chip p-ok">live 22:17 MESZ</span></div></div></li>
+      <li><div class="t-date">13.11.<span>Fr · 21:34</span></div><div class="t-dot" aria-hidden="true"></div><div class="t-body"><span class="slot">Slot 1</span><strong>S2 · Sitemap-Daten</strong><span class="hint">Ohne Freigabe der Datumstabelle stattdessen S4.</span></div></li>
+      <li><div class="t-date">15.11.<span>So</span></div><div class="t-dot" aria-hidden="true"></div><div class="t-body"><span class="slot">Slot 2</span><strong>S3 · Kontrast und H1-Text</strong></div></li>
+      <li><div class="t-date">16.11.<span>Mo</span></div><div class="t-dot reserve" aria-hidden="true"></div><div class="t-body"><span class="slot">Wiedervorlage, kein Deploy</span><strong>Förderprüfung beginnt</strong><span class="hint"><code>estimate:check</code> meldet ab hier.</span></div></li>
+      <li><div class="t-date">17.11.<span>Di</span></div><div class="t-dot reserve" aria-hidden="true"></div><div class="t-body"><span class="slot">Slot 3 · Reserve</span><strong>P4b Deploy 2 oder Förder-Deploy</strong><span class="hint">Was zuerst fertig ist. Sonst S4.</span></div></li>
+      <li><div class="t-date">19.11.<span>Do</span></div><div class="t-dot" aria-hidden="true"></div><div class="t-body"><span class="slot">Slot 4</span><strong>S4 · Vorschaubilder Referenzen</strong></div></li>
+      <li><div class="t-date">21.11.<span>Sa</span></div><div class="t-dot" aria-hidden="true"></div><div class="t-body"><span class="slot">Slot 5</span><strong>S5a · Schema, doppelte Services</strong></div></li>
+      <li><div class="t-date">23.11.<span>Mo</span></div><div class="t-dot" aria-hidden="true"></div><div class="t-body"><span class="slot">Slot 6</span><strong>S5b · Schema, Ratgeber und Steildach</strong></div></li>
+      <li><div class="t-date">25.11.<span>Mi</span></div><div class="t-dot reserve" aria-hidden="true"></div><div class="t-body"><span class="slot">Slot 7 · Reserve</span><strong>P4b Deploy 3 oder Förder-Deploy</strong><span class="hint">Sonst S5c.</span></div></li>
+      <li><div class="t-date">27.11.<span>Fr</span></div><div class="t-dot" aria-hidden="true"></div><div class="t-body"><span class="slot">Slot 8</span><strong>S5c · Schema, VELUX und Förderung</strong></div></li>
+      <li><div class="t-date">29.11.<span>So</span></div><div class="t-dot" aria-hidden="true"></div><div class="t-body"><span class="slot">Slot 9</span><strong>S5d · Schema, Article-Felder</strong></div></li>
+      <li><div class="t-date">01.12.<span>Di</span></div><div class="t-dot" aria-hidden="true"></div><div class="t-body"><span class="slot">Slot 10 · Monatswechsel</span><strong>S6 · Interne Verlinkung</strong><span class="hint">Der erste Build im Dezember zählt in jedem Fall als Deploy. Deshalb hier ein Inhaltspaket, kein Doku-PR. Am selben Tag: monatliche Löschprüfung (Routine).</span></div></li>
+      <li><div class="t-date">03.12.<span>Do</span></div><div class="t-dot bedingt" aria-hidden="true"></div><div class="t-body"><span class="slot">Slot 11 · nur bei Bedarf</span><strong>S7 · Hero-Bilder früher laden</strong></div></li>
+      <li><div class="t-date">05.12.<span>Sa</span></div><div class="t-dot bedingt" aria-hidden="true"></div><div class="t-body"><span class="slot">Slot 12 · nur bei Bedarf</span><strong>S8 · Caching für /assets/*</strong></div></li>
+      <li><div class="t-date">bis 17.12.<span>Do</span></div><div class="t-dot reserve" aria-hidden="true"></div><div class="t-body"><span class="slot">Wiedervorlage, kein Deploy</span><strong>DPF-Status von Netlify prüfen</strong><span class="hint">Rezertifizierung, Prüfung durch Tim.</span></div></li>
+      <li><div class="t-date">vor 31.12.<span>Do</span></div><div class="t-dot reserve" aria-hidden="true"></div><div class="t-body"><span class="slot">Pflicht</span><strong>Förder-Deploy, falls die Prüfung Änderungen ergibt</strong></div></li>
     </ol>
   </section>
 
   <section id="pakete" aria-labelledby="h-pakete">
     <div class="section-head">
       <h2 id="h-pakete">Arbeitspakete</h2>
-      <p>Jedes Paket ist ein PR mit genau einem Commit. Befund-Kürzel (H1, M1 …) verweisen auf <code>SEO-AUDIT-2026-10.md</code>.</p>
+      <p>Jedes Paket ist ein PR mit genau einem Commit. Befund-Kürzel (H1, M1 …) verweisen auf <code>SEO-AUDIT-2026-10.md</code>. Messwerte vom 12.11.2026: Lighthouse 13.6.0 mobil gegen den lokalen Produktionsbuild von <code>main</code>.</p>
     </div>
     <div class="packages">
 
@@ -404,35 +408,25 @@
         <div class="pkg-head">
           <div class="pkg-code">S1</div>
           <h3>Layout-Shift auf Unterseiten beheben</h3>
-          <div class="chips"><span class="chip p-hoch">Hoch</span><span class="chip stage">Stufe A · 1 Datei + Doku</span><span class="chip p-pr">PR offen</span></div>
+          <div class="chips"><span class="chip p-ok">live seit 20.10.2026</span><span class="chip stage">PR #101</span></div>
         </div>
         <dl class="spec">
-          <dt>Befund</dt>
-          <dd>H1: CLS 0,922 auf allen lazy geladenen Unterseiten. Der Footer steht beim Laden kurz unter der Navigation und springt dann um rund 11.000 px nach unten. Das trifft den typischen Einstieg aus Google direkt auf einer Unterseite.</dd>
           <dt>Änderung</dt>
-          <dd><code>client/src/App.tsx</code>: Suspense-Platzhalter <code>flex-1</code> → <code>min-h-screen</code>, mit kurzem Kommentar. Im selben PR: Audit-Bericht und dieser Plan als Root-Doku ohne Einfluss auf den Build.</dd>
-          <dt>Dateien</dt>
-          <dd class="files">client/src/App.tsx · SEO-AUDIT-2026-10.md · SEO-UMSETZUNGSPLAN-2026-10.html</dd>
-          <dt>Messung (Stand nach #99)</dt>
+          <dd><code>client/src/App.tsx</code>: Suspense-Platzhalter <code>flex-1</code> → <code>min-h-screen</code>. Gemergt 20.10.2026, 22:16 MESZ; Netlify <span class="mono">6ad7cc1f…</span>, <code>commit_ref 396d9f9</code>.</dd>
+          <dt>Nachmessung 12.11.</dt>
           <dd>
             <div class="result">
               <b>Seite</b><b>CLS</b><b>Performance</b>
-              <span>/flachdach-bochum</span><span>0,922 → 0,022</span><span>54 → 85</span>
-              <span>/dachreparatur-bochum</span><span>0,922 → 0</span><span>55 → 83</span>
-              <span>/referenzen</span><span>0,922 → 0</span><span>56 → 82</span>
-              <span>/velux-preisrechner-bochum</span><span>0,922 → 0</span><span>58 → 84</span>
-              <span>Startseite</span><span>0 → 0</span><span>94 → 93</span>
+              <span>/flachdach-bochum</span><span>0,022</span><span>86</span>
+              <span>/dachreparatur-bochum</span><span>0</span><span>86</span>
+              <span>/referenzen</span><span>0</span><span>76</span>
+              <span>/velux-preisrechner-bochum</span><span>0</span><span>84</span>
+              <span>Startseite</span><span>0</span><span>90</span>
             </div>
-            <p class="hint">Lighthouse 12.8.2 mobil gegen den lokalen Produktionsbuild. Startseite unverändert im Rahmen des Messrauschens.</p>
+            <p class="hint">Vor S1 lag CLS auf allen vier Unterseiten bei 0,922. Lighthouse-Version und Seiteninhalte haben sich seit Oktober geändert; die Performance-Werte sind deshalb nur grob vergleichbar.</p>
           </dd>
-          <dt>Lokal geprüft</dt>
-          <dd><code>npm run check</code>, Build, <code>faq:check</code>, <code>estimate:check</code>, <code>foerder:check</code> samt Selbsttests, Preisrechner-Smoketest und die drei WebMCP-Schritte aus der CI: grün. Der WebMCP-Vertragstest schlug einmal fehl, im ersten Lauf nach abgebrochenen Vorläufen. Danach je 8 von 8 Läufen grün mit und ohne Änderung.</dd>
-          <dt>Nach dem Deploy</dt>
-          <dd><span class="role role-tim">Tim</span> PageSpeed Insights mobil auf denselben Seiten wie die Baseline. <span class="role role-claude">Claude</span> Netlify, Checks, IndexNow, Prerender-Check.</dd>
-          <dt>Abnahme</dt>
-          <dd>CLS unter 0,1 in PageSpeed Insights mobil auf <code>/flachdach-bochum</code>, <code>/dachreparatur-bochum</code> und <code>/referenzen</code>.</dd>
-          <dt>Wirkung</dt>
-          <dd>Ruhiger Seitenaufbau für Besucher und bessere PageSpeed-Werte. Core Web Vitals sind ein kleiner Rankingfaktor; der Gewinn liegt vor allem bei Nutzern und Anfragen.</dd>
+          <dt>Offen</dt>
+          <dd><span class="role role-tim">Tim</span> PageSpeed Insights live auf denselben fünf Seiten. Erst diese Werte zeigen die Wirkung auf der echten Seite und entscheiden über S7.</dd>
         </dl>
       </article>
 
@@ -444,13 +438,13 @@
         </div>
         <dl class="spec">
           <dt>Befund</dt>
-          <dd>M1: 29 von 30 <code>lastmod</code>-Werten liegen vor der letzten Veröffentlichung der Seite, z. B. <code>/foerderung</code> 02.08. gegenüber 12.10. Nur <code>/referenzen</code> stimmt. Google nutzt das Feld nur, solange es verlässlich ist.</dd>
+          <dd>M1: 29 von 30 <code>lastmod</code>-Werten liegen vor der letzten Veröffentlichung der Seite, z. B. <code>/foerderung</code> 02.08. gegenüber 12.10., <code>/velux-preisrechner-bochum</code> 31.07. gegenüber 04.11. Nur <code>/referenzen</code> stimmt. Die Sitemap wurde seit dem 02.08. nicht mehr angefasst.</dd>
           <dt>Vorbereitung</dt>
-          <dd>Erledigt: Vorschlag je URL in der <a href="#datumstabelle">Datumstabelle</a>. <span class="role role-tim">Tim</span> bestätigt oder ändert (E2).</dd>
+          <dd>Erledigt, am 12.11. neu berechnet: <a href="#datumstabelle">Datumstabelle</a>. <span class="role role-tim">Tim</span> bestätigt oder ändert (E2).</dd>
           <dt>Änderung</dt>
           <dd><code>client/public/sitemap.xml</code>: <code>lastmod</code> je URL auf das bestätigte Datum. URLs bleiben unverändert.</dd>
           <dt>Daueraufgabe</dt>
-          <dd>Ab dann zieht jeder Content- oder Schema-Deploy die <code>lastmod</code> der geänderten Seiten mit; das ist in S5 und S6 eingeplant.</dd>
+          <dd>Ab dann zieht jeder Content- oder Schema-Deploy die <code>lastmod</code> der geänderten Seiten mit; auch die Pakete aus anderen Plänen.</dd>
           <dt>Abnahme</dt>
           <dd>Jeder Wert deckt sich mit der bestätigten Tabelle; XML valide; Search Console zeigt die Sitemap als neu gelesen.</dd>
           <dt>Aufwand</dt>
@@ -461,22 +455,24 @@
       <article class="pkg" id="s3">
         <div class="pkg-head">
           <div class="pkg-code">S3</div>
-          <h3>Kontrast der Anfrage-Buttons und H1-Schreibweise</h3>
-          <div class="chips"><span class="chip p-mittel">Mittel</span><span class="chip stage">Stufe A · 9 Dateien</span></div>
+          <h3>Kontrast der Anfrage-Buttons und im Preisrechner, H1-Schreibweise</h3>
+          <div class="chips"><span class="chip p-mittel">Mittel</span><span class="chip stage">Stufe A · 11 Dateien</span></div>
         </div>
         <dl class="spec">
           <dt>Befund</dt>
-          <dd>M5: Weiße Schrift auf Hellblau (2,54 : 1) und Hellgrün (1,92 : 1) an Buttons wie „Förderung anfragen“ und „Versicherung anfragen“. Nötig sind 4,5 : 1. N5: Startseiten-H1 „rund um's Dach“, richtig ist „ums“.</dd>
+          <dd>M5, am 12.11. unverändert: weiße Schrift auf Hellblau (2,54 : 1) und Hellgrün (1,92 : 1) an 11 Button-Stellen in 8 Seiten. Im Preisrechner fünf Funde: kleine graue Hilfetexte (2,71 : 1 und 2,56 : 1) und das rote Kennzeichen (3,6 : 1). Nötig sind 4,5 : 1. N5: Startseiten-H1 „rund um's Dach“, richtig ist „ums“.</dd>
+          <dt>Neu seit 15.10.</dt>
+          <dd>Der Preisrechner gehört wieder in S3. Er sollte mit P1 oder W1 mitlaufen; beide sind live, ohne die Korrektur. P1 hat weitere graue Hilfetexte ergänzt.</dd>
           <dt>Änderung</dt>
-          <dd>11 Button-Stellen (<code>bg-blue-400</code>/<code>bg-emerald-400</code> mit weißer Schrift) auf dunklere Töne derselben Farbe. H1 in <code>Home.tsx</code> korrigieren.</dd>
+          <dd>Buttons auf dunklere Töne derselben Farbe. Hilfetexte und Kennzeichen im Preisrechner auf ausreichenden Kontrast; die Ursache für das helle Grau (gemessen <code>#939eae</code> bei der Klasse <code>text-slate-500</code>) wird bei der Umsetzung geprüft. H1 in <code>Home.tsx</code>.</dd>
           <dt>Dateien</dt>
-          <dd class="files">SteildachBochum · FlachdachBochum · BauklempnereiBochum · DachfensterBochum · Dachreparatur · DachsanierungBochum · DachwartungBochum · WannLohntSichDachsanierung · Home</dd>
-          <dt>Preisrechner</dt>
-          <dd>Die Kontrastfehler im Rechner (Hilfetexte 2,71 : 1, rotes Kennzeichen 3,6 : 1) gehören nicht in S3. Typenschild-Foto und W1 aus dem KI-Plan ändern dieselben Dateien; die Korrektur läuft mit dem ersten dieser Pakete mit.</dd>
+          <dd class="files">SteildachBochum · FlachdachBochum · BauklempnereiBochum · DachfensterBochum · Dachreparatur · DachsanierungBochum · DachwartungBochum · WannLohntSichDachsanierung · Home · VeluxPreisrechnerBochum · components/VeluxPreisrechner</dd>
+          <dt>Regeln</dt>
+          <dd>Preisrechner nur optisch: keine Rechen-, Förder- oder Formularlogik, <code>formulare.html</code> bleibt unberührt. <code>estimate:check</code>, <code>foerder:check</code> und der Preisrechner-Smoketest laufen.</dd>
           <dt>Abnahme</dt>
-          <dd>Lighthouse meldet auf den betroffenen Seiten keinen Kontrastfehler an den Buttons mehr; Tim gibt die Farben im Preview frei (E3).</dd>
+          <dd>Lighthouse meldet auf den betroffenen Seiten keinen Kontrastfehler mehr; Tim gibt die Farben im Preview frei (E3).</dd>
           <dt>Aufwand</dt>
-          <dd>Claude ca. 1 Std., Tim ca. 20 Min.</dd>
+          <dd>Claude ca. 1,5 Std., Tim ca. 20 Min.</dd>
         </dl>
       </article>
 
@@ -488,7 +484,7 @@
         </div>
         <dl class="spec">
           <dt>Befund</dt>
-          <dd>M6: Kacheln laden Bilder mit bis zu 2.600 px Breite für ca. 400 px Anzeige. Die Seite hat eine Lightbox, die die Bilder groß zeigt; die Originale müssen deshalb bleiben.</dd>
+          <dd>M6, am 12.11. unverändert: Kacheln laden Bilder mit bis zu 2.600 px Breite für ca. 400 px Anzeige. Seitengewicht 3,4 MB, Lighthouse schätzt rund 2,6 MB Einsparung bei den Bildern; LCP im Labor 7,9 s. Die Lightbox zeigt die Bilder groß, die Originale müssen bleiben.</dd>
           <dt>Änderung</dt>
           <dd>Sechs neue Vorschaubilder (<code>…-800w.webp</code>, 800 px breit). <code>References.tsx</code>: Kachel lädt das Vorschaubild, die Lightbox weiter das Original.</dd>
           <dt>Betroffene Bilder</dt>
@@ -505,9 +501,9 @@
           <dt>Geprüft</dt>
           <dd>Die WebP-Dateien tragen keine GPS-Geotags (das Geotag-Skript bearbeitet nur JPGs), beim Neuexport geht nichts verloren.</dd>
           <dt>Abnahme</dt>
-          <dd>Lighthouse meldet für diese sechs Bilder keine Einsparung mehr; Lightbox bleibt scharf. Erwartete Ersparnis rund 1,3 MB beim Seitenaufruf (Schätzung).</dd>
+          <dd>Lighthouse meldet für diese sechs Bilder keine Einsparung mehr; Lightbox bleibt scharf.</dd>
           <dt>Aufwand</dt>
-          <dd>Claude ca. 1,5 Std., Tim ca. 20 Min.</dd>
+          <dd>Claude ca. 1,5 Std., Tim ca. 20 Min. Braucht keine Entscheidung und kann deshalb jedes freie Fenster füllen.</dd>
         </dl>
       </article>
 
@@ -519,7 +515,7 @@
         </div>
         <dl class="spec">
           <dt>Befund</dt>
-          <dd>M2: Die eigene Regel aus DEPLOY-RULES §7 (ein <code>@graph</code> pro Seite mit <code>@id</code>) ist auf vielen Seiten nicht umgesetzt; vier Seiten haben zwei verschiedene <code>Service</code>-Einträge. M3: 14 von 19 Article-Einträgen fehlt <code>dateModified</code>.</dd>
+          <dd>M2, am 12.11. unverändert: Die eigene Regel aus DEPLOY-RULES §7 (ein <code>@graph</code> pro Seite mit <code>@id</code>) ist auf vielen Seiten nicht umgesetzt; vier Seiten haben weiter zwei verschiedene <code>Service</code>-Einträge. M3: 14 von 19 Article-Einträgen fehlt <code>dateModified</code>.</dd>
           <dt>Ziel je Seite</dt>
           <dd>Ein <code>@graph</code> mit <code>#webpage</code>, <code>#breadcrumb</code>, <code>#service</code>, <code>#faq</code>, <code>#article</code>; doppelte Services zusammengeführt; Article mit <code>datePublished</code>, <code>dateModified</code>, <code>image</code>, <code>mainEntityOfPage</code>. Sichtbarer Inhalt bleibt unverändert.</dd>
           <dt>S5a</dt>
@@ -536,7 +532,8 @@
           <dd>
             <ul>
               <li>Datumswerte nur aus der bestätigten Tabelle, nie das Builddatum. Dieselbe Falle wie F09 beim ExpertenBlock.</li>
-              <li>VELUX-Seiten: keine Preis- oder Förderlogik anfassen; <code>WebApplication</code>-Schema und WebMCP bleiben unberührt. S5c erst nach B2, das <code>VeluxPreisrechnerBochum.tsx</code> ebenfalls ändert.</li>
+              <li>VELUX-Seiten: keine Preis- oder Förderlogik anfassen; <code>WebApplication</code>-Schema, WebMCP und der MCP-Endpunkt bleiben unberührt. S5c kollidiert nicht mehr mit B2 (live).</li>
+              <li>Falls die Förderprüfung <code>Foerderung.tsx</code> ändert, läuft S5c danach.</li>
               <li>Kein AggregateRating, kein SearchAction, kein „Notdienst“.</li>
               <li><code>HowTo</code> nach E4 behandeln.</li>
             </ul>
@@ -560,15 +557,15 @@
         </div>
         <dl class="spec">
           <dt>Befund</dt>
-          <dd>M4: Sechs Seiten erhalten nur 3–4 interne Links: <code>/leistungen</code>, <code>/velux-dachfenster-austausch-bochum</code>, <code>/velux-dachfenster-rolllaeden-bochum</code>, <code>/steildach-foerderung-bochum</code>, <code>/steildach-undicht-bochum</code>, <code>/bitumen-vs-pvc-flachdach-bochum</code>.</dd>
+          <dd>M4: Sechs Seiten erhalten nur 3–4 interne Links: <code>/leistungen</code>, <code>/velux-dachfenster-austausch-bochum</code>, <code>/velux-dachfenster-rolllaeden-bochum</code>, <code>/steildach-foerderung-bochum</code>, <code>/steildach-undicht-bochum</code>, <code>/bitumen-vs-pvc-flachdach-bochum</code>. Die Header-Änderung aus #100 hat nur die Darstellung geändert, nicht die Links.</dd>
           <dt>Vorbereitung</dt>
           <dd><span class="role role-claude">Claude</span> Vorschlagsliste: Quellseite, Zielseite, Absatz, Ankertext. <span class="role role-tim">Tim</span> gibt frei (E5). Schwerpunkt VELUX-Austausch (Money-Page) und Leistungsübersicht.</dd>
           <dt>Änderung</dt>
           <dd>Je Zielseite mindestens drei zusätzliche Links aus passenden Absätzen. Beschreibende Ankertexte, keine Keyword-Häufung, keine neuen Seiten.</dd>
           <dt>Dateien</dt>
           <dd>4–5 Quellseiten und <code>sitemap.xml</code>.</dd>
-          <dt>Abhängigkeit</dt>
-          <dd>Nach #100 und S5, weil dieselben Seitendateien betroffen sind.</dd>
+          <dt>Termin</dt>
+          <dd>Als erster Merge im Dezember vorgesehen: Der Monatswechsel des Build-Datums macht diesen Deploy ohnehin zählend.</dd>
           <dt>Aufwand</dt>
           <dd>Claude ca. 1,5 Std., Tim ca. 30 Min.</dd>
         </dl>
@@ -582,11 +579,11 @@
         </div>
         <dl class="spec">
           <dt>Bedingung</dt>
-          <dd>Nur wenn PageSpeed Insights nach S1 auf Unterseiten weiterhin einen LCP über 2,5 s zeigt. Die lokalen Laborwerte (4,1–4,8 s) sind gegen das Netlify-CDN nicht belastbar.</dd>
+          <dd>Nur wenn PageSpeed Insights live auf Unterseiten einen LCP über 2,5 s zeigt. Labor lokal am 12.11.: 4,2–4,4 s auf Unterseiten, 7,9 s auf <code>/referenzen</code>; gegen das Netlify-CDN nicht belastbar.</dd>
           <dt>Befund</dt>
           <dd>M7 und N6: Auf zehn Seiten ist das Hero-Bild ein CSS-Hintergrund und wird erst spät entdeckt. Einige Bilder haben keine festen Maße.</dd>
           <dt>Änderung</dt>
-          <dd>Hero als <code>&lt;img fetchpriority="high"&gt;</code> mit <code>width</code>/<code>height</code>, wie auf der Startseite (dort LCP 2,9–3,0 s). Bilder bleiben dekorativ.</dd>
+          <dd>Hero als <code>&lt;img fetchpriority="high"&gt;</code> mit <code>width</code>/<code>height</code>, wie auf der Startseite. Bilder bleiben dekorativ.</dd>
           <dt>Dateien</dt>
           <dd class="files">AufsparrendaemmungBochum · BauklempnereiBochum · DachgaubeBochum · Dachreparatur · DachrinnenBochum · DachwartungBochum · Foerderung · GruendachBochum · SturmschadenDach · VeluxPreisrechnerBochum</dd>
           <dt>Abnahme</dt>
@@ -604,9 +601,11 @@
         </div>
         <dl class="spec">
           <dt>Bedingung</dt>
-          <dd>Nur wenn Tims Header-Prüfung zeigt, dass die gehashten Dateien unter <code>/assets/</code> ohne lange Cache-Dauer ausgeliefert werden (N7).</dd>
+          <dd>Nur wenn Tims Header-Prüfung zeigt, dass die gehashten Dateien unter <code>/assets/</code> ohne lange Cache-Dauer ausgeliefert werden (N7). <code>netlify.toml</code> hat weiterhin nur die Header-Regel für <code>/danke</code>.</dd>
           <dt>Änderung</dt>
-          <dd><code>netlify.toml</code>: Header-Regel <code>Cache-Control: public, max-age=31536000, immutable</code> nur für <code>/assets/*</code>. Nicht für <code>index.html</code>. Der WebMCP-Abschnitt bleibt unberührt.</dd>
+          <dd><code>netlify.toml</code>: Header-Regel <code>Cache-Control: public, max-age=31536000, immutable</code> nur für <code>/assets/*</code>. Nicht für <code>index.html</code>, nicht für <code>/mcp</code>. Der WebMCP-Abschnitt bleibt unberührt.</dd>
+          <dt>Abhängigkeit</dt>
+          <dd>Erst nach den restlichen P4b-Deploys, falls diese <code>netlify.toml</code> ändern.</dd>
           <dt>Abnahme</dt>
           <dd>Eine <code>/assets/…js</code>-Datei zeigt live den neuen Header; nach einem weiteren Deploy lädt die Seite die neuen Dateinamen.</dd>
           <dt>Aufwand</dt>
@@ -626,11 +625,12 @@
       <table>
         <thead><tr><th>Nr.</th><th>Frage</th><th>Empfehlung</th><th>Begründung</th><th>Für</th></tr></thead>
         <tbody>
-          <tr><td class="id">E1</td><td>Welches Paket im Fenster ab 17.10.2026, 12:17 MESZ?</td><td>S1, danach B2</td><td>S1 hat den größeren Nutzen. B2 räumt doppelte Redirect-Dateien auf und hat keine Eile.</td><td class="num">Slot 1–2</td></tr>
-          <tr><td class="id">E2</td><td>Stimmen die vorgeschlagenen Änderungsdaten?</td><td>Tabelle unten bestätigen</td><td>Grundlage für <code>lastmod</code> und <code>dateModified</code>; ohne Freigabe keine Datumswerte.</td><td class="num">S2, S5</td></tr>
+          <tr class="same"><td class="id">E1</td><td>S1 oder B2 zuerst?</td><td>erledigt</td><td>S1 ging am 20.10. vor B2 live, wie empfohlen.</td><td class="num">–</td></tr>
+          <tr><td class="id">E2</td><td>Stimmen die vorgeschlagenen Änderungsdaten?</td><td>Tabelle unten bestätigen</td><td>Grundlage für <code>lastmod</code> und <code>dateModified</code>; ohne Freigabe keine Datumswerte. Offen seit 15.10.</td><td class="num">S2, S5</td></tr>
           <tr><td class="id">E3</td><td>Farben der Anfrage-Buttons</td><td>Dunklere Töne derselben Farbe (-700)</td><td>Bleibt im bisherigen Farbschema und erfüllt den Kontrast. Freigabe im Preview.</td><td class="num">S3</td></tr>
           <tr><td class="id">E4</td><td>HowTo-Schema auf fünf Seiten</td><td>Behalten und in den Graph aufnehmen</td><td>Gültiges Schema.org ohne Nachteil; Google zeigt dafür nur keine Rich Results mehr.</td><td class="num">S5</td></tr>
           <tr><td class="id">E5</td><td>Linkvorschläge für sechs Seiten</td><td>Kontextuelle Links in Fließtexten</td><td>Stärkeres Signal als Footer-Links und ohne seitenweite Änderung.</td><td class="num">S6</td></tr>
+          <tr><td class="id">E6</td><td>Vorrang in den Reserve-Fenstern</td><td>Förder-Deploy vor P4b, P4b vor SEO</td><td>Falsche Förderaussagen sind ein Haftungsrisiko; P4b ist ein laufendes Mehrteil-Paket. SEO-Pakete füllen die übrigen Fenster.</td><td class="num">Slot 3, 7</td></tr>
         </tbody>
       </table>
     </div>
@@ -639,7 +639,7 @@
   <section id="datumstabelle" aria-labelledby="h-dates">
     <div class="section-head">
       <h2 id="h-dates">Datumstabelle zur Freigabe (E2)</h2>
-      <p>Vorschlag für <code>lastmod</code> je URL: der Tag, an dem die letzte Änderung der Seite über einen PR auf <code>main</code> kam und damit live ging. Gezählt sind Inhalt, Titel und Beschreibung, Schema und Links; beim Preisrechner auch Komponente und Rechenlogik. Das automatische Prüfdatum im ExpertenBlock zählt nicht. Bitte nur Abweichungen melden.</p>
+      <p>Vorschlag für <code>lastmod</code> je URL: der Tag, an dem die letzte Änderung der Seite über einen PR auf <code>main</code> kam und damit live ging. Gezählt sind Inhalt, Titel und Beschreibung, Schema und Links; beim Preisrechner auch Komponente und Rechenlogik. Seitenweite Änderungen an Navigation oder Footer und das automatische Prüfdatum im ExpertenBlock zählen nicht. Neu berechnet am 12.11.2026 aus der vollständigen Git-Historie. Bitte nur Abweichungen melden.</p>
     </div>
     <div class="table-wrap">
       <table>
@@ -672,7 +672,7 @@
           <tr><td><code>/sturmschaden-dach-bochum</code></td><td class="num">23.07.2026</td><td class="num"><strong>26.08.2026</strong></td><td>#58 Paket 6: interne Verlinkung der unterverlinkten Money-Pages</td></tr>
           <tr><td><code>/bitumen-vs-pvc-flachdach-bochum</code></td><td class="num">25.07.2026</td><td class="num"><strong>30.09.2026</strong></td><td>#84 R4 Förderung: Drift-Check in der CI, Resttexte, lokaler Start unter Windows</td></tr>
           <tr><td><code>/dachrinne-bochum</code></td><td class="num">23.07.2026</td><td class="num"><strong>22.08.2026</strong></td><td>#52 Paket 5: Dachrinnenreinigung entflechten — Verhältnis von 7:1 auf 2:11 gedreht</td></tr>
-          <tr><td><code>/velux-preisrechner-bochum</code></td><td class="num">31.07.2026</td><td class="num"><strong>08.10.2026</strong></td><td>#91 Datenschutz Preisrechner: Hinweis, Pflichtfelder und Datenschutzerklärung</td></tr>
+          <tr><td><code>/velux-preisrechner-bochum</code></td><td class="num">31.07.2026</td><td class="num"><strong>04.11.2026</strong></td><td>#111 P1: Typenschild-Foto und Herkunft der Konfiguration (Stufe B) – erst nach Codex-Gegenlesung mergen <span class="hint">Neu seit 15.10. (vorher 08.10., #91).</span></td></tr>
           <tr><td><code>/wann-lohnt-sich-dachsanierung</code></td><td class="num">02.08.2026</td><td class="num"><strong>30.09.2026</strong></td><td>#84 R4 Förderung: Drift-Check in der CI, Resttexte, lokaler Start unter Windows</td></tr>
           <tr><td><code>/dach-photovoltaik-bochum</code></td><td class="num">31.07.2026</td><td class="num"><strong>12.10.2026</strong></td><td>#97 PV/Förderung: Indach-PV in der BEG und Braas-Produktbeschreibung korrigiert</td></tr>
         </tbody>
@@ -683,13 +683,13 @@
   <section id="messpunkte" aria-labelledby="h-mess">
     <div class="section-head">
       <h2 id="h-mess">Messpunkte im Browser</h2>
-      <p>Die Live-Domain ist aus der Claude-Umgebung gesperrt. Diese Prüfungen laufen deshalb bei Tim.</p>
+      <p>Die Live-Domain ist aus der Claude-Umgebung gesperrt, und die PageSpeed-Insights-API darf ich von hier aus nicht aufrufen. Diese Prüfungen laufen deshalb bei Tim.</p>
     </div>
     <div class="twocol">
       <div class="panel">
-        <h3>Vor dem S1-Merge</h3>
+        <h3>Jetzt</h3>
         <ul>
-          <li><strong>Baseline PageSpeed Insights mobil</strong> für fünf URLs (siehe Nächste Schritte).</li>
+          <li><strong>PageSpeed Insights mobil nach S1</strong> für fünf URLs (siehe Nächste Schritte). Entscheidet über S7.</li>
           <li><strong>Response-Header</strong>: DevTools → Netzwerk → eine Datei unter <code>/assets/</code> → <code>cache-control</code> und <code>strict-transport-security</code> notieren. Entscheidet über S8.</li>
           <li><strong>Prerender für KI-Abrufe</strong>: wie in <code>PRERENDER-CHECK.md</code>, zusätzlich mit den User-Agents ChatGPT-User, Claude-User und Perplexity-User.</li>
         </ul>
@@ -697,10 +697,10 @@
       <div class="panel">
         <h3>Während der Umsetzung</h3>
         <ul>
-          <li><strong>Nach S1</strong>: PageSpeed Insights auf denselben URLs. Entscheidet über S7.</li>
+          <li><strong>Nach S2</strong>: Search Console, Bereich „Sitemaps“: neu gelesen?</li>
           <li><strong>Nach S4</strong>: PageSpeed Insights <code>/referenzen</code>.</li>
           <li><strong>Vor jedem S5-Merge</strong>: Rich-Results-Test auf der Preview-URL.</li>
-          <li><strong>Zwei Wochen nach S5d</strong>: Search Console, Bereiche „Verbesserungen“ und „Sitemaps“.</li>
+          <li><strong>Zwei Wochen nach S5d</strong>: Search Console, Bereich „Verbesserungen“.</li>
         </ul>
       </div>
     </div>
@@ -719,13 +719,14 @@
           <li>Branch vom aktuellen main, nur die geplanten Dateien ändern, ein Commit.</li>
           <li>Prüfen wie in der CI: <code>npm run check</code>, Build, <code>faq:check</code>, <code>estimate:check</code>, <code>foerder:check</code>, Browser-Smoketests; Lighthouse vorher/nachher.</li>
           <li>PR mit Stufe, Dateizahl, Messwerten und frühestem Merge als festes Datum mit Uhrzeit.</li>
+          <li>Ändert ein anderer Merge <code>client/public/formulare.html</code>, zuerst <code>main</code> aufnehmen, dann pushen (DEPLOY-RULES §4).</li>
         </ol>
       </div>
       <div class="panel">
         <h3><span class="role role-tim">Tim</span></h3>
         <ol>
           <li>Netlify-Preview ansehen; bei Schema-Paketen Rich-Results-Test.</li>
-          <li>Mergen, wenn das Fenster offen ist (48 Stunden seit dem letzten Produktionsdeploy mit geänderten Dateien).</li>
+          <li>Mergen, wenn das Fenster offen ist: 48 Stunden seit dem letzten Merge, der <code>dist/public</code> geändert hat.</li>
           <li>PageSpeed-Stichprobe, wo im Paket genannt. Den Nachlauf (Netlify, Checks, IndexNow, Prerender-Check) prüft Claude und trägt ihn ins Deploy-Log ein.</li>
         </ol>
       </div>
@@ -751,23 +752,49 @@
     </div>
   </section>
 
-  <section id="korrekturen" aria-labelledby="h-korr">
+  <section id="ausserhalb" aria-labelledby="h-aus">
     <div class="section-head">
-      <h2 id="h-korr">Korrekturen gegenüber der Fassung vom 14.10.2026</h2>
+      <h2 id="h-aus">Außerhalb dieses Plans offen</h2>
+      <p>Laut Deploy-Log vom 11.11.2026; hier nur zur Übersicht, weil sie um dieselben Fenster konkurrieren können.</p>
     </div>
     <div class="panel">
       <ul>
-        <li><strong>Paketnamen:</strong> P1–P8 heißen jetzt S1–S8, damit sie nicht mit P1 (Typenschild-Foto) und P4/P5 aus dem KI-Plan verwechselt werden.</li>
-        <li><strong>E6 entfällt:</strong> Ich hatte empfohlen, den Deploy-Log immer im nächsten Paket-PR mitzuführen, weil Doku-PRs das Fenster verschieben. Laut Deploy-Log zählen reine Doku-Deploys ohne neue Dateien aber nicht (#92, #93, #95, #98). Eigene Doku-PRs sind also ohne Nachteil möglich.</li>
-        <li><strong>M1 Sitemap:</strong> 29 von 30 veraltete Einträge statt 30 von 30. Die erste Zählung beruhte auf einem flachen Git-Klon; <code>/referenzen</code> ist korrekt.</li>
-        <li><strong>S3 ohne Preisrechner:</strong> Die Rechner-Dateien ändern auch Typenschild-Foto und W1 aus dem KI-Plan; die Kontrastkorrektur dort läuft mit diesen Paketen.</li>
-        <li><strong>Termine:</strong> neu berechnet ab dem tatsächlichen Deploy von #99 und mit B2 aus dem KI-Plan im Takt.</li>
+        <li><strong>P4b Deploy 2 und 3</strong> (KI-Plan, Variante A): <code>prepare</code>/<code>submit</code> im MCP-Endpunkt, Datenschutztext mit Codex-Gegenlesung. Danach P5 (öffentliche Veröffentlichung).</li>
+        <li><strong>H1-Überlauf auf <code>/datenschutz</code></strong> bei 390 px Breite.</li>
+        <li><strong>Entscheidung zum Express-Dev-Server.</strong></li>
+        <li><strong>Herkunft der Kennzahl „4,48 ★“</strong> auf der Startseite (Tim).</li>
       </ul>
     </div>
   </section>
 
+  <section id="korrekturen" aria-labelledby="h-korr">
+    <div class="section-head">
+      <h2 id="h-korr">Änderungen an diesem Plan</h2>
+    </div>
+    <div class="twocol">
+      <div class="panel">
+        <h3>12.11.2026</h3>
+        <ul>
+          <li><strong>Stand:</strong> S1 als erledigt geführt, Deploys seit 15.10. nachgetragen, Termine ab dem Fenster 13.11. neu berechnet, zwei Reserve-Fenster für P4b und Förderprüfung.</li>
+          <li><strong>S3:</strong> Der Preisrechner-Kontrast gehört wieder in S3 (11 Dateien). P1 und W1 sind live, ohne die Korrektur.</li>
+          <li><strong>Gate-Regel:</strong> an DEPLOY-RULES §4 vom 11.11. angepasst. Doku-PRs zählen nicht, solange <code>dist/public</code> gleich bleibt; der erste Build eines Monats und Änderungen an <code>package.json</code> zählen immer.</li>
+          <li><strong>Datumstabelle:</strong> neu berechnet; geändert hat sich nur der Preisrechner (04.11., #111).</li>
+          <li><strong>E1</strong> erledigt, <strong>E6</strong> neu (Vorrang in den Reserve-Fenstern).</li>
+        </ul>
+      </div>
+      <div class="panel">
+        <h3>15.10.2026</h3>
+        <ul>
+          <li><strong>Paketnamen:</strong> P1–P8 heißen S1–S8, damit sie nicht mit P1 und P4/P5 aus dem KI-Plan verwechselt werden.</li>
+          <li><strong>M1 Sitemap:</strong> 29 von 30 veraltete Einträge statt 30 von 30 (erste Zählung auf flachem Git-Klon).</li>
+          <li><strong>Doku-Deploys:</strong> Die frühere Empfehlung, den Deploy-Log immer im nächsten Paket-PR mitzuführen, entfällt.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
   <footer>
-    <p>Stand 15.10.2026. Quellen: <code>SEO-AUDIT-2026-10.md</code>, <code>DEPLOY-RULES.md</code> §10, <code>UMSETZUNGSPLAN-2026-10-KI-ANFRAGEN.md</code> (Branch <code>claude/zealous-brown-c1mq00</code>), Netlify-Deploy <span class="mono">6ad0a7ee…</span>, offene PRs, vollständige Git-Historie von <code>main</code>.</p>
+    <p>Stand 12.11.2026. Quellen: <code>SEO-AUDIT-2026-10.md</code>, <code>DEPLOY-RULES.md</code> §4 und §10, <code>UMSETZUNGSPLAN-2026-10-KI-ANFRAGEN.md</code> (auf <code>main</code>), Netlify-Deploy <span class="mono">6af4d0f0…</span> (#115), vollständige Git-Historie von <code>main</code>, Lighthouse 13.6.0 gegen den lokalen Produktionsbuild.</p>
     <p>Aufwandsangaben sind Schätzungen. Termine sind frühestmögliche Daten und keine Zusage; über jeden Merge entscheidet Tim.</p>
   </footer>
 
