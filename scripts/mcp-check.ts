@@ -147,7 +147,7 @@ async function inquiryChecks(funding: Record<string, string>) {
     "prepare: summaryId (SHA-256) und submissionKey (UUID)");
   check(typeof prep?.summary === "string" && prep.summary.includes("ab 2.104 €") && prep.summary.includes("Erika Test") &&
     prep.summary.includes("erika@example.invalid") && prep.summary.includes("Bitte Rückruf vormittags.") &&
-    prep.summary.includes("Fensterzuordnung: vermutet (Typenschild laut KI: GGL S10 → SK10, nicht bestätigt)") && prep.summary.includes(PHOTO_NOT_SENT),
+    prep.summary.includes("Fensterzuordnung: vermutet (Typenschild: GGL S10 → SK10, nicht bestätigt)") && !prep.summary.includes("laut KI") && prep.summary.includes(PHOTO_NOT_SENT),
     "prepare: Zusammenfassung mit Betrag, Kontaktdaten, Nachricht, Fensterzuordnung und Foto-Satz");
 
   // Prüfung der Eingaben (wie im Rechner, mit Längengrenzen)

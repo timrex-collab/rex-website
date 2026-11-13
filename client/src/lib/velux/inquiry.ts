@@ -136,7 +136,7 @@ export function buildPluginInquiry(input: unknown, opts: PluginInquiryOptions = 
 
   const matchLine = status === "none"
     ? "Fensterzuordnung: keine Angabe"
-    : `Fensterzuordnung: ${MATCH_LABEL[status]}${reading ? ` (Typenschild laut KI: ${reading}${status === "assumed" ? ", nicht bestätigt" : ""})` : ""}`;
+    : `Fensterzuordnung: ${MATCH_LABEL[status]}${reading ? ` (Typenschild: ${reading}${status === "assumed" ? ", nicht bestätigt" : ""})` : ""}`;
   const quelle = [
     `${prefix}Aufmerksam geworden: KI-Assistent`,
     `Konfiguration: per ChatGPT-Plugin, auf dem Server neu berechnet (Rechenversion ${calcVersion})`,
