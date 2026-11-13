@@ -9,9 +9,9 @@ Jedes Paket ist ein eigener Auftrag mit eigenem PR. Vor jedem Paket den aktuelle
 ausdrückliche Anweisungen von Tim haben Vorrang. Die Regeln aus `CLAUDE.md` und
 `DEPLOY-RULES.md` gelten unverändert.
 
-## Umsetzungsstand (11.11.2026)
+## Umsetzungsstand (14.11.2026)
 
-Nachgetragen mit D1, fortgeschrieben nach P1 und P4a. Die Abschnitte unten bleiben im Stand vom 12.10.2026; maßgeblich für Termine
+Nachgetragen mit D1, fortgeschrieben nach P1, P4a und P4b. Die Abschnitte unten bleiben im Stand vom 12.10.2026; maßgeblich für Termine
 und Deploys ist `DEPLOY-RULES.md` §10.
 
 | Paket | Stand |
@@ -26,7 +26,8 @@ und Deploys ist `DEPLOY-RULES.md` §10.
 | W1 WebMCP und Rechner-Link | live mit PR #107 (26.10.2026); am selben Tag von Tim abgenommen: Fall 4 bestanden, Links auf Handy und PC geprüft (`WEBMCP.md`) |
 | D1 Doku | live mit PR #109 (31.10.2026) |
 | P4a Machbarkeit Server-Plugin | abgeschlossen 11.11.2026 (PR #112, ohne Merge geschlossen): Go auf allen drei Oberflächen, Ergebnis siehe P4 |
-| P4b, P5 | offen; P4b nach Variante A (Entscheidung Tim 11.11.2026) |
+| P4b Server-Plugin | live mit PR #115 (lesend, 11.11.2026) und PR #116 (Anfrage senden, 14.11.2026); Referenz `MCP.md` |
+| P5 | offen, Voraussetzung V8 |
 
 Außerhalb des Plans dazwischen live: PR #100 (Header am Desktop), PR #101 (S1 Layout-Shift) und
 PR #105 und PR #113 (Sicherheitsupdates der Abhängigkeiten). PR #108 hat die CI beschleunigt (Testbrowser ohne
@@ -334,7 +335,22 @@ Der Plan vom 04.10.2026 liegt nicht im Repo; hier steht nur das Ergebnis der Bew
     liest das Typenschild selbst, das Tool fragt bei unsicherer Zuordnung nach; ein Foto lädt der
     Kunde über den Rechner-Link hoch (P1). Foto über ChatGPT frühestens als eigenes Paket (Abruftest,
     EXIF/GPS serverseitig entfernen, Datenschutztext, Codex-Gegenlesung, gesonderter Auftrag).
-- **P4b, nur nach Go:**
+- **Umsetzung P4b (Variante A, 11.–14.11.2026):** Planentwurf 2 (Commit `4e35371`, nach
+  Codex-Gegenlesung) mit diesen Festlegungen; Einzelheiten und Abnahmen in `MCP.md`:
+  - Deploy 1 (#115): lesender Endpunkt mit 64-KB-Grenze und Rate-Limit 60/60 s je IP. Deploy 2 (#116):
+    `prepare` (vollständige Zusammenfassung, `summaryId` über Versandinhalt, Beträge, Rechenversion
+    und `submissionKey`) und `submit` (atomare Reservierung, Zustände in Bearbeitung / übermittelt /
+    Ausgang unklar, Tageskontingent 50 über atomare Plätze, 408/5xx gelten als „Ausgang unklar“).
+  - E1 Foto: Hinweis vor dem Senden „Das Foto aus diesem Chat wird nicht an Rex übertragen“, danach
+    je nach Kontakt „in Ihrer Antwort mitsenden“ bzw. „klären wir beim Rückruf“. E2 Preview mit
+    TEST-Kennzeichnung. E3 lesender Endpunkt zuerst. E4 60/60 s je IP und 50 Anfragen pro Tag.
+  - V5 (Rate-Limit im Personal-Tarif, Codex): verfügbar, höchstens zwei Regeln, Fenster bis 180 s,
+    gilt für den ganzen Pfad. V6: Versand landet unter „Verified“, Mail im Postfach (13.11.2026).
+    V7: ChatGPT fragt auf Web, Classic und iPhone vor dem Senden; Ablehnen und Ändern werden beachtet.
+    V9: Rate-Limit-Regel in Preview und Produktion aktiv.
+  - Ohne Connector antwortet ChatGPT mit Zahlen aus Seitentexten und Websuche (z. B. „ab ca. 1.800 €
+    netto“ hochgerechnet) – ein Grund mehr für P5.
+- **P4b, nur nach Go (Planstand 12.10.2026):**
   - Werkzeuge: `prepare` und `submit` mit `summaryId`.
   - Pflicht: Neuberechnung auf dem Server; Weiterleitung serverseitig an Netlify Forms
     (`quelle=ChatGPT`).
