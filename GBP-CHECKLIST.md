@@ -17,10 +17,10 @@ Status: ⬜ offen · 🔄 in Arbeit · ✅ erledigt
 
 | Punkt | Status | Notiz |
 |---|---|---|
-| Profil beanspruchen / Zugriff bestätigen | ⬜ | Verifizierung (Postkarte/Telefon/Video) |
-| Firmenname exakt | ⬜ | `Rex Bedachungs GmbH` — **keine** Keyword-Zusätze (Google-Richtlinie) |
-| Adresse | ⬜ | Paulinenstraße 22, 44799 Bochum |
-| Telefon | ⬜ | 0234 583100 |
+| Profil beanspruchen / Zugriff bestätigen | ✅ | Profil in Tims Verwaltung (Stand 12.11.2026) |
+| Firmenname exakt | ✅ | `Rex Bedachungs GmbH` — **keine** Keyword-Zusätze (Google-Richtlinie). Am 12.11.2026 korrigiert, vorher „Rex Bedachungs GmbH - Dachdecker Bochum“ |
+| Adresse | ✅ | Paulinenstraße 22, 44799 Bochum (bei Google als „Paulinenstr. 22“ — Abkürzung unkritisch, nicht ändern: kann eine erneute Bestätigung auslösen) |
+| Telefon | ✅ | 0234 583100 |
 | Website | ⬜ | https://www.rex-bedachung.de (mit UTM, s. Abschnitt 7) |
 | Öffnungszeiten | ⬜ | Mo–Fr 07:00–17:00; Sa/So geschlossen; Feiertage pflegen |
 | Pin-Position auf Karte | ⬜ | Mit Schema-Geo abgleichen (51.46262 / 7.24442) |
@@ -29,7 +29,7 @@ Status: ⬜ offen · 🔄 in Arbeit · ✅ erledigt
 
 | Punkt | Status | Notiz |
 |---|---|---|
-| Primärkategorie | ⬜ | **Dachdecker** |
+| Primärkategorie | ✅ | **Dachdecker** |
 | Sekundärkategorien (verfügbare prüfen) | ⬜ | Bauklempnerei/Klempner, Bauunternehmen, Dämmunternehmen, Solaranlagen-Anbieter (für Dach-PV) — nur real zutreffende |
 
 ## 3. Leistungen (Services)
@@ -56,11 +56,19 @@ Aus dem OfferCatalog der Website ableiten — jeweils mit kurzer Beschreibung:
 |---|---|---|
 | Einzugsgebiet | ⬜ | Bochum + Ruhrgebiet (~30 km, deckt sich mit Schema `geoRadius`) |
 | Attribute | ⬜ | Inhabergeführt, Termin erforderlich, Vor-Ort-Service, ggf. barrierefrei |
-| Eröffnungsjahr | ⬜ | 1984 |
+| Eröffnungsjahr | ✅ | 1984 (bei Google: März 1984) |
 
 ## 5. Beschreibung (750 Zeichen, copy-paste)
 
-⬜ Eintragen:
+🔄 **Hinweis 13.11.2026:** Bing Places übernimmt die Google-Beschreibung per Sync, erlaubt aber
+nur **500 Zeichen** und schneidet längere Texte mitten im Wort ab. Die Beschreibung bei Google
+deshalb ≤ 500 Zeichen halten. Gekürzte Fassung (468 Zeichen, gleicher Inhalt):
+
+```
+Rex Bedachungs GmbH ist Ihr Dachdecker-Meisterbetrieb in Bochum – seit 1984. Wir übernehmen Steildach, Flachdach, Dachsanierung, Dachreparatur und Dachwartung, Bauklempnerei (Dachrinnen, Fassade) sowie Dämmung. Dachfenster setzen wir als autorisierter VELUX-Partner ein. Auch Gründach, Dachgaube und Dach-Photovoltaik gehören dazu. Wir beraten zu förderrelevanten Sanierungen (BEG) und begleiten Ihr Projekt bis zur Abnahme. Tätig in Bochum und im gesamten Ruhrgebiet.
+```
+
+Langfassung (605 Zeichen, nur ohne Bing-Sync verwendbar):
 
 ```
 Rex Bedachungs GmbH ist Ihr Dachdecker-Meisterbetrieb in Bochum – seit 1984.

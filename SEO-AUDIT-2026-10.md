@@ -193,3 +193,5 @@ jeweils ein atomarer Deploy, 48-h-Gate und Merge durch Tim:
 - Response-Header der Live-Site (HSTS, Cache-Control auf `/assets/*`).
 - Ob der Prerender auch nutzergesteuerte KI-Abrufe bedient (`ChatGPT-User`, `Claude-User`,
   `Perplexity-User`) – analog zu den Bot-Checks in `PRERENDER-CHECK.md`.
+  **✅ Geprüft am 12.11.2026:** alle drei und weitere KI-Agenten erhalten gerendertes HTML,
+  Details in `DEPLOY-RULES.md` §11.

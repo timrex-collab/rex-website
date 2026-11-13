@@ -41,8 +41,8 @@ Legende Status: ⬜ offen · 🔄 in Arbeit · ✅ erledigt (eingetragen + NAP g
 
 | Ziel | Status | Notiz |
 |---|---|---|
-| Google Business Profile | ⬜ | Eigener Track, größter lokaler Hebel — Kategorien/Leistungen/Posts |
-| Bing Places for Business | ⬜ | Passt zum laufenden Bing-WMT-Setup |
+| Google Business Profile | ✅ | Profil vorhanden. Name am 12.11.2026 auf „Rex Bedachungs GmbH“ korrigiert (vorher mit Zusatz „- Dachdecker Bochum“, unzulässig nach Google-Richtlinie). Primärkategorie Dachdecker. Ist zugleich Datenquelle für Bing Places (Sync) → Beschreibung ≤ 500 Zeichen halten. Details: `GBP-CHECKLIST.md` |
+| Bing Places for Business | 🔄 | 12./13.11.2026 eingerichtet. Der Google-Sync hatte neben dem Bing-eigenen Eintrag ein Duplikat erzeugt; Lösung laut Bing-Support (Ticket bei Tim): beide Einträge aus dem Konto entfernt, neu aus Google synchronisiert. Seit 13.11.2026 ein Eintrag, Status „Ausstehende Veröffentlichung“ (laut Support bis zu 12 Tage) → **Prüfung ~25.11.2026**. Auto-Sync laut Support-Empfehlung monatlich; Daten nur noch im Google-Profil pflegen, nicht in Bing. |
 | Apple Business Connect | ⬜ | Apple Maps / Siri |
 | Das Örtliche | ⬜ | DE-Standardverzeichnis, hohe Autorität |
 | Gelbe Seiten | ⬜ | DE-Standardverzeichnis |
