@@ -518,6 +518,24 @@ VELUX D1–D8 · Förder-Bereinigung R1–R4 · Doku/llms nach R1–R4.
 > **Als Nächstes vorgesehen:** P4b nach Variante A (zuerst Plan zur Freigabe; Stufe C, 2–3 Deploys).
 > Offen bzw. wartend: S2 (Freigabe der Datumstabelle durch Tim); H1-Überlauf auf `/datenschutz` bei
 > 390 px; Entscheidung zum Express-Dev-Server.
+>
+> **Stand 14.11.2026 (nach PR #115 und #116, P4b Server-Plugin live):**
+> - **#115 (P4b Deploy 1, 11.11.2026):** lesender MCP-Endpunkt `www.rex-bedachung.de/mcp` mit drei
+>   Tools, 64-KB-Grenze und Rate-Limit-Regel (60 pro 60 s je IP; in den Deploy-Daten als `rate_limit`,
+>   `sliding_window` bestätigt). „All files already uploaded“, wegen Paketänderung trotzdem als
+>   Produktionsdeploy gezählt. Erster Live-Test in Codex lief versehentlich über den alten
+>   P4a-Connector; Abnahme am 13.11.2026 in ChatGPT Web über „Rex VELUX Live“, Tool-Aufrufe im
+>   Netlify-Log 08:48–08:49 MEZ.
+> - **#116 (P4b Deploy 2, 14.11.2026):** `prepare`/`submit`, Doppelversandschutz, Tageskontingent,
+>   Datenschutzabschnitt „Anfragen über ChatGPT (Rex-Plugin)“. Codex-Gegenlesung mit drei Befunden
+>   (Gateway-Fehler, Löschzusage, Hinweistext), umgesetzt in `f273b0a`. Preview-Test von Tim auf Web,
+>   Classic und iPhone bestanden; Eintrag unter „Verified submissions“, Mail im Postfach (V6). Befund
+>   „Typenschild laut KI“ behoben in `213a974`. Beide PRs per „Squash and merge“. Einzelheiten in
+>   `MCP.md`.
+> **Nächstes 48-h-Fenster:** ab **16.11.2026 00:05 MEZ**.
+> **Als Nächstes vorgesehen:** P5 (Veröffentlichung) nach V8; offen: Satz „ab ca. 1.800 € netto“ auf
+> `/velux-preisrechner-bochum` (Entscheidung Tim), `netlify.toml`-Regel für `/.well-known/…/mcp`.
+> Offen bzw. wartend: S2; H1-Überlauf auf `/datenschutz` bei 390 px; Express-Dev-Server.
 
 | Deploy | Inhalt | Status |
 |---|---|---|
@@ -587,6 +605,8 @@ VELUX D1–D8 · Förder-Bereinigung R1–R4 · Doku/llms nach R1–R4.
 | **D1 Doku zu W1** | `llms.txt`/`llms-full.txt`: Rechner-Link (Format, Grenzen, Werte; keine Kontaktdaten, kein Versand, unverbindliche Schätzung im Browser), Hinweis auf `rex_velux_*` und `calculatorUrl`, Preis-Satz angeglichen. `WEBMCP.md`: Bestätigungspflicht und Rechner-Link, Kompatibilitätstabelle, Nachtest Fall 4 (26.10.2026, bestanden). `estimate:check` prüft die Beispiel-Links in `llms*.txt`. Deploy-Log zu #105, Plan-Datei nach `main` | ✅ live (PR #109, gemergt 31.10.2026 10:19:54 MEZ; Stufe A, 6 Dateien; Gate eingehalten: **65 h 46 min** nach #105; Netlify `6ae5b2bb…`, `commit_ref 0fc6a03`, `published_at 10:20:35 MEZ`, `state ready`, `plugin_state success`, Prerender-Function vorhanden, Secret-Scan 752/0, 31 redirect rules, „All files already uploaded“ trotz geänderter `llms*.txt` (vom Deploy-Preview hochgeladen, siehe Stand 31.10.2026); IndexNow-Lauf #79 grün; Checks-Lauf #102 grün; Prerender-Check-Lauf #31 grün) — **Merge durch Tim** |
 | **Abhängigkeiten (Sicherheit)** | `body-parser` 2.4.0 / 1.20.9, `multer` 2.5.0, `zod` ^4.6.7, `drizzle-zod` ^0.8.3, `zod-validation-error` entfernt; `npm audit --omit=dev`: 4 hohe Meldungen → 0 | ✅ live (PR #113, gemergt 02.11.2026 18:23:03 MEZ; 2 Dateien; Gate eingehalten: **56 h 3 min** nach #109; Netlify `6ae8c6fa…`, `commit_ref 6229990`, `published_at 18:23:42 MEZ`, `state ready`, `plugin_state success`, Secret-Scan 754/0, **66 neue Dateien** (Monatswechsel `__BUILD_DATE__`); IndexNow-Lauf #81 grün; Checks-Lauf #110 grün) — **Merge durch Tim** |
 | **P1 Typenschild-Foto** | Optionales Foto des Typenschilds (im Browser gedreht, auf 2.000 px verkleinert, neu als JPEG ohne EXIF/GPS, ≤ 5 MB), Versand als Multipart mit 45 s Zeitlimit, Herkunftsfeld `quelle` (Aufmerksam geworden / im Rechner eingegeben, per KI oder per Rechner-Link übernommen, unverändert/geändert), Datenschutztext (Codex gegengelesen), Tests in `velux-ui-smoke` und `webmcp-smoke` | ✅ live (PR #111, gemergt 04.11.2026 18:25:17 MEZ als Merge-Commit; Stufe B, 8 Dateien; Gate eingehalten: **48 h 1 min** nach #113; Netlify `6aeb6a80…`, `commit_ref c0417de`, `published_at 18:26:12 MEZ`, `state ready`, `plugin_state success`, Secret-Scan 756/0, 66 neue Dateien, 31 redirect rules; Formular `velux-preisrechner` mit `quelle` und `typenschild`; IndexNow-Lauf #82, Checks-Lauf #112 und Prerender-Check-Lauf #34 grün, rund 15 min in der GitHub-Warteschlange) — **Merge durch Tim** |
+| **P4b Deploy 1** | `netlify/functions/mcp.mts`: lesender MCP-Endpunkt `/mcp` (Optionen, Typenschild-Zuordnung, Kostenschätzung mit `calculatorUrl`), nur Live-Domain und Previews, 64-KB-Grenze, Rate-Limit 60/60 s je IP; `scripts/mcp-check.ts` (18 Prüfungen) und CI-Schritt; SDK 1.32.1 und `@netlify/blobs` 11.1.7 | ✅ live (PR #115, gemergt 11.11.2026 21:32:45 MEZ per Squash; Stufe C, 5 Dateien; Gate eingehalten: rund 7 Tage nach #111; Netlify `6af4d0f0…`, `commit_ref 18f0c38`, `published_at 21:33:31 MEZ`, `state ready`, `plugin_state success`, Secret-Scan 760/0, „All files already uploaded“ (Paketänderung, daher Produktionsdeploy), Rate-Limit-Regel aktiv; CI auf dem PR grün) — **Merge durch Tim** |
+| **P4b Deploy 2** | `prepare`/`submit` mit Bindung an die bestätigte Zusammenfassung (SHA-256), atomarer Reservierung und Zuständen, Tageskontingent 50 über atomare Plätze, Versand an Netlify Forms; `client/src/lib/velux/inquiry.ts` (neu, `konfiguration` aus dem Rechner verschoben); Datenschutzabschnitt „Anfragen über ChatGPT (Rex-Plugin)“; `mcp-check` 51 Prüfungen | ✅ live (PR #116, gemergt 14.11.2026 00:03:56 MEZ per Squash; Stufe C, 5 Dateien; Gate eingehalten: **50 h 31 min** nach Deploy 1; Netlify `6af7975e…`, `commit_ref 0ae9271`, `published_at 00:04:39 MEZ`, `state ready`, `plugin_state success`, Secret-Scan 762/0, 66 neue Dateien, Rate-Limit-Regel aktiv, Formularfelder unverändert; Codex-Gegenlesung umgesetzt; Preview-Test Tim bestanden; CI auf dem PR grün) — **Merge durch Tim** |
 
 > **👤 Abweichung von §5.5 (28. und 30.08.2026) — PR #56 und #61 von Claude gemergt:**
 > Abschnitt 5, Punkt 5 lautet „Merge ausschließlich durch Tim. Kein Direct-Push auf `main`,
