@@ -11,7 +11,7 @@
  * Speicherfehler, Aufräumen, Modus nach Deploy-Kontext. Ohne Netzwerk, ohne echten Versand.
  */
 import handler, {
-  DAILY_LIMIT, MAX_BODY_BYTES, TOOL, config, createInquiryService, memoryStore, resolveMode, summaryIdFor,
+  DAILY_LIMIT, MAX_BODY_BYTES, TOOL, config, createInquiryService, memoryStore, netlifyFormsSender, resolveMode, summaryIdFor,
   type KeyStore, type SendOutcome,
 } from "../netlify/functions/mcp.mts";
 import { buildKonfigurationText, PHOTO_FOLLOW_UP, PHOTO_NOT_SENT } from "../client/src/lib/velux/inquiry";
@@ -211,6 +211,8 @@ async function inquiryChecks(funding: Record<string, string>) {
     const u1: any = await service.submit(args); const u2: any = await service.submit(args);
     check(u1.error?.code === "OUTCOME_UNKNOWN" && u2.error?.code === "OUTCOME_UNKNOWN" && s.calls.length === 1 && u1.ok === false,
       "Timeout → OUTCOME_UNKNOWN, keine Erfolgsmeldung, kein Neuversand");
+    check(!/wir melden uns/.test(u1.error.message) && u1.error.message.includes("0234 / 58 31 00"),
+      "OUTCOME_UNKNOWN verspricht keine Rückmeldung, nennt die Telefonnummer");
   }
   {
     const store = memoryStore(); const s = fakeSender(["rejected", "sent"]); const service = svc(store, s.send);
@@ -256,6 +258,36 @@ async function inquiryChecks(funding: Record<string, string>) {
     const keys = await store.list("");
     check(!keys.includes("quota/2026-11-12/01") && !keys.includes("idem/00000000-0000-4000-8000-999999999999") && keys.includes(`idem/${p.submissionKey}`),
       "Aufräumen: Vortags-Kontingent und Vermerke älter als 24 h gelöscht, aktueller bleibt");
+  }
+
+  // Aufräumen schon bei prepare, ohne Versand, und ohne Obergrenze (Codex-Review #116)
+  {
+    const store = memoryStore(); const s = fakeSender(["sent"]); const service = svc(store, s.send);
+    await store.set("quota/2026-11-10/07", "{}");
+    for (let i = 0; i < 60; i++) await store.set(`idem/old-${i}`, JSON.stringify({ state: "sent", at: Date.parse("2026-11-12T08:00:00Z") }));
+    await store.set("idem/fresh", JSON.stringify({ state: "sent", at: Date.parse("2026-11-13T11:00:00Z") }));
+    await service.prepare(base(funding));
+    const keys = await store.list("");
+    check(s.calls.length === 0 && !keys.some((k) => k.startsWith("idem/old-") || k.startsWith("quota/2026-11-10")) && keys.includes("idem/fresh"),
+      "Aufräumen bei prepare: 60 alte Vermerke und Vortags-Plätze gelöscht, frischer Vermerk bleibt");
+  }
+
+  // Einordnung der Antworten von Netlify Forms (Codex-Review #116, P1)
+  {
+    const realFetch = globalThis.fetch;
+    const classify = async (impl: () => Promise<Response>) => {
+      globalThis.fetch = (async () => impl()) as typeof fetch;
+      try { return await netlifyFormsSender("https://example.invalid")({ a: "1" }); } finally { globalThis.fetch = realFetch; }
+    };
+    const r = (status: number) => async () => new Response(null, { status });
+    const got = {
+      ok200: await classify(r(200)), redirect303: await classify(r(303)), bad400: await classify(r(400)), limit429: await classify(r(429)),
+      timeout408: await classify(r(408)), gateway502: await classify(r(502)), gateway504: await classify(r(504)),
+      error500: await classify(r(500)), thrown: await classify(async () => { throw new Error("reset"); }),
+    };
+    check(got.ok200 === "sent" && got.redirect303 === "sent" && got.bad400 === "rejected" && got.limit429 === "rejected" &&
+      got.timeout408 === "unknown" && got.gateway502 === "unknown" && got.gateway504 === "unknown" && got.error500 === "unknown" && got.thrown === "unknown",
+      `Netlify-Antwort: 2xx/3xx gesendet, 4xx abgelehnt, 408/5xx/Abbruch unklar (${JSON.stringify(got)})`);
   }
 
   // Handler lokal: Probelauf ohne Versand

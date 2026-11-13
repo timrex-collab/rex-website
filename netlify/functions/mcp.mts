@@ -80,7 +80,13 @@ function blobStore(name: string): KeyStore {
 export type SendOutcome = "sent" | "rejected" | "unknown";
 export type Sender = (fields: Record<string, string>) => Promise<SendOutcome>;
 
-/** POST an Netlify Forms. 2xx/3xx = angenommen, 4xx/5xx = abgelehnt, Timeout/Abbruch = unklar. */
+/**
+ * POST an Netlify Forms.
+ * - 2xx/3xx: angenommen.
+ * - 4xx (außer 408): eindeutig abgelehnt, ein neuer Versuch ist erlaubt.
+ * - 408, 5xx (z. B. Gateway-Fehler), Timeout, Abbruch: Ausgang unklar – die Anfrage kann trotzdem
+ *   angekommen sein, deshalb kein Neuversand (Codex-Review #116, P1).
+ */
 export function netlifyFormsSender(origin: string, timeoutMs = SEND_TIMEOUT_MS): Sender {
   return async (fields) => {
     const controller = new AbortController();
@@ -93,7 +99,9 @@ export function netlifyFormsSender(origin: string, timeoutMs = SEND_TIMEOUT_MS):
         redirect: "manual",
         signal: controller.signal,
       });
-      return res.status >= 200 && res.status < 400 ? "sent" : "rejected";
+      if (res.status >= 200 && res.status < 400) return "sent";
+      if (res.status >= 400 && res.status < 500 && res.status !== 408) return "rejected";
+      return "unknown";
     } catch {
       return "unknown";
     } finally {
@@ -148,6 +156,7 @@ export function createInquiryService(deps: InquiryDeps) {
   const testPrefix = deps.mode === "production" ? undefined : deps.mode === "preview" ? "TEST – Preview" : "TEST – lokal";
 
   async function prepare(input: unknown): Promise<Result> {
+    await cleanup();
     const built = buildPluginInquiry(input, { testPrefix });
     if (!built.ok) return failure(built.error.code, built.error.message, built.error.path ? { path: built.error.path } : {});
     const submissionKey = randomKey();
@@ -166,13 +175,19 @@ export function createInquiryService(deps: InquiryDeps) {
     };
   }
 
-  /** Löscht alte Einträge (best effort, ohne Garantie für genau 24 Stunden). */
-  async function cleanup(today: string, t: number): Promise<void> {
+  /**
+   * Löscht Kontingent-Plätze von Vortagen und Versandvermerke, die älter als 24 Stunden sind.
+   * Läuft bei jedem prepare und submit (best effort): Wird das Plugin nicht genutzt, bleiben die
+   * Einträge bis zum nächsten Aufruf liegen – so steht es auch in der Datenschutzerklärung.
+   */
+  async function cleanup(): Promise<void> {
+    const t = now().getTime();
+    const today = berlinDay(now());
     try {
       for (const key of await deps.store.list("quota/")) {
         if (key.slice(6, 16) < today) await deps.store.delete(key);
       }
-      for (const key of (await deps.store.list("idem/")).slice(0, 50)) {
+      for (const key of await deps.store.list("idem/")) {
         const raw = await deps.store.get(key);
         const at = raw ? Number(JSON.parse(raw).at) : 0;
         if (!at || t - at > IDEM_TTL_MS) await deps.store.delete(key);
@@ -181,6 +196,7 @@ export function createInquiryService(deps: InquiryDeps) {
   }
 
   async function submit(input: unknown): Promise<Result> {
+    await cleanup();
     const split = splitSubmit(input);
     if (!split.ok) return split.result;
     if (split.confirmed !== true) {
@@ -209,7 +225,7 @@ export function createInquiryService(deps: InquiryDeps) {
       let state = "in_progress";
       try { const raw = await deps.store.get(idemKey); if (raw) state = JSON.parse(raw).state; } catch { /* Zustand unbekannt */ }
       if (state === "sent") return { ok: true, status: "ALREADY_SENT", message: "Diese Anfrage wurde bereits gesendet. Nicht erneut senden." };
-      if (state === "unknown") return failure("OUTCOME_UNKNOWN", `Ob diese Anfrage angekommen ist, konnten wir nicht bestätigen. Bitte nicht erneut senden – wir melden uns. Bei Eile: ${PHONE}.`);
+      if (state === "unknown") return failure("OUTCOME_UNKNOWN", `Ob diese Anfrage angekommen ist, konnten wir nicht bestätigen. Bitte nicht erneut senden. Wenn Sie sichergehen möchten, rufen Sie uns an: ${PHONE}.`);
       return failure("IN_PROGRESS", "Diese Anfrage wird gerade gesendet. Bitte nicht erneut senden.");
     }
 
@@ -239,10 +255,9 @@ export function createInquiryService(deps: InquiryDeps) {
     }
     if (outcome === "unknown") {
       await deps.store.set(idemKey, JSON.stringify({ state: "unknown", at: t })).catch(() => {});
-      return failure("OUTCOME_UNKNOWN", `Ob die Anfrage angekommen ist, konnten wir nicht bestätigen. Bitte nicht erneut senden – wir melden uns. Bei Eile: ${PHONE}.`);
+      return failure("OUTCOME_UNKNOWN", `Ob die Anfrage angekommen ist, konnten wir nicht bestätigen. Bitte nicht erneut senden. Wenn Sie sichergehen möchten, rufen Sie uns an: ${PHONE}.`);
     }
     await deps.store.set(idemKey, JSON.stringify({ state: "sent", at: t })).catch(() => {});
-    await cleanup(today, t);
     return {
       ok: true,
       status: "SENT",

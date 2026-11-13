@@ -198,9 +198,10 @@ export default function Datenschutz() {
                 Außerdem legen wir beim Absenden einen kurzen Versandvermerk bei Netlify ab (eine
                 zufällige Kennung, der Versandstatus und ein Zeitstempel, ohne Ihre Angaben), damit
                 eine Anfrage nicht doppelt gesendet wird, sowie einen Zähler für die Zahl der Anfragen
-                pro Tag. Versandvermerke löschen wir in der Regel nach 24 Stunden, Zähler am Folgetag;
-                beides geschieht beim nächsten Aufruf des Plugins und wird zusätzlich im Rahmen unserer
-                monatlichen Löschroutine geprüft. Rechtsgrundlage ist Art. 6 Abs. 1 lit. f DSGVO; unser
+                pro Tag. Versandvermerke werden automatisch gelöscht, sobald sie älter als 24 Stunden
+                sind, Zähler ab dem Folgetag. Die Löschung erfolgt jeweils beim nächsten Vorbereiten
+                oder Absenden einer Anfrage über das Plugin; wird es eine Zeit lang nicht genutzt,
+                bleiben diese Einträge bis dahin bestehen. Rechtsgrundlage ist Art. 6 Abs. 1 lit. f DSGVO; unser
                 berechtigtes Interesse liegt im Schutz vor Missbrauch und Doppelanfragen. Unsere
                 Anwendungsprotokolle enthalten keine Eingaben aus dem Plugin.
               </p>
