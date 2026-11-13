@@ -7,6 +7,7 @@ import { ChevronRight, ChevronLeft, Calculator, Home, Sun, Phone, Mail, Check, I
 // (eine Preislogik für UI, PDF, Anfrage-Text und WebMCP).
 import { DIMS, WINDOWS, EDW, SHUTTERS, BLINDS, LABOR, GL, fmt, sizesForModel, shuttersForSize, blindsForSize } from "@/lib/velux/catalog";
 import { calcDetails, buildEstimate } from "@/lib/velux/estimate";
+import { buildKonfigurationText } from "@/lib/velux/inquiry";
 import { EMPTY_FUNDING_ANSWERS, isFundingComplete, RULES } from "@/lib/velux/funding";
 import { ASSUMPTIONS, CALCULATOR_LINK_TEXT, COMPANY, DISCLAIMER, EXCLUSIONS, FUNDING_LABELS, FUNDING_NOTES, FUNDING_QUESTION_HINTS, PRICE_BASIS_NOTE, SCOPE_NOTE, fundingSummaryLines } from "@/lib/velux/content";
 // W1: Rechner-Link im Fragment (ohne Kontaktdaten), geprüft über dieselben Validatoren wie WebMCP.
@@ -454,17 +455,8 @@ function Step3({positions,foerderung,origin}){
   const buildQuelle=()=>
     `Aufmerksam geworden: ${herkunft||"keine Angabe"}\nKonfiguration: ${describeConfigOrigin(origin,positions,foerderung)}`;
 
-  const buildKonfigText = () => {
-    return details.map((d, i) =>
-      `Pos ${i+1}: ${d.qty}× ${d.model} ${d.size} (${DIMS[d.size]} cm) ${GL[d.glazing].l}` +
-      (d.shutterQty > 0 ? ` + ${d.shutterQty}× ${SHUTTERS[d.shutter].short}` : "") +
-      (d.blindQty > 0 ? ` + ${d.blindQty}× ${BLINDS[d.blind].short}` : "") +
-      ` → ab ${fmt(d.matPos + d.labPos)} € netto`
-    ).join("\n") +
-    `\n\nKostenschätzung netto: ab ${fmt(totalNetto)} €` +
-    `\nKostenschätzung brutto: ab ${fmt(totalBrutto)} €` +
-    `\n\n${fundingSummaryLines(funding, foerderung).join("\n")}`;
-  };
+  // Gleiche Fassung wie im Server-Plugin (P4b): client/src/lib/velux/inquiry.ts
+  const buildKonfigText = () => buildKonfigurationText(details, totals, funding, foerderung);
 
   const handleSubmitAndPdf = async () => {
     // Erst senden, wenn ein gewähltes Foto fertig vorbereitet ist (sonst fehlt es in der Anfrage).
