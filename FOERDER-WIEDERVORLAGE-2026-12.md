@@ -1,7 +1,8 @@
 # Förder-Wiedervorlage 12/2026 – Prüfauftrag und Umsetzungsplan
 
 Stand 17.11.2026 (Fassung 2: Teil 1 der Quellenprüfung durch Codex eingetragen, Test je Regelwerk),
-vorbereitet von Claude, **noch nicht freigegeben**. Auftrag von Tim vom 17.11.2026: „Förder-Wiedervorlage
+vorbereitet von Claude. **Vorgehen F1–F4 von Tim am 17.11.2026 freigegeben.** Die Fristverlängerung selbst
+folgt erst nach Abschluss von Teil 2 der Quellenprüfung, als eigener PR mit Merge durch Tim. Auftrag von Tim vom 17.11.2026: „Förder-Wiedervorlage
 vorbereiten“.
 
 ## 1. Worum es geht
@@ -139,7 +140,7 @@ oder Satz heißt: Die Frist wird nicht verlängert, der Punkt wird geklärt.
 
 ## 7. Entscheidungen für Tim
 
-Alle Punkte sind **offen, bis Tim entscheidet**. In der Spalte steht, wer was empfiehlt.
+**F1–F4 von Tim am 17.11.2026 freigegeben**, jeweils wie empfohlen.
 
 | Nr. | Frage | Empfehlung |
 |---|---|---|
