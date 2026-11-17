@@ -177,7 +177,7 @@ export default function Datenschutz() {
                 darin, unsere Anfragewege zu verbessern.
               </p>
 
-              <h3 className="text-xl font-semibold mb-3 mt-6">Anfragen über ChatGPT (Rex-Plugin)</h3>
+              <h3 id="chatgpt-plugin" className="text-xl font-semibold mb-3 mt-6 scroll-mt-28">Anfragen über ChatGPT (Rex-Plugin)</h3>
               <p>
                 Sie können eine Kostenschätzung und eine Angebotsanfrage auch über unser Plugin in
                 ChatGPT erstellen. ChatGPT wird von OpenAI betrieben; was OpenAI mit Ihrem Gespräch
@@ -186,7 +186,10 @@ export default function Datenschutz() {
                 Plugin übergibt: Fensterangaben, Antworten zu den Fördervoraussetzungen und – sobald
                 Sie eine Anfrage vorbereiten lassen – Ihren Namen, Ihre E-Mail-Adresse und/oder
                 Telefonnummer, freiwillige Adressdaten, Ihre Nachricht sowie die Angabe, ob die
-                Zuordnung Ihres vorhandenen Fensters bestätigt oder nur vermutet ist. Diese Angaben
+                Zuordnung Ihres vorhandenen Fensters bestätigt oder nur vermutet ist. Die Antworten
+                unseres Plugins gehen an ChatGPT zurück und werden damit ebenfalls bei OpenAI verarbeitet:
+                die Kostenschätzung und, sobald Sie eine Anfrage vorbereiten lassen, die Zusammenfassung
+                mit Ihren Kontaktdaten, die ChatGPT Ihnen vor dem Absenden zeigt. Diese Angaben
                 verarbeitet unser Plugin bei Netlify schon, wenn es die Zusammenfassung Ihrer Anfrage
                 erstellt; gespeichert werden sie dabei nicht. Erst wenn Sie dem Absenden ausdrücklich
                 zustimmen, geht die Anfrage wie eine Anfrage aus dem Preisrechner in das
@@ -198,10 +201,10 @@ export default function Datenschutz() {
                 Außerdem legen wir beim Absenden einen kurzen Versandvermerk bei Netlify ab (eine
                 zufällige Kennung, der Versandstatus und ein Zeitstempel, ohne Ihre Angaben), damit
                 eine Anfrage nicht doppelt gesendet wird, sowie einen Zähler für die Zahl der Anfragen
-                pro Tag. Versandvermerke werden automatisch gelöscht, sobald sie älter als 24 Stunden
-                sind, Zähler ab dem Folgetag. Die Löschung erfolgt jeweils beim nächsten Vorbereiten
-                oder Absenden einer Anfrage über das Plugin; wird es eine Zeit lang nicht genutzt,
-                bleiben diese Einträge bis dahin bestehen. Rechtsgrundlage ist Art. 6 Abs. 1 lit. f DSGVO; unser
+                pro Tag. Versandvermerke, die älter als 24 Stunden sind, und Zähler von Vortagen
+                löschen wir automatisch, sobald über das Plugin erneut eine Anfrage abgesendet wird.
+                Wird keine weitere Anfrage abgesendet, bleiben sie bis dahin gespeichert; sie enthalten
+                keine Angaben aus Ihrer Anfrage. Rechtsgrundlage ist Art. 6 Abs. 1 lit. f DSGVO; unser
                 berechtigtes Interesse liegt im Schutz vor Missbrauch und Doppelanfragen. Unsere
                 Anwendungsprotokolle enthalten keine Eingaben aus dem Plugin.
               </p>

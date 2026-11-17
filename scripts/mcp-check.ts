@@ -8,7 +8,8 @@
  * Tool-Liste; Goldwert über dieselbe Fachlogik (2.104 € brutto); Bestätigungsbedarf beim Typenschild;
  * Fehlerpfade; Rate-Limit-Regel. Ab Deploy 2: prepare/submit mit Prüfung der Eingaben, Bindung an die
  * Zusammenfassung, allen Zuständen des Doppelversandschutzes, Tageskontingent (auch parallel),
- * Speicherfehler, Aufräumen, Modus nach Deploy-Kontext. Ohne Netzwerk, ohne echten Versand.
+ * Speicherfehler, Aufräumen (nur bei submit), Modus nach Deploy-Kontext. Korrekturpaket: Annotationen aller
+ * Tools, prepare ohne Speicherzugriff. Ohne Netzwerk, ohne echten Versand.
  */
 import handler, {
   DAILY_LIMIT, MAX_BODY_BYTES, TOOL, config, createInquiryService, memoryStore, netlifyFormsSender, resolveMode, summaryIdFor,
@@ -82,8 +83,22 @@ async function main() {
     `tools/list: drei lesende Tools, prepare und submit (${names.join(", ")})`);
   check(!names.some((n: string) => /apply|photo/.test(n)), "tools/list: kein Apply- oder Fototool");
   const tdef = (n: string) => (list.body?.result?.tools ?? []).find((t: any) => t.name === n);
-  check(tdef(TOOL.prepare)?.annotations?.readOnlyHint === true && tdef(TOOL.submit)?.annotations?.readOnlyHint === false,
-    "Annotationen: prepare lesend, submit schreibend");
+  // Annotationen: für jedes Tool alle drei Werte ausdrücklich (Korrekturpaket K1).
+  const expected: Record<string, [boolean, boolean, boolean]> = {
+    rex_velux_get_options_v1: [true, false, false],
+    rex_velux_resolve_existing_window_v1: [true, false, false],
+    rex_velux_calculate_estimate_v1: [true, false, false],
+    [TOOL.prepare]: [true, false, false],
+    [TOOL.submit]: [false, true, true],
+  };
+  for (const [n, [ro, de, ow]] of Object.entries(expected)) {
+    const a = tdef(n)?.annotations ?? {};
+    check(a.readOnlyHint === ro && a.destructiveHint === de && a.openWorldHint === ow,
+      `Annotationen ${n}: readOnly ${ro}, destructive ${de}, openWorld ${ow} (${JSON.stringify(a)})`);
+  }
+  check(tdef(TOOL.submit)?.annotations?.idempotentHint === true, "Annotationen: submit idempotent (gleicher submissionKey, kein zweiter Versand)");
+  check(tdef("rex_velux_resolve_existing_window_v1")?.annotations?.untrustedContentHint === true,
+    "Annotationen: Zusatzangabe aus tools.ts (untrustedContentHint) bleibt erhalten");
   check(JSON.stringify(tdef(TOOL.submit)?.inputSchema?.required) === JSON.stringify(["positions", "funding", "contact", "summaryId", "submissionKey", "userConfirmed"]),
     "submit verlangt summaryId, submissionKey und userConfirmed");
 
@@ -260,16 +275,34 @@ async function inquiryChecks(funding: Record<string, string>) {
       "Aufräumen: Vortags-Kontingent und Vermerke älter als 24 h gelöscht, aktueller bleibt");
   }
 
-  // Aufräumen schon bei prepare, ohne Versand, und ohne Obergrenze (Codex-Review #116)
+  // Korrekturpaket K1a (Variante A): prepare greift nicht auf den Speicher zu. Das Aufräumen bei prepare aus
+  // dem Codex-Review #116 entfällt; aufgeräumt wird nur noch bei submit, dort weiterhin ohne Obergrenze.
+  {
+    const inner = memoryStore();
+    let touched = 0;
+    const counting: KeyStore = {
+      createIfNew: (k, v) => { touched++; return inner.createIfNew(k, v); },
+      get: (k) => { touched++; return inner.get(k); },
+      set: (k, v) => { touched++; return inner.set(k, v); },
+      delete: (k) => { touched++; return inner.delete(k); },
+      list: (p) => { touched++; return inner.list(p); },
+    };
+    const s = fakeSender(["sent"]); const service = svc(counting, s.send);
+    const p: any = await service.prepare(base(funding));
+    check(p?.ok === true && touched === 0 && s.calls.length === 0, `prepare: kein Speicherzugriff, kein Versand (${touched} Zugriffe)`);
+  }
   {
     const store = memoryStore(); const s = fakeSender(["sent"]); const service = svc(store, s.send);
     await store.set("quota/2026-11-10/07", "{}");
     for (let i = 0; i < 60; i++) await store.set(`idem/old-${i}`, JSON.stringify({ state: "sent", at: Date.parse("2026-11-12T08:00:00Z") }));
     await store.set("idem/fresh", JSON.stringify({ state: "sent", at: Date.parse("2026-11-13T11:00:00Z") }));
-    await service.prepare(base(funding));
+    const p: any = await service.prepare(base(funding));
+    const afterPrepare = await store.list("");
+    check(afterPrepare.length === 62, `prepare räumt nicht auf: alle 62 Einträge noch da (${afterPrepare.length})`);
+    const r: any = await service.submit({ ...base(funding), summaryId: p.summaryId, submissionKey: p.submissionKey, userConfirmed: true });
     const keys = await store.list("");
-    check(s.calls.length === 0 && !keys.some((k) => k.startsWith("idem/old-") || k.startsWith("quota/2026-11-10")) && keys.includes("idem/fresh"),
-      "Aufräumen bei prepare: 60 alte Vermerke und Vortags-Plätze gelöscht, frischer Vermerk bleibt");
+    check(r?.status === "SENT" && !keys.some((k) => k.startsWith("idem/old-") || k.startsWith("quota/2026-11-10")) && keys.includes("idem/fresh"),
+      "Aufräumen bei submit: 60 alte Vermerke und Vortags-Plätze gelöscht, frischer Vermerk bleibt");
   }
 
   // Einordnung der Antworten von Netlify Forms (Codex-Review #116, P1)
