@@ -155,8 +155,8 @@ export function createInquiryService(deps: InquiryDeps) {
   const randomKey = deps.randomKey ?? (() => crypto.randomUUID());
   const testPrefix = deps.mode === "production" ? undefined : deps.mode === "preview" ? "TEST – Preview" : "TEST – lokal";
 
+  // prepare greift nicht auf den Speicher zu (readOnlyHint stimmt); aufgeräumt wird nur in submit.
   async function prepare(input: unknown): Promise<Result> {
-    await cleanup();
     const built = buildPluginInquiry(input, { testPrefix });
     if (!built.ok) return failure(built.error.code, built.error.message, built.error.path ? { path: built.error.path } : {});
     const submissionKey = randomKey();
@@ -177,8 +177,9 @@ export function createInquiryService(deps: InquiryDeps) {
 
   /**
    * Löscht Kontingent-Plätze von Vortagen und Versandvermerke, die älter als 24 Stunden sind.
-   * Läuft bei jedem prepare und submit (best effort): Wird das Plugin nicht genutzt, bleiben die
-   * Einträge bis zum nächsten Aufruf liegen – so steht es auch in der Datenschutzerklärung.
+   * Läuft nur bei submit (best effort), dem Aufruf, der diese Einträge auch anlegt. Wird keine weitere
+   * Anfrage abgesendet, bleiben abgelaufene Einträge bis dahin liegen – so steht es auch in der
+   * Datenschutzerklärung.
    */
   async function cleanup(): Promise<void> {
     const t = now().getTime();
@@ -311,7 +312,6 @@ function inquiryTools(service: ReturnType<typeof createInquiryService>) {
         "vollständige Zusammenfassung, summaryId und submissionKey. Die Zusammenfassung dem Nutzer vollständig zeigen und nur nach seiner ausdrücklichen " +
         "Zustimmung rex_velux_submit_inquiry_v1 aufrufen. Ein Foto aus dem Chat wird nicht übertragen.",
       inputSchema: { type: "object", additionalProperties: false, required: ["positions", "funding", "contact"], properties: INQUIRY_PROPERTIES },
-      annotations: { readOnlyHint: true },
       execute: (input: unknown) => service.prepare(input),
     },
     {
@@ -332,11 +332,29 @@ function inquiryTools(service: ReturnType<typeof createInquiryService>) {
           userConfirmed: { type: "boolean", description: "true nur nach ausdrücklicher Zustimmung des Nutzers zu genau dieser Zusammenfassung." },
         },
       },
-      annotations: { readOnlyHint: false, destructiveHint: false, idempotentHint: true, openWorldHint: true },
       execute: (input: unknown) => service.submit(input),
     },
   ];
 }
+
+// ── Annotationen ─────────────────────────────────────────────────────
+
+/**
+ * Für jedes Tool alle drei Werte ausdrücklich, nur hier im Server. `tools.ts` bleibt unverändert, weil
+ * WebMCP im Browser dieselben Definitionen nutzt. Zusätzliche Angaben aus `tools.ts`
+ * (z. B. untrustedContentHint) bleiben erhalten.
+ * - Die drei Rechen-Tools und prepare lesen nur: kein Speicherzugriff, kein Versand, keine Außenwirkung.
+ * - submit sendet eine Anfrage an Rex, die sich nicht zurückholen lässt (destructive), über Netlify Forms
+ *   nach außen (openWorld); mit gleichem submissionKey kein zweiter Versand (idempotent).
+ */
+const READ_ONLY = { readOnlyHint: true, destructiveHint: false, openWorldHint: false } as const;
+export const MCP_ANNOTATIONS: Record<string, Record<string, boolean>> = {
+  rex_velux_get_options_v1: READ_ONLY,
+  rex_velux_resolve_existing_window_v1: READ_ONLY,
+  rex_velux_calculate_estimate_v1: READ_ONLY,
+  [TOOL.prepare]: READ_ONLY,
+  [TOOL.submit]: { readOnlyHint: false, destructiveHint: true, idempotentHint: true, openWorldHint: true },
+};
 
 // ── Server ───────────────────────────────────────────────────────────
 
@@ -358,7 +376,7 @@ export function buildServer(deps: InquiryDeps): Server {
       ...(t.title ? { title: t.title } : {}),
       description: t.description,
       inputSchema: t.inputSchema as { type: "object"; [key: string]: unknown },
-      ...(t.annotations ? { annotations: t.annotations } : {}),
+      annotations: { ...("annotations" in t ? t.annotations : {}), ...MCP_ANNOTATIONS[t.name] },
     })),
   }));
   server.setRequestHandler(CallToolRequestSchema, async (request, extra) => {

@@ -1,6 +1,6 @@
 # MCP-Endpunkt `/mcp` – Rex-Plugin für ChatGPT
 
-Stand 14.11.2026. Live seit P4b Deploy 1 (#115, lesend, 11.11.2026) und Deploy 2 (#116, Anfrage
+Stand 17.11.2026 (Korrekturpaket: Annotationen, Aufräumen nur bei `submit`, Datenschutz). Live seit P4b Deploy 1 (#115, lesend, 11.11.2026) und Deploy 2 (#116, Anfrage
 senden, 14.11.2026). Planung und Entscheidungen: `UMSETZUNGSPLAN-2026-10-KI-ANFRAGEN.md`, Abschnitt
 P4. Code: `netlify/functions/mcp.mts`, Anfrage-Inhalt `client/src/lib/velux/inquiry.ts`, Prüfungen
 `scripts/mcp-check.ts` (CI-Schritt „MCP-Endpunkt (P4b)“).
@@ -26,8 +26,13 @@ ist ein Server-Endpunkt, den ChatGPT als Connector anspricht.
 | `rex_velux_get_options_v1` | lesend | Modelle, Größen, Verglasungen, Zubehör |
 | `rex_velux_resolve_existing_window_v1` | lesend | Typenschild-Zuordnung; bei unsicherer Lesart `confirmation_required` |
 | `rex_velux_calculate_estimate_v1` | lesend | Kostenschätzung mit BEG und §35c, `calculatorUrl` |
-| `rex_velux_prepare_inquiry_v1` | lesend, speichert nichts | vollständige Zusammenfassung, `summaryId`, `submissionKey` |
+| `rex_velux_prepare_inquiry_v1` | lesend, kein Speicherzugriff | vollständige Zusammenfassung, `summaryId`, `submissionKey` |
 | `rex_velux_submit_inquiry_v1` | schreibend | sendet genau die bestätigte Anfrage an Netlify Forms (`velux-preisrechner`) |
+
+**Annotationen** (seit Korrekturpaket, gesetzt in `mcp.mts`, nicht in `tools.ts`, weil WebMCP dieselben
+Definitionen nutzt): die drei Rechen-Tools und `prepare` `readOnlyHint: true`, `destructiveHint: false`,
+`openWorldHint: false`; `submit` `readOnlyHint: false`, `destructiveHint: true` (Versand nicht rückholbar),
+`idempotentHint: true`, `openWorldHint: true`. `mcp-check` prüft alle Werte je Tool.
 
 Alle Beträge kommen aus `client/src/lib/velux` (dieselbe Logik wie Rechner und WebMCP). Ein Foto
 wird über das Plugin nicht übertragen (Variante A, Entscheidung Tim 11.11.2026).
@@ -63,8 +68,10 @@ Kein Antworttext von ChatGPT.
 
 - **Stores:** `rex-mcp-production` (nur Production-Kontext und Live-Domain) und `rex-mcp-preview`.
   Einträge: `idem/<submissionKey>` (Zustand, Zeitstempel) und `quota/<Datum>/<NN>` (Zeitstempel),
-  keine Eingaben. Aufräumen bei jedem `prepare`/`submit`: Vermerke älter als 24 h, Plätze von
-  Vortagen. Ohne Aufrufe bleiben sie bis zum nächsten Aufruf liegen (so in der Datenschutzerklärung).
+  keine Eingaben. Aufräumen nur bei `submit` (seit Korrekturpaket; vorher auch bei `prepare`, aus dem
+  Codex-Review zu #116): Vermerke älter als 24 h, Plätze von Vortagen. Ohne weiteren Versand bleiben sie
+  ohne zeitliche Grenze liegen (so in der Datenschutzerklärung, Abschnitt `#chatgpt-plugin`). Aufgeräumt
+  wird bei jedem `submit`-Aufruf, auch wenn er danach abgelehnt wird.
 - **Preview:** sendet echt, mit „TEST – Preview“ in `name` und `quelle`; Einträge danach löschen.
 - **Lokal/CI:** Probelauf ohne Versand, Speicher im Arbeitsspeicher.
 - **Logs:** nur Tool-Name, Ergebnis-Code, Dauer.
@@ -89,10 +96,11 @@ Kein Antworttext von ChatGPT.
 
 ## Offen
 
-- **P5:** Veröffentlichung (Erwähnung in `llms*.txt`, Kundenanleitung). V8: Unter welchen
-  Bedingungen können Kunden einen eigenen Connector hinzufügen?
+- **P5:** Veröffentlichung in ChatGPT zurückgestellt (Entscheidung Tim, 17.11.2026). Hauptweg für Kunden ist
+  der Website-Rechner, auch mit vorausgefülltem Rechner-Link; Plan auf Branch `claude/p5-plan`
+  (`P5-PLAN-CHATGPT-VEROEFFENTLICHUNG.md`). V8-Ergebnis von Codex (15.11.2026) dort zusammengefasst.
 - `/.well-known/oauth-*` und `openid-configuration` unter `/mcp` liefern wegen des SPA-Fallbacks die
   Startseite mit 200 statt 404; ChatGPT kommt damit zurecht. Möglicher kleiner Deploy: Regel in
   `netlify.toml`.
-- Erster Aufruf einer ChatGPT-Sitzung endet mit 400, danach 200; funktional ohne Wirkung, noch nicht
-  untersucht.
+- Erster Aufruf einer ChatGPT-Sitzung endet mit 400, danach 200. Ursache ungeklärt, bisher kein
+  beobachteter Ausfall; beobachten, Codeänderung nur bei nachgewiesenem Fehler.
