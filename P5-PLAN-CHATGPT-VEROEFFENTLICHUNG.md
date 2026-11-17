@@ -1,8 +1,18 @@
-# P5-Plan, Entwurf 3: Website-Rechner als Hauptweg, ChatGPT-Veröffentlichung zurückgestellt
+# P5-Plan, Entwurf 4: Website-Rechner als Hauptweg, ChatGPT-Veröffentlichung zurückgestellt
 
-Stand 17.11.2026, **zur Freigabe, noch nicht freigegeben.** Entwurf 3 ergänzt Entwurf 2 (`91755df`) um Tims
-Rückmeldung vom 17.11.2026. Neu sind: der Bereinigungspunkt in `prepare` (K1), die genauere Einordnung der
-Prüfgrundlage und die Festlegungen zur Kurzanleitung. Entwurf 1 (`61a47dc`) steht im Git-Verlauf.
+Stand 17.11.2026, **zur Freigabe, noch nicht freigegeben.** Frühere Fassungen stehen im Git-Verlauf dieses
+Branches: Entwurf 1 `61a47dc`, Entwurf 2 `91755df`, Entwurf 3 `f00305b`.
+
+- **Entwurf 3** hat ergänzt: den Bereinigungspunkt in `prepare` (K1a), die genauere Einordnung der
+  Prüfgrundlage und die Festlegungen zur Kurzanleitung.
+- **Entwurf 4** berichtigt:
+  - die falsche Aussage zur Förderfrist (Abschnitt 6)
+  - die Herkunft der Empfehlungen: Die Vermerke „Tim: …“ in Entwurf 3 stammten aus Empfehlungen von Codex,
+    die Tim weitergeleitet hat. Sie sind keine Freigaben von Tim.
+  - die Beschreibung des Löschzeitpunkts bei Variante A
+
+**Wer entscheidet:** Freigaben erteilt nur Tim. Die Gegenlesung durch Codex ist eine Empfehlung und ersetzt keine
+Freigabe.
 
 **Prüfgrundlage, ehrlich eingeordnet.** Geprüft am 17.11.2026 gegen `origin/main` (`c5dbcfa`, seit #117
 unverändert):
@@ -10,8 +20,9 @@ unverändert):
   `client/src/components/VeluxPreisrechner.tsx`, `export-gate.ts`, `netlify/functions/mcp.mts`,
   `client/public/llms*.txt`, `Datenschutz.tsx`.
 - **Lokal ausgeführt:**
-  - `estimate:check`: alle Prüfungen bestanden. Es kommen zwei Warnungen „Förderprüfung fällig“, weil BEG
-    und §35c bis 31.12.2026 gelten.
+  - `estimate:check`: alle Prüfungen bestanden. Es kommen zwei Warnungen „Förderprüfung fällig“. Am
+    31.12.2026 endet der im Rechner hinterlegte **Prüfstand** der Förderregeln (`validThrough`, im Code als
+    „Wiedervorlage“ bezeichnet). Die Förderprogramme selbst laufen damit nicht aus, siehe Abschnitt 6.
   - `foerder:check`: keine Drift.
   - Die fünf Beispiel-Links der Kurzanleitung liefen durch den echten Parser (`parseCalculatorFragment`). Alle
     werden angenommen und lassen sich unverändert zurückbauen. Gegenproben mit unzulässiger Größe bzw. mehr
@@ -107,7 +118,7 @@ Nicht nötig: neue Seite, KI-Assistent, Änderungen an Preis- oder Förderlogik,
 
 ## 3. Empfohlene kleinste Änderung
 
-**Stufe 0 – ohne Code (Tim: ja):**
+**Stufe 0 – ohne Code (Empfehlung Claude und Codex; Freigabe durch Tim offen):**
 
 - Claude erstellt eine interne Kurzanleitung „Rechner-Link für Kunden erstellen“ als **separates Dokument nur
   für Tim**. Sie kommt **nicht** ins Repo, weil ein öffentliches Repo für jeden lesbar ist. Auf die Website
@@ -118,12 +129,14 @@ Nicht nötig: neue Seite, KI-Assistent, Änderungen an Preis- oder Förderlogik,
     aus dem Link übernommen“ und stimmen Modell, Größe und Zubehör? Der Rechner prüft Modell und Größe,
     Rollladen und Rollo je Größe sowie die Mengen. Ungültige Links öffnen einen leeren Rechner mit gelbem
     Hinweis.
-- Tim prüft einen Link einmal über WhatsApp und einmal per Mail auf dem Handy (Abschnitt 2, Punkt 2).
+- Tim prüft einen Link einmal über WhatsApp und einmal per Mail auf dem Handy (Abschnitt 2, Punkt 2)
+  Zum Prüfen genügt es, den Link zu öffnen und Fenster und Rollläden anzusehen. **Es wird keine Anfrage
+  abgesendet.**
 - Den normalen Rechner-Link verwendet das Team für Antwortvorlagen, die E-Mail-Signatur und das Google-Profil.
   Das sind Tims Kanäle; Claude ändert dort nichts.
 
-**Stufe 1 – erst bei Bedarf (Tim: zuerst mit wenigen geprüften Links ausprobieren, dann anhand der
-tatsächlichen Nutzung entscheiden):**
+**Stufe 1 – erst bei Bedarf (Empfehlung Codex: zuerst mit wenigen geprüften Links ausprobieren, dann anhand
+der tatsächlichen Nutzung entscheiden; Freigabe durch Tim offen):**
 
 - Button „Link zu dieser Konfiguration kopieren“ in Schritt 3 des Rechners. Er nutzt das vorhandene
   `buildCalculatorUrl` und schreibt nur in die Zwischenablage, ohne Kontaktdaten, ohne Server und ohne neue
@@ -172,11 +185,11 @@ Diese Befunde gelten unabhängig von einer Veröffentlichung, weil `/mcp` live i
 
 | Variante | Änderung | Vorteil | Nachteil |
 |---|---|---|---|
-| **A (Empfehlung)** | `cleanup()` nur noch in `submit`; `prepare` greift gar nicht mehr auf den Speicher zu | `prepare` ist dann tatsächlich lesend, und `readOnlyHint: true` stimmt. Vermerke und Plätze entstehen ohnehin nur in `submit`, also räumt der Aufruf auf, der sie auch erzeugt. | Ohne weitere Versände bleiben abgelaufene Einträge etwas länger liegen. Das ist schon heute so dokumentiert („bis zum nächsten Aufruf“). Der Datenschutzsatz ändert sich von „beim nächsten Vorbereiten oder Absenden“ zu „beim nächsten Absenden“. |
+| **A (Empfehlung)** | `cleanup()` nur noch in `submit`; `prepare` greift gar nicht mehr auf den Speicher zu | `prepare` ist dann tatsächlich lesend, und `readOnlyHint: true` stimmt. Vermerke und Plätze entstehen ohnehin nur in `submit`, also räumt der Aufruf auf, der sie auch erzeugt. | Gelöscht wird nur, wenn erneut über das Plugin gesendet wird. Gibt es keinen weiteren Versand, bleiben abgelaufene Einträge **ohne zeitliche Grenze** liegen. Das gilt dem Grundsatz nach schon heute, nur zählt bisher auch ein Vorbereiten als Auslöser. Die Datenschutzerklärung muss den tatsächlichen Zeitpunkt nennen (siehe K2 unten). |
 | B | Bereinigung bleibt, `prepare` meldet `readOnlyHint: false` | kein Eingriff in den Ablauf | ChatGPT fragt dann womöglich schon vor dem Vorbereiten nach einer Bestätigung. Das bremst und verwischt den Unterschied zum Senden. |
 | C | Alles bleibt, nur eine Begründung wird dokumentiert | kein Code | Die Selbstauskunft bleibt ungenau. Nicht empfohlen. |
 
-**Korrekturpaket K1 + K1a + K2 (Tim: ja, zusammen):**
+**Korrekturpaket K1 + K1a + K2 (Empfehlung Claude und Codex: zusammen; Freigabe durch Tim offen):**
 
 - **Dateien:** `netlify/functions/mcp.mts`, `scripts/mcp-check.ts`, `client/src/pages/Datenschutz.tsx`,
   `MCP.md`. Das sind 4 Dateien, Stufe C wegen des Function-Codes. Ein Deploy nach dem aktuellen 48-h-Gate.
@@ -185,7 +198,13 @@ Diese Befunde gelten unabhängig von einer Veröffentlichung, weil `/mcp` live i
   - Bereinigung nach Variante A.
   - Datenschutz:
     - Rückfluss der Plugin-Antworten an ChatGPT bzw. OpenAI
-    - Löschzeitpunkt „beim nächsten Absenden“
+    - Löschzeitpunkt genau so, wie er tatsächlich ist. Vorschlag zum Gegenlesen: „Versandvermerke, die älter
+      als 24 Stunden sind, und Zähler von Vortagen werden gelöscht, sobald über das Plugin erneut eine Anfrage
+      abgesendet wird. Wird keine weitere Anfrage abgesendet, bleiben sie bis dahin gespeichert; sie enthalten
+      keine Angaben aus Ihrer Anfrage.“
+    - Soll es eine feste Höchstdauer geben, ginge das nur mit einer zeitgesteuerten Löschung (eigene Function,
+      steht im Backlog) oder mit einer manuellen Löschung in der monatlichen Lösch-Routine. Ob die Routine
+      Blobs löschen kann, ist nicht geprüft. Beides gehört **nicht** ins Korrekturpaket (Entscheidung F7).
     - Anker `chatgpt-plugin`
   - `MCP.md`: Abschnitte „Speicher“ und „Offen“ nachziehen.
 - **Prüfungen vor dem PR:**
@@ -223,10 +242,22 @@ Ohne Connector rechnet ChatGPT genau damit hoch. Ob und wie sie geändert wird, 
   (`get-forms-for-project`) und `/mcp` `tools/list`. Danach ergänze ich den Deploy-Log in `DEPLOY-RULES.md` §10
   und `MCP.md`.
 - Mögliche Reihenfolge: (1) Stufe 0 ohne Deploy; (2) Korrekturpaket K1 + K1a + K2; (3) gegebenenfalls Stufe 1.
-  Der Förder-Deploy hat eine feste Grenze, weil `estimate:check` meldet, dass BEG und §35c am 31.12.2026
-  auslaufen. Er braucht ein eigenes 48-h-Fenster vor dem Jahreswechsel und geht vor, wenn er eine falsche Zahl
-  auf der Live-Site korrigiert. Ein Merge im Dezember ist wegen `__BUILD_DATE__` in jedem Fall ein
-  Produktionsdeploy.
+- **Förder-Wiedervorlage (berichtigt):**
+  - Am 31.12.2026 endet der im Rechner hinterlegte Prüfstand der Förderregeln (`RULES.*.validThrough` in
+    `client/src/lib/velux/funding.ts`). Die Förderprogramme laufen dann **nicht** aus. Für §35c nennt
+    § 52 Abs. 35a EStG zum Beispiel Maßnahmen, die vor dem 1. Januar 2030 abgeschlossen sind. Das hat Codex am
+    17.11.2026 abgerufen, ich habe es nicht selbst geprüft.
+  - Die Förderregeln müssen vor Jahresende anhand aktueller amtlicher Quellen erneut geprüft werden. Danach
+    werden der Prüfstand und gegebenenfalls die Berechnung aktualisiert.
+  - **Ohne Aktualisierung weist der Rechner nach dem 31.12.2026 keine Förderbeträge mehr aus.** Stattdessen
+    steht dort der Hinweis, die Förderung persönlich zu klären (`funding.ts`, ab Z. 198). Dasselbe gilt für
+    MCP und WebMCP, weil sie dieselbe Logik nutzen.
+  - Zusätzlich bricht `estimate:check` ab, sobald `validThrough` überschritten ist. Dann ist die CI für jeden
+    PR rot, bis der Prüfstand nachgezogen ist.
+  - Die Aktualisierung ist ein eigener Deploy, der Förderfristen nur nach Quellenprüfung verlängert. Er braucht
+    ein 48-h-Fenster vor dem Jahreswechsel. Vorrang vor dem Korrekturpaket hat er, wenn sonst kein Fenster mehr
+    frei bliebe oder wenn er eine falsche Zahl auf der Live-Site korrigiert.
+  - Ein Merge im Dezember ist wegen `__BUILD_DATE__` in jedem Fall ein Produktionsdeploy.
 - Doku nach der Freigabe: `MCP.md` („Offen“) und Umsetzungsplan-Tabelle: P5 „zurückgestellt, Website-Rechner ist
   Hauptweg (Entscheidung 17.11.2026)“. Das läuft im selben PR wie K1/K2 oder als reiner Doku-PR.
 
@@ -236,17 +267,24 @@ Ohne Connector rechnet ChatGPT genau damit hoch. Ob und wie sie geändert wird, 
 
 | Nr. | Frage | Stand 17.11.2026 |
 |---|---|---|
-| F1 | Plan freigeben? | Richtung ja (Tim); Freigabe nach Ergänzung des Bereinigungspunkts. Mit K1a in Entwurf 3 erledigt, **offen ist Tims Freigabe** |
-| F2 | Kurzanleitung? | ja, als separates Dokument nur für Tim, nicht im öffentlichen Repo (Tim) |
-| F3 | Button „Link kopieren“? | erst bei Bedarf, zuerst mit wenigen geprüften Links ausprobieren (Tim) |
-| F4 | K1 und K2 zusammen? | ja, als Korrekturpaket mit dem Bereinigungsschritt (K1a) und den Prüfungen aus Abschnitt 5 (Tim) |
-| F5 | K3 zurückstellen, K4 beobachten? | ja; K4 heißt „Ursache ungeklärt, bisher kein beobachteter Ausfall“ (Tim) |
-| F6 | K1a: Variante A (Bereinigung nur in `submit`)? | **offen**, Empfehlung A |
+Alle Punkte sind **offen, bis Tim entscheidet**. In der Spalte steht, wer was empfiehlt.
+
+| Nr. | Frage | Empfehlung |
+|---|---|---|
+| F1 | Plan in dieser Fassung freigeben? | Codex: freigeben, sobald Förderfrist und Freigabevermerke berichtigt sind (in Entwurf 4 erledigt) |
+| F2 | Kurzanleitung? | Codex und Claude: separates Dokument nur für Tim, nicht im öffentlichen Repo |
+| F3 | Button „Link kopieren“? | Codex und Claude: erst bei Bedarf, zuerst mit wenigen geprüften Links ausprobieren |
+| F4 | K1, K1a und K2 als ein Korrekturpaket? | Codex und Claude: ja, mit den Prüfungen aus Abschnitt 5 |
+| F5 | K3 zurückstellen, K4 beobachten? | Codex und Claude: ja; K4 = „Ursache ungeklärt, bisher kein beobachteter Ausfall“ |
+| F6 | K1a: Variante A (Bereinigung nur beim Absenden)? | Codex und Claude: A |
+| F7 | Feste Höchstdauer für abgelaufene Blobs-Einträge (zeitgesteuerte Löschung oder Lösch-Routine)? | Claude: vorerst nein, den tatsächlichen Löschzeitpunkt offen beschreiben; bei Bedarf eigenes Paket |
+| F8 | Förder-Wiedervorlage vor dem 31.12.2026 als eigenes Paket einplanen? | Claude: ja, Quellenprüfung zeitnah beginnen |
 
 ## 8. Offene Prüfungen
 
 | Was | Wer |
 |---|---|
-| Vorausgefüllten Link per WhatsApp und per Mail auf dem Handy öffnen: Kommt die Konfiguration vollständig an? | Tim |
+| Vorausgefüllten Link per WhatsApp und per Mail auf dem Handy öffnen: Kommt die Konfiguration vollständig an? Nur öffnen und prüfen, nichts absenden. | Tim |
+| Förderregeln anhand aktueller amtlicher Quellen erneut prüfen (BEG EM, §35c), vor dem 31.12.2026 | Claude bereitet vor, Codex liest gegen, Tim gibt frei |
 | Wer im Team verschickt Links, und wie oft? Davon hängt F3 ab. | Tim |
 | Vor jedem Deploy erneut `estimate:check`, `foerder:check`, `mcp-check` und Build ausführen (am 17.11.2026 lokal: die ersten beiden bestanden) | Claude, im PR |
