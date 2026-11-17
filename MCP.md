@@ -70,7 +70,8 @@ Kein Antworttext von ChatGPT.
   Einträge: `idem/<submissionKey>` (Zustand, Zeitstempel) und `quota/<Datum>/<NN>` (Zeitstempel),
   keine Eingaben. Aufräumen nur bei `submit` (seit Korrekturpaket; vorher auch bei `prepare`, aus dem
   Codex-Review zu #116): Vermerke älter als 24 h, Plätze von Vortagen. Ohne weiteren Versand bleiben sie
-  ohne zeitliche Grenze liegen (so in der Datenschutzerklärung, Abschnitt `#chatgpt-plugin`).
+  ohne zeitliche Grenze liegen (so in der Datenschutzerklärung, Abschnitt `#chatgpt-plugin`). Aufgeräumt
+  wird bei jedem `submit`-Aufruf, auch wenn er danach abgelehnt wird.
 - **Preview:** sendet echt, mit „TEST – Preview“ in `name` und `quelle`; Einträge danach löschen.
 - **Lokal/CI:** Probelauf ohne Versand, Speicher im Arbeitsspeicher.
 - **Logs:** nur Tool-Name, Ergebnis-Code, Dauer.

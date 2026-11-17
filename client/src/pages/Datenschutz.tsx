@@ -202,8 +202,8 @@ export default function Datenschutz() {
                 zufällige Kennung, der Versandstatus und ein Zeitstempel, ohne Ihre Angaben), damit
                 eine Anfrage nicht doppelt gesendet wird, sowie einen Zähler für die Zahl der Anfragen
                 pro Tag. Versandvermerke, die älter als 24 Stunden sind, und Zähler von Vortagen
-                löschen wir automatisch, sobald über das Plugin erneut eine Anfrage abgesendet wird.
-                Wird keine weitere Anfrage abgesendet, bleiben sie bis dahin gespeichert; sie enthalten
+                löschen wir automatisch beim nächsten Versuch, über das Plugin eine Anfrage abzusenden.
+                Gibt es keinen weiteren Versuch, bleiben sie bis dahin gespeichert; sie enthalten
                 keine Angaben aus Ihrer Anfrage. Rechtsgrundlage ist Art. 6 Abs. 1 lit. f DSGVO; unser
                 berechtigtes Interesse liegt im Schutz vor Missbrauch und Doppelanfragen. Unsere
                 Anwendungsprotokolle enthalten keine Eingaben aus dem Plugin.
