@@ -78,7 +78,8 @@ export default function OrganizationSchema() {
           "https://www.google.com/maps/place/Rex+Bedachungs+GmbH/@51.4623584,7.2428438,17z",
           "https://www.facebook.com/rexbedachung",
           "https://www.instagram.com/rexbedachung",
-          "https://www.dachdecker-innung-bochum.de/unternehmen/details/rex-bedachungen-gmbh"
+          "https://www.dachdecker-innung-bochum.de/unternehmen/details/rex-bedachungen-gmbh",
+          "https://www.wikidata.org/wiki/Q138609267"
         ]
       },
       {

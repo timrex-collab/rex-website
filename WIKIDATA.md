@@ -18,6 +18,10 @@ der Website verknüpft ist.
 
 Status: ⬜ offen · 🔄 in Arbeit · ✅ erledigt
 
+> **Stand 17.11.2026: Item angelegt – [Q138609267](https://www.wikidata.org/wiki/Q138609267)**
+> (von Tim, Konto mit Offenlegung des Geschäftsführer-Bezugs auf der Benutzerseite).
+> `sameAs` auf der Website folgt mit S5a. Offene Nacharbeiten am Item: Abschnitt 4.
+
 ---
 
 ## 1. Label / Beschreibung / Aliasse
@@ -26,9 +30,13 @@ Status: ⬜ offen · 🔄 in Arbeit · ✅ erledigt
 |---|---|
 | Label (de) | Rex Bedachungs GmbH |
 | Label (en) | Rex Bedachungs GmbH |
-| Beschreibung (de) | Dachdeckerunternehmen in Bochum, Deutschland |
-| Beschreibung (en) | roofing company in Bochum, Germany |
-| Aliasse (de) | Rex Bedachung; Dachdecker Rex Bochum |
+| Beschreibung (de) | Dachdeckerbetrieb in Bochum |
+| Beschreibung (en) | roofing company in Bochum, Germany (Wikidata-Konvention: klein beginnen) |
+| Aliasse (de, en) | Rex Bedachung |
+
+> Keine Suchbegriffe als Alias (z. B. „Dachdecker Bochum“, „Dachdecker Rex Bochum“) und keine
+> Leistungsschwerpunkte in der Beschreibung: beides wird auf Wikidata als Werbung gewertet und
+> erhöht das Löschrisiko.
 
 ## 2. Statements (Aussagen)
 
@@ -38,11 +46,13 @@ Status: ⬜ offen · 🔄 in Arbeit · ✅ erledigt
 | Property | Wert | Referenz |
 |---|---|---|
 | instance of (P31) | business enterprise (≈Q4830453) | offizielle Website |
-| legal form (P1454) | GmbH – Gesellschaft mit beschränkter Haftung (≈Q327333) | Handelsregister |
+| legal form (P1454) | Gesellschaft mit beschränkter Haftung (per Bezeichnung auswählen; die frühere Angabe ≈Q327333 war geschätzt und nicht belegt) | Impressum, Innung |
 | country (P17) | Deutschland (Q183) | — |
 | headquarters location (P159) | Bochum (Q2103) | offizielle Website / Impressum |
+| street address (P6375) | Paulinenstraße 22, 44799 Bochum (de; ausgeschrieben wie Impressum und Schema) | Impressum |
+| official name (P1448) | Rex Bedachungs GmbH (de) | Impressum |
 | coordinate location (P625) | 51.46262, 7.24442 | offizielle Website |
-| inception (P571) | 1984 | offizielle Website (About) |
+| inception (P571) | 1984 | `/ueber-uns` (das Impressum nennt das Jahr nicht) |
 | industry (P452) | Dachdeckerei / Baugewerbe (QID prüfen) | offizielle Website |
 | official website (P856) | https://www.rex-bedachung.de | (selbst) |
 | e-mail address (P968) | info@rex-bedachung.de | Impressum |
@@ -78,19 +88,26 @@ Referenz-Detail belassen.
 
 ## 4. Umsetzungsschritte
 
-1. ⬜ Wikidata-Account anlegen/anmelden (wikidata.org).
-2. ⬜ Prüfen, ob bereits ein Item existiert (Suche „Rex Bedachungs GmbH") → **kein Duplikat** anlegen.
-3. ⬜ „Neues Item erstellen": Label/Beschreibung/Aliasse (Abschnitt 1).
-4. ⬜ Statements (Abschnitt 2) hinzufügen, **PIDs/QIDs verifizieren**.
-5. ⬜ An die wichtigen Statements Referenzen hängen (Abschnitt 3).
-6. ⬜ QID notieren (z. B. `Q…`) und hier vermerken: **QID = ______**
+1. ✅ Wikidata-Account angelegt, Geschäftsführer-Bezug auf der Benutzerseite offengelegt (Wikimedia verlangt das bei Bearbeitungen im eigenen geschäftlichen Interesse).
+2. ✅ Kein bestehendes Item gefunden.
+3. ✅ Item angelegt, Labels/Beschreibungen/Alias de und en (Stand nach Korrektur 17.11.2026).
+4. ✅ Statements: ist ein(e) Unternehmen, Staat, Koordinaten, Rechtsform, Hauptverwaltung, Adresse, Telefon, offizielle Website, Facebook, Instagram, Gründung 1984, offizieller Name.
+5. 🔄 Referenzen: an den meisten Statements vorhanden (Impressum, Innung, `/ueber-uns`).
+6. ✅ **QID = Q138609267** (17.11.2026), beobachtet.
+
+**Offene Nacharbeiten (Hinweise an Tim, 17.11.2026; Wikidata ist aus der Claude-Umgebung nicht erreichbar, geprüft anhand von Screenshots):**
+- ⬜ Adresse auf „Paulinenstraße 22, 44799 Bochum“ (statt „Paulinenstr.“).
+- ⬜ Gründung: Fundstelle Impressum entfernen, `/ueber-uns` behalten.
+- ⬜ Fahnen-Hinweise: offizielle Website (vermutlich Qualifikator „Sprache des Werkes oder Namens“ = Deutsch), offizieller Name (vermutlich Fundstelle fehlt → Impressum).
+- ⬜ Branche (P452) ergänzen.
+- ⬜ optional: Postleitzahl, USt-IdNr., E-Mail; englische Beschreibung kleinschreiben.
 
 ## 5. Rückkopplung in die Website (Loop schließen)
 
 Nach Vergabe der QID — als **separater funktionaler Stufe-B-Deploy** (nicht Teil
 dieser Doku, 48h-Gate beachten):
 
-- ⬜ QID-URL (`https://www.wikidata.org/wiki/Q…`) in `OrganizationSchema.tsx` im `sameAs`-Array ergänzen.
+- 🔄 QID-URL `https://www.wikidata.org/wiki/Q138609267` in `OrganizationSchema.tsx` im `sameAs`-Array: mit Paket S5a (PR #121, Merge frühestens 22.11.2026).
 - ⬜ Optional in `llms.txt`/`llms-full.txt` als weitere Entitätsreferenz aufnehmen.
 
 Damit ist die Website ↔ Wikidata-Entität bidirektional verknüpft (starkes

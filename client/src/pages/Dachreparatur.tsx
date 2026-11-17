@@ -120,37 +120,76 @@ const faqItems = [
   },
 ];
 
-const faqSchema = JSON.stringify({
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  "mainEntity": faqItems.map((item) => ({
-    "@type": "Question",
-    "name": item.question,
-    "acceptedAnswer": { "@type": "Answer", "text": item.answer },
-  })),
-});
+const PAGE_URL = "https://www.rex-bedachung.de/dachreparatur-bochum";
+const PAGE_IMAGE = "https://www.rex-bedachung.de/images/dachreparatur-bochum-rex-bedachung.webp";
+// Letzte inhaltliche Änderung laut freigegebener Datumstabelle (E2, SEO-Plan) – nie das Builddatum.
+const DATE_MODIFIED = "2026-09-01";
 
 const schemaJson = JSON.stringify({
   "@context": "https://schema.org",
-  "@type": "Service",
-  "name": "Dachreparatur Bochum – Schnelle Hilfe bei Dachschäden",
-  "provider": {
-    "@type": "RoofingContractor",
-    "@id": "https://www.rex-bedachung.de/#organization",
-  },
-  "areaServed": [
-    { "@type": "City", "name": "Bochum" },
-    { "@type": "City", "name": "Herne" },
-    { "@type": "City", "name": "Castrop-Rauxel" },
-    { "@type": "City", "name": "Witten" },
-    { "@type": "City", "name": "Hattingen" },
-    { "@type": "City", "name": "Gelsenkirchen" }
+  "@graph": [
+    {
+      "@type": "WebPage",
+      "@id": `${PAGE_URL}#webpage`,
+      "url": PAGE_URL,
+      "name": "Dachreparatur Bochum – Dach undicht? Wir helfen",
+      "isPartOf": { "@id": "https://www.rex-bedachung.de/#website" },
+      "about": { "@id": "https://www.rex-bedachung.de/#organization" },
+      "breadcrumb": { "@id": `${PAGE_URL}#breadcrumb` },
+      "mainEntity": { "@id": `${PAGE_URL}#service` },
+      "primaryImageOfPage": PAGE_IMAGE,
+      "dateModified": DATE_MODIFIED,
+      "inLanguage": "de-DE",
+    },
+    {
+      "@type": "BreadcrumbList",
+      "@id": `${PAGE_URL}#breadcrumb`,
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Startseite", "item": "https://www.rex-bedachung.de/" },
+        { "@type": "ListItem", "position": 2, "name": "Dachreparatur Bochum", "item": PAGE_URL },
+      ],
+    },
+    {
+      "@type": "Service",
+      "@id": `${PAGE_URL}#service`,
+      "name": "Dachreparatur Bochum – Schnelle Hilfe bei Dachschäden",
+      "serviceType": "Dachreparatur",
+      "description": "Dachreparatur in Bochum – Sturmschäden, undichte Dächer, Ziegel, Dachrinnen und Kaminanschlüsse. Kurzfristiger Einsatz, Versicherungsabwicklung inklusive.",
+      "provider": { "@id": "https://www.rex-bedachung.de/#organization" },
+      "areaServed": [
+        { "@type": "City", "name": "Bochum" },
+        { "@type": "City", "name": "Herne" },
+        { "@type": "City", "name": "Castrop-Rauxel" },
+        { "@type": "City", "name": "Witten" },
+        { "@type": "City", "name": "Hattingen" },
+        { "@type": "City", "name": "Gelsenkirchen" }
+      ],
+      "offers": {
+        "@type": "Offer",
+        "availability": "https://schema.org/InStock",
+      },
+    },
+    {
+      "@type": "FAQPage",
+      "@id": `${PAGE_URL}#faq`,
+      "mainEntity": faqItems.map((item) => ({
+        "@type": "Question",
+        "name": item.question,
+        "acceptedAnswer": { "@type": "Answer", "text": item.answer },
+      })),
+    },
+    {
+      "@type": "Article",
+      "@id": `${PAGE_URL}#article`,
+      "headline": "Dachreparatur Bochum – Schnelle Hilfe bei undichtem Dach",
+      "author": { "@id": "https://www.rex-bedachung.de/#author" },
+      "publisher": { "@id": "https://www.rex-bedachung.de/#organization" },
+      "mainEntityOfPage": { "@id": `${PAGE_URL}#webpage` },
+      "image": PAGE_IMAGE,
+      "dateModified": DATE_MODIFIED,
+      "url": PAGE_URL,
+    },
   ],
-  "description": "Dachreparatur in Bochum – Sturmschäden, undichte Dächer, Ziegel, Dachrinnen und Kaminanschlüsse. Kurzfristiger Einsatz, Versicherungsabwicklung inklusive.",
-  "offers": {
-    "@type": "Offer",
-    "availability": "https://schema.org/InStock",
-  },
 });
 
 export default function Dachreparatur() {
@@ -177,42 +216,6 @@ export default function Dachreparatur() {
         <meta name="twitter:image" content="https://www.rex-bedachung.de/images/dachreparatur-bochum-rex-bedachung.webp" />
         <link rel="canonical" href="https://www.rex-bedachung.de/dachreparatur-bochum" />
         <script type="application/ld+json">{schemaJson}</script>
-        <script type="application/ld+json">{`{
-  "@context": "https://schema.org",
-  "@type": "BreadcrumbList",
-  "itemListElement": [
-    {"@type":"ListItem","position":1,"name":"Startseite","item":"https://www.rex-bedachung.de/"},
-    {"@type":"ListItem","position":2,"name":"Dachreparatur Bochum","item":"https://www.rex-bedachung.de/dachreparatur-bochum"}
-  ]
-}`}</script>
-        <script type="application/ld+json">{`{
-  "@context": "https://schema.org",
-  "@type": "Service",
-  "name": "Dachreparatur Bochum",
-  "description": "Schnelle Dachreparatur bei Sturmschäden, Undichtigkeiten und akuten Dachproblemen in Bochum.",
-  "provider": {
-    "@type": "RoofingContractor",
-    "@id": "https://www.rex-bedachung.de/#organization"
-  },
-  "areaServed": [
-    { "@type": "City", "name": "Bochum" },
-    { "@type": "City", "name": "Herne" },
-    { "@type": "City", "name": "Castrop-Rauxel" },
-    { "@type": "City", "name": "Witten" },
-    { "@type": "City", "name": "Hattingen" },
-    { "@type": "City", "name": "Gelsenkirchen" }
-  ],
-  "serviceType": "Dachreparatur"
-}`}</script>
-        <script type="application/ld+json">{faqSchema}</script>
-        <script type="application/ld+json">{`{
-  "@context": "https://schema.org",
-  "@type": "Article",
-  "headline": "Dachreparatur Bochum – Schnelle Hilfe bei undichtem Dach",
-  "author": { "@id": "https://www.rex-bedachung.de/#author" },
-  "publisher": { "@id": "https://www.rex-bedachung.de/#organization" },
-  "url": "https://www.rex-bedachung.de/dachreparatur-bochum"
-}`}</script>
       </Helmet>
       <OrganizationSchema />
       <AuthorSchema />

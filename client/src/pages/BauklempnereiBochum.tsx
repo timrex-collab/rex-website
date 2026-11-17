@@ -128,37 +128,76 @@ const faqItems = [
   },
 ];
 
-const faqSchema = JSON.stringify({
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  "mainEntity": faqItems.map((item) => ({
-    "@type": "Question",
-    "name": item.question,
-    "acceptedAnswer": { "@type": "Answer", "text": item.answer },
-  })),
-});
+const PAGE_URL = "https://www.rex-bedachung.de/bauklempnerei-bochum";
+const PAGE_IMAGE = "https://www.rex-bedachung.de/images/kamin-sanierung-bochum-dachdecker.webp";
+// Letzte inhaltliche Änderung laut freigegebener Datumstabelle (E2, SEO-Plan) – nie das Builddatum.
+const DATE_MODIFIED = "2026-09-01";
 
 const schemaJson = JSON.stringify({
   "@context": "https://schema.org",
-  "@type": "Service",
-  "name": "Bauklempnerei Bochum",
-  "provider": {
-    "@type": "RoofingContractor",
-    "@id": "https://www.rex-bedachung.de/#organization",
-  },
-  "areaServed": [
-    { "@type": "City", "name": "Bochum" },
-    { "@type": "City", "name": "Herne" },
-    { "@type": "City", "name": "Castrop-Rauxel" },
-    { "@type": "City", "name": "Witten" },
-    { "@type": "City", "name": "Hattingen" },
-    { "@type": "City", "name": "Gelsenkirchen" }
+  "@graph": [
+    {
+      "@type": "WebPage",
+      "@id": `${PAGE_URL}#webpage`,
+      "url": PAGE_URL,
+      "name": "Bauklempnerei Bochum – Blecharbeiten am Dach",
+      "isPartOf": { "@id": "https://www.rex-bedachung.de/#website" },
+      "about": { "@id": "https://www.rex-bedachung.de/#organization" },
+      "breadcrumb": { "@id": `${PAGE_URL}#breadcrumb` },
+      "mainEntity": { "@id": `${PAGE_URL}#service` },
+      "primaryImageOfPage": PAGE_IMAGE,
+      "dateModified": DATE_MODIFIED,
+      "inLanguage": "de-DE",
+    },
+    {
+      "@type": "BreadcrumbList",
+      "@id": `${PAGE_URL}#breadcrumb`,
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Startseite", "item": "https://www.rex-bedachung.de/" },
+        { "@type": "ListItem", "position": 2, "name": "Bauklempnerei Bochum", "item": PAGE_URL },
+      ],
+    },
+    {
+      "@type": "Service",
+      "@id": `${PAGE_URL}#service`,
+      "name": "Bauklempnerei Bochum",
+      "serviceType": "Bauklempnerei",
+      "description": "Bauklempnerei in Bochum – maßgefertigte Dachrinnen, Fallrohre, Wandbekleidungen und Fassadenverkleidungen aus Titanzink, Kupfer und Aluminium. Eigene Werkstatt, fachgerechte Montage.",
+      "provider": { "@id": "https://www.rex-bedachung.de/#organization" },
+      "areaServed": [
+        { "@type": "City", "name": "Bochum" },
+        { "@type": "City", "name": "Herne" },
+        { "@type": "City", "name": "Castrop-Rauxel" },
+        { "@type": "City", "name": "Witten" },
+        { "@type": "City", "name": "Hattingen" },
+        { "@type": "City", "name": "Gelsenkirchen" }
+      ],
+      "offers": {
+        "@type": "Offer",
+        "availability": "https://schema.org/InStock",
+      },
+    },
+    {
+      "@type": "FAQPage",
+      "@id": `${PAGE_URL}#faq`,
+      "mainEntity": faqItems.map((item) => ({
+        "@type": "Question",
+        "name": item.question,
+        "acceptedAnswer": { "@type": "Answer", "text": item.answer },
+      })),
+    },
+    {
+      "@type": "Article",
+      "@id": `${PAGE_URL}#article`,
+      "headline": "Bauklempnerei Bochum – Dachrinnen, Blecharbeiten & Fassadenverkleidung",
+      "author": { "@id": "https://www.rex-bedachung.de/#author" },
+      "publisher": { "@id": "https://www.rex-bedachung.de/#organization" },
+      "mainEntityOfPage": { "@id": `${PAGE_URL}#webpage` },
+      "image": PAGE_IMAGE,
+      "dateModified": DATE_MODIFIED,
+      "url": PAGE_URL,
+    },
   ],
-  "description": "Bauklempnerei in Bochum – maßgefertigte Dachrinnen, Fallrohre, Wandbekleidungen und Fassadenverkleidungen aus Titanzink, Kupfer und Aluminium. Eigene Werkstatt, fachgerechte Montage.",
-  "offers": {
-    "@type": "Offer",
-    "availability": "https://schema.org/InStock",
-  },
 });
 
 export default function BauklempnereiBochum() {
@@ -185,42 +224,6 @@ export default function BauklempnereiBochum() {
         <meta name="twitter:image" content="https://www.rex-bedachung.de/images/kamin-sanierung-bochum-dachdecker.webp" />
         <link rel="canonical" href="https://www.rex-bedachung.de/bauklempnerei-bochum" />
         <script type="application/ld+json">{schemaJson}</script>
-        <script type="application/ld+json">{`{
-  "@context": "https://schema.org",
-  "@type": "BreadcrumbList",
-  "itemListElement": [
-    {"@type":"ListItem","position":1,"name":"Startseite","item":"https://www.rex-bedachung.de/"},
-    {"@type":"ListItem","position":2,"name":"Bauklempnerei Bochum","item":"https://www.rex-bedachung.de/bauklempnerei-bochum"}
-  ]
-}`}</script>
-        <script type="application/ld+json">{`{
-  "@context": "https://schema.org",
-  "@type": "Service",
-  "name": "Bauklempnerei und Fassadenverkleidung",
-  "description": "Bauklempnerei, Dachentwässerung und Metallfassaden in Bochum – Zink, Kupfer, Aluminium.",
-  "provider": {
-    "@type": "RoofingContractor",
-    "@id": "https://www.rex-bedachung.de/#organization"
-  },
-  "areaServed": [
-    { "@type": "City", "name": "Bochum" },
-    { "@type": "City", "name": "Herne" },
-    { "@type": "City", "name": "Castrop-Rauxel" },
-    { "@type": "City", "name": "Witten" },
-    { "@type": "City", "name": "Hattingen" },
-    { "@type": "City", "name": "Gelsenkirchen" }
-  ],
-  "serviceType": "Bauklempnerei"
-}`}</script>
-        <script type="application/ld+json">{faqSchema}</script>
-        <script type="application/ld+json">{`{
-  "@context": "https://schema.org",
-  "@type": "Article",
-  "headline": "Bauklempnerei Bochum – Dachrinnen, Blecharbeiten & Fassadenverkleidung",
-  "author": { "@id": "https://www.rex-bedachung.de/#author" },
-  "publisher": { "@id": "https://www.rex-bedachung.de/#organization" },
-  "url": "https://www.rex-bedachung.de/bauklempnerei-bochum"
-}`}</script>
       </Helmet>
       <OrganizationSchema />
       <AuthorSchema />
