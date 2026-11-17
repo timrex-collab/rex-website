@@ -243,17 +243,19 @@ console.log("Förder-Grenzwerte");
   const withBlind = buildEstimate([{ ...basePosition, blind: "DKL", blindQty: 1 }], known);
   if (plain.funding.eligibleCostsGross !== withBlind.funding.eligibleCostsGross) fail("Innenrollo darf Förderbasis nicht erhöhen");
   if (withBlind.totals.totalNetto - plain.totals.totalNetto !== 171) fail("Innenrollo bleibt als 121 + 50 im Gesamtpreis");
-  // Prüffrist aus RULES statt fester Daten: Eine Verlängerung von validThrough nach Quellenprüfung
-  // darf diesen Test nicht brechen (Förder-Wiedervorlage 12/2026).
-  const lastValid = [RULES.beg.validThrough, RULES.tax35c.validThrough].sort()[0];
-  const firstExpired = (() => {
-    const latest = [RULES.beg.validThrough, RULES.tax35c.validThrough].sort()[1];
-    const d = new Date(`${latest}T00:00:00Z`); d.setUTCDate(d.getUTCDate() + 1);
+  // Prüffrist je Regelwerk aus RULES statt fester Daten: Eine Verlängerung von validThrough nach
+  // Quellenprüfung darf diesen Test nicht brechen, und unterschiedliche Fristen für BEG und §35c
+  // werden je Regelwerk am letzten gültigen Tag und am Folgetag geprüft (Förder-Wiedervorlage 12/2026).
+  const nextDay = (iso: string) => {
+    const d = new Date(`${iso}T00:00:00Z`); d.setUTCDate(d.getUTCDate() + 1);
     return d.toISOString().slice(0, 10);
-  })();
-  const expiryDay = evaluateFunding(plain.details, known, lastValid);
-  const expired = evaluateFunding(plain.details, known, firstExpired);
-  if (!expiryDay.beg || !expiryDay.tax35c || expired.beg || expired.tax35c) fail("Regelstand muss bis inklusive Prüffrist gelten und danach Beträge unterdrücken");
+  };
+  for (const k of ["beg", "tax35c"] as const) {
+    const last = RULES[k].validThrough;
+    const onLast = evaluateFunding(plain.details, known, last)[k];
+    const after = evaluateFunding(plain.details, known, nextDay(last))[k];
+    if (!onLast || after) fail(`RULES.${k}: Betrag muss bis inklusive ${last} gelten und ab ${nextDay(last)} unterdrückt werden`);
+  }
   const beforeBeg = evaluateFunding(plain.details, known, "2026-07-20");
   if (beforeBeg.beg || !beforeBeg.tax35c) fail("Regelversion darf vor ihrem Gültigkeitsbeginn nicht für BEG rechnen");
   const a = answers("over_10", "yes", "yes", "no");

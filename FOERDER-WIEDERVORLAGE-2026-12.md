@@ -1,6 +1,7 @@
 # Förder-Wiedervorlage 12/2026 – Prüfauftrag und Umsetzungsplan
 
-Stand 17.11.2026, vorbereitet von Claude, **noch nicht freigegeben**. Auftrag von Tim vom 17.11.2026: „Förder-Wiedervorlage
+Stand 17.11.2026 (Fassung 2: Teil 1 der Quellenprüfung durch Codex eingetragen, Test je Regelwerk),
+vorbereitet von Claude, **noch nicht freigegeben**. Auftrag von Tim vom 17.11.2026: „Förder-Wiedervorlage
 vorbereiten“.
 
 ## 1. Worum es geht
@@ -25,6 +26,41 @@ Die Energieberatungsrichtlinie (iSFP-Förderung) soll Ende 2026 auslaufen. **Das
 sondern nur ein Hinweis, worauf die Prüfung achten muss.
 
 **Die Primärquellenprüfung übernimmt deshalb Codex (oder Tim). Claude prüft gegen den Code und setzt um.**
+
+### Teil 1 der Quellenprüfung (Codex, 17.11.2026; von Claude nicht selbst nachgeprüft)
+
+| Punkt | Ergebnis | Amtliche Quelle (Abruf 17.11.2026) |
+|---|---|---|
+| B10 Richtliniendatum | Laut KfW-Merkblatt: Richtlinie vom **17.07.2026**, veröffentlicht am **21.07.2026**. Für „17.08.2026“ hat Codex keinen Beleg gefunden. **Widerspruch, siehe unten** | KfW-Merkblatt, Anlage S. 12 |
+| B1–B3 | 15 %, Grenzen 30.000 / 60.000 €, 5 % Bonus nur auf den Anteil über 30.000 € (EFH): **bestätigt**, die Formel im Code ist damit belegt | BMWE-FAQ A.3.2 |
+| B7 Fachplanung | 50 % von höchstens 5.000 € bei EFH/ZFH, max. 2.500 €: **bestätigt** | BMWE, Förderung für private Haushalte |
+| B8 Ergänzungskredit | bis 120.000 € je WE, vorherige Zuschussbewilligung nötig: **bestätigt** | KfW 358/359 |
+| WPB-Bonus 2027 | für Q1 2027 vorgesehen, **nicht für reine Fenstermaßnahmen** | BMWE-FAQ A.1.4 |
+| B12 Energieberatung | EBW-Richtlinie 2023 endet am 31.12.2026; eine Anschlussregelung ist **noch nicht belegt**. Dass ein bestehender iSFP seine Wirkung behält, ist plausibel, aber nicht bestätigt | Bundesanzeiger, Nr. 9.1 |
+| S1–S5 §35c | 7/7/6 %, max. 40.000 €, älter als 10 Jahre, Selbstnutzung, Nachweis und Zahlung; Dachflächenfenster Uw ≤ 1,0: **bestätigt** | §35c EStG, ESanMV Anlage 4 |
+| S6 | Abschluss vor dem 01.01.2030, kein allgemeines Ende zum Jahreswechsel: **bestätigt** | §52 Abs. 35a EStG |
+
+Einige Ministeriumsseiten waren für Codex nur über ihre indexierten amtlichen Inhalte erreichbar, direkte Abrufe
+endeten mit HTTP 429.
+
+**Widerspruch zu B10 (von Claude im Repo gefunden, vor jeder Textänderung zu klären):**
+- Das Projekt hat bewusst von „17.07.2026“ auf „17.08.2026“ umgestellt. Das war Deploy R2, PR #82 vom
+  25.09.2026, laut Deploy-Log: „Richtlinie BEG EM vom 17.08.2026 (BAnz AT 27.08.2026 B1, rückwirkend ab
+  21.07.2026) statt Entwurfsstand 17.07.2026“.
+- Live mit dieser Fundstelle: `client/src/pages/Foerderung.tsx` Z. 222 und Z. 837, `llms.txt` Z. 2/183/310,
+  `llms-full.txt` Z. 3/201.
+- **Zu prüfen ist BAnz AT 27.08.2026 B1.** Ist das eine Neufassung oder Änderung vom 17.08.2026, ist „17.08.2026“
+  richtig, und das KfW-Merkblatt nennt nur die Erstfassung. Gibt es diese Fundstelle nicht, ist „17.08.2026“ an
+  allen genannten Stellen falsch, dann ist es ein Fall für eine Korrektur.
+- Bis das geklärt ist, wird **kein** Richtliniendatum geändert.
+
+**Noch offen (Teil 2, Prüfzeitraum Dezember):**
+- B10: BAnz AT 27.08.2026 B1, siehe oben
+- B4–B6 und B9 an der aktuellen BEG-Originalrichtlinie samt technischen Anlagen und Zubehörregeln
+- B11: Haushalt 2027 und mögliche Änderungen ab 2027
+- B12: Anschlussregelung Energieberatung, Wirkung bestehender iSFP
+- S7: Gesetzesänderungen an §35c seit September
+- vor dem Dezember-Deploy erneut prüfen, ob neue Regelungen veröffentlicht wurden
 
 ## 3. Prüfliste (je Punkt: Primärquelle, Fundstelle, Abrufdatum, Ergebnis)
 
@@ -69,7 +105,7 @@ oder Satz heißt: Die Frist wird nicht verlängert, der Punkt wird geklärt.
 | `client/src/lib/velux/funding.ts` | `lastReviewedAt` auf das Prüfdatum und `validThrough` auf das neue Datum (Vorschlag unten), beides für BEG und §35c. `rulesVersion` bleibt gleich, weil sich die Regeln nicht ändern. Damit bleibt auch die Rechenversion der MCP-Anfragen gleich. |
 | `scripts/velux-estimate-check.ts` | Ablauftest liest die Frist aus `RULES` statt fester Daten. **Bereits vorbereitet** auf diesem Branch, siehe Abschnitt 6. |
 | `DEPLOY-RULES.md` §10 | Deploy-Log |
-| optional `client/public/llms.txt`, `llms-full.txt` | „Stand: September 2026“ → Prüfmonat; nur nach Entscheidung F3 |
+| `client/public/llms.txt`, `llms-full.txt` (nach F3) | „Stand: September 2026“ → Prüfmonat, **nur für tatsächlich geprüfte Angaben**. Richtliniendatum nur ändern, wenn B10 ergibt, dass „17.08.2026“ falsch ist; dann auch `Foerderung.tsx` (Z. 222, 837) |
 
 - Umfang: 3 Dateien, mit `llms*.txt` 5. Stufe B, weil es um Förderinhalt geht.
 - Sichtbar ändert sich im Rechner nur „geprüft am …“. Beträge ändern sich nicht.
@@ -94,16 +130,20 @@ oder Satz heißt: Die Frist wird nicht verlängert, der Punkt wird geklärt.
 - `scripts/velux-estimate-check.ts`:
   - **Bisher:** Der Ablauftest hatte `2026-12-31`/`2027-01-01` fest eingetragen. Jede Verlängerung von
     `validThrough` hätte die CI rot gemacht.
-  - **Jetzt:** Der Test nimmt den letzten gültigen Tag und den ersten abgelaufenen Tag aus `RULES`.
+  - **Jetzt:** Der Test prüft **jedes Regelwerk an seiner eigenen Frist**: am letzten gültigen Tag mit Betrag,
+    am Folgetag ohne Betrag (Hinweis von Codex, 17.11.2026). So fällt auch der Zwischenfall auf, in dem BEG und
+    §35c unterschiedliche Fristen haben.
   - Lokal geprüft am 17.11.2026: `estimate:check` grün mit dem aktuellen Stand und ebenso mit probehalber
-    `validThrough 2027-03-31`; die Probe wurde zurückgenommen. `tsc` grün.
+    BEG `2027-03-31` / §35c `2027-06-30`; die Probe wurde zurückgenommen. `tsc` grün.
 - Keine Änderung an `funding.ts`. Prüffristen werden erst nach der Quellenprüfung verschoben.
 
 ## 7. Entscheidungen für Tim
 
-| Nr. | Frage | Vorschlag |
+Alle Punkte sind **offen, bis Tim entscheidet**. In der Spalte steht, wer was empfiehlt.
+
+| Nr. | Frage | Empfehlung |
 |---|---|---|
-| F1 | Wer macht die Primärquellenprüfung? | Codex nach Prüfliste Abschnitt 3, mit Fundstelle und Abrufdatum je Punkt; Claude gleicht mit dem Code ab |
-| F2 | Neue Prüffrist `validThrough` | **31.03.2027**: kurzer Zyklus, weil Haushalt 2027, mögliche WPB-Änderungen und das Ende der Energieberatungsrichtlinie in Q1 2027 fallen. Alternative 30.06.2027 (weniger Aufwand, mehr Risiko veralteter Beträge). |
-| F3 | „Stand: September 2026“ in `llms*.txt` auf den Prüfmonat setzen? | ja, im selben Deploy (Text, keine neuen Zahlen) |
-| F4 | Prüfzeitraum | 01.–05.12.2026, spätestens Umsetzung bis 29.12.2026 |
+| F1 | Wer macht die Primärquellenprüfung? | Claude und Codex: Codex, mit Fundstelle und Abrufdatum je Punkt (Teil 1 liegt vor); Claude gleicht mit dem Code ab |
+| F2 | Neue Prüffrist `validThrough` | Claude und Codex: **31.03.2027**, erst nach abgeschlossener Prüfung eintragen; `lastReviewedAt` = tatsächliches Prüfdatum |
+| F3 | `llms*.txt` im selben Paket aktualisieren | Claude und Codex: ja; Prüfstand nur für tatsächlich geprüfte Inhalte. Richtliniendatum erst nach Klärung von B10 (Claude) |
+| F4 | Prüfzeitraum | Claude und Codex: Teil 2 am 01.–05.12.2026, vor dem Deploy erneut auf neue Regelungen prüfen; 29.12.2026 als späteste Grenze, möglichst früher |
