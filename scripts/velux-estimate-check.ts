@@ -243,8 +243,16 @@ console.log("Förder-Grenzwerte");
   const withBlind = buildEstimate([{ ...basePosition, blind: "DKL", blindQty: 1 }], known);
   if (plain.funding.eligibleCostsGross !== withBlind.funding.eligibleCostsGross) fail("Innenrollo darf Förderbasis nicht erhöhen");
   if (withBlind.totals.totalNetto - plain.totals.totalNetto !== 171) fail("Innenrollo bleibt als 121 + 50 im Gesamtpreis");
-  const expiryDay = evaluateFunding(plain.details, known, "2026-12-31");
-  const expired = evaluateFunding(plain.details, known, "2027-01-01");
+  // Prüffrist aus RULES statt fester Daten: Eine Verlängerung von validThrough nach Quellenprüfung
+  // darf diesen Test nicht brechen (Förder-Wiedervorlage 12/2026).
+  const lastValid = [RULES.beg.validThrough, RULES.tax35c.validThrough].sort()[0];
+  const firstExpired = (() => {
+    const latest = [RULES.beg.validThrough, RULES.tax35c.validThrough].sort()[1];
+    const d = new Date(`${latest}T00:00:00Z`); d.setUTCDate(d.getUTCDate() + 1);
+    return d.toISOString().slice(0, 10);
+  })();
+  const expiryDay = evaluateFunding(plain.details, known, lastValid);
+  const expired = evaluateFunding(plain.details, known, firstExpired);
   if (!expiryDay.beg || !expiryDay.tax35c || expired.beg || expired.tax35c) fail("Regelstand muss bis inklusive Prüffrist gelten und danach Beträge unterdrücken");
   const beforeBeg = evaluateFunding(plain.details, known, "2026-07-20");
   if (beforeBeg.beg || !beforeBeg.tax35c) fail("Regelversion darf vor ihrem Gültigkeitsbeginn nicht für BEG rechnen");
