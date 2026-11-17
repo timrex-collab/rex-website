@@ -1,13 +1,30 @@
-# P5-Plan, Entwurf 2: Website-Rechner als Hauptweg, ChatGPT-Veröffentlichung zurückgestellt
+# P5-Plan, Entwurf 3: Website-Rechner als Hauptweg, ChatGPT-Veröffentlichung zurückgestellt
 
-Stand 17.11.2026, **zur Freigabe, noch nicht freigegeben.** Ersetzt Entwurf 1 vom 15.11.2026 (`61a47dc`, im
-Git-Verlauf dieses Branches).
+Stand 17.11.2026, **zur Freigabe, noch nicht freigegeben.** Entwurf 3 ergänzt Entwurf 2 (`91755df`) um Tims
+Rückmeldung vom 17.11.2026. Neu sind: der Bereinigungspunkt in `prepare` (K1), die genauere Einordnung der
+Prüfgrundlage und die Festlegungen zur Kurzanleitung. Entwurf 1 (`61a47dc`) steht im Git-Verlauf.
 
-Geprüft am 17.11.2026 gegen `origin/main` (`c5dbcfa`, seit #117 unverändert): `client/src/lib/velux/deeplink.ts`,
-`tools.ts`, `client/src/components/VeluxPreisrechner.tsx`, `export-gate.ts`, `netlify/functions/mcp.mts`,
-`client/public/llms*.txt`, `Datenschutz.tsx`. In diesem Schritt wurde kein Produktivcode geändert. Es gibt
-keinen PR, keinen Deploy, keine Einreichung und keinen Versand. `estimate:check` lief hier nicht, weil
-`node_modules` in dieser Umgebung fehlt.
+**Prüfgrundlage, ehrlich eingeordnet.** Geprüft am 17.11.2026 gegen `origin/main` (`c5dbcfa`, seit #117
+unverändert):
+- **Code gelesen:** `client/src/lib/velux/deeplink.ts`, `validate.ts`, `tools.ts`,
+  `client/src/components/VeluxPreisrechner.tsx`, `export-gate.ts`, `netlify/functions/mcp.mts`,
+  `client/public/llms*.txt`, `Datenschutz.tsx`.
+- **Lokal ausgeführt:**
+  - `estimate:check`: alle Prüfungen bestanden. Es kommen zwei Warnungen „Förderprüfung fällig“, weil BEG
+    und §35c bis 31.12.2026 gelten.
+  - `foerder:check`: keine Drift.
+  - Die fünf Beispiel-Links der Kurzanleitung liefen durch den echten Parser (`parseCalculatorFragment`). Alle
+    werden angenommen und lassen sich unverändert zurückbauen. Gegenproben mit unzulässiger Größe bzw. mehr
+    Zubehör als Fenstern werden abgelehnt.
+- **Frühere Abnahmen:** Rechner-Link W1 am 26.10.2026 auf Handy und PC (Tim); Versand über den Rechner
+  laufend seit P1.
+- **Nicht gemacht:** keine neue Live-Abnahme, kein Browser-Test auf der Live-Site, kein Test über WhatsApp oder
+  Mail.
+
+„Funktioniert“ heißt in diesem Plan also: Laut Code und bisherigen Abnahmen ist es vorhanden. Eine neue
+vollständige Abnahme ist es nicht.
+
+Kein Produktivcode geändert, kein PR, kein Deploy, keine Einreichung, kein Versand.
 
 ## 0. Tims Entscheidung (17.11.2026)
 
@@ -28,7 +45,8 @@ KI-Assistent auf der Website ist nicht eingeplant.
 
 ## 1. Was bereits vorhanden ist
 
-**Der gewünschte Kundenablauf funktioniert heute vollständig auf `/velux-preisrechner-bochum`.**
+**Laut Code und bisherigen Abnahmen ist der gewünschte Kundenablauf auf `/velux-preisrechner-bochum`
+vollständig vorhanden.** Eine neue Live-Abnahme gab es nicht, siehe Prüfgrundlage oben.
 
 | Schritt | Umsetzung im Code | Status |
 |---|---|---|
@@ -89,16 +107,23 @@ Nicht nötig: neue Seite, KI-Assistent, Änderungen an Preis- oder Förderlogik,
 
 ## 3. Empfohlene kleinste Änderung
 
-**Stufe 0 – ohne Code (empfohlen als Start):**
+**Stufe 0 – ohne Code (Tim: ja):**
 
-- Claude erstellt eine einseitige interne Kurzanleitung „Rechner-Link für Kunden erstellen“: Format,
-  Größencodes, fünf fertige Beispiel-Links für häufige Fälle, Hinweis „Förderangaben nur, wenn der Kunde sie
-  genannt hat“. Die Datei liegt im Repo-Root oder nur bei Tim. Sie geht nicht auf die Website.
+- Claude erstellt eine interne Kurzanleitung „Rechner-Link für Kunden erstellen“ als **separates Dokument nur
+  für Tim**. Sie kommt **nicht** ins Repo, weil ein öffentliches Repo für jeden lesbar ist. Auf die Website
+  kommt sie auch nicht. Inhalt: Format, Größencodes, fünf geprüfte Beispiel-Links. Festlegungen:
+  - Beispiel-Links enthalten **standardmäßig keine Förderantworten** (`f=`). Die beantwortet der Kunde im
+    Rechner selbst, außer sie wurden vorher ausdrücklich mit ihm geklärt.
+  - **Jeder Link wird vor der Übergabe geprüft:** einmal selbst öffnen. Erscheint der grüne Hinweis „Fenster
+    aus dem Link übernommen“ und stimmen Modell, Größe und Zubehör? Der Rechner prüft Modell und Größe,
+    Rollladen und Rollo je Größe sowie die Mengen. Ungültige Links öffnen einen leeren Rechner mit gelbem
+    Hinweis.
 - Tim prüft einen Link einmal über WhatsApp und einmal per Mail auf dem Handy (Abschnitt 2, Punkt 2).
 - Den normalen Rechner-Link verwendet das Team für Antwortvorlagen, die E-Mail-Signatur und das Google-Profil.
   Das sind Tims Kanäle; Claude ändert dort nichts.
 
-**Stufe 1 – nur falls Stufe 0 im Alltag zu umständlich ist (Entscheidung Tim):**
+**Stufe 1 – erst bei Bedarf (Tim: zuerst mit wenigen geprüften Links ausprobieren, dann anhand der
+tatsächlichen Nutzung entscheiden):**
 
 - Button „Link zu dieser Konfiguration kopieren“ in Schritt 3 des Rechners. Er nutzt das vorhandene
   `buildCalculatorUrl` und schreibt nur in die Zwischenablage, ohne Kontaktdaten, ohne Server und ohne neue
@@ -140,12 +165,46 @@ Diese Befunde gelten unabhängig von einer Veröffentlichung, weil `/mcp` live i
 | K1 | **Tool-Annotationen:** `submit` meldet `destructiveHint: false`, obwohl eine gesendete Anfrage nicht zurückgeholt werden kann (`mcp.mts:335`). Bei `prepare` und den drei lesenden Tools fehlen `destructiveHint` und `openWorldHint`. | Die Angaben sind falsch und können einen Client dazu bringen, weniger nachzufragen. Der eigene Schutz greift trotzdem: `userConfirmed`, Bindung an die Zusammenfassung über einen Hash, Doppelversandschutz. **Kein akutes Risiko, aber falsche Selbstauskunft.** | korrigieren: Werte nur in `mcp.mts` überschreiben, `tools.ts` bleibt, weil es auch WebMCP im Browser nutzt; `mcp-check` prüft alle drei Werte je Tool |
 | K2 | **Datenschutz:** Der Abschnitt „Anfragen über ChatGPT (Rex-Plugin)“ sagt nicht, dass die Antworten des Plugins (Kostenschätzung und Zusammenfassung **mit den Kontaktdaten**) an ChatGPT zurückgehen und dort von OpenAI verarbeitet werden. | Lücke in der Transparenz für einen Kanal, der heute funktioniert. Klein, aber sachlich nötig. | ein bis zwei Sätze ergänzen, Sprunganker `id="chatgpt-plugin"`; **vor dem PR liest Codex gegen**, das Ergebnis kommt in den PR |
 | K3 | `/.well-known/oauth-*` und `openid-configuration` unter `/mcp` liefern 200 mit der Startseite statt 404. | ChatGPT kommt damit zurecht. Wichtig wäre es erst für einen automatischen Tool-Scan bei einer Einreichung. | **zurückstellen**; erledigen, wenn die Veröffentlichung wieder aufgenommen wird (`netlify.toml` ist gesperrte Config, Stufe C) |
-| K4 | Der erste Aufruf einer ChatGPT-Sitzung endet mit 400, danach kommt 200. | Ohne funktionale Wirkung. | **beobachten**; bei Gelegenheit im Netlify-Log klären, Codeänderung nur bei echtem Fehler |
+| K1a | **Bereinigung in `prepare`:** `prepare` ruft `cleanup()` auf (`mcp.mts:159`). Das löscht in Netlify Blobs Kontingent-Plätze von Vortagen und Versandvermerke, die älter als 24 h sind. Trotzdem meldet das Tool `readOnlyHint: true` (`mcp.mts:314`). | Die Einträge enthalten keine Nutzerdaten. Nach der MCP-Bedeutung („verändert seine Umgebung nicht“) ist `prepare` aber **nicht** rein lesend. Diesen Punkt hatte Entwurf 1 genannt, Entwurf 2 hat ihn ausgelassen. | siehe Varianten unten; Empfehlung: Bereinigung nur noch in `submit` |
+| K4 | Der erste Aufruf einer ChatGPT-Sitzung endet mit 400, danach kommt 200. | **Ursache ungeklärt; bisher kein beobachteter Ausfall.** | **beobachten**; bei Gelegenheit im Netlify-Log klären, Codeänderung nur bei nachgewiesenem Fehler |
 
-**Vorschlag:** K1 und K2 in **einem** Deploy, also `mcp.mts`, `scripts/mcp-check.ts`, `Datenschutz.tsx` und
-`MCP.md`. Das sind 4 Dateien, Stufe C, weil Function-Code betroffen ist. Lieber getrennt? Dann zwei Deploys mit
-jeweils 48 h Abstand. Nach dem Merge in ChatGPT „Tools aktualisieren“ und einen Versand-Test (P4) einmal
-wiederholen.
+**K1a, Varianten:**
+
+| Variante | Änderung | Vorteil | Nachteil |
+|---|---|---|---|
+| **A (Empfehlung)** | `cleanup()` nur noch in `submit`; `prepare` greift gar nicht mehr auf den Speicher zu | `prepare` ist dann tatsächlich lesend, und `readOnlyHint: true` stimmt. Vermerke und Plätze entstehen ohnehin nur in `submit`, also räumt der Aufruf auf, der sie auch erzeugt. | Ohne weitere Versände bleiben abgelaufene Einträge etwas länger liegen. Das ist schon heute so dokumentiert („bis zum nächsten Aufruf“). Der Datenschutzsatz ändert sich von „beim nächsten Vorbereiten oder Absenden“ zu „beim nächsten Absenden“. |
+| B | Bereinigung bleibt, `prepare` meldet `readOnlyHint: false` | kein Eingriff in den Ablauf | ChatGPT fragt dann womöglich schon vor dem Vorbereiten nach einer Bestätigung. Das bremst und verwischt den Unterschied zum Senden. |
+| C | Alles bleibt, nur eine Begründung wird dokumentiert | kein Code | Die Selbstauskunft bleibt ungenau. Nicht empfohlen. |
+
+**Korrekturpaket K1 + K1a + K2 (Tim: ja, zusammen):**
+
+- **Dateien:** `netlify/functions/mcp.mts`, `scripts/mcp-check.ts`, `client/src/pages/Datenschutz.tsx`,
+  `MCP.md`. Das sind 4 Dateien, Stufe C wegen des Function-Codes. Ein Deploy nach dem aktuellen 48-h-Gate.
+- **Inhalt:**
+  - Annotationen für alle fünf Tools, nur in `mcp.mts` überschrieben.
+  - Bereinigung nach Variante A.
+  - Datenschutz:
+    - Rückfluss der Plugin-Antworten an ChatGPT bzw. OpenAI
+    - Löschzeitpunkt „beim nächsten Absenden“
+    - Anker `chatgpt-plugin`
+  - `MCP.md`: Abschnitte „Speicher“ und „Offen“ nachziehen.
+- **Prüfungen vor dem PR:**
+  - `mcp-check` wird erweitert:
+    - (a) alle drei Werte für jedes Tool
+    - (b) `prepare` ruft den Speicher nicht auf (Zähl-Speicher im Test)
+    - (c) `submit` räumt weiterhin auf und verhält sich unverändert, alle bisherigen 51 Prüfungen bleiben grün
+  - Dazu laufen `estimate:check`, `foerder:check`, Build und CI.
+  - Den Datenschutztext liest **Codex** vor dem PR gegen; das Ergebnis kommt in den PR.
+- **Prüfungen auf der Deploy-Preview (Tim):**
+  - Connector auf die Preview-URL, „Tools aktualisieren“.
+  - Eine Anfrage vorbereiten und ablehnen: Es wird nichts gesendet.
+  - Eine Anfrage vorbereiten und zustimmen: Es kommt ein Eingang mit „TEST – Preview“, den Tim danach löscht.
+- **Nach dem Merge:**
+  - Netlify-Deploy, CI, Rate-Limit-Regel, Formularfelder unverändert, `tools/list` live mit den neuen
+    Annotationen.
+  - In ChatGPT „Tools aktualisieren“.
+  - Deploy-Log in `DEPLOY-RULES.md` §10 und `MCP.md`.
+  - Ein Versand-Test live nur, wenn Tim das ausdrücklich will, denn er erzeugt eine echte Anfrage.
 
 **Außerhalb dieses Plans, Entscheidung Tim, ohne Auftrag unverändert:** Auf `/velux-preisrechner-bochum` steht
 „ab ca. 1.800 € netto“ zweimal, im FAQ-Schema und im Fließtext. Es ist eine feste Preisangabe neben dem Rechner.
@@ -163,8 +222,11 @@ Ohne Connector rechnet ChatGPT genau damit hoch. Ob und wie sie geändert wird, 
 - Nach jedem Merge prüfe ich: Netlify-Deploy, CI, die Rate-Limit-Regel, die Formularfelder
   (`get-forms-for-project`) und `/mcp` `tools/list`. Danach ergänze ich den Deploy-Log in `DEPLOY-RULES.md` §10
   und `MCP.md`.
-- Mögliche Reihenfolge: (1) Stufe 0 ohne Deploy; (2) K1 und K2; (3) gegebenenfalls Stufe 1. Ein Förder-Deploy
-  aus der Wiedervorlage von `estimate:check` geht vor, wenn er eine falsche Zahl auf der Live-Site korrigiert.
+- Mögliche Reihenfolge: (1) Stufe 0 ohne Deploy; (2) Korrekturpaket K1 + K1a + K2; (3) gegebenenfalls Stufe 1.
+  Der Förder-Deploy hat eine feste Grenze, weil `estimate:check` meldet, dass BEG und §35c am 31.12.2026
+  auslaufen. Er braucht ein eigenes 48-h-Fenster vor dem Jahreswechsel und geht vor, wenn er eine falsche Zahl
+  auf der Live-Site korrigiert. Ein Merge im Dezember ist wegen `__BUILD_DATE__` in jedem Fall ein
+  Produktionsdeploy.
 - Doku nach der Freigabe: `MCP.md` („Offen“) und Umsetzungsplan-Tabelle: P5 „zurückgestellt, Website-Rechner ist
   Hauptweg (Entscheidung 17.11.2026)“. Das läuft im selben PR wie K1/K2 oder als reiner Doku-PR.
 
@@ -172,13 +234,14 @@ Ohne Connector rechnet ChatGPT genau damit hoch. Ob und wie sie geändert wird, 
 
 ## 7. Entscheidungen für Tim
 
-| Nr. | Frage | Vorschlag |
+| Nr. | Frage | Stand 17.11.2026 |
 |---|---|---|
-| F1 | Plan in dieser Form freigeben (Website-Rechner Hauptweg, Veröffentlichung zurückgestellt)? | ja |
-| F2 | Stufe 0: interne Kurzanleitung für Rechner-Links erstellen? Wo soll sie liegen (Repo oder nur bei dir)? | ja; Repo-Root, nicht auf der Website |
-| F3 | Stufe 1 (Button „Link kopieren“) jetzt oder erst bei Bedarf? | erst bei Bedarf |
-| F4 | K1 und K2 umsetzen, in einem Deploy? | ja, ein Deploy; K2 nach Codex-Gegenlesung |
-| F5 | K3 und K4 zurückstellen bzw. beobachten? | ja |
+| F1 | Plan freigeben? | Richtung ja (Tim); Freigabe nach Ergänzung des Bereinigungspunkts. Mit K1a in Entwurf 3 erledigt, **offen ist Tims Freigabe** |
+| F2 | Kurzanleitung? | ja, als separates Dokument nur für Tim, nicht im öffentlichen Repo (Tim) |
+| F3 | Button „Link kopieren“? | erst bei Bedarf, zuerst mit wenigen geprüften Links ausprobieren (Tim) |
+| F4 | K1 und K2 zusammen? | ja, als Korrekturpaket mit dem Bereinigungsschritt (K1a) und den Prüfungen aus Abschnitt 5 (Tim) |
+| F5 | K3 zurückstellen, K4 beobachten? | ja; K4 heißt „Ursache ungeklärt, bisher kein beobachteter Ausfall“ (Tim) |
+| F6 | K1a: Variante A (Bereinigung nur in `submit`)? | **offen**, Empfehlung A |
 
 ## 8. Offene Prüfungen
 
@@ -186,4 +249,4 @@ Ohne Connector rechnet ChatGPT genau damit hoch. Ob und wie sie geändert wird, 
 |---|---|
 | Vorausgefüllten Link per WhatsApp und per Mail auf dem Handy öffnen: Kommt die Konfiguration vollständig an? | Tim |
 | Wer im Team verschickt Links, und wie oft? Davon hängt F3 ab. | Tim |
-| Vor einem Deploy: `estimate:check` und `foerder:check` (in dieser Umgebung nicht gelaufen) | Claude, im PR |
+| Vor jedem Deploy erneut `estimate:check`, `foerder:check`, `mcp-check` und Build ausführen (am 17.11.2026 lokal: die ersten beiden bestanden) | Claude, im PR |
