@@ -186,12 +186,13 @@ export default function Datenschutz() {
                 Plugin übergibt: Fensterangaben, Antworten zu den Fördervoraussetzungen und – sobald
                 Sie eine Anfrage vorbereiten lassen – Ihren Namen, Ihre E-Mail-Adresse und/oder
                 Telefonnummer, freiwillige Adressdaten, Ihre Nachricht sowie die Angabe, ob die
-                Zuordnung Ihres vorhandenen Fensters bestätigt oder nur vermutet ist. Die Antworten
-                unseres Plugins gehen an ChatGPT zurück und werden damit ebenfalls bei OpenAI verarbeitet:
-                die Kostenschätzung und, sobald Sie eine Anfrage vorbereiten lassen, die Zusammenfassung
-                mit Ihren Kontaktdaten, die ChatGPT Ihnen vor dem Absenden zeigt. Diese Angaben
-                verarbeitet unser Plugin bei Netlify schon, wenn es die Zusammenfassung Ihrer Anfrage
-                erstellt; gespeichert werden sie dabei nicht. Erst wenn Sie dem Absenden ausdrücklich
+                Zuordnung Ihres vorhandenen Fensters bestätigt oder nur vermutet ist. Die von ChatGPT
+                an unser Plugin übermittelten Angaben verarbeiten wir bereits bei Netlify, wenn wir die
+                Zusammenfassung Ihrer Anfrage erstellen. Unser Plugin speichert die Anfrageinhalte bei
+                diesem Vorbereitungsschritt nicht. Die Antworten unseres Plugins werden an ChatGPT
+                zurückgegeben und damit auch bei OpenAI verarbeitet. Dazu gehören die Kostenschätzung
+                und, wenn Sie eine Anfrage vorbereiten lassen, die Zusammenfassung einschließlich Ihrer
+                Kontaktdaten. ChatGPT zeigt Ihnen diese Zusammenfassung vor dem Absenden. Erst wenn Sie dem Absenden ausdrücklich
                 zustimmen, geht die Anfrage wie eine Anfrage aus dem Preisrechner in das
                 Netlify-Formular und per Benachrichtigung an uns. Ein Foto aus dem Chat wird über
                 diesen Weg nicht an uns übertragen. Rechtsgrundlage ist Art. 6 Abs. 1 lit. b DSGVO.
