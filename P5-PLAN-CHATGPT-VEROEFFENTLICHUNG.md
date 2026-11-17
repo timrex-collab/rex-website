@@ -1,201 +1,189 @@
-# P5-Plan: Veröffentlichung des Rex-Plugins für ChatGPT (zur Freigabe)
+# P5-Plan, Entwurf 2: Website-Rechner als Hauptweg, ChatGPT-Veröffentlichung zurückgestellt
 
-Stand 15.11.2026, Entwurf 1 von Claude, **noch nicht freigegeben**. Grundlage: `UMSETZUNGSPLAN-2026-10-KI-ANFRAGEN.md`
-(P4, P5), `MCP.md`, `DEPLOY-RULES.md` §4 und §10, V8-Ergebnis von Codex (Abruf 15.11.2026) und eine Prüfung des
-Codes auf `main` (`c5dbcfa`).
+Stand 17.11.2026, **zur Freigabe, noch nicht freigegeben.** Ersetzt Entwurf 1 vom 15.11.2026 (`61a47dc`, im
+Git-Verlauf dieses Branches).
 
-Was dieser Plan ist und was nicht: Er beschreibt, welchen Weg wir nehmen, welche Unterlagen fehlen und wie die
-Deploys aufgeteilt werden. Er enthält keinen Code. Umgesetzt wird erst nach Tims ausdrücklicher Freigabe, jeder Deploy
-als eigener PR. Eingereicht wird nur durch Tim.
+Geprüft am 17.11.2026 gegen `origin/main` (`c5dbcfa`, seit #117 unverändert): `client/src/lib/velux/deeplink.ts`,
+`tools.ts`, `client/src/components/VeluxPreisrechner.tsx`, `export-gate.ts`, `netlify/functions/mcp.mts`,
+`client/public/llms*.txt`, `Datenschutz.tsx`. In diesem Schritt wurde kein Produktivcode geändert. Es gibt
+keinen PR, keinen Deploy, keine Einreichung und keinen Versand. `estimate:check` lief hier nicht, weil
+`node_modules` in dieser Umgebung fehlt.
+
+## 0. Tims Entscheidung (17.11.2026)
+
+Der VELUX-Rechner auf der Website ist der Hauptweg für Fensteranfragen. Dafür braucht der Kunde weder ein
+ChatGPT-Konto noch ein Plugin. Der Ablauf:
+
+1. Der Kunde öffnet den Rechner über einen Link.
+2. Er gibt Fenster und Ausstattung ein oder prüft die vorausgefüllten Angaben.
+3. Er sieht die unverbindliche Kostenaufstellung.
+4. Er ergänzt seine Kontaktdaten und prüft die Anfrage.
+5. Er klickt auf der Website selbst auf „Anfrage senden“.
+
+Der Versand nach Zustimmung in ChatGPT ist damit nicht mehr die Priorität. Die Veröffentlichung in ChatGPT wird
+zum möglichen späteren Zusatzkanal. Die MCP-Anbindung samt Versandfunktion bleibt unverändert in Betrieb. Ein
+KI-Assistent auf der Website ist nicht eingeplant.
 
 ---
 
-## 1. Bewertung des V8-Ergebnisses
+## 1. Was bereits vorhanden ist
 
-**Quellenlage.** Alle OpenAI-Aussagen stammen von Codex (developers.openai.com, help.openai.com,
-learn.chatgpt.com, Abruf 15.11.2026). Aus dieser Umgebung sind diese Seiten gesperrt. **Ich habe keine davon selbst
-gelesen.** Was unten als OpenAI-Regel steht, ist Codex' Wiedergabe. Mit eigener Prüfung belege ich nur Aussagen über
-das Rex-Repo.
+**Der gewünschte Kundenablauf funktioniert heute vollständig auf `/velux-preisrechner-bochum`.**
 
-**Was ich im Repo bestätigen kann:**
-
-| Codex-Aussage | Befund im Code | Folge |
+| Schritt | Umsetzung im Code | Status |
 |---|---|---|
-| `prepare` setzt nur `readOnlyHint` | stimmt (`netlify/functions/mcp.mts:314`) | ergänzen |
-| `submit` hat `destructiveHint: false` | stimmt (`mcp.mts:335`) | auf `true`, weil der Versand nicht zurückgeholt werden kann |
-| „Alle fünf Tools prüfen“ | Die drei lesenden Tools haben **nur** `readOnlyHint: true`, `resolve` zusätzlich `untrustedContentHint` (`client/src/lib/velux/tools.ts:167/183/214`). `destructiveHint` und `openWorldHint` fehlen überall. | alle fünf ergänzen |
-| — (fehlt bei Codex) | `tools.ts` wird **auch von WebMCP im Browser** genutzt (`VeluxPreisrechner.tsx:16`) | Annotationen nur in `mcp.mts` überschreiben, `tools.ts` nicht anfassen. Sonst ändert sich das Browser-Bundle und WebMCP gleich mit. |
-| — (fehlt bei Codex) | `prepare` räumt bei jedem Aufruf abgelaufene Blobs-Einträge auf (`MCP.md`, „Speicher“) | `readOnlyHint: true` ist vertretbar, weil keine Nutzerdaten geschrieben werden. In der Begründung steht das offen drin. |
-| Datenschutz muss Datenarten, Zwecke, Empfänger, Speicherdauer und Rechte nennen | Der Abschnitt „Anfragen über ChatGPT (Rex-Plugin)“ (`Datenschutz.tsx:180 ff.`) deckt Datenarten, Zweck, Netlify, Vermerke und Rechtsgrundlage ab. Er hat **keinen Sprunganker**. Er sagt **nicht**, dass die Tool-Antworten (Zusammenfassung **mit Kontaktdaten**) an OpenAI zurückgehen. | kleine Ergänzung, Codex liest gegen |
-| Nutzungsbedingungen-URL Pflicht | Rex hat **keine** Nutzungsbedingungen-Seite und keine AGB-Seite | eigene Seite = neue Route (Stufe C) |
-| Support-URL | `/kontakt` ist vorhanden | reicht vermutlich, Tim bestätigt |
+| 1 Rechner öffnen | Route vorhanden; verlinkt aus Navigation, Footer, `/dachfenster-bochum`, `/velux-austausch`, `/velux-rolllaeden` und der Scroll-Animation | live |
+| 2 Fenster und Ausstattung | Schritt 1 des Rechners: Modell GGU/GGL/GPU/GPL, 19 Größen, Verglasung, Anzahl, Rollladen und Rollo mit Anzahl, bis zu 10 Positionen; Schritt 2: vier Förderfragen | live |
+| 3 Kostenaufstellung | Schritt 3: Material, Einbau ab, MwSt., BEG und §35c als Alternativen, Hinweise, Enthalten/Nicht enthalten. Gerechnet wird im Browser über `client/src/lib/velux` | live |
+| 4 Kontaktdaten und Prüfung | im selben Schritt: Name\*, E-Mail oder Telefon\*, Adresse, Anmerkung, Typenschild-Foto (P1), Herkunft – alles freiwillig außer den Pflichtangaben. Kostenaufstellung und Eingaben stehen auf derselben Seite über dem Button | live |
+| 5 Kunde sendet selbst | Button „Anfrage senden & PDF erstellen“ erst bei gültigen Kontaktdaten; Versand an Netlify Forms `velux-preisrechner`; Fehlerweg mit Telefon und E-Mail-Entwurf; Link zu den Datenschutzhinweisen | live |
 
-**Plausibel, aber nicht belegt und nicht widerspruchsfrei.** Ich übernehme das nur als Arbeitsannahme:
+**Vorausgefüllter Link („Rechner-Link“, W1, live seit #107, am 26.10.2026 auf Handy und PC abgenommen):**
 
-- **„Genau fünf positive und drei negative Testfälle“, Demo-Video und Release Notes:** so konkret, dass es aus einer
-  Formularprüfung stammen dürfte. Die tatsächlichen Pflichtfelder zeigt erst das Portal. Tim macht beim ersten Öffnen
-  Screenshots davon.
-- **Tarife:** Laut Codex beschränkt das Help Center eigene Connectoren bei Pro auf read/fetch. **Dem widerspricht
-  unsere eigene Abnahme:** Am 13.11.2026 hat der Versand aus Tims Konto in Web, Classic und iPhone funktioniert
-  (`MCP.md`, Abnahmen). Dann ist Tims Konto entweder kein Pro-Konto, oder die Help-Center-Seite ist veraltet. **Tims
-  Tarif ist die wichtigste offene Frage für jede Kundenanleitung.**
-- **Begriff „Plugin Directory“:** Nach meinem Wissensstand (bis Mitte 2026) hieß das „Apps in ChatGPT“ mit Apps SDK.
-  Eine Umbenennung ist möglich. Maßgeblich ist, was Tim im Portal sieht.
-- **Begründungen für Annotationen:** Codex meldet widersprüchliche Seiten. Wir bereiten kurze Begründungen vor, das
-  schadet nicht.
+- Format: `https://www.rex-bedachung.de/velux-preisrechner-bochum#rechner=1&p=Modell.Größe.Verglasung.Anzahl[.Rollladen[.Anzahl]][.Rollo[.Anzahl]]…[&f=Alter.Energie.Selbstnutzung.iSFP]`
+  Beispiel: `…#rechner=1&p=GGU.MK08.ENERGIE.1&f=over_10.yes.yes.no`
+- **Übernommen werden:** je Position Modell, Größe, Verglasung und Anzahl, Rollladen (SSL/SML) mit Anzahl und
+  Rollo (DKL/DSL) mit Anzahl, höchstens 10 Positionen. Die vier Förderantworten übernimmt der Link nur, wenn
+  alle vier vorhanden sind.
+- **Nicht übernommen werden:** Kontaktdaten, Adresse, Anmerkung, Foto und die Herkunftsangabe. Das ist so gewollt,
+  denn die Konfiguration steht nur im Fragment hinter `#` und erreicht keinen Server.
+- **Verhalten:** Mit Förderangaben öffnet der Rechner direkt bei der Kostenaufstellung, ohne Förderangaben bei
+  den Förderfragen. Ein Hinweis sagt, dass die Angaben aus dem Link stammen und geprüft werden sollen. Ungültige Links
+  oder Links einer anderen Version öffnen den leeren Rechner mit einem Hinweis. Das Fragment wird danach aus der
+  Adresszeile entfernt. Über „Zurück“ kann der Kunde alles ändern.
+- **In der Anfrage an Rex** steht im Feld `quelle` „Konfiguration: per Rechner-Link übernommen, unverändert“ bzw. „…,
+  geändert“, wenn der Kunde danach etwas angepasst hat (`describeConfigOrigin`).
+- Geprüft wird das in der CI (`estimate:check`, `velux-ui-smoke`). Format und Beispiele stehen in `llms.txt` und
+  `llms-full.txt`.
 
-**Was Codex nicht geprüft hat und vor der Einreichung offen ist:**
+**Drei Wege, sauber getrennt:**
 
-1. **Marke „VELUX“ im Plugin-Namen:** Verzeichnisregeln verbieten üblicherweise fremde Marken im Namen ohne
-   Berechtigung. Rex' eigene Regel lässt nur „autorisierter VELUX-Partner“ zu. Vorschlag: Name ohne VELUX (z. B.
-   „Rex Dachfenster-Rechner“), VELUX nur in der Beschreibung als „autorisierter VELUX-Partner“. Ob VELUX die
-   Verwendung im Verzeichnis erlaubt, klärt Tim gegebenenfalls über den Partnerkanal.
-2. **Prüfer senden echte Anfragen.** Ohne Anmeldung landet jede Review-Anfrage in Produktion, also in Netlify Forms
-   und in Tims Postfach. Lösung ohne neuen Code: In den Review-Hinweisen steht „Name: OpenAI Review“. Das
-   Tageskontingent (50) bleibt als Schutz.
-3. **Erster Aufruf mit 400** (`MCP.md`, Offen): kann den automatischen Tool-Scan stören. Ursache vor der Einreichung
-   klären.
-4. **`/.well-known/oauth-*` liefert 200 mit HTML** statt 404: Ein Scanner kann daraus „OAuth vorhanden, aber kaputt“
-   schließen. Vor der Einreichung beheben (Regel in `netlify.toml`). Den Pfad der Domain-Challenge darf diese Regel
-   nicht treffen.
-5. **Domain-Challenge:** Pfad und Token kennt erst das Portal. Liegt die Datei unter `/.well-known/`, schützt sie die
-   Regel aus Punkt 4 ausdrücklich vor dem 404.
+| Weg | Wer erzeugt ihn | Was passiert | Voraussetzung beim Kunden |
+|---|---|---|---|
+| **Normaler Website-Link** | jeder (Website-Menü, Google-Profil, E-Mail-Signatur, WhatsApp-Antwort) | leerer Rechner, der Kunde gibt alles selbst ein | Browser |
+| **Vorausgefüllter Link** | (a) Rex-Team von Hand nach dem Format oben; (b) Tim über seinen eigenen ChatGPT-Connector (`calculatorUrl` aus `rex_velux_calculate_estimate_v1`), dann per Mail oder WhatsApp an den Kunden; (c) eine KI, die das Format aus `llms.txt` liest – **möglich, aber nicht zugesagt** | Rechner mit Fenstern und gegebenenfalls Förderangaben; Kontaktdaten und Absenden macht der Kunde selbst | Browser |
+| **MCP** (`/mcp`, ChatGPT-Connector) | ChatGPT im Konto mit eingerichtetem Rex-Connector | Schätzung im Chat, `calculatorUrl`, optional Versand nach Zustimmung im Chat | ChatGPT-Konto **und** eingerichteter Connector |
+| **WebMCP** | KI-Anwendung mit WebMCP-Unterstützung, **während die Rechnerseite offen ist** | KI füllt den Rechner auf der Seite nach Bestätigung aus; absenden muss der Nutzer selbst | passende Anwendung, Seite geöffnet |
+
+**Nicht zugesagt wird:** dass ein gewöhnlicher ChatGPT-Chat ohne Connector den Rechner aufruft, die Website
+ausfüllt, einen gültigen Link baut oder Rex empfiehlt. Nach dem Befund vom 13.11.2026 rechnet ChatGPT ohne
+Connector mit Zahlen aus Seitentexten und der Websuche (`MCP.md`).
 
 ---
 
-## 2. Empfohlener Weg
+## 2. Was für den Website-Kundenweg noch fehlt
 
-**Ziel ist der öffentliche Verzeichniseintrag.** Eine Kundenanleitung für eigene Connectoren wird vorher **nicht** auf
-die Website gestellt. Außerhalb des Verzeichnisses machen wir den Endpunkt nur maschinenlesbar bekannt (`llms*.txt`).
+**Für den Ablauf selbst fehlt nichts.** Es gibt nur zwei Lücken, beide nicht technischer Art:
 
-Warum ich hier von Codex' Empfehlung abweiche (Codex: Anleitung zuerst):
+1. **Wer erzeugt den vorausgefüllten Link?** Ein Kunde kommt nur dann zu einem vorausgefüllten Rechner, wenn
+   vorher jemand seine Fenster kennt, zum Beispiel Rex nach einem Telefonat oder einem Typenschild-Foto per
+   WhatsApp. Auf der Website gibt es dafür keine Funktion. Heute bleiben nur zwei Wege: den Link von Hand nach
+   dem Format bauen oder Tims ChatGPT-Connector nutzen.
+2. **Links in Messengern und In-App-Browsern:** Auf Handy und PC wurden Links in normalen Browsern abgenommen.
+   Nicht gezielt geprüft ist, ob WhatsApp, Mail-Apps und In-App-Browser den Teil hinter `#` mit `&` vollständig
+   übergeben. Das ist ein Test mit einer echten Nachricht an sich selbst, kein Code.
 
-- Ein Kunde müsste im Web unter „Add custom MCP server“ einen Risikohinweis bestätigen. Auf dem Handy geht das
-  Einrichten nicht. Welche Tarife den Versand erlauben, ist ungeklärt. Für Rex-Kunden ist das kaum zumutbar und
-  bringt erwartbar wenige Anfragen.
-- Ein öffentlicher Anleitungstext mit Tarif-Hinweisen müsste laufend gepflegt werden.
-- Der Rechner auf der Website bleibt der Weg für alle. ChatGPT verweist über `calculatorUrl` sowieso dorthin.
-
-Kommt die Einreichung nicht durch oder zieht sie sich, bleibt die Anleitung als Rückfallweg (Abschnitt 5, Deploy
-P5-4b).
+Nicht nötig: neue Seite, KI-Assistent, Änderungen an Preis- oder Förderlogik, neues Formular.
 
 ---
 
-## 3. Unterlagen für die Einreichung (Claude bereitet vor, Tim reicht ein)
+## 3. Empfohlene kleinste Änderung
 
-Alles kommt in einen Ordner `p5-einreichung/` auf dem Arbeitsbranch. Er wird **nicht** nach `main` gemergt, nur
-übergeben.
+**Stufe 0 – ohne Code (empfohlen als Start):**
 
-| Unterlage | Inhalt | Wer |
-|---|---|---|
-| Verzeichnistext | Name, Untertitel, Beschreibung (DE, kurz EN falls verlangt), **ohne Preise, Rabatte und Werbeversprechen**; VELUX nur als „autorisierter VELUX-Partner“; klarer Nutzwert (Typenschild-Zuordnung, nachvollziehbare Schätzung mit BEG und §35c, Rechner-Link) | Claude, Tim prüft |
-| Tool-Begründungen | je Tool `readOnlyHint` / `destructiveHint` / `openWorldHint` mit einem Satz | Claude |
-| Review-Hinweise | keine Anmeldung; unverbindliche Anfrage, kein Kauf; Versand nur nach Zustimmung zur vollständigen Zusammenfassung, Hash-Bindung, Doppelversandschutz, Tageslimit, Rate-Limit; warum ohne OAuth (keine Kundenkonten, keine Daten abrufbar, nur Einweg-Versand an Rex); „Name: OpenAI Review“ | Claude |
-| 5 positive Testfälle | P1 Optionen abfragen (Modelle, Größen) · P2 Typenschild „GGL S10“ → SK10 mit Rückfrage · P3 Kostenschätzung Goldwert 2.104 € / BEG 316 € / §35c 421 € mit Rechner-Link · P4 Anfrage vorbereiten, zustimmen, senden → `SENT` · P5 Zusammenfassung ändern, neu vorbereiten, senden | Claude, Werte aus `MCP.md` |
-| 3 negative Testfälle | N1 Nutzer lehnt ab → kein `submit` · N2 Anfrage ohne E-Mail und Telefon → `CONTACT_INVALID`, nichts gesendet · N3 dieselbe Anfrage erneut senden → `ALREADY_SENT`, kein zweiter Eingang. Falls das Portal unter „negativ“ Fälle meint, in denen das Tool **nicht** ausgelöst werden soll: N1 Frage zu Flachdach oder einem anderen Hersteller → kein Tool-Aufruf | Claude; Einordnung prüft Tim im Portal |
-| Demo-Video | Drehbuch (ca. 2 min, ChatGPT Web): P3 → P4 mit sichtbarer Zustimmung → Eingang in Netlify. Kontaktdaten nur „OpenAI Review“ | Claude Drehbuch, **Tim nimmt auf** |
-| Screenshot-Liste | laut Codex keine Pflicht. Für Doku und Portal trotzdem: Schätzung, Zusammenfassung vor dem Senden, Bestätigung `SENT`, Typenschild-Rückfrage, Ablehnung | Tim |
-| Logo | quadratisch, Format laut Portal; aus vorhandenem Rex-Logo | Tim liefert die Datei, Claude prüft Format |
-| Release Notes | „1.0: Kostenschätzung VELUX-Dachfensteraustausch, Typenschild-Zuordnung, unverbindliche Anfrage an Rex“ | Claude |
-| URLs | Website `https://www.rex-bedachung.de`, Support `/kontakt`, Datenschutz `/datenschutz#chatgpt-plugin`, Nutzungsbedingungen (neu, Abschnitt 4) | nach P5-2 |
-| Länder / Sprache | Vorschlag: nur Deutschland, Deutsch | Tim entscheidet |
+- Claude erstellt eine einseitige interne Kurzanleitung „Rechner-Link für Kunden erstellen“: Format,
+  Größencodes, fünf fertige Beispiel-Links für häufige Fälle, Hinweis „Förderangaben nur, wenn der Kunde sie
+  genannt hat“. Die Datei liegt im Repo-Root oder nur bei Tim. Sie geht nicht auf die Website.
+- Tim prüft einen Link einmal über WhatsApp und einmal per Mail auf dem Handy (Abschnitt 2, Punkt 2).
+- Den normalen Rechner-Link verwendet das Team für Antwortvorlagen, die E-Mail-Signatur und das Google-Profil.
+  Das sind Tims Kanäle; Claude ändert dort nichts.
 
----
+**Stufe 1 – nur falls Stufe 0 im Alltag zu umständlich ist (Entscheidung Tim):**
 
-## 4. Website-Änderungen
+- Button „Link zu dieser Konfiguration kopieren“ in Schritt 3 des Rechners. Er nutzt das vorhandene
+  `buildCalculatorUrl` und schreibt nur in die Zwischenablage, ohne Kontaktdaten, ohne Server und ohne neue
+  Logik.
+- Nützlich für das Rex-Team und für Kunden, die eine Konfiguration weitergeben wollen.
+- Umfang: `VeluxPreisrechner.tsx`, Text in `content.ts`, ein Smoke-Test; das sind 3 Dateien, Stufe A.
+- Ein eigener Deploy nach dem aktuellen 48-h-Gate.
 
-1. **Tool-Annotationen** (`mcp.mts`): alle fünf Tools mit expliziten Werten, Overrides nur im Server.
-
-   | Tool | readOnly | destructive | openWorld |
-   |---|---|---|---|
-   | get_options, resolve, calculate | true | false | false |
-   | prepare | true | false | false |
-   | submit | false | **true** | true |
-
-   Dazu `mcp-check` erweitern, damit alle drei Werte für jedes Tool geprüft werden. Danach in ChatGPT
-   „Tools aktualisieren“.
-2. **`netlify.toml`:** `/.well-known/oauth-*` und `/.well-known/openid-configuration` liefern 404, auch unter `/mcp/…`.
-   Die Challenge-Datei ist ausgenommen.
-3. **400 beim ersten Aufruf:** Ursache klären (Netlify-Log, vermutlich ein `GET` oder `DELETE` ohne Session aus dem
-   Streamable-HTTP-Handshake). Code ändert sich nur, wenn es tatsächlich ein Fehler ist.
-4. **Datenschutz** (`Datenschutz.tsx`): Anker `id="chatgpt-plugin"`; ein Satz dazu, dass die Antworten des Plugins
-   (Schätzung und Zusammenfassung mit Kontaktdaten) an ChatGPT zurückgehen und damit bei OpenAI verarbeitet werden;
-   Verweis auf die Speicherdauer im Abschnitt „Speicherdauer von Anfragen“ und auf die Betroffenenrechte. **Codex
-   liest gegen, das Ergebnis kommt in den PR.**
-5. **Nutzungsbedingungen** (neue Seite, `lazy()` in `App.tsx`, `noindex`, nicht in der Sitemap, Link im Footer):
-   kurz und sachlich – unverbindliche Schätzung, kein Vertragsschluss über das Plugin, keine Gewähr für Antworten von
-   ChatGPT, Förderhinweise ohne Zusage, Verfügbarkeit, Kontakt. **Rechtlich prüft Tim oder sein Berater.** Ich
-   formuliere nur einen Entwurf. Pfad z. B. `/nutzungsbedingungen` (Entscheidung Tim).
-6. **`llms.txt` / `llms-full.txt`:** kurzer Abschnitt zum MCP-Endpunkt (URL, fünf Tools, Versand nur nach
-   Zustimmung). Nach der Veröffentlichung kommt der Verzeichnis-Link dazu. `estimate:check` und `foerder:check`
-   laufen mit, Beispiel-Links bleiben im aktuellen Format.
-7. **Domain-Challenge-Datei** in `client/public/…` (Pfad und Token aus dem Portal).
-
-Nicht Teil von P5 und unverändert ohne Auftrag: der Satz „ab ca. 1.800 € netto“ auf `/velux-preisrechner-bochum`
-(Preisangabe, Entscheidung Tim). Er passt aber inhaltlich dazu: Ohne Connector rechnet ChatGPT mit genau diesem Wert
-hoch (`MCP.md`).
+Ich empfehle zuerst Stufe 0. Stufe 1 lohnt sich erst, wenn Links tatsächlich regelmäßig verschickt werden.
 
 ---
 
-## 5. Deploys nach Stufen
+## 4. Zurückgestellt (ChatGPT-Veröffentlichung)
 
-Jeder Deploy ist ein PR mit „Squash and merge“ durch Tim. Root-Doku (`MCP.md`, `DEPLOY-RULES.md`) zählt mit.
-48 h gerechnet ab `published_at` des vorigen Produktionsdeploys. Alles im November, also kein Monatswechsel-Effekt
-durch `__BUILD_DATE__`. Rutscht ein Deploy in den Dezember, ist schon der erste Merge ein Produktionsdeploy.
-`formulare.html` bleibt unberührt.
+Aus Entwurf 1 entfallen bis auf Weiteres und werden **nicht** vorbereitet:
 
-| Deploy | Inhalt | Dateien | Stufe | frühestens |
-|---|---|---|---|---|
-| **P5-1** | Annotationen (`mcp.mts`), `scripts/mcp-check.ts`, `.well-known`-Regel (`netlify.toml`), ggf. Fix für 400, `MCP.md` | 4 | C (gesperrte Config) | 16.11.2026 00:05 MEZ |
-| **P5-2** | Nutzungsbedingungen (neue Seite + `App.tsx` + Footer), Datenschutz-Ergänzung, `MCP.md` | 5 | C (neue Route) | 48 h nach P5-1; vorher Codex-Gegenlesung und Tims Rechtsprüfung |
-| — | **Tim:** Identität verifizieren, Projekt anlegen, Portal öffnen, Challenge-Token holen | — | — | parallel zu P5-1/P5-2 |
-| **P5-3** | Challenge-Datei, `llms.txt`, `llms-full.txt`, `MCP.md` | 4 | A/B | 48 h nach P5-2 |
-| — | **Tim reicht ein** | — | — | nach P5-3 |
-| **P5-4a** | nach Genehmigung: Verzeichnis-Link in `llms*.txt`, ggf. Hinweis auf der Rechnerseite, Deploy-Log | ≤ 4 | A/B | 48 h nach P5-3 und nach Veröffentlichung |
-| P5-4b (Rückfall) | bei Ablehnung: Korrekturen laut Prüfbescheid, oder Kundenanleitung für eigene Connectoren | offen | offen | nach neuer Freigabe |
+- Unternehmensverifizierung bei OpenAI, Projekt ohne EU Data Residency, Einreichungsportal
+- Einreichungspaket (`p5-einreichung/`): Verzeichnistext, Testfälle, Demo-Video, Logo, Release Notes,
+  Review-Hinweise
+- Domain-Challenge-Datei
+- Nutzungsbedingungen-Seite (war nur für die Einreichung nötig)
+- Kundenanleitung zum Einrichten eines eigenen Connectors
+- Verzeichnis-Link in `llms*.txt`
+- die Entscheidungen E2–E6 aus Entwurf 1 (Identität, Name ohne VELUX, Nutzungsbedingungen, Länder,
+  Prüfer-Anfragen)
 
-**Konkurrenz um Deploy-Fenster:** Die Förder-Wiedervorlage aus `estimate:check` ist am 16.11.2026 fällig, der
-Förder-Deploy vor dem 31.12.2026. Ist das Ergebnis der Wiedervorlage eine falsche Zahl auf der Live-Site, geht es
-vor P5 (Notfall-Korrektur prüfen). Sonst schiebe ich den Förder-Deploy zwischen P5-3 und P5-4a. Über die Reihenfolge
-entscheidet Tim.
-
-Nach jedem Merge prüfe ich: Netlify-Deploy (`state`, `commit_ref`, `published_at`), CI, Rate-Limit-Regel aktiv,
-`get-forms-for-project` unverändert, `/mcp` `tools/list` live. Danach ergänze ich den Deploy-Log in
-`DEPLOY-RULES.md` §10 und `MCP.md` und schreibe die Gate-Zeit für den nächsten Deploy dazu.
+Die V8-Ergebnisse von Codex (Abruf 15.11.2026, von Claude nicht selbst geprüft) und Entwurf 1 bleiben im
+Git-Verlauf. Wird die Veröffentlichung wieder aufgenommen, prüfen wir die OpenAI-Regeln neu, weil sie sich
+schnell ändern.
 
 ---
 
-## 6. Entscheidungen für Tim
+## 5. Unabhängige Korrekturen an der bestehenden MCP-Anbindung
+
+Diese Befunde gelten unabhängig von einer Veröffentlichung, weil `/mcp` live ist und in Tims Konto genutzt wird.
+
+| Nr. | Befund | Bewertung | Empfehlung |
+|---|---|---|---|
+| K1 | **Tool-Annotationen:** `submit` meldet `destructiveHint: false`, obwohl eine gesendete Anfrage nicht zurückgeholt werden kann (`mcp.mts:335`). Bei `prepare` und den drei lesenden Tools fehlen `destructiveHint` und `openWorldHint`. | Die Angaben sind falsch und können einen Client dazu bringen, weniger nachzufragen. Der eigene Schutz greift trotzdem: `userConfirmed`, Bindung an die Zusammenfassung über einen Hash, Doppelversandschutz. **Kein akutes Risiko, aber falsche Selbstauskunft.** | korrigieren: Werte nur in `mcp.mts` überschreiben, `tools.ts` bleibt, weil es auch WebMCP im Browser nutzt; `mcp-check` prüft alle drei Werte je Tool |
+| K2 | **Datenschutz:** Der Abschnitt „Anfragen über ChatGPT (Rex-Plugin)“ sagt nicht, dass die Antworten des Plugins (Kostenschätzung und Zusammenfassung **mit den Kontaktdaten**) an ChatGPT zurückgehen und dort von OpenAI verarbeitet werden. | Lücke in der Transparenz für einen Kanal, der heute funktioniert. Klein, aber sachlich nötig. | ein bis zwei Sätze ergänzen, Sprunganker `id="chatgpt-plugin"`; **vor dem PR liest Codex gegen**, das Ergebnis kommt in den PR |
+| K3 | `/.well-known/oauth-*` und `openid-configuration` unter `/mcp` liefern 200 mit der Startseite statt 404. | ChatGPT kommt damit zurecht. Wichtig wäre es erst für einen automatischen Tool-Scan bei einer Einreichung. | **zurückstellen**; erledigen, wenn die Veröffentlichung wieder aufgenommen wird (`netlify.toml` ist gesperrte Config, Stufe C) |
+| K4 | Der erste Aufruf einer ChatGPT-Sitzung endet mit 400, danach kommt 200. | Ohne funktionale Wirkung. | **beobachten**; bei Gelegenheit im Netlify-Log klären, Codeänderung nur bei echtem Fehler |
+
+**Vorschlag:** K1 und K2 in **einem** Deploy, also `mcp.mts`, `scripts/mcp-check.ts`, `Datenschutz.tsx` und
+`MCP.md`. Das sind 4 Dateien, Stufe C, weil Function-Code betroffen ist. Lieber getrennt? Dann zwei Deploys mit
+jeweils 48 h Abstand. Nach dem Merge in ChatGPT „Tools aktualisieren“ und einen Versand-Test (P4) einmal
+wiederholen.
+
+**Außerhalb dieses Plans, Entscheidung Tim, ohne Auftrag unverändert:** Auf `/velux-preisrechner-bochum` steht
+„ab ca. 1.800 € netto“ zweimal, im FAQ-Schema und im Fließtext. Es ist eine feste Preisangabe neben dem Rechner.
+Ohne Connector rechnet ChatGPT genau damit hoch. Ob und wie sie geändert wird, entscheidet Tim gesondert.
+
+---
+
+## 6. Deploys und Regeln
+
+- Für alle späteren Deploys gelten das aktuelle 48-h-Gate (ab `published_at` des letzten Produktionsdeploys,
+  vor jeder Aussage `date` und Netlify prüfen) und das Merge-Gate aus `DEPLOY-RULES.md`. Feste Termine aus
+  Entwurf 1 entfallen.
+- Ein Merge im neuen Monat ist wegen `__BUILD_DATE__` immer ein Produktionsdeploy. Paketänderungen zählen immer.
+- Jeder Deploy ist ein eigener PR mit „Squash and merge“ durch Tim, ohne Auto-Merge. Root-Doku zählt mit.
+- Nach jedem Merge prüfe ich: Netlify-Deploy, CI, die Rate-Limit-Regel, die Formularfelder
+  (`get-forms-for-project`) und `/mcp` `tools/list`. Danach ergänze ich den Deploy-Log in `DEPLOY-RULES.md` §10
+  und `MCP.md`.
+- Mögliche Reihenfolge: (1) Stufe 0 ohne Deploy; (2) K1 und K2; (3) gegebenenfalls Stufe 1. Ein Förder-Deploy
+  aus der Wiedervorlage von `estimate:check` geht vor, wenn er eine falsche Zahl auf der Live-Site korrigiert.
+- Doku nach der Freigabe: `MCP.md` („Offen“) und Umsetzungsplan-Tabelle: P5 „zurückgestellt, Website-Rechner ist
+  Hauptweg (Entscheidung 17.11.2026)“. Das läuft im selben PR wie K1/K2 oder als reiner Doku-PR.
+
+---
+
+## 7. Entscheidungen für Tim
 
 | Nr. | Frage | Vorschlag |
 |---|---|---|
-| E1 | Weg: Verzeichnis zuerst, Kundenanleitung nur als Rückfall? | ja |
-| E2 | Veröffentlichen als „Rex Bedachungs GmbH“ (Unternehmensverifizierung) oder als Person? | GmbH |
-| E3 | Plugin-Name ohne „VELUX“? | ja, z. B. „Rex Dachfenster-Rechner“ |
-| E4 | Nutzungsbedingungen als eigene Seite `/nutzungsbedingungen`, `noindex`, mit Footer-Link? Wer prüft rechtlich? | ja; Prüfung Tim/Berater |
-| E5 | Länder: nur Deutschland? | ja |
-| E6 | Prüfer-Anfragen in Produktion mit „Name: OpenAI Review“ in Kauf nehmen? | ja |
-| E7 | `destructiveHint: true` für `submit`, auch wenn ChatGPT dann vielleicht zusätzlich nachfragt? | ja (doppelte Nachfrage ist hier richtig) |
-| E8 | Reihenfolge P5 und Förder-Deploy | nach dem Ergebnis der Wiedervorlage am 16.11. |
+| F1 | Plan in dieser Form freigeben (Website-Rechner Hauptweg, Veröffentlichung zurückgestellt)? | ja |
+| F2 | Stufe 0: interne Kurzanleitung für Rechner-Links erstellen? Wo soll sie liegen (Repo oder nur bei dir)? | ja; Repo-Root, nicht auf der Website |
+| F3 | Stufe 1 (Button „Link kopieren“) jetzt oder erst bei Bedarf? | erst bei Bedarf |
+| F4 | K1 und K2 umsetzen, in einem Deploy? | ja, ein Deploy; K2 nach Codex-Gegenlesung |
+| F5 | K3 und K4 zurückstellen bzw. beobachten? | ja |
 
----
+## 8. Offene Prüfungen
 
-## 7. Offene Prüfungen
-
-| Was | Wer | Warum |
-|---|---|---|
-| Welchen ChatGPT-Tarif hat Tims Konto? | Tim | erklärt den Widerspruch Pro/read-only gegenüber dem erfolgreichen Versand am 13.11. |
-| OpenAI-Plattform: Organisation, Unternehmensverifizierung, Projekt **ohne EU Data Residency** | Tim | laut Codex Voraussetzung für die Einreichung |
-| Portal: tatsächliche Pflichtfelder, Logo-Format, Testfall-Format, Gebühren, Challenge-Pfad (Screenshots an Claude) | Tim | V8 beruht nur auf Codex' Lesart |
-| VELUX: Namensnennung im Verzeichnis zulässig? | Tim | Markenrecht, Partnerbedingungen |
-| Ursache für 400 beim ersten Aufruf | Claude, in P5-1 | Tool-Scan |
-| Datenschutz- und Nutzungsbedingungen-Text | Codex gegenlesen, Tim rechtlich | Pflicht-URLs |
-| Nach P5-1: „Tools aktualisieren“ und P3/P4 einmal in ChatGPT Web wiederholen | Tim | geänderte Annotationen |
-
----
-
-## 8. Nächster Schritt
-
-Tim gibt den Plan frei, mit Antworten zu E1–E8 und, wenn schon bekannt, zum Tarif. Danach bereite ich P5-1 als PR vor
-(Branch von aktuellem `main`, CI, Preview-Prüfung von `/mcp`). Merge frühestens am 16.11.2026 um 00:05 MEZ, vorher
-prüfe ich `date`.
+| Was | Wer |
+|---|---|
+| Vorausgefüllten Link per WhatsApp und per Mail auf dem Handy öffnen: Kommt die Konfiguration vollständig an? | Tim |
+| Wer im Team verschickt Links, und wie oft? Davon hängt F3 ab. | Tim |
+| Vor einem Deploy: `estimate:check` und `foerder:check` (in dieser Umgebung nicht gelaufen) | Claude, im PR |
