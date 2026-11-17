@@ -536,6 +536,30 @@ VELUX D1–D8 · Förder-Bereinigung R1–R4 · Doku/llms nach R1–R4.
 > **Als Nächstes vorgesehen:** P5 (Veröffentlichung) nach V8; offen: Satz „ab ca. 1.800 € netto“ auf
 > `/velux-preisrechner-bochum` (Entscheidung Tim), `netlify.toml`-Regel für `/.well-known/…/mcp`.
 > Offen bzw. wartend: S2; H1-Überlauf auf `/datenschutz` bei 390 px; Express-Dev-Server.
+>
+> **Stand 17.11.2026 (nach PR #118, Korrekturpaket MCP):**
+> - **Entscheidung Tim (17.11.2026):** Hauptweg für Fensteranfragen ist der Website-Rechner (auch mit
+>   vorausgefülltem Rechner-Link), ohne ChatGPT-Konto oder Plugin. Die ChatGPT-Veröffentlichung (P5) ist
+>   zurückgestellt; MCP und Versandfunktion bleiben in Betrieb. Plan: `P5-PLAN-CHATGPT-VEROEFFENTLICHUNG.md`
+>   auf Branch `claude/p5-plan` (Entwurf 4, von Tim freigegeben).
+> - **#118:** Annotationen aller fünf MCP-Tools (nur in `mcp.mts`, `tools.ts`/WebMCP unverändert; `submit`
+>   `destructiveHint: true`); `prepare` ohne Speicherzugriff, Aufräumen nur noch bei `submit` (Variante A,
+>   ersetzt das Aufräumen bei `prepare` aus dem Codex-Review zu #116); Datenschutz: Anker `#chatgpt-plugin`,
+>   Rückfluss der Plugin-Antworten an ChatGPT/OpenAI, tatsächlicher Löschzeitpunkt (beim nächsten
+>   Sendeversuch; ohne weiteren Versuch keine zeitliche Grenze). Codex-Gegenlesung umgesetzt (`c2ff2c8`).
+>   Preview-Test Tim in ChatGPT Web über `deploy-preview-118` bestanden (Netlify-Log 15:47–15:53 MEZ:
+>   `calculate` OK, `prepare` OK, Ablehnen ohne `submit`, zweiter Durchlauf mit Versand, Eingang
+>   „TEST – Preview“ 15:53:46 MEZ, Benachrichtigungs-Mail laut Tim angekommen, Eintrag danach von Claude
+>   auf Tims Bitte gelöscht; Anker `/datenschutz#chatgpt-plugin` auf der Preview geprüft). Ein erster Testlauf ging versehentlich über Live- und alten
+>   #116-Connector; erkannt über das Netlify-Log.
+> - **Befunde ohne Änderung:** 400 beim ersten Aufruf jeder ChatGPT-Sitzung reproduzierbar (live, #116, #118),
+>   Ursache ungeklärt, bisher kein beobachteter Ausfall. Einmal `TOO_LONG` bei `prepare`, ChatGPT kürzte
+>   selbst. Rechner-Link aus dem Chat am PC auf der Live-Site geprüft (Hinweis, Schritt 3, 2.104 €).
+> **Nächstes 48-h-Fenster:** ab **19.11.2026 15:59 MEZ** (48 h nach `published_at` von #118).
+> **Als Nächstes vorgesehen:** Förder-Wiedervorlage vor dem 31.12.2026 (Prüfstand `validThrough`; ohne
+> Aktualisierung keine Förderbeträge mehr und rote CI ab 01.01.2027) als eigenes Paket nach Quellenprüfung.
+> Offen: Link-Test WhatsApp/Mail (Tim); Satz „ab ca. 1.800 € netto“ (Entscheidung Tim); `.well-known`-Regel
+> (zurückgestellt); S2; H1-Überlauf `/datenschutz` bei 390 px; Express-Dev-Server.
 
 | Deploy | Inhalt | Status |
 |---|---|---|
@@ -607,6 +631,7 @@ VELUX D1–D8 · Förder-Bereinigung R1–R4 · Doku/llms nach R1–R4.
 | **P1 Typenschild-Foto** | Optionales Foto des Typenschilds (im Browser gedreht, auf 2.000 px verkleinert, neu als JPEG ohne EXIF/GPS, ≤ 5 MB), Versand als Multipart mit 45 s Zeitlimit, Herkunftsfeld `quelle` (Aufmerksam geworden / im Rechner eingegeben, per KI oder per Rechner-Link übernommen, unverändert/geändert), Datenschutztext (Codex gegengelesen), Tests in `velux-ui-smoke` und `webmcp-smoke` | ✅ live (PR #111, gemergt 04.11.2026 18:25:17 MEZ als Merge-Commit; Stufe B, 8 Dateien; Gate eingehalten: **48 h 1 min** nach #113; Netlify `6aeb6a80…`, `commit_ref c0417de`, `published_at 18:26:12 MEZ`, `state ready`, `plugin_state success`, Secret-Scan 756/0, 66 neue Dateien, 31 redirect rules; Formular `velux-preisrechner` mit `quelle` und `typenschild`; IndexNow-Lauf #82, Checks-Lauf #112 und Prerender-Check-Lauf #34 grün, rund 15 min in der GitHub-Warteschlange) — **Merge durch Tim** |
 | **P4b Deploy 1** | `netlify/functions/mcp.mts`: lesender MCP-Endpunkt `/mcp` (Optionen, Typenschild-Zuordnung, Kostenschätzung mit `calculatorUrl`), nur Live-Domain und Previews, 64-KB-Grenze, Rate-Limit 60/60 s je IP; `scripts/mcp-check.ts` (18 Prüfungen) und CI-Schritt; SDK 1.32.1 und `@netlify/blobs` 11.1.7 | ✅ live (PR #115, gemergt 11.11.2026 21:32:45 MEZ per Squash; Stufe C, 5 Dateien; Gate eingehalten: rund 7 Tage nach #111; Netlify `6af4d0f0…`, `commit_ref 18f0c38`, `published_at 21:33:31 MEZ`, `state ready`, `plugin_state success`, Secret-Scan 760/0, „All files already uploaded“ (Paketänderung, daher Produktionsdeploy), Rate-Limit-Regel aktiv; CI auf dem PR grün) — **Merge durch Tim** |
 | **P4b Deploy 2** | `prepare`/`submit` mit Bindung an die bestätigte Zusammenfassung (SHA-256), atomarer Reservierung und Zuständen, Tageskontingent 50 über atomare Plätze, Versand an Netlify Forms; `client/src/lib/velux/inquiry.ts` (neu, `konfiguration` aus dem Rechner verschoben); Datenschutzabschnitt „Anfragen über ChatGPT (Rex-Plugin)“; `mcp-check` 51 Prüfungen | ✅ live (PR #116, gemergt 14.11.2026 00:03:56 MEZ per Squash; Stufe C, 5 Dateien; Gate eingehalten: **50 h 31 min** nach Deploy 1; Netlify `6af7975e…`, `commit_ref 0ae9271`, `published_at 00:04:39 MEZ`, `state ready`, `plugin_state success`, Secret-Scan 762/0, 66 neue Dateien, Rate-Limit-Regel aktiv, Formularfelder unverändert; Codex-Gegenlesung umgesetzt; Preview-Test Tim bestanden; CI auf dem PR grün) — **Merge durch Tim** |
+| **Korrekturpaket MCP** | `netlify/functions/mcp.mts`: Annotationen `readOnlyHint`/`destructiveHint`/`openWorldHint` für alle fünf Tools, `submit` destruktiv; `prepare` ohne Speicherzugriff, Aufräumen nur bei `submit`. `scripts/mcp-check.ts`: 59 Prüfungen. `Datenschutz.tsx`: Anker `#chatgpt-plugin`, Rückfluss an ChatGPT/OpenAI, Löschzeitpunkt. `MCP.md` | ✅ live (PR #118, gemergt 17.11.2026 per Squash, `59cf4f2`; Stufe C, 4 Dateien; Gate eingehalten: **87 h 53 min** nach #116 bzw. 87 h 33 min nach #117; Netlify `6afc6b1c…`, `commit_ref 59cf4f2`, `published_at 15:58:17 MEZ`, `state ready`, `plugin_state success`, Secret-Scan 765/0, 66 neue Dateien, 31 Redirect-Regeln, Rate-Limit-Regel aktiv (60/60, `sliding_window`), Formularfelder unverändert; Checks-Lauf #127, Prerender-Check #37 und IndexNow #87 grün; Codex-Gegenlesung umgesetzt; Preview-Test Tim bestanden, TEST-Eintrag gelöscht; `tools/list` live noch durch Tim per „Tools aktualisieren“ zu bestätigen) — **Merge durch Tim** |
 
 > **👤 Abweichung von §5.5 (28. und 30.08.2026) — PR #56 und #61 von Claude gemergt:**
 > Abschnitt 5, Punkt 5 lautet „Merge ausschließlich durch Tim. Kein Direct-Push auf `main`,

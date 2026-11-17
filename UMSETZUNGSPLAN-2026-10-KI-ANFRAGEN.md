@@ -9,7 +9,7 @@ Jedes Paket ist ein eigener Auftrag mit eigenem PR. Vor jedem Paket den aktuelle
 ausdrückliche Anweisungen von Tim haben Vorrang. Die Regeln aus `CLAUDE.md` und
 `DEPLOY-RULES.md` gelten unverändert.
 
-## Umsetzungsstand (14.11.2026)
+## Umsetzungsstand (17.11.2026)
 
 Nachgetragen mit D1, fortgeschrieben nach P1, P4a und P4b. Die Abschnitte unten bleiben im Stand vom 12.10.2026; maßgeblich für Termine
 und Deploys ist `DEPLOY-RULES.md` §10.
@@ -27,7 +27,7 @@ und Deploys ist `DEPLOY-RULES.md` §10.
 | D1 Doku | live mit PR #109 (31.10.2026) |
 | P4a Machbarkeit Server-Plugin | abgeschlossen 11.11.2026 (PR #112, ohne Merge geschlossen): Go auf allen drei Oberflächen, Ergebnis siehe P4 |
 | P4b Server-Plugin | live mit PR #115 (lesend, 11.11.2026) und PR #116 (Anfrage senden, 14.11.2026); Referenz `MCP.md` |
-| P5 | offen, Voraussetzung V8 |
+| P5 | zurückgestellt (Entscheidung Tim 17.11.2026): Hauptweg ist der Website-Rechner; Korrekturpaket MCP live mit PR #118; Plan `P5-PLAN-CHATGPT-VEROEFFENTLICHUNG.md` auf Branch `claude/p5-plan` |
 
 Außerhalb des Plans dazwischen live: PR #100 (Header am Desktop), PR #101 (S1 Layout-Shift) und
 PR #105 und PR #113 (Sicherheitsupdates der Abhängigkeiten). PR #108 hat die CI beschleunigt (Testbrowser ohne

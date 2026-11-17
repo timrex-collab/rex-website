@@ -93,6 +93,7 @@ Kein Antworttext von ChatGPT.
 | 03.–11.11.2026 | P4a auf Preview #112 (Web, Classic, iPhone) | Go; Fotoübergabe als Dateiobjekt erst mit Dateischema |
 | 13.11.2026 | Deploy 1 live (Web) | Werte 2.104 € / 316 € / 421 €, Tool-Aufrufe im Netlify-Log |
 | 13.11.2026 | Deploy 2 auf Preview #116 (Web, Classic, iPhone) | Versand nur nach Zustimmung, Ablehnen, Ändern, zweite Anfrage mit Rückfrage; Eintrag unter „Verified“, Mail im Postfach (V6) |
+| 17.11.2026 | Korrekturpaket auf Preview #118 (Web) | `calculate`, `prepare`, Ablehnen ohne Versand, Versand mit „TEST – Preview“; neue Annotationen; live mit #118 (15:58 MEZ) |
 
 ## Offen
 
