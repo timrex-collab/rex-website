@@ -566,6 +566,28 @@ VELUX D1–D8 · Förder-Bereinigung R1–R4 · Doku/llms nach R1–R4.
 > Aktualisierung keine Förderbeträge mehr und rote CI ab 01.01.2027) als eigenes Paket nach Quellenprüfung.
 > Offen: Link-Test WhatsApp/Mail (Tim); Satz „ab ca. 1.800 € netto“ (Entscheidung Tim); `.well-known`-Regel
 > (zurückgestellt); S2; H1-Überlauf `/datenschutz` bei 390 px; Express-Dev-Server.
+>
+> **Stand 20.11.2026 (nach PR #120, S2 Sitemap-Daten):**
+> - **#120:** `lastmod` in `sitemap.xml` nach der freigegebenen Datumstabelle (E2, Tim 17.11.2026,
+>   Startseite 15.10.2026), 29 von 30 Werten geändert, `/referenzen` bleibt 14.07.2026. IndexNow meldet
+>   seit diesem Deploy nur URLs mit geändertem `lastmod` (§5 Schritt 3a, §10); erster Lauf #89:
+>   29 URLs, HTTP 200. Netlify meldete „All files already uploaded“ (die Preview hatte `sitemap.xml`
+>   schon hochgeladen); zählt als Produktionsdeploy, weil sich `dist/public` ändert.
+> - **Entscheidungen Tim (17.11.2026):** E2 Datumstabelle freigegeben; E4 HowTo-Schema bleibt und kommt mit
+>   S5 in den Graph; Satz „ab ca. 1.800 € netto“ auf `/velux-preisrechner-bochum` bleibt vorerst
+>   unverändert; Förder-Wiedervorlage: Vorgehen F1–F4 freigegeben (Branch
+>   `claude/foerder-wiedervorlage-2026-12`, Teil 2 der Quellenprüfung 01.–05.12.2026, Erinnerung 01.12.).
+> - **Erledigt durch Tim (17.11.2026):** Rechner-Link per WhatsApp und Mail auf dem Handy geprüft;
+>   Live-Connector in ChatGPT aktualisiert; Preview-Connectoren zu #116 und #118 gelöscht.
+> - **Wikidata:** Item [Q138609267](https://www.wikidata.org/wiki/Q138609267) am 17.11.2026 von Tim
+>   angelegt; `sameAs` und Nacharbeiten siehe `WIKIDATA.md` und PR #121.
+> **Nächstes 48-h-Fenster:** ab **22.11.2026 17:43 MEZ** (48 h nach `published_at` von #120).
+> **Als Nächstes vorgesehen:** S5a (PR #121: ein Schema-Graph auf fünf Seiten, Wikidata-`sameAs`,
+> Stufe B, 8 Dateien). Danach S4, S5b, S3; am 01.12. ein Inhaltspaket (der erste Build im Dezember
+> zählt ohnehin); Förder-Deploy spätestens 29.12.2026.
+> Offen: B10 aus der Förderprüfung (Richtliniendatum 17.07. oder 17.08.2026 auf `/foerderung` und in
+> `llms*.txt`, Klärung zuerst in Teil 2); Herkunft der Kennzahl „4,48 ★“ auf der Startseite;
+> `.well-known`-Regel (zurückgestellt); H1-Überlauf `/datenschutz` bei 390 px; Express-Dev-Server.
 
 | Deploy | Inhalt | Status |
 |---|---|---|
@@ -638,6 +660,7 @@ VELUX D1–D8 · Förder-Bereinigung R1–R4 · Doku/llms nach R1–R4.
 | **P4b Deploy 1** | `netlify/functions/mcp.mts`: lesender MCP-Endpunkt `/mcp` (Optionen, Typenschild-Zuordnung, Kostenschätzung mit `calculatorUrl`), nur Live-Domain und Previews, 64-KB-Grenze, Rate-Limit 60/60 s je IP; `scripts/mcp-check.ts` (18 Prüfungen) und CI-Schritt; SDK 1.32.1 und `@netlify/blobs` 11.1.7 | ✅ live (PR #115, gemergt 11.11.2026 21:32:45 MEZ per Squash; Stufe C, 5 Dateien; Gate eingehalten: rund 7 Tage nach #111; Netlify `6af4d0f0…`, `commit_ref 18f0c38`, `published_at 21:33:31 MEZ`, `state ready`, `plugin_state success`, Secret-Scan 760/0, „All files already uploaded“ (Paketänderung, daher Produktionsdeploy), Rate-Limit-Regel aktiv; CI auf dem PR grün) — **Merge durch Tim** |
 | **P4b Deploy 2** | `prepare`/`submit` mit Bindung an die bestätigte Zusammenfassung (SHA-256), atomarer Reservierung und Zuständen, Tageskontingent 50 über atomare Plätze, Versand an Netlify Forms; `client/src/lib/velux/inquiry.ts` (neu, `konfiguration` aus dem Rechner verschoben); Datenschutzabschnitt „Anfragen über ChatGPT (Rex-Plugin)“; `mcp-check` 51 Prüfungen | ✅ live (PR #116, gemergt 14.11.2026 00:03:56 MEZ per Squash; Stufe C, 5 Dateien; Gate eingehalten: **50 h 31 min** nach Deploy 1; Netlify `6af7975e…`, `commit_ref 0ae9271`, `published_at 00:04:39 MEZ`, `state ready`, `plugin_state success`, Secret-Scan 762/0, 66 neue Dateien, Rate-Limit-Regel aktiv, Formularfelder unverändert; Codex-Gegenlesung umgesetzt; Preview-Test Tim bestanden; CI auf dem PR grün) — **Merge durch Tim** |
 | **Korrekturpaket MCP** | `netlify/functions/mcp.mts`: Annotationen `readOnlyHint`/`destructiveHint`/`openWorldHint` für alle fünf Tools, `submit` destruktiv; `prepare` ohne Speicherzugriff, Aufräumen nur bei `submit`. `scripts/mcp-check.ts`: 59 Prüfungen. `Datenschutz.tsx`: Anker `#chatgpt-plugin`, Rückfluss an ChatGPT/OpenAI, Löschzeitpunkt. `MCP.md` | ✅ live (PR #118, gemergt 17.11.2026 per Squash, `59cf4f2`; Stufe C, 4 Dateien; Gate eingehalten: **87 h 53 min** nach #116 bzw. 87 h 33 min nach #117; Netlify `6afc6b1c…`, `commit_ref 59cf4f2`, `published_at 15:58:17 MEZ`, `state ready`, `plugin_state success`, Secret-Scan 765/0, 66 neue Dateien, 31 Redirect-Regeln, Rate-Limit-Regel aktiv (60/60, `sliding_window`), Formularfelder unverändert; Checks-Lauf #127, Prerender-Check #37 und IndexNow #87 grün; Codex-Gegenlesung umgesetzt; Preview-Test Tim bestanden, TEST-Eintrag gelöscht; `tools/list` live noch durch Tim per „Tools aktualisieren“ zu bestätigen) — **Merge durch Tim** |
+| **S2 Sitemap-Daten** | `client/public/sitemap.xml`: `lastmod` je URL auf den Tag der letzten inhaltlichen Änderung (Datumstabelle E2 aus `SEO-UMSETZUNGSPLAN-2026-10`, Startseite 15.10.2026), 29 von 30 Werten geändert. `scripts/indexnow-submit.mjs` mit `--changed-since <git-ref>`; `indexnow.yml` übergibt `github.event.before` (Checkout mit voller Historie): gemeldet werden nur URLs mit geändertem `lastmod`, `workflow_dispatch` und `npm run indexnow:submit` melden alle. Neu: §5 Schritt 3a | ✅ live (PR #120, gemergt 20.11.2026 17:41:57 MEZ per Squash, `13edc49`; Stufe B, 4 Dateien; Gate eingehalten: **73 h 43 min** nach #118; Netlify `6b007858…`, `commit_ref 13edc49`, `published_at 17:42:45 MEZ`, `state ready`, `plugin_state success`, Secret-Scan 767/0, 31 Redirect-Regeln, „All files already uploaded“ (von der Preview); IndexNow #89: 29 URLs, HTTP 200; Checks-Lauf #132 grün; Prerender-Check #38 grün) — **Merge durch Tim** |
 
 > **👤 Abweichung von §5.5 (28. und 30.08.2026) — PR #56 und #61 von Claude gemergt:**
 > Abschnitt 5, Punkt 5 lautet „Merge ausschließlich durch Tim. Kein Direct-Push auf `main`,
