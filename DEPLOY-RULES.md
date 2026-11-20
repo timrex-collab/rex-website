@@ -125,6 +125,12 @@ die Ausnahme.
 1. **Deployfenster-Check:** ≥ 48 h seit dem letzten Merge auf `main`.
 2. **Feature-Branch auf `main` ausrichten** (`git fetch origin main` + ff/reset), damit der PR-Diff exakt die geplanten Änderungen zeigt.
 3. **Diff prüfen** (`git show --stat HEAD` / PR-`get_files`) → exakt die geplanten Dateien, nichts sonst. Kein `attached_assets`.
+3a. **Sitemap-`lastmod` mitziehen (seit S2, 11/2026):** Ändert ein PR Inhalt, Titel/Description, Schema oder
+   Links einer Seite aus `client/public/sitemap.xml` (beim Preisrechner auch sichtbares Verhalten von Komponente
+   oder Rechenlogik), bekommt diese URL als `lastmod` den geplanten Merge-Tag; verschiebt sich der Merge, wird
+   das Datum vor dem Merge angepasst. Nicht zählen: seitenweite Navigation/Footer, das Prüfdatum im
+   `ExpertenBlock`, interne Umbauten ohne sichtbare Änderung. `sitemap.xml` zählt dabei als Datei für die
+   Stufen-Obergrenze. Die IndexNow-Action meldet nach dem Merge genau diese URLs.
 4. **PR öffnen, Netlify-Preview abwarten.** Claude verifiziert den Preview-/Post-Merge-Stand über den Netlify-Connector (kein curl).
 5. **Merge ausschließlich durch Tim.** Kein Direct-Push auf `main`, kein Auto-Merge.
 
@@ -518,6 +524,70 @@ VELUX D1–D8 · Förder-Bereinigung R1–R4 · Doku/llms nach R1–R4.
 > **Als Nächstes vorgesehen:** P4b nach Variante A (zuerst Plan zur Freigabe; Stufe C, 2–3 Deploys).
 > Offen bzw. wartend: S2 (Freigabe der Datumstabelle durch Tim); H1-Überlauf auf `/datenschutz` bei
 > 390 px; Entscheidung zum Express-Dev-Server.
+>
+> **Stand 14.11.2026 (nach PR #115 und #116, P4b Server-Plugin live):**
+> - **#115 (P4b Deploy 1, 11.11.2026):** lesender MCP-Endpunkt `www.rex-bedachung.de/mcp` mit drei
+>   Tools, 64-KB-Grenze und Rate-Limit-Regel (60 pro 60 s je IP; in den Deploy-Daten als `rate_limit`,
+>   `sliding_window` bestätigt). „All files already uploaded“, wegen Paketänderung trotzdem als
+>   Produktionsdeploy gezählt. Erster Live-Test in Codex lief versehentlich über den alten
+>   P4a-Connector; Abnahme am 13.11.2026 in ChatGPT Web über „Rex VELUX Live“, Tool-Aufrufe im
+>   Netlify-Log 08:48–08:49 MEZ.
+> - **#116 (P4b Deploy 2, 14.11.2026):** `prepare`/`submit`, Doppelversandschutz, Tageskontingent,
+>   Datenschutzabschnitt „Anfragen über ChatGPT (Rex-Plugin)“. Codex-Gegenlesung mit drei Befunden
+>   (Gateway-Fehler, Löschzusage, Hinweistext), umgesetzt in `f273b0a`. Preview-Test von Tim auf Web,
+>   Classic und iPhone bestanden; Eintrag unter „Verified submissions“, Mail im Postfach (V6). Befund
+>   „Typenschild laut KI“ behoben in `213a974`. Beide PRs per „Squash and merge“. Einzelheiten in
+>   `MCP.md`.
+> **Nächstes 48-h-Fenster:** ab **16.11.2026 00:05 MEZ**.
+> **Als Nächstes vorgesehen:** P5 (Veröffentlichung) nach V8; offen: Satz „ab ca. 1.800 € netto“ auf
+> `/velux-preisrechner-bochum` (Entscheidung Tim), `netlify.toml`-Regel für `/.well-known/…/mcp`.
+> Offen bzw. wartend: S2; H1-Überlauf auf `/datenschutz` bei 390 px; Express-Dev-Server.
+>
+> **Stand 17.11.2026 (nach PR #118, Korrekturpaket MCP):**
+> - **Entscheidung Tim (17.11.2026):** Hauptweg für Fensteranfragen ist der Website-Rechner (auch mit
+>   vorausgefülltem Rechner-Link), ohne ChatGPT-Konto oder Plugin. Die ChatGPT-Veröffentlichung (P5) ist
+>   zurückgestellt; MCP und Versandfunktion bleiben in Betrieb. Plan: `P5-PLAN-CHATGPT-VEROEFFENTLICHUNG.md`
+>   auf Branch `claude/p5-plan` (Entwurf 4, von Tim freigegeben).
+> - **#118:** Annotationen aller fünf MCP-Tools (nur in `mcp.mts`, `tools.ts`/WebMCP unverändert; `submit`
+>   `destructiveHint: true`); `prepare` ohne Speicherzugriff, Aufräumen nur noch bei `submit` (Variante A,
+>   ersetzt das Aufräumen bei `prepare` aus dem Codex-Review zu #116); Datenschutz: Anker `#chatgpt-plugin`,
+>   Rückfluss der Plugin-Antworten an ChatGPT/OpenAI, tatsächlicher Löschzeitpunkt (beim nächsten
+>   Sendeversuch; ohne weiteren Versuch keine zeitliche Grenze). Codex-Gegenlesung umgesetzt (`c2ff2c8`).
+>   Preview-Test Tim in ChatGPT Web über `deploy-preview-118` bestanden (Netlify-Log 15:47–15:53 MEZ:
+>   `calculate` OK, `prepare` OK, Ablehnen ohne `submit`, zweiter Durchlauf mit Versand, Eingang
+>   „TEST – Preview“ 15:53:46 MEZ, Benachrichtigungs-Mail laut Tim angekommen, Eintrag danach von Claude
+>   auf Tims Bitte gelöscht; Anker `/datenschutz#chatgpt-plugin` auf der Preview geprüft). Ein erster Testlauf ging versehentlich über Live- und alten
+>   #116-Connector; erkannt über das Netlify-Log.
+> - **Befunde ohne Änderung:** 400 beim ersten Aufruf jeder ChatGPT-Sitzung reproduzierbar (live, #116, #118),
+>   Ursache ungeklärt, bisher kein beobachteter Ausfall. Einmal `TOO_LONG` bei `prepare`, ChatGPT kürzte
+>   selbst. Rechner-Link aus dem Chat am PC auf der Live-Site geprüft (Hinweis, Schritt 3, 2.104 €).
+> **Nächstes 48-h-Fenster:** ab **19.11.2026 15:59 MEZ** (48 h nach `published_at` von #118).
+> **Als Nächstes vorgesehen:** Förder-Wiedervorlage vor dem 31.12.2026 (Prüfstand `validThrough`; ohne
+> Aktualisierung keine Förderbeträge mehr und rote CI ab 01.01.2027) als eigenes Paket nach Quellenprüfung.
+> Offen: Link-Test WhatsApp/Mail (Tim); Satz „ab ca. 1.800 € netto“ (Entscheidung Tim); `.well-known`-Regel
+> (zurückgestellt); S2; H1-Überlauf `/datenschutz` bei 390 px; Express-Dev-Server.
+>
+> **Stand 20.11.2026 (nach PR #120, S2 Sitemap-Daten):**
+> - **#120:** `lastmod` in `sitemap.xml` nach der freigegebenen Datumstabelle (E2, Tim 17.11.2026,
+>   Startseite 15.10.2026), 29 von 30 Werten geändert, `/referenzen` bleibt 14.07.2026. IndexNow meldet
+>   seit diesem Deploy nur URLs mit geändertem `lastmod` (§5 Schritt 3a, §10); erster Lauf #89:
+>   29 URLs, HTTP 200. Netlify meldete „All files already uploaded“ (die Preview hatte `sitemap.xml`
+>   schon hochgeladen); zählt als Produktionsdeploy, weil sich `dist/public` ändert.
+> - **Entscheidungen Tim (17.11.2026):** E2 Datumstabelle freigegeben; E4 HowTo-Schema bleibt und kommt mit
+>   S5 in den Graph; Satz „ab ca. 1.800 € netto“ auf `/velux-preisrechner-bochum` bleibt vorerst
+>   unverändert; Förder-Wiedervorlage: Vorgehen F1–F4 freigegeben (Branch
+>   `claude/foerder-wiedervorlage-2026-12`, Teil 2 der Quellenprüfung 01.–05.12.2026, Erinnerung 01.12.).
+> - **Erledigt durch Tim (17.11.2026):** Rechner-Link per WhatsApp und Mail auf dem Handy geprüft;
+>   Live-Connector in ChatGPT aktualisiert; Preview-Connectoren zu #116 und #118 gelöscht.
+> - **Wikidata:** Item [Q138609267](https://www.wikidata.org/wiki/Q138609267) am 17.11.2026 von Tim
+>   angelegt; `sameAs` und Nacharbeiten siehe `WIKIDATA.md` und PR #121.
+> **Nächstes 48-h-Fenster:** ab **22.11.2026 17:43 MEZ** (48 h nach `published_at` von #120).
+> **Als Nächstes vorgesehen:** S5a (PR #121: ein Schema-Graph auf fünf Seiten, Wikidata-`sameAs`,
+> Stufe B, 8 Dateien). Danach S4, S5b, S3; am 01.12. ein Inhaltspaket (der erste Build im Dezember
+> zählt ohnehin); Förder-Deploy spätestens 29.12.2026.
+> Offen: B10 aus der Förderprüfung (Richtliniendatum 17.07. oder 17.08.2026 auf `/foerderung` und in
+> `llms*.txt`, Klärung zuerst in Teil 2); Herkunft der Kennzahl „4,48 ★“ auf der Startseite;
+> `.well-known`-Regel (zurückgestellt); H1-Überlauf `/datenschutz` bei 390 px; Express-Dev-Server.
 
 | Deploy | Inhalt | Status |
 |---|---|---|
@@ -587,6 +657,10 @@ VELUX D1–D8 · Förder-Bereinigung R1–R4 · Doku/llms nach R1–R4.
 | **D1 Doku zu W1** | `llms.txt`/`llms-full.txt`: Rechner-Link (Format, Grenzen, Werte; keine Kontaktdaten, kein Versand, unverbindliche Schätzung im Browser), Hinweis auf `rex_velux_*` und `calculatorUrl`, Preis-Satz angeglichen. `WEBMCP.md`: Bestätigungspflicht und Rechner-Link, Kompatibilitätstabelle, Nachtest Fall 4 (26.10.2026, bestanden). `estimate:check` prüft die Beispiel-Links in `llms*.txt`. Deploy-Log zu #105, Plan-Datei nach `main` | ✅ live (PR #109, gemergt 31.10.2026 10:19:54 MEZ; Stufe A, 6 Dateien; Gate eingehalten: **65 h 46 min** nach #105; Netlify `6ae5b2bb…`, `commit_ref 0fc6a03`, `published_at 10:20:35 MEZ`, `state ready`, `plugin_state success`, Prerender-Function vorhanden, Secret-Scan 752/0, 31 redirect rules, „All files already uploaded“ trotz geänderter `llms*.txt` (vom Deploy-Preview hochgeladen, siehe Stand 31.10.2026); IndexNow-Lauf #79 grün; Checks-Lauf #102 grün; Prerender-Check-Lauf #31 grün) — **Merge durch Tim** |
 | **Abhängigkeiten (Sicherheit)** | `body-parser` 2.4.0 / 1.20.9, `multer` 2.5.0, `zod` ^4.6.7, `drizzle-zod` ^0.8.3, `zod-validation-error` entfernt; `npm audit --omit=dev`: 4 hohe Meldungen → 0 | ✅ live (PR #113, gemergt 02.11.2026 18:23:03 MEZ; 2 Dateien; Gate eingehalten: **56 h 3 min** nach #109; Netlify `6ae8c6fa…`, `commit_ref 6229990`, `published_at 18:23:42 MEZ`, `state ready`, `plugin_state success`, Secret-Scan 754/0, **66 neue Dateien** (Monatswechsel `__BUILD_DATE__`); IndexNow-Lauf #81 grün; Checks-Lauf #110 grün) — **Merge durch Tim** |
 | **P1 Typenschild-Foto** | Optionales Foto des Typenschilds (im Browser gedreht, auf 2.000 px verkleinert, neu als JPEG ohne EXIF/GPS, ≤ 5 MB), Versand als Multipart mit 45 s Zeitlimit, Herkunftsfeld `quelle` (Aufmerksam geworden / im Rechner eingegeben, per KI oder per Rechner-Link übernommen, unverändert/geändert), Datenschutztext (Codex gegengelesen), Tests in `velux-ui-smoke` und `webmcp-smoke` | ✅ live (PR #111, gemergt 04.11.2026 18:25:17 MEZ als Merge-Commit; Stufe B, 8 Dateien; Gate eingehalten: **48 h 1 min** nach #113; Netlify `6aeb6a80…`, `commit_ref c0417de`, `published_at 18:26:12 MEZ`, `state ready`, `plugin_state success`, Secret-Scan 756/0, 66 neue Dateien, 31 redirect rules; Formular `velux-preisrechner` mit `quelle` und `typenschild`; IndexNow-Lauf #82, Checks-Lauf #112 und Prerender-Check-Lauf #34 grün, rund 15 min in der GitHub-Warteschlange) — **Merge durch Tim** |
+| **P4b Deploy 1** | `netlify/functions/mcp.mts`: lesender MCP-Endpunkt `/mcp` (Optionen, Typenschild-Zuordnung, Kostenschätzung mit `calculatorUrl`), nur Live-Domain und Previews, 64-KB-Grenze, Rate-Limit 60/60 s je IP; `scripts/mcp-check.ts` (18 Prüfungen) und CI-Schritt; SDK 1.32.1 und `@netlify/blobs` 11.1.7 | ✅ live (PR #115, gemergt 11.11.2026 21:32:45 MEZ per Squash; Stufe C, 5 Dateien; Gate eingehalten: rund 7 Tage nach #111; Netlify `6af4d0f0…`, `commit_ref 18f0c38`, `published_at 21:33:31 MEZ`, `state ready`, `plugin_state success`, Secret-Scan 760/0, „All files already uploaded“ (Paketänderung, daher Produktionsdeploy), Rate-Limit-Regel aktiv; CI auf dem PR grün) — **Merge durch Tim** |
+| **P4b Deploy 2** | `prepare`/`submit` mit Bindung an die bestätigte Zusammenfassung (SHA-256), atomarer Reservierung und Zuständen, Tageskontingent 50 über atomare Plätze, Versand an Netlify Forms; `client/src/lib/velux/inquiry.ts` (neu, `konfiguration` aus dem Rechner verschoben); Datenschutzabschnitt „Anfragen über ChatGPT (Rex-Plugin)“; `mcp-check` 51 Prüfungen | ✅ live (PR #116, gemergt 14.11.2026 00:03:56 MEZ per Squash; Stufe C, 5 Dateien; Gate eingehalten: **50 h 31 min** nach Deploy 1; Netlify `6af7975e…`, `commit_ref 0ae9271`, `published_at 00:04:39 MEZ`, `state ready`, `plugin_state success`, Secret-Scan 762/0, 66 neue Dateien, Rate-Limit-Regel aktiv, Formularfelder unverändert; Codex-Gegenlesung umgesetzt; Preview-Test Tim bestanden; CI auf dem PR grün) — **Merge durch Tim** |
+| **Korrekturpaket MCP** | `netlify/functions/mcp.mts`: Annotationen `readOnlyHint`/`destructiveHint`/`openWorldHint` für alle fünf Tools, `submit` destruktiv; `prepare` ohne Speicherzugriff, Aufräumen nur bei `submit`. `scripts/mcp-check.ts`: 59 Prüfungen. `Datenschutz.tsx`: Anker `#chatgpt-plugin`, Rückfluss an ChatGPT/OpenAI, Löschzeitpunkt. `MCP.md` | ✅ live (PR #118, gemergt 17.11.2026 per Squash, `59cf4f2`; Stufe C, 4 Dateien; Gate eingehalten: **87 h 53 min** nach #116 bzw. 87 h 33 min nach #117; Netlify `6afc6b1c…`, `commit_ref 59cf4f2`, `published_at 15:58:17 MEZ`, `state ready`, `plugin_state success`, Secret-Scan 765/0, 66 neue Dateien, 31 Redirect-Regeln, Rate-Limit-Regel aktiv (60/60, `sliding_window`), Formularfelder unverändert; Checks-Lauf #127, Prerender-Check #37 und IndexNow #87 grün; Codex-Gegenlesung umgesetzt; Preview-Test Tim bestanden, TEST-Eintrag gelöscht; `tools/list` live noch durch Tim per „Tools aktualisieren“ zu bestätigen) — **Merge durch Tim** |
+| **S2 Sitemap-Daten** | `client/public/sitemap.xml`: `lastmod` je URL auf den Tag der letzten inhaltlichen Änderung (Datumstabelle E2 aus `SEO-UMSETZUNGSPLAN-2026-10`, Startseite 15.10.2026), 29 von 30 Werten geändert. `scripts/indexnow-submit.mjs` mit `--changed-since <git-ref>`; `indexnow.yml` übergibt `github.event.before` (Checkout mit voller Historie): gemeldet werden nur URLs mit geändertem `lastmod`, `workflow_dispatch` und `npm run indexnow:submit` melden alle. Neu: §5 Schritt 3a | ✅ live (PR #120, gemergt 20.11.2026 17:41:57 MEZ per Squash, `13edc49`; Stufe B, 4 Dateien; Gate eingehalten: **73 h 43 min** nach #118; Netlify `6b007858…`, `commit_ref 13edc49`, `published_at 17:42:45 MEZ`, `state ready`, `plugin_state success`, Secret-Scan 767/0, 31 Redirect-Regeln, „All files already uploaded“ (von der Preview); IndexNow #89: 29 URLs, HTTP 200; Checks-Lauf #132 grün; Prerender-Check #38 grün) — **Merge durch Tim** |
 
 > **👤 Abweichung von §5.5 (28. und 30.08.2026) — PR #56 und #61 von Claude gemergt:**
 > Abschnitt 5, Punkt 5 lautet „Merge ausschließlich durch Tim. Kein Direct-Push auf `main`,
@@ -728,12 +802,15 @@ VELUX D1–D8 · Förder-Bereinigung R1–R4 · Doku/llms nach R1–R4.
 
 > **Post-Deploy-Schritt (IndexNow) — automatisiert seit 07/2026:** Die GitHub
 > Action `.github/workflows/indexnow.yml` läuft bei jedem Push/Merge auf `main`
-> und meldet die 30 indexierbaren Sitemap-URLs via `scripts/indexnow-submit.mjs`
-> an IndexNow. Der Merge bleibt der **einzige Auslöser** — die Merge-only-Disziplin
-> bleibt gewahrt (nur die Handarbeit entfällt). Kein Secret nötig (Key ist
-> öffentlich), kein npm-Install nötig (nur Node-Boardmittel). Manueller Fallback:
-> „Run workflow" in der Actions-UI (`workflow_dispatch`) oder lokal
-> `npm run indexnow:submit`.
+> und meldet via `scripts/indexnow-submit.mjs --changed-since <Stand vor dem Push>`
+> **nur die Sitemap-URLs, deren `lastmod` sich geändert hat** (seit S2, 11/2026;
+> vorher bei jedem Push alle 30 URLs, auch bei Doku-PRs). Ohne geänderte Seite
+> sendet die Action nichts und bleibt grün. Ist der alte Stand nicht lesbar,
+> meldet sie alle URLs. Voraussetzung ist Schritt 3a in §5. Der Merge bleibt der
+> **einzige Auslöser** — die Merge-only-Disziplin bleibt gewahrt. Kein Secret
+> nötig (Key ist öffentlich), kein npm-Install nötig (nur Node-Boardmittel und
+> `git`). Manueller Fallback mit allen URLs: „Run workflow" in der Actions-UI
+> (`workflow_dispatch`) oder lokal `npm run indexnow:submit`.
 
 ### Separat live: VELUX Preisrechner Modell B (06/2026 ✅) — siehe Uw-/g-Tabelle Abschnitt 6.
 
@@ -741,11 +818,10 @@ VELUX D1–D8 · Förder-Bereinigung R1–R4 · Doku/llms nach R1–R4.
 
 ## 11. GEO / Off-Site-Arbeit (in Arbeit)
 - **Bing Webmaster Tools:** CNAME verifiziert. Sitemap `…/sitemap.xml` eingereicht (26.06.2026, Status **Success**, 30 URLs erkannt, erster Crawl 27.06.). Hinweis: veralteter `firma.rex-bedachung.de/sitemap.xml`-Eintrag (301→www, redundant — zählt dieselben 30 URLs doppelt) kann im Bing-Dashboard entfernt werden.
-- **IndexNow:** Key-Datei + Submit-Skript `scripts/indexnow-submit.mjs` (D-IndexNow). **Automatisiert seit 07/2026** über die GitHub Action `.github/workflows/indexnow.yml` (Trigger: Push/Merge auf `main`; `workflow_dispatch` für manuellen Lauf). Lokaler Fallback: `npm run indexnow:submit`.
-  **Offen (Befund 12.11.2026):** Die Action meldet bei *jedem* Push auf `main` alle 30 Sitemap-URLs, auch bei reinen Doku-PRs. Bing empfiehlt, nur geänderte URLs zu melden, und nutzt `lastmod` als Recrawl-Signal für die KI-Suche. Das jüngste `lastmod` in `sitemap.xml` ist der 02.08.2026, obwohl seither u. a. VELUX D1–D8, R1–R4 und P1 live gingen (= Paket S2 aus `SEO-UMSETZUNGSPLAN-2026-10.html`, noch offen). Vorschlag: S2 umsetzen und das Skript nur URLs melden lassen, deren `lastmod` sich im Merge geändert hat.
-- **Bing AI Performance (Copilot-Zitate) — Basiswert 12.11.2026, Zeitraum 3 Monate:** 94 Zitate, fast nur an wenigen Spitzentagen (max. ~25/Tag), meist genau eine zitierte Seite pro Tag („Avg. Cited Pages“ gerundet 0). Zitierte Seiten: `/lexikon` 64 · `/bitumen-vs-pvc-flachdach-bochum` 19 · `/dachrinne-bochum` 8 · `/solarpflicht` 2 · `/dachfenster-bochum` 1. Keine weitere Service-/Money-Page. Einzige exportierte Grounding Query: „begriffe dach“ (7 Zitate, Citation Share 20,59 %). Bing zeigt nur eine Stichprobe. → Copilot nutzt die Site als Fachquelle für Begriffe und Vergleiche, nicht als Anbieter-Empfehlung. Monatlich exportieren und hier fortschreiben; Effekte frühestens nach 4–8 Wochen bewerten.
+- **IndexNow:** Key-Datei + Submit-Skript `scripts/indexnow-submit.mjs` (D-IndexNow). **Automatisiert seit 07/2026** über die GitHub Action `.github/workflows/indexnow.yml` (Trigger: Push/Merge auf `main`; `workflow_dispatch` für manuellen Lauf). Seit S2 (11/2026) meldet die Action nur URLs mit geändertem `lastmod`, wie von Bing empfohlen. Lokaler Fallback (alle URLs): `npm run indexnow:submit`.
+- **Bing AI Performance (Copilot-Zitate) — Basiswert 12.11.2026, Zeitraum 3 Monate:** 94 Zitate, fast nur an wenigen Spitzentagen (max. ~25/Tag), meist genau eine zitierte Seite pro Tag („Avg. Cited Pages“ gerundet 0). Zitierte Seiten: `/lexikon` 64 · `/bitumen-vs-pvc-flachdach-bochum` 19 · `/dachrinne-bochum` 8 · `/solarpflicht` 2 · `/dachfenster-bochum` 1. Keine weitere Service-/Money-Page. Einzige exportierte Grounding Query: „begriffe dach“ (7 Zitate, Citation Share 20,59 %). Bing zeigt nur eine Stichprobe. → Copilot nutzt die Site als Fachquelle für Begriffe und Vergleiche, nicht als Anbieter-Empfehlung. Monatlich exportieren und hier fortschreiben; Effekte frühestens nach 4–8 Wochen bewerten. Befund dazu: Das Lexikon verlinkt keine Leistungsseite (nur `/kontakt`), hat kein Prüf-/Stand-Datum und enthält einzelne überzogene Formulierungen (Wartungsvertrag/Versicherungsschutz, ZVDH-Fachregeln) — Vorschlag „Lexikon als Brücke“, Freigabe durch Tim offen.
 - **Prerender für KI-Abrufe geprüft (12.11.2026, rohe Serverantwort per User-Agent):** bingbot (klassisch und evergreen), Googlebot, GPTBot, OAI-SearchBot, ChatGPT-User, ClaudeBot, Claude-User, PerplexityBot, Perplexity-User, Applebot, DuckAssistBot, Amazonbot und meta-externalagent erhalten gerendertes HTML (60–72 KB, Routen-Title, 2× JSON-LD); ein Browser-User-Agent erhält die 3-KB-Shell. Damit ist `SEO-AUDIT-2026-10.md` §7 (nutzergesteuerte KI-Abrufe) beantwortet. `llms.txt` live identisch mit dem Repo.
-- **Bing Places for Business:** eingerichtet 12./13.11.2026, ein Eintrag aus dem Google-Sync, Status „Ausstehende Veröffentlichung“ (bis zu 12 Tage) → Prüfung ~25.11.2026. Google-Profil-Name am 12.11.2026 korrigiert (Keyword-Zusatz entfernt). Details in `CITATIONS.md` und `GBP-CHECKLIST.md`.
+- **Bing Places for Business:** veröffentlicht (geprüft 20.11.2026), ein Eintrag, mit dem Google-Profil synchronisiert. Google-Profil-Name am 12.11.2026 korrigiert (Keyword-Zusatz entfernt). Offen: Kategorie und Beschreibung im Bing-Eintrag prüfen. Details in `CITATIONS.md` und `GBP-CHECKLIST.md`.
 - ✅ **robots.txt** (gesperrt, Stufe C): keine offenen Punkte. `Disallow: /impressum` ist live seit 27.05.2026 (Commit `ead75b0`); die KI-Crawler-Allow-Liste ist bereits breit (GPTBot, ClaudeBot, Claude-Web, Google-Extended, PerplexityBot, anthropic-ai, OAI-SearchBot). Eine Erweiterung um neuere 2026er-Agents (ChatGPT-User, Applebot-Extended, Meta-ExternalAgent, CCBot …) wäre reines Signaling — `User-agent: *` setzt bereits `Allow: /` — und ist bewusst zurückgestellt.
 
 ---
@@ -783,7 +859,7 @@ VELUX D1–D8 · Förder-Bereinigung R1–R4 · Doku/llms nach R1–R4.
 | Bing Webmaster Tools | CNAME verifiziert; Sitemap eingereicht (Success, 30 URLs, 26.06.2026) |
 | Rich Results Test | Schema-Verifikation |
 | ProvenExpert | Review-Widget und Rich Snippet seit B1 entfernt (PR #99, 15.10.2026); nur noch Profil-Link auf der Startseite, kein Fremdskript. Kennzahl „4,48 ★“ auf der Startseite: Herkunft offen (Profil am 12.10.2026: 5,00 bei 1 Bewertung; früherer Stand hier: 4,48★, 13 Bewertungen) |
-| IndexNow | Key-Datei + Submit-Skript; **automatisiert** via GitHub Action `.github/workflows/indexnow.yml` (Push auf `main`), Fallback `npm run indexnow:submit` |
+| IndexNow | Key-Datei + Submit-Skript; **automatisiert** via GitHub Action `.github/workflows/indexnow.yml` (Push auf `main`, nur URLs mit geändertem `lastmod`), Fallback mit allen URLs `npm run indexnow:submit` |
 | `rex-bedachungen.de` | 301-Redirect via `.htaccess` (separate Infra) |
 
 ### Sicherungs-Mechanismus (löst die frühere „Replit kann nicht pushen"-Bremse ab)

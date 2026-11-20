@@ -177,6 +177,39 @@ export default function Datenschutz() {
                 darin, unsere Anfragewege zu verbessern.
               </p>
 
+              <h3 id="chatgpt-plugin" className="text-xl font-semibold mb-3 mt-6 scroll-mt-28">Anfragen über ChatGPT (Rex-Plugin)</h3>
+              <p>
+                Sie können eine Kostenschätzung und eine Angebotsanfrage auch über unser Plugin in
+                ChatGPT erstellen. ChatGPT wird von OpenAI betrieben; was OpenAI mit Ihrem Gespräch
+                macht, richtet sich nach den Bedingungen und der Datenschutzerklärung von OpenAI.
+                Wir erhalten nicht das ganze Gespräch, sondern nur die Angaben, die ChatGPT an unser
+                Plugin übergibt: Fensterangaben, Antworten zu den Fördervoraussetzungen und – sobald
+                Sie eine Anfrage vorbereiten lassen – Ihren Namen, Ihre E-Mail-Adresse und/oder
+                Telefonnummer, freiwillige Adressdaten, Ihre Nachricht sowie die Angabe, ob die
+                Zuordnung Ihres vorhandenen Fensters bestätigt oder nur vermutet ist. Die von ChatGPT
+                an unser Plugin übermittelten Angaben verarbeiten wir bereits bei Netlify, wenn wir die
+                Zusammenfassung Ihrer Anfrage erstellen. Unser Plugin speichert die Anfrageinhalte bei
+                diesem Vorbereitungsschritt nicht. Die Antworten unseres Plugins werden an ChatGPT
+                zurückgegeben und damit auch bei OpenAI verarbeitet. Dazu gehören die Kostenschätzung
+                und, wenn Sie eine Anfrage vorbereiten lassen, die Zusammenfassung einschließlich Ihrer
+                Kontaktdaten. ChatGPT zeigt Ihnen diese Zusammenfassung vor dem Absenden. Erst wenn Sie dem Absenden ausdrücklich
+                zustimmen, geht die Anfrage wie eine Anfrage aus dem Preisrechner in das
+                Netlify-Formular und per Benachrichtigung an uns. Ein Foto aus dem Chat wird über
+                diesen Weg nicht an uns übertragen. Rechtsgrundlage ist Art. 6 Abs. 1 lit. b DSGVO.
+              </p>
+              <p>
+                Zum Schutz vor Missbrauch begrenzt Netlify die Zahl der Aufrufe je Absender-IP-Adresse.
+                Außerdem legen wir beim Absenden einen kurzen Versandvermerk bei Netlify ab (eine
+                zufällige Kennung, der Versandstatus und ein Zeitstempel, ohne Ihre Angaben), damit
+                eine Anfrage nicht doppelt gesendet wird, sowie einen Zähler für die Zahl der Anfragen
+                pro Tag. Versandvermerke, die älter als 24 Stunden sind, und Zähler von Vortagen
+                löschen wir automatisch beim nächsten Versuch, über das Plugin eine Anfrage abzusenden.
+                Gibt es keinen weiteren Versuch, bleiben sie bis dahin gespeichert; sie enthalten
+                keine Angaben aus Ihrer Anfrage. Rechtsgrundlage ist Art. 6 Abs. 1 lit. f DSGVO; unser
+                berechtigtes Interesse liegt im Schutz vor Missbrauch und Doppelanfragen. Unsere
+                Anwendungsprotokolle enthalten keine Eingaben aus dem Plugin.
+              </p>
+
               <h3 className="text-xl font-semibold mb-3 mt-6">Speicherdauer von Anfragen</h3>
               <p>
                 Formulareingaben löschen wir bei Netlify spätestens drei Monate nach Eingang; das

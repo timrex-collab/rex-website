@@ -42,7 +42,7 @@ Legende Status: ⬜ offen · 🔄 in Arbeit · ✅ erledigt (eingetragen + NAP g
 | Ziel | Status | Notiz |
 |---|---|---|
 | Google Business Profile | ✅ | Profil vorhanden. Name am 12.11.2026 auf „Rex Bedachungs GmbH“ korrigiert (vorher mit Zusatz „- Dachdecker Bochum“, unzulässig nach Google-Richtlinie). Primärkategorie Dachdecker. Ist zugleich Datenquelle für Bing Places (Sync) → Beschreibung ≤ 500 Zeichen halten. Details: `GBP-CHECKLIST.md` |
-| Bing Places for Business | 🔄 | 12./13.11.2026 eingerichtet. Der Google-Sync hatte neben dem Bing-eigenen Eintrag ein Duplikat erzeugt; Lösung laut Bing-Support (Ticket bei Tim): beide Einträge aus dem Konto entfernt, neu aus Google synchronisiert. Seit 13.11.2026 ein Eintrag, Status „Ausstehende Veröffentlichung“ (laut Support bis zu 12 Tage) → **Prüfung ~25.11.2026**. Auto-Sync laut Support-Empfehlung monatlich; Daten nur noch im Google-Profil pflegen, nicht in Bing. |
+| Bing Places for Business | ✅ | **Veröffentlicht** (geprüft 20.11.2026), mit dem Google-Profil synchronisiert: Daten nur noch dort pflegen, Auto-Sync laut Support-Empfehlung monatlich. Name, Adresse, Telefon, Website, Öffnungszeiten und Fotos geprüft. Vorgeschichte: Der Google-Sync hatte am 12.11. neben dem Bing-eigenen Eintrag ein Duplikat erzeugt; Lösung über den Bing-Support (Ticket bei Tim): beide Einträge aus dem Konto entfernt, am 13.11. neu aus Google importiert. **Offen:** Kategorie zeigt „Hausservice, Installation von Dachfenstern“ (+1) — „Dachdecker“ als Hauptkategorie prüfen; Beschreibung auf Vollständigkeit prüfen. |
 | Apple Business Connect | ⬜ | Apple Maps / Siri |
 | Das Örtliche | ⬜ | DE-Standardverzeichnis, hohe Autorität |
 | Gelbe Seiten | ⬜ | DE-Standardverzeichnis |
