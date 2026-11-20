@@ -20,7 +20,7 @@ Status: ⬜ offen · 🔄 in Arbeit · ✅ erledigt
 
 > **Stand 17.11.2026: Item angelegt – [Q138609267](https://www.wikidata.org/wiki/Q138609267)**
 > (von Tim, Konto mit Offenlegung des Geschäftsführer-Bezugs auf der Benutzerseite).
-> `sameAs` auf der Website folgt mit S5a. Offene Nacharbeiten am Item: Abschnitt 4.
+> `sameAs` auf der Website folgt mit S5a. Nacharbeiten am Item erledigt (geprüft 20.11.2026), Rest: Abschnitt 4.
 
 ---
 
@@ -53,7 +53,7 @@ Status: ⬜ offen · 🔄 in Arbeit · ✅ erledigt
 | official name (P1448) | Rex Bedachungs GmbH (de) | Impressum |
 | coordinate location (P625) | 51.46262, 7.24442 | offizielle Website |
 | inception (P571) | 1984 | `/ueber-uns` (das Impressum nennt das Jahr nicht) |
-| industry (P452) | Dachdeckerei / Baugewerbe (QID prüfen) | offizielle Website |
+| industry (P452) | Bauwirtschaft (Q13405640); ein spezifischeres Item für das Dachdeckerhandwerk optional ergänzen | — |
 | official website (P856) | https://www.rex-bedachung.de | (selbst) |
 | e-mail address (P968) | info@rex-bedachung.de | Impressum |
 | phone number (P1329) | +49 234 583100 | Impressum |
@@ -91,16 +91,22 @@ Referenz-Detail belassen.
 1. ✅ Wikidata-Account angelegt, Geschäftsführer-Bezug auf der Benutzerseite offengelegt (Wikimedia verlangt das bei Bearbeitungen im eigenen geschäftlichen Interesse).
 2. ✅ Kein bestehendes Item gefunden.
 3. ✅ Item angelegt, Labels/Beschreibungen/Alias de und en (Stand nach Korrektur 17.11.2026).
-4. ✅ Statements: ist ein(e) Unternehmen, Staat, Koordinaten, Rechtsform, Hauptverwaltung, Adresse, Telefon, offizielle Website, Facebook, Instagram, Gründung 1984, offizieller Name.
-5. 🔄 Referenzen: an den meisten Statements vorhanden (Impressum, Innung, `/ueber-uns`).
+4. ✅ Statements: ist ein(e) Unternehmen, Staat, Koordinaten, Rechtsform, Hauptverwaltung, Adresse, Postleitzahl, Telefon, E-Mail, USt-IdNr., offizielle Website, Facebook, Instagram, Gründung 1984, offizieller Name, Branche.
+5. ✅ Referenzen: an allen Sachaussagen (Impressum, Innung, `/ueber-uns`); ohne Fundstelle nur Staat, Facebook und Instagram.
 6. ✅ **QID = Q138609267** (17.11.2026), beobachtet.
 
-**Offene Nacharbeiten (Hinweise an Tim, 17.11.2026; Wikidata ist aus der Claude-Umgebung nicht erreichbar, geprüft anhand von Screenshots):**
-- ⬜ Adresse auf „Paulinenstraße 22, 44799 Bochum“ (statt „Paulinenstr.“).
-- ⬜ Gründung: Fundstelle Impressum entfernen, `/ueber-uns` behalten.
-- ⬜ Fahnen-Hinweise: offizielle Website (vermutlich Qualifikator „Sprache des Werkes oder Namens“ = Deutsch), offizieller Name (vermutlich Fundstelle fehlt → Impressum).
-- ⬜ Branche (P452) ergänzen.
-- ⬜ optional: Postleitzahl, USt-IdNr., E-Mail; englische Beschreibung kleinschreiben.
+**Nacharbeiten (Hinweise an Tim vom 17.11.2026), Prüfung 20.11.2026 anhand der Wikidata-Daten
+(letzte Änderung am Item: 17.11.2026, 17:08 MEZ):**
+- ✅ Adresse (P6375): „Paulinenstraße 22, 44799 Bochum“ (de), Fundstelle Impressum.
+- ✅ Gründung (P571): 1984 (Jahresgenauigkeit), einzige Fundstelle `/ueber-uns`.
+- ✅ Offizielle Website (P856): Qualifikator Sprache des Werkes oder Namens = Deutsch; Fundstelle Impressum.
+- ✅ Offizieller Name (P1448): Fundstellen Innung, Impressum, `/ueber-uns`.
+- ✅ Branche (P452): Bauwirtschaft (Q13405640).
+- ✅ Postleitzahl (P281) 44799, USt-IdNr. (P3608) DE124085752, E-Mail (P968) info@rex-bedachung.de, jeweils mit Fundstelle Impressum.
+- ⬜ Englische Beschreibung: steht noch als „Roofing company based in Bochum, Germany“ → „roofing company in Bochum, Germany“.
+- ⬜ optional: beim offiziellen Namen stehen die drei URLs in einem Fundstellen-Block; sauberer als drei getrennte Fundstellen.
+- ⬜ Fahnen-Symbole auf der Itemseite einmal kontrollieren: Beide vermuteten Ursachen sind behoben, die
+  Wikidata-Konsistenzprüfung war bei der Prüfung am 20.11. wegen Abfragelimits nicht abrufbar.
 
 ## 5. Rückkopplung in die Website (Loop schließen)
 
