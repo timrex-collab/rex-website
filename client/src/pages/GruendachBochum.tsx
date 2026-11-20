@@ -152,70 +152,83 @@ const faqItems = [
 export default function GruendachBochum() {
   const [openFaq, setOpenFaq] = useState<number | null>(null);
 
-  const faqSchema = {
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    mainEntity: faqItems.map((item) => ({
-      "@type": "Question",
-      name: item.q,
-      acceptedAnswer: { "@type": "Answer", text: item.a },
-    })),
-  };
+  const PAGE_URL = "https://www.rex-bedachung.de/gruendach-dachbegrunung-bochum";
+  const PAGE_IMAGE = "https://www.rex-bedachung.de/images/gruendach-bochum-dachbegruenung-experten.webp";
+  // Letzte inhaltliche Änderung laut freigegebener Datumstabelle (E2, SEO-Plan) – nie das Builddatum.
+  const DATE_MODIFIED = "2026-09-23";
 
-  const articleSchema = {
+  const schemaData = {
     "@context": "https://schema.org",
-    "@type": "Article",
-    headline: "Gründach Bochum: Aufbau, Vorteile, Varianten & Förderung – der vollständige Ratgeber",
-    description:
-      "Alles zum Thema Gründach und Dachbegrünung in Bochum: Extensiv vs. intensiv, 7 Schichten Aufbau, Vorteile, Förderprogramme und Pflegetipps vom Flachdach-Experten Rex Bedachungs GmbH.",
-    author: { "@id": "https://www.rex-bedachung.de/#author" },
-    publisher: { "@id": "https://www.rex-bedachung.de/#organization" },
-    datePublished: "2026-03-01",
-    dateModified: "2026-03-01",
-    mainEntityOfPage: "https://rex-bedachung.de/gruendach-dachbegrunung-bochum",
-    image: "https://rex-bedachung.de/images/gruendach-bochum-dachbegruenung-experten.webp",
-    about: [
-      { "@type": "Thing", name: "Gründach" },
-      { "@type": "Thing", name: "Dachbegrünung" },
-      { "@type": "Thing", name: "Flachdach" },
-    ],
-    mentions: [
-      { "@type": "City", name: "Bochum" },
-      { "@type": "Place", name: "Ruhrgebiet" },
-    ],
-  };
-
-  const serviceSchema = {
-    "@context": "https://schema.org",
-    "@type": "Service",
-    name: "Gründach & Dachbegrünung",
-    provider: {
-      "@type": "RoofingContractor",
-      "@id": "https://www.rex-bedachung.de/#organization",
-    },
-    areaServed: [
-      { "@type": "City", "name": "Bochum" },
-      { "@type": "City", "name": "Herne" },
-      { "@type": "City", "name": "Castrop-Rauxel" },
-      { "@type": "City", "name": "Witten" },
-      { "@type": "City", "name": "Hattingen" },
-      { "@type": "City", "name": "Gelsenkirchen" }
-    ],
-    description:
-      "Planung und Einbau von extensiven und intensiven Gründächern auf Flachdächern in Bochum und dem Ruhrgebiet.",
-    serviceType: "Dachbegrünung",
-  };
-
-  const breadcrumbSchema = {
-    "@context": "https://schema.org",
-    "@type": "BreadcrumbList",
-    itemListElement: [
-      { "@type": "ListItem", position: 1, name: "Startseite", item: "https://www.rex-bedachung.de/" },
+    "@graph": [
       {
-        "@type": "ListItem",
-        position: 2,
-        name: "Gründach & Dachbegrünung Bochum",
-        item: "https://www.rex-bedachung.de/gruendach-dachbegrunung-bochum",
+        "@type": "WebPage",
+        "@id": `${PAGE_URL}#webpage`,
+        url: PAGE_URL,
+        name: "Gründach Bochum – Dachbegrünung vom Meisterbetrieb",
+        isPartOf: { "@id": "https://www.rex-bedachung.de/#website" },
+        about: { "@id": "https://www.rex-bedachung.de/#organization" },
+        breadcrumb: { "@id": `${PAGE_URL}#breadcrumb` },
+        mainEntity: { "@id": `${PAGE_URL}#service` },
+        primaryImageOfPage: PAGE_IMAGE,
+        dateModified: DATE_MODIFIED,
+        inLanguage: "de-DE",
+      },
+      {
+        "@type": "BreadcrumbList",
+        "@id": `${PAGE_URL}#breadcrumb`,
+        itemListElement: [
+          { "@type": "ListItem", position: 1, name: "Startseite", item: "https://www.rex-bedachung.de/" },
+          { "@type": "ListItem", position: 2, name: "Gründach & Dachbegrünung Bochum", item: PAGE_URL },
+        ],
+      },
+      {
+        "@type": "Service",
+        "@id": `${PAGE_URL}#service`,
+        name: "Gründach & Dachbegrünung",
+        serviceType: "Dachbegrünung",
+        description:
+          "Planung und Einbau von extensiven und intensiven Gründächern auf Flachdächern in Bochum und dem Ruhrgebiet.",
+        provider: { "@id": "https://www.rex-bedachung.de/#organization" },
+        areaServed: [
+          { "@type": "City", "name": "Bochum" },
+          { "@type": "City", "name": "Herne" },
+          { "@type": "City", "name": "Castrop-Rauxel" },
+          { "@type": "City", "name": "Witten" },
+          { "@type": "City", "name": "Hattingen" },
+          { "@type": "City", "name": "Gelsenkirchen" }
+        ],
+      },
+      {
+        "@type": "FAQPage",
+        "@id": `${PAGE_URL}#faq`,
+        mainEntity: faqItems.map((item) => ({
+          "@type": "Question",
+          name: item.q,
+          acceptedAnswer: { "@type": "Answer", text: item.a },
+        })),
+      },
+      {
+        "@type": "Article",
+        "@id": `${PAGE_URL}#article`,
+        headline: "Gründach Bochum: Aufbau, Vorteile, Varianten & Förderung – der vollständige Ratgeber",
+        description:
+          "Alles zum Thema Gründach und Dachbegrünung in Bochum: Extensiv vs. intensiv, 7 Schichten Aufbau, Vorteile, Förderprogramme und Pflegetipps vom Flachdach-Experten Rex Bedachungs GmbH.",
+        author: { "@id": "https://www.rex-bedachung.de/#author" },
+        publisher: { "@id": "https://www.rex-bedachung.de/#organization" },
+        datePublished: "2026-03-01",
+        dateModified: DATE_MODIFIED,
+        mainEntityOfPage: { "@id": `${PAGE_URL}#webpage` },
+        image: PAGE_IMAGE,
+        url: PAGE_URL,
+        about: [
+          { "@type": "Thing", name: "Gründach" },
+          { "@type": "Thing", name: "Dachbegrünung" },
+          { "@type": "Thing", name: "Flachdach" },
+        ],
+        mentions: [
+          { "@type": "City", name: "Bochum" },
+          { "@type": "Place", name: "Ruhrgebiet" },
+        ],
       },
     ],
   };
@@ -251,29 +264,7 @@ export default function GruendachBochum() {
         />
         <meta name="twitter:image" content="https://www.rex-bedachung.de/images/gruendach-bochum-dachbegruenung-experten.webp" />
         <link rel="canonical" href="https://www.rex-bedachung.de/gruendach-dachbegrunung-bochum" />
-        <script type="application/ld+json">{JSON.stringify(faqSchema)}</script>
-        <script type="application/ld+json">{JSON.stringify(articleSchema)}</script>
-        <script type="application/ld+json">{JSON.stringify(serviceSchema)}</script>
-        <script type="application/ld+json">{JSON.stringify(breadcrumbSchema)}</script>
-        <script type="application/ld+json">{`{
-  "@context": "https://schema.org",
-  "@type": "Service",
-  "name": "Dachbegrünung und Gründach",
-  "description": "Extensive und intensive Dachbegrünung in Bochum – Planung, Aufbau und Pflege.",
-  "provider": {
-    "@type": "RoofingContractor",
-    "@id": "https://www.rex-bedachung.de/#organization"
-  },
-  "areaServed": [
-    { "@type": "City", "name": "Bochum" },
-    { "@type": "City", "name": "Herne" },
-    { "@type": "City", "name": "Castrop-Rauxel" },
-    { "@type": "City", "name": "Witten" },
-    { "@type": "City", "name": "Hattingen" },
-    { "@type": "City", "name": "Gelsenkirchen" }
-  ],
-  "serviceType": "Dachbegrünung"
-}`}</script>
+        <script type="application/ld+json">{JSON.stringify(schemaData)}</script>
       </Helmet>
       <OrganizationSchema />
       <AuthorSchema />

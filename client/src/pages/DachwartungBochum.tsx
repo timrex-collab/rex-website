@@ -139,37 +139,76 @@ const faqItems = [
   },
 ];
 
-const faqSchema = JSON.stringify({
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  "mainEntity": faqItems.map((item) => ({
-    "@type": "Question",
-    "name": item.question,
-    "acceptedAnswer": { "@type": "Answer", "text": item.answer },
-  })),
-});
+const PAGE_URL = "https://www.rex-bedachung.de/dachwartung-bochum";
+const PAGE_IMAGE = "https://www.rex-bedachung.de/images/dachdecker-inspektion-dachwartung-bochum.webp";
+// Letzte inhaltliche Änderung laut freigegebener Datumstabelle (E2, SEO-Plan) – nie das Builddatum.
+const DATE_MODIFIED = "2026-08-26";
 
 const schemaJson = JSON.stringify({
   "@context": "https://schema.org",
-  "@type": "Service",
-  "name": "Dachwartung Bochum – Dachinspektion & Wartungsvertrag",
-  "provider": {
-    "@type": "RoofingContractor",
-    "@id": "https://www.rex-bedachung.de/#organization",
-  },
-  "areaServed": [
-    { "@type": "City", "name": "Bochum" },
-    { "@type": "City", "name": "Herne" },
-    { "@type": "City", "name": "Castrop-Rauxel" },
-    { "@type": "City", "name": "Witten" },
-    { "@type": "City", "name": "Hattingen" },
-    { "@type": "City", "name": "Gelsenkirchen" }
+  "@graph": [
+    {
+      "@type": "WebPage",
+      "@id": `${PAGE_URL}#webpage`,
+      "url": PAGE_URL,
+      "name": "Dachwartung Bochum – Inspektion & Wartungsvertrag",
+      "isPartOf": { "@id": "https://www.rex-bedachung.de/#website" },
+      "about": { "@id": "https://www.rex-bedachung.de/#organization" },
+      "breadcrumb": { "@id": `${PAGE_URL}#breadcrumb` },
+      "mainEntity": { "@id": `${PAGE_URL}#service` },
+      "primaryImageOfPage": PAGE_IMAGE,
+      "dateModified": DATE_MODIFIED,
+      "inLanguage": "de-DE",
+    },
+    {
+      "@type": "BreadcrumbList",
+      "@id": `${PAGE_URL}#breadcrumb`,
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Startseite", "item": "https://www.rex-bedachung.de/" },
+        { "@type": "ListItem", "position": 2, "name": "Dachwartung Bochum", "item": PAGE_URL },
+      ],
+    },
+    {
+      "@type": "Service",
+      "@id": `${PAGE_URL}#service`,
+      "name": "Dachwartung Bochum – Dachinspektion & Wartungsvertrag",
+      "serviceType": "Dachwartung",
+      "description": "Dachwartung in Bochum – jährliche Dachinspektion, Reinigung von Dachrinnen und Abläufen, Dichtigkeitskontrolle und Wartungsverträge für Privat und Hausverwaltungen.",
+      "provider": { "@id": "https://www.rex-bedachung.de/#organization" },
+      "areaServed": [
+        { "@type": "City", "name": "Bochum" },
+        { "@type": "City", "name": "Herne" },
+        { "@type": "City", "name": "Castrop-Rauxel" },
+        { "@type": "City", "name": "Witten" },
+        { "@type": "City", "name": "Hattingen" },
+        { "@type": "City", "name": "Gelsenkirchen" }
+      ],
+      "offers": {
+        "@type": "Offer",
+        "availability": "https://schema.org/InStock",
+      },
+    },
+    {
+      "@type": "FAQPage",
+      "@id": `${PAGE_URL}#faq`,
+      "mainEntity": faqItems.map((item) => ({
+        "@type": "Question",
+        "name": item.question,
+        "acceptedAnswer": { "@type": "Answer", "text": item.answer },
+      })),
+    },
+    {
+      "@type": "Article",
+      "@id": `${PAGE_URL}#article`,
+      "headline": "Dachwartung Bochum – Dachinspektion & Wartungsvertrag vom Meisterbetrieb",
+      "author": { "@id": "https://www.rex-bedachung.de/#author" },
+      "publisher": { "@id": "https://www.rex-bedachung.de/#organization" },
+      "mainEntityOfPage": { "@id": `${PAGE_URL}#webpage` },
+      "image": PAGE_IMAGE,
+      "dateModified": DATE_MODIFIED,
+      "url": PAGE_URL,
+    },
   ],
-  "description": "Dachwartung in Bochum – jährliche Dachinspektion, Reinigung von Dachrinnen und Abläufen, Dichtigkeitskontrolle und Wartungsverträge für Privat und Hausverwaltungen.",
-  "offers": {
-    "@type": "Offer",
-    "availability": "https://schema.org/InStock",
-  },
 });
 
 export default function DachwartungBochum() {
@@ -196,42 +235,6 @@ export default function DachwartungBochum() {
         <meta name="twitter:image" content="https://www.rex-bedachung.de/images/dachdecker-inspektion-dachwartung-bochum.webp" />
         <link rel="canonical" href="https://www.rex-bedachung.de/dachwartung-bochum" />
         <script type="application/ld+json">{schemaJson}</script>
-        <script type="application/ld+json">{`{
-  "@context": "https://schema.org",
-  "@type": "BreadcrumbList",
-  "itemListElement": [
-    {"@type":"ListItem","position":1,"name":"Startseite","item":"https://www.rex-bedachung.de/"},
-    {"@type":"ListItem","position":2,"name":"Dachwartung Bochum","item":"https://www.rex-bedachung.de/dachwartung-bochum"}
-  ]
-}`}</script>
-        <script type="application/ld+json">{`{
-  "@context": "https://schema.org",
-  "@type": "Service",
-  "name": "Dachwartung und Dachinspektion",
-  "description": "Regelmäßige Dachwartung und professionelle Dachinspektion in Bochum zur Werterhaltung.",
-  "provider": {
-    "@type": "RoofingContractor",
-    "@id": "https://www.rex-bedachung.de/#organization"
-  },
-  "areaServed": [
-    { "@type": "City", "name": "Bochum" },
-    { "@type": "City", "name": "Herne" },
-    { "@type": "City", "name": "Castrop-Rauxel" },
-    { "@type": "City", "name": "Witten" },
-    { "@type": "City", "name": "Hattingen" },
-    { "@type": "City", "name": "Gelsenkirchen" }
-  ],
-  "serviceType": "Dachwartung"
-}`}</script>
-        <script type="application/ld+json">{faqSchema}</script>
-        <script type="application/ld+json">{`{
-  "@context": "https://schema.org",
-  "@type": "Article",
-  "headline": "Dachwartung Bochum – Dachinspektion & Wartungsvertrag vom Meisterbetrieb",
-  "author": { "@id": "https://www.rex-bedachung.de/#author" },
-  "publisher": { "@id": "https://www.rex-bedachung.de/#organization" },
-  "url": "https://www.rex-bedachung.de/dachwartung-bochum"
-}`}</script>
       </Helmet>
       <OrganizationSchema />
       <AuthorSchema />
