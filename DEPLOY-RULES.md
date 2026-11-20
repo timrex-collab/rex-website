@@ -125,6 +125,12 @@ die Ausnahme.
 1. **Deployfenster-Check:** ≥ 48 h seit dem letzten Merge auf `main`.
 2. **Feature-Branch auf `main` ausrichten** (`git fetch origin main` + ff/reset), damit der PR-Diff exakt die geplanten Änderungen zeigt.
 3. **Diff prüfen** (`git show --stat HEAD` / PR-`get_files`) → exakt die geplanten Dateien, nichts sonst. Kein `attached_assets`.
+3a. **Sitemap-`lastmod` mitziehen (seit S2, 11/2026):** Ändert ein PR Inhalt, Titel/Description, Schema oder
+   Links einer Seite aus `client/public/sitemap.xml` (beim Preisrechner auch sichtbares Verhalten von Komponente
+   oder Rechenlogik), bekommt diese URL als `lastmod` den geplanten Merge-Tag; verschiebt sich der Merge, wird
+   das Datum vor dem Merge angepasst. Nicht zählen: seitenweite Navigation/Footer, das Prüfdatum im
+   `ExpertenBlock`, interne Umbauten ohne sichtbare Änderung. `sitemap.xml` zählt dabei als Datei für die
+   Stufen-Obergrenze. Die IndexNow-Action meldet nach dem Merge genau diese URLs.
 4. **PR öffnen, Netlify-Preview abwarten.** Claude verifiziert den Preview-/Post-Merge-Stand über den Netlify-Connector (kein curl).
 5. **Merge ausschließlich durch Tim.** Kein Direct-Push auf `main`, kein Auto-Merge.
 
@@ -773,12 +779,15 @@ VELUX D1–D8 · Förder-Bereinigung R1–R4 · Doku/llms nach R1–R4.
 
 > **Post-Deploy-Schritt (IndexNow) — automatisiert seit 07/2026:** Die GitHub
 > Action `.github/workflows/indexnow.yml` läuft bei jedem Push/Merge auf `main`
-> und meldet die 30 indexierbaren Sitemap-URLs via `scripts/indexnow-submit.mjs`
-> an IndexNow. Der Merge bleibt der **einzige Auslöser** — die Merge-only-Disziplin
-> bleibt gewahrt (nur die Handarbeit entfällt). Kein Secret nötig (Key ist
-> öffentlich), kein npm-Install nötig (nur Node-Boardmittel). Manueller Fallback:
-> „Run workflow" in der Actions-UI (`workflow_dispatch`) oder lokal
-> `npm run indexnow:submit`.
+> und meldet via `scripts/indexnow-submit.mjs --changed-since <Stand vor dem Push>`
+> **nur die Sitemap-URLs, deren `lastmod` sich geändert hat** (seit S2, 11/2026;
+> vorher bei jedem Push alle 30 URLs, auch bei Doku-PRs). Ohne geänderte Seite
+> sendet die Action nichts und bleibt grün. Ist der alte Stand nicht lesbar,
+> meldet sie alle URLs. Voraussetzung ist Schritt 3a in §5. Der Merge bleibt der
+> **einzige Auslöser** — die Merge-only-Disziplin bleibt gewahrt. Kein Secret
+> nötig (Key ist öffentlich), kein npm-Install nötig (nur Node-Boardmittel und
+> `git`). Manueller Fallback mit allen URLs: „Run workflow" in der Actions-UI
+> (`workflow_dispatch`) oder lokal `npm run indexnow:submit`.
 
 ### Separat live: VELUX Preisrechner Modell B (06/2026 ✅) — siehe Uw-/g-Tabelle Abschnitt 6.
 
@@ -786,7 +795,7 @@ VELUX D1–D8 · Förder-Bereinigung R1–R4 · Doku/llms nach R1–R4.
 
 ## 11. GEO / Off-Site-Arbeit (in Arbeit)
 - **Bing Webmaster Tools:** CNAME verifiziert. Sitemap `…/sitemap.xml` eingereicht (26.06.2026, Status **Success**, 30 URLs erkannt, erster Crawl 27.06.). Hinweis: veralteter `firma.rex-bedachung.de/sitemap.xml`-Eintrag (301→www, redundant — zählt dieselben 30 URLs doppelt) kann im Bing-Dashboard entfernt werden.
-- **IndexNow:** Key-Datei + Submit-Skript `scripts/indexnow-submit.mjs` (D-IndexNow). **Automatisiert seit 07/2026** über die GitHub Action `.github/workflows/indexnow.yml` (Trigger: Push/Merge auf `main`; `workflow_dispatch` für manuellen Lauf). Lokaler Fallback: `npm run indexnow:submit`.
+- **IndexNow:** Key-Datei + Submit-Skript `scripts/indexnow-submit.mjs` (D-IndexNow). **Automatisiert seit 07/2026** über die GitHub Action `.github/workflows/indexnow.yml` (Trigger: Push/Merge auf `main`; `workflow_dispatch` für manuellen Lauf). Seit S2 (11/2026) meldet die Action nur URLs mit geändertem `lastmod`, wie von Bing empfohlen. Lokaler Fallback (alle URLs): `npm run indexnow:submit`.
 - ✅ **robots.txt** (gesperrt, Stufe C): keine offenen Punkte. `Disallow: /impressum` ist live seit 27.05.2026 (Commit `ead75b0`); die KI-Crawler-Allow-Liste ist bereits breit (GPTBot, ClaudeBot, Claude-Web, Google-Extended, PerplexityBot, anthropic-ai, OAI-SearchBot). Eine Erweiterung um neuere 2026er-Agents (ChatGPT-User, Applebot-Extended, Meta-ExternalAgent, CCBot …) wäre reines Signaling — `User-agent: *` setzt bereits `Allow: /` — und ist bewusst zurückgestellt.
 
 ---
@@ -824,7 +833,7 @@ VELUX D1–D8 · Förder-Bereinigung R1–R4 · Doku/llms nach R1–R4.
 | Bing Webmaster Tools | CNAME verifiziert; Sitemap eingereicht (Success, 30 URLs, 26.06.2026) |
 | Rich Results Test | Schema-Verifikation |
 | ProvenExpert | Review-Widget und Rich Snippet seit B1 entfernt (PR #99, 15.10.2026); nur noch Profil-Link auf der Startseite, kein Fremdskript. Kennzahl „4,48 ★“ auf der Startseite: Herkunft offen (Profil am 12.10.2026: 5,00 bei 1 Bewertung; früherer Stand hier: 4,48★, 13 Bewertungen) |
-| IndexNow | Key-Datei + Submit-Skript; **automatisiert** via GitHub Action `.github/workflows/indexnow.yml` (Push auf `main`), Fallback `npm run indexnow:submit` |
+| IndexNow | Key-Datei + Submit-Skript; **automatisiert** via GitHub Action `.github/workflows/indexnow.yml` (Push auf `main`, nur URLs mit geändertem `lastmod`), Fallback mit allen URLs `npm run indexnow:submit` |
 | `rex-bedachungen.de` | 301-Redirect via `.htaccess` (separate Infra) |
 
 ### Sicherungs-Mechanismus (löst die frühere „Replit kann nicht pushen"-Bremse ab)

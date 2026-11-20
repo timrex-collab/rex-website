@@ -1,15 +1,17 @@
 name: IndexNow submit
 
-# Meldet die indexierbaren Sitemap-URLs nach jedem Merge auf main automatisch an
-# IndexNow (Bing/Yandex u. a.). Loest den bisherigen manuellen Schritt
-# `npm run indexnow:submit` ab. Der Merge auf main bleibt der einzige Ausloeser
+# Meldet nach jedem Merge auf main die Sitemap-URLs an IndexNow (Bing/Yandex u. a.),
+# deren <lastmod> sich mit dem Push geaendert hat (Paket S2). Reine Doku-PRs ohne
+# Sitemap-Aenderung melden nichts. Der Merge auf main bleibt der einzige Ausloeser
 # -> die Merge-only-Disziplin (DEPLOY-RULES) bleibt gewahrt.
+# Voraussetzung: Jeder Inhalts- oder Schema-Deploy zieht das lastmod der
+# geaenderten Seiten in client/public/sitemap.xml mit (DEPLOY-RULES §5).
 #
 # - Kein Secret noetig: der IndexNow-Key liegt oeffentlich unter
 #   client/public/5bc5e3a3ecc3b983c8f83a2095f8a299.txt.
-# - Kein npm-Install noetig: das Skript nutzt nur Node-Boardmittel (fetch/fs/path).
-# - Manueller Fallback: "Run workflow" (workflow_dispatch) oder lokal
-#   `npm run indexnow:submit`.
+# - Kein npm-Install noetig: das Skript nutzt nur Node-Boardmittel (fetch/fs/path/git).
+# - Manueller Fallback: "Run workflow" (workflow_dispatch) meldet alle URLs,
+#   ebenso lokal `npm run indexnow:submit`.
 
 on:
   push:
@@ -30,9 +32,19 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v5
+        with:
+          # Volle Historie, damit der Stand vor dem Push (github.event.before) lesbar ist.
+          fetch-depth: 0
       - name: Setup Node
         uses: actions/setup-node@v5
         with:
           node-version: 22
-      - name: Submit sitemap URLs to IndexNow
-        run: node scripts/indexnow-submit.mjs
+      - name: Submit changed sitemap URLs to IndexNow
+        env:
+          BEFORE: ${{ github.event_name == 'push' && github.event.before || '' }}
+        run: |
+          if [ -n "$BEFORE" ]; then
+            node scripts/indexnow-submit.mjs --changed-since "$BEFORE"
+          else
+            node scripts/indexnow-submit.mjs
+          fi
