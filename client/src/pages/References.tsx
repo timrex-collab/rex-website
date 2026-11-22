@@ -8,7 +8,9 @@ import { Link } from "wouter";
 const heroImage = "/images/tondach-hero-dachdeckung-bochum.webp";
 const heroImageFallback = "/images/tondach-hero-dachdeckung-bochum.jpg";
 
-const projects = [
+// thumb: 800 px breite Vorschau für Raster und Lightbox-Miniaturen (Paket S4); die Lightbox zeigt
+// weiter das Original (src). Neue große Fotos bekommen eine eigene -800w-Variante.
+const projects: { src: string; thumb?: string; alt: string; title: string; location: string; year: string; category: string; tag: string; description: string }[] = [
   {
     src: "/images/dachsanierung-schieferoptik-velux-dachfenster-photovoltaik-bochum.webp",
     alt: "Dachsanierung mit Schieferoptik und VELUX Dachfenstern – Bochum-Querenburg",
@@ -22,6 +24,7 @@ const projects = [
   },
   {
     src: "/images/fensterbank-zinkblech-dachfenster-anschluss-steildach-bochum.webp",
+    thumb: "/images/fensterbank-zinkblech-dachfenster-anschluss-steildach-bochum-800w.webp",
     alt: "Fensterbank-Detailarbeit mit Zinkblech und Dachfenster-Anschluss – Bochum-Weidmar",
     title: "Fensterbank-Detailarbeit mit Zinkblech",
     location: "Bochum",
@@ -33,6 +36,7 @@ const projects = [
   },
   {
     src: "/images/gruendach-extensiv-sedum-neubau-mehrfamilienhaus-bochum.webp",
+    thumb: "/images/gruendach-extensiv-sedum-neubau-mehrfamilienhaus-bochum-800w.webp",
     alt: "Neubaugebiet mit extensiver Dachbegrünung und Sedum – Bochum-Wiemelhausen",
     title: "Neubaugebiet mit extensiver Dachbegrünung",
     location: "Bochum",
@@ -44,6 +48,7 @@ const projects = [
   },
   {
     src: "/images/dacheindeckung-tonziegel-velux-dachfenster-bungalow-bochum.webp",
+    thumb: "/images/dacheindeckung-tonziegel-velux-dachfenster-bungalow-bochum-800w.webp",
     alt: "Bungalow-Dacheindeckung mit Tonziegeln und VELUX – Bochum-Querenburg",
     title: "Bungalow-Dacheindeckung mit Tonziegeln und VELUX",
     location: "Bochum",
@@ -55,6 +60,7 @@ const projects = [
   },
   {
     src: "/images/velux-dachfenster-3er-kombination-steildach-bochum.webp",
+    thumb: "/images/velux-dachfenster-3er-kombination-steildach-bochum-800w.webp",
     alt: "VELUX Dachfenster 3er-Kombination auf anthrazitem Steildach – Rex Bedachungs GmbH Bochum",
     title: "VELUX 3er-Kombination",
     location: "Bochum",
@@ -66,6 +72,7 @@ const projects = [
   },
   {
     src: "/images/velux-dachfenster-doppelanlage-einbau-tonziegel-bochum.webp",
+    thumb: "/images/velux-dachfenster-doppelanlage-einbau-tonziegel-bochum-800w.webp",
     alt: "VELUX Lichtlösung DUO Einbau auf Tonziegel-Steildach – Rex Bedachungs GmbH Bochum",
     title: "VELUX Lichtlösung DUO",
     location: "Bochum",
@@ -88,6 +95,7 @@ const projects = [
   },
   {
     src: "/images/tondach-dachziegel-bochum-typ4.webp",
+    thumb: "/images/tondach-dachziegel-bochum-typ4-800w.webp",
     alt: "Neubaugebiet mit Steildächern und Tondachziegeln – Hattingen",
     title: "Neubaugebiet Hattingen",
     location: "Hattingen",
@@ -337,7 +345,7 @@ export default function References() {
                     data-testid={`card-project-${index}`}
                   >
                     <img
-                      src={project.src}
+                      src={project.thumb ?? project.src}
                       alt={project.alt}
                       loading="lazy"
                       width={600}
@@ -511,7 +519,7 @@ export default function References() {
               {projects.map((p, i) => (
                 <img
                   key={i}
-                  src={p.src}
+                  src={p.thumb ?? p.src}
                   alt={p.alt}
                   className={`w-14 h-10 rounded object-cover cursor-pointer transition-opacity duration-200 ${
                     i === lightboxIndex
