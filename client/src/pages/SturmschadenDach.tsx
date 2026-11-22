@@ -56,34 +56,84 @@ const faqItems = [
   },
 ];
 
+const PAGE_URL = "https://www.rex-bedachung.de/sturmschaden-dach-bochum";
+const PAGE_IMAGE = "https://www.rex-bedachung.de/images/sturmschaden-dach-bochum.webp";
+// Letzte inhaltliche Änderung laut freigegebener Datumstabelle (E2, SEO-Plan) – nie das Builddatum.
+const DATE_MODIFIED = "2026-08-26";
+
 const schemaJson = JSON.stringify({
   "@context": "https://schema.org",
-  "@type": "Service",
-  "name": "Sturmschaden Dach Bochum – Notsicherung & Reparatur",
-  "provider": {
-    "@type": "RoofingContractor",
-    "@id": "https://www.rex-bedachung.de/#organization",
-  },
-  "areaServed": [
-    { "@type": "City", "name": "Bochum" },
-    { "@type": "City", "name": "Herne" },
-    { "@type": "City", "name": "Castrop-Rauxel" },
-    { "@type": "City", "name": "Witten" },
-    { "@type": "City", "name": "Hattingen" },
-    { "@type": "City", "name": "Gelsenkirchen" }
+  "@graph": [
+    {
+      "@type": "WebPage",
+      "@id": `${PAGE_URL}#webpage`,
+      "url": PAGE_URL,
+      "name": "Sturmschaden Dach Bochum – Notsicherung & Reparatur",
+      "isPartOf": { "@id": "https://www.rex-bedachung.de/#website" },
+      "about": { "@id": "https://www.rex-bedachung.de/#organization" },
+      "breadcrumb": { "@id": `${PAGE_URL}#breadcrumb` },
+      "mainEntity": { "@id": `${PAGE_URL}#service` },
+      "primaryImageOfPage": PAGE_IMAGE,
+      "dateModified": DATE_MODIFIED,
+      "inLanguage": "de-DE",
+    },
+    {
+      "@type": "BreadcrumbList",
+      "@id": `${PAGE_URL}#breadcrumb`,
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Startseite", "item": "https://www.rex-bedachung.de/" },
+        { "@type": "ListItem", "position": 2, "name": "Dachreparatur Bochum", "item": "https://www.rex-bedachung.de/dachreparatur-bochum" },
+        { "@type": "ListItem", "position": 3, "name": "Sturmschaden Dach Bochum", "item": PAGE_URL },
+      ],
+    },
+    {
+      "@type": "Service",
+      "@id": `${PAGE_URL}#service`,
+      "name": "Sturmschaden Dach Bochum – Notsicherung & Reparatur",
+      "serviceType": "Sturmschaden Dachreparatur",
+      "description": "Sturmschaden am Dach in Bochum – Notsicherung, Reparatur und Schadensdokumentation für die Versicherung. Meisterbetrieb Rex Bedachungs GmbH.",
+      "provider": { "@id": "https://www.rex-bedachung.de/#organization" },
+      "areaServed": [
+        { "@type": "City", "name": "Bochum" },
+        { "@type": "City", "name": "Herne" },
+        { "@type": "City", "name": "Castrop-Rauxel" },
+        { "@type": "City", "name": "Witten" },
+        { "@type": "City", "name": "Hattingen" },
+        { "@type": "City", "name": "Gelsenkirchen" }
+      ],
+    },
+    {
+      "@type": "FAQPage",
+      "@id": `${PAGE_URL}#faq`,
+      "mainEntity": faqItems.map((item) => ({
+        "@type": "Question",
+        "name": item.question,
+        "acceptedAnswer": { "@type": "Answer", "text": item.answer },
+      })),
+    },
+    {
+      "@type": "HowTo",
+      "@id": `${PAGE_URL}#howto`,
+      "name": "Was tun bei Sturmschaden am Dach?",
+      "step": [
+        { "@type": "HowToStep", "position": 1, "name": "Notsicherung", "text": "Provisorisch abdecken, weiteren Wassereintritt verhindern." },
+        { "@type": "HowToStep", "position": 2, "name": "Dokumentieren", "text": "Fotos und Zeitstempel vor der Reparatur – für die Versicherung." },
+        { "@type": "HowToStep", "position": 3, "name": "Versicherung informieren", "text": "Gebäudeversicherung umgehend benachrichtigen." },
+        { "@type": "HowToStep", "position": 4, "name": "Fachbetrieb beauftragen", "text": "Dauerhafte Reparatur durch Rex Bedachungs GmbH Bochum." },
+      ],
+    },
+    {
+      "@type": "Article",
+      "@id": `${PAGE_URL}#article`,
+      "headline": "Sturmschaden Dach Bochum – Notsicherung, Reparatur & Versicherung",
+      "author": { "@id": "https://www.rex-bedachung.de/#author" },
+      "publisher": { "@id": "https://www.rex-bedachung.de/#organization" },
+      "mainEntityOfPage": { "@id": `${PAGE_URL}#webpage` },
+      "image": PAGE_IMAGE,
+      "dateModified": DATE_MODIFIED,
+      "url": PAGE_URL,
+    },
   ],
-  "description": "Sturmschaden am Dach in Bochum – Notsicherung, Reparatur und Schadensdokumentation für die Versicherung. Meisterbetrieb Rex Bedachungs GmbH.",
-  "serviceType": "Sturmschaden Dachreparatur",
-});
-
-const faqSchema = JSON.stringify({
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  "mainEntity": faqItems.map((item) => ({
-    "@type": "Question",
-    "name": item.question,
-    "acceptedAnswer": { "@type": "Answer", "text": item.answer },
-  })),
 });
 
 export default function SturmschadenDach() {
@@ -107,35 +157,6 @@ export default function SturmschadenDach() {
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:image" content="https://www.rex-bedachung.de/images/sturmschaden-dach-bochum.webp" />
         <script type="application/ld+json">{schemaJson}</script>
-        <script type="application/ld+json">{`{
-  "@context": "https://schema.org",
-  "@type": "BreadcrumbList",
-  "itemListElement": [
-    {"@type":"ListItem","position":1,"name":"Startseite","item":"https://www.rex-bedachung.de/"},
-    {"@type":"ListItem","position":2,"name":"Dachreparatur Bochum","item":"https://www.rex-bedachung.de/dachreparatur-bochum"},
-    {"@type":"ListItem","position":3,"name":"Sturmschaden Dach Bochum","item":"https://www.rex-bedachung.de/sturmschaden-dach-bochum"}
-  ]
-}`}</script>
-        <script type="application/ld+json">{faqSchema}</script>
-        <script type="application/ld+json">{`{
-  "@context": "https://schema.org",
-  "@type": "HowTo",
-  "name": "Was tun bei Sturmschaden am Dach?",
-  "step": [
-    {"@type":"HowToStep","position":1,"name":"Notsicherung","text":"Provisorisch abdecken, weiteren Wassereintritt verhindern."},
-    {"@type":"HowToStep","position":2,"name":"Dokumentieren","text":"Fotos und Zeitstempel vor der Reparatur – für die Versicherung."},
-    {"@type":"HowToStep","position":3,"name":"Versicherung informieren","text":"Gebäudeversicherung umgehend benachrichtigen."},
-    {"@type":"HowToStep","position":4,"name":"Fachbetrieb beauftragen","text":"Dauerhafte Reparatur durch Rex Bedachungs GmbH Bochum."}
-  ]
-}`}</script>
-        <script type="application/ld+json">{`{
-  "@context": "https://schema.org",
-  "@type": "Article",
-  "headline": "Sturmschaden Dach Bochum – Notsicherung, Reparatur & Versicherung",
-  "author": { "@id": "https://www.rex-bedachung.de/#author" },
-  "publisher": { "@id": "https://www.rex-bedachung.de/#organization" },
-  "url": "https://www.rex-bedachung.de/sturmschaden-dach-bochum"
-}`}</script>
       </Helmet>
 
       <OrganizationSchema />
