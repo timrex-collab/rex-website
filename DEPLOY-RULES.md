@@ -606,6 +606,20 @@ VELUX D1–D8 · Förder-Bereinigung R1–R4 · Doku/llms nach R1–R4.
 > Inhaltspaket; Förder-Deploy spätestens 29.12.2026.
 > Offen: wie Stand 20.11.2026; dazu nach 1–2 Wochen Search Console „Verbesserungen“ für die fünf S5a-Seiten
 > (Tim).
+>
+> **Stand 24.11.2026 (nach PR #124, S4 Vorschaubilder):**
+> - **#124:** Sechs 800-px-Vorschaubilder (`-800w.webp`) für die größten Fotos auf `/referenzen`; Kacheln
+>   und Lightbox-Miniaturen laden die Vorschau, die Lightbox weiter das Original. Lokal gemessen:
+>   geladene Bilddaten 3.097 KB → 1.804 KB (−42 %). Die Originale tragen ein GPS-Geotag mit der
+>   **Firmenadresse** (kein Kundenobjekt); es bleibt in den Vorschauen erhalten. Korrektur zum SEO-Plan:
+>   Die WebP-Dateien sind nicht frei von Geotags. Kein neues `lastmod` (keine Inhalts-, Schema- oder
+>   Linkänderung), IndexNow #93 deshalb „nichts zu melden“. Vorschau von Tim abgenommen.
+> - Lighthouse lief nicht (Werkzeug aus der Claude-Umgebung nicht nachladbar); Live-Messung mit PageSpeed
+>   Insights mobil für `/referenzen` durch Tim offen.
+> **Nächstes 48-h-Fenster:** ab **26.11.2026 21:55 MEZ** (48 h nach `published_at` von #124).
+> **Als Nächstes vorgesehen:** S5b (weitere Schema-Seiten, darunter `DachPhotovoltaikBochum`), danach S3; der
+> erste Merge im Dezember wird ein Inhaltspaket; Förder-Deploy spätestens 29.12.2026.
+> Offen: wie Stand 22.11.2026.
 
 | Deploy | Inhalt | Status |
 |---|---|---|
@@ -680,6 +694,7 @@ VELUX D1–D8 · Förder-Bereinigung R1–R4 · Doku/llms nach R1–R4.
 | **Korrekturpaket MCP** | `netlify/functions/mcp.mts`: Annotationen `readOnlyHint`/`destructiveHint`/`openWorldHint` für alle fünf Tools, `submit` destruktiv; `prepare` ohne Speicherzugriff, Aufräumen nur bei `submit`. `scripts/mcp-check.ts`: 59 Prüfungen. `Datenschutz.tsx`: Anker `#chatgpt-plugin`, Rückfluss an ChatGPT/OpenAI, Löschzeitpunkt. `MCP.md` | ✅ live (PR #118, gemergt 17.11.2026 per Squash, `59cf4f2`; Stufe C, 4 Dateien; Gate eingehalten: **87 h 53 min** nach #116 bzw. 87 h 33 min nach #117; Netlify `6afc6b1c…`, `commit_ref 59cf4f2`, `published_at 15:58:17 MEZ`, `state ready`, `plugin_state success`, Secret-Scan 765/0, 66 neue Dateien, 31 Redirect-Regeln, Rate-Limit-Regel aktiv (60/60, `sliding_window`), Formularfelder unverändert; Checks-Lauf #127, Prerender-Check #37 und IndexNow #87 grün; Codex-Gegenlesung umgesetzt; Preview-Test Tim bestanden, TEST-Eintrag gelöscht; `tools/list` live noch durch Tim per „Tools aktualisieren“ zu bestätigen) — **Merge durch Tim** |
 | **S2 Sitemap-Daten** | `client/public/sitemap.xml`: `lastmod` je URL auf den Tag der letzten inhaltlichen Änderung (Datumstabelle E2 aus `SEO-UMSETZUNGSPLAN-2026-10`, Startseite 15.10.2026), 29 von 30 Werten geändert. `scripts/indexnow-submit.mjs` mit `--changed-since <git-ref>`; `indexnow.yml` übergibt `github.event.before` (Checkout mit voller Historie): gemeldet werden nur URLs mit geändertem `lastmod`, `workflow_dispatch` und `npm run indexnow:submit` melden alle. Neu: §5 Schritt 3a | ✅ live (PR #120, gemergt 20.11.2026 17:41:57 MEZ per Squash, `13edc49`; Stufe B, 4 Dateien; Gate eingehalten: **73 h 43 min** nach #118; Netlify `6b007858…`, `commit_ref 13edc49`, `published_at 17:42:45 MEZ`, `state ready`, `plugin_state success`, Secret-Scan 767/0, 31 Redirect-Regeln, „All files already uploaded“ (von der Preview); IndexNow #89: 29 URLs, HTTP 200; Checks-Lauf #132 grün; Prerender-Check #38 grün) — **Merge durch Tim** |
 | **S5a Schema** | Fünf Seiten (`Dachreparatur`, `DachwartungBochum`, `BauklempnereiBochum`, `GruendachBochum`, `SturmschadenDach`): alle JSON-LD-Blöcke zu einem `@graph` mit `#webpage`, `#breadcrumb`, `#service`, `#faq`, `#article` (Sturmschaden zusätzlich `#howto`, E4); doppelte Services zusammengeführt, `provider` nur als Verweis; `dateModified` aus E2 in WebPage und Article, `datePublished` nur wo belegt (Gründach); Gründach `dateModified` 01.03. → 23.09. und Host www. `OrganizationSchema.tsx`: `sameAs` + Wikidata Q138609267. `sitemap.xml`: fünf `lastmod` auf 22.11.2026. `WIKIDATA.md`: QID und Nacharbeiten. Sichtbarer Inhalt unverändert (Vorher/Nachher-Vergleich der gerenderten JSON-LD) | ✅ live (PR #121, gemergt 22.11.2026 20:29:25 MEZ per Squash, `9e787f3`; Stufe B, 8 Dateien; Gate eingehalten: **50 h 46 min** nach #120 (#122 war reine Doku); Netlify `6b034297…`, `commit_ref 9e787f3`, `published_at 20:30:12 MEZ`, `state ready`, `plugin_state success`, Secret-Scan 769/0, 66 neue Dateien, 31 Redirect-Regeln; IndexNow #91: 5 URLs, HTTP 200; Checks-Lauf #137 grün; Prerender-Check #39 grün) — **Merge durch Tim** |
+| **S4 Vorschaubilder** | Sechs neue WebP-Vorschaubilder (800 px, Qualität 80, Geotag der Firmenadresse wie im Original) für `gruendach-extensiv-sedum-…`, `fensterbank-zinkblech-…`, `velux-dachfenster-doppelanlage-…`, `dacheindeckung-tonziegel-velux-…`, `velux-dachfenster-3er-…`, `tondach-dachziegel-bochum-typ4` (zusammen 1.744 KB → 304 KB). `References.tsx`: Feld `thumb`, Kachel und Lightbox-Miniaturen laden `thumb ?? src`, Lightbox das Original. Originale unverändert (auch auf anderen Seiten und in `llms.txt`). Kein `lastmod` | ✅ live (PR #124, gemergt 24.11.2026 21:53:47 MEZ per Squash, `01abdee`; Stufe B, 7 Dateien; Gate eingehalten: **49 h 23 min** nach #121 (#123 war reine Doku); Netlify `6b05f95d…`, `commit_ref 01abdee`, `published_at 21:54:36 MEZ`, `state ready`, `plugin_state success`, Secret-Scan 777/0, 66 neue Dateien, 31 Redirect-Regeln; IndexNow #93: nichts zu melden; Checks-Lauf #142 grün; Prerender-Check #40 grün) — **Merge durch Tim** |
 
 > **👤 Abweichung von §5.5 (28. und 30.08.2026) — PR #56 und #61 von Claude gemergt:**
 > Abschnitt 5, Punkt 5 lautet „Merge ausschließlich durch Tim. Kein Direct-Push auf `main`,
