@@ -89,34 +89,73 @@ const faqItems = [
   },
 ];
 
-const faqSchema = JSON.stringify({
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  "mainEntity": faqItems.map((item) => ({
-    "@type": "Question",
-    "name": item.question,
-    "acceptedAnswer": { "@type": "Answer", "text": item.answer },
-  })),
-});
+const PAGE_URL = "https://www.rex-bedachung.de/dachrinne-bochum";
+const PAGE_IMAGE = "https://www.rex-bedachung.de/images/dachrinne-fallrohr-bochum.webp";
+// Letzte inhaltliche Änderung laut freigegebener Datumstabelle (E2, SEO-Plan) – nie das Builddatum.
+const DATE_MODIFIED = "2026-08-22";
 
 const schemaJson = JSON.stringify({
   "@context": "https://schema.org",
-  "@type": "Service",
-  "name": "Dachrinnenreinigung Bochum – Reinigung, Reparatur & Erneuerung der Dachrinne",
-  "provider": {
-    "@type": "RoofingContractor",
-    "@id": "https://www.rex-bedachung.de/#organization",
-  },
-  "areaServed": [
-    { "@type": "City", "name": "Bochum" },
-    { "@type": "City", "name": "Herne" },
-    { "@type": "City", "name": "Castrop-Rauxel" },
-    { "@type": "City", "name": "Witten" },
-    { "@type": "City", "name": "Hattingen" },
-    { "@type": "City", "name": "Gelsenkirchen" }
+  "@graph": [
+    {
+      "@type": "WebPage",
+      "@id": `${PAGE_URL}#webpage`,
+      "url": PAGE_URL,
+      "name": "Dachrinnenreinigung Bochum – reinigen & reparieren",
+      "isPartOf": { "@id": "https://www.rex-bedachung.de/#website" },
+      "about": { "@id": "https://www.rex-bedachung.de/#organization" },
+      "breadcrumb": { "@id": `${PAGE_URL}#breadcrumb` },
+      "mainEntity": { "@id": `${PAGE_URL}#service` },
+      "primaryImageOfPage": PAGE_IMAGE,
+      "dateModified": DATE_MODIFIED,
+      "inLanguage": "de-DE",
+    },
+    {
+      "@type": "BreadcrumbList",
+      "@id": `${PAGE_URL}#breadcrumb`,
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Startseite", "item": "https://www.rex-bedachung.de/" },
+        { "@type": "ListItem", "position": 2, "name": "Bauklempnerei Bochum", "item": "https://www.rex-bedachung.de/bauklempnerei-bochum" },
+        { "@type": "ListItem", "position": 3, "name": "Dachrinne Bochum", "item": PAGE_URL },
+      ],
+    },
+    {
+      "@type": "Service",
+      "@id": `${PAGE_URL}#service`,
+      "name": "Dachrinnenreinigung Bochum – Reinigung, Reparatur & Erneuerung der Dachrinne",
+      "serviceType": "Dachentwässerung",
+      "description": "Dachrinnenreinigung in Bochum sowie Reparatur und Erneuerung der Dachrinne – Rex Bedachungs GmbH, Meisterbetrieb seit 1984. Zink, Aluminium, Kupfer, alle Befestigungssysteme, Laubschutz auf Wunsch.",
+      "provider": { "@id": "https://www.rex-bedachung.de/#organization" },
+      "areaServed": [
+        { "@type": "City", "name": "Bochum" },
+        { "@type": "City", "name": "Herne" },
+        { "@type": "City", "name": "Castrop-Rauxel" },
+        { "@type": "City", "name": "Witten" },
+        { "@type": "City", "name": "Hattingen" },
+        { "@type": "City", "name": "Gelsenkirchen" },
+      ],
+    },
+    {
+      "@type": "FAQPage",
+      "@id": `${PAGE_URL}#faq`,
+      "mainEntity": faqItems.map((item) => ({
+        "@type": "Question",
+        "name": item.question,
+        "acceptedAnswer": { "@type": "Answer", "text": item.answer },
+      })),
+    },
+    {
+      "@type": "Article",
+      "@id": `${PAGE_URL}#article`,
+      "headline": "Dachrinnenreinigung Bochum – Reinigung, Reparatur & Erneuerung der Dachrinne",
+      "author": { "@id": "https://www.rex-bedachung.de/#author" },
+      "publisher": { "@id": "https://www.rex-bedachung.de/#organization" },
+      "dateModified": DATE_MODIFIED,
+      "mainEntityOfPage": { "@id": `${PAGE_URL}#webpage` },
+      "image": PAGE_IMAGE,
+      "url": PAGE_URL,
+    },
   ],
-  "description": "Dachrinnenreinigung in Bochum sowie Reparatur und Erneuerung der Dachrinne – Rex Bedachungs GmbH, Meisterbetrieb seit 1984. Zink, Aluminium, Kupfer, alle Befestigungssysteme, Laubschutz auf Wunsch.",
-  "serviceType": "Dachentwässerung",
 });
 
 export default function DachrinnenBochum() {
@@ -138,24 +177,6 @@ export default function DachrinnenBochum() {
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:image" content="https://www.rex-bedachung.de/images/dachrinne-fallrohr-bochum.webp" />
         <script type="application/ld+json">{schemaJson}</script>
-        <script type="application/ld+json">{`{
-  "@context": "https://schema.org",
-  "@type": "BreadcrumbList",
-  "itemListElement": [
-    {"@type":"ListItem","position":1,"name":"Startseite","item":"https://www.rex-bedachung.de/"},
-    {"@type":"ListItem","position":2,"name":"Bauklempnerei Bochum","item":"https://www.rex-bedachung.de/bauklempnerei-bochum"},
-    {"@type":"ListItem","position":3,"name":"Dachrinne Bochum","item":"https://www.rex-bedachung.de/dachrinne-bochum"}
-  ]
-}`}</script>
-        <script type="application/ld+json">{faqSchema}</script>
-        <script type="application/ld+json">{`{
-  "@context": "https://schema.org",
-  "@type": "Article",
-  "headline": "Dachrinnenreinigung Bochum – Reinigung, Reparatur & Erneuerung der Dachrinne",
-  "author": { "@id": "https://www.rex-bedachung.de/#author" },
-  "publisher": { "@id": "https://www.rex-bedachung.de/#organization" },
-  "url": "https://www.rex-bedachung.de/dachrinne-bochum"
-}`}</script>
       </Helmet>
 
       <OrganizationSchema />

@@ -111,27 +111,39 @@ const ablaufSchritte = [
 export default function DachgaubeBochum() {
   const [openFaq, setOpenFaq] = useState<number | null>(null);
 
+  const PAGE_URL = "https://www.rex-bedachung.de/dachgaube-bochum";
+  const PAGE_IMAGE = "https://www.rex-bedachung.de/images/dachgaube-bochum-stiepel.webp";
+  // Letzte inhaltliche Änderung laut freigegebener Datumstabelle (E2, SEO-Plan) – nie das Builddatum.
+  const DATE_MODIFIED = "2026-08-11";
+
   const schemaData = {
     "@context": "https://schema.org",
     "@graph": [
       {
+        "@type": "WebPage",
+        "@id": `${PAGE_URL}#webpage`,
+        "url": PAGE_URL,
+        "name": "Dachgaube Bochum – Einbau, Sanierung & Genehmigung",
+        "isPartOf": { "@id": "https://www.rex-bedachung.de/#website" },
+        "about": { "@id": "https://www.rex-bedachung.de/#organization" },
+        "breadcrumb": { "@id": `${PAGE_URL}#breadcrumb` },
+        "mainEntity": { "@id": `${PAGE_URL}#service` },
+        "primaryImageOfPage": PAGE_IMAGE,
+        "dateModified": DATE_MODIFIED,
+        "inLanguage": "de-DE",
+      },
+      {
         "@type": "BreadcrumbList",
+        "@id": `${PAGE_URL}#breadcrumb`,
         "itemListElement": [
           { "@type": "ListItem", "position": 1, "name": "Startseite", "item": "https://www.rex-bedachung.de/" },
           { "@type": "ListItem", "position": 2, "name": "Steildach Bochum", "item": "https://www.rex-bedachung.de/steildach-bochum" },
-          { "@type": "ListItem", "position": 3, "name": "Dachgaube Bochum", "item": "https://www.rex-bedachung.de/dachgaube-bochum" },
+          { "@type": "ListItem", "position": 3, "name": "Dachgaube Bochum", "item": PAGE_URL },
         ],
       },
       {
-        "@type": "Article",
-        "headline": "Dachgaube Bochum – Einbau, Sanierung und Typen im Überblick",
-        "author": { "@id": "https://www.rex-bedachung.de/#author" },
-        "publisher": { "@id": "https://www.rex-bedachung.de/#organization" },
-        "datePublished": "2026-03-17",
-        "url": "https://www.rex-bedachung.de/dachgaube-bochum",
-      },
-      {
         "@type": "Service",
+        "@id": `${PAGE_URL}#service`,
         "name": "Dachgaube einbauen Bochum",
         "serviceType": "Dachgaubeneinbau und Sanierung",
         "provider": { "@id": "https://www.rex-bedachung.de/#organization" },
@@ -141,16 +153,29 @@ export default function DachgaubeBochum() {
           { "@type": "City", "name": "Castrop-Rauxel" },
           { "@type": "City", "name": "Witten" },
           { "@type": "City", "name": "Hattingen" },
-          { "@type": "City", "name": "Gelsenkirchen" }
+          { "@type": "City", "name": "Gelsenkirchen" },
         ],
       },
       {
         "@type": "FAQPage",
-        "mainEntity": faqItems.map((f) => ({
+        "@id": `${PAGE_URL}#faq`,
+        "mainEntity": faqItems.map((item) => ({
           "@type": "Question",
-          "name": f.question,
-          "acceptedAnswer": { "@type": "Answer", "text": f.answer },
+          "name": item.question,
+          "acceptedAnswer": { "@type": "Answer", "text": item.answer },
         })),
+      },
+      {
+        "@type": "Article",
+        "@id": `${PAGE_URL}#article`,
+        "headline": "Dachgaube Bochum – Einbau, Sanierung und Typen im Überblick",
+        "author": { "@id": "https://www.rex-bedachung.de/#author" },
+        "publisher": { "@id": "https://www.rex-bedachung.de/#organization" },
+        "datePublished": "2026-03-17",
+        "dateModified": DATE_MODIFIED,
+        "mainEntityOfPage": { "@id": `${PAGE_URL}#webpage` },
+        "image": PAGE_IMAGE,
+        "url": PAGE_URL,
       },
     ],
   };

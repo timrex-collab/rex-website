@@ -114,46 +114,71 @@ const ablaufSchritte = [
 export default function AufsparrendaemmungBochum() {
   const [openFaq, setOpenFaq] = useState<number | null>(null);
 
+  const PAGE_URL = "https://www.rex-bedachung.de/aufsparrendaemmung-bochum";
+  const PAGE_IMAGE = "https://www.rex-bedachung.de/images/dachsanierung-bochum-stiepel-Aufsparrendaemmung.webp";
+  // Letzte inhaltliche Änderung laut freigegebener Datumstabelle (E2, SEO-Plan) – nie das Builddatum.
+  const DATE_MODIFIED = "2026-09-25";
+
   const schemaData = {
     "@context": "https://schema.org",
     "@graph": [
       {
+        "@type": "WebPage",
+        "@id": `${PAGE_URL}#webpage`,
+        "url": PAGE_URL,
+        "name": "Aufsparrendämmung Bochum – Kosten, Ablauf & Förderung",
+        "isPartOf": { "@id": "https://www.rex-bedachung.de/#website" },
+        "about": { "@id": "https://www.rex-bedachung.de/#organization" },
+        "breadcrumb": { "@id": `${PAGE_URL}#breadcrumb` },
+        "mainEntity": { "@id": `${PAGE_URL}#service` },
+        "primaryImageOfPage": PAGE_IMAGE,
+        "dateModified": DATE_MODIFIED,
+        "inLanguage": "de-DE",
+      },
+      {
         "@type": "BreadcrumbList",
-        itemListElement: [
-          { "@type": "ListItem", position: 1, name: "Startseite", item: "https://www.rex-bedachung.de/" },
-          { "@type": "ListItem", position: 2, name: "Steildach Bochum", item: "https://www.rex-bedachung.de/steildach-bochum" },
-          { "@type": "ListItem", position: 3, name: "Aufsparrendämmung Bochum", item: "https://www.rex-bedachung.de/aufsparrendaemmung-bochum" },
+        "@id": `${PAGE_URL}#breadcrumb`,
+        "itemListElement": [
+          { "@type": "ListItem", "position": 1, "name": "Startseite", "item": "https://www.rex-bedachung.de/" },
+          { "@type": "ListItem", "position": 2, "name": "Steildach Bochum", "item": "https://www.rex-bedachung.de/steildach-bochum" },
+          { "@type": "ListItem", "position": 3, "name": "Aufsparrendämmung Bochum", "item": PAGE_URL },
         ],
       },
       {
-        "@type": "Article",
-        headline: "Aufsparrendämmung Bochum – Ablauf, Vorteile und Förderung im Überblick",
-        author: { "@id": "https://www.rex-bedachung.de/#author" },
-        publisher: { "@id": "https://www.rex-bedachung.de/#organization" },
-        datePublished: "2026-03-17",
-        url: "https://www.rex-bedachung.de/aufsparrendaemmung-bochum",
-      },
-      {
         "@type": "Service",
-        name: "Aufsparrendämmung Bochum",
-        serviceType: "Dachdämmung Steildach",
-        provider: { "@id": "https://www.rex-bedachung.de/#organization" },
-        areaServed: [
+        "@id": `${PAGE_URL}#service`,
+        "name": "Aufsparrendämmung Bochum",
+        "serviceType": "Dachdämmung Steildach",
+        "provider": { "@id": "https://www.rex-bedachung.de/#organization" },
+        "areaServed": [
           { "@type": "City", "name": "Bochum" },
           { "@type": "City", "name": "Herne" },
           { "@type": "City", "name": "Castrop-Rauxel" },
           { "@type": "City", "name": "Witten" },
           { "@type": "City", "name": "Hattingen" },
-          { "@type": "City", "name": "Gelsenkirchen" }
+          { "@type": "City", "name": "Gelsenkirchen" },
         ],
       },
       {
         "@type": "FAQPage",
-        mainEntity: faqItems.map((f) => ({
+        "@id": `${PAGE_URL}#faq`,
+        "mainEntity": faqItems.map((item) => ({
           "@type": "Question",
-          name: f.question,
-          acceptedAnswer: { "@type": "Answer", text: f.answer },
+          "name": item.question,
+          "acceptedAnswer": { "@type": "Answer", "text": item.answer },
         })),
+      },
+      {
+        "@type": "Article",
+        "@id": `${PAGE_URL}#article`,
+        "headline": "Aufsparrendämmung Bochum – Ablauf, Vorteile und Förderung im Überblick",
+        "author": { "@id": "https://www.rex-bedachung.de/#author" },
+        "publisher": { "@id": "https://www.rex-bedachung.de/#organization" },
+        "datePublished": "2026-03-17",
+        "dateModified": DATE_MODIFIED,
+        "mainEntityOfPage": { "@id": `${PAGE_URL}#webpage` },
+        "image": PAGE_IMAGE,
+        "url": PAGE_URL,
       },
     ],
   };
