@@ -20,7 +20,7 @@ Status: ⬜ offen · 🔄 in Arbeit · ✅ erledigt
 
 > **Stand 17.11.2026: Item angelegt – [Q138609267](https://www.wikidata.org/wiki/Q138609267)**
 > (von Tim, Konto mit Offenlegung des Geschäftsführer-Bezugs auf der Benutzerseite).
-> `sameAs` auf der Website folgt mit S5a. Nacharbeiten am Item erledigt (geprüft 20.11.2026), Rest: Abschnitt 4.
+> `sameAs` auf der Website live seit S5a (PR #121, 22.11.2026). Nacharbeiten am Item erledigt (geprüft 20. und 25.11.2026), Rest: Abschnitt 4.
 
 ---
 
@@ -103,7 +103,7 @@ Referenz-Detail belassen.
 - ✅ Offizieller Name (P1448): Fundstellen Innung, Impressum, `/ueber-uns`.
 - ✅ Branche (P452): Bauwirtschaft (Q13405640).
 - ✅ Postleitzahl (P281) 44799, USt-IdNr. (P3608) DE124085752, E-Mail (P968) info@rex-bedachung.de, jeweils mit Fundstelle Impressum.
-- ⬜ Englische Beschreibung: steht noch als „Roofing company based in Bochum, Germany“ → „roofing company in Bochum, Germany“.
+- ✅ Englische Beschreibung: „roofing company in Bochum, Germany“ (geändert und geprüft 25.11.2026).
 - ⬜ optional: beim offiziellen Namen stehen die drei URLs in einem Fundstellen-Block; sauberer als drei getrennte Fundstellen.
 - ⬜ Fahnen-Symbole auf der Itemseite einmal kontrollieren: Beide vermuteten Ursachen sind behoben, die
   Wikidata-Konsistenzprüfung war bei der Prüfung am 20.11. wegen Abfragelimits nicht abrufbar.
@@ -113,7 +113,7 @@ Referenz-Detail belassen.
 Nach Vergabe der QID — als **separater funktionaler Stufe-B-Deploy** (nicht Teil
 dieser Doku, 48h-Gate beachten):
 
-- 🔄 QID-URL `https://www.wikidata.org/wiki/Q138609267` in `OrganizationSchema.tsx` im `sameAs`-Array: mit Paket S5a (PR #121, Merge frühestens 22.11.2026).
+- ✅ QID-URL `https://www.wikidata.org/wiki/Q138609267` in `OrganizationSchema.tsx` im `sameAs`-Array: live mit Paket S5a (PR #121, 22.11.2026).
 - ⬜ Optional in `llms.txt`/`llms-full.txt` als weitere Entitätsreferenz aufnehmen.
 
 Damit ist die Website ↔ Wikidata-Entität bidirektional verknüpft (starkes
