@@ -105,8 +105,7 @@ Referenz-Detail belassen.
 - ✅ Postleitzahl (P281) 44799, USt-IdNr. (P3608) DE124085752, E-Mail (P968) info@rex-bedachung.de, jeweils mit Fundstelle Impressum.
 - ✅ Englische Beschreibung: „roofing company in Bochum, Germany“ (geändert und geprüft 25.11.2026).
 - ⬜ optional: beim offiziellen Namen stehen die drei URLs in einem Fundstellen-Block; sauberer als drei getrennte Fundstellen.
-- ⬜ Fahnen-Symbole auf der Itemseite einmal kontrollieren: Beide vermuteten Ursachen sind behoben, die
-  Wikidata-Konsistenzprüfung war bei der Prüfung am 20.11. wegen Abfragelimits nicht abrufbar.
+- ✅ Fahnen-Symbole (Konsistenzhinweise) auf der Itemseite: keine mehr (Sichtkontrolle durch Tim, 25.11.2026).
 
 ## 5. Rückkopplung in die Website (Loop schließen)
 
