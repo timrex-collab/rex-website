@@ -53,24 +53,73 @@ const faqItems = [
   },
 ];
 
-const faqSchema = JSON.stringify({
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  "mainEntity": faqItems.map((item) => ({
-    "@type": "Question",
-    "name": item.question,
-    "acceptedAnswer": { "@type": "Answer", "text": item.answer },
-  })),
-});
+const PAGE_URL = "https://www.rex-bedachung.de/bitumen-vs-pvc-flachdach-bochum";
+const PAGE_IMAGE = "https://www.rex-bedachung.de/images/dach-hintergrund-rex-bedachung.webp";
+// Letzte inhaltliche Änderung laut freigegebener Datumstabelle (E2, SEO-Plan) – nie das Builddatum.
+const DATE_MODIFIED = "2026-09-30";
 
 const schemaJson = JSON.stringify({
   "@context": "https://schema.org",
-  "@type": "Article",
-  "headline": "Bitumen oder PVC Flachdach – Entscheidungshilfe für Bochumer Eigentümer",
-  "author": { "@id": "https://www.rex-bedachung.de/#author" },
-  "publisher": { "@id": "https://www.rex-bedachung.de/#organization" },
-  "url": "https://www.rex-bedachung.de/bitumen-vs-pvc-flachdach-bochum",
-  "description": "Bitumen oder PVC auf dem Flachdach? Rex Bedachungs GmbH Bochum erklärt wann welches System sinnvoll ist – mit Vergleich, Systemaufbau, Preisfaktoren und Förderhinweisen.",
+  "@graph": [
+    {
+      "@type": "WebPage",
+      "@id": `${PAGE_URL}#webpage`,
+      "url": PAGE_URL,
+      "name": "Bitumen oder PVC? Flachdach-Vergleich | Bochum",
+      "isPartOf": { "@id": "https://www.rex-bedachung.de/#website" },
+      "about": { "@id": "https://www.rex-bedachung.de/#organization" },
+      "breadcrumb": { "@id": `${PAGE_URL}#breadcrumb` },
+      "mainEntity": { "@id": `${PAGE_URL}#service` },
+      "primaryImageOfPage": PAGE_IMAGE,
+      "dateModified": DATE_MODIFIED,
+      "inLanguage": "de-DE",
+    },
+    {
+      "@type": "BreadcrumbList",
+      "@id": `${PAGE_URL}#breadcrumb`,
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Startseite", "item": "https://www.rex-bedachung.de/" },
+        { "@type": "ListItem", "position": 2, "name": "Flachdach Bochum", "item": "https://www.rex-bedachung.de/flachdach-bochum" },
+        { "@type": "ListItem", "position": 3, "name": "Bitumen vs. PVC", "item": PAGE_URL },
+      ],
+    },
+    {
+      "@type": "Service",
+      "@id": `${PAGE_URL}#service`,
+      "name": "Flachdachabdichtung Bochum – Bitumen und PVC",
+      "serviceType": "Flachdachabdichtung",
+      "provider": { "@id": "https://www.rex-bedachung.de/#organization" },
+      "areaServed": [
+        { "@type": "City", "name": "Bochum" },
+        { "@type": "City", "name": "Herne" },
+        { "@type": "City", "name": "Castrop-Rauxel" },
+        { "@type": "City", "name": "Witten" },
+        { "@type": "City", "name": "Hattingen" },
+        { "@type": "City", "name": "Gelsenkirchen" },
+      ],
+    },
+    {
+      "@type": "FAQPage",
+      "@id": `${PAGE_URL}#faq`,
+      "mainEntity": faqItems.map((item) => ({
+        "@type": "Question",
+        "name": item.question,
+        "acceptedAnswer": { "@type": "Answer", "text": item.answer },
+      })),
+    },
+    {
+      "@type": "Article",
+      "@id": `${PAGE_URL}#article`,
+      "headline": "Bitumen oder PVC Flachdach – Entscheidungshilfe für Bochumer Eigentümer",
+      "description": "Bitumen oder PVC auf dem Flachdach? Rex Bedachungs GmbH Bochum erklärt wann welches System sinnvoll ist – mit Vergleich, Systemaufbau, Preisfaktoren und Förderhinweisen.",
+      "author": { "@id": "https://www.rex-bedachung.de/#author" },
+      "publisher": { "@id": "https://www.rex-bedachung.de/#organization" },
+      "dateModified": DATE_MODIFIED,
+      "mainEntityOfPage": { "@id": `${PAGE_URL}#webpage` },
+      "image": PAGE_IMAGE,
+      "url": PAGE_URL,
+    },
+  ],
 });
 
 export default function BitumenVsPvc() {
@@ -92,31 +141,6 @@ export default function BitumenVsPvc() {
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:image" content="https://www.rex-bedachung.de/images/dach-hintergrund-rex-bedachung.webp" />
         <script type="application/ld+json">{schemaJson}</script>
-        <script type="application/ld+json">{`{
-  "@context": "https://schema.org",
-  "@type": "BreadcrumbList",
-  "itemListElement": [
-    {"@type":"ListItem","position":1,"name":"Startseite","item":"https://www.rex-bedachung.de/"},
-    {"@type":"ListItem","position":2,"name":"Flachdach Bochum","item":"https://www.rex-bedachung.de/flachdach-bochum"},
-    {"@type":"ListItem","position":3,"name":"Bitumen vs. PVC","item":"https://www.rex-bedachung.de/bitumen-vs-pvc-flachdach-bochum"}
-  ]
-}`}</script>
-        <script type="application/ld+json">{faqSchema}</script>
-        <script type="application/ld+json">{`{
-  "@context": "https://schema.org",
-  "@type": "Service",
-  "name": "Flachdachabdichtung Bochum – Bitumen und PVC",
-  "provider": { "@type": "RoofingContractor", "@id": "https://www.rex-bedachung.de/#organization" },
-  "areaServed": [
-    { "@type": "City", "name": "Bochum" },
-    { "@type": "City", "name": "Herne" },
-    { "@type": "City", "name": "Castrop-Rauxel" },
-    { "@type": "City", "name": "Witten" },
-    { "@type": "City", "name": "Hattingen" },
-    { "@type": "City", "name": "Gelsenkirchen" }
-  ],
-  "serviceType": "Flachdachabdichtung"
-}`}</script>
       </Helmet>
 
       <OrganizationSchema />

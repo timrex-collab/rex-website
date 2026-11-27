@@ -63,34 +63,84 @@ const faqItems = [
   },
 ];
 
-const faqSchema = JSON.stringify({
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  "mainEntity": faqItems.map((item) => ({
-    "@type": "Question",
-    "name": item.question,
-    "acceptedAnswer": { "@type": "Answer", "text": item.answer },
-  })),
-});
+const PAGE_URL = "https://www.rex-bedachung.de/dach-photovoltaik-bochum";
+const PAGE_IMAGE = "https://www.rex-bedachung.de/images/braas-pv-premium-turmalin-header-photovoltaik-dach-bochum.webp";
+// Letzte inhaltliche Änderung laut freigegebener Datumstabelle (E2, SEO-Plan) – nie das Builddatum.
+const DATE_MODIFIED = "2026-10-12";
 
-const serviceSchema = JSON.stringify({
+const schemaJson = JSON.stringify({
   "@context": "https://schema.org",
-  "@type": "Service",
-  "name": "Dach & Photovoltaik Bochum – Braas PV Premium und Aufdach-PV",
-  "provider": {
-    "@type": "RoofingContractor",
-    "@id": "https://www.rex-bedachung.de/#organization",
-  },
-  "areaServed": [
-    { "@type": "City", "name": "Bochum" },
-    { "@type": "City", "name": "Herne" },
-    { "@type": "City", "name": "Castrop-Rauxel" },
-    { "@type": "City", "name": "Witten" },
-    { "@type": "City", "name": "Hattingen" },
-    { "@type": "City", "name": "Gelsenkirchen" }
+  "@graph": [
+    {
+      "@type": "WebPage",
+      "@id": `${PAGE_URL}#webpage`,
+      "url": PAGE_URL,
+      "name": "Dach & Photovoltaik Bochum – PV-Dachcheck gratis",
+      "isPartOf": { "@id": "https://www.rex-bedachung.de/#website" },
+      "about": { "@id": "https://www.rex-bedachung.de/#organization" },
+      "breadcrumb": { "@id": `${PAGE_URL}#breadcrumb` },
+      "mainEntity": { "@id": `${PAGE_URL}#service` },
+      "primaryImageOfPage": PAGE_IMAGE,
+      "dateModified": DATE_MODIFIED,
+      "inLanguage": "de-DE",
+    },
+    {
+      "@type": "BreadcrumbList",
+      "@id": `${PAGE_URL}#breadcrumb`,
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Startseite", "item": "https://www.rex-bedachung.de/" },
+        { "@type": "ListItem", "position": 2, "name": "Dachsanierung Bochum", "item": "https://www.rex-bedachung.de/dachsanierung-bochum" },
+        { "@type": "ListItem", "position": 3, "name": "Dach & Photovoltaik", "item": PAGE_URL },
+      ],
+    },
+    {
+      "@type": "Service",
+      "@id": `${PAGE_URL}#service`,
+      "name": "Dach & Photovoltaik Bochum – Braas PV Premium und Aufdach-PV",
+      "serviceType": "Dach Photovoltaik Vorbereitung",
+      "description": "Dach für Photovoltaik vorbereiten in Bochum: Braas PV Premium (Turmalin, Tegalit) als dachintegrierte Lösung oder Vorbereitung für Aufdach-PV. Rex Bedachungs GmbH – Meisterbetrieb seit 1984.",
+      "provider": { "@id": "https://www.rex-bedachung.de/#organization" },
+      "areaServed": [
+        { "@type": "City", "name": "Bochum" },
+        { "@type": "City", "name": "Herne" },
+        { "@type": "City", "name": "Castrop-Rauxel" },
+        { "@type": "City", "name": "Witten" },
+        { "@type": "City", "name": "Hattingen" },
+        { "@type": "City", "name": "Gelsenkirchen" },
+      ],
+    },
+    {
+      "@type": "FAQPage",
+      "@id": `${PAGE_URL}#faq`,
+      "mainEntity": faqItems.map((item) => ({
+        "@type": "Question",
+        "name": item.question,
+        "acceptedAnswer": { "@type": "Answer", "text": item.answer },
+      })),
+    },
+    {
+      "@type": "HowTo",
+      "@id": `${PAGE_URL}#howto`,
+      "name": "Dach für Photovoltaik vorbereiten – Ablauf",
+      "step": [
+        { "@type": "HowToStep", "position": 1, "name": "Dachcheck anfragen", "text": "Rex prüft vor Ort Dachzustand, Ausrichtung und Eignung für Braas PV Premium oder Aufdach-PV." },
+        { "@type": "HowToStep", "position": 2, "name": "Angebot erhalten", "text": "Transparentes Angebot für Dachsanierung, PV Premium Montage und Kabeldurchführungen." },
+        { "@type": "HowToStep", "position": 3, "name": "Dach + PV-Fläche montieren", "text": "Rex montiert Neueindeckung mit Braas PV Premium oder bereitet Dach für Aufdach-PV vor." },
+        { "@type": "HowToStep", "position": 4, "name": "Elektroanschluss", "text": "Elektrofachbetrieb übernimmt Wechselrichter, Verkabelung und Netzeinspeisung." },
+      ],
+    },
+    {
+      "@type": "Article",
+      "@id": `${PAGE_URL}#article`,
+      "headline": "Dach & Photovoltaik Bochum – Braas PV Premium und Aufdach-PV",
+      "author": { "@id": "https://www.rex-bedachung.de/#author" },
+      "publisher": { "@id": "https://www.rex-bedachung.de/#organization" },
+      "dateModified": DATE_MODIFIED,
+      "mainEntityOfPage": { "@id": `${PAGE_URL}#webpage` },
+      "image": PAGE_IMAGE,
+      "url": PAGE_URL,
+    },
   ],
-  "description": "Dach für Photovoltaik vorbereiten in Bochum: Braas PV Premium (Turmalin, Tegalit) als dachintegrierte Lösung oder Vorbereitung für Aufdach-PV. Rex Bedachungs GmbH – Meisterbetrieb seit 1984.",
-  "serviceType": "Dach Photovoltaik Vorbereitung",
 });
 
 export default function DachPhotovoltaikBochum() {
@@ -110,36 +160,7 @@ export default function DachPhotovoltaikBochum() {
         <meta property="og:site_name" content="Rex Bedachungs GmbH" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:image" content="https://www.rex-bedachung.de/images/braas-pv-premium-turmalin-header-photovoltaik-dach-bochum.webp" />
-        <script type="application/ld+json">{serviceSchema}</script>
-        <script type="application/ld+json">{`{
-  "@context": "https://schema.org",
-  "@type": "BreadcrumbList",
-  "itemListElement": [
-    {"@type":"ListItem","position":1,"name":"Startseite","item":"https://www.rex-bedachung.de/"},
-    {"@type":"ListItem","position":2,"name":"Dachsanierung Bochum","item":"https://www.rex-bedachung.de/dachsanierung-bochum"},
-    {"@type":"ListItem","position":3,"name":"Dach & Photovoltaik","item":"https://www.rex-bedachung.de/dach-photovoltaik-bochum"}
-  ]
-}`}</script>
-        <script type="application/ld+json">{faqSchema}</script>
-        <script type="application/ld+json">{`{
-  "@context": "https://schema.org",
-  "@type": "HowTo",
-  "name": "Dach für Photovoltaik vorbereiten – Ablauf",
-  "step": [
-    {"@type":"HowToStep","position":1,"name":"Dachcheck anfragen","text":"Rex prüft vor Ort Dachzustand, Ausrichtung und Eignung für Braas PV Premium oder Aufdach-PV."},
-    {"@type":"HowToStep","position":2,"name":"Angebot erhalten","text":"Transparentes Angebot für Dachsanierung, PV Premium Montage und Kabeldurchführungen."},
-    {"@type":"HowToStep","position":3,"name":"Dach + PV-Fläche montieren","text":"Rex montiert Neueindeckung mit Braas PV Premium oder bereitet Dach für Aufdach-PV vor."},
-    {"@type":"HowToStep","position":4,"name":"Elektroanschluss","text":"Elektrofachbetrieb übernimmt Wechselrichter, Verkabelung und Netzeinspeisung."}
-  ]
-}`}</script>
-        <script type="application/ld+json">{`{
-  "@context": "https://schema.org",
-  "@type": "Article",
-  "headline": "Dach & Photovoltaik Bochum – Braas PV Premium und Aufdach-PV",
-  "author": {"@id": "https://www.rex-bedachung.de/#author"},
-  "publisher": {"@id": "https://www.rex-bedachung.de/#organization"},
-  "url": "https://www.rex-bedachung.de/dach-photovoltaik-bochum"
-}`}</script>
+        <script type="application/ld+json">{schemaJson}</script>
       </Helmet>
 
       <OrganizationSchema />
