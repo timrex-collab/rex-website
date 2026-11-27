@@ -620,6 +620,39 @@ VELUX D1–D8 · Förder-Bereinigung R1–R4 · Doku/llms nach R1–R4.
 > **Als Nächstes vorgesehen:** S5b (weitere Schema-Seiten, darunter `DachPhotovoltaikBochum`), danach S3; der
 > erste Merge im Dezember wird ein Inhaltspaket; Förder-Deploy spätestens 29.12.2026.
 > Offen: wie Stand 22.11.2026.
+>
+> **Stand 27.11.2026 (nach PR #126, S5b Schema):**
+> - **#126:** Sieben Seiten (Dachrinne, Bitumen vs. PVC, Aufsparrendämmung, Dachgaube, Steildach-Förderung,
+>   Steildach undicht, Dach & Photovoltaik) mit je einem `@graph` nach §7; Werte unverändert aus dem bisher
+>   ausgelieferten Schema übernommen; `dateModified` aus E2. IndexNow #95: 7 URLs, HTTP 200.
+>   **Merge nach Mitternacht (27.11., 07:21 MEZ):** `lastmod` der sieben URLs steht auf 26.11.2026, einen Tag
+>   vor dem tatsächlichen Deploy. Kein eigener Deploy dafür; das nächste Paket, das `sitemap.xml` ohnehin
+>   ändert, setzt die sieben Werte auf 27.11.2026.
+> - **GSC-Befunde (26.11.2026, Screenshots Tim):**
+>   - *Soft 404* `/dachreparatur-bochum` (Crawl 17.11., Tag der Deploys #118/#119): URL-Prüfung zeigt
+>     „Seite ist indexiert“, Live-Test vom 26.11. bestanden, Überprüfung im Bericht am 26.11. gestartet.
+>     Vermutete Ursache: beim Rendern durch Google nicht geladene Programmdateien (Ersatzanzeige der
+>     `ChunkErrorBoundary`, vgl. `PRERENDER-CHECK.md` §9), **nicht belegt**. In der indexierten Version „5/19
+>     Seitenressourcen nicht geladen“; die Liste liefert Tim nach. Bewertung: beobachten; ein Robustheitspaket
+>     nur, wenn dort Programmdateien mit 404 stehen.
+>   - *Durch „noindex“ ausgeschlossen:* `/index.html`, `/impressum.html`, `/notruf/`,
+>     `/leistungen/daecher/flachdach/` (Altadressen ohne Weiterleitung → 404-Seite mit `noindex`). Geplant:
+>     301 in `netlify.toml` (`/` bzw. `/impressum` bzw. Ziel offen, Entscheidung Tim bzw. `/flachdach-bochum`),
+>     zusammen mit S8 als ein Stufe-C-Deploy nach dem Förder-Deploy. Keine Notdienst-Seite.
+>   - *Durch robots.txt blockiert:* `/datenschutz`, `/impressum`, gewollt. *Alternative Seite mit richtigem
+>     kanonischen Tag:* `/leistungen/` → `/leistungen`, korrekt.
+>   - *Bild-Metadaten* `#primaryimage`: „Ungültiger Objekttyp für creator“ (optional; Verweis auf den
+>     `RoofingContractor`) → Korrektur in `OrganizationSchema.tsx` mit S5c. `license`/`acquireLicensePage`
+>     nicht relevant.
+> - **Wikidata abgeschlossen:** englische Beschreibung korrigiert, keine Konsistenzhinweise mehr (Sichtkontrolle
+>   Tim 25.11.); `WIKIDATA.md` mit den Commits der anderen Sitzung (Branch `claude/elegant-edison-hokkaq`).
+> **Nächstes 48-h-Fenster:** ab **29.11.2026 07:23 MEZ** (48 h nach `published_at` von #126).
+> **Als Nächstes vorgesehen:** S3 (Kontrast, H1 „ums“, `/datenschutz` bei 390 px, „4,48 ★“; Freigaben Tim
+> offen), dabei die sieben `lastmod` auf 27.11.; erster Merge im Dezember ein Inhaltspaket (S6); Förder-Deploy
+> spätestens 29.12.2026; danach Weiterleitungen + S8 (Stufe C); S5c/S5d.
+> Offen: B10 aus der Förderprüfung; Herkunft „4,48 ★“; Ziel für `/notruf/`; Liste der Seitenressourcen
+> (GSC); PageSpeed Insights `/referenzen`; Search Console „Verbesserungen“ für S5a/S5b; `.well-known`-Regel;
+> Express-Dev-Server.
 
 | Deploy | Inhalt | Status |
 |---|---|---|
@@ -695,6 +728,7 @@ VELUX D1–D8 · Förder-Bereinigung R1–R4 · Doku/llms nach R1–R4.
 | **S2 Sitemap-Daten** | `client/public/sitemap.xml`: `lastmod` je URL auf den Tag der letzten inhaltlichen Änderung (Datumstabelle E2 aus `SEO-UMSETZUNGSPLAN-2026-10`, Startseite 15.10.2026), 29 von 30 Werten geändert. `scripts/indexnow-submit.mjs` mit `--changed-since <git-ref>`; `indexnow.yml` übergibt `github.event.before` (Checkout mit voller Historie): gemeldet werden nur URLs mit geändertem `lastmod`, `workflow_dispatch` und `npm run indexnow:submit` melden alle. Neu: §5 Schritt 3a | ✅ live (PR #120, gemergt 20.11.2026 17:41:57 MEZ per Squash, `13edc49`; Stufe B, 4 Dateien; Gate eingehalten: **73 h 43 min** nach #118; Netlify `6b007858…`, `commit_ref 13edc49`, `published_at 17:42:45 MEZ`, `state ready`, `plugin_state success`, Secret-Scan 767/0, 31 Redirect-Regeln, „All files already uploaded“ (von der Preview); IndexNow #89: 29 URLs, HTTP 200; Checks-Lauf #132 grün; Prerender-Check #38 grün) — **Merge durch Tim** |
 | **S5a Schema** | Fünf Seiten (`Dachreparatur`, `DachwartungBochum`, `BauklempnereiBochum`, `GruendachBochum`, `SturmschadenDach`): alle JSON-LD-Blöcke zu einem `@graph` mit `#webpage`, `#breadcrumb`, `#service`, `#faq`, `#article` (Sturmschaden zusätzlich `#howto`, E4); doppelte Services zusammengeführt, `provider` nur als Verweis; `dateModified` aus E2 in WebPage und Article, `datePublished` nur wo belegt (Gründach); Gründach `dateModified` 01.03. → 23.09. und Host www. `OrganizationSchema.tsx`: `sameAs` + Wikidata Q138609267. `sitemap.xml`: fünf `lastmod` auf 22.11.2026. `WIKIDATA.md`: QID und Nacharbeiten. Sichtbarer Inhalt unverändert (Vorher/Nachher-Vergleich der gerenderten JSON-LD) | ✅ live (PR #121, gemergt 22.11.2026 20:29:25 MEZ per Squash, `9e787f3`; Stufe B, 8 Dateien; Gate eingehalten: **50 h 46 min** nach #120 (#122 war reine Doku); Netlify `6b034297…`, `commit_ref 9e787f3`, `published_at 20:30:12 MEZ`, `state ready`, `plugin_state success`, Secret-Scan 769/0, 66 neue Dateien, 31 Redirect-Regeln; IndexNow #91: 5 URLs, HTTP 200; Checks-Lauf #137 grün; Prerender-Check #39 grün) — **Merge durch Tim** |
 | **S4 Vorschaubilder** | Sechs neue WebP-Vorschaubilder (800 px, Qualität 80, Geotag der Firmenadresse wie im Original) für `gruendach-extensiv-sedum-…`, `fensterbank-zinkblech-…`, `velux-dachfenster-doppelanlage-…`, `dacheindeckung-tonziegel-velux-…`, `velux-dachfenster-3er-…`, `tondach-dachziegel-bochum-typ4` (zusammen 1.744 KB → 304 KB). `References.tsx`: Feld `thumb`, Kachel und Lightbox-Miniaturen laden `thumb ?? src`, Lightbox das Original. Originale unverändert (auch auf anderen Seiten und in `llms.txt`). Kein `lastmod` | ✅ live (PR #124, gemergt 24.11.2026 21:53:47 MEZ per Squash, `01abdee`; Stufe B, 7 Dateien; Gate eingehalten: **49 h 23 min** nach #121 (#123 war reine Doku); Netlify `6b05f95d…`, `commit_ref 01abdee`, `published_at 21:54:36 MEZ`, `state ready`, `plugin_state success`, Secret-Scan 777/0, 66 neue Dateien, 31 Redirect-Regeln; IndexNow #93: nichts zu melden; Checks-Lauf #142 grün; Prerender-Check #40 grün) — **Merge durch Tim** |
+| **S5b Schema** | Sieben Seiten (`DachrinnenBochum`, `BitumenVsPvc`, `AufsparrendaemmungBochum`, `DachgaubeBochum`, `SteildachFoerderungBochum`, `SteildachUndichtBochum`, `DachPhotovoltaikBochum`): je ein `@graph` mit `#webpage`, `#breadcrumb`, `#service`, `#faq`, `#article` (PV zusätzlich `#howto`, E4); Werte per Skript aus dem bisher ausgelieferten Schema übernommen, `provider` nur als Verweis; `dateModified` aus E2 in WebPage und Article, `datePublished` wo vorhanden (17.03.2026). `sitemap.xml`: sieben `lastmod` auf 26.11.2026 (Merge erst 27.11., Korrektur mit dem nächsten Sitemap-Paket). Sichtbarer Inhalt unverändert (Vorher/Nachher-Vergleich der gerenderten JSON-LD) | ✅ live (PR #126, gemergt 27.11.2026 07:21:56 MEZ per Squash, `1810309`; Stufe B, 8 Dateien; Gate eingehalten: **57 h 27 min** nach #124 (#125 war reine Doku); Netlify `6b092187…`, `commit_ref 1810309`, `published_at 07:22:37 MEZ`, `state ready`, `plugin_state success`, Secret-Scan 779/0, 66 neue Dateien, 31 Redirect-Regeln; IndexNow #95: 7 URLs, HTTP 200; Checks-Lauf #146 grün; Prerender-Check #41 grün) — **Merge durch Tim** |
 
 > **👤 Abweichung von §5.5 (28. und 30.08.2026) — PR #56 und #61 von Claude gemergt:**
 > Abschnitt 5, Punkt 5 lautet „Merge ausschließlich durch Tim. Kein Direct-Push auf `main`,
